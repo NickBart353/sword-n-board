@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://23kjgnpf3t1i"]
+
+[ext_resource type="Script" uid="uid://c3nvkxuk2npog" path="res://character_body_3d.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://bdmjx20jqe0c8" path="res://assets/3d_models/TinyUnitsAnimated_RTS/BlueTeam/FBX/BlueTeam_TwoHandSwordsMen_Unit.fbx" id="2_e2o6t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e2o6t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80nbo"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2o6t"]
+size = Vector3(20, 1, 20)
+
+[node name="Node" type="Node"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 64.26077, 0)
+script = ExtResource("1_80nbo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4094403, 0)
+shape = SubResource("CapsuleShape3D_e2o6t")
+
+[node name="BlueTeam_TwoHandSwordsMen_Unit2" parent="CharacterBody3D" instance=ExtResource("2_e2o6t")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -12.899299, -55.2481, 5.3288307)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9907526, 0, 0.13568099, -0.13557906, -0.038754098, 0.99000835, 0.005258194, -0.9992488, -0.03839572, 0, 8.562067, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -10.651558, 0.8529532)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_80nbo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_e2o6t")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 151.53079, 200.10419)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.99939084, -0.0348995, 0, 0.034899496, 0.99939084, 0, -116.44017, -90.33026)
