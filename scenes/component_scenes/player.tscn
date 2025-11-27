@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv5kbi381wtxm"]
+
+[ext_resource type="Script" uid="uid://c3nvkxuk2npog" path="res://scripts/player.gd" id="1_jlpcf"]
+[ext_resource type="PackedScene" uid="uid://bdmjx20jqe0c8" path="res://assets/3d_models/TinyUnitsAnimated_RTS/BlueTeam/FBX/BlueTeam_TwoHandSwordsMen_Unit.fbx" id="2_hfxgv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jlpcf"]
+radius = 0.22998047
+height = 0.8920083
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+script = ExtResource("1_jlpcf")
+TILT_LOWER_LIMIT = 180.0
+TILT_UPPER_LIMIT = 0.0
+CAMERA_CONTROLLER = NodePath("Marker3D/Camera3D")
+
+[node name="BlueTeam_TwoHandSwordsMen_Unit2" parent="." instance=ExtResource("2_hfxgv")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.091868095, 0.039500043, 0, 0.039500043, -0.091868095, -0.06244869, 1.2704912, 2.329045)
+fov = 90.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35990644, 0)
+shape = SubResource("CapsuleShape3D_jlpcf")
