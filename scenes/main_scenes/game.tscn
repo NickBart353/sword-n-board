@@ -4,24 +4,30 @@
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/building.tscn" id="3_ifh15"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_l8ptf"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
-energy_multiplier = 0.2
+energy_multiplier = 0.3
 
-[sub_resource type="Sky" id="Sky_fdak3"]
-sky_material = SubResource("PanoramaSkyMaterial_l8ptf")
+[sub_resource type="Sky" id="Sky_ifh15"]
+sky_material = SubResource("PanoramaSkyMaterial_ifh15")
 
 [sub_resource type="Environment" id="Environment_fqmia"]
 background_mode = 2
 background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-sky = SubResource("Sky_fdak3")
-ambient_light_color = Color(0.031411376, 0.05952046, 0.16084787, 1)
-ambient_light_sky_contribution = 0.45
-tonemap_mode = 2
+sky = SubResource("Sky_ifh15")
+ambient_light_source = 3
+ambient_light_color = Color(0.41136128, 0.5487805, 0.8715746, 1)
+ambient_light_sky_contribution = 0.27
+ambient_light_energy = 0.0
+reflected_light_source = 1
+tonemap_mode = 3
+tonemap_white = 0.41
 ssao_enabled = true
+ssao_radius = 2.2
 glow_enabled = true
-glow_intensity = 0.0
-glow_strength = 0.0
+glow_intensity = 8.0
+glow_strength = 0.67
+glow_bloom = 0.1
 
 [node name="Main" type="Node3D"]
 
