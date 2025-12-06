@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbrg0np6333k1"]
+
+[ext_resource type="PackedScene" uid="uid://cryx3edxi6d4f" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/banner_mounted.glb" id="1_vvqum"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cnjda"]
+size = Vector3(1.4, 3, 0.2)
+
+[node name="banner_mounted" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.195639e-08, 2.1412501, 0.4)
+shape = SubResource("BoxShape3D_cnjda")
+
+[node name="banner_mounted" parent="." instance=ExtResource("1_vvqum")]

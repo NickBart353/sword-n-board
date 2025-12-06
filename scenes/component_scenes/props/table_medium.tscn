@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ditoejo0nafcl"]
+
+[ext_resource type="PackedScene" uid="uid://bi48kcisf3twl" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/table_medium.glb" id="1_hm2vg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3npnu"]
+size = Vector3(2, 1.0067993, 2)
+
+[node name="table_medium" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1920929e-07, 0.50746477, 2.9802322e-08)
+shape = SubResource("BoxShape3D_3npnu")
+
+[node name="table_medium" parent="." instance=ExtResource("1_hm2vg")]

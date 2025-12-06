@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpxwfjguq8x88"]
+
+[ext_resource type="PackedScene" uid="uid://duq6ti1gveb2u" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/coin_stack.glb" id="1_l5m8c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_16ixf"]
+height = 1.6875
+
+[node name="coin_stack" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.76604444, 0.6427876, 0, 2.8097137e-08, -3.3484866e-08, -1, -0.6427876, 0.76604444, -4.371139e-08, -0.024377916, 0.64125013, 0.026520018)
+shape = SubResource("CapsuleShape3D_16ixf")
+
+[node name="coin_stack" parent="." instance=ExtResource("1_l5m8c")]

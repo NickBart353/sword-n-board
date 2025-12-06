@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c88dmwafiq0sj"]
+
+[ext_resource type="PackedScene" uid="uid://epqod2sd7r8b" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/candles.glb" id="1_feikv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yeegq"]
+height = 0.86249995
+radius = 0.26999998
+
+[node name="candles" type="RigidBody3D"]
+sleeping = true
+
+[node name="candles" parent="." instance=ExtResource("1_feikv")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.44125, 0)
+shape = SubResource("CylinderShape3D_yeegq")
