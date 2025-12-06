@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cly2etoes3u5b"]
+
+[ext_resource type="PackedScene" uid="uid://c0mxo5n33nucd" path="res://assets/brackeys_3d_game_assets/dungeon_assets/building/wall_doorway.glb" id="1_dv74o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jywxu"]
+size = Vector3(1, 4.1, 1.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4eagu"]
+size = Vector3(1, 4.1, 1.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3g46r"]
+size = Vector3(0.3, 2.72, 1.99)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fw7jx"]
+size = Vector3(3.9, 1.2, 1.01)
+
+[node name="wall_doorway" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.95, -0.0050001442)
+shape = SubResource("BoxShape3D_jywxu")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4000001, 1.95, -0.0050001442)
+shape = SubResource("BoxShape3D_4eagu")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9396926, 0, -0.34202012, 0, 1, 0, 0.34202012, 0, 0.9396926, -1.0880362, 1.3900002, 0.77645665)
+shape = SubResource("BoxShape3D_3g46r")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999952, 3.4, -0.0050001442)
+shape = SubResource("BoxShape3D_fw7jx")
+
+[node name="wall_doorway2" parent="." instance=ExtResource("1_dv74o")]
+
+[node name="wall_doorway_door" parent="wall_doorway2/wall_doorway" index="0"]
+transform = Transform3D(-0.34202012, 0, -0.9396926, 0, 1, 0, 0.9396926, 0, -0.34202012, -0.8200989, 0, 0)
+
+[editable path="wall_doorway2"]
