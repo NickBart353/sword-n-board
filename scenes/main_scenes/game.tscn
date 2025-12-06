@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene load_steps=8 format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_fdak3"]
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/building.tscn" id="3_ifh15"]
+[ext_resource type="PackedScene" uid="uid://doh76cvllte4m" path="res://scenes/component_scenes/characters/enemies/skeleton_mage.tscn" id="4_ks7w8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
@@ -40,6 +41,9 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="ProtoController" parent="." instance=ExtResource("1_fdak3")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15.300006, 0.40000036, 11.600006)
+transform = Transform3D(0.17364834, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364834, 10.300006, 0.40000036, 7.600006)
 
 [node name="Building" parent="." instance=ExtResource("3_ifh15")]
+
+[node name="SkeletonMage" parent="." instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 6.4, 0.1, 8.400001)

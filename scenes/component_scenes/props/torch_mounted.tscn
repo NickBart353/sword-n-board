@@ -16,3 +16,8 @@ shape = SubResource("BoxShape3D_07236")
 
 [node name="vfx_fire" parent="torch_mounted2" instance=ExtResource("2_07236")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.4)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96792996, 0.42300868)
+light_color = Color(0.6922583, 0.65924823, 0.9361789, 1)
+shadow_enabled = true

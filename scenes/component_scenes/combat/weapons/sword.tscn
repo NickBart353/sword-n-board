@@ -1,0 +1,93 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca8m14i25pu7y"]
+
+[ext_resource type="ArrayMesh" uid="uid://vu7q45ul86s" path="res://assets/Lowpoly_swords/Objs/Classic_hoplite_sword.obj" id="1_7aiw0"]
+[ext_resource type="Script" uid="uid://bwwuxjtfociga" path="res://scripts/combat/weapons/sword.gd" id="1_c5xvt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7aiw0"]
+size = Vector3(0.2019043, 1.3025665, 0.15966797)
+
+[sub_resource type="Animation" id="Animation_c5xvt"]
+resource_name = "swing"
+
+[sub_resource type="Animation" id="Animation_jrpt1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.22246629, -0.20567429)]
+}
+
+[sub_resource type="Animation" id="Animation_i74jv"]
+resource_name = "swang"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -0.726057), Vector3(0, 0, 2.268928), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.4, 1, 0), Vector3(-0.1, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrpt1"]
+_data = {
+&"RESET": SubResource("Animation_jrpt1"),
+&"swang": SubResource("Animation_i74jv"),
+&"swing": SubResource("Animation_c5xvt")
+}
+
+[node name="Sword" type="Node3D"]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.22246629, -0.20567429)
+script = ExtResource("1_c5xvt")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, -2.4868996e-14, 0, 0, 0.9999996, 0, 0, 0, 0.99999994, 0.14875337, 1.1810218, -0.016845698)
+shape = SubResource("BoxShape3D_7aiw0")
+debug_color = Color(1.3086371, 0, 0.55059105, 0.42)
+
+[node name="ClassicHopliteSword" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.22717011, 8.8475645e-09, -7.450581e-09, -3.0733645e-08, -0.14120583, 1.4901161e-08, -3.7252903e-09, 7.450581e-09, 0.47322512, 0.14449963, 0.6539316, -0.011299208)
+mesh = ExtResource("1_7aiw0")
+skeleton = NodePath("../../../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jrpt1")
+}

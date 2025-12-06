@@ -1,3 +1,5 @@
+class_name Player
+
 # ProtoController v1.0 by Brackeys
 # CC0 License
 # Intended for rapid prototyping of first-person games.
@@ -20,9 +22,9 @@ extends CharacterBody3D
 ## Look around rotation speed.
 @export var look_speed : float = 0.002
 ## Normal speed.
-@export var base_speed : float = 7.0
+@export var base_speed : float = 5.0
 ## Speed of jump.
-@export var jump_velocity : float = 4.5
+@export var jump_velocity : float = 4
 ## How fast do we run?
 @export var sprint_speed : float = 10.0
 ## How fast do we freefly?
