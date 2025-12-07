@@ -46,10 +46,16 @@ extends CharacterBody3D
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
 
+const MAX_HEALTH = 100
+const MIN_HEALTH = 100
+
+var health = MAX_HEALTH
+
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
+var blocking = false
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
@@ -59,6 +65,7 @@ func _ready() -> void:
 	check_input_mappings()
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	$CanvasLayer/RedBar/HealthBar.value = health
 
 func _unhandled_input(event: InputEvent) -> void:
 	# Mouse capturing
@@ -186,3 +193,13 @@ func _attack():
 	var weapon = $Head/Camera3D/Marker3D.get_child(0)
 	weapon.play_animation()
 	weapon.set_attacking(true)
+
+func take_damage(damage, body):
+	if not blocking:
+		health -= damage
+	if health <= MIN_HEALTH:
+		_die()
+	$CanvasLayer/RedBar/HealthBar.value = health
+
+func _die():
+	print("game over")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=9 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://ctikbextliywu" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="3_5hfox"]
@@ -13,6 +13,15 @@ height = 1.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iof21"]
 radius = 0.4
 height = 1.8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wr06p"]
+bg_color = Color(1, 0.2, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hfox"]
+bg_color = Color(1, 0.2, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6dqce"]
+bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
 [node name="ProtoController" type="CharacterBody3D"]
 script = ExtResource("1_ucva2")
@@ -38,3 +47,21 @@ transform = Transform3D(-0.026337879, 0.19250484, -0.9809425, 0.005166809, 0.981
 
 [node name="Sword" parent="Head/Camera3D/Marker3D" instance=ExtResource("3_5hfox")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.22246629, -0.20567429)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RedBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 77.0
+offset_top = 575.0
+offset_right = 331.0
+offset_bottom = 602.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wr06p")
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/RedBar"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5hfox")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6dqce")
+show_percentage = false

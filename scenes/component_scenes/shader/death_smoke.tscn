@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=3 uid="uid://do2yjfn1olkvy"]
+
+[ext_resource type="Shader" uid="uid://bqrmbx8q8u42f" path="res://shaders/deathSmoke.tres" id="1_n6hgi"]
+[ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/GAP_Fire_Textures/Voronoi01.png" id="2_4q3wu"]
+[ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/GAP_Fire_Textures/Flare00.PNG" id="3_5rus5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6hgi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_n6hgi")
+shader_parameter/MainTex = ExtResource("3_5rus5")
+shader_parameter/DissolveTiling = Vector2(0.2, 0.4)
+shader_parameter/DissolveSpeed = Vector2(0.1, 0)
+shader_parameter/DissolveTexture = ExtResource("2_4q3wu")
+shader_parameter/DissolveAmount = 0.1250000059375
+
+[sub_resource type="Curve" id="Curve_6hb4x"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, -327.64044), 0.0, 0.0, 0, 0, Vector2(0.99999, 360), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4q3wu"]
+curve = SubResource("Curve_6hb4x")
+
+[sub_resource type="Gradient" id="Gradient_5rus5"]
+colors = PackedColorArray(0.29219002, 0.29219005, 0.29219002, 1, 0.83889705, 0.83889705, 0.838897, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3s3cd"]
+gradient = SubResource("Gradient_5rus5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ak6tk"]
+angle_min = -360.0
+angle_max = 360.00003
+angle_curve = SubResource("CurveTexture_4q3wu")
+spread = 35.526
+gravity = Vector3(50, 0, 2)
+scale_min = 0.25
+scale_max = 0.5
+color = Color(0.8992584, 0.8992584, 0.8992584, 1)
+color_initial_ramp = SubResource("GradientTexture1D_3s3cd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_4q3wu"]
+
+[node name="DeathSmoke" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_n6hgi")
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_ak6tk")
+draw_pass_1 = SubResource("QuadMesh_4q3wu")

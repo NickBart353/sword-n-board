@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://blqdi82e7jpei"]
+
+[ext_resource type="Script" uid="uid://b1mgbqlr8vree" path="res://scripts/worldmap_generator/height_map.gd" id="1_4nsbt"]
+[ext_resource type="Shader" uid="uid://dw5xcnk7vfr3l" path="res://shaders/world_map.gdshader" id="1_5qsph"]
+
+[sub_resource type="Gradient" id="Gradient_4nsbt"]
+offsets = PackedFloat32Array(0, 0.11574074, 0.22222222, 0.5740741, 1)
+colors = PackedColorArray(0.8862745, 1, 1, 1, 0.646029, 0.64602906, 0.6460289, 1, 8.278489e-06, 0.62867934, 0.33524817, 1, 0.43529412, 0.34117648, 0.27450982, 1, 0, 0.6392157, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qsph"]
+gradient = SubResource("Gradient_4nsbt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_puwfh"]
+shader = ExtResource("1_5qsph")
+shader_parameter/colormap = SubResource("GradientTexture2D_5qsph")
+shader_parameter/noise_minmax = Vector2(0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5qsph"]
+frequency = 0.0087
+offset = Vector3(-289.07, 220.77, 358.97)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_puwfh"]
+noise = SubResource("FastNoiseLite_5qsph")
+
+[node name="WorldMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeightMap" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_puwfh")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_puwfh")
+script = ExtResource("1_4nsbt")
+colormap = SubResource("GradientTexture2D_5qsph")

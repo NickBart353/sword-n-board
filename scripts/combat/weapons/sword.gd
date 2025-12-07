@@ -4,7 +4,7 @@ extends MeleeWeapon
 var is_attacking = false
 
 var damage = 25
-var knockbackStrength_vertical = 4
+var knockbackStrength_vertical = 2
 var knockbackStrength_horizontal = 5
 
 func play_animation():
