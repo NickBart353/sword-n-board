@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://doh76cvllte4m"]
+[gd_scene load_steps=4 format=3 uid="uid://doh76cvllte4m"]
 
 [ext_resource type="Script" uid="uid://bpu4q570sg727" path="res://scripts/characters/enemies/skeleton_mage.gd" id="1_1kw4o"]
 [ext_resource type="PackedScene" uid="uid://drfr0g6h30ft5" path="res://assets/brackeys_3d_game_assets/skeleton/skeleton_mage.glb" id="1_bxj1e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1kw4o"]
+radius = 0.45
+height = 2.3875
 
 [node name="SkeletonMage" type="Node3D"]
 script = ExtResource("1_1kw4o")
@@ -95,5 +99,17 @@ bones/40/scale = Vector3(1, 1.0000001, 1)
 
 [node name="head" parent="skeleton_mage/Rig/Skeleton3D" index="0"]
 transform = Transform3D(0.99972045, -1.4014349e-09, 0.023646593, 1.3934147e-09, 0.9999998, 3.5568637e-10, -0.023646593, -3.2263736e-10, 0.99972045, -4.3038546e-09, 1.2278259, 1.5739471e-15)
+
+[node name="IFrame" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1562501, 0)
+shape = SubResource("CapsuleShape3D_1kw4o")
+
+[connection signal="timeout" from="IFrame" to="." method="_on_i_frame_timeout"]
 
 [editable path="skeleton_mage"]

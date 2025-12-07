@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=6 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://ctikbextliywu" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
-[ext_resource type="ArrayMesh" uid="uid://vu7q45ul86s" path="res://assets/Lowpoly_swords/Objs/Classic_hoplite_sword.obj" id="2_wr06p"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="3_5hfox"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
@@ -35,12 +34,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="Marker3D" type="Marker3D" parent="Head/Camera3D"]
 transform = Transform3D(-0.026337879, 0.19250484, -0.9809425, 0.005166809, 0.981296, 0.19243549, 0.99963975, 0, -0.026839891, 0.4784181, -1.1553805, -0.7988146)
-
-[node name="ClassicHopliteSword" type="MeshInstance3D" parent="Head/Camera3D/Marker3D"]
-transform = Transform3D(0.021520045, -0.026362203, -0.46273857, -0.049718708, -0.13585849, 0.07689503, -0.22061546, 0.02804606, -0.062467415, 0.3578205, 0.7436944, -0.29644656)
-visible = false
-mesh = ExtResource("2_wr06p")
-skeleton = NodePath("../../../..")
 
 [node name="Sword" parent="Head/Camera3D/Marker3D" instance=ExtResource("3_5hfox")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.22246629, -0.20567429)
