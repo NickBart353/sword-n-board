@@ -1,2 +1,2 @@
 @abstract
-class_name Enemy extends Node3D
+class_name Enemy extends CharacterBody3D
