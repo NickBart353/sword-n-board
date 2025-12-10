@@ -62,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	if not hunting and not attacking:
 		velocity = Vector3.ZERO
 	
-	
 	move_and_slide()
 	hunting = false
 
@@ -100,7 +99,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		for body in attacked_bodies:
 			if body is Player:
 				body.take_damage(damage, self)
-
 
 #func _on_hunt_range_body_entered(body: Node3D) -> void:
 	#if body is Player:f

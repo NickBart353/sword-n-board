@@ -25,5 +25,5 @@ shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96792996, 0.42300868)
-light_color = Color(0.17469433, 0.8007967, 0.74804676, 1)
+light_color = Color(0.9845906, 0.5812982, 0.3624126, 1)
 shadow_enabled = true

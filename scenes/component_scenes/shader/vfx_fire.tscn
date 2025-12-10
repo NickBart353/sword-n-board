@@ -49,7 +49,7 @@ damping_max = 1.0
 scale_min = 0.75
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_3btdx")
-color = Color(0, 0.7954417, 0.6529435, 1)
+color = Color(1.088, 0.46369663, 0.078045614, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_3btdx"]
 
