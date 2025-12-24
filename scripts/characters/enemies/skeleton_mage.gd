@@ -25,9 +25,6 @@ func _physics_process(delta: float) -> void:
 	if not anim_player.is_playing():
 		anim_player.play("Idle")
 	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
 	if isKnockedBack and not is_on_floor():
 		has_gone_ariborne = true
 	
@@ -45,7 +42,8 @@ func _physics_process(delta: float) -> void:
 					anim_player.play("Walking_A")
 				hunting = true
 				var direction: Vector3 = global_position.direction_to(body.global_position)
-				velocity = direction * movement_speed
+				velocity.x = direction.x * movement_speed
+				velocity.z = direction.z * movement_speed
 				look_at(body.global_position)
 	
 	attacking_bodies = $AttackRange.get_overlapping_bodies()
@@ -57,10 +55,17 @@ func _physics_process(delta: float) -> void:
 				anim_player.play("1H_Melee_Attack_Jump_Chop")
 			if not isKnockedBack:
 				var direction: Vector3 = global_position.direction_to(body.global_position)
-				velocity = direction * movement_speed
+				velocity.x = direction.x * movement_speed
+				velocity.z = direction.z * movement_speed
+				
 			look_at(body.global_position)
-	if not hunting and not attacking:
+			
+	if not hunting and not attacking and is_on_floor():
 		velocity = Vector3.ZERO
+	
+	velocity.normalized()
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	
 	move_and_slide()
 	hunting = false
