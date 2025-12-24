@@ -42,7 +42,7 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="ProtoController" parent="." instance=ExtResource("1_fdak3")]
-transform = Transform3D(0.17364834, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364834, 3.6435118, 0.40000036, 3.8877192)
+transform = Transform3D(0.17364834, 0, 0.9848077, 0, 1, 0, -0.9848077, 0, 0.17364834, 3.6435118, 9.400001, 3.8877192)
 
 [node name="Building" parent="." instance=ExtResource("3_ifh15")]
 
