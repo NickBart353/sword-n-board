@@ -57,6 +57,7 @@ var move_speed : float = 0.0
 var freeflying : bool = false
 var blocking = false
 var interacting_object
+var last_hovered_object
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
@@ -208,9 +209,10 @@ func _die():
 
 func _interact_with_object():
 	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
-	if interacting_object:
-		if interacting_object.is_in_group("interactable"):
-	#		interacting_object.hover()
-			print("test")
-			if Input.is_action_just_pressed("interact"):
-				interacting_object.interact()
+	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object) :
+		last_hovered_object.get_parent().un_hover()
+	if interacting_object and interacting_object.is_in_group("interactable"):
+		last_hovered_object = interacting_object
+		interacting_object.get_parent().hover()
+		if Input.is_action_just_pressed("interact"):
+			interacting_object.get_parent().interact()

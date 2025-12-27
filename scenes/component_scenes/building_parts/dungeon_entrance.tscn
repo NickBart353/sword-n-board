@@ -1,6 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnnts6n8clyi3"]
 
 [ext_resource type="Script" uid="uid://cjf58kfai013u" path="res://scripts/building_parts/dungeon_entrance.gd" id="1_fi6an"]
+[ext_resource type="Material" uid="uid://cecesk6pu73gy" path="res://material/simple_outline.tres" id="2_vxps4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfdh6"]
 size = Vector3(4, 0.15, 4)
@@ -11,30 +12,25 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_fi6an"]
 size = Vector3(4, 0.15, 4)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vxps4"]
-blend_mode = 4
-cull_mode = 1
-shading_mode = 0
-grow = true
-grow_amount = 0.03
-
 [sub_resource type="BoxMesh" id="BoxMesh_vfdh6"]
 size = Vector3(4, 0.15, 4)
 
-[node name="DungeonEntrance" type="Node3D" groups=["interactable"]]
+[node name="DungeonEntrance" type="Node3D"]
 script = ExtResource("1_fi6an")
 
-[node name="Entrance" type="StaticBody3D" parent="."]
+[node name="Entrance" type="StaticBody3D" parent="." groups=["interactable"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
 shape = SubResource("BoxShape3D_vfdh6")
 
 [node name="BlackSquare" type="MeshInstance3D" parent="Entrance"]
 material_override = SubResource("StandardMaterial3D_fi6an")
+material_overlay = ExtResource("2_vxps4")
 mesh = SubResource("BoxMesh_fi6an")
 skeleton = NodePath("Outline")
 
 [node name="Outline" type="MeshInstance3D" parent="Entrance/BlackSquare"]
-material_overlay = SubResource("StandardMaterial3D_vxps4")
+visible = false
+material_overlay = ExtResource("2_vxps4")
 mesh = SubResource("BoxMesh_vfdh6")
 skeleton = NodePath("../..")

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cecesk6pu73gy"]
+
+[resource]
+blend_mode = 4
+cull_mode = 1
+depth_test = 1
+shading_mode = 0
+grow = true
+grow_amount = 0.05
+stencil_flags = 2
