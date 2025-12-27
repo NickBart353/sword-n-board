@@ -56,6 +56,7 @@ var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
 var blocking = false
+var interacting_object
 
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
@@ -127,7 +128,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		_attack()
 	
-	# Use velocity to actually move
+	_interact_with_object()
+	
 	move_and_slide()
 
 
@@ -203,3 +205,12 @@ func take_damage(damage, body):
 
 func _die():
 	print("game over")
+
+func _interact_with_object():
+	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
+	if interacting_object:
+		if interacting_object.is_in_group("interactable"):
+	#		interacting_object.hover()
+			print("test")
+			if Input.is_action_just_pressed("interact"):
+				interacting_object.interact()

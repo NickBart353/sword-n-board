@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://2vrjs0ylxkee"]
+[gd_scene load_steps=28 format=3 uid="uid://2vrjs0ylxkee"]
 
 [ext_resource type="PackedScene" uid="uid://cly2etoes3u5b" path="res://scenes/component_scenes/building_parts/wall_doorway.tscn" id="1_ibke8"]
 [ext_resource type="PackedScene" uid="uid://5xp7uaimyt1i" path="res://scenes/component_scenes/building_parts/wall.tscn" id="2_g5s66"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cmwkmora0d88i" path="res://scenes/component_scenes/building_parts/wall_half_endcap.tscn" id="23_ttf1w"]
 [ext_resource type="PackedScene" uid="uid://c31acs34qyahc" path="res://scenes/component_scenes/building_parts/floow_wood.tscn" id="24_cra2y"]
 [ext_resource type="PackedScene" uid="uid://buok8dju7w8gl" path="res://scenes/component_scenes/props/crates_stacked.tscn" id="25_4tvqv"]
+[ext_resource type="PackedScene" uid="uid://bnnts6n8clyi3" path="res://scenes/component_scenes/building_parts/dungeon_entrance.tscn" id="26_5vn0v"]
 [ext_resource type="PackedScene" uid="uid://bmrbfxj64qgxd" path="res://scenes/component_scenes/props/chest_open.tscn" id="26_c5bfd"]
 
 [node name="Building" type="Node3D"]
@@ -406,9 +407,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4000001, 0, -12)
 [node name="floow_wood9" parent="storage-room/floor" instance=ExtResource("24_cra2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 0, -4)
 
-[node name="floow_wood10" parent="storage-room/floor" instance=ExtResource("24_cra2y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 0, -8)
-
 [node name="floow_wood11" parent="storage-room/floor" instance=ExtResource("24_cra2y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4, 0, -12)
 
@@ -462,10 +460,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0999985, 0.1, -12.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.199997, 0.1, -12.1)
 
 [node name="crates_stacked" parent="storage-room/props" instance=ExtResource("25_4tvqv")]
-transform = Transform3D(0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, 0.64278764, 8.83963, 0.1, -6.1416287)
+transform = Transform3D(0.3856726, 0, -0.45962667, 0, 0.6, 0, 0.45962667, 0, 0.3856726, 8.7560005, 0.1, -4.374426)
 
 [node name="crates_stacked2" parent="storage-room/props" instance=ExtResource("25_4tvqv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.800003, 0.1, -11.5)
+
+[node name="DungeonEntrance" parent="storage-room/props" instance=ExtResource("26_5vn0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.400001, -0.027872711, -8)
 
 [node name="starting-room" type="Node3D" parent="."]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, 0, 2.6)
