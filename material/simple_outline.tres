@@ -3,8 +3,9 @@
 [resource]
 blend_mode = 4
 cull_mode = 1
-depth_test = 1
 shading_mode = 0
 grow = true
-grow_amount = 0.05
-stencil_flags = 2
+grow_amount = 0.001
+stencil_flags = 1
+stencil_compare = 6
+stencil_outline_thickness = 0.701

@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene load_steps=9 format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_fdak3"]
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="3_ifh15"]
 [ext_resource type="PackedScene" uid="uid://doh76cvllte4m" path="res://scenes/component_scenes/characters/enemies/skeleton_mage.tscn" id="4_ks7w8"]
 [ext_resource type="PackedScene" uid="uid://c0gtkn4swpe3" path="res://scenes/component_scenes/buildings/test_platform.tscn" id="5_3wwfn"]
-[ext_resource type="PackedScene" uid="uid://bnnts6n8clyi3" path="res://scenes/component_scenes/building_parts/dungeon_entrance.tscn" id="6_t5sjj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
@@ -68,6 +67,3 @@ transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.531185, 0.1, 5.038538)
 
 [node name="TestPlatform" parent="." instance=ExtResource("5_3wwfn")]
-
-[node name="DungeonEntrance" parent="." instance=ExtResource("6_t5sjj")]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 7.2000003, 1.3000001, 7.2000003)
