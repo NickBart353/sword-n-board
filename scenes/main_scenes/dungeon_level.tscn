@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://coalsn6eisblr"]
+[gd_scene load_steps=6 format=3 uid="uid://coalsn6eisblr"]
 
 [ext_resource type="Script" uid="uid://d08hsl23tb84x" path="res://scripts/dungeon_generator/generate_level.gd" id="1_u5wi2"]
 [ext_resource type="PackedScene" uid="uid://cb7j0gystdpcr" path="res://scenes/component_scenes/dungeon_parts/basic_dungeon_room.tscn" id="2_mmb5t"]
 [ext_resource type="PackedScene" uid="uid://diwibi3d6uran" path="res://scenes/component_scenes/dungeon_parts/tunnel.tscn" id="3_heilc"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="4_heilc"]
 
 [sub_resource type="Environment" id="Environment_w5xvw"]
 
@@ -18,3 +19,6 @@ environment = SubResource("Environment_w5xvw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 83.562386, 99.58577)
+
+[node name="ProtoController" parent="." instance=ExtResource("4_heilc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.300005, 136.2, -0.9000006)

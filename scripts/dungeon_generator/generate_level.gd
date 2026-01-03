@@ -23,12 +23,22 @@ func _generate_dungeon():
 			var room = rooms[x][y]
 			if room != null:
 				var has_north_room = (y > 0) and (rooms[x][y-1] != null)
-				var has_south_room = (x > 0) and (rooms[x-1][y] != null)
-				var has_west_room = (y < dungeon_height -1) and (rooms[x][y+1] != null)
-				var has_east_room = (x < dungeon_width -1) and (rooms[x+1][y] != null)
+				var has_south_room = (y < dungeon_height -1) and (rooms[x][y+1] != null)
+				var has_west_room = (x < dungeon_width -1) and (rooms[x+1][y] != null)
+				var has_east_room = (x > 0) and (rooms[x-1][y] != null)
+				
+				set_door_and_wall_visibility(room, "North", has_north_room)
+				set_door_and_wall_visibility(room, "South", has_south_room)
+				set_door_and_wall_visibility(room, "West", has_west_room)
+				set_door_and_wall_visibility(room, "East", has_east_room)
+
+func set_door_and_wall_visibility(room: Node3D, cardinal_direction: String, has_room: bool):
+	if has_room:
+		room.get_node("Openings/{0}".format([cardinal_direction])).queue_free() #set_visible(not has_room)
+	#room.get_node("Openings/{0}".format([cardinal_direction])).queue_free() #set_visible(not has_room)
 
 func _place_room(height: int, width: int) -> Node3D:
 	var room_instance = basic_room_scene.instantiate()
-	room_instance.transform.origin = Vector3(height * room_size.x, 0, width * room_size.z)
+	room_instance.transform.origin = Vector3(width * 2 * room_size.x, 0, height * 2 * room_size.z)
 	add_child(room_instance)
 	return room_instance

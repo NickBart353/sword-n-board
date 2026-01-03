@@ -5,6 +5,7 @@ func _process(_delta: float) -> void:
 
 func interact():
 	print("entering dungeon...")
+	get_tree().change_scene_to_file("res://scenes/main_scenes/dungeon_level.tscn")
 
 func hover():
 	#if not $Entrance/BlackSquare/Outline.is_visible():
