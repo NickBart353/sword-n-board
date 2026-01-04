@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://diwibi3d6uran"]
+[gd_scene load_steps=7 format=3 uid="uid://diwibi3d6uran"]
 
 [ext_resource type="PackedScene" uid="uid://c31acs34qyahc" path="res://scenes/component_scenes/building_parts/floow_wood.tscn" id="1_mc3px"]
+[ext_resource type="Script" uid="uid://cj08gpnqw55pi" path="res://scripts/dungeon_generator/dungeon_room.gd" id="1_pivx6"]
 [ext_resource type="PackedScene" uid="uid://5xp7uaimyt1i" path="res://scenes/component_scenes/building_parts/wall.tscn" id="2_23j4c"]
 [ext_resource type="PackedScene" uid="uid://nf175e7a366f" path="res://scenes/component_scenes/building_parts/wall_cracked.tscn" id="3_e8egc"]
 [ext_resource type="PackedScene" uid="uid://wdhts2h71odf" path="res://scenes/component_scenes/building_parts/ceiling.tscn" id="4_e8egc"]
 [ext_resource type="PackedScene" uid="uid://fobgvab5f5wb" path="res://scenes/component_scenes/props/torch_mounted.tscn" id="5_asydi"]
 
 [node name="Tunnel" type="Node3D"]
+script = ExtResource("1_pivx6")
+metadata/_custom_type_script = "uid://cj08gpnqw55pi"
 
 [node name="Floor" type="Node3D" parent="."]
 
