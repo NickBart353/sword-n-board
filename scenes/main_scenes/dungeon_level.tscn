@@ -13,6 +13,8 @@ basic_room_scene = ExtResource("2_mmb5t")
 basic_tunnel_scene = ExtResource("3_heilc")
 dungeon_width = 10
 dungeon_height = 10
+room_size = Vector3(20, 20, 20)
+player_scene = ExtResource("4_heilc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w5xvw")
@@ -20,5 +22,4 @@ environment = SubResource("Environment_w5xvw")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 83.562386, 99.58577)
 
-[node name="ProtoController" parent="." instance=ExtResource("4_heilc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.300005, 136.2, -0.9000006)
+[node name="Rooms" type="Node3D" parent="."]

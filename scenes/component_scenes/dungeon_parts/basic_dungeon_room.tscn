@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb7j0gystdpcr"]
+[gd_scene load_steps=9 format=3 uid="uid://cb7j0gystdpcr"]
 
 [ext_resource type="PackedScene" uid="uid://c31acs34qyahc" path="res://scenes/component_scenes/building_parts/floow_wood.tscn" id="1_jb206"]
+[ext_resource type="Script" uid="uid://r72jxw0q8ck" path="res://scripts/tool/basic_dungeon_room.gd" id="1_p2g7p"]
 [ext_resource type="PackedScene" uid="uid://5xp7uaimyt1i" path="res://scenes/component_scenes/building_parts/wall.tscn" id="2_koors"]
 [ext_resource type="PackedScene" uid="uid://cytdkrbbyrcu4" path="res://scenes/component_scenes/building_parts/wall_corner.tscn" id="3_11pu5"]
 [ext_resource type="PackedScene" uid="uid://nf175e7a366f" path="res://scenes/component_scenes/building_parts/wall_cracked.tscn" id="4_koors"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://fobgvab5f5wb" path="res://scenes/component_scenes/props/torch_mounted.tscn" id="7_nwach"]
 
 [node name="BasicRoom" type="Node3D"]
+script = ExtResource("1_p2g7p")
+total_size = Vector3(21.25939, 16.21793, 21.25939)
+size_x = 21.25939
+size_z = 21.25939
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -259,14 +264,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.1
 
 [node name="Openings" type="Node3D" parent="."]
 
-[node name="South" parent="Openings" instance=ExtResource("2_koors")]
+[node name="North" parent="Openings" instance=ExtResource("2_koors")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 2)
 
-[node name="North" parent="Openings" instance=ExtResource("2_koors")]
+[node name="South" parent="Openings" instance=ExtResource("2_koors")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, 2)
 
-[node name="West" parent="Openings" instance=ExtResource("2_koors")]
+[node name="East" parent="Openings" instance=ExtResource("2_koors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
 
-[node name="East" parent="Openings" instance=ExtResource("2_koors")]
+[node name="West" parent="Openings" instance=ExtResource("2_koors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
