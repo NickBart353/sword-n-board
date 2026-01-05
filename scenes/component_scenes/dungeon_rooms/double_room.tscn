@@ -11,10 +11,7 @@
 
 [node name="DoubleRoom" type="Node3D"]
 script = ExtResource("1_hitt7")
-dimensions = {
-"x": 2,
-"y": 1
-}
+dimensions = Vector2i(2, 1)
 metadata/_custom_type_script = "uid://cj08gpnqw55pi"
 
 [node name="Floor" type="Node3D" parent="."]

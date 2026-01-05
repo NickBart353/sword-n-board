@@ -13,6 +13,7 @@ extends Node3D
 
 var room_scenes: Array = [basic_room_scene, double_room_scene]
 var rooms: Array = []
+var reserved_rooms: Array = []
 var rooms_to_add: int
 var added_rooms: int
 

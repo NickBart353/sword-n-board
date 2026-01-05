@@ -1,22 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://coalsn6eisblr"]
+[gd_scene load_steps=3 format=3 uid="uid://coalsn6eisblr"]
 
-[ext_resource type="Script" uid="uid://d08hsl23tb84x" path="res://scripts/dungeon_generator/generate_level.gd" id="1_u5wi2"]
-[ext_resource type="PackedScene" uid="uid://bomdtvgbp7s51" path="res://scenes/component_scenes/dungeon_buildings/basic_room.tscn" id="2_heilc"]
-[ext_resource type="PackedScene" uid="uid://diwibi3d6uran" path="res://scenes/component_scenes/dungeon_buildings/tunnel.tscn" id="3_heilc"]
-[ext_resource type="PackedScene" uid="uid://wlgk8s37y5t7" path="res://scenes/component_scenes/dungeon_buildings/double_room.tscn" id="3_ojqme"]
-[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="4_heilc"]
+[ext_resource type="Script" uid="uid://blai6ogo1m66d" path="res://scripts/dungeon_generator/generate_level3.0.gd" id="1_u5wi2"]
 
 [sub_resource type="Environment" id="Environment_w5xvw"]
 
 [node name="Level" type="Node3D"]
 script = ExtResource("1_u5wi2")
-basic_room_scene = ExtResource("2_heilc")
-double_room_scene = ExtResource("3_ojqme")
-basic_tunnel_scene = ExtResource("3_heilc")
-dungeon_width = 10
-dungeon_height = 10
-room_size = Vector3(20, 20, 20)
-player_scene = ExtResource("4_heilc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w5xvw")
