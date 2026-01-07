@@ -37,7 +37,7 @@ func _create_start_room():
 	var x = randi_range(0, dungeon_width - 1)
 	var y = randi_range(0, dungeon_height - 1)
 	
-	_check_pending_openings(x, y, "room")
+	_check_pending_openings(x, y)
 	
 	rooms[x][y] = "start"
 
@@ -47,6 +47,9 @@ func _branch_paths():
 		for cardinal_direction in location_tuple:
 			if location_tuple[cardinal_direction] == true:
 				openings.append(cardinal_direction)
+		
+		_is_room_next_to_opening(location_tuple, openings)
+		
 		#TODO:
 		#CHECKEN OB RAUM NEBEN DEM OPENING IST
 		#CHECK PENDING OPENINGS CODE KANN MAN DAFÜR UMFUNKTIONIEREN
@@ -54,19 +57,24 @@ func _branch_paths():
 		#RANDOM EINE HIMMELSRICHTUNG AUS DER LISTE NEHMEN, UND TUNNEL DRANSETZEN
 		#ALGORITHMUS ENTWICKELN UM IMMER KLEINERE CHANCE ZU HABEN, EINEN TUNNEL ZU PLATZIEREN
 
-func _check_pending_openings(x: int, y: int, type: String):
-	var distance = 0
-	if type == "room": 
-		distance += 1
-		
+func _is_room_next_to_opening(xy_cord: Vector2i, cardinal_direction: Array[String]):
+	pass
+	#iterate through cardinal directions at random and check if you can add a room
+	#if so call _place_room() with cords
+	#reduce chance to add room
+
+func _place_room(x: int, y: int):
+	pass
+
+func _check_pending_openings(x: int, y: int):
 	var openings: Dictionary = {"W": false, "E":false, "S":false, "N": false}
-	if (x > 0 + distance):
+	if (x > 0 and rooms[x-1][y] == "Empty"):
 		openings["W"] = true
-	if (x < dungeon_width - 1 + distance):
+	if (x < dungeon_width - 1 and rooms[x+1][y] == "Empty"):
 		openings["E"] = true
-	if (y > 0 + distance):
+	if (y > 0 and rooms[x][y-1] == "Empty"):
 		openings["S"] = true
-	if (y < dungeon_height - 1 + distance):
+	if (y < dungeon_height - 1 and rooms[x][y+1] == "Empty"):
 		openings["N"] = true
 	
 	pending_openings.set(Vector2i(x,y), openings)
