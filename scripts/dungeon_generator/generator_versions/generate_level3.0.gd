@@ -57,8 +57,11 @@ func _branch_paths():
 		#RANDOM EINE HIMMELSRICHTUNG AUS DER LISTE NEHMEN, UND TUNNEL DRANSETZEN
 		#ALGORITHMUS ENTWICKELN UM IMMER KLEINERE CHANCE ZU HABEN, EINEN TUNNEL ZU PLATZIEREN
 
-func _is_room_next_to_opening(xy_cord: Vector2i, cardinal_direction: Array[String]):
-	pass
+func _is_room_next_to_opening(xy_cord: Vector2i, directions: Array[String]):
+	var size:int = directions.size()
+	for counter in range(size):
+		var random = randi_range(0, directions.size()-1)
+		
 	#iterate through cardinal directions at random and check if you can add a room
 	#if so call _place_room() with cords
 	#reduce chance to add room
