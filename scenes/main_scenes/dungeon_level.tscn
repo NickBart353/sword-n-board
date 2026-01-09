@@ -38,6 +38,7 @@ basic_room_scene = ExtResource("2_w5xvw")
 start_room = ExtResource("3_heilc")
 end_room = ExtResource("4_wgy82")
 player_scene = ExtResource("3_mmb5t")
+room_locations = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wgy82")
