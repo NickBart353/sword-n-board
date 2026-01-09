@@ -10,13 +10,13 @@
 panorama = ExtResource("1_uug20")
 energy_multiplier = 0.3
 
-[sub_resource type="Sky" id="Sky_ifh15"]
+[sub_resource type="Sky" id="Sky_3wwfn"]
 sky_material = SubResource("PanoramaSkyMaterial_ifh15")
 
 [sub_resource type="Environment" id="Environment_fqmia"]
 background_mode = 2
 background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-sky = SubResource("Sky_ifh15")
+sky = SubResource("Sky_3wwfn")
 ambient_light_source = 3
 ambient_light_color = Color(0.41136128, 0.5487805, 0.8715746, 1)
 ambient_light_sky_contribution = 0.27
@@ -27,7 +27,7 @@ tonemap_white = 0.41
 ssao_enabled = true
 ssao_radius = 2.2
 glow_enabled = true
-glow_intensity = 8.0
+glow_intensity = 3.0
 glow_strength = 0.67
 glow_bloom = 0.1
 

@@ -14,7 +14,7 @@ energy_multiplier = 0.3
 [sub_resource type="Sky" id="Sky_ifh15"]
 sky_material = SubResource("PanoramaSkyMaterial_wgy82")
 
-[sub_resource type="Environment" id="Environment_lmwv7"]
+[sub_resource type="Environment" id="Environment_wgy82"]
 background_mode = 2
 background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
 sky = SubResource("Sky_ifh15")
@@ -28,7 +28,7 @@ tonemap_white = 0.41
 ssao_enabled = true
 ssao_radius = 2.2
 glow_enabled = true
-glow_intensity = 8.0
+glow_intensity = 3.0
 glow_strength = 0.67
 glow_bloom = 0.1
 
@@ -40,9 +40,11 @@ end_room = ExtResource("4_wgy82")
 player_scene = ExtResource("3_mmb5t")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_lmwv7")
+environment = SubResource("Environment_wgy82")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 83.562386, 99.58577)
+transform = Transform3D(-0.8660254, -5.349286e-10, 0.50000006, 0.49240386, -0.17364834, 0.85286856, 0.086824164, 0.9848077, 0.15038389, -81.89999, 31.700037, 4.199956)
+light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
+shadow_enabled = true
 
 [node name="Rooms" type="Node3D" parent="."]

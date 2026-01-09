@@ -49,13 +49,26 @@ func _generate_dungeon():
 	_create_end_room()
 	_place_rooms_from_list()
 
+func _check_valid_openings():
+	pass
+
 func _create_end_room():
 	#Dictionary #[Vector2i, Dictionary[String, bool]]
-	var random: int = randi_range(0, pending_openings.size() - 1)
-	var xy_cord: Vector2i = pending_openings.keys()[random]
-	var openings_dict: Dictionary = pending_openings[xy_cord]
-	var openings: Array = openings_dict.values()
+	#which tuples in pending_openings have valid openings for an end room?
+	_check_valid_openings()
 	var true_openings: Array = []
+	for location_tuple in pending_openings:
+		var valid_openings: Array = []
+		for cardinal_direction in pending_openings[location_tuple]:
+			if pending_openings[location_tuple][cardinal_direction] == true:
+				valid_openings.append(cardinal_direction)
+		if valid_openings.size() > 0:
+			true_openings.append({location_tuple: pending_openings[location_tuple]})
+	
+	var random: int = randi_range(0, true_openings.size() - 1)
+	var xy_cord: Vector2i = true_openings[random].keys()[0]
+	var openings_dict: Dictionary = true_openings[random][xy_cord]
+	var openings: Array = openings_dict.values()
 	
 	for cardinal_direction in openings:
 		if cardinal_direction == true:
@@ -75,8 +88,8 @@ func _create_end_room():
 		WEST:
 			xy_cord.x = xy_cord.x-1
 			open_doors.set(WEST, xy_cord)
-			rooms[xy_cord.x][xy_cord.y] = "End"
-			_place_room(xy_cord)
+	rooms[xy_cord.x][xy_cord.y] = "End"
+	new_rooms.append(Vector2i(xy_cord.x, xy_cord.y))
 
 func _create_start_room():
 	var x = randi_range(0, dungeon_width - 1)
@@ -93,13 +106,13 @@ func _branch_paths():
 			if pending_openings[location_tuple][cardinal_direction] == true:
 				openings.append(cardinal_direction)
 		
-		_pick_random_room(location_tuple, openings)
+		_pick_random_openings(location_tuple, openings)
 	pending_openings.clear()
 	for room in new_rooms:
 		_check_pending_openings(room.x, room.y)
 	new_rooms.clear()
 
-func _pick_random_room(xy_cord: Vector2i, cardinal_directions: Array):
+func _pick_random_openings(xy_cord: Vector2i, cardinal_directions: Array):
 	var open_directions: Array = _is_space_for_room(xy_cord, cardinal_directions)
 	var amount_of_directions = open_directions.size()
 	var randomness: Array
