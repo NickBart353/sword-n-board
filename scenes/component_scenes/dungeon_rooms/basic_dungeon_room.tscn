@@ -259,6 +259,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.1000006, 2, 2.953)
 
 [node name="Openings" type="Node3D" parent="."]
+visible = false
 
 [node name="North" parent="Openings" instance=ExtResource("6_8n1nc")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 2)

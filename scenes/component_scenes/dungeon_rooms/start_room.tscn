@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs8e6id7qf30w"]
+[gd_scene load_steps=10 format=3 uid="uid://bs8e6id7qf30w"]
 
 [ext_resource type="Script" uid="uid://cj08gpnqw55pi" path="res://scripts/dungeon_generator/dungeon_room.gd" id="1_ueagi"]
 [ext_resource type="PackedScene" uid="uid://c31acs34qyahc" path="res://scenes/component_scenes/building_parts/floow_wood.tscn" id="2_167ly"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cmwkmora0d88i" path="res://scenes/component_scenes/building_parts/wall_half_endcap.tscn" id="6_f3uc5"]
 [ext_resource type="PackedScene" uid="uid://5xp7uaimyt1i" path="res://scenes/component_scenes/building_parts/wall.tscn" id="7_y0re1"]
 [ext_resource type="PackedScene" uid="uid://fobgvab5f5wb" path="res://scenes/component_scenes/props/torch_mounted.tscn" id="8_uia7q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_167ly"]
+albedo_color = Color(0.50980395, 0.44313726, 1, 1)
 
 [node name="StartRoom" type="Node3D"]
 script = ExtResource("1_ueagi")
@@ -261,6 +264,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.1000006, 2, 2.953)
 
 [node name="Openings" type="Node3D" parent="."]
+visible = false
 
 [node name="North" parent="Openings" instance=ExtResource("7_y0re1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 2)
@@ -276,3 +280,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
 [node name="Spawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 1.5, 1.7)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 4.5, 1.5, -4)
+size = Vector3(4, 4, 1)
+material = SubResource("StandardMaterial3D_167ly")
