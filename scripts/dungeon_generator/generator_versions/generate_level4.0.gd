@@ -36,7 +36,6 @@ var archived_openings: Dictionary #[Vector2i, Dictionary[String, bool]]
 var room_limit: int
 var added_rooms: int
 
-var open_doors: Dictionary #[Vector2i, Array[String]]
 var new_rooms: Array[Vector2i] = []
 
 func _ready() -> void:
@@ -63,56 +62,67 @@ func _generate_dungeon():
 	_place_rooms_from_list()
 
 func _create_end_room(use_fail_safe: bool):
-	if use_fail_safe: pending_openings = archived_openings
+	if use_fail_safe or pending_openings.size() == 0: pending_openings = archived_openings
 	var true_openings: Array = []
 	for location_tuple in pending_openings:
 		var valid_openings: Array = []
 		for cardinal_direction in pending_openings[location_tuple]:
 			if pending_openings[location_tuple][cardinal_direction] == false:
+				pending_openings[location_tuple].erase(cardinal_direction)
 				continue
 			match cardinal_direction:
 				NORTH:
 					if not ((location_tuple.y + 1) < dungeon_height -1 and rooms[location_tuple.x][location_tuple.y+1] == EMPTY):
+						pending_openings[location_tuple].erase(cardinal_direction)
 						continue
 				EAST:
 					if not ((location_tuple.x + 1) < dungeon_width -1 and rooms[location_tuple.x+1][location_tuple.y] == EMPTY):
+						pending_openings[location_tuple].erase(cardinal_direction)
 						continue
 				SOUTH:
 					if not ((location_tuple.y - 1) > 0 and rooms[location_tuple.x][location_tuple.y-1] == EMPTY):
+						pending_openings[location_tuple].erase(cardinal_direction)
 						continue
 				WEST:
 					if not ((location_tuple.x - 1) > 0 and rooms[location_tuple.x-1][location_tuple.y] == EMPTY):
+						pending_openings[location_tuple].erase(cardinal_direction)
 						continue
 			valid_openings.append(cardinal_direction)
 		if valid_openings.size() > 0:
 			true_openings.append({location_tuple: pending_openings[location_tuple]})
-	
-	var random: int = randi_range(0, true_openings.size() - 1)
-	var xy_cord: Vector2i = true_openings[random].keys()[0]
-	var openings_dict: Dictionary = true_openings[random][xy_cord]
-	var openings: Array = openings_dict.values()
-	
-	for cardinal_direction in openings:
-		if cardinal_direction == true:
-			true_openings.append(cardinal_direction)
-	random = randi_range(0, true_openings.size() - 1)
 
-	match true_openings[random]:
-		NORTH:
-			xy_cord.y = xy_cord.y+1
-			open_doors.set(NORTH, xy_cord)
-		EAST:
-			xy_cord.x = xy_cord.x+1
-			open_doors.set(EAST, xy_cord)
-		SOUTH:
-			xy_cord.y = xy_cord.y-1
-			open_doors.set(SOUTH, xy_cord)
-		WEST:
-			xy_cord.x = xy_cord.x-1
-			open_doors.set(WEST, xy_cord)
-	rooms[xy_cord.x][xy_cord.y] = END
-	if room_locations: print("end ", xy_cord)
-	new_rooms.append(Vector2i(xy_cord.x, xy_cord.y))
+	if true_openings.size() == 0:
+		var stop: bool = false
+		for x in range(dungeon_width):
+			for y in range(dungeon_height):
+				if rooms[x][y] == ROOM:
+					rooms[x][y] = END
+					stop = true
+					break
+			if stop:
+				break
+	else:
+		var random: int = randi_range(0, true_openings.size() - 1)		
+		var xy_cord: Vector2i = true_openings[random].keys()[0]
+		var openings_dict: Dictionary = true_openings[random][xy_cord]
+		var openings: Array = openings_dict.values()
+		
+		for cardinal_direction in openings:
+			if cardinal_direction == true:
+				true_openings.append(cardinal_direction)
+		random = randi_range(0, true_openings.size() - 1)
+		match true_openings[random]:
+			NORTH:
+				xy_cord.y = xy_cord.y+1
+			EAST:
+				xy_cord.x = xy_cord.x+1
+			SOUTH:
+				xy_cord.y = xy_cord.y-1
+			WEST:
+				xy_cord.x = xy_cord.x-1
+		rooms[xy_cord.x][xy_cord.y] = END
+		if room_locations: print("end ", xy_cord)
+		new_rooms.append(Vector2i(xy_cord.x, xy_cord.y))
 
 func _create_start_room():
 	var x = randi_range(0, dungeon_width - 1)
@@ -141,7 +151,6 @@ func _pick_random_openings(xy_cord: Vector2i, cardinal_directions: Array):
 	var open_directions: Array = _is_space_for_room(xy_cord, cardinal_directions)
 	var amount_of_directions = open_directions.size()
 	var randomness: Array
-	var active_doors: Array = []
 	match amount_of_directions:
 		0: 
 			return
@@ -157,23 +166,18 @@ func _pick_random_openings(xy_cord: Vector2i, cardinal_directions: Array):
 	for i in range(amount_of_directions):
 		var random = randi_range(0, cardinal_directions.size() - 1)
 		var random_chance = randf_range(0, 1)
+		var new_xy_coordinate: Vector2i
 		if random_chance <= randomness[i]:
 			match cardinal_directions[random]:
 				NORTH:
-					xy_cord.y = xy_cord.y+1
-					active_doors.append(NORTH)
+					new_xy_coordinate = Vector2i(xy_cord.x, xy_cord.y+1)
 				EAST:
-					xy_cord.x = xy_cord.x+1
-					active_doors.append(EAST)
+					new_xy_coordinate = Vector2i(xy_cord.x+1, xy_cord.y)
 				SOUTH:
-					xy_cord.y = xy_cord.y-1
-					active_doors.append(SOUTH)
+					new_xy_coordinate = Vector2i(xy_cord.x, xy_cord.y-1)
 				WEST:
-					xy_cord.x = xy_cord.x-1
-					active_doors.append(WEST)
-			_place_room(xy_cord)
-	if active_doors.size() > 0:
-		open_doors.set(xy_cord, active_doors)
+					new_xy_coordinate = Vector2i(xy_cord.x-1, xy_cord.y)
+			_place_room(new_xy_coordinate)
 
 func _is_space_for_room(xy_cord: Vector2i, cardinal_directions: Array):
 	var open_directions = []
@@ -222,9 +226,8 @@ func _place_rooms_from_list():
 				START:
 					var instance = start_room.instantiate() 
 					var loc: Vector2i = Vector2i(x,y)
-					#if open_doors[loc] and open_doors[loc] > 0:
-						#for cardinal_direction in open_doors[loc]:
-							#instance.get_node("Openings/{0}".format([cardinal_direction])).global_position.y -= 20
+					var directions: Array = _is_room_next_to_me(x,y)
+					_open_doors(directions, instance)
 					var player_instance = player_scene.instantiate()
 					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
 					get_node("Rooms").add_child(instance)
@@ -234,19 +237,33 @@ func _place_rooms_from_list():
 					var instance = end_room.instantiate() 
 					
 					var loc: Vector2i = Vector2i(x,y)
-					#if open_doors[loc] and open_doors[loc] > 0:
-						#for cardinal_direction in open_doors[loc]:
-							#instance.get_node("Openings/{0}".format([cardinal_direction])).global_position.y -= 20
+					var directions: Array = _is_room_next_to_me(x,y)
+					_open_doors(directions, instance)
 					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
 					get_node("Rooms").add_child(instance)
 				ROOM:
 					var instance = basic_room_scene.instantiate() 
 					
 					var loc: Vector2i = Vector2i(x,y)
-					#if open_doors[loc] and open_doors[loc].size() > 0:
-						#for cardinal_direction in open_doors[loc]:
-							#instance.get_node("Openings/{0}".format([cardinal_direction])).global_position.y -= 20
+					var directions: Array = _is_room_next_to_me(x,y)
+					_open_doors(directions, instance)
 					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
 					get_node("Rooms").add_child(instance)
 				"_":
 					pass
+
+func _is_room_next_to_me(x: int, y: int):
+	var directions: Array = []
+	if x < dungeon_width-1 and rooms[x+1][y] != EMPTY:
+		directions.append(EAST)
+	if x > 0 and rooms[x-1][y] != EMPTY:
+		directions.append(WEST)
+	if y < dungeon_height-1 and rooms[x][y+1]:
+		directions.append(NORTH)
+	if y > 0 and rooms[x][y-1] != EMPTY:
+		directions.append(SOUTH)
+	return directions
+
+func _open_doors(directions: Array, instance):
+	for cardinal_direction in directions:
+		instance.get_node("Openings/{0}".format([cardinal_direction])).global_position.y += 3.5
