@@ -4,9 +4,6 @@ extends Node3D
 @export var basic_room_scene: PackedScene
 @export var start_room: PackedScene
 @export var end_room: PackedScene
-@export var double_room_scene: PackedScene
-@export var tunnel_NS_scene: PackedScene
-@export var tunnel_EW_scene: PackedScene
 @export_group("Dimensions")
 @export var dungeon_width: int = 10
 @export var dungeon_height: int = 10
@@ -17,8 +14,7 @@ extends Node3D
 @export var room_locations: bool = false
 
 #TODO:
-#BUG FIX OUT OF BOUNDS INDEX 10
-#BUG FIX ROOMS REPLACING THE START ROOM
+#BUG: FIX OUT OF BOUNDS INDEX 10
 
 const NORTH = "North"
 const EAST = "East"
@@ -82,10 +78,10 @@ func _create_end_room(use_fail_safe: bool):
 					if not ((location_tuple.x + 1) < dungeon_width -1 and rooms[location_tuple.x+1][location_tuple.y] == EMPTY):
 						continue
 				SOUTH:
-					if not (location_tuple.y > 0 and rooms[location_tuple.x][location_tuple.y-1] == EMPTY):
+					if not ((location_tuple.y - 1) > 0 and rooms[location_tuple.x][location_tuple.y-1] == EMPTY):
 						continue
 				WEST:
-					if not (location_tuple.x > 0 and rooms[location_tuple.x-1][location_tuple.y] == EMPTY):
+					if not ((location_tuple.x - 1) > 0 and rooms[location_tuple.x-1][location_tuple.y] == EMPTY):
 						continue
 			valid_openings.append(cardinal_direction)
 		if valid_openings.size() > 0:
@@ -184,16 +180,16 @@ func _is_space_for_room(xy_cord: Vector2i, cardinal_directions: Array):
 	for direction in cardinal_directions:
 		match direction:
 			NORTH:
-				if xy_cord.y < dungeon_height -1:
+				if (xy_cord.y + 1) < dungeon_height -1:
 					open_directions.append(direction)
 			EAST:
 				if (xy_cord.x + 1) < dungeon_width -1:
 					open_directions.append(direction)
 			SOUTH:
-				if xy_cord.y > 0:
+				if (xy_cord.y - 1) > 0:
 					open_directions.append(direction)
 			WEST:
-				if xy_cord.x > 0:
+				if (xy_cord.x - 1) > 0:
 					open_directions.append(direction)
 	return open_directions
 
@@ -201,18 +197,18 @@ func _place_room(xy_cord: Vector2i):
 	if room_locations: print(xy_cord)
 	if rooms[xy_cord.x][xy_cord.y] == EMPTY:
 		rooms[xy_cord.x][xy_cord.y] = ROOM
-	new_rooms.append(Vector2i(xy_cord.x, xy_cord.y))
-	added_rooms += 1
+		new_rooms.append(Vector2i(xy_cord.x, xy_cord.y))
+		added_rooms += 1
 
 func _check_pending_openings(x: int, y: int):
 	var openings: Dictionary = {WEST: false, EAST:false, SOUTH:false, NORTH: false}
-	if (x > 0 and rooms[x-1][y] == EMPTY):
+	if ((x - 1) > 0 and rooms[x-1][y] == EMPTY):
 		openings[WEST] = true
-	if (x < dungeon_width - 1 and rooms[x+1][y] == EMPTY):
+	if ((x + 1) < dungeon_width - 1 and rooms[x+1][y] == EMPTY):
 		openings[EAST] = true
-	if (y > 0 and rooms[x][y-1] == EMPTY):
+	if ((y - 1) > 0 and rooms[x][y-1] == EMPTY):
 		openings[SOUTH] = true
-	if (y < dungeon_height - 1 and rooms[x][y+1] == EMPTY):
+	if ((y + 1) < dungeon_height - 1 and rooms[x][y+1] == EMPTY):
 		openings[NORTH] = true
 	
 	pending_openings.set(Vector2i(x,y), openings)
