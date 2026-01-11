@@ -226,41 +226,44 @@ func _place_rooms_from_list():
 				START:
 					var instance = start_room.instantiate() 
 					var loc: Vector2i = Vector2i(x,y)
+					get_node("Rooms").add_child(instance)
 					var directions: Array = _is_room_next_to_me(x,y)
+					print(directions)
 					_open_doors(directions, instance)
 					var player_instance = player_scene.instantiate()
-					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
-					get_node("Rooms").add_child(instance)
 					add_child(player_instance)
+					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
 					player_instance.global_position = instance.get_node("Spawn").global_position
 				END:
 					var instance = end_room.instantiate() 
 					
 					var loc: Vector2i = Vector2i(x,y)
+					get_node("Rooms").add_child(instance)
 					var directions: Array = _is_room_next_to_me(x,y)
 					_open_doors(directions, instance)
 					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
-					get_node("Rooms").add_child(instance)
 				ROOM:
 					var instance = basic_room_scene.instantiate() 
 					
 					var loc: Vector2i = Vector2i(x,y)
+					get_node("Rooms").add_child(instance)
 					var directions: Array = _is_room_next_to_me(x,y)
 					_open_doors(directions, instance)
 					instance.transform.origin = Vector3(loc.x * room_size.x, 0, loc.y * room_size.z)
-					get_node("Rooms").add_child(instance)
 				"_":
 					pass
 
 func _is_room_next_to_me(x: int, y: int):
 	var directions: Array = []
-	if x < dungeon_width-1 and rooms[x+1][y] != EMPTY:
-		directions.append(EAST)
-	if x > 0 and rooms[x-1][y] != EMPTY:
+	if x != (dungeon_width-1):
+		if rooms[x+1][y] == START or rooms[x+1][y] == ROOM or rooms[x+1][y] == END:
+			directions.append(EAST)
+	if x > 0 and rooms[x-1][y] == START or rooms[x-1][y] == ROOM or rooms[x-1][y] == END:
 		directions.append(WEST)
-	if y < dungeon_height-1 and rooms[x][y+1]:
-		directions.append(NORTH)
-	if y > 0 and rooms[x][y-1] != EMPTY:
+	if y != (dungeon_height-1):
+		if rooms[x][y+1] == START or rooms[x][y+1] == ROOM or rooms[x][y+1] == END:
+			directions.append(NORTH)
+	if y > 0 and rooms[x][y-1] == START or rooms[x][y-1] == ROOM or rooms[x][y-1] == END:
 		directions.append(SOUTH)
 	return directions
 

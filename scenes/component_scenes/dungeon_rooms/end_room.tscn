@@ -256,21 +256,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -8)
 [node name="wall_cracked3" parent="Walls" instance=ExtResource("5_1owhp")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8, 0, 6)
 
-[node name="Openings" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
-
-[node name="North" parent="Openings" instance=ExtResource("7_237mc")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 2)
-
-[node name="South" parent="Openings" instance=ExtResource("7_237mc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 2)
-
-[node name="East" parent="Openings" instance=ExtResource("7_237mc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
-
-[node name="West" parent="Openings" instance=ExtResource("7_237mc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(0.7071067, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.7071067, 4.5, 4.3, -4)
 size = Vector3(4, 4, 1)
@@ -289,3 +274,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9158897, 2, -7.797262)
 
 [node name="torch_mounted4" parent="Props" instance=ExtResource("8_43f5p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8387184, 2, -7.7499666)
+
+[node name="Openings" type="Node3D" parent="."]
+
+[node name="South" parent="Openings" instance=ExtResource("7_237mc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+
+[node name="East" parent="Openings" instance=ExtResource("7_237mc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 2.0000002)
+
+[node name="North" parent="Openings" instance=ExtResource("7_237mc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999999, 0, 12.000001)
+
+[node name="West" parent="Openings" instance=ExtResource("7_237mc")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.000001, 0, 2.0000002)

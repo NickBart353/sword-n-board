@@ -266,16 +266,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9158897, 2, -7.797262)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8387184, 2, -7.7499666)
 
 [node name="Openings" type="Node3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, 0)
-
-[node name="North" parent="Openings" instance=ExtResource("6_8n1nc")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12, 0, 2)
 
 [node name="South" parent="Openings" instance=ExtResource("6_8n1nc")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
 
 [node name="East" parent="Openings" instance=ExtResource("6_8n1nc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 12)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8, 0, 2.0000002)
+
+[node name="North" parent="Openings" instance=ExtResource("6_8n1nc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9999999, 0, 12.000001)
 
 [node name="West" parent="Openings" instance=ExtResource("6_8n1nc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -8)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.000001, 0, 2.0000002)
