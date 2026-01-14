@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://cmwkmora0d88i" path="res://scenes/component_scenes/building_parts/wall_half_endcap.tscn" id="23_ttf1w"]
 [ext_resource type="PackedScene" uid="uid://c31acs34qyahc" path="res://scenes/component_scenes/building_parts/floow_wood.tscn" id="24_cra2y"]
 [ext_resource type="PackedScene" uid="uid://buok8dju7w8gl" path="res://scenes/component_scenes/props/crates_stacked.tscn" id="25_4tvqv"]
-[ext_resource type="PackedScene" uid="uid://bnnts6n8clyi3" path="res://scenes/component_scenes/building_parts/dungeon_entrance.tscn" id="26_5vn0v"]
+[ext_resource type="PackedScene" uid="uid://bnnts6n8clyi3" path="res://scenes/component_scenes/interactable/dungeon_entrance.tscn" id="26_5vn0v"]
 [ext_resource type="PackedScene" uid="uid://bmrbfxj64qgxd" path="res://scenes/component_scenes/props/chest_open.tscn" id="26_c5bfd"]
 [ext_resource type="PackedScene" uid="uid://dykkst85k4nyg" path="res://scenes/component_scenes/building_parts/wood_pillar.tscn" id="28_q7a50"]
 

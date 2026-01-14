@@ -129,6 +129,13 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		_attack()
 	
+	if Input.is_action_just_pressed("Inventory"):
+		$CanvasLayer/Inventory.set_visible(!$CanvasLayer/Inventory.is_visible())
+		if $CanvasLayer/Inventory.is_visible():
+			release_mouse()
+		else:
+			capture_mouse()
+	
 	_interact_with_object()
 	
 	move_and_slide()
@@ -209,10 +216,10 @@ func _die():
 
 func _interact_with_object():
 	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
-	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object) :
-		last_hovered_object.get_parent().un_hover()
-	if interacting_object and interacting_object.is_in_group("interactable"):
+	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
+		last_hovered_object.un_hover()
+	if interacting_object and interacting_object is Interactable:
 		last_hovered_object = interacting_object
-		interacting_object.get_parent().hover()
+		interacting_object.hover()
 		if Input.is_action_just_pressed("interact"):
-			interacting_object.get_parent().interact()
+			interacting_object.interact()

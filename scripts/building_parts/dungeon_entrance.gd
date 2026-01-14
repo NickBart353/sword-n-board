@@ -1,12 +1,9 @@
 extends Node3D
 
-func _process(_delta: float) -> void:
-	pass#$Entrance/BlackSquare/Outline.set_visible(false)
-
-func interact():
-	print("entering dungeon...")
-	get_tree().change_scene_to_file("res://scenes/main_scenes/dungeon_level.tscn")
-
+func _ready() -> void:
+	$Interactable._interact.connect(interact)
+	$Interactable._hover.connect(hover)
+	$Interactable._un_hover.connect(un_hover)
 func hover():
 	#if not $Entrance/BlackSquare/Outline.is_visible():
 		#$Entrance/BlackSquare/Outline.set_visible(true)

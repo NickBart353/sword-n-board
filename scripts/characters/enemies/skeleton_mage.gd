@@ -15,6 +15,10 @@ var hunting_bodies: Array
 var attacking_bodies: Array
 var damage = 10
 
+var level = 5
+
+signal died
+
 @export var movement_speed = 5
 
 @onready var iFrameTimer = $IFrame
@@ -94,6 +98,7 @@ func _die():
 	dying = true
 	anim_player.stop()
 	anim_player.play("Death_A")
+	died.emit(self)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Death_A":

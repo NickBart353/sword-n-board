@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhogse4uknt02"]
+
+[ext_resource type="Script" uid="uid://dp5yvpytu1wxv" path="res://scripts/interactable/item_sack.gd" id="1_5pxwh"]
+
+[node name="ItemSack" type="RigidBody3D"]
+script = ExtResource("1_5pxwh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnnts6n8clyi3"]
+[gd_scene load_steps=9 format=3 uid="uid://bnnts6n8clyi3"]
 
-[ext_resource type="Script" uid="uid://cjf58kfai013u" path="res://scripts/building_parts/dungeon_entrance.gd" id="1_fi6an"]
-[ext_resource type="Material" uid="uid://cecesk6pu73gy" path="res://material/simple_outline.tres" id="2_vxps4"]
+[ext_resource type="Script" uid="uid://cjf58kfai013u" path="res://scripts/building_parts/dungeon_entrance.gd" id="1_ujdf5"]
+[ext_resource type="Material" uid="uid://cecesk6pu73gy" path="res://material/simple_outline.tres" id="2_cvvaf"]
+[ext_resource type="Script" uid="uid://dewwns4nyed7r" path="res://scripts/interactable/interactable.gd" id="3_40v2p"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfdh6"]
 size = Vector3(4, 0.15, 4)
@@ -21,7 +22,7 @@ size = Vector3(4, 0.15, 4)
 viewport_path = NodePath("Node3D/SubViewport")
 
 [node name="DungeonEntrance" type="Node3D"]
-script = ExtResource("1_fi6an")
+script = ExtResource("1_ujdf5")
 
 [node name="Entrance" type="StaticBody3D" parent="." groups=["interactable"]]
 
@@ -38,7 +39,7 @@ skeleton = NodePath("Outline")
 process_priority = 5
 process_physics_priority = 5
 visible = false
-material_overlay = ExtResource("2_vxps4")
+material_overlay = ExtResource("2_cvvaf")
 cast_shadow = 0
 ignore_occlusion_culling = true
 gi_mode = 0
@@ -73,3 +74,7 @@ visible = false
 billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_vxps4")
+
+[node name="Interactable" type="Node3D" parent="."]
+script = ExtResource("3_40v2p")
+metadata/_custom_type_script = "uid://dewwns4nyed7r"
