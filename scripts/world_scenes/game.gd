@@ -1,6 +1,7 @@
 extends Main
 
 func _ready() -> void:
+	$ProtoController.open_inventory.connect(open_inventory)
 	for enemy in $Mobs.get_children():
 		enemy.died.connect(_enemy_died)
 
@@ -14,3 +15,12 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	item_sack_instance.transform.origin = loot_position
 	item_sack_instance.items = items_to_generate
 	$Loot.add_child(item_sack_instance)
+
+func open_inventory():
+	$CanvasLayer.set_visible(!$CanvasLayer.is_visible())
+	$CanvasLayer/MainUI.open_inventory()
+
+#TODO:
+#MainUI fortsetzen
+#UI code aus interactable klassen in MainUI mit signalen übertragen
+#Items clicken und zwischen menüs übertragen können

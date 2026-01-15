@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://covjft2d4qaw3"]
+[gd_scene load_steps=2 format=3 uid="uid://covjft2d4qaw3"]
+
+[ext_resource type="Script" uid="uid://tndqhv22gl7j" path="res://scripts/ui_scripts/main_ui.gd" id="1_tskmm"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -7,8 +9,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_tskmm")
 
 [node name="PlayerInventory" type="ItemList" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 869.0
 offset_top = 116.0
@@ -16,6 +20,7 @@ offset_right = 909.0
 offset_bottom = 156.0
 
 [node name="Loot" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

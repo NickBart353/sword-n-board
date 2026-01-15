@@ -59,6 +59,8 @@ var blocking = false
 var interacting_object
 var last_hovered_object
 
+signal open_inventory
+
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
@@ -130,7 +132,7 @@ func _physics_process(delta: float) -> void:
 		_attack()
 	
 	if Input.is_action_just_pressed("Inventory"):
-		open_inventory()
+		open_inventory.emit()
 	
 	_interact_with_object()
 	
@@ -218,19 +220,5 @@ func _interact_with_object():
 		last_hovered_object = interacting_object
 		interacting_object.get_node("Interactable").hover()
 		if Input.is_action_just_pressed("interact"):
-			if interacting_object is ItemSack and not interacting_object.is_connected("open_inventory", open_inventory):
-				interacting_object.open_inventory.connect(open_inventory)
-				interacting_object.close_inventory.connect(close_inventory)
-				
 			interacting_object.get_node("Interactable").interact()
 			
-func open_inventory():
-	$CanvasLayer/Inventory.set_visible(!$CanvasLayer/Inventory.is_visible())
-	if $CanvasLayer/Inventory.is_visible():
-		release_mouse()
-	else:
-		capture_mouse()
-
-func close_inventory():
-	$CanvasLayer/Inventory.set_visible(false)
-	capture_mouse()
