@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://covjft2d4qaw3"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerInventory" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 869.0
+offset_top = 116.0
+offset_right = 909.0
+offset_bottom = 156.0
+
+[node name="Loot" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LootList" type="ItemList" parent="Loot"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 124.0
+offset_right = 320.0
+offset_bottom = 164.0
+
+[node name="Label" type="Label" parent="Loot"]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 520.0
+offset_right = 611.0
+offset_bottom = 543.0
+text = "Press A to loot all"
+
+[node name="Label2" type="Label" parent="Loot"]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 554.0
+offset_right = 668.0
+offset_bottom = 577.0
+text = "Press T to take selected loot"

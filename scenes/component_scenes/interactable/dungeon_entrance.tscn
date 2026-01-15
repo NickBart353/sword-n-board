@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cjf58kfai013u" path="res://scripts/building_parts/dungeon_entrance.gd" id="1_ujdf5"]
 [ext_resource type="Material" uid="uid://cecesk6pu73gy" path="res://material/simple_outline.tres" id="2_cvvaf"]
-[ext_resource type="Script" uid="uid://dewwns4nyed7r" path="res://scripts/interactable/interactable.gd" id="3_40v2p"]
+[ext_resource type="PackedScene" uid="uid://br7232wy73par" path="res://scenes/component_scenes/interactable/interactable.tscn" id="3_ujdf5"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vxps4"]
+viewport_path = NodePath("Node3D/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vfdh6"]
 size = Vector3(4, 0.15, 4)
@@ -18,33 +21,10 @@ size = Vector3(4, 0.15, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_vfdh6"]
 size = Vector3(4, 0.15, 4)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vxps4"]
-viewport_path = NodePath("Node3D/SubViewport")
-
-[node name="DungeonEntrance" type="Node3D"]
+[node name="DungeonEntrance" type="StaticBody3D"]
 script = ExtResource("1_ujdf5")
 
-[node name="Entrance" type="StaticBody3D" parent="." groups=["interactable"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
-shape = SubResource("BoxShape3D_vfdh6")
-
-[node name="BlackSquare" type="MeshInstance3D" parent="Entrance"]
-sorting_offset = -1.0
-material_override = SubResource("StandardMaterial3D_vxps4")
-mesh = SubResource("BoxMesh_fi6an")
-skeleton = NodePath("Outline")
-
-[node name="Outline" type="MeshInstance3D" parent="Entrance/BlackSquare"]
-process_priority = 5
-process_physics_priority = 5
-visible = false
-material_overlay = ExtResource("2_cvvaf")
-cast_shadow = 0
-ignore_occlusion_culling = true
-gi_mode = 0
-mesh = SubResource("BoxMesh_vfdh6")
-skeleton = NodePath("../..")
+[node name="Interactable" parent="." instance=ExtResource("3_ujdf5")]
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -75,6 +55,22 @@ billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_vxps4")
 
-[node name="Interactable" type="Node3D" parent="."]
-script = ExtResource("3_40v2p")
-metadata/_custom_type_script = "uid://dewwns4nyed7r"
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vfdh6")
+
+[node name="BlackSquare" type="MeshInstance3D" parent="."]
+sorting_offset = -1.0
+material_override = SubResource("StandardMaterial3D_vxps4")
+mesh = SubResource("BoxMesh_fi6an")
+skeleton = NodePath("Outline")
+
+[node name="Outline" type="MeshInstance3D" parent="BlackSquare"]
+process_priority = 5
+process_physics_priority = 5
+visible = false
+material_overlay = ExtResource("2_cvvaf")
+cast_shadow = 0
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("BoxMesh_vfdh6")
+skeleton = NodePath("")

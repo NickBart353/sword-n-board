@@ -15,3 +15,19 @@ offset_top = 36.0
 offset_right = 1113.0
 offset_bottom = 501.0
 max_columns = 9
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 520.0
+offset_right = 611.0
+offset_bottom = 543.0
+text = "Press A to loot all"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 554.0
+offset_right = 668.0
+offset_bottom = 577.0
+text = "Press T to take selected loot"

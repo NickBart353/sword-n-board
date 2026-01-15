@@ -4,10 +4,6 @@ func _ready() -> void:
 	for enemy in $Mobs.get_children():
 		enemy.died.connect(_enemy_died)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 func _enemy_died(enemy: Node3D):
 	_generate_loot_on_enemy_death(enemy.global_position, enemy.level)
 

@@ -3,7 +3,7 @@ extends MeleeWeapon
 @onready var anim_player = $AnimationPlayer
 var is_attacking = false
 
-var damage = 25
+var damage = 100
 var knockbackStrength_vertical = 2
 var knockbackStrength_horizontal = 5
 

@@ -130,11 +130,7 @@ func _physics_process(delta: float) -> void:
 		_attack()
 	
 	if Input.is_action_just_pressed("Inventory"):
-		$CanvasLayer/Inventory.set_visible(!$CanvasLayer/Inventory.is_visible())
-		if $CanvasLayer/Inventory.is_visible():
-			release_mouse()
-		else:
-			capture_mouse()
+		open_inventory()
 	
 	_interact_with_object()
 	
@@ -218,8 +214,23 @@ func _interact_with_object():
 	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
 	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
 		last_hovered_object.un_hover()
-	if interacting_object and interacting_object is Interactable:
+	if interacting_object and interacting_object.get_node_or_null("Interactable") != null:
 		last_hovered_object = interacting_object
-		interacting_object.hover()
+		interacting_object.get_node("Interactable").hover()
 		if Input.is_action_just_pressed("interact"):
-			interacting_object.interact()
+			if interacting_object is ItemSack and not interacting_object.is_connected("open_inventory", open_inventory):
+				interacting_object.open_inventory.connect(open_inventory)
+				interacting_object.close_inventory.connect(close_inventory)
+				
+			interacting_object.get_node("Interactable").interact()
+			
+func open_inventory():
+	$CanvasLayer/Inventory.set_visible(!$CanvasLayer/Inventory.is_visible())
+	if $CanvasLayer/Inventory.is_visible():
+		release_mouse()
+	else:
+		capture_mouse()
+
+func close_inventory():
+	$CanvasLayer/Inventory.set_visible(false)
+	capture_mouse()
