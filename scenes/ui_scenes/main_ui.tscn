@@ -20,6 +20,7 @@ offset_right = 1050.0
 offset_bottom = 400.0
 
 [node name="Loot" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

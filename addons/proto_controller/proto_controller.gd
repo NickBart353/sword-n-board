@@ -218,7 +218,7 @@ func _interact_with_object():
 	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
 	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
 		last_hovered_object.un_hover()
-		last_hovered_object == null
+		last_hovered_object = null
 	if interacting_object and interacting_object.get_node_or_null("Interactable") != null:
 		last_hovered_object = interacting_object
 		interacting_object.get_node("Interactable").hover()

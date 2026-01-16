@@ -27,6 +27,9 @@ func un_hover():
 		close_sack.emit()
 		open = false
 		hovered = false
+	#if items.is_empty():
+		#close_sack.emit()
+		#queue_free()
 
 func interact():
 	if open:
@@ -34,4 +37,4 @@ func interact():
 		close_sack.emit()
 	else:
 		open = true
-		open_sack.emit(items)
+		open_sack.emit(items, name)

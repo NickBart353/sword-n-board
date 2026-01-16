@@ -2,6 +2,7 @@ extends Control
 
 var player_items = []
 var loot_items = []
+var last_open_sack
 
 signal update_items
 
@@ -14,8 +15,11 @@ func open_inventory():
 		_refill_lists()
 		$PlayerInventory.set_visible(true)
 
-func open_sack():
-	_refill_lists()
+func open_sack(current_open_sack):
+	if not $PlayerInventory.is_visible():
+		_clear_lists()
+		_refill_lists()
+	last_open_sack = current_open_sack
 	$Loot.set_visible(true)
 	$PlayerInventory.set_visible(true)
 
@@ -31,11 +35,12 @@ func _refill_lists():
 	for item in loot_items:
 		$Loot/LootList.add_item(item.data.item_name)
 	for item in player_items:
-			$PlayerInventory.add_item(item.data.item_name)
+		$PlayerInventory.add_item(item.data.item_name)
 
 func _clear_lists():
 	$Loot/LootList.clear()
 	$PlayerInventory.clear()
+	last_open_sack = null
 
 func fill_loot(items):
 	loot_items = items
@@ -43,8 +48,13 @@ func fill_loot(items):
 func fill_inventory(items):
 	player_items = items
 
-func _on_player_inventory_item_activated(_index: int) -> void:
-	pass # USE ITEM
+func _on_player_inventory_item_activated(index: int) -> void:
+	if $Loot.is_visible():
+		loot_items.append(player_items[index])
+		player_items.remove_at(index)
+		_update_items()
+	else:
+		pass
 
 func _on_loot_list_item_activated(index: int) -> void:
 	player_items.append(loot_items[index])
@@ -52,6 +62,6 @@ func _on_loot_list_item_activated(index: int) -> void:
 	_update_items()
 
 func _update_items():
-	update_items.emit(player_items, loot_items)
+	update_items.emit(player_items, loot_items, last_open_sack)
 	_clear_lists()
 	_refill_lists()

@@ -8,6 +8,7 @@ func _ready() -> void:
 	$ProtoController.open_inventory.connect(open_inventory)
 	$ItemSack.close_sack.connect(_close_sack)
 	$ItemSack.open_sack.connect(_open_sack)
+	main_ui.update_items.connect(update_items)
 	for enemy in $Mobs.get_children():
 		enemy.died.connect(_enemy_died)
 
@@ -22,7 +23,7 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	item_sack_instance.items = items_to_generate
 	item_sack_instance.close_sack.connect(_close_sack)
 	item_sack_instance.open_sack.connect(_open_sack)
-	$Loot.add_child(item_sack_instance)
+	$Loot.add_child(item_sack_instance, true)
 
 func open_inventory(items):
 	var show_ui = not main_ui.get_inventory()
@@ -30,10 +31,10 @@ func open_inventory(items):
 	main_ui.fill_inventory(items)
 	main_ui.open_inventory()
 
-func _open_sack(items):
+func _open_sack(items, sack_name):
 	_change_ui_state(true)
 	main_ui.fill_loot(items)
-	main_ui.open_sack()
+	main_ui.open_sack(sack_name)
 
 func _close_sack():
 	_change_ui_state(false)
@@ -45,3 +46,9 @@ func _change_ui_state(show_ui: bool):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func update_items(player_items, loot_items, sack_name):
+	$ProtoController.items = player_items
+	if $Loot.get_node_or_null("{0}".format([sack_name])):
+		$Loot.get_node_or_null("{0}".format([sack_name])).items = loot_items
+	
