@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bs72ogkvdd7d6"]
+[gd_scene load_steps=9 format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://ctikbextliywu" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="3_5hfox"]
-[ext_resource type="PackedScene" uid="uid://cyngj5umdp7qe" path="res://scenes/ui_scenes/inventory.tscn" id="3_6dqce"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -69,6 +68,3 @@ offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_5hfox")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6dqce")
 show_percentage = false
-
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_6dqce")]
-visible = false

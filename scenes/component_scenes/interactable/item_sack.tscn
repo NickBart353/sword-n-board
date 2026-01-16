@@ -56,11 +56,3 @@ visible = false
 billboard = 1
 no_depth_test = true
 texture = SubResource("ViewportTexture_exoak")
-
-[node name="ItemList" type="ItemList" parent="."]
-visible = false
-offset_left = 77.0
-offset_top = 61.0
-offset_right = 450.0
-offset_bottom = 539.0
-item_count = 1
