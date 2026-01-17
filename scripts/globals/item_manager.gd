@@ -15,8 +15,9 @@ func generate_loot(_level):
 		return []
 	else:
 		var items: Array = []
-		for item in ITEMS_ZERO_TO_FIVE:
+		for i in range(9):
+			var random_key = ITEMS_ZERO_TO_FIVE.keys().pick_random()
 			var item_instance = item_scene.instantiate()
-			item_instance.data = ITEMS_ZERO_TO_FIVE[item]
+			item_instance.data = ITEMS_ZERO_TO_FIVE[random_key]
 			items.append(item_instance)
 		return items

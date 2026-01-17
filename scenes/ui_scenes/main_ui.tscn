@@ -12,12 +12,14 @@ grow_vertical = 2
 script = ExtResource("1_tskmm")
 
 [node name="PlayerInventory" type="ItemList" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 750.0
 offset_top = 100.0
 offset_right = 1050.0
 offset_bottom = 400.0
+max_columns = 3
+same_column_width = true
+fixed_column_width = 90
 
 [node name="Loot" type="Control" parent="."]
 visible = false
@@ -26,11 +28,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="LootList" type="ItemList" parent="Loot"]
+clip_contents = false
 layout_mode = 0
 offset_left = 150.0
 offset_top = 100.0
 offset_right = 450.0
 offset_bottom = 400.0
+max_columns = 3
+same_column_width = true
+fixed_column_width = 100
+icon_mode = 0
 
 [node name="Label" type="Label" parent="Loot"]
 layout_mode = 0

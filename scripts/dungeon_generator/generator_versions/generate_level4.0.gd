@@ -1,4 +1,4 @@
-extends Node3D
+extends Main
 
 @export_group("Rooms")
 @export var basic_room_scene: PackedScene
@@ -12,9 +12,6 @@ extends Node3D
 @export var player_scene: PackedScene
 @export_group("Debug")
 @export var room_locations: bool = false
-
-#TODO:
-#BUG: FIX OUT OF BOUNDS INDEX 10
 
 const NORTH = "North"
 const EAST = "East"
@@ -48,6 +45,7 @@ func _ready() -> void:
 	room_limit = randi_range(1, (dungeon_width * dungeon_height) / 4)
 	added_rooms = 0
 	_generate_dungeon()
+	super()
 
 func _generate_dungeon():
 	var use_fail_safe: bool = false

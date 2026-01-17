@@ -11,14 +11,15 @@ func open_inventory():
 		$PlayerInventory.set_visible(false)
 		$Loot.set_visible(false)
 		_clear_lists()
+		last_open_sack = null
 	elif not $PlayerInventory.is_visible():
 		_refill_lists()
 		$PlayerInventory.set_visible(true)
 
 func open_sack(current_open_sack):
-	if not $PlayerInventory.is_visible():
-		_clear_lists()
-		_refill_lists()
+	#if not $PlayerInventory.is_visible():
+	_clear_lists()
+	_refill_lists()
 	last_open_sack = current_open_sack
 	$Loot.set_visible(true)
 	$PlayerInventory.set_visible(true)
@@ -26,6 +27,7 @@ func open_sack(current_open_sack):
 func close_sack():
 	$PlayerInventory.set_visible(false)
 	$Loot.set_visible(false)
+	last_open_sack = null
 	_clear_lists()
 
 func get_inventory():
@@ -33,14 +35,13 @@ func get_inventory():
 
 func _refill_lists():
 	for item in loot_items:
-		$Loot/LootList.add_item(item.data.item_name)
+		$Loot/LootList.add_icon_item(item.data.sprite)
 	for item in player_items:
-		$PlayerInventory.add_item(item.data.item_name)
+		$PlayerInventory.add_icon_item(item.data.sprite)
 
 func _clear_lists():
 	$Loot/LootList.clear()
 	$PlayerInventory.clear()
-	last_open_sack = null
 
 func fill_loot(items):
 	loot_items = items
@@ -57,9 +58,13 @@ func _on_player_inventory_item_activated(index: int) -> void:
 		pass
 
 func _on_loot_list_item_activated(index: int) -> void:
-	player_items.append(loot_items[index])
-	loot_items.remove_at(index)
-	_update_items()
+	if player_items.size() < 9:
+		player_items.append(loot_items[index])
+		loot_items.remove_at(index)
+		_update_items()
+	else:
+		#POPUP inventory FULL
+		pass
 
 func _update_items():
 	update_items.emit(player_items, loot_items, last_open_sack)

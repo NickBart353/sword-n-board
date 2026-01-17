@@ -38,3 +38,9 @@ func interact():
 	else:
 		open = true
 		open_sack.emit(items, name)
+
+func update_items(new_items):
+	items = new_items
+	if items.is_empty():
+		close_sack.emit()
+		queue_free()

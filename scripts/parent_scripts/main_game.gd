@@ -6,11 +6,11 @@ const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactab
 
 func _ready() -> void:
 	$ProtoController.open_inventory.connect(open_inventory)
-	$ItemSack.close_sack.connect(_close_sack)
-	$ItemSack.open_sack.connect(_open_sack)
+	#$ItemSack.close_sack.connect(_close_sack)
+	#$ItemSack.open_sack.connect(_open_sack)
 	main_ui.update_items.connect(update_items)
-	for enemy in $Mobs.get_children():
-		enemy.died.connect(_enemy_died)
+	#for enemy in $Mobs.get_children():
+		#enemy.died.connect(_enemy_died)
 
 func _enemy_died(enemy: Node3D):
 	_generate_loot_on_enemy_death(enemy.global_position, enemy.level)
@@ -50,5 +50,5 @@ func _change_ui_state(show_ui: bool):
 func update_items(player_items, loot_items, sack_name):
 	$ProtoController.items = player_items
 	if $Loot.get_node_or_null("{0}".format([sack_name])):
-		$Loot.get_node_or_null("{0}".format([sack_name])).items = loot_items
+		$Loot.get_node_or_null("{0}".format([sack_name])).update_items(loot_items)
 	

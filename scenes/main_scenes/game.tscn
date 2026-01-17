@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene load_steps=13 format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_fdak3"]
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0gtkn4swpe3" path="res://scenes/component_scenes/buildings/test_platform.tscn" id="5_3wwfn"]
 [ext_resource type="PackedScene" uid="uid://bhogse4uknt02" path="res://scenes/component_scenes/interactable/item_sack.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
+[ext_resource type="PackedScene" uid="uid://cfgwm2pdkaxmx" path="res://scenes/main_scenes/open_world.tscn" id="9_rbptj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
@@ -46,11 +47,13 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="ProtoController" parent="." instance=ExtResource("1_fdak3")]
-transform = Transform3D(0.8660253, 0, -0.5000001, 0, 1, 0, 0.5000001, 0, 0.8660253, 4.8416853, 0.7000006, -2.9074545)
+transform = Transform3D(0.8660253, 0, -0.5000001, 0, 1, 0, 0.5000001, 0, 0.8660253, 165.46468, 19.900002, 0.6854136)
 
 [node name="Building" parent="." instance=ExtResource("3_ifh15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.1, 18.9, 8)
 
 [node name="Mobs" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.90001, 22.2, 109.5)
 
 [node name="SkeletonMage" parent="Mobs" instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -23.248955, 0.1, -1.5759468)
@@ -71,6 +74,7 @@ transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.531185, 0.1, 5.038538)
 
 [node name="Loot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.90001, 22.2, 109.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -78,6 +82,9 @@ visible = false
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
 
 [node name="TestPlatform" parent="." instance=ExtResource("5_3wwfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.90001, 22.2, 109.5)
 
 [node name="ItemSack" parent="." instance=ExtResource("7_leqql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0.6, -5.3)
+
+[node name="OpenWorld" parent="." instance=ExtResource("9_rbptj")]
