@@ -19,46 +19,6 @@ size = Vector3(0.3, 2.72, 1.7)
 [sub_resource type="ViewportTexture" id="ViewportTexture_iu1op"]
 viewport_path = NodePath("Node3D/SubViewport")
 
-[sub_resource type="Animation" id="Animation_iu1op"]
-resource_name = "open_door"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("wall_doorway2/wall_doorway/wall_doorway_door:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 0.53588665),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 2.3596852, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("DoorHitbox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.39, -0.024), Vector3(-1.490865, 1.3900002, -0.6394092)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("DoorHitbox:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 1.5707964, 0), Vector3(0, 0.78016216, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_yohew"]
 length = 0.001
 tracks/0/type = "value"
@@ -136,6 +96,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-1.4545538, 1.4, -0.7309393), Vector3(0.09999999, 1.3000001, -4.3711386e-09)]
+}
+
+[sub_resource type="Animation" id="Animation_iu1op"]
+resource_name = "open_door"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wall_doorway2/wall_doorway/wall_doorway_door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 0.53588665),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 2.3596852, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DoorHitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.39, -0.024), Vector3(-1.490865, 1.3900002, -0.6394092)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DoorHitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 0.78016216, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cv3d2"]

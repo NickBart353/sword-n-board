@@ -31,10 +31,12 @@ func interact():
 	if open and not in_motion:
 		open = false
 		in_motion = true
+		$Node3D/SubViewport/Label.text = "Press E to open door."
 		$AnimationPlayer.play("close_door")
 	elif not open and not in_motion:
 		open = true
 		in_motion = true
+		$Node3D/SubViewport/Label.text = "Press E to close door."
 		$AnimationPlayer.play("open_door")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
