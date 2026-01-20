@@ -23,38 +23,23 @@ func un_hover():
 		#$Entrance/BlackSquare/Outline.set_visible(false)
 	if hovered:
 		$Text_Rotator/Text.set_visible(false)
-		open = false
 		hovered = false
 
 func interact():
-	if not in_motion:
+	if $AnimationPlayer.is_playing():
+		return
+	if open and not in_motion:
+		open = false
 		in_motion = true
-		var rotation_val: int
-		
-		if open:
-			open = false
-			rotation_val = 160
-			$Node3D/SubViewport/Label.text = "Press E to close door."
-		else:
-			open = true
-			rotation_val = -160
-			$Node3D/SubViewport/Label.text = "Press E to open door."
-			
-		var door   = $wall_doorway2/wall_doorway/wall_doorway_door
-		var hitbox = $DoorHitbox
-		
-		var tween_door = create_tween()
-		var tween_hitbox = create_tween()
-		
-		tween_door.tween_property(door, "rotation_degrees:y", door.rotation_degrees.y + rotation_val, 0.5)
-		tween_hitbox.tween_property(hitbox, "rotation_degrees:y", hitbox.rotation_degrees.y + rotation_val, 0.5)
-		
-		tween_door.finished.connect(_on_tween_finished)
-		tween_hitbox.finished.connect(_on_tween_finished)
-		
-		all_animations_finished = 2
+		$AnimationPlayer.play("close_door")
+	elif not open and not in_motion:
+		open = true
+		in_motion = true
+		$AnimationPlayer.play("open_door")
 
-func _on_tween_finished():
-	all_animations_finished -= 1
-	if all_animations_finished == 0:
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "close_door":
 		in_motion = false
+	elif anim_name == "open_door":
+		in_motion = false
+		
