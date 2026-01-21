@@ -26,3 +26,12 @@ func un_hover():
 		$Text.set_visible(false)
 		hovered = false
 	_un_hover.emit()
+
+func update_text(new_text):
+	$Node3D/SubViewport/Label.text = new_text
+
+func get_text_visibility():
+	return $Text.is_visible()
+
+func set_text_visibility(visibility):
+	$Text.set_visible(visibility)

@@ -13,23 +13,13 @@ func _ready() -> void:
 	$Interactable._un_hover.connect(un_hover)
 
 func hover():
-	#if not $Entrance/BlackSquare/Outline.is_visible():
-		#$Entrance/BlackSquare/Outline.set_visible(true)
 	hovered = true
-	if not $Sprite3D.is_visible():
-		$Sprite3D.set_visible(true)
 
 func un_hover():
-	#if $Entrance/BlackSquare/Outline.is_visible():
-		#$Entrance/BlackSquare/Outline.set_visible(false)
 	if hovered:
-		$Sprite3D.set_visible(false)
 		close_sack.emit()
 		open = false
 		hovered = false
-	#if items.is_empty():
-		#close_sack.emit()
-		#queue_free()
 
 func interact():
 	if open:
