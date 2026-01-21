@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cly2etoes3u5b"]
+[gd_scene load_steps=12 format=3 uid="uid://cly2etoes3u5b"]
 
 [ext_resource type="PackedScene" uid="uid://c0mxo5n33nucd" path="res://assets/brackeys_3d_game_assets/dungeon_assets/building/wall_doorway.glb" id="1_dv74o"]
 [ext_resource type="Script" uid="uid://bd80lrr6duk0g" path="res://scripts/interactable/wall_doorway.gd" id="1_iu1op"]
@@ -15,9 +15,6 @@ size = Vector3(3.9, 1.2, 1.01)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3g46r"]
 size = Vector3(0.3, 2.72, 1.7)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_iu1op"]
-viewport_path = NodePath("Node3D/SubViewport")
 
 [sub_resource type="Animation" id="Animation_yohew"]
 length = 0.001
@@ -170,38 +167,8 @@ shape = SubResource("BoxShape3D_3g46r")
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.8200989, 0, 0)
 
 [node name="Interactable" parent="." instance=ExtResource("2_ilxsk")]
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
-transparent_bg = true
-size = Vector2i(1000, 1000)
-
-[node name="Label" type="Label" parent="Node3D/SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = -11.5
-offset_right = 63.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Press E to open door."
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Text_Rotator" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-
-[node name="Text" type="Sprite3D" parent="Text_Rotator"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.3, 0)
-visible = false
-billboard = 1
-no_depth_test = true
-texture = SubResource("ViewportTexture_iu1op")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5149504, 0)
+hover_text = "Press E to open door."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 callback_mode_method = 1
