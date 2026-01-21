@@ -226,7 +226,6 @@ func _place_rooms_from_list():
 					var loc: Vector2i = Vector2i(x,y)
 					get_node("Rooms").add_child(instance)
 					var directions: Array = _is_room_next_to_me(x,y)
-					print(directions)
 					_open_doors(directions, instance)
 					var player_instance = player_scene.instantiate()
 					add_child(player_instance)

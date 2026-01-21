@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://c44b3gdbdd3py"]
 
 [ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_5ptq8"]
-[ext_resource type="Texture2D" uid="uid://cfahve70p1xrg" path="res://my_assets/sword.png" id="2_5ptq8"]
+[ext_resource type="Texture2D" uid="uid://dcgq320jghn3y" path="res://my_assets/iron_sword.png" id="2_5ptq8"]
 
 [resource]
 script = ExtResource("1_5ptq8")
-item_name = "iron_sword"
-item_id = "1"
-tooltip = "It's an iron sword!"
+item_name = "Iron sword"
+item_id = "0f955077-40b4-47d4-bb60-d0e8a7f73775"
+tooltip = "It's a sword!"
 sprite = ExtResource("2_5ptq8")
+drop_chance = 0.05
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

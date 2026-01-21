@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://rtmv36ktptf1"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_puqmi"]
+[ext_resource type="Texture2D" uid="uid://cps1f0s1r6elj" path="res://my_assets/wooden_shield.png" id="2_o6vov"]
+
+[resource]
+script = ExtResource("1_puqmi")
+item_name = "Wooden shield"
+item_id = "8f767e0e-2df8-41e3-bc02-50d0e9147584"
+tooltip = "It blocks hits!"
+sprite = ExtResource("2_o6vov")
+drop_chance = 0.05
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

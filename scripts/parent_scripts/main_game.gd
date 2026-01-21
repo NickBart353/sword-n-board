@@ -20,11 +20,11 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	var items_to_generate: Array = ItemManager.generate_loot(enemy_level)
 	if not items_to_generate: return
 	var item_sack_instance = ITEM_SACK.instantiate()
-	item_sack_instance.transform.origin = loot_position
 	item_sack_instance.items = items_to_generate
 	item_sack_instance.close_sack.connect(_close_sack)
 	item_sack_instance.open_sack.connect(_open_sack)
 	$Loot.add_child(item_sack_instance, true)
+	item_sack_instance.global_position = loot_position
 
 func open_inventory(items):
 	var show_ui = not main_ui.get_inventory()

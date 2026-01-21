@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://dujpy6nd74vtd"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_5eovj"]
+[ext_resource type="Texture2D" uid="uid://bwtdh60s6a63w" path="res://my_assets/torch.png" id="2_d17os"]
+
+[resource]
+script = ExtResource("1_5eovj")
+item_name = "Torch"
+item_id = "2de84977-0bb3-45b8-8ed1-ace14908b311"
+tooltip = "It shines a bright light!"
+sprite = ExtResource("2_d17os")
+drop_chance = 0.2
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

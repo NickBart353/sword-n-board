@@ -6,3 +6,5 @@ extends Resource
 @export_multiline var tooltip: String
 @export var stackable: bool = false
 @export var sprite: Texture2D
+@export var drop_chance: float
+@export var model: String

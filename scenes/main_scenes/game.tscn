@@ -73,6 +73,24 @@ transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.
 [node name="SkeletonMage6" parent="Mobs" instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.531185, 0.1, 5.038538)
 
+[node name="SkeletonMage7" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.502161, 0.1, 2.272828)
+
+[node name="SkeletonMage8" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -21.145254, 0.1, 10.887776)
+
+[node name="SkeletonMage9" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -12.220307, 0.1, 11.100762)
+
+[node name="SkeletonMage10" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -16.538385, 0.1, 10.155133)
+
+[node name="SkeletonMage11" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -23.739332, 0.1, 4.8404016)
+
+[node name="SkeletonMage12" parent="Mobs" instance=ExtResource("4_ks7w8")]
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -27.784391, 0.1, 8.887313)
+
 [node name="Loot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 
@@ -82,9 +100,10 @@ visible = false
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
 
 [node name="TestPlatform" parent="." instance=ExtResource("5_3wwfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 20.7, 2.4000015)
 
 [node name="ItemSack" parent="." instance=ExtResource("7_leqql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 0.6, -5.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.6, 21.300001, 10.6)
+mass = 0.1
 
 [node name="OpenWorld" parent="." instance=ExtResource("9_rbptj")]

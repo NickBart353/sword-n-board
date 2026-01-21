@@ -13,11 +13,11 @@ func open_inventory():
 		_clear_lists()
 		last_open_sack = null
 	elif not $PlayerInventory.is_visible():
+		_clear_lists()
 		_refill_lists()
 		$PlayerInventory.set_visible(true)
 
 func open_sack(current_open_sack):
-	#if not $PlayerInventory.is_visible():
 	_clear_lists()
 	_refill_lists()
 	last_open_sack = current_open_sack
@@ -35,9 +35,11 @@ func get_inventory():
 
 func _refill_lists():
 	for item in loot_items:
-		$Loot/LootList.add_icon_item(item.data.sprite)
+		var item_index = $Loot/LootList.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, $Loot/LootList, item.data)
 	for item in player_items:
-		$PlayerInventory.add_icon_item(item.data.sprite)
+		var item_index = $PlayerInventory.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, $PlayerInventory, item.data)
 
 func _clear_lists():
 	$Loot/LootList.clear()
@@ -70,3 +72,9 @@ func _update_items():
 	update_items.emit(player_items, loot_items, last_open_sack)
 	_clear_lists()
 	_refill_lists()
+
+func _set_item_data(index, list, data):
+	#list.set_item_text(index, data.item_name)
+	list.set_item_tooltip_enabled(index, true)
+	#list.set_item_tooltip(index, data.tooltip)
+	list.set_item_tooltip(index, data.item_name)
