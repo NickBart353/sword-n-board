@@ -1,10 +1,3 @@
-class_name Player
-
-# ProtoController v1.0 by Brackeys
-# CC0 License
-# Intended for rapid prototyping of first-person games.
-# Happy prototyping!
-
 extends CharacterBody3D
 
 ## Can we move around?
@@ -58,6 +51,7 @@ var freeflying : bool = false
 var blocking = false
 var interacting_object
 var last_hovered_object
+var node_string: String = ""
 
 var items: Array = []
 
@@ -217,10 +211,17 @@ func _die():
 func _interact_with_object():
 	interacting_object = $Head/Camera3D/RayCast3D.get_collider()
 	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
-		last_hovered_object.get_node("Interactable").un_hover()
+		last_hovered_object.get_node(node_string).un_hover()
 		last_hovered_object = null
-	if interacting_object and interacting_object.get_node_or_null("Interactable") != null:
+		node_string = ""
+	if interacting_object:
+		if interacting_object.get_node_or_null("Interactable") != null:
+			node_string = "Interactable"
+		elif interacting_object.get_node_or_null("ItemContainer") != null:
+			node_string = "ItemContainer"
+		else:
+			return
 		last_hovered_object = interacting_object
-		interacting_object.get_node("Interactable").hover()
+		interacting_object.get_node(node_string).hover()
 		if Input.is_action_just_pressed("interact"):
-			interacting_object.get_node("Interactable").interact()
+			interacting_object.get_node(node_string).interact()

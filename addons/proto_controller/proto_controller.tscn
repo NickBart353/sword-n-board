@@ -68,3 +68,17 @@ offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_5hfox")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6dqce")
 show_percentage = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

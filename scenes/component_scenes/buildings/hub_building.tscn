@@ -191,9 +191,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 [node name="floor_stone16" parent="main-room/floor" instance=ExtResource("9_3bh15")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
 
-[node name="chest_closed" parent="main-room/floor" instance=ExtResource("10_wcdf1")]
-transform = Transform3D(-0.6427877, 0, -0.7660444, 0, 1, 0, 0.7660444, 0, -0.6427877, 19.815014, 0.1, 11.734507)
-
 [node name="chest_no_lid" parent="main-room/floor" instance=ExtResource("11_s2xol")]
 transform = Transform3D(0.9396926, 0, -0.34202024, 0, 1, 0, 0.34202024, 0, 0.9396926, 19.699997, 0.1, 4)
 
@@ -478,12 +475,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.59
 [node name="keg_decorated2" parent="storage-room/props" instance=ExtResource("19_ypgr1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.5999985, 0, -8)
 
-[node name="chest_closed" parent="storage-room/props" instance=ExtResource("10_wcdf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0999985, 0.1, -12.1)
-
-[node name="chest_closed2" parent="storage-room/props" instance=ExtResource("10_wcdf1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.199997, 0.1, -12.1)
-
 [node name="crates_stacked" parent="storage-room/props" instance=ExtResource("25_4tvqv")]
 transform = Transform3D(0.3856726, 0, -0.45962667, 0, 0.6, 0, 0.45962667, 0, 0.3856726, 8.7560005, 0.1, -4.374426)
 
@@ -566,3 +557,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3, 0.2, -7.300003)
 
 [node name="torch_mounted" parent="starting-room/props" instance=ExtResource("21_8l0ob")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.9000006, 2.2, -1.7500076)
+
+[node name="Chests" type="Node3D" parent="."]
+
+[node name="chest_closed" parent="Chests" instance=ExtResource("10_wcdf1")]
+transform = Transform3D(-0.6427877, 0, -0.7660444, 0, 1, 0, 0.7660444, 0, -0.6427877, 19.815014, 0.1, 11.734507)
+
+[node name="chest_closed2" parent="Chests" instance=ExtResource("10_wcdf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0999985, 0.1, -12.1)
+
+[node name="chest_closed3" parent="Chests" instance=ExtResource("10_wcdf1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.199997, 0.1, -12.1)

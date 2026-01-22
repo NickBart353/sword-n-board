@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhogse4uknt02"]
 
 [ext_resource type="Script" uid="uid://dp5yvpytu1wxv" path="res://scripts/interactable/item_sack.gd" id="1_5pxwh"]
-[ext_resource type="PackedScene" uid="uid://br7232wy73par" path="res://scenes/component_scenes/interactable/interactable.tscn" id="2_exoak"]
+[ext_resource type="PackedScene" uid="uid://dcouhafyjha1f" path="res://scenes/component_scenes/interactable/item_container/item_container.tscn" id="3_87i4b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pxwh"]
 
@@ -16,12 +16,12 @@ albedo_color = Color(0.32042378, 0.16982213, 0, 1)
 physics_material_override = SubResource("PhysicsMaterial_5pxwh")
 script = ExtResource("1_5pxwh")
 
-[node name="Interactable" parent="." instance=ExtResource("2_exoak")]
-hover_text = "Press E to loot"
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_exoak")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_5pxwh")
 mesh = SubResource("BoxMesh_87i4b")
+
+[node name="ItemContainer" parent="." instance=ExtResource("3_87i4b")]
+hover_text = "Press E to loot"
