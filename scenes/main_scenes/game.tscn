@@ -1,13 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene load_steps=12 format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
-[ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="3_ifh15"]
 [ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="3_rbptj"]
 [ext_resource type="PackedScene" uid="uid://doh76cvllte4m" path="res://scenes/component_scenes/characters/enemies/skeleton_mage.tscn" id="4_ks7w8"]
-[ext_resource type="PackedScene" uid="uid://c0gtkn4swpe3" path="res://scenes/component_scenes/buildings/test_platform.tscn" id="5_3wwfn"]
 [ext_resource type="PackedScene" uid="uid://bhogse4uknt02" path="res://scenes/component_scenes/interactable/item_sack.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
+[ext_resource type="PackedScene" uid="uid://dixs6udfqcrnu" path="res://assets/Environoment Pack V.1/FBX/Tree_Green_01.fbx" id="8_rbptj"]
 [ext_resource type="PackedScene" uid="uid://bc6yjrtanapwy" path="res://terrain3d_tests/test1.tscn" id="9_rbptj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
@@ -47,11 +46,8 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_rbptj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.8, 18.399998, -197.49998)
-speed = 4
-
-[node name="Building" parent="." instance=ExtResource("3_ifh15")]
-transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 223.60718, 10.099999, -231.5976)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.900017, 58.8, -232.59999)
+speed = 10
 
 [node name="Mobs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
@@ -100,11 +96,11 @@ visible = false
 
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
 
-[node name="TestPlatform" parent="." instance=ExtResource("5_3wwfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 20.7, -146.9)
-
 [node name="ItemSack" parent="." instance=ExtResource("7_leqql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106, -589.30005, 172.8)
 mass = 0.1
 
 [node name="Terrain3D" parent="." instance=ExtResource("9_rbptj")]
+
+[node name="Tree_Green_01" parent="." instance=ExtResource("8_rbptj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.5, 17.5, -86)

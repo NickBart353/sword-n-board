@@ -188,6 +188,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
 [node name="floor_stone16" parent="main-room/floor" instance=ExtResource("9_3bh15")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 12)
 
+[node name="floor_stone17" parent="main-room/floor" instance=ExtResource("9_3bh15")]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 8, -0.70501107, 15.862814)
+
+[node name="floor_stone18" parent="main-room/floor" instance=ExtResource("9_3bh15")]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, -0.34202012, 0, 0.34202012, 0.9396926, 4, -0.70501107, 15.862814)
+
 [node name="chest_no_lid" parent="main-room/floor" instance=ExtResource("11_s2xol")]
 transform = Transform3D(0.9396926, 0, -0.34202024, 0, 1, 0, 0.34202024, 0, 0.9396926, 19.699997, 0.1, 4)
 

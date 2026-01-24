@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://cod5nau233ary"]
+
+[ext_resource type="Shader" uid="uid://bt45n8cxryg4h" path="res://shaders/s_water.tres" id="1_lee2t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lee2t"]
+noise_type = 2
+seed = 4
+frequency = 0.0079
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 1.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.15
+cellular_distance_function = 1
+cellular_jitter = 0.78
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0b53u"]
+noise = SubResource("FastNoiseLite_lee2t")
+seamless = true
+seamless_blend_skirt = 0.36
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0b53u"]
+noise_type = 2
+seed = 7
+frequency = 0.0083
+fractal_octaves = 4
+fractal_lacunarity = 1.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.15
+cellular_distance_function = 1
+cellular_jitter = 0.78
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gcigq"]
+noise = SubResource("FastNoiseLite_0b53u")
+seamless = true
+seamless_blend_skirt = 0.549
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gcigq"]
+noise_type = 2
+seed = 4
+frequency = 0.0079
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 1.0
+fractal_gain = 1.0
+fractal_weighted_strength = 0.15
+cellular_distance_function = 1
+cellular_jitter = 0.78
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ud8of"]
+noise = SubResource("FastNoiseLite_gcigq")
+seamless = true
+seamless_blend_skirt = 0.36
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0b53u"]
+render_priority = 0
+shader = ExtResource("1_lee2t")
+shader_parameter/waveheight = 1.0
+shader_parameter/VertexNoise = SubResource("NoiseTexture2D_ud8of")
+shader_parameter/WaterColor = Color(0.12156863, 0.6156863, 1, 1)
+shader_parameter/NormalTexture1 = SubResource("NoiseTexture2D_0b53u")
+shader_parameter/NormalTexture2 = SubResource("NoiseTexture2D_gcigq")
+shader_parameter/Metallic = 0.090000004275
+shader_parameter/Roughness = 0.094000004465
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gcigq"]
+material = SubResource("ShaderMaterial_0b53u")
+uv2_padding = 0.0
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WaterMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_gcigq")
