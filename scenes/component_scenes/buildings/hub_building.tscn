@@ -58,9 +58,6 @@ transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 13.4
 [node name="wall10" parent="main-room/walls" instance=ExtResource("2_g5s66")]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -1.4100037, 0.030000001, 2.3999991)
 
-[node name="wall5" parent="main-room/walls" instance=ExtResource("2_g5s66")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.459999, 0.030000001, 13.5)
-
 [node name="wall_corner4" parent="main-room/walls" instance=ExtResource("3_6whar")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.4400024, 0.030000001, 13.499999)
 
@@ -291,7 +288,7 @@ transform = Transform3D(0.8660255, 0, 0.49999988, 0, 1, 0, -0.49999988, 0, 0.866
 transform = Transform3D(0.3420203, 0, 0.93969256, 0, 1, 0, -0.93969256, 0, 0.3420203, 7.7022133, 0, -0.2793224)
 
 [node name="keg_decorated" parent="main-room/props" instance=ExtResource("19_ypgr1")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 5.499999, 0, 11.6)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.599999, 0, 11.6)
 
 [node name="keyring" parent="main-room/props" instance=ExtResource("20_7d8a5")]
 transform = Transform3D(-0.64278746, 0.76604444, 4.3711385e-08, 2.8097135e-08, -3.3484866e-08, 0.99999994, 0.7660444, 0.6427875, 0, 11.29586, 0.099999994, 8.735623)
@@ -303,7 +300,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 8.250008, 2
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.2500076, 2.2, -1.22)
 
 [node name="torch_mounted4" parent="main-room/props" instance=ExtResource("21_8l0ob")]
-transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 3.1500092, 2.2, 13.2300005)
+transform = Transform3D(-0.99999994, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -0.99999994, 2.250009, 2.2, 13.2300005)
 
 [node name="torch_mounted8" parent="main-room/props" instance=ExtResource("21_8l0ob")]
 transform = Transform3D(8.940697e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 8.940697e-08, -1.5499954, 2.2, 4.0300007)
@@ -568,3 +565,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0999985, 0.1, -12.1)
 
 [node name="chest_closed3" parent="Chests" instance=ExtResource("10_wcdf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.199997, 0.1, -12.1)
+
+[node name="wall_doorway" parent="." instance=ExtResource("1_ibke8")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.46, 0.030000005, 13.5)

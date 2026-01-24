@@ -1,17 +1,12 @@
 class_name Chest
 extends StaticBody3D
 
-signal remove_me
 var open: bool = false
 var in_motion = false
 
 func _ready() -> void:
-	$ItemContainer.items_empty.connect(_remove_me)
 	$ItemContainer.parent = name
 	$ItemContainer._interact.connect(interact)
-
-func _remove_me():
-	remove_me.emit(self)
 
 func interact():
 	if not in_motion:

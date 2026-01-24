@@ -3,23 +3,22 @@ extends Interactable
 
 var items: Array = []
 var open = false
-var parent: String
+var parent: String = ""
 
-signal open_container
-signal close_container
 signal items_empty
 
 func _ready() -> void:
 	super()
+	EventBus.update_items.connect(update_items)
 
 func interact():
 	super()
 	if open:
 		open = false
-		close_container.emit()
+		EventBus.close_container.emit(self)
 	else:
 		open = true
-		open_container.emit(items, parent)
+		EventBus.open_container.emit(self)
 
 func hover():
 	super()
@@ -28,12 +27,13 @@ func hover():
 func un_hover():
 	super()
 	if hovered:
-		close_container.emit()
+		EventBus.close_container.emit(self)
 		open = false
 		hovered = false
 
-func update_items(new_items):
-	items = new_items
-	if items.is_empty():
-		close_container.emit()
-		items_empty.emit()
+func update_items(new_items, sack_name):
+	if sack_name == parent:
+		items = new_items
+		if items.is_empty():
+			EventBus.close_container.emit(self)
+			items_empty.emit()

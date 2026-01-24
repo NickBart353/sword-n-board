@@ -24,7 +24,7 @@ func open_sack(current_open_sack):
 	$Loot.set_visible(true)
 	$PlayerInventory.set_visible(true)
 
-func close_sack():
+func close_sack(_sack):
 	$PlayerInventory.set_visible(false)
 	$Loot.set_visible(false)
 	last_open_sack = null

@@ -46,7 +46,7 @@ fov = 90.0
 transform = Transform3D(-0.026337879, 0.19250484, -0.9809425, 0.005166809, 0.981296, 0.19243549, 0.99963975, 0, -0.026839891, 0.4784181, -1.1553805, -0.7988146)
 
 [node name="Sword" parent="Head/Camera3D/Marker3D" instance=ExtResource("3_5hfox")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.22246629, -0.20567429)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -3)

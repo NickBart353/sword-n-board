@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0gtkn4swpe3" path="res://scenes/component_scenes/buildings/test_platform.tscn" id="5_3wwfn"]
 [ext_resource type="PackedScene" uid="uid://bhogse4uknt02" path="res://scenes/component_scenes/interactable/item_sack.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
-[ext_resource type="PackedScene" uid="uid://cfgwm2pdkaxmx" path="res://scenes/main_scenes/open_world.tscn" id="9_rbptj"]
+[ext_resource type="PackedScene" uid="uid://bc6yjrtanapwy" path="res://terrain3d_tests/test1.tscn" id="9_rbptj"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
@@ -47,50 +47,50 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_rbptj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 93.1, 25.3, 0)
-speed = 10
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188.8, 18.399998, -197.49998)
+speed = 4
 
 [node name="Building" parent="." instance=ExtResource("3_ifh15")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 161.1, 18.9, 8)
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 223.60718, 10.099999, -231.5976)
 
 [node name="Mobs" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 
 [node name="SkeletonMage" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -23.248955, 0.1, -1.5759468)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 40.852707, -10.5, -169.58678)
 
 [node name="SkeletonMage2" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -18.892048, 0.1, 7.0390015)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 45.209618, -10.5, -160.97183)
 
 [node name="SkeletonMage3" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -9.967102, 0.1, 7.2519875)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 54.13456, -10.5, -160.75883)
 
 [node name="SkeletonMage4" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -14.285179, 0.1, 6.3063583)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 49.816483, -10.5, -161.70447)
 
 [node name="SkeletonMage5" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -21.486126, 0.1, 0.99162674)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 42.615532, -10.5, -167.0192)
 
 [node name="SkeletonMage6" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.531185, 0.1, 5.038538)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 38.570473, -10.5, -162.97229)
 
 [node name="SkeletonMage7" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -25.502161, 0.1, 2.272828)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 38.599503, -10.5, -165.738)
 
 [node name="SkeletonMage8" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -21.145254, 0.1, 10.887776)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 42.956406, -10.5, -157.12305)
 
 [node name="SkeletonMage9" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -12.220307, 0.1, 11.100762)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 51.881355, -10.5, -156.91006)
 
 [node name="SkeletonMage10" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -16.538385, 0.1, 10.155133)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 47.56328, -10.5, -157.8557)
 
 [node name="SkeletonMage11" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -23.739332, 0.1, 4.8404016)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 40.362328, -10.5, -163.17043)
 
 [node name="SkeletonMage12" parent="Mobs" instance=ExtResource("4_ks7w8")]
-transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, -27.784391, 0.1, 8.887313)
+transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 36.31727, -10.5, -159.12352)
 
 [node name="Loot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
@@ -101,10 +101,10 @@ visible = false
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
 
 [node name="TestPlatform" parent="." instance=ExtResource("5_3wwfn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 20.7, 2.4000015)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150, 20.7, -146.9)
 
 [node name="ItemSack" parent="." instance=ExtResource("7_leqql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 164.6, 21.300001, 10.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106, -589.30005, 172.8)
 mass = 0.1
 
-[node name="OpenWorld" parent="." instance=ExtResource("9_rbptj")]
+[node name="Terrain3D" parent="." instance=ExtResource("9_rbptj")]
