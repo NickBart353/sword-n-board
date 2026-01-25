@@ -16,7 +16,7 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_oijqy")
 speed = 50
 

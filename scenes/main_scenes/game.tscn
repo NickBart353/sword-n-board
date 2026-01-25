@@ -45,7 +45,7 @@ light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_rbptj")]
-transform = Transform3D(-0.34202012, 0, -0.9396926, 0, 1, 0, 0.9396926, 0, -0.34202012, 97.30002, 10.9, -164.5)
+transform = Transform3D(-0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.50000006, 100.76828, 20, -76.081505)
 speed = 10
 
 [node name="Mobs" type="Node3D" parent="."]

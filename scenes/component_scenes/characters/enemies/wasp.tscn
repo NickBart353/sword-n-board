@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://j7o5aipinkel"]
+
+[ext_resource type="PackedScene" uid="uid://rvsryovpbm6i" path="res://assets/MonstersPack_Ps1/FBX/Wasp.fbx" id="1_penbv"]
+[ext_resource type="Script" uid="uid://b0jlvhm41f4tp" path="res://scripts/characters/enemies/wasp.gd" id="2_kvakc"]
+[ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_p0mbg"]
+[ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_ubq1a"]
+[ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="5_c3m4f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kvakc"]
+radius = 1.5
+height = 8.400001
+
+[node name="Wasp" instance=ExtResource("1_penbv")]
+script = ExtResource("2_kvakc")
+
+[node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
+bones/0/rotation = Quaternion(-7.5497894e-08, -9.581137e-09, 1, 0)
+bones/1/rotation = Quaternion(-1.275805e-15, 1, 9.581134e-09, 1.3315805e-07)
+bones/2/rotation = Quaternion(-0.058636747, 7.044451e-15, -4.1377565e-16, 0.9982794)
+bones/3/rotation = Quaternion(0.40914246, 1.0877497e-07, 4.8773586e-08, 0.91247064)
+bones/5/rotation = Quaternion(-0.058636747, 7.044451e-15, -4.1377565e-16, 0.9982794)
+bones/6/rotation = Quaternion(0.40914246, -1.0877497e-07, -4.8773586e-08, 0.91247064)
+bones/8/rotation = Quaternion(-0.40678188, 0.36737755, 0.78751457, 0.2817504)
+bones/10/rotation = Quaternion(-0.53257835, -0.10706186, 0.40673593, 0.7344821)
+bones/11/rotation = Quaternion(0.045113534, 0.6671274, -0.05500943, 0.7415388)
+bones/13/rotation = Quaternion(0.4067817, 0.36737767, 0.78751445, -0.28175035)
+bones/15/rotation = Quaternion(-0.53257835, 0.10706183, -0.40673602, 0.73448205)
+bones/16/rotation = Quaternion(0.045113534, -0.6671274, 0.0550094, 0.7415388)
+bones/18/rotation = Quaternion(-0.69511956, 0.19137938, 0.19764784, 0.6641673)
+bones/19/rotation = Quaternion(0.04849822, -0.014233009, -0.078799926, 0.9956083)
+bones/21/rotation = Quaternion(-0.6951195, -0.19137953, -0.19764796, 0.6641672)
+bones/22/rotation = Quaternion(0.04849821, 0.014233055, 0.078799985, 0.9956083)
+bones/25/rotation = Quaternion(-0.3978698, 3.2810286e-07, -1.4228934e-07, 0.9174419)
+bones/26/rotation = Quaternion(-0.22283334, 2.6341178e-07, -2.1959367e-07, 0.97485656)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
+shape = SubResource("CapsuleShape3D_kvakc")
+
+[node name="StateMachine" type="Node" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_p0mbg")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_ubq1a")
+enemy = NodePath("../..")
+wander_speed = 2
+
+[node name="Follow" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("5_c3m4f")
