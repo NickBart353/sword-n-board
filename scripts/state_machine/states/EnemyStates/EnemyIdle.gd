@@ -1,22 +1,27 @@
 extends EnemyState
 
-@export var enemy: CharacterBody3D
 @export var wander_speed: int = 10
+@export var allowed_distance_to_origin: int = 20
 
-var wander_time
+var wander_time = 0
 var wander_direction: Vector3
 var distance
 
 func randomize_wander():
-	wander_time = randi_range(1, 5)
-	wander_direction = Vector3(randf_range(-0.5,0.5), 0, randf_range(-0.5,0.5))
+	if enemy.global_position.distance_to(enemy.origin_position) > allowed_distance_to_origin:
+		Transitioned.emit(self, "Return")
+		return
+	
+	wander_time = randi_range(4, 7)
+	wander_direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
+	wander_direction.normalized()
 
 func Enter():
 	super()
 	randomize_wander()
 
 func Exit():
-	enemy.velocity = Vector3.ZERO
+	super()
 
 func Update(delta: float) -> void:
 	if wander_time > 0:
@@ -25,9 +30,11 @@ func Update(delta: float) -> void:
 		randomize_wander()
 
 func Physics_Update(_delta: float) -> void:
-	distance = player.global_position - enemy.global_position
+	if not enemy.global_transform.origin.is_equal_approx(enemy.global_position + wander_direction):
+		enemy.look_at(enemy.global_position + wander_direction, Vector3.UP, true)
 	
-	if enemy:
-		enemy.velocity = wander_direction * wander_speed
+	enemy.velocity = wander_direction * wander_speed
+	
+	distance = player.global_position - enemy.global_position
 	if distance.length() < 10:
 		Transitioned.emit(self, "Follow")

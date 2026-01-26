@@ -1,13 +1,24 @@
 extends EnemyState
 
+@export var follow_speed: int = 1
+@export var attack_range: int = 3
+@export var follow_range: int = 50
+
 func Enter():
 	super()
 
 func Exit():
-	pass
+	super()
 
-func Update(delta: float) -> void:
-	pass
-
-func Physics_Update(delta: float) -> void:
-	pass
+func Physics_Update(_delta: float) -> void:
+	enemy.look_at(player.global_position, Vector3.UP, true)
+	
+	var distance = player.global_position - enemy.global_position
+	
+	if distance.length() > follow_range:
+		Transitioned.emit(self, "Idle")
+	if distance.length() < attack_range:
+		Transitioned.emit(self, "Attack")
+	
+	enemy.velocity = enemy.global_position.direction_to(player.global_position) * follow_speed
+	enemy.velocity.y = 0
