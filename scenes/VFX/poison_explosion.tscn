@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cs5c23h610uly"]
+
+[node name="PoisonExplosion" type="Node3D"]

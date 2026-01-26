@@ -19,6 +19,7 @@ func Enter():
 func Exit():
 	super()
 	player_hit = false
+	charge_interrupted = false
 
 func Physics_Update(_delta: float) -> void:
 	enemy.velocity = dash_direction * dash_speed

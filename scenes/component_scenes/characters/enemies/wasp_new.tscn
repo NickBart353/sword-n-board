@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dme8w8fah0tn6"]
+[gd_scene load_steps=39 format=3 uid="uid://dme8w8fah0tn6"]
 
 [ext_resource type="PackedScene" uid="uid://c387o65siplsf" path="res://assets/MonstersPack_Ps1/BLEND/Wasp.blend" id="1_8403y"]
 [ext_resource type="Script" uid="uid://c8ueshur2ml1c" path="res://scripts/characters/enemies/Wasp/wasp_animation.gd" id="2_42erq"]
@@ -25,7 +25,7 @@ animation = &"AtackWasp"
 play_mode = 1
 use_custom_timeline = true
 timeline_length = 0.1
-stretch_time_scale = true
+stretch_time_scale = false
 start_offset = 0.0
 loop_mode = 0
 
@@ -46,6 +46,9 @@ animation = &"DeathWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfb5g"]
 animation = &"FlyingWasp"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
+animation = &"AtackWasp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0js2i"]
 advance_mode = 2
@@ -112,45 +115,48 @@ advance_expression = "current_state.name == \"Died\""
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8wo36"]
 states/Dashing/node = SubResource("AnimationNodeAnimation_i1xyo")
-states/Dashing/position = Vector2(718, -158)
+states/Dashing/position = Vector2(718, -129)
 states/Death/node = SubResource("AnimationNodeAnimation_treog")
-states/Death/position = Vector2(562, 79)
+states/Death/position = Vector2(494, -13)
 states/End/position = Vector2(718, 79)
 states/Follow/node = SubResource("AnimationNodeAnimation_btnlr")
-states/Follow/position = Vector2(399, -20)
+states/Follow/position = Vector2(249, -129)
 states/Idle/node = SubResource("AnimationNodeAnimation_52jpp")
 states/Idle/position = Vector2(249, 79)
 states/Locked/node = SubResource("AnimationNodeAnimation_t4gcc")
-states/Locked/position = Vector2(399, -158)
+states/Locked/position = Vector2(494, -129)
 states/Recovering/node = SubResource("AnimationNodeAnimation_nsq2h")
-states/Recovering/position = Vector2(718, -20)
+states/Recovering/position = Vector2(249, -260)
 states/Return/node = SubResource("AnimationNodeAnimation_xfb5g")
-states/Return/position = Vector2(399, 183)
+states/Return/position = Vector2(249, 179)
+states/Spit/node = SubResource("AnimationNodeAnimation_outyk")
+states/Spit/position = Vector2(90, -129)
 states/Start/position = Vector2(90, 79)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Follow", SubResource("AnimationNodeStateMachineTransition_ncsg1"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Death", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Death", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Death", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Follow", SubResource("AnimationNodeStateMachineTransition_5gd67"), "Recovering", "Death", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Death", SubResource("AnimationNodeStateMachineTransition_8wo36")]
-graph_offset = Vector2(-103, -211)
+graph_offset = Vector2(-355, -297)
 
 [node name="Wasp" instance=ExtResource("1_8403y")]
 script = ExtResource("2_nsq2h")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/0/rotation = Quaternion(-4.098408e-08, 0.5428507, 0.8398293, -6.3405345e-08)
+bones/0/rotation = Quaternion(-3.0153483e-08, 0.39939502, 0.91677904, -6.921489e-08)
 bones/1/rotation = Quaternion(9.345875e-16, 1, 1.7031715e-08, 7.549791e-08)
-bones/2/rotation = Quaternion(-0.05863674, 7.630995e-15, 1.9984726e-15, 0.9982794)
+bones/2/rotation = Quaternion(0.16140723, -0.026487159, -0.082137465, 0.9831071)
 bones/3/rotation = Quaternion(0.40914243, 1.0877496e-07, 4.8773583e-08, 0.9124705)
-bones/4/rotation = Quaternion(-0.05863674, 7.787395e-15, 2.767782e-15, 0.9982794)
+bones/4/rotation = Quaternion(0.16140719, 0.026487153, 0.08213746, 0.9831071)
 bones/5/rotation = Quaternion(0.40914243, -1.0877497e-07, -4.8773583e-08, 0.9124705)
-bones/6/rotation = Quaternion(-0.40678176, 0.3673774, 0.78751457, 0.28175038)
-bones/7/rotation = Quaternion(-0.53257835, -0.10706191, 0.406736, 0.7344821)
+bones/6/rotation = Quaternion(-0.16859461, 0.5215492, 0.8228828, -0.14975432)
+bones/7/rotation = Quaternion(-0.470306, -0.2718715, 0.15028952, 0.82602125)
 bones/8/rotation = Quaternion(0.045113523, 0.6671274, -0.05500942, 0.7415388)
-bones/10/rotation = Quaternion(-0.53257835, 0.10706178, -0.40673605, 0.7344821)
+bones/9/rotation = Quaternion(0.1685944, 0.5215492, 0.8228828, 0.14975436)
+bones/10/rotation = Quaternion(-0.47030604, 0.27187142, -0.1502896, 0.8260214)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009402, 0.7415388)
-bones/12/rotation = Quaternion(-0.69511956, 0.19137941, 0.19764785, 0.6641673)
+bones/12/rotation = Quaternion(-0.7198086, -0.04114379, -0.025299396, 0.6924903)
 bones/13/rotation = Quaternion(0.04849822, -0.014233011, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.69511944, -0.19137958, -0.19764793, 0.6641673)
+bones/14/rotation = Quaternion(-0.7198086, 0.041143656, 0.025299331, 0.69249034)
 bones/15/rotation = Quaternion(0.048498224, 0.0142330555, 0.07879995, 0.9956083)
-bones/17/rotation = Quaternion(-0.3978698, 3.2810283e-07, -1.4228932e-07, 0.9174419)
-bones/18/rotation = Quaternion(-0.22283334, 2.6341178e-07, -2.1959362e-07, 0.97485656)
+bones/17/rotation = Quaternion(-0.86991274, 3.476614e-07, 8.384069e-08, 0.4932056)
+bones/18/rotation = Quaternion(-0.3403124, 2.8827625e-07, -1.8575241e-07, 0.9403125)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
