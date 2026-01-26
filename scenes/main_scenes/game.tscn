@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
 [ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="3_rbptj"]
 [ext_resource type="PackedScene" uid="uid://doh76cvllte4m" path="res://scenes/component_scenes/characters/enemies/skeleton_mage.tscn" id="4_ks7w8"]
-[ext_resource type="PackedScene" uid="uid://bhogse4uknt02" path="res://scenes/component_scenes/interactable/item_sack.tscn" id="7_leqql"]
+[ext_resource type="PackedScene" uid="uid://dme8w8fah0tn6" path="res://scenes/component_scenes/characters/enemies/wasp_new.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 [ext_resource type="PackedScene" uid="uid://bc6yjrtanapwy" path="res://terrain3d_tests/test1.tscn" id="9_rbptj"]
 
@@ -95,8 +95,7 @@ visible = false
 
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
 
-[node name="ItemSack" parent="." instance=ExtResource("7_leqql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106, -589.30005, 172.8)
-mass = 0.1
-
 [node name="Terrain3D" parent="." instance=ExtResource("9_rbptj")]
+
+[node name="Wasp" parent="." instance=ExtResource("7_leqql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.7, 19.3, -51.7)

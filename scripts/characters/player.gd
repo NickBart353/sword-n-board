@@ -27,7 +27,7 @@ signal open_inventory
 @export var jump_velocity : float = 4
 @export var sprint_speed : float = 10.0
 @export var freefly_speed : float = 25.0
-@export var speed: int = 500
+@export var speed: int = 4
 
 func _ready() -> void:
 	look_rotation.y = rotation.y
@@ -114,7 +114,7 @@ func _attack():
 	weapon.play_animation()
 	weapon.set_attacking(true)
 
-func take_damage(damage, body):
+func take_damage(damage, _body):
 	if not blocking:
 		health -= damage
 	if health <= MIN_HEALTH:

@@ -1,16 +1,19 @@
 extends Node
 class_name State
 
+var state_active = false
+
 signal Transitioned
+signal Died
 
 func Enter():
-	pass
+	state_active = true
 
 func Exit():
+	state_active = false
+
+func Update(_delta: float) -> void:
 	pass
 
-func Update(delta: float) -> void:
-	pass
-
-func Physics_Update(delta: float) -> void:
+func Physics_Update(_delta: float) -> void:
 	pass

@@ -12,3 +12,8 @@ func Enter():
 func Exit():
 	super()
 	enemy.velocity = Vector3.ZERO
+
+func Update(_delta: float) -> void:
+	super(_delta)
+	if enemy.health >= enemy.MIN_HEALTH:
+		Died.emit()

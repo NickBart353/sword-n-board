@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://15rcugju6o0q"]
+[gd_scene load_steps=9 format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="1_sf0kc"]
@@ -6,6 +6,10 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lu7gk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
+radius = 0.7
+height = 2.15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oijqy"]
 bg_color = Color(1, 0.2, 0.21568628, 1)
@@ -43,6 +47,13 @@ transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0.49
 
 [node name="Sword" parent="Head/FieldOfView/RightHand" instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
+
+[node name="HurtBox" type="Area3D" parent="." groups=["PlayerHurtBox"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999857, 0)
+shape = SubResource("CapsuleShape3D_oijqy")
+debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

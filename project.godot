@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="SwordNBoard"
-run/main_scene="res://scenes/main_scenes/game.tscn"
+config/version="Alpha 0.2"
+run/main_scene="uid://23kjgnpf3t1i"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

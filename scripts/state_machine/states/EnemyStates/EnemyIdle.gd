@@ -2,6 +2,7 @@ extends EnemyState
 
 @export var wander_speed: int = 10
 @export var allowed_distance_to_origin: int = 20
+@export var aggro_range: int = 20
 
 var wander_time = 0
 var wander_direction: Vector3
@@ -36,5 +37,5 @@ func Physics_Update(_delta: float) -> void:
 	enemy.velocity = wander_direction * wander_speed
 	
 	distance = player.global_position - enemy.global_position
-	if distance.length() < 10:
+	if distance.length() < aggro_range:
 		Transitioned.emit(self, "Follow")
