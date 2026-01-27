@@ -15,11 +15,13 @@ func Enter():
 	super()
 	dash_direction = enemy.global_position.direction_to(player.global_position)
 	dash_start_position = enemy.global_position
+	$"../../CuttingWind".set_visible(true)
 
 func Exit():
 	super()
 	player_hit = false
 	charge_interrupted = false
+	$"../../CuttingWind".set_visible(false)
 
 func Physics_Update(delta: float) -> void:
 	super(delta)

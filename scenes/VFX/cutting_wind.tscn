@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c4otxsclcfj2p"]
+
+[ext_resource type="Shader" uid="uid://c56gdds3nmt5f" path="res://shaders/cutting_wind.tres" id="1_o1tsl"]
+[ext_resource type="ArrayMesh" uid="uid://r4umxlyr8yfj" path="res://my_assets/mesh/sm_cone.obj" id="1_webwr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_o1tsl"]
+noise_type = 3
+seed = 1
+frequency = 0.0031
+offset = Vector3(301.37, 0, 0)
+fractal_type = 2
+fractal_octaves = 4
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v4vo6"]
+noise = SubResource("FastNoiseLite_o1tsl")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_v4vo6"]
+colors = PackedColorArray(0, 0, 0, 0, 0.72464263, 0.7246426, 0.7246426, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4igj5"]
+gradient = SubResource("Gradient_v4vo6")
+
+[sub_resource type="Gradient" id="Gradient_o1tsl"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v4vo6"]
+gradient = SubResource("Gradient_o1tsl")
+fill_from = Vector2(1, 0.55982906)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4vo6"]
+render_priority = 0
+shader = ExtResource("1_o1tsl")
+shader_parameter/Vector2Parameter = Vector2(0, 5)
+shader_parameter/BaseTexture = SubResource("NoiseTexture2D_v4vo6")
+shader_parameter/SubstractionTexture = SubResource("GradientTexture2D_v4vo6")
+shader_parameter/ColorGradient = SubResource("GradientTexture1D_4igj5")
+
+[node name="CuttingWind" type="Node3D" unique_id=1660320358]
+
+[node name="SmCone" type="MeshInstance3D" parent="." unique_id=1102207453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.90000004, 4.2000003, 0.90000004)
+material_override = SubResource("ShaderMaterial_v4vo6")
+cast_shadow = 0
+mesh = ExtResource("1_webwr")

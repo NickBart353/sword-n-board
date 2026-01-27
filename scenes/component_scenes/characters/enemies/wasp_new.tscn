@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="10_5gd67"]
 [ext_resource type="Script" uid="uid://dqhemwoe2317a" path="res://scripts/state_machine/states/EnemyStates/EnemyFire.gd" id="10_8wo36"]
 [ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="14_645re"]
+[ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8403y"]
 radius = 1.5
@@ -165,23 +166,23 @@ poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.491681e-09, 0.9936545, 0.11247573, 7.501883e-08)
-bones/2/rotation = Quaternion(-0.61950547, -0.21690178, -0.29632005, 0.6938019)
-bones/3/rotation = Quaternion(0.23752694, -0.15572974, 0.052055966, 0.9574024)
-bones/4/rotation = Quaternion(-0.6187288, 0.21631105, 0.2976112, 0.6941267)
-bones/5/rotation = Quaternion(0.23752694, 0.15572973, -0.052055947, 0.95740247)
-bones/6/rotation = Quaternion(-0.17571485, 0.51919365, 0.8248546, -0.13848129)
-bones/7/rotation = Quaternion(-0.6493701, -0.052447487, 0.37929973, 0.65703845)
+bones/1/rotation = Quaternion(-7.048905e-11, 0.99999964, 0.0009336554, 7.549787e-08)
+bones/2/rotation = Quaternion(-0.5520098, -0.21754941, -0.095997296, 0.79921335)
+bones/3/rotation = Quaternion(0.2931428, -0.107617855, 0.03597359, 0.94931114)
+bones/4/rotation = Quaternion(-0.5493519, 0.21711434, 0.08916195, 0.8019502)
+bones/5/rotation = Quaternion(0.29314283, 0.10761786, -0.0359736, 0.9493111)
+bones/6/rotation = Quaternion(-0.34315115, 0.42741647, 0.8223098, 0.15286908)
+bones/7/rotation = Quaternion(-0.62531334, -0.07045965, 0.41788444, 0.6552796)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.17571475, 0.5191937, 0.8248547, 0.13848138)
-bones/10/rotation = Quaternion(-0.64937, 0.05244742, -0.37929988, 0.6570384)
+bones/9/rotation = Quaternion(0.34315103, 0.42741662, 0.82230985, -0.152869)
+bones/10/rotation = Quaternion(-0.6253133, 0.07045959, -0.4178845, 0.6552796)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.8429043, 0.2571893, 0.09765791, 0.4624163)
+bones/12/rotation = Quaternion(-0.87684256, 0.19812785, 0.23973584, 0.36663246)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.84290427, -0.25718865, -0.09765876, 0.4624167)
+bones/14/rotation = Quaternion(-0.8767861, -0.19822524, -0.23963785, 0.36677873)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.260858, 3.4900705e-07, -7.8490935e-08, 0.9653773)
-bones/18/rotation = Quaternion(0.16985516, 2.6140467e-07, 1.6735858e-07, 0.9854691)
+bones/17/rotation = Quaternion(-0.41065112, 3.2520649e-07, -1.4888015e-07, 0.9117926)
+bones/18/rotation = Quaternion(0.052338526, 2.6499177e-07, 5.214983e-08, 0.99862945)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -277,6 +278,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40000007, 2.9999998)
 
 [node name="PierceMarker" type="Marker3D" parent="." index="10" unique_id=2042459230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -3.74, 4.1)
+
+[node name="CuttingWind" parent="." index="12" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
+transform = Transform3D(1, 0, 0, 0, 0.23061588, 0.9730449, 0, -0.9730449, 0.23061588, -0.9499999, -5.132751, 6.0685706)
+visible = false
 
 [connection signal="area_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_area_entered"]
 [connection signal="body_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_body_entered"]
