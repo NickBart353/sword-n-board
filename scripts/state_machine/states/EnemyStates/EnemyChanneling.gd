@@ -5,6 +5,9 @@ extends EnemyState
 func Enter():
 	super()
 	charge_timer.start()
+	var vfx_instance = VfxManager.create_charge_poison(Vector3.ZERO, true).instantiate()
+	enemy.add_child(vfx_instance)
+	vfx_instance.global_position = $"../../BombPosition".global_position
 
 func Exit():
 	super()

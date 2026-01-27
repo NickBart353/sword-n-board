@@ -35,6 +35,7 @@ shader_parameter/Vector2Parameter = Vector2(0, 5)
 shader_parameter/BaseTexture = SubResource("NoiseTexture2D_v4vo6")
 shader_parameter/SubstractionTexture = SubResource("GradientTexture2D_v4vo6")
 shader_parameter/ColorGradient = SubResource("GradientTexture1D_4igj5")
+shader_parameter/Opacity = 0.5
 
 [node name="CuttingWind" type="Node3D" unique_id=1660320358]
 

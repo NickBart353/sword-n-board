@@ -5,6 +5,7 @@ extends EnemyState
 func Enter():
 	super()
 	recovery_timer.start()
+	VfxManager.create_stunned(Vector3(enemy.global_position.x, enemy.global_position.y + 3, enemy.global_position.z))
 
 func Exit():
 	super()

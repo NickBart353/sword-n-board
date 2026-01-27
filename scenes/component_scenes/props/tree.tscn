@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://fc2n4hnsylyd"]
+[gd_scene format=3 uid="uid://fc2n4hnsylyd"]
 
 [ext_resource type="PackedScene" uid="uid://ck3aaocm3dpb1" path="res://my_assets/tree.blend" id="1_hvj1q"]
 
@@ -14,20 +14,20 @@ height = 0.56171876
 radius = 0.049999997
 height = 0.64085937
 
-[node name="tree" type="StaticBody3D"]
+[node name="tree" type="StaticBody3D" unique_id=234735238 groups=["Tree"]]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[node name="tree" parent="." instance=ExtResource("1_hvj1q")]
+[node name="tree" parent="." unique_id=1975022513 instance=ExtResource("1_hvj1q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0000002, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2110190614]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.6625001, 0)
 shape = SubResource("CapsuleShape3D_t5t8q")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1380298991]
 transform = Transform3D(0.97304475, -0.22905652, -0.026772868, -0.04004602, -0.28215414, 0.95853287, -0.2271123, -0.93162334, -0.28372145, -0.3476273, 0.84489846, 0.31951937)
 shape = SubResource("CapsuleShape3D_pqmch")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=9751530]
 transform = Transform3D(0.91930443, 0.36582187, 0.14509764, -0.2501285, 0.25848034, 0.9330721, 0.30383337, -0.8940705, 0.32912466, -0.2647814, 0.5704861, -0.33877385)
 shape = SubResource("CapsuleShape3D_67jlv")

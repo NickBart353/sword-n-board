@@ -15,7 +15,6 @@ func Enter():
 	super()
 	dash_direction = enemy.global_position.direction_to(player.global_position)
 	dash_start_position = enemy.global_position
-	$"../../CuttingWind".set_visible(true)
 
 func Exit():
 	super()
@@ -40,4 +39,5 @@ func _on_damage_box_area_entered(area: Area3D) -> void:
 
 func _on_damage_box_body_entered(body: Node3D) -> void:
 	if state_active:
-		charge_interrupted = true
+		if body.is_in_group("Tree"):
+			charge_interrupted = true

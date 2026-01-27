@@ -40,7 +40,3 @@ func ready_bombs(player_location):
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
 	bomb.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-
-
-func _on_damage_box_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.

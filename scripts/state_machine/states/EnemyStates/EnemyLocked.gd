@@ -6,6 +6,8 @@ extends EnemyState
 func Enter():
 	super()
 	charge_timer.start()
+	VfxManager.create_small_tornado(Vector3(enemy.global_position.x, enemy.global_position.y-2, enemy.global_position.z))
+	$"../../CuttingWind".set_visible(true)
 
 func Exit():
 	super()

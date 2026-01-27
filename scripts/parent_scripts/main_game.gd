@@ -9,7 +9,7 @@ func _ready() -> void:
 	EventBus.open_container.connect(_open_container)
 	EventBus.remove_me.connect(remove_object)
 	
-	VfxManager.create_explosion.connect(_create_explosion)
+	VfxManager.create_vfx.connect(_create_vfx)
 	
 	$Player.open_inventory.connect(open_inventory)
 	main_ui.update_items.connect(update_items)
@@ -57,7 +57,7 @@ func update_items(player_items, loot_items, sack_name):
 func remove_object(object):
 	object.queue_free()
 
-func _create_explosion(fx_position: Vector3, scene: PackedScene):
+func _create_vfx(vfx_position: Vector3, scene: PackedScene):
 	var instance = scene.instantiate()
 	$Vfx.add_child(instance)
-	instance.global_position = fx_position
+	instance.global_position = vfx_position

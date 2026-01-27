@@ -9,10 +9,6 @@ var wander_direction: Vector3
 var distance
 
 func randomize_wander():
-	if enemy.global_position.distance_to(enemy.origin_position) > allowed_distance_to_origin:
-		Transitioned.emit(self, "Return")
-		return
-	
 	wander_time = randi_range(4, 7)
 	wander_direction = Vector3(randf_range(-1,1), 0, randf_range(-1,1))
 	wander_direction.normalized()
@@ -41,3 +37,7 @@ func Physics_Update(delta: float) -> void:
 	distance = player.global_position - enemy.global_position
 	if distance.length() < aggro_range:
 		Transitioned.emit(self, "Follow")
+		return
+	if enemy.global_position.distance_to(enemy.origin_position) > allowed_distance_to_origin:
+		Transitioned.emit(self, "Return")
+		return
