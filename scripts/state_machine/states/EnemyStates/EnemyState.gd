@@ -3,11 +3,13 @@ class_name EnemyState
 
 var player
 @export var enemy: CharacterBody3D
+@onready var anim_tree = $"../../AnimationTree"["parameters/playback"]
 
 func Enter():
 	super()
 	print(name)
 	player = get_tree().get_first_node_in_group("Player")
+	anim_tree.travel(name)
 
 func Exit():
 	super()

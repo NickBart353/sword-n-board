@@ -35,3 +35,7 @@ func _on_damage_box_area_entered(area: Area3D) -> void:
 			player.take_damage(dash_damage, enemy)
 			player_hit = true
 		charge_interrupted = true
+
+func _on_damage_box_body_entered(body: Node3D) -> void:
+	if state_active:
+		charge_interrupted = true

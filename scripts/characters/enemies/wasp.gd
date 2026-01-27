@@ -29,16 +29,18 @@ func create_bombs():
 		var poison_bomb_instance = POISON_BOMB_SCENE.instantiate()
 		poison_bomb_instance.process_mode = Node.PROCESS_MODE_DISABLED
 		poison_bomb_instance.exploded.connect(reset_bomb)
-		bombs.add_child(poison_bomb_instance)
+		bombs.add_child(poison_bomb_instance, true)
 		poison_bomb_instance.global_position = RESET_POSITION
 
-func ready_bombs():
-	for bomb in bombs:
+func ready_bombs(player_location):
+	for bomb in bombs.get_children():
 		bomb.process_mode = Node.PROCESS_MODE_INHERIT
-		bomb.fire(global_position)
-		bomb.global_position = $BombPosition.global_position
-		
+		bomb.fire($BombPosition.global_position, global_position, player_location)
 
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
-	bomb.process_mode = Node.PROCESS_MODE_DISABLED
+	bomb.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+
+
+func _on_damage_box_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

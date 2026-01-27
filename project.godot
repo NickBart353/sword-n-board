@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 ItemManager="*res://scripts/globals/item_manager.gd"
 EventBus="*res://scripts/autoloads/EventBus.gd"
+VfxManager="*uid://buebjo1lr2too"
 
 [display]
 

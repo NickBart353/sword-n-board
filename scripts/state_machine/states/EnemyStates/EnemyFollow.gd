@@ -17,7 +17,6 @@ func Physics_Update(delta: float) -> void:
 	var distance = player.global_position - enemy.global_position
 	
 	enemy.velocity = enemy.global_position.direction_to(player.global_position) * follow_speed
-	enemy.velocity.y = 0
 	
 	if distance.length() > follow_range:
 		Transitioned.emit(self, "Idle")

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="9_nsq2h"]
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="10_5gd67"]
 [ext_resource type="Script" uid="uid://dqhemwoe2317a" path="res://scripts/state_machine/states/EnemyStates/EnemyFire.gd" id="10_8wo36"]
+[ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="14_645re"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8403y"]
 radius = 1.5
@@ -22,6 +23,9 @@ height = 8.400001
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nsq2h"]
 radius = 0.45
 height = 5.6275
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
+animation = &"FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i1xyo"]
 animation = &"AtackWasp"
@@ -35,6 +39,14 @@ loop_mode = 0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_treog"]
 animation = &"DeathWasp"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wo36"]
+animation = &"AtackWasp"
+use_custom_timeline = true
+timeline_length = 0.3
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_btnlr"]
 animation = &"FlyingWasp"
 
@@ -47,120 +59,129 @@ animation = &"AtackWasp"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nsq2h"]
 animation = &"DeathWasp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfb5g"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_645re"]
 animation = &"FlyingWasp"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
-animation = &"AtackWasp"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfb5g"]
+animation = &"FlyingWasp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0js2i"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ncsg1"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Follow\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3q3j"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Return\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llskb"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr4ld"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2w86e"]
 break_loop_at_end = true
-advance_mode = 2
 advance_expression = "current_state.name == \"Locked\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gindt"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qldpb"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1bau"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw4ec"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_treog"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dead\""
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5gd67"]
-advance_mode = 2
-advance_expression = "current_state.name == \"Follow\""
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1xyo"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_outyk"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Dashing\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exisn"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Recovering\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wo36"]
-advance_mode = 2
 advance_expression = "current_state.name == \"Died\""
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_645re"]
+advance_expression = "current_state.name == \"Channeling\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6q5m"]
+advance_expression = "current_state.name == \"Fire\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3gwer"]
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6eufi"]
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awi1o"]
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qm4s7"]
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_at8f8"]
+advance_expression = "current_state.name == \"Resetting\""
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8wo36"]
+states/Channeling/node = SubResource("AnimationNodeAnimation_outyk")
+states/Channeling/position = Vector2(90, -13)
 states/Dashing/node = SubResource("AnimationNodeAnimation_i1xyo")
-states/Dashing/position = Vector2(718, -129)
+states/Dashing/position = Vector2(718, -90)
 states/Death/node = SubResource("AnimationNodeAnimation_treog")
 states/Death/position = Vector2(494, -13)
 states/End/position = Vector2(718, 79)
+states/Fire/node = SubResource("AnimationNodeAnimation_8wo36")
+states/Fire/position = Vector2(90, -260)
 states/Follow/node = SubResource("AnimationNodeAnimation_btnlr")
-states/Follow/position = Vector2(249, -129)
+states/Follow/position = Vector2(249, -90)
 states/Idle/node = SubResource("AnimationNodeAnimation_52jpp")
 states/Idle/position = Vector2(249, 79)
 states/Locked/node = SubResource("AnimationNodeAnimation_t4gcc")
-states/Locked/position = Vector2(494, -129)
+states/Locked/position = Vector2(494, -90)
 states/Recovering/node = SubResource("AnimationNodeAnimation_nsq2h")
-states/Recovering/position = Vector2(249, -260)
+states/Recovering/position = Vector2(718, -260)
+states/Resetting/node = SubResource("AnimationNodeAnimation_645re")
+states/Resetting/position = Vector2(249, -260)
 states/Return/node = SubResource("AnimationNodeAnimation_xfb5g")
 states/Return/position = Vector2(249, 179)
-states/Spit/node = SubResource("AnimationNodeAnimation_outyk")
-states/Spit/position = Vector2(90, -129)
 states/Start/position = Vector2(90, 79)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Follow", SubResource("AnimationNodeStateMachineTransition_ncsg1"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Death", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Death", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Death", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Follow", SubResource("AnimationNodeStateMachineTransition_5gd67"), "Recovering", "Death", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Death", SubResource("AnimationNodeStateMachineTransition_8wo36")]
-graph_offset = Vector2(-355, -297)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Follow", SubResource("AnimationNodeStateMachineTransition_ncsg1"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Death", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Death", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Death", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Death", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Death", SubResource("AnimationNodeStateMachineTransition_8wo36"), "Follow", "Channeling", SubResource("AnimationNodeStateMachineTransition_645re"), "Channeling", "Fire", SubResource("AnimationNodeStateMachineTransition_u6q5m"), "Fire", "Follow", SubResource("AnimationNodeStateMachineTransition_3gwer"), "Channeling", "Death", SubResource("AnimationNodeStateMachineTransition_6eufi"), "Fire", "Death", SubResource("AnimationNodeStateMachineTransition_awi1o"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_qm4s7"), "Recovering", "Resetting", SubResource("AnimationNodeStateMachineTransition_at8f8")]
+graph_offset = Vector2(-137, -332)
 
 [node name="Wasp" unique_id=1372833755 instance=ExtResource("1_8403y")]
 script = ExtResource("2_nsq2h")
 POISON_BOMB_SCENE = ExtResource("3_outyk")
+poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
-bones/2/rotation = Quaternion(-0.3833406, -0.14297996, -0.34292266, 0.8455831)
-bones/3/rotation = Quaternion(0.29961374, -0.10188308, 0.034056634, 0.9479935)
-bones/4/rotation = Quaternion(-0.5270131, 0.1904801, 0.31900945, 0.7643348)
-bones/5/rotation = Quaternion(0.29961368, 0.101883076, -0.034056604, 0.9479936)
-bones/6/rotation = Quaternion(-0.27928245, 0.47163436, 0.83566225, 0.035086572)
-bones/7/rotation = Quaternion(-0.61020625, -0.07168593, 0.39001015, 0.68585825)
+bones/1/rotation = Quaternion(-8.491681e-09, 0.9936545, 0.11247573, 7.501883e-08)
+bones/2/rotation = Quaternion(-0.61950547, -0.21690178, -0.29632005, 0.6938019)
+bones/3/rotation = Quaternion(0.23752694, -0.15572974, 0.052055966, 0.9574024)
+bones/4/rotation = Quaternion(-0.6187288, 0.21631105, 0.2976112, 0.6941267)
+bones/5/rotation = Quaternion(0.23752694, 0.15572973, -0.052055947, 0.95740247)
+bones/6/rotation = Quaternion(-0.17571485, 0.51919365, 0.8248546, -0.13848129)
+bones/7/rotation = Quaternion(-0.6493701, -0.052447487, 0.37929973, 0.65703845)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.27928233, 0.4716344, 0.8356622, -0.035086483)
-bones/10/rotation = Quaternion(-0.6102063, 0.07168585, -0.39001018, 0.6858583)
+bones/9/rotation = Quaternion(0.17571475, 0.5191937, 0.8248547, 0.13848138)
+bones/10/rotation = Quaternion(-0.64937, 0.05244742, -0.37929988, 0.6570384)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.79787976, 0.23766351, 0.13520075, 0.53723806)
+bones/12/rotation = Quaternion(-0.8429043, 0.2571893, 0.09765791, 0.4624163)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.79782426, -0.23764355, -0.13524497, 0.5373183)
+bones/14/rotation = Quaternion(-0.84290427, -0.25718865, -0.09765876, 0.4624167)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.24956493, 3.4724403e-07, -8.7102045e-08, 0.96835816)
-bones/18/rotation = Quaternion(0.114210784, 2.682759e-07, 1.1184301e-07, 0.9934566)
+bones/17/rotation = Quaternion(-0.260858, 3.4900705e-07, -7.8490935e-08, 0.9653773)
+bones/18/rotation = Quaternion(0.16985516, 2.6140467e-07, 1.6735858e-07, 0.9854691)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -194,6 +215,12 @@ wait_time = 5.0
 one_shot = true
 
 [node name="PoisonTimer" type="Timer" parent="Timers" index="2" unique_id=132422734]
+wait_time = 15.0
+one_shot = true
+
+[node name="ResettingTimer" type="Timer" parent="Timers" index="3" unique_id=156492596]
+wait_time = 2.0
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="." index="7" unique_id=577084736 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_nsq2h")
@@ -214,11 +241,13 @@ follow_speed = 8
 attack_range = 15
 enemy = NodePath("../..")
 
-[node name="Channeling" type="Node" parent="StateMachine" index="3" unique_id=719727552]
+[node name="Channeling" type="Node" parent="StateMachine" index="3" unique_id=719727552 node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_exisn")
+enemy = NodePath("../..")
 
-[node name="Fire" type="Node" parent="StateMachine" index="4" unique_id=794741823]
+[node name="Fire" type="Node" parent="StateMachine" index="4" unique_id=794741823 node_paths=PackedStringArray("enemy")]
 script = ExtResource("10_8wo36")
+enemy = NodePath("../..")
 
 [node name="Locked" type="Node" parent="StateMachine" index="5" unique_id=1859916361 node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_exisn")
@@ -233,15 +262,25 @@ enemy = NodePath("../..")
 script = ExtResource("9_nsq2h")
 enemy = NodePath("../..")
 
-[node name="Died" type="Node" parent="StateMachine" index="8" unique_id=1121622876]
+[node name="Resetting" type="Node" parent="StateMachine" index="8" unique_id=717346719 node_paths=PackedStringArray("enemy")]
+script = ExtResource("14_645re")
+enemy = NodePath("../..")
+
+[node name="Died" type="Node" parent="StateMachine" index="9" unique_id=1121622876 node_paths=PackedStringArray("enemy")]
 script = ExtResource("10_5gd67")
+enemy = NodePath("../..")
 
 [node name="Bombs" type="Node3D" parent="." index="8" unique_id=1818539482]
 
 [node name="BombPosition" type="Marker3D" parent="." index="9" unique_id=208112705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2, 1.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40000007, 2.9999998)
+
+[node name="PierceMarker" type="Marker3D" parent="." index="10" unique_id=2042459230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -3.74, 4.1)
 
 [connection signal="area_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_area_entered"]
-[connection signal="timeout" from="Timers/ChargeTimer" to="StateMachine/Locked" method="_on_charge_timer_timeout"]
+[connection signal="body_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_body_entered"]
 [connection signal="timeout" from="Timers/ChargeTimer" to="StateMachine/Channeling" method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="Timers/ChargeTimer" to="StateMachine/Locked" method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="Timers/RecoveryTimer" to="StateMachine/Recovering" method="_on_recovery_timer_timeout"]
+[connection signal="timeout" from="Timers/ResettingTimer" to="StateMachine/Resetting" method="_on_resetting_timer_timeout"]

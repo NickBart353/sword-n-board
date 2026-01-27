@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="1_uug20"]
@@ -33,69 +33,74 @@ glow_intensity = 3.0
 glow_strength = 0.67
 glow_bloom = 0.1
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=893180735]
 environment = SubResource("Environment_fqmia")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.8660254, -5.2154064e-08, 0.49999994, 0.49240386, -0.1736483, 0.8528684, 0.086824164, 0.98480767, 0.15038382, -81.89999, 31.700037, 4.199956)
-light_color = Color(0.109590776, 0.15488788, 0.33955345, 1)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1029207028]
+transform = Transform3D(-0.982305, -0.023099113, -0.18585771, -0.18704525, 0.07052211, 0.9798165, -0.009525806, 0.9972426, -0.07359478, 78.10998, 260.65897, -150.91495)
+light_color = Color(0.89273846, 0.8375007, 0.44696903, 1)
+light_indirect_energy = 0.83
+light_volumetric_fog_energy = 0.662
+light_specular = 0.775
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("3_rbptj")]
+[node name="Player" parent="." unique_id=1982396579 instance=ExtResource("3_rbptj")]
 transform = Transform3D(-0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.50000006, 100.76828, 20, -76.081505)
 speed = 10
 
-[node name="Mobs" type="Node3D" parent="."]
+[node name="Vfx" type="Node3D" parent="." unique_id=1480657440]
+
+[node name="Mobs" type="Node3D" parent="." unique_id=515984885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 
-[node name="SkeletonMage" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage" parent="Mobs" unique_id=417690787 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 40.852707, -10.5, -169.58678)
 
-[node name="SkeletonMage2" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage2" parent="Mobs" unique_id=2120604454 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 45.209618, -10.5, -160.97183)
 
-[node name="SkeletonMage3" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage3" parent="Mobs" unique_id=769448856 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 54.13456, -10.5, -160.75883)
 
-[node name="SkeletonMage4" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage4" parent="Mobs" unique_id=1411001586 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 49.816483, -10.5, -161.70447)
 
-[node name="SkeletonMage5" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage5" parent="Mobs" unique_id=584740330 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 42.615532, -10.5, -167.0192)
 
-[node name="SkeletonMage6" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage6" parent="Mobs" unique_id=1747529852 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 38.570473, -10.5, -162.97229)
 
-[node name="SkeletonMage7" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage7" parent="Mobs" unique_id=2047091453 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 38.599503, -10.5, -165.738)
 
-[node name="SkeletonMage8" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage8" parent="Mobs" unique_id=1378652907 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 42.956406, -10.5, -157.12305)
 
-[node name="SkeletonMage9" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage9" parent="Mobs" unique_id=1836995279 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 51.881355, -10.5, -156.91006)
 
-[node name="SkeletonMage10" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage10" parent="Mobs" unique_id=674156664 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 47.56328, -10.5, -157.8557)
 
-[node name="SkeletonMage11" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage11" parent="Mobs" unique_id=2103642809 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 40.362328, -10.5, -163.17043)
 
-[node name="SkeletonMage12" parent="Mobs" instance=ExtResource("4_ks7w8")]
+[node name="SkeletonMage12" parent="Mobs" unique_id=2039616621 instance=ExtResource("4_ks7w8")]
 transform = Transform3D(-0.64278764, 0, 0.76604444, 0, 1, 0, -0.76604444, 0, -0.64278764, 36.31727, -10.5, -159.12352)
 
-[node name="Loot" type="Node3D" parent="."]
+[node name="Loot" type="Node3D" parent="." unique_id=861945436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827645919]
 visible = false
 
-[node name="MainUI" parent="CanvasLayer" instance=ExtResource("8_cfqos")]
+[node name="MainUI" parent="CanvasLayer" unique_id=1494038655 instance=ExtResource("8_cfqos")]
 
-[node name="Terrain3D" parent="." instance=ExtResource("9_rbptj")]
+[node name="Terrain3D" parent="." unique_id=496251254 instance=ExtResource("9_rbptj")]
 
-[node name="Wasp" parent="." instance=ExtResource("7_leqql")]
+[node name="Wasp" parent="." unique_id=987104413 instance=ExtResource("7_leqql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.7, 19.3, -51.7)

@@ -15,4 +15,4 @@ func Physics_Update(delta: float) -> void:
 		enemy.velocity = enemy.get_gravity()
 
 func _on_recovery_timer_timeout() -> void:
-	Transitioned.emit(self, "Follow")
+	Transitioned.emit(self, "Resetting")

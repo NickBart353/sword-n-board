@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://15rcugju6o0q"]
+[gd_scene format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="1_sf0kc"]
@@ -20,44 +20,44 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
-[node name="Player" type="CharacterBody3D" groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 script = ExtResource("1_oijqy")
 speed = 50
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1934701213]
 shape = SubResource("CapsuleShape3D_lu7gk")
 
-[node name="Body" type="MeshInstance3D" parent="."]
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1023313928]
 mesh = SubResource("CapsuleMesh_lu7gk")
 
-[node name="Head" type="Node3D" parent="."]
+[node name="Head" type="Node3D" parent="." unique_id=187604380]
 
-[node name="FieldOfView" type="Camera3D" parent="Head"]
+[node name="FieldOfView" type="Camera3D" parent="Head" unique_id=2099136400]
 transform = Transform3D(1, 0, -2.0861626e-07, 0, 1, 0, 2.0861626e-07, 0, 1, 0, 0.7, 0)
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView"]
+[node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -3)
 
-[node name="LeftHand" type="Marker3D" parent="Head/FieldOfView"]
+[node name="LeftHand" type="Marker3D" parent="Head/FieldOfView" unique_id=882840607]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5000001, -0.9, -0.59999996)
 
-[node name="RightHand" type="Marker3D" parent="Head/FieldOfView"]
+[node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0.49999988, -0.9, -0.6)
 
-[node name="Sword" parent="Head/FieldOfView/RightHand" instance=ExtResource("1_sf0kc")]
+[node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 
-[node name="HurtBox" type="Area3D" parent="." groups=["PlayerHurtBox"]]
+[node name="HurtBox" type="Area3D" parent="." unique_id=848838605 groups=["PlayerHurtBox"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=656745909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999857, 0)
 shape = SubResource("CapsuleShape3D_oijqy")
 debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 
-[node name="RedBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="RedBar" type="ProgressBar" parent="CanvasLayer" unique_id=1448724626]
 offset_left = 77.0
 offset_top = 575.0
 offset_right = 331.0
@@ -66,7 +66,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_oijqy")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/RedBar"]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/RedBar" unique_id=1720619707]
 layout_mode = 0
 offset_right = 254.0
 offset_bottom = 27.0
@@ -74,7 +74,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_qbru3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xu2ah")
 show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=547511172]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -88,4 +88,4 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
