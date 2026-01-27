@@ -9,7 +9,8 @@ func Enter():
 func Exit():
 	super()
 
-func Physics_Update(_delta: float) -> void:
+func Physics_Update(delta: float) -> void:
+	super(delta)
 	if not enemy.is_on_floor():
 		enemy.velocity = enemy.get_gravity()
 

@@ -11,7 +11,8 @@ func Enter():
 func Exit():
 	super()
 
-func Physics_Update(_delta: float) -> void:
+func Physics_Update(delta: float) -> void:
+	super(delta)
 	enemy.look_at(home_direction, Vector3.UP, true)
 	enemy.velocity = home_direction * return_speed
 	

@@ -10,7 +10,8 @@ func Enter():
 func Exit():
 	super()
 
-func Physics_Update(_delta: float) -> void:
+func Physics_Update(delta: float) -> void:
+	super(delta)
 	enemy.look_at(player.global_position, Vector3.UP, true)
 	
 	var distance = player.global_position - enemy.global_position
@@ -20,6 +21,9 @@ func Physics_Update(_delta: float) -> void:
 	
 	if distance.length() > follow_range:
 		Transitioned.emit(self, "Idle")
+		return
+	if (distance.length() < attack_range and not $"../../Timers/PoisonTimer".time_left):
+		Transitioned.emit(self, "Channeling")
 		return
 	if distance.length() < attack_range:
 		Transitioned.emit(self, "Locked")

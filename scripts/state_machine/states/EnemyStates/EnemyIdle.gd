@@ -25,12 +25,14 @@ func Exit():
 	super()
 
 func Update(delta: float) -> void:
+	super(delta)
 	if wander_time > 0:
 		wander_time -= delta
 	else:
 		randomize_wander()
 
-func Physics_Update(_delta: float) -> void:
+func Physics_Update(delta: float) -> void:
+	super(delta)
 	if not enemy.global_transform.origin.is_equal_approx(enemy.global_position + wander_direction):
 		enemy.look_at(enemy.global_position + wander_direction, Vector3.UP, true)
 	

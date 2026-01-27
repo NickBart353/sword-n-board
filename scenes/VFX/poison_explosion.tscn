@@ -1,3 +1,217 @@
 [gd_scene format=3 uid="uid://cs5c23h610uly"]
 
-[node name="PoisonExplosion" type="Node3D"]
+[ext_resource type="Script" uid="uid://s15e4fnd4fq0" path="res://scripts/VFX/poison_explosion.gd" id="1_pyu6s"]
+
+[sub_resource type="Curve" id="Curve_dxmqh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7394367, 0.6613603), -1.6219763, -1.6219763, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pyu6s"]
+curve = SubResource("Curve_dxmqh")
+
+[sub_resource type="Curve" id="Curve_7tbhl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.45422536, 0.8118668), -1.2329953, -1.2329953, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0gcsq"]
+curve = SubResource("Curve_7tbhl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxmqh"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 0.92
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 0, 0)
+radial_velocity_min = 2.9999776
+radial_velocity_max = 4.9999776
+radial_velocity_curve = SubResource("CurveTexture_pyu6s")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_0gcsq")
+color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pyu6s"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_7tbhl"]
+material = SubResource("StandardMaterial3D_pyu6s")
+
+[sub_resource type="Curve" id="Curve_fl6vd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7394367, 0.6613603), -1.6219763, -1.6219763, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_03rdk"]
+curve = SubResource("Curve_fl6vd")
+
+[sub_resource type="Curve" id="Curve_grrhv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.45422536, 0.8118668), -1.2329953, -1.2329953, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_r0pv4"]
+curve = SubResource("Curve_grrhv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hrj7n"]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 0.92
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+direction = Vector3(0, 0, 0)
+radial_velocity_min = 0.99997765
+radial_velocity_max = 2.9999776
+radial_velocity_curve = SubResource("CurveTexture_03rdk")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 1.1999999
+scale_curve = SubResource("CurveTexture_r0pv4")
+color = Color(0.57163787, 1.8924644, 0, 1)
+
+[sub_resource type="Curve" id="Curve_pyu6s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6126761, 0.9059334), -0.7071594, -0.7071594, 0, 0, Vector2(0.7816902, 0.5955137), -2.5095813, -2.5095813, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7tbhl"]
+curve = SubResource("Curve_pyu6s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pyu6s"]
+particle_flag_align_y = true
+direction = Vector3(1, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+radial_velocity_min = 7.9999776
+radial_velocity_max = 9.999977
+gravity = Vector3(0, -3, 0)
+scale_min = 0.19999999
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_7tbhl")
+color = Color(2.4038181, 3.4905884, 2.067437, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gcsq"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dxmqh"]
+material = SubResource("StandardMaterial3D_0gcsq")
+top_radius = 0.2
+bottom_radius = 0.0
+
+[sub_resource type="Animation" id="Animation_pyu6s"]
+resource_name = "Explosion"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PoisonSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_7tbhl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PoisonSmoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0gcsq"]
+_data = {
+&"Explosion": SubResource("Animation_pyu6s"),
+&"RESET": SubResource("Animation_7tbhl")
+}
+
+[node name="PoisonExplosion" type="Node3D" unique_id=216004118]
+script = ExtResource("1_pyu6s")
+
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=1144379772]
+amount = 16
+one_shot = true
+explosiveness = 0.81
+randomness = 0.12
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_dxmqh")
+draw_pass_1 = SubResource("SphereMesh_7tbhl")
+
+[node name="PoisonSmoke" type="GPUParticles3D" parent="." unique_id=2065821935]
+one_shot = true
+explosiveness = 0.81
+randomness = 0.12
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_hrj7n")
+draw_pass_1 = SubResource("SphereMesh_7tbhl")
+
+[node name="Particles" type="GPUParticles3D" parent="." unique_id=731680735]
+emitting = false
+amount = 10
+lifetime = 0.55
+one_shot = true
+explosiveness = 0.88
+randomness = 0.11
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_pyu6s")
+draw_pass_1 = SubResource("CylinderMesh_dxmqh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1633039602]
+libraries/ = SubResource("AnimationLibrary_0gcsq")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

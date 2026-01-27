@@ -21,7 +21,8 @@ func Exit():
 	player_hit = false
 	charge_interrupted = false
 
-func Physics_Update(_delta: float) -> void:
+func Physics_Update(delta: float) -> void:
+	super(delta)
 	enemy.velocity = dash_direction * dash_speed
 	
 	if (enemy.global_position.distance_to(dash_start_position) > dash_range) or charge_interrupted:

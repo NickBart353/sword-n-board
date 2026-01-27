@@ -1,16 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://dme8w8fah0tn6"]
+[gd_scene format=3 uid="uid://dme8w8fah0tn6"]
 
 [ext_resource type="PackedScene" uid="uid://c387o65siplsf" path="res://assets/MonstersPack_Ps1/BLEND/Wasp.blend" id="1_8403y"]
 [ext_resource type="Script" uid="uid://c8ueshur2ml1c" path="res://scripts/characters/enemies/Wasp/wasp_animation.gd" id="2_42erq"]
 [ext_resource type="Script" uid="uid://b0jlvhm41f4tp" path="res://scripts/characters/enemies/wasp.gd" id="2_nsq2h"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_nsq2h"]
+[ext_resource type="PackedScene" uid="uid://chgnmoaehyorg" path="res://scenes/component_scenes/Spells/poison_bomb.tscn" id="3_outyk"]
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="5_i1xyo"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_outyk"]
 [ext_resource type="Script" uid="uid://cguhqgwmkpmqk" path="res://scripts/state_machine/states/EnemyStates/EnemyLocked.gd" id="7_exisn"]
+[ext_resource type="Script" uid="uid://cyqje3uiwn2th" path="res://scripts/state_machine/states/EnemyStates/EnemyChanneling.gd" id="9_exisn"]
 [ext_resource type="Script" uid="uid://doh26nhyrwjhc" path="res://scripts/state_machine/states/EnemyStates/EnemyDashing.gd" id="9_i1xyo"]
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="9_nsq2h"]
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="10_5gd67"]
+[ext_resource type="Script" uid="uid://dqhemwoe2317a" path="res://scripts/state_machine/states/EnemyStates/EnemyFire.gd" id="10_8wo36"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8403y"]
 radius = 1.5
@@ -135,95 +138,110 @@ states/Start/position = Vector2(90, 79)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Follow", SubResource("AnimationNodeStateMachineTransition_ncsg1"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Death", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Death", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Death", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Follow", SubResource("AnimationNodeStateMachineTransition_5gd67"), "Recovering", "Death", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Death", SubResource("AnimationNodeStateMachineTransition_8wo36")]
 graph_offset = Vector2(-355, -297)
 
-[node name="Wasp" instance=ExtResource("1_8403y")]
+[node name="Wasp" unique_id=1372833755 instance=ExtResource("1_8403y")]
 script = ExtResource("2_nsq2h")
+POISON_BOMB_SCENE = ExtResource("3_outyk")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/0/rotation = Quaternion(-3.0153483e-08, 0.39939502, 0.91677904, -6.921489e-08)
-bones/1/rotation = Quaternion(9.345875e-16, 1, 1.7031715e-08, 7.549791e-08)
-bones/2/rotation = Quaternion(0.16140723, -0.026487159, -0.082137465, 0.9831071)
-bones/3/rotation = Quaternion(0.40914243, 1.0877496e-07, 4.8773583e-08, 0.9124705)
-bones/4/rotation = Quaternion(0.16140719, 0.026487153, 0.08213746, 0.9831071)
-bones/5/rotation = Quaternion(0.40914243, -1.0877497e-07, -4.8773583e-08, 0.9124705)
-bones/6/rotation = Quaternion(-0.16859461, 0.5215492, 0.8228828, -0.14975432)
-bones/7/rotation = Quaternion(-0.470306, -0.2718715, 0.15028952, 0.82602125)
-bones/8/rotation = Quaternion(0.045113523, 0.6671274, -0.05500942, 0.7415388)
-bones/9/rotation = Quaternion(0.1685944, 0.5215492, 0.8228828, 0.14975436)
-bones/10/rotation = Quaternion(-0.47030604, 0.27187142, -0.1502896, 0.8260214)
-bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009402, 0.7415388)
-bones/12/rotation = Quaternion(-0.7198086, -0.04114379, -0.025299396, 0.6924903)
-bones/13/rotation = Quaternion(0.04849822, -0.014233011, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.7198086, 0.041143656, 0.025299331, 0.69249034)
-bones/15/rotation = Quaternion(0.048498224, 0.0142330555, 0.07879995, 0.9956083)
-bones/17/rotation = Quaternion(-0.86991274, 3.476614e-07, 8.384069e-08, 0.4932056)
-bones/18/rotation = Quaternion(-0.3403124, 2.8827625e-07, -1.8575241e-07, 0.9403125)
+bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
+bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
+bones/2/rotation = Quaternion(-0.3833406, -0.14297996, -0.34292266, 0.8455831)
+bones/3/rotation = Quaternion(0.29961374, -0.10188308, 0.034056634, 0.9479935)
+bones/4/rotation = Quaternion(-0.5270131, 0.1904801, 0.31900945, 0.7643348)
+bones/5/rotation = Quaternion(0.29961368, 0.101883076, -0.034056604, 0.9479936)
+bones/6/rotation = Quaternion(-0.27928245, 0.47163436, 0.83566225, 0.035086572)
+bones/7/rotation = Quaternion(-0.61020625, -0.07168593, 0.39001015, 0.68585825)
+bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
+bones/9/rotation = Quaternion(0.27928233, 0.4716344, 0.8356622, -0.035086483)
+bones/10/rotation = Quaternion(-0.6102063, 0.07168585, -0.39001018, 0.6858583)
+bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
+bones/12/rotation = Quaternion(-0.79787976, 0.23766351, 0.13520075, 0.53723806)
+bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
+bones/14/rotation = Quaternion(-0.79782426, -0.23764355, -0.13524497, 0.5373183)
+bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
+bones/17/rotation = Quaternion(-0.24956493, 3.4724403e-07, -8.7102045e-08, 0.96835816)
+bones/18/rotation = Quaternion(0.114210784, 2.682759e-07, 1.1184301e-07, 0.9934566)
 
-[node name="Body" type="CollisionShape3D" parent="." index="1"]
+[node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
 shape = SubResource("CapsuleShape3D_8403y")
 
-[node name="DamageBox" type="Area3D" parent="." index="2"]
+[node name="DamageBox" type="Area3D" parent="." index="2" unique_id=462358425]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox" index="0" unique_id=590011115]
 transform = Transform3D(1, 0, 0, 0, 0.23061591, 0.9730449, 0, -0.9730449, 0.23061591, -0.09999999, -3.2563505, 1.9706225)
 shape = SubResource("CapsuleShape3D_nsq2h")
 debug_color = Color(0.95755154, 2.5990605e-06, 0.5345746, 0.41960785)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="4"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="4" unique_id=932781127]
 tree_root = SubResource("AnimationNodeStateMachine_8wo36")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="WaspAnimation" type="Node3D" parent="." index="5" node_paths=PackedStringArray("wasp", "animation_tree")]
+[node name="WaspAnimation" type="Node3D" parent="." index="5" unique_id=1224469209 node_paths=PackedStringArray("wasp", "animation_tree")]
 script = ExtResource("2_42erq")
 wasp = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Timers" type="Node3D" parent="." index="6"]
+[node name="Timers" type="Node3D" parent="." index="6" unique_id=797064584]
 
-[node name="ChargeTimer" type="Timer" parent="Timers" index="0"]
+[node name="ChargeTimer" type="Timer" parent="Timers" index="0" unique_id=1428808572]
 wait_time = 3.0
 one_shot = true
 
-[node name="RecoveryTimer" type="Timer" parent="Timers" index="1"]
+[node name="RecoveryTimer" type="Timer" parent="Timers" index="1" unique_id=1063985307]
 wait_time = 5.0
 one_shot = true
 
-[node name="StateMachine" type="Node" parent="." index="7" node_paths=PackedStringArray("initial_state")]
+[node name="PoisonTimer" type="Timer" parent="Timers" index="2" unique_id=132422734]
+
+[node name="StateMachine" type="Node" parent="." index="7" unique_id=577084736 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_nsq2h")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=2074090328 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_5gd67")
 wander_speed = 2
 enemy = NodePath("../..")
 
-[node name="Return" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("enemy")]
+[node name="Return" type="Node" parent="StateMachine" index="1" unique_id=1961292612 node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_outyk")
 enemy = NodePath("../..")
 
-[node name="Follow" type="Node" parent="StateMachine" index="2" node_paths=PackedStringArray("enemy")]
+[node name="Follow" type="Node" parent="StateMachine" index="2" unique_id=1703526957 node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_i1xyo")
 follow_speed = 8
 attack_range = 15
 enemy = NodePath("../..")
 
-[node name="Locked" type="Node" parent="StateMachine" index="3" node_paths=PackedStringArray("enemy")]
+[node name="Channeling" type="Node" parent="StateMachine" index="3" unique_id=719727552]
+script = ExtResource("9_exisn")
+
+[node name="Fire" type="Node" parent="StateMachine" index="4" unique_id=794741823]
+script = ExtResource("10_8wo36")
+
+[node name="Locked" type="Node" parent="StateMachine" index="5" unique_id=1859916361 node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_exisn")
 enemy = NodePath("../..")
 
-[node name="Dashing" type="Node" parent="StateMachine" index="4" node_paths=PackedStringArray("enemy")]
+[node name="Dashing" type="Node" parent="StateMachine" index="6" unique_id=849246252 node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_i1xyo")
 dash_speed = 60
 enemy = NodePath("../..")
 
-[node name="Recovering" type="Node" parent="StateMachine" index="5" node_paths=PackedStringArray("enemy")]
+[node name="Recovering" type="Node" parent="StateMachine" index="7" unique_id=1232032500 node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_nsq2h")
 enemy = NodePath("../..")
 
-[node name="Died" type="Node" parent="StateMachine" index="6"]
+[node name="Died" type="Node" parent="StateMachine" index="8" unique_id=1121622876]
 script = ExtResource("10_5gd67")
+
+[node name="Bombs" type="Node3D" parent="." index="8" unique_id=1818539482]
+
+[node name="BombPosition" type="Marker3D" parent="." index="9" unique_id=208112705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.2, 1.8)
 
 [connection signal="area_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_area_entered"]
 [connection signal="timeout" from="Timers/ChargeTimer" to="StateMachine/Locked" method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="Timers/ChargeTimer" to="StateMachine/Channeling" method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="Timers/RecoveryTimer" to="StateMachine/Recovering" method="_on_recovery_timer_timeout"]
