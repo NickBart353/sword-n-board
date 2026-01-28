@@ -4,9 +4,10 @@ extends EnemyState
 @export var allowed_distance_to_origin: int = 20
 @export var aggro_range: int = 20
 
-var wander_time = 0
+var wander_time: float = 0.0
 var wander_direction: Vector3
-var distance
+var distance: Vector3
+var called: bool = false
 
 func randomize_wander():
 	wander_time = randi_range(4, 7)
@@ -16,9 +17,12 @@ func randomize_wander():
 func Enter():
 	super()
 	randomize_wander()
+	called = false
 
 func Exit():
 	super()
+	called = false
+	distance = Vector3.ZERO
 
 func Update(delta: float) -> void:
 	super(delta)
@@ -35,9 +39,9 @@ func Physics_Update(delta: float) -> void:
 	enemy.velocity = wander_direction * wander_speed
 	
 	distance = player.global_position - enemy.global_position
-	if distance.length() < aggro_range:
-		Transitioned.emit(self, "Follow")
-		return
 	if enemy.global_position.distance_to(enemy.origin_position) > allowed_distance_to_origin:
 		Transitioned.emit(self, "Return")
+		return
+	if distance.length() < aggro_range or called:
+		Transitioned.emit(self, "Engage")
 		return

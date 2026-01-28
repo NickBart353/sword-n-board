@@ -84,6 +84,9 @@ func take_damage(damage_dealt, body):
 		if health <= MIN_HEALTH:
 			_die()
 
+func force_engage():
+	pass
+
 func _apply_knockback(body):
 	var knockbackDirection = body.global_position.direction_to(global_position)
 	velocity.y = body.knockbackStrength_vertical

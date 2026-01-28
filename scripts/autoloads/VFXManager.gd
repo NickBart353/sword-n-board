@@ -6,6 +6,7 @@ const POISON_EXPLOSION: PackedScene = preload("res://scenes/VFX/poison_explosion
 const SMALL_TORNADO: PackedScene = preload("res://scenes/VFX/spinning_small_tornado.tscn")
 const CHARGE_POISON: PackedScene = preload("res://scenes/VFX/charge_poison.tscn")
 const STUNNED: PackedScene = preload("res://scenes/VFX/stunned.tscn")
+const SOUND_WAVES: PackedScene = preload("res://scenes/VFX/sound_waves.tscn")
 
 func create_poison_explosion(position: Vector3, local = false):
 	if not local:
@@ -30,3 +31,9 @@ func create_stunned(position: Vector3, local = false):
 		create_vfx.emit(position, STUNNED)
 	else:
 		return STUNNED
+
+func create_sound_waves(position: Vector3, local = false):
+	if not local:
+		create_vfx.emit(position, SOUND_WAVES)
+	else:
+		return SOUND_WAVES

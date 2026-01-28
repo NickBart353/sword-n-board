@@ -13,7 +13,8 @@ func Exit():
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
-	enemy.look_at(home_direction, Vector3.UP, true)
+	home_direction = enemy.global_position.direction_to(enemy.origin_position)
+	enemy.look_at(enemy.origin_position, Vector3.UP, true)
 	enemy.velocity = home_direction * return_speed
 	
 	if enemy.global_position.distance_to(enemy.origin_position) < 2:

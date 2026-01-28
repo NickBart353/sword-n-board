@@ -7,7 +7,6 @@ var player
 
 func Enter():
 	super()
-	print(name)
 	player = get_tree().get_first_node_in_group("Player")
 	anim_tree.travel(name)
 

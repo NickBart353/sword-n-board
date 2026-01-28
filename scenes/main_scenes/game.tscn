@@ -104,3 +104,9 @@ visible = false
 
 [node name="Wasp" parent="." unique_id=987104413 instance=ExtResource("7_leqql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.7, 19.3, -51.7)
+
+[node name="Wasp2" parent="." unique_id=1372833755 instance=ExtResource("7_leqql")]
+transform = Transform3D(-0.76604444, 0, -0.64278764, 0, 1, 0, 0.64278764, 0, -0.76604444, 69.84941, 19.3, -59.499603)
+
+[node name="Wasp3" parent="." unique_id=946798705 instance=ExtResource("7_leqql")]
+transform = Transform3D(-0.86602545, 0, 0.5, 0, 1, 0, -0.5, 0, -0.86602545, 60.82666, 19.3, -65.89647)

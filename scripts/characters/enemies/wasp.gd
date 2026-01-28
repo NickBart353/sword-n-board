@@ -24,6 +24,12 @@ func _physics_process(_delta: float) -> void:
 func take_damage(_damage_dealt, _body):
 	pass
 
+func force_engage():
+	$StateMachine/Idle.called = true
+
+func set_called(val: bool):
+	$StateMachine/Idle.called = val
+
 func create_bombs():
 	for i in range(poison_blast_bullet_amount):
 		var poison_bomb_instance = POISON_BOMB_SCENE.instantiate()
