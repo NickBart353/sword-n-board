@@ -49,7 +49,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1982396579 instance=ExtResource("3_rbptj")]
 transform = Transform3D(-0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.50000006, 100.76828, 20, -76.081505)
-speed = 10
 
 [node name="Vfx" type="Node3D" parent="." unique_id=1480657440]
 

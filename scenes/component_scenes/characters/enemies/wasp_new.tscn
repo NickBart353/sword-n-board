@@ -175,29 +175,30 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-228, -328)
 
 [node name="Wasp" unique_id=1372833755 groups=["Enemy"] instance=ExtResource("1_8403y")]
+safe_margin = 0.05
 script = ExtResource("2_nsq2h")
 POISON_BOMB_SCENE = ExtResource("3_outyk")
 poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.49802e-09, 0.993645, 0.11255969, 7.501811e-08)
-bones/2/rotation = Quaternion(-0.335217, -0.13422334, -0.34674984, 0.86566633)
-bones/3/rotation = Quaternion(0.4071549, -0.0019367074, 0.0006474696, 0.91335684)
-bones/4/rotation = Quaternion(-0.3388014, 0.1353134, 0.34640366, 0.86423874)
-bones/5/rotation = Quaternion(0.4071549, 0.0019367065, -0.0006474851, 0.91335684)
-bones/6/rotation = Quaternion(-0.26391065, 0.48040488, 0.8363593, 0.008089661)
-bones/7/rotation = Quaternion(-0.53410846, -0.10639699, 0.4064547, 0.7336229)
+bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
+bones/2/rotation = Quaternion(-0.45368758, -0.1553927, -0.33535093, 0.81090105)
+bones/3/rotation = Quaternion(0.25374675, -0.14191125, 0.0474369, 0.9556274)
+bones/4/rotation = Quaternion(-0.59644645, 0.21032375, 0.303321, 0.7127496)
+bones/5/rotation = Quaternion(0.25374675, 0.14191127, -0.0474369, 0.9556274)
+bones/6/rotation = Quaternion(-0.16859467, 0.5215493, 0.82288265, -0.14975424)
+bones/7/rotation = Quaternion(-0.63950574, -0.05736526, 0.38225305, 0.66454816)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.26391047, 0.48040497, 0.83635926, -0.008089541)
-bones/10/rotation = Quaternion(-0.53410846, 0.10639694, -0.4064547, 0.73362285)
+bones/9/rotation = Quaternion(0.16859457, 0.5215492, 0.8228828, 0.14975432)
+bones/10/rotation = Quaternion(-0.63950574, 0.057365216, -0.38225314, 0.6645481)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.69728, 0.19232954, 0.19653377, 0.661955)
+bones/12/rotation = Quaternion(-0.83187044, 0.25317007, 0.10823921, 0.48185152)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.69727635, -0.1923283, -0.19653593, 0.66195863)
+bones/14/rotation = Quaternion(-0.831852, -0.25316623, -0.1082581, 0.48188105)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.24665, 3.4666485e-07, -8.801077e-08, 0.96910465)
-bones/18/rotation = Quaternion(0.011800009, 2.7018385e-07, 1.1615017e-08, 0.9999304)
+bones/17/rotation = Quaternion(-0.2543538, 3.481897e-07, -8.560588e-08, 0.9671113)
+bones/18/rotation = Quaternion(0.1555442, 2.6669127e-07, 1.5229533e-07, 0.98782897)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)

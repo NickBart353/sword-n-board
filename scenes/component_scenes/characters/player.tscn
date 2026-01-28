@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="1_sf0kc"]
+[ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_272xh"]
+[ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
+[ext_resource type="Script" uid="uid://c5gycp8koc33k" path="res://scripts/state_machine/states/PlayerStates/PlayerDefault.gd" id="4_5e2me"]
+[ext_resource type="Script" uid="uid://bwjdnp3hodwdu" path="res://scripts/state_machine/states/PlayerStates/PlayerAirborne.gd" id="5_m0y8q"]
+[ext_resource type="Script" uid="uid://bsheefbbkx3dy" path="res://scripts/state_machine/states/PlayerStates/PlayerDashing.gd" id="7_272xh"]
+[ext_resource type="Script" uid="uid://dt0ivamujdy8t" path="res://scripts/state_machine/states/PlayerStates/PlayerAttack.gd" id="8_5e2me"]
+[ext_resource type="Script" uid="uid://dbejtukr50a4i" path="res://scripts/state_machine/states/PlayerStates/PlayerSecondary.gd" id="9_m0y8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -20,20 +27,82 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
-[node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
-script = ExtResource("1_oijqy")
-speed = 50
+[sub_resource type="Animation" id="Animation_m0y8q"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.49999988, -0.9, -0.6)]
+}
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1934701213]
+[sub_resource type="Animation" id="Animation_8gp4u"]
+resource_name = "Sword1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.424115, 2.427753, -1.5865043)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.089, -0.512, -0.699)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
+_data = {
+&"RESET": SubResource("Animation_m0y8q"),
+&"Sword1": SubResource("Animation_8gp4u")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
+safe_margin = 0.1
+script = ExtResource("1_oijqy")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 shape = SubResource("CapsuleShape3D_lu7gk")
 
 [node name="Body" type="MeshInstance3D" parent="." unique_id=1023313928]
 mesh = SubResource("CapsuleMesh_lu7gk")
 
 [node name="Head" type="Node3D" parent="." unique_id=187604380]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.59999996, 0)
 
 [node name="FieldOfView" type="Camera3D" parent="Head" unique_id=2099136400]
-transform = Transform3D(1, 0, -2.0861626e-07, 0, 1, 0, 2.0861626e-07, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, -2.0861626e-07, 0, 1, 0, 2.0861626e-07, 0, 1, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
@@ -43,7 +112,7 @@ target_position = Vector3(0, 0, -3)
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5000001, -0.9, -0.59999996)
 
 [node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
-transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0.49999988, -0.9, -0.6)
+transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.9999998, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
 
 [node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -54,6 +123,37 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999857, 0)
 shape = SubResource("CapsuleShape3D_oijqy")
 debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
+
+[node name="Timers" type="Node3D" parent="." unique_id=849654952]
+
+[node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
+one_shot = true
+
+[node name="InputController" type="Node" parent="." unique_id=710520110]
+script = ExtResource("3_qbru3")
+
+[node name="StateMachine" type="Node" parent="." unique_id=317741671 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_272xh")
+initial_state = NodePath("Default")
+metadata/_custom_type_script = "uid://cfxyba70xd7yl"
+
+[node name="Default" type="Node" parent="StateMachine" unique_id=1620963205]
+script = ExtResource("4_5e2me")
+jump_velocity = 4
+
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=888033454]
+script = ExtResource("5_m0y8q")
+
+[node name="Dashing" type="Node" parent="StateMachine" unique_id=535527272]
+script = ExtResource("7_272xh")
+dash_distance = 7
+dash_speed = 25
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=693724078]
+script = ExtResource("8_5e2me")
+
+[node name="Secondary" type="Node" parent="StateMachine" unique_id=71940830]
+script = ExtResource("9_m0y8q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 
@@ -89,3 +189,8 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
+libraries/ = SubResource("AnimationLibrary_wbsrb")
+
+[connection signal="timeout" from="Timers/AttackTimer" to="StateMachine/Default" method="_on_attack_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Secondary" method="_on_animation_player_animation_finished"]
