@@ -5,7 +5,11 @@
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_272xh"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
 [ext_resource type="Script" uid="uid://c5gycp8koc33k" path="res://scripts/state_machine/states/PlayerStates/PlayerDefault.gd" id="4_5e2me"]
+[ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
+[ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
 [ext_resource type="Script" uid="uid://bwjdnp3hodwdu" path="res://scripts/state_machine/states/PlayerStates/PlayerAirborne.gd" id="5_m0y8q"]
+[ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="6_1e104"]
+[ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_bnsrg"]
 [ext_resource type="Script" uid="uid://bsheefbbkx3dy" path="res://scripts/state_machine/states/PlayerStates/PlayerDashing.gd" id="7_272xh"]
 [ext_resource type="Script" uid="uid://dt0ivamujdy8t" path="res://scripts/state_machine/states/PlayerStates/PlayerAttack.gd" id="8_5e2me"]
 [ext_resource type="Script" uid="uid://dbejtukr50a4i" path="res://scripts/state_machine/states/PlayerStates/PlayerSecondary.gd" id="9_m0y8q"]
@@ -64,10 +68,10 @@ tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
+"times": PackedFloat32Array(0, 0.26666668, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.424115, 2.427753, -1.5865043)]
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.38048178, 3.0909781, -1.8395771)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -76,16 +80,74 @@ tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.4),
+"times": PackedFloat32Array(0, 0.26666668, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.089, -0.512, -0.699)]
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.589, -0.797, -0.829)]
+}
+
+[sub_resource type="Animation" id="Animation_bnsrg"]
+resource_name = "Sword2"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.055850536, 4.373795, -1.0192723), Vector3(0.038397245, -0.4171337, -1.569051)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.659, -0.402, -0.899), Vector3(0.711, -0.582, -1.089)]
+}
+
+[sub_resource type="Animation" id="Animation_i5qjy"]
+resource_name = "Sword3"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-2.0071287, 2.1834068, -2.050762)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.336, -0.497, -1.364)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
 _data = {
 &"RESET": SubResource("Animation_m0y8q"),
-&"Sword1": SubResource("Animation_8gp4u")
+&"Sword1": SubResource("Animation_8gp4u"),
+&"Sword2": SubResource("Animation_bnsrg"),
+&"Sword3": SubResource("Animation_i5qjy")
 }
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
@@ -127,14 +189,28 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
+wait_time = 0.3
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]
 script = ExtResource("3_qbru3")
 
-[node name="StateMachine" type="Node" parent="." unique_id=317741671 node_paths=PackedStringArray("initial_state")]
+[node name="MovementController" type="Node" parent="." unique_id=1578698618 node_paths=PackedStringArray("player")]
+script = ExtResource("4_wbsrb")
+player = NodePath("..")
+
+[node name="AbilityController" type="Node" parent="." unique_id=2010557984]
+script = ExtResource("5_1e104")
+
+[node name="Attack" type="Node" parent="AbilityController" unique_id=2054717099 node_paths=PackedStringArray("player")]
+script = ExtResource("6_bnsrg")
+player = NodePath("../..")
+
+[node name="AnimationController" type="Node" parent="." unique_id=963017014]
+script = ExtResource("6_1e104")
+
+[node name="StateMachine" type="Node" parent="." unique_id=317741671]
 script = ExtResource("3_272xh")
-initial_state = NodePath("Default")
 metadata/_custom_type_script = "uid://cfxyba70xd7yl"
 
 [node name="Default" type="Node" parent="StateMachine" unique_id=1620963205]
@@ -192,5 +268,7 @@ mouse_filter = 2
 libraries/ = SubResource("AnimationLibrary_wbsrb")
 
 [connection signal="timeout" from="Timers/AttackTimer" to="StateMachine/Default" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Secondary" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_finished"]

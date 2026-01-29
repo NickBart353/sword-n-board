@@ -21,8 +21,10 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
-func take_damage(_damage_dealt, _body):
-	pass
+func take_damage(damage_dealt):
+	health -= damage_dealt
+	if health <= MIN_HEALTH:
+		print("Dead")
 
 func force_engage():
 	$StateMachine/Idle.called = true

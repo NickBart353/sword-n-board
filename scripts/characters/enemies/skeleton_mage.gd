@@ -74,13 +74,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	hunting = false
 
-func take_damage(damage_dealt, body):
+func take_damage(damage_dealt):
 	if not dying:
 		if iFrameTimer.is_stopped():
 			iFrameTimer.start()
 			health -= damage_dealt
 			$HitFlashPlayer.play("hitflash")
-			_apply_knockback(body)
+			#_apply_knockback(body)
 		if health <= MIN_HEALTH:
 			_die()
 

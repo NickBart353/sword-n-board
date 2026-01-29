@@ -1,98 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8m14i25pu7y"]
+[gd_scene format=3 uid="uid://ca8m14i25pu7y"]
 
 [ext_resource type="ArrayMesh" uid="uid://vu7q45ul86s" path="res://assets/Lowpoly_swords/Objs/Classic_hoplite_sword.obj" id="1_7aiw0"]
 [ext_resource type="Script" uid="uid://bwwuxjtfociga" path="res://scripts/combat/weapons/sword.gd" id="1_c5xvt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aiw0"]
-size = Vector3(0.2019043, 1.3025665, 0.15966797)
+size = Vector3(0.07220459, 1.3728409, 0.23364258)
 
-[sub_resource type="Animation" id="Animation_jrpt1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.22246629, -0.20567429)]
-}
-
-[sub_resource type="Animation" id="Animation_i74jv"]
-resource_name = "swang"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.726057, 0, 0), Vector3(-2.268928, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.33333334, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.4, 1, 0), Vector3(-0.1, -0.2, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_c5xvt"]
-resource_name = "swing"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jrpt1"]
-_data = {
-&"RESET": SubResource("Animation_jrpt1"),
-&"swang": SubResource("Animation_i74jv"),
-&"swing": SubResource("Animation_c5xvt")
-}
-
-[node name="Sword" type="Node3D"]
+[node name="Sword" type="Area3D" unique_id=1495302004]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_c5xvt")
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(-4.371139e-08, 0, 0.99999994, 0, 0.9999996, 0, -1, 0, -4.3711385e-08, 0.14875337, 1.1810218, -0.016845698)
+[node name="HitBox" type="CollisionShape3D" parent="." unique_id=682500964]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 0.9999924, 0, 8.742192e-08, 0, -0.9999927, 0.123930536, 1.2161573, -0.011755332)
 shape = SubResource("BoxShape3D_7aiw0")
 debug_color = Color(1.3086371, 0, 0.55059105, 0.42)
 
-[node name="ClassicHopliteSword" type="MeshInstance3D" parent="."]
+[node name="ClassicHopliteSword" type="MeshInstance3D" parent="." unique_id=657047206]
 transform = Transform3D(9.929923e-09, 7.4505793e-09, 0.47322512, -3.4301735e-08, -0.14120583, 2.4969236e-08, 0.22717011, -2.1321489e-08, -2.0685327e-08, 0.14449963, 0.6539316, -0.011299208)
 mesh = ExtResource("1_7aiw0")
 skeleton = NodePath("../../../..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_jrpt1")
-}
-
-[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

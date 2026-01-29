@@ -5,6 +5,9 @@ signal open_inventory
 signal open_pause_menu
 
 @onready var input = $InputController
+@onready var movement = $MovementController
+@onready var ability = $AbilityController
+@onready var animation = $AnimationController
 @onready var head: Node3D = $Head
 
 @export var movement_speed = 4
@@ -34,6 +37,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
+	movement.apply_movement(input, delta)
+	ability.apply_abilities(input, movement, delta)
+	animation.apply_animations(input, movement, ability, delta)
+	
 	interact_with_object()
 	move_and_slide()
 
@@ -58,8 +65,8 @@ func interact_with_object():
 func get_equipped_primary():
 	var weapon: Array = $Head/FieldOfView/RightHand.get_children()
 	if weapon:
-		return weapon[0].name
-	return "Unarmed"
+		return weapon[0]
+	return null
 
 func get_equipped_secondary():
 	var offhand: Array = $Head/FieldOfView/LeftHand.get_children()
@@ -92,7 +99,6 @@ func take_damage(damage, _body):
 	if health <= MIN_HEALTH:
 		_die()
 	$CanvasLayer/RedBar/HealthBar.value = health
-	print("health: ", health," ,", MIN_HEALTH)
 
 func _die():
 	print("game over")

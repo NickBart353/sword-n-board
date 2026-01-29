@@ -3,24 +3,31 @@ extends PlayerState
 @onready var anim_player: AnimationPlayer = $"../../AnimationPlayer"
 
 var combo: int = 0
-var weapon_type: String
+var weapon: Node
+var bodies: Array
+var animation_finished: bool
 
 func Enter() -> void:
 	super()
 	$"../../Timers/AttackTimer".start()
+	bodies = []
 	combo += 1
-	weapon_type = player.get_equipped_primary()
-	match weapon_type:
-		"Bow":
-			pass#anim_player.play(weapon_type)
-		"Staff":
-			pass#anim_player.play("{0}{1}".format([weapon_type][combo]))
-		"Sword":
-			anim_player.play("{0}1".format([weapon_type]))
+	weapon = player.get_equipped_primary()
+	if weapon:
+		match weapon.name:
+			"Bow":
+				pass#anim_player.play(weapon)
+			"Staff":
+				pass#anim_player.play("{0}{1}".format([weapon, combo]))
+			"Sword":
+				if not weapon.hit.is_connected(_melee_attack):
+					weapon.hit.connect(_melee_attack)
+				anim_player.play("{0}1".format([weapon.name]))
 
 func Exit() -> void:
 	super()
-	match weapon_type:
+	animation_finished = false
+	match weapon.name:
 		"Bow":
 			combo = 0
 		"Staff":
@@ -35,7 +42,8 @@ func Update(delta: float) -> void:
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
-	Transitioned.emit(self, "Default")
+	if animation_finished:
+		Transitioned.emit(self, "Default")
 	
 	if player.input.inventory: 
 		pass
@@ -44,15 +52,22 @@ func Physics_Update(delta: float) -> void:
 		pass
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if state_active:
-		match weapon_type:
-			"Bow":
-				if anim_name == weapon_type:
-					Transitioned.emit(self, "Default")
-			"Staff":
-				if anim_name == "{0}{1}".format([weapon_type][combo]):
-					Transitioned.emit(self, "Default")
-			"Sword":
-				if anim_name == "{0}{1}".format([weapon_type][combo]):
-					Transitioned.emit(self, "Default")
-		
+	pass
+	#match weapon.name:
+		#"Bow":
+			#if anim_name == weapon.name:
+				#Transitioned.emit(self, "Default")
+				#animation_finished = true
+		#"Staff":
+			#if anim_name == "{0}{1}".format([weapon.name, combo]):
+				#Transitioned.emit(self, "Default")
+				#animation_finished = true
+		#"Sword":
+			#if anim_name == "{0}1".format([weapon.name]):
+				#Transitioned.emit(self, "Default")
+				#animation_finished = true
+
+func _melee_attack(body, damage):
+	if not body in bodies:
+		body.take_damage(weapon.damage)
+		bodies.append(body)

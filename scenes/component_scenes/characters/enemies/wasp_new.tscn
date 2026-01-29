@@ -26,6 +26,10 @@ height = 8.400001
 radius = 0.45
 height = 5.6275
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3gwer"]
+radius = 1.4
+height = 8.25
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
 animation = &"FlyingWasp"
 
@@ -177,28 +181,29 @@ graph_offset = Vector2(-228, -328)
 [node name="Wasp" unique_id=1372833755 groups=["Enemy"] instance=ExtResource("1_8403y")]
 safe_margin = 0.05
 script = ExtResource("2_nsq2h")
+MAX_HEALTH = 50
 POISON_BOMB_SCENE = ExtResource("3_outyk")
 poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
 bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
-bones/2/rotation = Quaternion(-0.45368758, -0.1553927, -0.33535093, 0.81090105)
-bones/3/rotation = Quaternion(0.25374675, -0.14191125, 0.0474369, 0.9556274)
-bones/4/rotation = Quaternion(-0.59644645, 0.21032375, 0.303321, 0.7127496)
-bones/5/rotation = Quaternion(0.25374675, 0.14191127, -0.0474369, 0.9556274)
-bones/6/rotation = Quaternion(-0.16859467, 0.5215493, 0.82288265, -0.14975424)
-bones/7/rotation = Quaternion(-0.63950574, -0.05736526, 0.38225305, 0.66454816)
+bones/2/rotation = Quaternion(-0.36145142, -0.13902253, -0.34479374, 0.855069)
+bones/3/rotation = Quaternion(0.32820588, -0.0761841, 0.025466217, 0.9411846)
+bones/4/rotation = Quaternion(-0.48033857, 0.17697097, 0.32768965, 0.79408795)
+bones/5/rotation = Quaternion(0.32820588, 0.07618409, -0.025466198, 0.9411846)
+bones/6/rotation = Quaternion(-0.31845084, 0.44612417, 0.8296342, 0.106158555)
+bones/7/rotation = Quaternion(-0.59109956, -0.08072169, 0.3946169, 0.69882965)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.16859457, 0.5215492, 0.8228828, 0.14975432)
-bones/10/rotation = Quaternion(-0.63950574, 0.057365216, -0.38225314, 0.6645481)
+bones/9/rotation = Quaternion(0.3184507, 0.44612423, 0.82963413, -0.106158495)
+bones/10/rotation = Quaternion(-0.59109956, 0.080721624, -0.39461687, 0.69882965)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.83187044, 0.25317007, 0.10823921, 0.48185152)
+bones/12/rotation = Quaternion(-0.7741239, 0.22675449, 0.15168834, 0.5712315)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.831852, -0.25316623, -0.1082581, 0.48188105)
+bones/14/rotation = Quaternion(-0.7740589, -0.2267298, -0.15173475, 0.57131696)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.2543538, 3.481897e-07, -8.560588e-08, 0.9671113)
-bones/18/rotation = Quaternion(0.1555442, 2.6669127e-07, 1.5229533e-07, 0.98782897)
+bones/17/rotation = Quaternion(-0.24817428, 3.4696808e-07, -8.753576e-08, 0.9687155)
+bones/18/rotation = Quaternion(0.087853625, 2.6904007e-07, 8.6047756e-08, 0.9961334)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -211,17 +216,24 @@ transform = Transform3D(1, 0, 0, 0, 0.23061591, 0.9730449, 0, -0.9730449, 0.2306
 shape = SubResource("CapsuleShape3D_nsq2h")
 debug_color = Color(0.95755154, 2.5990605e-06, 0.5345746, 0.41960785)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="4" unique_id=932781127]
+[node name="HurtBox" type="Area3D" parent="." index="3" unique_id=709734342 groups=["Enemy_Part"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" index="0" unique_id=596156183]
+transform = Transform3D(1, 0, 0, 0, -0.34202015, 0.93969256, 0, -0.93969256, -0.34202015, -0.09999994, -0.40065745, -1.1379849)
+shape = SubResource("CapsuleShape3D_3gwer")
+debug_color = Color(0.11672785, 0.64772433, 5.7756904e-07, 0.41960785)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="5" unique_id=932781127]
 tree_root = SubResource("AnimationNodeStateMachine_8wo36")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="WaspAnimation" type="Node3D" parent="." index="5" unique_id=1224469209 node_paths=PackedStringArray("wasp", "animation_tree")]
+[node name="WaspAnimation" type="Node3D" parent="." index="6" unique_id=1224469209 node_paths=PackedStringArray("wasp", "animation_tree")]
 script = ExtResource("2_42erq")
 wasp = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Timers" type="Node3D" parent="." index="6" unique_id=797064584]
+[node name="Timers" type="Node3D" parent="." index="7" unique_id=797064584]
 
 [node name="ChargeTimer" type="Timer" parent="Timers" index="0" unique_id=1428808572]
 wait_time = 3.0
@@ -243,7 +255,7 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="StateMachine" type="Node" parent="." index="7" unique_id=577084736 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." index="8" unique_id=577084736 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_nsq2h")
 initial_state = NodePath("Idle")
 
@@ -298,15 +310,15 @@ enemy = NodePath("../..")
 script = ExtResource("10_5gd67")
 enemy = NodePath("../..")
 
-[node name="Bombs" type="Node3D" parent="." index="8" unique_id=1818539482]
+[node name="Bombs" type="Node3D" parent="." index="9" unique_id=1818539482]
 
-[node name="BombPosition" type="Marker3D" parent="." index="9" unique_id=208112705]
+[node name="BombPosition" type="Marker3D" parent="." index="10" unique_id=208112705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40000007, 2.9999998)
 
-[node name="PierceMarker" type="Marker3D" parent="." index="10" unique_id=2042459230]
+[node name="PierceMarker" type="Marker3D" parent="." index="11" unique_id=2042459230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -3.74, 4.1)
 
-[node name="CuttingWind" parent="." index="11" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
+[node name="CuttingWind" parent="." index="12" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
 transform = Transform3D(1, 0, 0, 0, 0.23061588, 0.9730449, 0, -0.9730449, 0.23061588, -0.9499999, -5.132751, 6.0685706)
 visible = false
 
