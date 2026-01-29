@@ -1,15 +1,13 @@
 extends Ability
 
 @onready var anim_player = $"../../AnimationPlayer"
+@onready var attack_timer = $"../../Timers/AttackTimer"
 
 var weapon: Node
 var bodies: Array = []
-var swing_one: bool
-var swing_two: bool
-var swing_three: bool
-
-func _ready() -> void:
-	pass
+var swing: int = 0
+var swinging: bool = false
+var swing_in_progress: bool = false
 
 func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -> void:
 	weapon = player.get_equipped_primary()
@@ -17,13 +15,15 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 		weapon.hit.connect(_melee_attack)
 	
 	if not movement.dashing:
-		if input.primary:
-			if not swing_one:
-				swing_one = true
-			elif not swing_two and swing_one:
-				swing_two = true
-			elif not swing_three and swing_two and swing_three:
-				swing_three = true
+		if input.primary and not swing_in_progress:
+			attack_timer.start()
+			bodies = []
+			swinging = true
+			swing_in_progress = true
+			if not swing or swing == 3:
+				swing = 1
+			else:
+				swing += 1
 
 func _melee_attack(body, damage):
 	if not body in bodies:
@@ -31,17 +31,13 @@ func _melee_attack(body, damage):
 		body.take_damage(damage)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "Sword1":
-		$"../../Timers/AttackTimer".start()
+	if anim_name == "Sword{0}".format([swing]):
 		bodies.clear()
-	elif anim_name == "Sword2":
-		$"../../Timers/AttackTimer".start()
-		bodies.clear()
-	elif anim_name == "Sword3":
-		$"../../Timers/AttackTimer".start()
-		bodies.clear()
+		swing_in_progress = false
 
 func _on_attack_timer_timeout() -> void:
-	swing_one = false
-	swing_two = false
-	swing_three = false
+	swing = 0
+
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if anim_name == "Sword{0}".format([swing]):
+		swinging = false

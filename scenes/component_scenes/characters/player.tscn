@@ -2,17 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="1_sf0kc"]
-[ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_272xh"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
-[ext_resource type="Script" uid="uid://c5gycp8koc33k" path="res://scripts/state_machine/states/PlayerStates/PlayerDefault.gd" id="4_5e2me"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
-[ext_resource type="Script" uid="uid://bwjdnp3hodwdu" path="res://scripts/state_machine/states/PlayerStates/PlayerAirborne.gd" id="5_m0y8q"]
 [ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="6_1e104"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_bnsrg"]
-[ext_resource type="Script" uid="uid://bsheefbbkx3dy" path="res://scripts/state_machine/states/PlayerStates/PlayerDashing.gd" id="7_272xh"]
-[ext_resource type="Script" uid="uid://dt0ivamujdy8t" path="res://scripts/state_machine/states/PlayerStates/PlayerAttack.gd" id="8_5e2me"]
-[ext_resource type="Script" uid="uid://dbejtukr50a4i" path="res://scripts/state_machine/states/PlayerStates/PlayerSecondary.gd" id="9_m0y8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -189,7 +183,6 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
-wait_time = 0.3
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]
@@ -208,28 +201,6 @@ player = NodePath("../..")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
 script = ExtResource("6_1e104")
-
-[node name="StateMachine" type="Node" parent="." unique_id=317741671]
-script = ExtResource("3_272xh")
-metadata/_custom_type_script = "uid://cfxyba70xd7yl"
-
-[node name="Default" type="Node" parent="StateMachine" unique_id=1620963205]
-script = ExtResource("4_5e2me")
-jump_velocity = 4
-
-[node name="Airborne" type="Node" parent="StateMachine" unique_id=888033454]
-script = ExtResource("5_m0y8q")
-
-[node name="Dashing" type="Node" parent="StateMachine" unique_id=535527272]
-script = ExtResource("7_272xh")
-dash_distance = 7
-dash_speed = 25
-
-[node name="Attack" type="Node" parent="StateMachine" unique_id=693724078]
-script = ExtResource("8_5e2me")
-
-[node name="Secondary" type="Node" parent="StateMachine" unique_id=71940830]
-script = ExtResource("9_m0y8q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 
@@ -267,8 +238,6 @@ mouse_filter = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
 libraries/ = SubResource("AnimationLibrary_wbsrb")
 
-[connection signal="timeout" from="Timers/AttackTimer" to="StateMachine/Default" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Attack" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Secondary" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]

@@ -7,9 +7,11 @@ var home_direction: Vector3
 func Enter():
 	super()
 	home_direction = enemy.global_position.direction_to(enemy.origin_position)
+	enemy.set_collision_mask_value(1, false)
 
 func Exit():
 	super()
+	enemy.set_collision_mask_value(1, true)
 
 func Physics_Update(delta: float) -> void:
 	super(delta)

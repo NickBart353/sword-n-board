@@ -22,6 +22,8 @@ func apply_movement(input: Node, delta: float) -> void:
 		
 		if not player.is_on_floor():
 			player.velocity += player.get_gravity() * delta
+		if player.is_on_floor() and input.jump:
+			player.velocity.y += jump_velocity
 	else:
 		if not dashing:
 			dashing_origin = player.global_position

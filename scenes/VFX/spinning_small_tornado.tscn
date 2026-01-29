@@ -25,21 +25,21 @@ shader = ExtResource("1_l7dht")
 shader_parameter/BaseTexture = SubResource("NoiseTexture2D_bm2yd")
 
 [sub_resource type="Curve" id="Curve_l7dht"]
-_data = [Vector2(0.021645024, 0.6966293), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.9845017, 0.0, 0, 0]
+_data = [Vector2(0, 0.57303375), 0.0, 0.0, 0, 0, Vector2(1, 0.94382024), 0.6385767, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_bm2yd"]
 curve = SubResource("Curve_l7dht")
 
-[sub_resource type="Gradient" id="Gradient_0g225"]
-offsets = PackedFloat32Array(0, 0.015706778, 1)
-colors = PackedColorArray(0, 1, 0.11372549, 1, 0.0053934157, 0.978058, 0.11909573, 1, 0.14716297, 0.40129662, 0.26025626, 1)
+[sub_resource type="Gradient" id="Gradient_bm2yd"]
+offsets = PackedFloat32Array(0.02094239, 1)
+colors = PackedColorArray(0.3553136, 0.35531354, 0.35531357, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gq7nj"]
-gradient = SubResource("Gradient_0g225")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0g225"]
+gradient = SubResource("Gradient_bm2yd")
 
 [sub_resource type="Curve" id="Curve_bm2yd"]
-_data = [Vector2(0, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.46067423), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_0g225"]
@@ -57,16 +57,24 @@ gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 5.0
 scale_curve = SubResource("CurveTexture_0g225")
-color = Color(2.137626, 2.137626, 2.137626, 1)
-color_ramp = SubResource("GradientTexture1D_gq7nj")
+color_ramp = SubResource("GradientTexture1D_0g225")
 alpha_curve = SubResource("CurveTexture_bm2yd")
 
+[sub_resource type="Curve" id="Curve_gq7nj"]
+_limits = [0.0, 0.01, 0.0, 0.01]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_qo45j"]
+_limits = [0.0, 0.01, 0.0, 0.01]
+
 [sub_resource type="Curve" id="Curve_qrnb1"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(1e-05, -1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_w4433"]
+curve_x = SubResource("Curve_gq7nj")
+curve_y = SubResource("Curve_qo45j")
 curve_z = SubResource("Curve_qrnb1")
 
 [sub_resource type="Curve" id="Curve_0g225"]
@@ -135,10 +143,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado:process_material:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
 
 [sub_resource type="Animation" id="Animation_gq7nj"]
 resource_name = "Tornado"
-length = 3.0
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -146,10 +166,10 @@ tracks/0/path = NodePath("Tornado:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -158,10 +178,22 @@ tracks/1/path = NodePath("Particles:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true]
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tornado:process_material:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qo45j"]

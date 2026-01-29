@@ -24,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 func take_damage(damage_dealt):
 	health -= damage_dealt
 	if health <= MIN_HEALTH:
-		print("Dead")
+		EventBus.remove_me.emit(self)
 
 func force_engage():
 	$StateMachine/Idle.called = true
