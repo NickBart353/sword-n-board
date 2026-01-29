@@ -75,79 +75,103 @@ animation = &"FlyingWasp"
 animation = &"FlyingWasp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0js2i"]
+xfade_time = 0.5
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3q3j"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Return\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llskb"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr4ld"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2w86e"]
+xfade_time = 0.5
 break_loop_at_end = true
 advance_expression = "current_state.name == \"Locked\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gindt"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qldpb"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1bau"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw4ec"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_treog"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1xyo"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_outyk"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dashing\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exisn"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Recovering\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wo36"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Died\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_645re"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Channeling\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6q5m"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Fire\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3gwer"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Follow\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6eufi"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awi1o"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qm4s7"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Follow\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_at8f8"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Resetting\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cc314"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Resetting\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3r488"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Engage\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0bffu"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Follow\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2g7w"]
+xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8wo36"]
@@ -176,7 +200,7 @@ states/Return/node = SubResource("AnimationNodeAnimation_xfb5g")
 states/Return/position = Vector2(274, 179)
 states/Start/position = Vector2(-42, 79)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Dead", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Dead", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Dead", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Dead", SubResource("AnimationNodeStateMachineTransition_8wo36"), "Follow", "Channeling", SubResource("AnimationNodeStateMachineTransition_645re"), "Channeling", "Fire", SubResource("AnimationNodeStateMachineTransition_u6q5m"), "Fire", "Follow", SubResource("AnimationNodeStateMachineTransition_3gwer"), "Channeling", "Dead", SubResource("AnimationNodeStateMachineTransition_6eufi"), "Fire", "Dead", SubResource("AnimationNodeStateMachineTransition_awi1o"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_qm4s7"), "Recovering", "Resetting", SubResource("AnimationNodeStateMachineTransition_at8f8"), "Dashing", "Resetting", SubResource("AnimationNodeStateMachineTransition_cc314"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_3r488"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_0bffu"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_f2g7w")]
-graph_offset = Vector2(-228, -328)
+graph_offset = Vector2(-224, -392)
 
 [node name="Wasp" unique_id=1372833755 groups=["Enemy"] instance=ExtResource("1_8403y")]
 safe_margin = 0.05
@@ -187,23 +211,23 @@ poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.151862e-09, 0.99415374, 0.1079747, 7.5056526e-08)
-bones/2/rotation = Quaternion(-0.6230742, -0.22050239, -0.2569745, 0.70506835)
-bones/3/rotation = Quaternion(0.23836502, -0.15501995, 0.051818725, 0.95732224)
-bones/4/rotation = Quaternion(-0.58560514, 0.19161656, 0.31217214, 0.72311705)
-bones/5/rotation = Quaternion(0.23836502, 0.15501992, -0.051818714, 0.95732224)
-bones/6/rotation = Quaternion(-0.3368075, 0.43243298, 0.8244758, 0.14071971)
-bones/7/rotation = Quaternion(-0.6415309, -0.058382396, 0.37464303, 0.6668376)
+bones/1/rotation = Quaternion(-1.853511e-09, 0.99969864, 0.02455052, 7.5475135e-08)
+bones/2/rotation = Quaternion(-0.5728368, -0.2207776, -0.10795616, 0.78195965)
+bones/3/rotation = Quaternion(0.26129988, -0.13541752, 0.045266226, 0.954639)
+bones/4/rotation = Quaternion(-0.49868917, 0.15153112, 0.23585926, 0.8201939)
+bones/5/rotation = Quaternion(0.2612998, 0.13541752, -0.04526619, 0.95463896)
+bones/6/rotation = Quaternion(-0.34128433, 0.42890856, 0.82296854, 0.14928241)
+bones/7/rotation = Quaternion(-0.6051695, -0.08883063, 0.37637112, 0.69586194)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.33680737, 0.4324331, 0.82447594, -0.14071967)
-bones/10/rotation = Quaternion(-0.6415308, 0.058382325, -0.37464318, 0.6668376)
+bones/9/rotation = Quaternion(0.3412842, 0.42890865, 0.82296854, -0.14928232)
+bones/10/rotation = Quaternion(-0.60516953, 0.08883055, -0.37637118, 0.69586194)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.8396462, 0.25759944, 0.09567231, 0.4684907)
+bones/12/rotation = Quaternion(-0.83774155, 0.25174537, 0.14460498, 0.46249622)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.83964014, -0.25756544, -0.09570739, 0.46851316)
+bones/14/rotation = Quaternion(-0.8378741, -0.25178245, -0.14477134, 0.4621839)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.27068657, 3.4888677e-07, -8.0046085e-08, 0.9626675)
-bones/18/rotation = Quaternion(0.16484697, 2.6163823e-07, 1.62447e-07, 0.9863192)
+bones/17/rotation = Quaternion(-0.3811115, 3.307611e-07, -1.2987284e-07, 0.92452914)
+bones/18/rotation = Quaternion(0.07167786, 2.6473464e-07, 7.1072535e-08, 0.9974278)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)

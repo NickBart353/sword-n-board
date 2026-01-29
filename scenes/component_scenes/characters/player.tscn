@@ -25,6 +25,23 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
+[sub_resource type="Animation" id="Animation_272xh"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.59999996, 0), Vector3(0, 0.65, 0), Vector3(0, 0.59999996, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_m0y8q"]
 resource_name = "RESET"
 tracks/0/type = "value"
@@ -50,6 +67,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0.49999988, -0.9, -0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.59999996, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8gp4u"]
@@ -138,11 +167,66 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
 _data = {
+&"Idle": SubResource("Animation_272xh"),
 &"RESET": SubResource("Animation_m0y8q"),
 &"Sword1": SubResource("Animation_8gp4u"),
 &"Sword2": SubResource("Animation_bnsrg"),
 &"Sword3": SubResource("Animation_i5qjy")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5e2me"]
+animation = &"Sword1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0y8q"]
+animation = &"Sword2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8gp4u"]
+animation = &"Sword3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5e2me"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_272xh"]
+xfade_time = 0.5
+advance_expression = "(ability.get_node(\"Attack\").swinging == true and ability.get_node(\"Attack\").swing == 1 and not input.dash)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0y8q"]
+advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node(\"Attack\").swing == 2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8gp4u"]
+xfade_time = 0.05
+advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node(\"Attack\").swing == 3"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbsrb"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "(ability.get_node(\"Attack\").swing_in_progress == false and not attack_timer.time_left)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e104"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "abilities.get_node(\"Attack\").swing_in_progress == false and not attack_timer.time_left"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnsrg"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
+states/End/position = Vector2(898, 108)
+states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
+states/Idle/position = Vector2(326, 100)
+states/Sword1/node = SubResource("AnimationNodeAnimation_5e2me")
+states/Sword1/position = Vector2(517, -19)
+states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
+states/Sword2/position = Vector2(701, 108)
+states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
+states/Sword3/position = Vector2(517, 221)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg")]
+graph_offset = Vector2(-27, -61)
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 safe_margin = 0.1
@@ -183,6 +267,7 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
+wait_time = 1.2
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]
@@ -238,6 +323,13 @@ mouse_filter = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
 libraries/ = SubResource("AnimationLibrary_wbsrb")
 
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=68752560]
+tree_root = SubResource("AnimationNodeStateMachine_5e2me")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
+[connection signal="animation_finished" from="AnimationTree" to="AbilityController/Attack" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_started" from="AnimationTree" to="AbilityController/Attack" method="_on_animation_tree_animation_started"]
