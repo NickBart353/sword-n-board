@@ -4,7 +4,7 @@ extends Node
 @onready var anim_tree = $"../AnimationTree"["parameters/playback"]
 
 func apply_animations(input: Node, movement: Node, ability: Node, delta: float) -> void:
-	if input.dash:
+	if not input.dash:
 		var attack = ability.get_node_or_null("Attack")
 		if attack:
 			if attack.swinging and not anim_player.is_playing():
