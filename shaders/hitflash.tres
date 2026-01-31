@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://0yl1su0cr6wq"]
+
+[ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="1_pqyve"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_pqyve")
+shader_parameter/flash_color = Color(1, 0.5102555, 0.44386888, 1)
+shader_parameter/flash_strength = 0.1200000057
+shader_parameter/hit_flash_on = false

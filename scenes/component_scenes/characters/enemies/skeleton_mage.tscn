@@ -1,16 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://doh76cvllte4m"]
+[gd_scene format=3 uid="uid://doh76cvllte4m"]
 
 [ext_resource type="Script" uid="uid://bpu4q570sg727" path="res://scripts/characters/enemies/skeleton_mage.gd" id="1_1kw4o"]
 [ext_resource type="PackedScene" uid="uid://drfr0g6h30ft5" path="res://assets/brackeys_3d_game_assets/skeleton/skeleton_mage.glb" id="1_bxj1e"]
+[ext_resource type="Material" uid="uid://0yl1su0cr6wq" path="res://shaders/hitflash.tres" id="3_8o1bm"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="3_nftgf"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nftgf"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("3_nftgf")
-shader_parameter/flash_color = Color(1, 0.5102555, 0.44386888, 1)
-shader_parameter/flash_strength = 0.1200000057
-shader_parameter/hit_flash_on = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8o1bm"]
 resource_local_to_scene = true
@@ -263,11 +256,11 @@ radius = 2.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_3hdok"]
 radius = 0.7
 
-[node name="SkeletonMage" type="CharacterBody3D"]
+[node name="SkeletonMage" type="CharacterBody3D" unique_id=1909878696]
 script = ExtResource("1_1kw4o")
 movement_speed = 2
 
-[node name="skeleton_mage" parent="." instance=ExtResource("1_bxj1e")]
+[node name="skeleton_mage" parent="." unique_id=882678723 instance=ExtResource("1_bxj1e")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="skeleton_mage/Rig" index="0"]
@@ -361,62 +354,60 @@ bones/40/scale = Vector3(1, 1.0000001, 1)
 transform = Transform3D(0.99981403, -0.014102131, -0.013155997, 0.010184139, 0.9653388, -0.26080087, 0.016377866, 0.26061824, 0.965303, -5.751493e-09, 1.0435922, 0.25666142)
 
 [node name="Skeleton_Mage_Hat" parent="skeleton_mage/Rig/Skeleton3D/head" index="0"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_ArmLeft" parent="skeleton_mage/Rig/Skeleton3D" index="1"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_ArmRight" parent="skeleton_mage/Rig/Skeleton3D" index="2"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_Body" parent="skeleton_mage/Rig/Skeleton3D" index="3"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_Eyes" parent="skeleton_mage/Rig/Skeleton3D" index="4"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_Jaw" parent="skeleton_mage/Rig/Skeleton3D" index="5"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_LegLeft" parent="skeleton_mage/Rig/Skeleton3D" index="6"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_LegRight" parent="skeleton_mage/Rig/Skeleton3D" index="7"]
-material_overlay = SubResource("ShaderMaterial_nftgf")
+material_overlay = ExtResource("3_8o1bm")
 
 [node name="Skeleton_Mage_Skull" parent="skeleton_mage/Rig/Skeleton3D" index="8"]
 material_overlay = SubResource("ShaderMaterial_8o1bm")
 
-[node name="IFrame" type="Timer" parent="."]
+[node name="IFrame" type="Timer" parent="." unique_id=1010770522]
 wait_time = 0.5
 one_shot = true
 
-[node name="HitFlashPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3hdok")
-}
+[node name="HitFlashPlayer" type="AnimationPlayer" parent="." unique_id=32658151]
+libraries/ = SubResource("AnimationLibrary_3hdok")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=780429545]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1562501, 0)
 shape = SubResource("CapsuleShape3D_1kw4o")
 
-[node name="HuntRange" type="Area3D" parent="."]
+[node name="HuntRange" type="Area3D" parent="." unique_id=1152009821]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HuntRange"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HuntRange" unique_id=272875029]
 shape = SubResource("SphereShape3D_nftgf")
 debug_color = Color(12.483121, 10.299823, 0, 0.41960785)
 
-[node name="AttackRange" type="Area3D" parent="."]
+[node name="AttackRange" type="Area3D" parent="." unique_id=1608348043]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackRange" unique_id=458239333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("SphereShape3D_8o1bm")
 debug_color = Color(0.99796623, 0, 0.16443339, 0.41960785)
 
-[node name="Attack" type="Area3D" parent="."]
+[node name="Attack" type="Area3D" parent="." unique_id=338891138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.5)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Attack"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attack" unique_id=1986381451]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 3.8000002)
 shape = SubResource("SphereShape3D_3hdok")
 debug_color = Color(0, 12.39502, 0, 0.41960785)

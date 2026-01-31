@@ -1,0 +1,173 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://dv34gxw2ten1h"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i1xyo"]
+animation = &"wasp/Attack"
+play_mode = 1
+use_custom_timeline = true
+timeline_length = 0.1
+stretch_time_scale = false
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_treog"]
+animation = &"wasp/Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3gwer"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wo36"]
+animation = &"wasp/Attack"
+use_custom_timeline = true
+timeline_length = 0.3
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_btnlr"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_52jpp"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4gcc"]
+animation = &"wasp/Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nsq2h"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_645re"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfb5g"]
+animation = &"wasp/Flying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0js2i"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u3q3j"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Return\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_llskb"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mr4ld"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2w86e"]
+xfade_time = 0.5
+break_loop_at_end = true
+advance_expression = "current_state.name == \"Locked\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gindt"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qldpb"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1bau"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw4ec"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_treog"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1xyo"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_outyk"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dashing\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exisn"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Recovering\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wo36"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Died\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_645re"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Channeling\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u6q5m"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Fire\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3gwer"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6eufi"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awi1o"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qm4s7"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_at8f8"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Resetting\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cc314"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Resetting\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3r488"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Engage\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0bffu"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2g7w"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[resource]
+states/Channeling/node = SubResource("AnimationNodeAnimation_outyk")
+states/Channeling/position = Vector2(-42, -13)
+states/Dashing/node = SubResource("AnimationNodeAnimation_i1xyo")
+states/Dashing/position = Vector2(718, -90)
+states/Dead/node = SubResource("AnimationNodeAnimation_treog")
+states/Dead/position = Vector2(494, -13)
+states/End/position = Vector2(718, 79)
+states/Engage/node = SubResource("AnimationNodeAnimation_3gwer")
+states/Engage/position = Vector2(494, 79)
+states/Fire/node = SubResource("AnimationNodeAnimation_8wo36")
+states/Fire/position = Vector2(-42, -297)
+states/Follow/node = SubResource("AnimationNodeAnimation_btnlr")
+states/Follow/position = Vector2(274, -90)
+states/Idle/node = SubResource("AnimationNodeAnimation_52jpp")
+states/Idle/position = Vector2(274, 79)
+states/Locked/node = SubResource("AnimationNodeAnimation_t4gcc")
+states/Locked/position = Vector2(494, -90)
+states/Recovering/node = SubResource("AnimationNodeAnimation_nsq2h")
+states/Recovering/position = Vector2(718, -297)
+states/Resetting/node = SubResource("AnimationNodeAnimation_645re")
+states/Resetting/position = Vector2(274, -297)
+states/Return/node = SubResource("AnimationNodeAnimation_xfb5g")
+states/Return/position = Vector2(274, 179)
+states/Start/position = Vector2(-42, 79)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Dead", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Dead", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Dead", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Dead", SubResource("AnimationNodeStateMachineTransition_8wo36"), "Follow", "Channeling", SubResource("AnimationNodeStateMachineTransition_645re"), "Channeling", "Fire", SubResource("AnimationNodeStateMachineTransition_u6q5m"), "Fire", "Follow", SubResource("AnimationNodeStateMachineTransition_3gwer"), "Channeling", "Dead", SubResource("AnimationNodeStateMachineTransition_6eufi"), "Fire", "Dead", SubResource("AnimationNodeStateMachineTransition_awi1o"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_qm4s7"), "Recovering", "Resetting", SubResource("AnimationNodeStateMachineTransition_at8f8"), "Dashing", "Resetting", SubResource("AnimationNodeStateMachineTransition_cc314"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_3r488"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_0bffu"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_f2g7w")]
+graph_offset = Vector2(-333, -220)

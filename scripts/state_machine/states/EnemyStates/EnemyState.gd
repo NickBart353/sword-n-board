@@ -3,7 +3,7 @@ class_name EnemyState
 
 var player
 @export var enemy: CharacterBody3D
-@onready var anim_tree = $"../../AnimationTree"["parameters/playback"]
+@onready var anim_tree = $"../../AnimationTree"["parameters/Main/playback"]
 
 func Enter():
 	super()
@@ -16,5 +16,5 @@ func Exit():
 
 func Update(_delta: float) -> void:
 	super(_delta)
-	if enemy.health >= enemy.MIN_HEALTH:
-		Died.emit()
+	if enemy.health <= enemy.MIN_HEALTH and name != "Dead":
+		Transitioned.emit(self, "Dead")

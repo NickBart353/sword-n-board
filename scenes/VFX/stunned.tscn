@@ -2,12 +2,24 @@
 
 [ext_resource type="Script" uid="uid://cex85kr1qvvpg" path="res://scripts/VFX/stunned.gd" id="1_4f6rc"]
 
+[sub_resource type="Curve" id="Curve_4f6rc"]
+_limits = [0.0, 0.01, 0.0, 0.01]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_a850t"]
+_limits = [0.0, 0.01, 0.0, 0.01]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
 [sub_resource type="Curve" id="Curve_xv4n4"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_4f6rc"]
+curve_x = SubResource("Curve_4f6rc")
+curve_y = SubResource("Curve_a850t")
 curve_z = SubResource("Curve_xv4n4")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a850t"]

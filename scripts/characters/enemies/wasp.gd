@@ -13,6 +13,7 @@ var origin_position: Vector3
 var health
 
 func _ready() -> void:
+	$StateMachine/Dead.died.connect(_remove_me)
 	health = MAX_HEALTH
 	if not origin_position:
 		origin_position = global_position
@@ -22,9 +23,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func take_damage(damage_dealt):
+	if health > MIN_HEALTH:
+		$"AnimationTree".set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	health -= damage_dealt
-	if health <= MIN_HEALTH:
-		EventBus.remove_me.emit(self)
+	print(name, " hit")
+
+func _remove_me():
+	EventBus.remove_me.emit(self)
 
 func force_engage():
 	$StateMachine/Idle.called = true

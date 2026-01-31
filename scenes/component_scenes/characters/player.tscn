@@ -27,7 +27,7 @@ bg_color = Color(0, 0.8901961, 0.24313726, 1)
 
 [sub_resource type="Animation" id="Animation_272xh"]
 resource_name = "Idle"
-length = 0.1
+length = 2.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -36,10 +36,10 @@ tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.59999996, 0), Vector3(0, 0.6, 0), Vector3(0, 0.59999996, 0)]
+"values": [Vector3(0, 0.59999996, 0), Vector3(0, 0.59999996, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_m0y8q"]
@@ -91,7 +91,7 @@ tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.4),
+"times": PackedFloat32Array(0, 0.26666668, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.38048178, 3.0909781, -1.8395771)]
@@ -103,7 +103,7 @@ tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.4),
+"times": PackedFloat32Array(0, 0.26666668, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.589, -0.797, -0.829)]
@@ -115,7 +115,7 @@ tracks/2/path = NodePath("AbilityController/Attack")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0.33333334, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Sword1"],
@@ -160,7 +160,7 @@ tracks/2/path = NodePath("AbilityController/Attack")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Sword2"],
@@ -173,7 +173,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_i5qjy"]
 resource_name = "Sword3"
-length = 0.15
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -181,10 +181,10 @@ tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-2.0071287, 2.1834068, -2.050762)]
+"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-1.5369015, 1.2246284, -1.0746439), Vector3(-1.2897983, 0.8290314, -0.71733034)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -193,10 +193,10 @@ tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.336, -0.497, -1.364)]
+"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.62, -0.902, 0.54), Vector3(0.336, -0.497, -1.364)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -205,7 +205,7 @@ tracks/2/path = NodePath("AbilityController/Attack")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.15),
+"times": PackedFloat32Array(0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Sword3"],
@@ -242,12 +242,11 @@ xfade_time = 0.5
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_272xh"]
-xfade_time = 0.5
-reset = false
-switch_mode = 2
+xfade_time = 0.2
 advance_expression = "(ability.get_node(\"Attack\").swinging == true and ability.get_node(\"Attack\").swing == 1)"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0y8q"]
+xfade_time = 0.05
 switch_mode = 2
 advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node(\"Attack\").swing == 2"
 
@@ -258,27 +257,28 @@ advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbsrb"]
 xfade_time = 0.5
-switch_mode = 2
+reset = false
 advance_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.attack_timer.time_left == 0"
+advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.get_node(\"Attack\").attack_timer.time_left == 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e104"]
 xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.attack_timer.time_left == 0"
+advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.get_node(\"Attack\").attack_timer.time_left == 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnsrg"]
-xfade_time = 0.5
+xfade_time = 0.3
 switch_mode = 2
 advance_mode = 2
+advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
 states/End/position = Vector2(898, 108)
 states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
 states/Idle/position = Vector2(326, 100)
 states/Sword1/node = SubResource("AnimationNodeAnimation_5e2me")
-states/Sword1/position = Vector2(517, -19)
+states/Sword1/position = Vector2(517, -18)
 states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
 states/Sword2/position = Vector2(699, 108)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
@@ -310,7 +310,7 @@ target_position = Vector3(0, 0, -3)
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5000001, -0.9, -0.59999996)
 
 [node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
-transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.9999998, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
+transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
 
 [node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
@@ -325,7 +325,6 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
-wait_time = 0.5
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]

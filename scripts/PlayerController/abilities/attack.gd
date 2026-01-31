@@ -27,23 +27,16 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 				swing += 1
 
 func _melee_attack(body, damage):
-	if not body in bodies:
-		bodies.append(body)
-		body.take_damage(damage)
+	if swing_in_progress:
+		if not body in bodies:
+			bodies.append(body)
+			body.take_damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if not swing_in_progress:
 		swing = 0
-		
-#func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == "Sword{0}".format([swing]):
-		#bodies.clear()
-		#swing_in_progress = false
-		#attack_timer.start()
 
 func _sword_animation_started(anim_name: StringName) -> void:
-	print(anim_name)
-	print("Sword{0}".format([swing]))
 	if anim_name == "Sword{0}".format([swing]):
 		swinging = false
 
@@ -52,19 +45,4 @@ func _sword_animation_ended(anim_name: StringName) -> void:
 		bodies.clear()
 		swing_in_progress = false
 		attack_timer.start()
-
-#func _on_animation_tree_animation_started(anim_name: StringName) -> void:
-	#print("start ", anim_name)
-	#print("Sword{0}".format([swing]))
-	#print(anim_name == "Sword{0}".format([swing]))
-	#if anim_name == "Sword{0}".format([swing]):
-		#print("start ", anim_name)
-		#swinging = false
-
-#func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	#if anim_name == "Sword{0}".format([swing]):
-		#bodies.clear()
-		#swing_in_progress = false
-#func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	#if anim_name == "Sword{0}".format([swing]):
-		#swinging = false
+		
