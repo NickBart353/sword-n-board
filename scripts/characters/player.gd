@@ -26,6 +26,8 @@ var node_name
 var menu_open = false
 var health: int
 
+var collision: bool = false
+
 func _ready() -> void:
 	health = MAX_HEALTH
 	$CanvasLayer/RedBar/HealthBar.value = health
@@ -38,8 +40,15 @@ func _physics_process(delta: float) -> void:
 	ability.apply_abilities(input, movement, delta)
 	animation.apply_animations(input, movement, ability, delta)
 	
+	if Input.is_action_just_pressed("InputOnAndOf"):
+		set_collision_sword(!collision)
+	
 	interact_with_object()
 	move_and_slide()
+
+func set_collision_sword(thing: bool):
+	$Head/FieldOfView/RightHand/Sword.set_collision_mask_value(1, collision)
+	collision = !collision
 
 func interact_with_object():
 	interacting_object = $"Head/FieldOfView/RayCast3D".get_collider()

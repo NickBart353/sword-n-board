@@ -1,6 +1,7 @@
 extends Enemy
 
 @onready var bombs: Node3D = $Bombs
+@onready var anim_tree: AnimationTree = $AnimationTree
 
 @export var MIN_HEALTH = 0
 @export var MAX_HEALTH = 1000
@@ -13,6 +14,9 @@ var origin_position: Vector3
 var health
 
 func _ready() -> void:
+	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
+	anim_tree.active = true
+	$HealthBar.set_max_vals(MAX_HEALTH)
 	$StateMachine/Dead.died.connect(_remove_me)
 	health = MAX_HEALTH
 	if not origin_position:
@@ -24,9 +28,9 @@ func _physics_process(_delta: float) -> void:
 
 func take_damage(damage_dealt):
 	if health > MIN_HEALTH:
-		$"AnimationTree".set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	health -= damage_dealt
-	print(name, " hit")
+	$HealthBar.update_health(health)
 
 func _remove_me():
 	EventBus.remove_me.emit(self)

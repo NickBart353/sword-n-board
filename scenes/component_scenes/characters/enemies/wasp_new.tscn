@@ -8,24 +8,26 @@
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dv34gxw2ten1h" path="res://animations/wasp_animation_sate_machine.tres" id="4_6eufi"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="4_awi1o"]
-[ext_resource type="Animation" uid="uid://ca1t4o1shs25f" path="res://animations/wasp/Attack.tres" id="5_0bffu"]
+[ext_resource type="Animation" uid="uid://cpth8bo8x2h6y" path="res://animations/wasp/Attack.tres" id="5_0bffu"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="5_i1xyo"]
-[ext_resource type="Animation" uid="uid://bhyc3qhorr11s" path="res://animations/wasp/Damaged.tres" id="6_f2g7w"]
+[ext_resource type="Animation" uid="uid://c32nq7ymf0dxl" path="res://animations/wasp/Damaged.tres" id="6_f2g7w"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_outyk"]
 [ext_resource type="Script" uid="uid://ba18g0av6r7c6" path="res://scripts/state_machine/states/EnemyStates/EnemyEngage.gd" id="7_3gwer"]
-[ext_resource type="Animation" uid="uid://blxj6rqb6uk4q" path="res://animations/wasp/Death.tres" id="7_bf4wv"]
+[ext_resource type="Animation" uid="uid://fvbh0x8x0ull" path="res://animations/wasp/Death.tres" id="7_bf4wv"]
 [ext_resource type="Script" uid="uid://cguhqgwmkpmqk" path="res://scripts/state_machine/states/EnemyStates/EnemyLocked.gd" id="7_exisn"]
-[ext_resource type="Animation" uid="uid://cv8yswmgn8sxr" path="res://animations/wasp/Flying.tres" id="8_o55j2"]
+[ext_resource type="Animation" uid="uid://bqtxx8ahgw6fo" path="res://animations/wasp/Flying.tres" id="8_o55j2"]
 [ext_resource type="Script" uid="uid://cyqje3uiwn2th" path="res://scripts/state_machine/states/EnemyStates/EnemyChanneling.gd" id="9_exisn"]
 [ext_resource type="Script" uid="uid://doh26nhyrwjhc" path="res://scripts/state_machine/states/EnemyStates/EnemyDashing.gd" id="9_i1xyo"]
-[ext_resource type="Animation" uid="uid://34jc2w81o21b" path="res://animations/wasp/Idle.tres" id="9_jym8u"]
+[ext_resource type="Animation" uid="uid://ccmneyf15e705" path="res://animations/wasp/Idle.tres" id="9_jym8u"]
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="9_nsq2h"]
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="10_5gd67"]
 [ext_resource type="Script" uid="uid://dqhemwoe2317a" path="res://scripts/state_machine/states/EnemyStates/EnemyFire.gd" id="10_8wo36"]
 [ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="14_645re"]
 [ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
+[ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="25_f2g7w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm4s7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2g7w"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_awi1o")
 shader_parameter/flash_color = Color(1, 0.48610443, 0.41860744, 1)
@@ -98,7 +100,8 @@ filters = ["", "Wasp01_Armature/Skeleton3D/Wasp01:material_overlay:shader_parame
 animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
-graph_offset = Vector2(-682.4553, 19.911331)
+resource_local_to_scene = true
+graph_offset = Vector2(-414.7836, -19.620575)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_6eufi")
@@ -110,32 +113,30 @@ node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Main", &"OneShot"
 [node name="Wasp" unique_id=1372833755 groups=["Enemy"] instance=ExtResource("1_8403y")]
 safe_margin = 0.05
 script = ExtResource("2_nsq2h")
-MAX_HEALTH = 100
 POISON_BOMB_SCENE = ExtResource("3_outyk")
 poison_blast_bullet_amount = 20
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/0/rotation = Quaternion(-7.54979e-08, -5.6999333e-15, 1, 0)
-bones/1/rotation = Quaternion(3.1363143e-10, 0.9999973, -0.0023553225, 1.331577e-07)
-bones/2/rotation = Quaternion(-0.5520025, -0.2180217, -0.08633919, 0.8001908)
-bones/3/rotation = Quaternion(0.2822582, -0.11719843, 0.039176095, 0.9513465)
-bones/4/rotation = Quaternion(-0.55045855, 0.21642749, 0.089620896, 0.80132556)
-bones/5/rotation = Quaternion(0.2822582, 0.11719844, -0.03917611, 0.9513465)
-bones/6/rotation = Quaternion(-0.39605087, 0.37892163, 0.7952898, 0.258991)
-bones/7/rotation = Quaternion(-0.6156342, -0.07573363, 0.40312997, 0.6728634)
+bones/1/rotation = Quaternion(-9.299332e-09, 0.99755853, 0.0698368, 1.3283295e-07)
+bones/2/rotation = Quaternion(-0.55217165, -0.19764209, -0.2779843, 0.7607687)
+bones/3/rotation = Quaternion(0.3465892, -0.059340928, 0.019836029, 0.93592805)
+bones/4/rotation = Quaternion(-0.490285, 0.19432195, 0.17014971, 0.83241135)
+bones/5/rotation = Quaternion(0.34658924, 0.05934094, -0.019836033, 0.93592805)
+bones/6/rotation = Quaternion(-0.34982708, 0.40734923, 0.8227127, 0.18663181)
+bones/7/rotation = Quaternion(-0.6209535, -0.0882783, 0.4329941, 0.6474101)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.39605063, 0.37892187, 0.7952899, -0.25899103)
-bones/10/rotation = Quaternion(-0.61563414, 0.0757336, -0.4031301, 0.67286336)
+bones/9/rotation = Quaternion(0.34982675, 0.40734947, 0.82271284, -0.18663184)
+bones/10/rotation = Quaternion(-0.6209535, 0.088278264, -0.43299425, 0.6474101)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.8639468, 0.22210515, 0.21870397, 0.39551717)
+bones/12/rotation = Quaternion(-0.8765428, 0.10438056, 0.27453184, 0.38132623)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.86395955, -0.22209425, -0.21872568, 0.3954835)
+bones/14/rotation = Quaternion(-0.87692165, -0.10422026, -0.27485386, 0.38026592)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.41279757, 3.5669336e-07, -2.5837307e-08, 0.9108228)
-bones/18/rotation = Quaternion(0.041536506, 2.7514878e-07, 5.346157e-08, 0.99913704)
+bones/17/rotation = Quaternion(-0.40702504, 3.565227e-07, -2.8094169e-08, 0.9134171)
+bones/18/rotation = Quaternion(0.28667206, 2.8697968e-07, 4.04458e-09, 0.95802885)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
-material_overlay = SubResource("ShaderMaterial_qm4s7")
+material_overlay = SubResource("ShaderMaterial_f2g7w")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -264,6 +265,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -3.74, 4.1)
 [node name="CuttingWind" parent="." index="13" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
 transform = Transform3D(1, 0, 0, 0, 0.23061588, 0.9730449, 0, -0.9730449, 0.23061588, -0.9499999, -5.132751, 6.0685706)
 visible = false
+
+[node name="HealthBar" parent="." index="14" unique_id=1652061932 instance=ExtResource("25_f2g7w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6000001, 0)
 
 [connection signal="area_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_area_entered"]
 [connection signal="body_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_body_entered"]

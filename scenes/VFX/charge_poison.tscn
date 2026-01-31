@@ -41,6 +41,11 @@ use_particle_trails = true
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
 point_count = 1
 
+[sub_resource type="Curve" id="Curve_4wod7"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Curve" id="Curve_pelvl"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -48,6 +53,7 @@ point_count = 2
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_iug44"]
 curve_x = SubResource("Curve_3bunm")
+curve_y = SubResource("Curve_4wod7")
 curve_z = SubResource("Curve_pelvl")
 
 [sub_resource type="Curve" id="Curve_iug44"]

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c411m8it3slm1"]
+
+[ext_resource type="Script" uid="uid://d142wq8oyexoa" path="res://scripts/components/health_bar.gd" id="1_r70fd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kj2ii"]
+bg_color = Color(1, 0.2, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r70fd"]
+bg_color = Color(1, 0.2, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mac2"]
+bg_color = Color(0, 0.8901961, 0.24313726, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kj2ii"]
+viewport_path = NodePath("Container/SubViewport")
+
+[node name="HealthBar" type="Node3D" unique_id=1652061932]
+script = ExtResource("1_r70fd")
+
+[node name="Container" type="Node3D" parent="." unique_id=1606641223]
+
+[node name="SubViewport" type="SubViewport" parent="Container" unique_id=397738627]
+transparent_bg = true
+size = Vector2i(1000, 1000)
+
+[node name="RedBar" type="ProgressBar" parent="Container/SubViewport" unique_id=969993297]
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_kj2ii")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="Container/SubViewport/RedBar" unique_id=1949470404]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_r70fd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1mac2")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Display" type="Sprite3D" parent="." unique_id=361180136]
+billboard = 1
+no_depth_test = true
+texture = SubResource("ViewportTexture_kj2ii")

@@ -362,6 +362,7 @@ offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qbru3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xu2ah")
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=547511172]
 anchors_preset = 8
