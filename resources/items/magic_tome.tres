@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dj2mpnwcd20qm"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_fmv5p"]
+[ext_resource type="Texture2D" uid="uid://bcr6mtc1xqm6r" path="res://my_assets/book.png" id="2_6but8"]
+
+[resource]
+script = ExtResource("1_fmv5p")
+item_name = "Magic Tome"
+item_id = "182471841"
+tooltip = "You're a wizard!"
+sprite = ExtResource("2_6but8")
+drop_chance = 0.05
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

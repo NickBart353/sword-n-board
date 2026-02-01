@@ -96,14 +96,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
 
-#func _open_inventory():
-	#open_inventory.emit()
-	#menu_open = true
-#
-#func _open_pause_menu():
-	#open_pause_menu.emit()
-	#menu_open = true
-
 func take_damage(damage, _body):
 	health -= damage
 	if health <= MIN_HEALTH:

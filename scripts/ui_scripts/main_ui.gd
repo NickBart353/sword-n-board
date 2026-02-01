@@ -1,5 +1,9 @@
 extends Control
 
+@onready var inventory = $PlayerInventory
+@onready var loot = $Loot
+@onready var loot_list = $Loot/LootList
+
 var player_items: Array = []
 var loot_items: Array = []
 var last_open_sack
@@ -15,47 +19,47 @@ func _set_mouse_capture(captured: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func open_inventory():
-	if $PlayerInventory.is_visible():
+	if inventory.is_visible():
 		_set_mouse_capture(false)
-		$PlayerInventory.set_visible(false)
-		$Loot.set_visible(false)
+		inventory.set_visible(false)
+		loot.set_visible(false)
 		_clear_lists()
 		last_open_sack = null
-	elif not $PlayerInventory.is_visible():
+	elif not inventory.is_visible():
 		_set_mouse_capture(true)
 		_clear_lists()
 		_refill_lists()
-		$PlayerInventory.set_visible(true)
+		inventory.set_visible(true)
 
 func open_sack(current_open_sack):
 	_set_mouse_capture(true)
 	_clear_lists()
 	_refill_lists()
 	last_open_sack = current_open_sack
-	$Loot.set_visible(true)
-	$PlayerInventory.set_visible(true)
+	loot.set_visible(true)
+	inventory.set_visible(true)
 
 func close_sack(_sack):
 	_set_mouse_capture(false)
-	$PlayerInventory.set_visible(false)
-	$Loot.set_visible(false)
+	inventory.set_visible(false)
+	loot.set_visible(false)
 	last_open_sack = null
 	_clear_lists()
 
 func get_inventory():
-	return $PlayerInventory.is_visible()
+	return inventory.is_visible()
 
 func _refill_lists():
 	for item in loot_items:
-		var item_index = $Loot/LootList.add_icon_item(item.data.sprite)
-		_set_item_data(item_index, $Loot/LootList, item.data)
+		var item_index = loot_list.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, loot_list, item.data)
 	for item in player_items:
-		var item_index = $PlayerInventory.add_icon_item(item.data.sprite)
-		_set_item_data(item_index, $PlayerInventory, item.data)
+		var item_index = inventory.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, inventory, item.data)
 
 func _clear_lists():
-	$Loot/LootList.clear()
-	$PlayerInventory.clear()
+	loot_list.clear()
+	inventory.clear()
 
 func fill_loot(items):
 	loot_items = items
@@ -64,7 +68,7 @@ func fill_inventory(items):
 	player_items = items
 
 func _on_player_inventory_item_activated(index: int) -> void:
-	if $Loot.is_visible():
+	if loot.is_visible():
 		loot_items.append(player_items[index])
 		player_items.remove_at(index)
 		_update_items()

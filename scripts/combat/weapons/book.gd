@@ -1,4 +1,4 @@
-extends MeleeWeapon
+extends MagicWeapon
 
 signal hit
 

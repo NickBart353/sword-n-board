@@ -1,2 +1,2 @@
 @abstract
-class_name MeleeWeapon extends Node3D
+class_name MeleeWeapon extends Weapon

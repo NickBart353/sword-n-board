@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbgftbbmvka5a"]
+[gd_scene format=3 uid="uid://bbgftbbmvka5a"]
 
 [ext_resource type="Script" uid="uid://bc5k27nigvvro" path="res://scripts/ui_scripts/item.gd" id="1_bjwk1"]
 
-[node name="Item" type="Control"]
+[node name="Item" type="Control" unique_id=238125246]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

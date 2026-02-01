@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bqpnf0ni4gpih"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_keg3j"]
+[ext_resource type="Texture2D" uid="uid://dnifqnmvelpgl" path="res://my_assets/bow.png" id="2_nbp8g"]
+
+[resource]
+script = ExtResource("1_keg3j")
+item_name = "Bow"
+item_id = "12145426"
+tooltip = "An ideal ranged weapon!"
+sprite = ExtResource("2_nbp8g")
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

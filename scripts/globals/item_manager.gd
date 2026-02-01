@@ -7,6 +7,7 @@ const ITEMS: Dictionary = {
 	"iron_sword": preload("res://resources/items/iron_sword.tres"),
 	"wooden_shield": preload("res://resources/items/wooden_shield.tres"),
 	"torch": preload("res://resources/items/torch.tres"),
+	"magic_tome": preload("res://resources/items/magic_tome.tres"),
 }
 
 func generate_loot(_level):

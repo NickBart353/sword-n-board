@@ -7,4 +7,4 @@ extends Resource
 @export var stackable: bool = false
 @export var sprite: Texture2D
 @export var drop_chance: float
-@export var model: String
+@export var mesh: Mesh

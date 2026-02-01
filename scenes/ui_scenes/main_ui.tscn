@@ -22,6 +22,46 @@ same_column_width = true
 fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
+[node name="Character" type="Control" parent="." unique_id=412877429]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Head" type="ItemList" parent="Character" unique_id=1693759210]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 15.0
+offset_right = 326.0
+offset_bottom = 139.0
+
+[node name="Body" type="ItemList" parent="Character" unique_id=1958195038]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 187.0
+offset_right = 324.0
+offset_bottom = 296.0
+
+[node name="Boots" type="ItemList" parent="Character" unique_id=912089763]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 339.0
+offset_right = 324.0
+offset_bottom = 447.0
+
+[node name="MainHand" type="ItemList" parent="Character" unique_id=200975226]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 458.0
+offset_right = 183.0
+offset_bottom = 562.0
+
+[node name="OffHand" type="ItemList" parent="Character" unique_id=2085654]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 455.0
+offset_right = 470.0
+offset_bottom = 572.0
+
 [node name="Loot" type="Control" parent="." unique_id=966276740]
 visible = false
 anchors_preset = 0
