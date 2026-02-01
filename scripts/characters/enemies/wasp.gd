@@ -33,6 +33,7 @@ func take_damage(damage_dealt):
 	$HealthBar.update_health(health)
 
 func _remove_me():
+	EventBus.spawn_loot.emit(self)
 	EventBus.remove_me.emit(self)
 
 func force_engage():

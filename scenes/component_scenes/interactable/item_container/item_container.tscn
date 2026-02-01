@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcouhafyjha1f"]
+[gd_scene format=3 uid="uid://dcouhafyjha1f"]
 
 [ext_resource type="Script" uid="uid://ctolpc6ydk6j1" path="res://scripts/interactable/item_container/item_container.gd" id="1_7tnl2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7tnl2"]
 viewport_path = NodePath("Node3D/SubViewport")
 
-[node name="ItemContainer" type="Node3D"]
+[node name="ItemContainer" type="Node3D" unique_id=1427992213]
 script = ExtResource("1_7tnl2")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=1503176537]
 
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
+[node name="SubViewport" type="SubViewport" parent="Node3D" unique_id=1033649824]
 transparent_bg = true
 size = Vector2i(1000, 1000)
 
-[node name="Label" type="Label" parent="Node3D/SubViewport"]
+[node name="Label" type="Label" parent="Node3D/SubViewport" unique_id=417719491]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -29,7 +29,7 @@ grow_vertical = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text" type="Sprite3D" parent="."]
+[node name="Text" type="Sprite3D" parent="." unique_id=1844960033]
 visible = false
 billboard = 1
 no_depth_test = true

@@ -8,6 +8,7 @@ func _ready() -> void:
 	EventBus.close_container.connect(_close_container)
 	EventBus.open_container.connect(_open_container)
 	EventBus.remove_me.connect(remove_object)
+	EventBus.spawn_loot.connect(_enemy_died)
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	

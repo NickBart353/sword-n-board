@@ -1,23 +1,34 @@
 extends Control
 
-var player_items = []
-var loot_items = []
+var player_items: Array = []
+var loot_items: Array = []
 var last_open_sack
+
+var ui_open: bool
 
 signal update_items
 
+func _set_mouse_capture(captured: bool):
+	if captured:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func open_inventory():
 	if $PlayerInventory.is_visible():
+		_set_mouse_capture(false)
 		$PlayerInventory.set_visible(false)
 		$Loot.set_visible(false)
 		_clear_lists()
 		last_open_sack = null
 	elif not $PlayerInventory.is_visible():
+		_set_mouse_capture(true)
 		_clear_lists()
 		_refill_lists()
 		$PlayerInventory.set_visible(true)
 
 func open_sack(current_open_sack):
+	_set_mouse_capture(true)
 	_clear_lists()
 	_refill_lists()
 	last_open_sack = current_open_sack
@@ -25,6 +36,7 @@ func open_sack(current_open_sack):
 	$PlayerInventory.set_visible(true)
 
 func close_sack(_sack):
+	_set_mouse_capture(false)
 	$PlayerInventory.set_visible(false)
 	$Loot.set_visible(false)
 	last_open_sack = null

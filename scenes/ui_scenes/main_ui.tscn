@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://covjft2d4qaw3"]
+[gd_scene format=3 uid="uid://covjft2d4qaw3"]
 
 [ext_resource type="Script" uid="uid://tndqhv22gl7j" path="res://scripts/ui_scripts/main_ui.gd" id="1_tskmm"]
 
-[node name="MainUI" type="Control"]
+[node name="MainUI" type="Control" unique_id=1110628191]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tskmm")
 
-[node name="PlayerInventory" type="ItemList" parent="."]
+[node name="PlayerInventory" type="ItemList" parent="." unique_id=443316185]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 100.0
@@ -22,13 +22,13 @@ same_column_width = true
 fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="Loot" type="Control" parent="."]
+[node name="Loot" type="Control" parent="." unique_id=966276740]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="LootList" type="ItemList" parent="Loot"]
+[node name="LootList" type="ItemList" parent="Loot" unique_id=255561763]
 clip_contents = false
 layout_mode = 0
 offset_left = 150.0
@@ -40,7 +40,7 @@ same_column_width = true
 fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="Label" type="Label" parent="Loot"]
+[node name="Label" type="Label" parent="Loot" unique_id=797299697]
 layout_mode = 0
 offset_left = 445.0
 offset_top = 521.0
@@ -48,7 +48,7 @@ offset_right = 716.0
 offset_bottom = 544.0
 text = "Press Enter to move selected Items"
 
-[node name="Label2" type="Label" parent="Loot"]
+[node name="Label2" type="Label" parent="Loot" unique_id=1255135179]
 layout_mode = 0
 offset_left = 500.0
 offset_top = 548.0

@@ -23,4 +23,5 @@ func generate_loot(_level):
 					var item_instance: Control = item_scene.instantiate()
 					item_instance.data = ITEMS[item_key]
 					items.append(item_instance)
+					print(item_instance.name)
 		return items

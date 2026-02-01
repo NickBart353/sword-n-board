@@ -15,8 +15,6 @@ var hunting_bodies: Array
 var attacking_bodies: Array
 var damage = 10
 
-var level = 5
-
 signal died
 
 @export var movement_speed = 5

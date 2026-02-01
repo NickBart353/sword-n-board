@@ -26,10 +26,10 @@ func hover():
 
 func un_hover():
 	super()
-	if hovered:
-		EventBus.close_container.emit(self)
-		open = false
-		hovered = false
+	#if hovered:
+	EventBus.close_container.emit(self)
+	open = false
+	hovered = false
 
 func update_items(new_items, sack_name):
 	if sack_name == parent:

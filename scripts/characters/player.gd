@@ -29,6 +29,7 @@ var health: int
 var collision: bool = false
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	health = MAX_HEALTH
 	$CanvasLayer/RedBar/HealthBar.value = health
 	look_rotation.y = rotation.y
@@ -44,6 +45,7 @@ func _physics_process(delta: float) -> void:
 		set_collision_sword(!collision)
 	
 	interact_with_object()
+	_open_inventory()
 	move_and_slide()
 
 func set_collision_sword(thing: bool):
@@ -68,6 +70,10 @@ func interact_with_object():
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
 
+func _open_inventory():
+	if input.inventory:
+		open_inventory.emit(items)
+
 func get_equipped_primary():
 	var weapon: Array = $Head/FieldOfView/RightHand.get_children()
 	if weapon:
@@ -80,9 +86,7 @@ func get_equipped_secondary():
 		return offhand[0].name
 	return "Unarmed"
 
-func _unhandled_input(event: InputEvent) -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion:
 		look_rotation.x -= event.relative.y * look_speed
 		look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
@@ -92,13 +96,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
 
-func _open_inventory():
-	open_inventory.emit()
-	menu_open = true
-
-func _open_pause_menu():
-	open_pause_menu.emit()
-	menu_open = true
+#func _open_inventory():
+	#open_inventory.emit()
+	#menu_open = true
+#
+#func _open_pause_menu():
+	#open_pause_menu.emit()
+	#menu_open = true
 
 func take_damage(damage, _body):
 	health -= damage
