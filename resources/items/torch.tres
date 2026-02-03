@@ -10,4 +10,5 @@ item_id = "2de84977-0bb3-45b8-8ed1-ace14908b311"
 tooltip = "It shines a bright light!"
 sprite = ExtResource("2_d17os")
 drop_chance = 1.0
+type = 3
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

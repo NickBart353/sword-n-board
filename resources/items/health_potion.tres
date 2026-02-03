@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://i5hqgm1uvl7p"]
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://i5hqgm1uvl7p"]
 
 [ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_mr6qb"]
 [ext_resource type="Texture2D" uid="uid://bk22a0h3wbp50" path="res://my_assets/bottle.png" id="2_tip3f"]
@@ -11,4 +11,5 @@ tooltip = "It heals!"
 stackable = true
 sprite = ExtResource("2_tip3f")
 drop_chance = 0.1
+type = 4
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

@@ -4,7 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://di25n37jxpkdy" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial2.res" id="1_hjkqx"]
 [ext_resource type="ArrayMesh" uid="uid://cspl4ecr6gfui" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial3.res" id="2_2v6b4"]
 [ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="2_hu7nn"]
-[ext_resource type="ArrayMesh" uid="uid://cfyie31qtbyil" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial.res" id="3_hu7nn"]
+[ext_resource type="ArrayMesh" uid="uid://b0suxyv1h4hce" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial.res" id="3_hu7nn"]
 
 [sub_resource type="Resource" id="Resource_fe2k5"]
 script = ExtResource("2_hu7nn")

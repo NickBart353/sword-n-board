@@ -8,3 +8,6 @@ extends Resource
 @export var sprite: Texture2D
 @export var drop_chance: float
 @export var mesh: Mesh
+@export var item_type: ITEM_TYPE
+
+enum ITEM_TYPE {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, OFF_HAND, CONSUMABLE}

@@ -3,9 +3,22 @@ extends Control
 @onready var inventory = $PlayerInventory
 @onready var loot = $Loot
 @onready var loot_list = $Loot/LootList
+@onready var head = $Character/Head
+@onready var body = $Character/Body
+@onready var boots = $Character/Boots
+@onready var main_hand = $Character/MainHand
+@onready var off_hand = $Character/OffHand
+@onready var consumable = $Character/OffHand
 
 var player_items: Array = []
 var loot_items: Array = []
+var equipped_head: Item
+var equipped_body: Item
+var equipped_boot: Item
+var equipped_main_hand: Item
+var equipped_off_hand: Item
+var equipped_consumable: Item
+
 var last_open_sack
 
 var ui_open: bool
@@ -19,6 +32,7 @@ func _set_mouse_capture(captured: bool):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func open_inventory():
+	print(player_items)
 	if inventory.is_visible():
 		_set_mouse_capture(false)
 		inventory.set_visible(false)
@@ -73,7 +87,33 @@ func _on_player_inventory_item_activated(index: int) -> void:
 		player_items.remove_at(index)
 		_update_items()
 	else:
-		pass
+		match player_items[index].data.item_type:
+			ItemData.ITEM_TYPE.MELEE_WEAPON:
+				if equipped_main_hand:
+					pass
+				else:
+					pass
+			ItemData.ITEM_TYPE.RANGED_WEAPON:
+				if equipped_main_hand:
+					pass
+				else:
+					pass
+			ItemData.ITEM_TYPE.MAGIC_WEAPON:
+				if equipped_main_hand:
+					pass
+				else:
+					pass
+			ItemData.ITEM_TYPE.OFF_HAND:
+				if equipped_off_hand:
+					pass
+				else:
+					pass
+			ItemData.ITEM_TYPE.CONSUMABLE:
+				if equipped_consumable:
+					pass
+				else:
+					pass
+		
 
 func _on_loot_list_item_activated(index: int) -> void:
 	if player_items.size() < 9:
