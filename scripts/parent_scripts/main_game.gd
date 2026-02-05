@@ -2,7 +2,9 @@ class_name Main
 extends Node3D
 
 const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactable/item_sack.tscn")
+
 @onready var main_ui = $CanvasLayer/MainUI
+@onready var player = $Player
 
 func _ready() -> void:
 	EventBus.close_container.connect(_close_container)
@@ -12,7 +14,7 @@ func _ready() -> void:
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	
-	$Player.open_inventory.connect(open_inventory)
+	player.open_inventory.connect(open_inventory)
 	main_ui.update_items.connect(update_items)
 	
 	for enemy in $Mobs.get_children():
@@ -29,17 +31,11 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	$Loot.add_child(item_sack_instance, true)
 	item_sack_instance.global_position = loot_position
 
-func open_inventory(items: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
+func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
 	var show_ui = not main_ui.get_ui()
 	_change_ui_state(show_ui)
 	
-	main_ui.fill_head(head)
-	main_ui.fill_body(body)
-	main_ui.fill_boots(boots)
-	main_ui.fill_main_hand(main_hand)
-	main_ui.fill_off_hand(off_hand)
-	main_ui.fill_consumable(consumable)
-	main_ui.fill_inventory(items)
+	main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
 	main_ui.open_inventory()
 
 func _open_container(container):
@@ -58,9 +54,9 @@ func _change_ui_state(show_ui: bool):
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func update_items(player_items, loot_items, sack_name):
+func update_items(player_items, loot_items, sack_name, head_item: Item, body_item: Item, boots_item: Item, main_hand_item: Item, off_hand_item: Item, consumable_item: Item):
 	EventBus.update_items.emit(loot_items, sack_name)
-	$Player.items = player_items
+	player.update_items(player_items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
 func remove_object(object):
 	object.queue_free()

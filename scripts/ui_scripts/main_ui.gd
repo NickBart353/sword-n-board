@@ -11,7 +11,7 @@ extends Control
 @onready var boots = $Character/Boots
 @onready var main_hand = $Character/MainHand
 @onready var off_hand = $Character/OffHand
-@onready var consumable = $Character/OffHand
+@onready var consumable = $Character/Consumable
 
 var player_items: Array = []
 var loot_items: Array = []
@@ -41,15 +41,14 @@ func open_inventory():
 		inventory.set_visible(false)
 		character.set_visible(false)
 		loot.set_visible(false)
-		_clear_lists()
 		last_open_sack = null
+		_update_items()
 	elif not inventory.is_visible():
 		ui_open = true
 		_set_mouse_capture(true)
-		_clear_lists()
-		_refill_lists()
 		inventory.set_visible(true)
 		character.set_visible(true)
+		_update_items()
 
 func open_sack(current_open_sack):
 	ui_open = true
@@ -78,38 +77,25 @@ func get_ui() -> bool:
 	return ui_open
 
 func _refill_lists():
-	var item_index: int
-	for item in loot_items:
-		item_index = loot_list.add_icon_item(item.data.sprite)
-		_set_item_data(item_index, loot_list, item.data)
+	_fill_list(loot_list, loot_items)
+	_fill_list(inventory_list, player_items)
 	
-	for item in player_items:
-		item_index = inventory_list.add_icon_item(item.data.sprite)
-		_set_item_data(item_index, inventory_list, item.data)
-	
-	if equipped_head:
-		item_index = head.add_icon_item(equipped_head.data.sprite)
-		_set_item_data(item_index, head, equipped_head.data)
-	
-	if equipped_body:
-		item_index = body.add_icon_item(equipped_body.data.sprite)
-		_set_item_data(item_index, body, equipped_body.data)
-	
-	if equipped_boots:
-		item_index = boots.add_icon_item(equipped_boots.data.sprite)
-		_set_item_data(item_index, boots, equipped_boots.data)
-	
-	if equipped_main_hand:
-		item_index = main_hand.add_icon_item(equipped_main_hand.data.sprite)
-		_set_item_data(item_index, main_hand, equipped_main_hand.data)
-	
-	if equipped_off_hand:
-		item_index = off_hand.add_icon_item(equipped_off_hand.data.sprite)
-		_set_item_data(item_index, off_hand, equipped_off_hand.data)
-	
-	if equipped_consumable:
-		item_index = consumable.add_icon_item(equipped_consumable.data.sprite)
-		_set_item_data(item_index, consumable, equipped_consumable.data)
+	_fill_slots(equipped_head, head)
+	_fill_slots(equipped_body, body)
+	_fill_slots(equipped_boots, boots)
+	_fill_slots(equipped_main_hand, main_hand)
+	_fill_slots(equipped_off_hand, off_hand)
+	_fill_slots(equipped_consumable, consumable)
+
+func _fill_list(display_list: Node, item_list: Array):
+	for item in item_list:
+		var item_index: int = display_list.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, display_list, item.data)
+
+func _fill_slots(item: Item, slot: Node):
+	if item:
+		var item_index: int = slot.add_icon_item(item.data.sprite)
+		_set_item_data(item_index, slot, item.data)
 
 func _clear_lists():
 	loot_list.clear()
@@ -124,26 +110,14 @@ func _clear_lists():
 func fill_loot(items):
 	loot_items = items
 
-func fill_inventory(items):
-	player_items = items
-
-func fill_head(item: Item):
-	equipped_head = item
-
-func fill_body(item: Item):
-	equipped_body = item
-
-func fill_boots(item: Item):
-	equipped_boots = item
-
-func fill_main_hand(item: Item):
-	equipped_main_hand = item
-
-func fill_off_hand(item: Item):
-	equipped_off_hand = item
-
-func fill_consumable(item: Item):
-	equipped_consumable = item
+func fill_character_items(p_inventory, p_head, p_body, p_boots, p_main_hand, p_off_hand, p_consumable):
+	player_items = p_inventory
+	equipped_head = p_head
+	equipped_body = p_body
+	equipped_boots = p_boots
+	equipped_main_hand = p_main_hand
+	equipped_off_hand = p_off_hand
+	equipped_consumable = p_consumable
 
 func _on_player_inventory_item_activated(index: int) -> void:
 	if loot.is_visible():
@@ -153,41 +127,75 @@ func _on_player_inventory_item_activated(index: int) -> void:
 	else:
 		match player_items[index].data.item_type:
 			ItemData.ITEM_TYPE.MELEE_WEAPON:
-				if equipped_main_hand:
-					equipped_main_hand = player_items[index]
-					player_items.remove_at(index)
-				else:
-					player_items.append(equipped_main_hand)
-					equipped_main_hand = null
+				_swap_weapons(true, index)
 			ItemData.ITEM_TYPE.RANGED_WEAPON:
-				if equipped_main_hand:
-					equipped_main_hand = player_items[index]
-					player_items.remove_at(index)
-				else:
-					player_items.append(equipped_main_hand)
-					equipped_main_hand = null
+				_swap_weapons(true, index)
 			ItemData.ITEM_TYPE.MAGIC_WEAPON:
-				if equipped_main_hand:
-					equipped_main_hand = player_items[index]
-					player_items.remove_at(index)
-				else:
-					player_items.append(equipped_main_hand)
-					equipped_main_hand = null
+				_swap_weapons(true, index)
 			ItemData.ITEM_TYPE.OFF_HAND:
-				if equipped_off_hand:
-					equipped_off_hand = player_items[index]
-					player_items.remove_at(index)
-				else:
-					player_items.append(equipped_off_hand)
-					equipped_off_hand = null
+				_swap_weapons(false, index)
 			ItemData.ITEM_TYPE.CONSUMABLE:
-				if equipped_consumable:
-					equipped_consumable = player_items[index]
-					player_items.remove_at(index)
-				else:
-					player_items.append(equipped_consumable)
-					equipped_consumable = null
+				equipped_consumable = _swap_items(equipped_consumable, index)
 		_update_items()
+
+func _swap_weapons(is_main_hand: bool, index: int):
+	if is_main_hand:
+		if equipped_main_hand:
+			if player_items[index].data.two_handed:
+				var temp_main_hand: Item = equipped_main_hand
+				var temp_off_hand: Item = equipped_off_hand
+				if not _two_handed_weapon_equipped() and equipped_off_hand:
+					player_items.append(temp_off_hand)
+				equipped_main_hand = player_items[index]
+				equipped_off_hand = player_items[index]
+				player_items.remove_at(index)
+				player_items.append(temp_main_hand)
+			else:
+				if _two_handed_weapon_equipped(): 
+					equipped_off_hand = null
+				var temp_item: Item = equipped_main_hand
+				equipped_main_hand = player_items[index]
+				player_items.remove_at(index)
+				player_items.append(temp_item)
+		else:
+			if player_items[index].data.two_handed:
+				if equipped_off_hand:
+					player_items.append(equipped_off_hand)
+				equipped_main_hand = player_items[index]
+				equipped_off_hand = player_items[index]
+				player_items.remove_at(index)
+			else:
+				equipped_main_hand = player_items[index]
+				player_items.remove_at(index)
+	else:
+		if not equipped_off_hand:
+			equipped_off_hand = player_items[index]
+			player_items.remove_at(index)
+		elif equipped_off_hand and equipped_off_hand != equipped_main_hand:
+			var temp_item: Item = equipped_off_hand
+			equipped_off_hand = player_items[index]
+			player_items.remove_at(index)
+			player_items.append(temp_item)
+		elif _two_handed_weapon_equipped():
+			var temp_item: Item = equipped_main_hand
+			equipped_main_hand = null
+			equipped_off_hand = player_items[index]
+			player_items.remove_at(index)
+			player_items.append(temp_item)
+
+func _swap_items(slot: Item, index: int):
+	if slot:
+		var temp_item: Item = slot
+		slot = player_items[index]
+		player_items.remove_at(index)
+		player_items.append(temp_item)
+	else:
+		slot = player_items[index]
+		player_items.remove_at(index)
+	return slot
+
+func _two_handed_weapon_equipped():
+	return equipped_main_hand == equipped_off_hand
 
 func _on_loot_list_item_activated(index: int) -> void:
 	if player_items.size() < 9:
@@ -198,7 +206,7 @@ func _on_loot_list_item_activated(index: int) -> void:
 		print("Inventory full!")
 
 func _update_items():
-	update_items.emit(player_items, loot_items, last_open_sack)
+	update_items.emit(player_items, loot_items, last_open_sack, equipped_head, equipped_body, equipped_boots, equipped_main_hand, equipped_off_hand, equipped_consumable)
 	_clear_lists()
 	_refill_lists()
 

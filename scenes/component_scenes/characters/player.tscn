@@ -315,6 +315,8 @@ transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.086162
 [node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 
+[node name="Consumable" type="Marker3D" parent="." unique_id=1692377005]
+
 [node name="HurtBox" type="Area3D" parent="." unique_id=848838605 groups=["PlayerHurtBox"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=656745909]

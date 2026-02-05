@@ -47,16 +47,9 @@ func _physics_process(delta: float) -> void:
 	ability.apply_abilities(input, movement, delta)
 	animation.apply_animations(input, movement, ability, delta)
 	
-	if Input.is_action_just_pressed("InputOnAndOf"):
-		set_collision_sword(!collision)
-	
 	interact_with_object()
 	_open_inventory()
 	move_and_slide()
-
-func set_collision_sword(thing: bool):
-	$Head/FieldOfView/RightHand/Sword.set_collision_mask_value(1, collision)
-	collision = !collision
 
 func interact_with_object():
 	interacting_object = $"Head/FieldOfView/RayCast3D".get_collider()
@@ -91,6 +84,27 @@ func get_equipped_secondary():
 	if offhand:
 		return offhand[0].name
 	return "Unarmed"
+
+func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
+	var two_handed: bool = new_main_hand_item == new_off_hand_item
+	
+	items = player_items
+	if head_item != new_head_item:
+		head_item = new_head_item
+	if body_item != new_body_item:
+		body_item = new_body_item
+	if boots_item != new_boots_item:
+		boots_item = new_boots_item
+	if consumable_item != new_consumable_item:
+		consumable_item = new_consumable_item
+	
+	if two_handed:
+		pass
+	else:
+		if main_hand_item != new_main_hand_item:
+			main_hand_item = new_main_hand_item
+		if off_hand_item != new_off_hand_item and not two_handed: 
+			off_hand_item = new_off_hand_item
 
 func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion:

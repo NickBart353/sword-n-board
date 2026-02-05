@@ -29,7 +29,6 @@ fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
 [node name="Character" type="Control" parent="." unique_id=412877429]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -65,16 +64,16 @@ offset_bottom = 562.0
 [node name="OffHand" type="ItemList" parent="Character" unique_id=2085654]
 layout_mode = 0
 offset_left = 244.0
-offset_top = 456.0
+offset_top = 454.0
 offset_right = 350.0
-offset_bottom = 573.0
+offset_bottom = 571.0
 
 [node name="Consumable" type="ItemList" parent="Character" unique_id=116859810]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 310.0
-offset_right = 348.0
-offset_bottom = 427.0
+offset_left = 240.0
+offset_top = 305.0
+offset_right = 346.0
+offset_bottom = 422.0
 
 [node name="Loot" type="Control" parent="." unique_id=966276740]
 visible = false
