@@ -18,15 +18,21 @@ const MIN_HEALTH: int = 0
 
 var primary_equipped: String = "None"
 var secondary_equipped: String = "None"
-var items: Array = []
 var look_rotation : Vector2
 var interacting_object
 var last_hovered_object
 var node_name
 var menu_open = false
 var health: int
-
 var collision: bool = false
+
+var items: Array = []
+var head_item: Item
+var body_item: Item
+var boots_item: Item
+var main_hand_item: Item
+var off_hand_item: Item
+var consumable_item: Item
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -72,7 +78,7 @@ func interact_with_object():
 
 func _open_inventory():
 	if input.inventory:
-		open_inventory.emit(items)
+		open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
 func get_equipped_primary():
 	var weapon: Array = $Head/FieldOfView/RightHand.get_children()

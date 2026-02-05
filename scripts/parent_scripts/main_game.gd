@@ -29,9 +29,16 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	$Loot.add_child(item_sack_instance, true)
 	item_sack_instance.global_position = loot_position
 
-func open_inventory(items):
-	var show_ui = not main_ui.get_inventory()
+func open_inventory(items: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
+	var show_ui = not main_ui.get_ui()
 	_change_ui_state(show_ui)
+	
+	main_ui.fill_head(head)
+	main_ui.fill_body(body)
+	main_ui.fill_boots(boots)
+	main_ui.fill_main_hand(main_hand)
+	main_ui.fill_off_hand(off_hand)
+	main_ui.fill_consumable(consumable)
 	main_ui.fill_inventory(items)
 	main_ui.open_inventory()
 

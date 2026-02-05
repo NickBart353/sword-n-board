@@ -11,7 +11,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tskmm")
 
-[node name="PlayerInventory" type="ItemList" parent="." unique_id=443316185]
+[node name="Inventory" type="Control" parent="." unique_id=2085284406]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InventoryList" type="ItemList" parent="Inventory" unique_id=443316185]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 100.0
@@ -23,6 +29,7 @@ fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
 [node name="Character" type="Control" parent="." unique_id=412877429]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -103,5 +110,5 @@ offset_right = 716.0
 offset_bottom = 571.0
 text = "Double click loot item"
 
-[connection signal="item_activated" from="PlayerInventory" to="." method="_on_player_inventory_item_activated"]
+[connection signal="item_activated" from="Inventory/InventoryList" to="." method="_on_player_inventory_item_activated"]
 [connection signal="item_activated" from="Loot/LootList" to="." method="_on_loot_list_item_activated"]
