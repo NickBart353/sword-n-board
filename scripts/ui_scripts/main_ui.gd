@@ -40,8 +40,11 @@ func open_inventory():
 		_set_mouse_capture(false)
 		inventory.set_visible(false)
 		character.set_visible(false)
+		if loot.is_visible() and last_open_sack:
+			last_open_sack.get_node("ItemContainer").close_me() # DOES NOT WORK
 		loot.set_visible(false)
 		last_open_sack = null
+
 		_update_items()
 	elif not inventory.is_visible():
 		ui_open = true
@@ -58,6 +61,7 @@ func open_sack(current_open_sack):
 	last_open_sack = current_open_sack
 	loot.set_visible(true)
 	inventory.set_visible(true)
+	character.set_visible(false)
 
 func close_sack(_sack):
 	ui_open = false
@@ -126,15 +130,15 @@ func _on_player_inventory_item_activated(index: int) -> void:
 		_update_items()
 	else:
 		match player_items[index].data.item_type:
-			ItemData.ITEM_TYPE.MELEE_WEAPON:
+			ItemData.ITEM_CATEGORY.MELEE_WEAPON:
 				_swap_weapons(true, index)
-			ItemData.ITEM_TYPE.RANGED_WEAPON:
+			ItemData.ITEM_CATEGORY.RANGED_WEAPON:
 				_swap_weapons(true, index)
-			ItemData.ITEM_TYPE.MAGIC_WEAPON:
+			ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
 				_swap_weapons(true, index)
-			ItemData.ITEM_TYPE.OFF_HAND:
+			ItemData.ITEM_CATEGORY.OFF_HAND:
 				_swap_weapons(false, index)
-			ItemData.ITEM_TYPE.CONSUMABLE:
+			ItemData.ITEM_CATEGORY.CONSUMABLE:
 				equipped_consumable = _swap_items(equipped_consumable, index)
 		_update_items()
 

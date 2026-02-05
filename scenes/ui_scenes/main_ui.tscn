@@ -29,6 +29,7 @@ fixed_column_width = 32
 fixed_icon_size = Vector2i(32, 32)
 
 [node name="Character" type="Control" parent="." unique_id=412877429]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

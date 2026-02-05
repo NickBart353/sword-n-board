@@ -11,5 +11,6 @@ tooltip = "It heals!"
 stackable = true
 sprite = ExtResource("2_tip3f")
 drop_chance = 1.0
+item_category = 4
 item_type = 4
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

@@ -26,7 +26,6 @@ func hover():
 
 func un_hover():
 	super()
-	#if hovered:
 	EventBus.close_container.emit(self)
 	open = false
 	hovered = false
@@ -37,3 +36,6 @@ func update_items(new_items, sack_name):
 		if items.is_empty():
 			EventBus.close_container.emit(self)
 			items_empty.emit()
+
+func close_me():
+	open = false

@@ -103,6 +103,7 @@ func update_items(player_items, new_head_item: Item, new_body_item: Item, new_bo
 	else:
 		if main_hand_item != new_main_hand_item:
 			main_hand_item = new_main_hand_item
+			
 		if off_hand_item != new_off_hand_item and not two_handed: 
 			off_hand_item = new_off_hand_item
 

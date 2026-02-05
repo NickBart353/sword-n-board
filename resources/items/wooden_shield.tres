@@ -5,11 +5,11 @@
 
 [resource]
 script = ExtResource("1_o6vov")
-damage = 0
 item_name = "Wooden shield"
 item_id = "8f767e0e-2df8-41e3-bc02-50d0e9147584"
 tooltip = "It blocks hits!"
 sprite = ExtResource("2_o6vov")
 drop_chance = 1.0
+item_category = 3
 item_type = 3
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"
