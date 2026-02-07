@@ -1,32 +1,25 @@
 [gd_scene format=3 uid="uid://tw3fimbowi7s"]
 
-[ext_resource type="Script" uid="uid://b4nnq10rgc1ro" path="res://scripts/combat/weapons/book.gd" id="1_2v6b4"]
+[ext_resource type="Script" uid="uid://b4nnq10rgc1ro" path="res://scripts/item_entity/weapons/book.gd" id="1_2v6b4"]
 [ext_resource type="ArrayMesh" uid="uid://di25n37jxpkdy" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial2.res" id="1_hjkqx"]
 [ext_resource type="ArrayMesh" uid="uid://cspl4ecr6gfui" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial3.res" id="2_2v6b4"]
-[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="2_hu7nn"]
 [ext_resource type="ArrayMesh" uid="uid://b0suxyv1h4hce" path="res://assets/sketchfab/3dmodels/book/mesh/Sketchfab_Scene_defaultMaterial.res" id="3_hu7nn"]
-
-[sub_resource type="Resource" id="Resource_fe2k5"]
-script = ExtResource("2_hu7nn")
-two_handen = true
-metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
 
 [sub_resource type="Skin" id="Skin_fe2k5"]
 
 [node name="Book" type="Node3D" unique_id=4035161]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.8660254, -0.49999997, 0, 0.5, 0.8660253, 0, 0, 0)
 script = ExtResource("1_2v6b4")
-data = SubResource("Resource_fe2k5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1841555926]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6, 4.7000003, -21.000002)
+transform = Transform3D(0.18793829, -0.034202006, -0.0592396, 0.034201987, 0.19698462, -0.0052227676, 0.05923958, -0.0052227005, 0.19095384, -4.199988, 0.26391053, -6.0835223)
 mesh = ExtResource("1_hjkqx")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1991666876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6, 4.7000003, -21.000002)
+transform = Transform3D(0.18793829, -0.034202006, -0.0592396, 0.034201987, 0.19698462, -0.0052227676, 0.05923958, -0.0052227005, 0.19095384, -4.199988, 0.26391053, -6.0835223)
 mesh = ExtResource("2_2v6b4")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1177510138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6, 4.7000003, -21.000002)
+transform = Transform3D(0.18793829, -0.034202006, -0.0592396, 0.034201987, 0.19698462, -0.0052227676, 0.05923958, -0.0052227005, 0.19095384, -4.199988, 0.26391053, -6.0835223)
 mesh = ExtResource("3_hu7nn")
 skin = SubResource("Skin_fe2k5")

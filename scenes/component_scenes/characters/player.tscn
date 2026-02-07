@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/combat/weapons/sword.tscn" id="1_sf0kc"]
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="1_sf0kc"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
@@ -47,14 +47,14 @@ resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/path = NodePath("Head:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0)]
+"values": [Vector3(0, 0.59999996, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -71,14 +71,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head:position")
+tracks/2/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.59999996, 0)]
+"values": [Vector3(0, 2.0861626e-07, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8gp4u"]
@@ -87,26 +87,26 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.38048178, 3.0909781, -1.8395771)]
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.589, -0.797, -0.829)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.36666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.589, -0.797, -0.829)]
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.38048178, 3.0909781, -1.8395771)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -132,26 +132,26 @@ length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.055850536, 4.373795, -1.0192723), Vector3(0.038397245, -0.4171337, -1.569051)]
+"values": [Vector3(-0.659, -0.402, -0.899), Vector3(0.711, -0.582, -1.089)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.659, -0.402, -0.899), Vector3(0.711, -0.582, -1.089)]
+"values": [Vector3(0.055850536, 4.373795, -1.0192723), Vector3(0.038397245, -0.4171337, -1.569051)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -177,26 +177,26 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-1.5369015, 1.2246284, -1.0746439), Vector3(-1.2897983, 0.8290314, -0.71733034)]
+"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.62, -0.902, 0.54), Vector3(0.336, -0.497, -1.364)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.62, -0.902, 0.54), Vector3(0.336, -0.497, -1.364)]
+"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-1.5369015, 1.2246284, -1.0746439), Vector3(-1.2897983, 0.8290314, -0.71733034)]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -315,7 +315,18 @@ transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.086162
 [node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 
-[node name="Consumable" type="Marker3D" parent="." unique_id=1692377005]
+[node name="Slots" type="Node3D" parent="." unique_id=64799682]
+
+[node name="Head" type="Marker3D" parent="Slots" unique_id=1552716664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="Body" type="Marker3D" parent="Slots" unique_id=357973195]
+
+[node name="Boots" type="Marker3D" parent="Slots" unique_id=1658346243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.77399564, 0)
+
+[node name="Consumable" type="Marker3D" parent="Slots" unique_id=1692377005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.1, 0)
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=848838605 groups=["PlayerHurtBox"]]
 
@@ -349,10 +360,10 @@ script = ExtResource("6_1e104")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 
 [node name="RedBar" type="ProgressBar" parent="CanvasLayer" unique_id=1448724626]
-offset_left = 77.0
-offset_top = 575.0
-offset_right = 331.0
-offset_bottom = 602.0
+offset_left = 42.0
+offset_top = 47.0
+offset_right = 296.0
+offset_bottom = 74.0
 theme_override_styles/background = SubResource("StyleBoxFlat_oijqy")
 show_percentage = false
 metadata/_edit_use_anchors_ = true

@@ -1,8 +1,8 @@
 extends Node
 
 const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
-const action_sword_item_scene: PackedScene = preload("res://scenes/component_scenes/combat/weapons/sword.tscn")
-const action_book_item_scene: PackedScene = preload("res://scenes/component_scenes/combat/weapons/book.tscn")
+#const action_sword_item_scene: PackedScene = preload("res://scenes/component_scenes/combat/weapons/sword.tscn")
+#const action_book_item_scene: PackedScene = preload("res://scenes/component_scenes/combat/weapons/book.tscn")
 
 const ITEMS: Dictionary = {
 	"health_potion": preload("res://resources/items/health_potion.tres"),

@@ -3,7 +3,7 @@ extends Interactable
 
 var items: Array = []
 var open = false
-var parent: String = ""
+var parent: Node
 
 signal items_empty
 
@@ -31,7 +31,7 @@ func un_hover():
 	hovered = false
 
 func update_items(new_items, sack_name):
-	if sack_name == parent:
+	if sack_name == parent.name:
 		items = new_items
 		if items.is_empty():
 			EventBus.close_container.emit(self)

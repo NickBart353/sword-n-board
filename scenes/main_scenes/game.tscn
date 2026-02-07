@@ -33,10 +33,6 @@ glow_intensity = 3.0
 glow_strength = 0.67
 glow_bloom = 0.1
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_leqql"]
-height = 13.65
-radius = 5.4
-
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
 
@@ -50,6 +46,10 @@ light_indirect_energy = 0.83
 light_volumetric_fog_energy = 0.662
 light_specular = 0.775
 shadow_enabled = true
+shadow_normal_bias = 2.28
+shadow_transmittance_bias = 0.0
+shadow_opacity = 0.85
+shadow_blur = 3.08
 
 [node name="Player" parent="." unique_id=1982396579 instance=ExtResource("3_rbptj")]
 transform = Transform3D(-0.50000006, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.50000006, 100.76828, 20, -76.081505)
@@ -113,10 +113,3 @@ transform = Transform3D(-0.76604444, 0, -0.64278764, 0, 1, 0, 0.64278764, 0, -0.
 
 [node name="Wasp3" parent="." unique_id=946798705 instance=ExtResource("7_leqql")]
 transform = Transform3D(-0.86602545, 0, 0.5, 0, 1, 0, -0.5, 0, -0.86602545, 60.82666, 19.3, -65.89647)
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=167891100]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=143340289]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.200005, 11.574999, -138.6)
-shape = SubResource("CylinderShape3D_leqql")
-debug_color = Color(0.5347209, 0.56982213, 0, 0.41960785)

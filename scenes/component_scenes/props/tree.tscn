@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fc2n4hnsylyd"]
 
-[ext_resource type="PackedScene" uid="uid://ck3aaocm3dpb1" path="res://my_assets/tree.blend" id="1_hvj1q"]
+[ext_resource type="PackedScene" uid="uid://ck3aaocm3dpb1" path="res://my_assets/models/tree.blend" id="1_hvj1q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5t8q"]
 radius = 0.1

@@ -5,7 +5,7 @@ var open: bool = false
 var in_motion = false
 
 func _ready() -> void:
-	$ItemContainer.parent = name
+	$ItemContainer.parent = self
 	$ItemContainer._interact.connect(interact)
 
 func interact():

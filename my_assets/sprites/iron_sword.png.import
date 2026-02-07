@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cps1f0s1r6elj"
-path="res://.godot/imported/wooden_shield.png-3be485041914a0803e7e24db2e9533e9.ctex"
+uid="uid://dcgq320jghn3y"
+path="res://.godot/imported/iron_sword.png-a0f66a5cecf4709508a9094b88e533e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://my_assets/wooden_shield.png"
-dest_files=["res://.godot/imported/wooden_shield.png-3be485041914a0803e7e24db2e9533e9.ctex"]
+source_file="res://my_assets/sprites/iron_sword.png"
+dest_files=["res://.godot/imported/iron_sword.png-a0f66a5cecf4709508a9094b88e533e8.ctex"]
 
 [params]
 

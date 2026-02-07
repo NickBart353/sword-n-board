@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://i5hqgm1uvl7p"]
 
 [ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_mr6qb"]
-[ext_resource type="Texture2D" uid="uid://bk22a0h3wbp50" path="res://my_assets/bottle.png" id="2_tip3f"]
+[ext_resource type="Texture2D" uid="uid://bk22a0h3wbp50" path="res://my_assets/sprites/bottle.png" id="2_tip3f"]
 
 [resource]
 script = ExtResource("1_mr6qb")
@@ -12,5 +12,5 @@ stackable = true
 sprite = ExtResource("2_tip3f")
 drop_chance = 1.0
 item_category = 4
-item_type = 4
+item_type = 3
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

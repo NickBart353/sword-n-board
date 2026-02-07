@@ -22,7 +22,8 @@ var equipped_main_hand: Item
 var equipped_off_hand: Item
 var equipped_consumable: Item
 
-var last_open_sack
+var last_open_sack: Node
+#var last_open_sack_instance: Node
 
 var ui_open: bool = false
 
@@ -30,30 +31,31 @@ signal update_items
 
 func _set_mouse_capture(captured: bool):
 	if captured:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func open_inventory():
 	if inventory.is_visible():
+		_clear_lists()
+		_refill_lists()
 		ui_open = false
 		_set_mouse_capture(false)
 		inventory.set_visible(false)
 		character.set_visible(false)
 		if loot.is_visible() and last_open_sack:
-			last_open_sack.get_node("ItemContainer").close_me() # DOES NOT WORK
+			last_open_sack.close_me()
 		loot.set_visible(false)
 		last_open_sack = null
-
-		_update_items()
 	elif not inventory.is_visible():
 		ui_open = true
 		_set_mouse_capture(true)
 		inventory.set_visible(true)
 		character.set_visible(true)
-		_update_items()
+		_clear_lists()
+		_refill_lists()
 
-func open_sack(current_open_sack):
+func open_sack(current_open_sack: Node):
 	ui_open = true
 	_set_mouse_capture(true)
 	_clear_lists()

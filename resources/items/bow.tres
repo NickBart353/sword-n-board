@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bqpnf0ni4gpih"]
 
 [ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_nbp8g"]
-[ext_resource type="Texture2D" uid="uid://dnifqnmvelpgl" path="res://my_assets/bow.png" id="2_nbp8g"]
+[ext_resource type="Texture2D" uid="uid://dnifqnmvelpgl" path="res://my_assets/sprites/bow.png" id="2_nbp8g"]
 
 [resource]
 script = ExtResource("1_nbp8g")
@@ -13,5 +13,5 @@ tooltip = "An ideal ranged weapon!"
 sprite = ExtResource("2_nbp8g")
 drop_chance = 1.0
 item_category = 1
-item_type = 1
+item_type = 2
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

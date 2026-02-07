@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwtdh60s6a63w"
-path="res://.godot/imported/torch.png-4551d14f48897c6bc1f83ff75d5f82d1.ctex"
+uid="uid://cps1f0s1r6elj"
+path="res://.godot/imported/wooden_shield.png-ae1bc4fea0723629048ca4db2f03d9ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://my_assets/torch.png"
-dest_files=["res://.godot/imported/torch.png-4551d14f48897c6bc1f83ff75d5f82d1.ctex"]
+source_file="res://my_assets/sprites/wooden_shield.png"
+dest_files=["res://.godot/imported/wooden_shield.png-ae1bc4fea0723629048ca4db2f03d9ff.ctex"]
 
 [params]
 

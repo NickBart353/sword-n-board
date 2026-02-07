@@ -37,8 +37,6 @@ func _on_attack_timer_timeout() -> void:
 		swing = 0
 
 func _sword_animation_started(anim_name: StringName) -> void:
-	weapon.set_collision_mask_value(1, false)
-	weapon.set_collision_mask_value(1, true)
 	if anim_name == "Sword{0}".format([swing]):
 		swinging = false
 
@@ -47,4 +45,7 @@ func _sword_animation_ended(anim_name: StringName) -> void:
 		bodies.clear()
 		swing_in_progress = false
 		attack_timer.start()
+		if not weapon is MeleeWeapon: return
+		weapon.set_collision_mask_value(1, false)
+		weapon.set_collision_mask_value(1, true)
 		

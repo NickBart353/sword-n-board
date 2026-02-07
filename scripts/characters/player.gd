@@ -9,6 +9,12 @@ signal open_pause_menu
 @onready var ability = $AbilityController
 @onready var animation = $AnimationController
 @onready var head: Node3D = $Head
+@onready var left_hand = $Head/FieldOfView/LeftHand
+@onready var right_hand = $Head/FieldOfView/RightHand
+@onready var consumable_slot = $Slots/Consumable
+@onready var head_slot = $Slots/Head
+@onready var body_slot = $Slots/Body
+@onready var boots_slot = $Slots/Boots
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
@@ -86,26 +92,48 @@ func get_equipped_secondary():
 	return "Unarmed"
 
 func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
-	var two_handed: bool = new_main_hand_item == new_off_hand_item
+	var two_handed: bool = ((new_main_hand_item == new_off_hand_item) and new_main_hand_item.data.two_handed)
 	
 	items = player_items
-	if head_item != new_head_item:
-		head_item = new_head_item
-	if body_item != new_body_item:
-		body_item = new_body_item
-	if boots_item != new_boots_item:
-		boots_item = new_boots_item
-	if consumable_item != new_consumable_item:
-		consumable_item = new_consumable_item
+	head_item = _reequip_slot(head_item, new_head_item, head_slot)
+	body_item = _reequip_slot(body_item, new_body_item, body_slot)
+	boots_item = _reequip_slot(boots_item, new_boots_item, boots_slot)
+	consumable_item = _reequip_slot(consumable_item, new_consumable_item, consumable_slot)
 	
 	if two_handed:
-		pass
-	else:
 		if main_hand_item != new_main_hand_item:
 			main_hand_item = new_main_hand_item
-			
-		if off_hand_item != new_off_hand_item and not two_handed: 
 			off_hand_item = new_off_hand_item
+			_clear_equip_slot(right_hand)
+			_clear_equip_slot(left_hand)
+			var item_instance = ItemGenerator.generate_item(main_hand_item.data)
+			if item_instance:
+				if item_instance is PackedScene:
+					right_hand.add_child(item_instance)
+				elif item_instance is Dictionary:
+					for item_slot in item_instance:
+						match item_slot:
+							ItemGenerator.SLOTS.MAIN_HAND:
+								right_hand.add_child(item_instance[item_slot])
+							ItemGenerator.SLOTS.OFF_HAND:
+								left_hand.add_child(item_instance[item_slot])
+	else:
+		main_hand_item = _reequip_slot(main_hand_item, new_main_hand_item, right_hand)
+		off_hand_item = _reequip_slot(off_hand_item, new_off_hand_item, left_hand)
+
+func _reequip_slot(old, new, slot):
+	if old != new:
+		old = new
+		_clear_equip_slot(slot)
+		if old:
+			var item_instance = ItemGenerator.generate_item(old.data)
+			if item_instance:
+				slot.add_child(item_instance)
+	return old
+
+func _clear_equip_slot(slot: Node):
+	for child in slot.get_children():
+		child.queue_free()
 
 func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion:

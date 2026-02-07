@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://4lxv0gu2qime"]
+
+[ext_resource type="Shader" uid="uid://dssqri1u3dhk3" path="res://shaders/magic_ball.tres" id="1_83yak"]
+[ext_resource type="Shader" uid="uid://ds4shpblbskmf" path="res://shaders/magic_ball_particles.tres" id="1_yfukf"]
+
+[sub_resource type="Gradient" id="Gradient_yfukf"]
+offsets = PackedFloat32Array(0, 0.507772, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.99116415, 0.99116427, 0.99116415, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jep8n"]
+gradient = SubResource("Gradient_yfukf")
+
+[sub_resource type="Curve" id="Curve_yfukf"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_h23rm"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xdk5l"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_3321v"]
+curve_x = SubResource("Curve_yfukf")
+curve_y = SubResource("Curve_h23rm")
+curve_z = SubResource("Curve_xdk5l")
+
+[sub_resource type="Curve" id="Curve_jep8n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1780822, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1441944, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h23rm"]
+curve = SubResource("Curve_jep8n")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_83yak"]
+emission_shape_scale = Vector3(0.215, 0.225, 0.22)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+orbit_velocity_min = 0.1000001
+orbit_velocity_max = 0.2000001
+orbit_velocity_curve = SubResource("CurveXYZTexture_3321v")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.04
+scale_curve = SubResource("CurveTexture_h23rm")
+color_ramp = SubResource("GradientTexture1D_jep8n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jep8n"]
+render_priority = 0
+shader = ExtResource("1_yfukf")
+shader_parameter/ColorParameter = Color(1.4900895, 1.7897716, 4.04891, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h23rm"]
+material = SubResource("ShaderMaterial_jep8n")
+radius = 0.075
+height = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfukf"]
+render_priority = 0
+shader = ExtResource("1_83yak")
+shader_parameter/ColorParameter = Color(1.6195974, 3.103057, 10.178017, 1)
+shader_parameter/Vector2Parameter = Vector2(1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jep8n"]
+material = SubResource("ShaderMaterial_yfukf")
+
+[node name="MagicBall" type="Node3D" unique_id=1007022500]
+transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -0.350944, 0.6, -0.23928723)
+
+[node name="Particles" type="GPUParticles3D" parent="." unique_id=2141055940]
+amount = 200
+lifetime = 5.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_83yak")
+draw_pass_1 = SubResource("SphereMesh_h23rm")
+
+[node name="Cross" type="MeshInstance3D" parent="." unique_id=430132184]
+mesh = SubResource("QuadMesh_jep8n")

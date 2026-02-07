@@ -38,10 +38,10 @@ func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_
 	main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
 	main_ui.open_inventory()
 
-func _open_container(container):
+func _open_container(container: Node):
 	_change_ui_state(true)
 	main_ui.fill_loot(container.items)
-	main_ui.open_sack(container.parent)
+	main_ui.open_sack(container)
 
 func _close_container(_container):
 	_change_ui_state(false)
@@ -54,8 +54,9 @@ func _change_ui_state(show_ui: bool):
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func update_items(player_items, loot_items, sack_name, head_item: Item, body_item: Item, boots_item: Item, main_hand_item: Item, off_hand_item: Item, consumable_item: Item):
-	EventBus.update_items.emit(loot_items, sack_name)
+func update_items(player_items, loot_items, sack: Node, head_item: Item, body_item: Item, boots_item: Item, main_hand_item: Item, off_hand_item: Item, consumable_item: Item):
+	var parent_name: String = sack.parent.name if sack else ""
+	EventBus.update_items.emit(loot_items, parent_name)
 	player.update_items(player_items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
 func remove_object(object):
