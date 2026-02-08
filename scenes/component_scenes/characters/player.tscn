@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="1_sf0kc"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
 [ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="6_1e104"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_bnsrg"]
+[ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_5e2me"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -24,6 +24,144 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
+
+[sub_resource type="Animation" id="Animation_wbsrb"]
+resource_name = "Book1"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.43, -0.67, -0.6), Vector3(-0.43, -0.67, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4666667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.5, -0.975, -0.75), Vector3(0.5, -0.975, -0.75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.76666665, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(-0.3525565, 0, 0), Vector3(-0.3525565, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AbilityController/CastAttack")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.93333334, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Book1"],
+"method": &"_book_animation_started"
+}, {
+"args": [&"Book1"],
+"method": &"_book_animation_ended"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1e104"]
+resource_name = "Book2"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.43333334, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.43, -0.67, -0.6), Vector3(-0.43, -0.67, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.845, -0.905, -0.665), Vector3(0.845, -0.905, -0.665)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6333333, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.23561946, -0.75049156, 0), Vector3(0.23561946, -0.75049156, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AbilityController/CastAttack")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"Book2"],
+"method": &"_book_animation_started"
+}, {
+"args": [&"Book2"],
+"method": &"_book_animation_ended"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_272xh"]
 resource_name = "Idle"
@@ -75,6 +213,30 @@ tracks/2/path = NodePath("Head/FieldOfView/RightHand:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5000001, -0.9, -0.59999996)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -218,12 +380,20 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
 _data = {
+&"Book1": SubResource("Animation_wbsrb"),
+&"Book2": SubResource("Animation_1e104"),
 &"Idle": SubResource("Animation_272xh"),
 &"RESET": SubResource("Animation_m0y8q"),
 &"Sword1": SubResource("Animation_8gp4u"),
 &"Sword2": SubResource("Animation_bnsrg"),
 &"Sword3": SubResource("Animation_i5qjy")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbsrb"]
+animation = &"Book1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1e104"]
+animation = &"Book2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
 animation = &"Idle"
@@ -273,18 +443,42 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i5qjy"]
+xfade_time = 0.2
+advance_expression = "(ability.get_node(\"CastAttack\").casting == true and ability.get_node(\"CastAttack\").cast == 1)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1vyy"]
+advance_mode = 2
+advance_expression = "ability.get_node(\"CastAttack\").swing_in_progress == false and ability.get_node(\"CastAttack\").attack_timer.time_left == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aeb6f"]
+xfade_time = 0.05
+switch_mode = 2
+advance_expression = "ability.get_node(\"CastAttack\").casting and ability.get_node(\"CastAttack\").casting == 2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ykwct"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "ability.get_node(\"CastAttack\").cast_in_progress == false"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
-states/End/position = Vector2(898, 108)
+states/Book1/node = SubResource("AnimationNodeAnimation_wbsrb")
+states/Book1/position = Vector2(129, 221)
+states/Book2/node = SubResource("AnimationNodeAnimation_1e104")
+states/Book2/position = Vector2(129, 104)
+states/End/position = Vector2(898, 104)
 states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
-states/Idle/position = Vector2(326, 100)
+states/Idle/position = Vector2(326, 101)
+states/Start/position = Vector2(326, 294)
 states/Sword1/node = SubResource("AnimationNodeAnimation_5e2me")
 states/Sword1/position = Vector2(517, -18)
 states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
-states/Sword2/position = Vector2(699, 108)
+states/Sword2/position = Vector2(698, 104)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
 states/Sword3/position = Vector2(517, 221)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg")]
-graph_offset = Vector2(-27, -61)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct")]
+graph_offset = Vector2(-237, -81)
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 safe_margin = 0.1
@@ -300,7 +494,7 @@ mesh = SubResource("CapsuleMesh_lu7gk")
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.59999996, 0)
 
 [node name="FieldOfView" type="Camera3D" parent="Head" unique_id=2099136400]
-transform = Transform3D(1, 0, -2.0861626e-07, 0, 1, 0, 2.0861626e-07, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, -2.0861624e-07, 0, 1, 0, 2.0861624e-07, 0, 1, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
@@ -311,9 +505,6 @@ transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5
 
 [node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
 transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
-
-[node name="Sword" parent="Head/FieldOfView/RightHand" unique_id=1904352901 instance=ExtResource("1_sf0kc")]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0)
 
 [node name="Slots" type="Node3D" parent="." unique_id=64799682]
 
@@ -338,6 +529,7 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
+wait_time = 0.5
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]
@@ -352,6 +544,10 @@ script = ExtResource("5_1e104")
 
 [node name="Attack" type="Node" parent="AbilityController" unique_id=2054717099 node_paths=PackedStringArray("player")]
 script = ExtResource("6_bnsrg")
+player = NodePath("../..")
+
+[node name="CastAttack" type="Node" parent="AbilityController" unique_id=2117671511 node_paths=PackedStringArray("player")]
+script = ExtResource("7_5e2me")
 player = NodePath("../..")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
@@ -402,5 +598,6 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/CastAttack" method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]

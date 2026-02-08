@@ -48,4 +48,10 @@ func _sword_animation_ended(anim_name: StringName) -> void:
 		if not weapon is MeleeWeapon: return
 		weapon.set_collision_mask_value(1, false)
 		weapon.set_collision_mask_value(1, true)
-		
+
+func reset():
+	weapon = null
+	bodies = []
+	swing = 0
+	swinging = false
+	swing_in_progress = false

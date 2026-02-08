@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c8ueshur2ml1c" path="res://scripts/characters/enemies/Wasp/wasp_animation.gd" id="2_42erq"]
 [ext_resource type="Script" uid="uid://b0jlvhm41f4tp" path="res://scripts/characters/enemies/wasp.gd" id="2_nsq2h"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_nsq2h"]
-[ext_resource type="PackedScene" uid="uid://chgnmoaehyorg" path="res://scenes/component_scenes/Spells/poison_bomb.tscn" id="3_outyk"]
+[ext_resource type="PackedScene" uid="uid://chgnmoaehyorg" path="res://scenes/component_scenes/spells/poison_bomb.tscn" id="3_outyk"]
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dv34gxw2ten1h" path="res://animations/wasp_animation_sate_machine.tres" id="4_6eufi"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="4_awi1o"]

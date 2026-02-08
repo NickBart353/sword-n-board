@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b14qrvjayeose"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4hyx"]
+shading_mode = 0
+albedo_color = Color(0.50865203, 0.5614737, 1.8820171, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hjrog"]
+material = SubResource("StandardMaterial3D_e4hyx")
+
+[node name="MagicProjectile" type="Node3D" unique_id=605842200]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1508242957]
+mesh = SubResource("SphereMesh_hjrog")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bswiekaxm8kqm"]
+
+[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile_explosion.gd" id="1_nlpcf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c37pm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nlpcf"]
+radius = 1.3000001
+
+[node name="ProjectileExplosion" type="Node3D" unique_id=1660164858]
+script = ExtResource("1_nlpcf")
+
+[node name="Projectile" type="Area3D" parent="." unique_id=1405209167]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Projectile" unique_id=840702355]
+shape = SubResource("SphereShape3D_c37pm")
+debug_color = Color(0.5704666, 0.3898506, 1, 0.41960785)
+
+[node name="Impact" type="Area3D" parent="." unique_id=236316983]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Impact" unique_id=1506249595]
+shape = SubResource("SphereShape3D_nlpcf")
+debug_color = Color(0.9426512, 0.21300769, 0.29639536, 0.41960785)

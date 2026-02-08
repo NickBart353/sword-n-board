@@ -41,6 +41,7 @@ var off_hand_item: Item
 var consumable_item: Item
 
 func _ready() -> void:
+	_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	health = MAX_HEALTH
 	$CanvasLayer/RedBar/HealthBar.value = health
@@ -92,7 +93,12 @@ func get_equipped_secondary():
 	return "Unarmed"
 
 func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
-	var two_handed: bool = ((new_main_hand_item == new_off_hand_item) and new_main_hand_item.data.two_handed)
+	_reset_abilities()
+	var two_handed: bool = false
+	if new_main_hand_item:
+		two_handed = ((new_main_hand_item == new_off_hand_item) and new_main_hand_item.data.two_handed)
+	else:
+		two_handed = (new_main_hand_item == new_off_hand_item)
 	
 	items = player_items
 	head_item = _reequip_slot(head_item, new_head_item, head_slot)
@@ -135,6 +141,10 @@ func _clear_equip_slot(slot: Node):
 	for child in slot.get_children():
 		child.queue_free()
 
+func _reset_abilities():
+	for ability_instance in ability.get_children():
+		ability_instance.reset()
+
 func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion:
 		look_rotation.x -= event.relative.y * look_speed
@@ -150,6 +160,14 @@ func take_damage(damage, _body):
 	if health <= MIN_HEALTH:
 		_die()
 	$CanvasLayer/RedBar/HealthBar.value = health
+
+func _load_preset_items():
+	var sword: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	sword.data = ItemManager.ITEMS["iron_sword"]
+	items.append(sword)
+	var book: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	book.data = ItemManager.ITEMS["magic_tome"]
+	items.append(book)
 
 func _die():
 	print("game over")

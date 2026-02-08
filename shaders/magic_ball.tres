@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dssqri1u3dhk3"]
 
-[ext_resource type="Texture2D" uid="uid://dpr804fx3khdb" path="res://my_assets/b_n_w_textures/cross_texture.png" id="1_1gjg2"]
-[ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="1_x270j"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="1_1gjg2"]
+[ext_resource type="Texture2D" uid="uid://dp033342f1334" path="res://my_assets/b_n_w_textures/impact_texture.png" id="2_1gjg2"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_sju12"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
@@ -14,7 +14,7 @@ texture = ExtResource("1_1gjg2")
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1gjg2"]
 output_port_for_preview = 0
 expanded_output_ports = [0]
-texture = ExtResource("1_x270j")
+texture = ExtResource("2_1gjg2")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_y0q6l"]
