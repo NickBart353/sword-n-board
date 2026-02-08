@@ -8,6 +8,21 @@ const CHARGE_POISON: PackedScene = preload("res://scenes/VFX/charge_poison.tscn"
 const STUNNED: PackedScene = preload("res://scenes/VFX/stunned.tscn")
 const SOUND_WAVES: PackedScene = preload("res://scenes/VFX/sound_waves.tscn")
 
+const VFX: Dictionary = {
+	"POISON_EXPLOSION" : preload("res://scenes/VFX/poison_explosion.tscn"),
+	"SMALL_TORNADO" : preload("res://scenes/VFX/spinning_small_tornado.tscn"),
+	"CHARGE_POISON" : preload("res://scenes/VFX/charge_poison.tscn"),
+	"STUNNED" : preload("res://scenes/VFX/stunned.tscn"),
+	"SOUND_WAVES" : preload("res://scenes/VFX/sound_waves.tscn"),
+}
+
+func create_vfx_from_string(vfx_name: String, position: Vector3, local = false):
+	if VFX.get(vfx_name):
+		if not local:
+			create_vfx.emit(position, VFX.get(vfx_name))
+		else:
+			return VFX.get(vfx_name)
+
 func create_poison_explosion(position: Vector3, local = false):
 	if not local:
 		create_vfx.emit(position, POISON_EXPLOSION)

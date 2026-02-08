@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://ccb0r2c11m51l"]
+
+[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_uwupy"]
+
+[sub_resource type="Curve" id="Curve_4h1qo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uayre"]
+curve = SubResource("Curve_4h1qo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aqo3o"]
+emission_shape = 1
+emission_sphere_radius = 0.5
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_uayre")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayre"]
+shading_mode = 0
+albedo_color = Color(0.53616166, 1.687694, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_aq0yo"]
+material = SubResource("StandardMaterial3D_uayre")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jkvs"]
+shading_mode = 0
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.77773005, 2.4061394, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5wmi7"]
+material = SubResource("StandardMaterial3D_1jkvs")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4h1qo"]
+radius = 1.3000001
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uwupy"]
+
+[node name="PoisonBomb" type="Node3D" unique_id=166326664]
+
+[node name="ProjectileExplosion" type="Node3D" parent="." unique_id=102572096 node_paths=PackedStringArray("projectile", "projectile_area", "impact_area")]
+script = ExtResource("1_uwupy")
+projectile = NodePath("..")
+projectile_area = NodePath("../ProjectileArea")
+impact_area = NodePath("../ExplosionArea")
+gravity_enabled = true
+spread = 20.0
+explosion_animation = "POISON_EXPLOSION"
+metadata/_custom_type_script = "uid://snywren3rqx0"
+
+[node name="Goo" type="GPUParticles3D" parent="." unique_id=1369429775]
+amount = 9
+lifetime = 1.18
+process_material = SubResource("ParticleProcessMaterial_aqo3o")
+draw_pass_1 = SubResource("SphereMesh_aq0yo")
+
+[node name="BombMesh" type="MeshInstance3D" parent="." unique_id=1301921339]
+mesh = SubResource("SphereMesh_5wmi7")
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=866413567]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=327894388]
+shape = SubResource("SphereShape3D_4h1qo")
+debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
+
+[node name="ProjectileArea" type="Area3D" parent="." unique_id=572506448]
+collision_layer = 0
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=306225378]
+shape = SubResource("SphereShape3D_uwupy")
+debug_color = Color(0.71408594, 0.6977547, 1, 0.41960785)
