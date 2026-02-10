@@ -41,7 +41,7 @@ func _on_area_entered(area: Area3D) -> void:
 	VfxManager.create_poison_explosion(global_position)
 	hit = true
 
-func fire(my_position: Vector3, _wasp_position: Vector3, player_location: Vector3):
+func fire(my_position: Vector3, player_location: Vector3):
 	hit = false
 	global_position = my_position
 	var player_loc_spread: Vector3 = Vector3(player_location.x + randi_range(-10, 10), player_location.y + randi_range(-5, 5), player_location.z + randi_range(-5, 5))

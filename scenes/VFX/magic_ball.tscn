@@ -11,14 +11,12 @@ colors = PackedColorArray(0, 0, 0, 1, 0.99116415, 0.99116427, 0.99116415, 1, 0, 
 gradient = SubResource("Gradient_yfukf")
 
 [sub_resource type="Curve" id="Curve_yfukf"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Curve" id="Curve_h23rm"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Curve" id="Curve_xdk5l"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -39,12 +37,18 @@ curve = SubResource("Curve_jep8n")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_83yak"]
 emission_shape_scale = Vector3(0.18, 0.19, 0.17)
-emission_shape = 1
-emission_sphere_radius = 1.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.2
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.1
+emission_ring_cone_angle = 90.0
 direction = Vector3(0, 0, 0)
 orbit_velocity_min = 0.1000001
 orbit_velocity_max = 0.2000001
 orbit_velocity_curve = SubResource("CurveXYZTexture_3321v")
+radial_velocity_min = -0.050022352
+radial_velocity_max = -0.0100223515
 gravity = Vector3(0, 0, 0)
 scale_min = 0.01
 scale_max = 0.04

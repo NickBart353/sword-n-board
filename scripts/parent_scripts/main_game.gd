@@ -15,6 +15,7 @@ func _ready() -> void:
 	VfxManager.create_vfx.connect(_create_vfx)
 	
 	player.open_inventory.connect(open_inventory)
+	player.spawn_projectile.connect(_spawn_projectile)
 	main_ui.update_items.connect(update_items)
 	
 	for enemy in $Mobs.get_children():
@@ -61,6 +62,11 @@ func update_items(player_items, loot_items, sack: Node, head_item: Item, body_it
 
 func remove_object(object):
 	object.queue_free()
+
+func _spawn_projectile(projectile: Node, spawn_position: Vector3, shooting_direction: Vector3):
+	$Attacks.add_child(projectile)
+	projectile.fire(spawn_position, shooting_direction)
+	projectile.exploded.connect(remove_object)
 
 func _create_vfx(vfx_position: Vector3, scene: PackedScene):
 	var instance = scene.instantiate()

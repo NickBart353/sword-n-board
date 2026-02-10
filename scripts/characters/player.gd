@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 signal open_inventory
 signal open_pause_menu
+signal spawn_projectile
 
 @onready var input = $InputController
 @onready var movement = $MovementController
@@ -47,6 +48,7 @@ func _ready() -> void:
 	$CanvasLayer/RedBar/HealthBar.value = health
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
+	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
@@ -155,11 +157,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
 
-func take_damage(damage, _body):
+func take_damage(damage):
 	health -= damage
 	if health <= MIN_HEALTH:
 		_die()
 	$CanvasLayer/RedBar/HealthBar.value = health
+
+func get_looking_direction() -> Vector3:
+	#return $Head/FieldOfView.get_global_transform().basis.z
+	var direction = $Head/FieldOfView.get_global_transform().basis.z
+	direction.z *= -1
+	direction.x *= -1
+	direction.y *= -1
+	direction = direction.normalized()
+	return direction
+	
+
+func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3):
+	spawn_projectile.emit(projectile, spawn_position, direction)
 
 func _load_preset_items():
 	var sword: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()

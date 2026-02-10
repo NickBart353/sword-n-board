@@ -8,18 +8,20 @@ const CHARGE_POISON: PackedScene = preload("res://scenes/VFX/charge_poison.tscn"
 const STUNNED: PackedScene = preload("res://scenes/VFX/stunned.tscn")
 const SOUND_WAVES: PackedScene = preload("res://scenes/VFX/sound_waves.tscn")
 
-const VFX: Dictionary = {
-	"POISON_EXPLOSION" : preload("res://scenes/VFX/poison_explosion.tscn"),
-	"SMALL_TORNADO" : preload("res://scenes/VFX/spinning_small_tornado.tscn"),
-	"CHARGE_POISON" : preload("res://scenes/VFX/charge_poison.tscn"),
-	"STUNNED" : preload("res://scenes/VFX/stunned.tscn"),
-	"SOUND_WAVES" : preload("res://scenes/VFX/sound_waves.tscn"),
+enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES}
+
+const VFX_DICT: Dictionary = {
+	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
+	VFX.SMALL_TORNADO : preload("res://scenes/VFX/spinning_small_tornado.tscn"),
+	VFX.CHARGE_POISON : preload("res://scenes/VFX/charge_poison.tscn"),
+	VFX.STUNNED : preload("res://scenes/VFX/stunned.tscn"),
+	VFX.SOUND_WAVES : preload("res://scenes/VFX/sound_waves.tscn"),
 }
 
-func create_vfx_from_string(vfx_name: String, position: Vector3, local = false):
-	if VFX.get(vfx_name):
+func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):
+	if VFX_DICT.get(vfx_name):
 		if not local:
-			create_vfx.emit(position, VFX.get(vfx_name))
+			create_vfx.emit(position, VFX_DICT.get(vfx_name))
 		else:
 			return VFX.get(vfx_name)
 

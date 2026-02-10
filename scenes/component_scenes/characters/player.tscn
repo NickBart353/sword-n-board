@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="6_1e104"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_bnsrg"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_5e2me"]
+[ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="7_m0y8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -449,7 +450,7 @@ advance_expression = "(ability.get_node(\"CastAttack\").casting == true and abil
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1vyy"]
 advance_mode = 2
-advance_expression = "ability.get_node(\"CastAttack\").swing_in_progress == false and ability.get_node(\"CastAttack\").attack_timer.time_left == 0"
+advance_expression = "ability.get_node(\"CastAttack\").cast_in_progress == false and ability.get_node(\"CastAttack\").attack_timer.time_left == 0"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aeb6f"]
 xfade_time = 0.05
@@ -522,6 +523,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.77399564, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.1, 0)
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=848838605 groups=["PlayerHurtBox"]]
+collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=656745909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999857, 0)
@@ -550,6 +552,7 @@ player = NodePath("../..")
 
 [node name="CastAttack" type="Node" parent="AbilityController" unique_id=2117671511 node_paths=PackedStringArray("player")]
 script = ExtResource("7_5e2me")
+magic_projectile = ExtResource("7_m0y8q")
 player = NodePath("../..")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]

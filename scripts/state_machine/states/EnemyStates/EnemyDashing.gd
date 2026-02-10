@@ -43,7 +43,7 @@ func Physics_Update(delta: float) -> void:
 func _on_damage_box_area_entered(area: Area3D) -> void:
 	if state_active:
 		if area.is_in_group("PlayerHurtBox"):
-			player.take_damage(dash_damage, enemy)
+			player.take_damage(dash_damage)
 			player_hit = true
 			charge_interrupted = true
 

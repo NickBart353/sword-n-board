@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://b14qrvjayeose"]
 
+[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_hjrog"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4hyx"]
 shading_mode = 0
 albedo_color = Color(0.50865203, 0.5614737, 1.8820171, 1)
@@ -7,7 +9,34 @@ albedo_color = Color(0.50865203, 0.5614737, 1.8820171, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_hjrog"]
 material = SubResource("StandardMaterial3D_e4hyx")
 
-[node name="MagicProjectile" type="Node3D" unique_id=605842200]
+[sub_resource type="SphereShape3D" id="SphereShape3D_hjrog"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dvipt"]
+radius = 2.9
+
+[node name="MagicProjectile" type="Node3D" unique_id=865170927 node_paths=PackedStringArray("projectile_area", "explosion_area")]
+script = ExtResource("1_hjrog")
+projectile_area = NodePath("ProjectileArea")
+explosion_area = NodePath("ExplosionArea")
+proj_speed = 15
+metadata/_custom_type_script = "uid://snywren3rqx0"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1508242957]
 mesh = SubResource("SphereMesh_hjrog")
+
+[node name="ProjectileArea" type="Area3D" parent="." unique_id=754916006]
+collision_layer = 4
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=1493235006]
+shape = SubResource("SphereShape3D_hjrog")
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=1270751306]
+collision_layer = 4
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=147759345]
+shape = SubResource("SphereShape3D_dvipt")
+debug_color = Color(0.99725705, 0, 0.179569, 0.41960785)
