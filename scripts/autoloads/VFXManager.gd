@@ -8,7 +8,7 @@ const CHARGE_POISON: PackedScene = preload("res://scenes/VFX/charge_poison.tscn"
 const STUNNED: PackedScene = preload("res://scenes/VFX/stunned.tscn")
 const SOUND_WAVES: PackedScene = preload("res://scenes/VFX/sound_waves.tscn")
 
-enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES}
+enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION}
 
 const VFX_DICT: Dictionary = {
 	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
@@ -16,6 +16,7 @@ const VFX_DICT: Dictionary = {
 	VFX.CHARGE_POISON : preload("res://scenes/VFX/charge_poison.tscn"),
 	VFX.STUNNED : preload("res://scenes/VFX/stunned.tscn"),
 	VFX.SOUND_WAVES : preload("res://scenes/VFX/sound_waves.tscn"),
+	VFX.MAGIC_EXPLOSION : preload("res://scenes/VFX/blue_magic_explosion.tscn"),
 }
 
 func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):

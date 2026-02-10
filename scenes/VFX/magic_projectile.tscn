@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://4xjxe8tkssu"]
+
+[ext_resource type="Shader" uid="uid://dl20x36bs3o8a" path="res://shaders/magic_projectile/magic_projectile_ball.tres" id="1_bhb1u"]
+[ext_resource type="Shader" uid="uid://b65e302gg3ex5" path="res://shaders/magic_projectile/magic_projectile.tres" id="1_uftyo"]
+[ext_resource type="Texture2D" uid="uid://dcuw76irg0200" path="res://my_assets/b_n_w_textures/blurred_star.png" id="3_bhb1u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5jmop"]
+render_priority = 0
+shader = ExtResource("1_bhb1u")
+shader_parameter/Color = Color(0, 1.862954, 5.2494097, 1)
+shader_parameter/Alpha = Color(0.24477637, 0.2447764, 0.24477637, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kvtdx"]
+material = SubResource("ShaderMaterial_5jmop")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvtdx"]
+render_priority = 1
+shader = ExtResource("1_uftyo")
+shader_parameter/Color = Color(0.88997656, 1.6703975, 2.7075353, 1)
+shader_parameter/GlowSpeed = 3.0
+shader_parameter/Texture = ExtResource("3_bhb1u")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uftyo"]
+material = SubResource("ShaderMaterial_kvtdx")
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhb1u"]
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(2.8640463, 2.0813947, 0.40195444, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_bhb1u"]
+material = SubResource("StandardMaterial3D_bhb1u")
+inner_radius = 0.63
+outer_radius = 0.605
+
+[sub_resource type="Animation" id="Animation_bhb1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5jmop"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ring:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.1415927, 3.1415927, 0), Vector3(6.2831855, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ring2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(-1.5707964, 3.1415927, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edtcy"]
+_data = {
+&"RESET": SubResource("Animation_bhb1u"),
+&"default": SubResource("Animation_5jmop")
+}
+
+[node name="MagicProjectile" type="Node3D" unique_id=287636320]
+
+[node name="Ball" type="MeshInstance3D" parent="." unique_id=552794373]
+mesh = SubResource("SphereMesh_kvtdx")
+
+[node name="Cross" type="MeshInstance3D" parent="." unique_id=1128891662]
+mesh = SubResource("PlaneMesh_uftyo")
+
+[node name="Ring" type="MeshInstance3D" parent="." unique_id=569760359]
+mesh = SubResource("TorusMesh_bhb1u")
+
+[node name="Ring2" type="MeshInstance3D" parent="." unique_id=1987732628]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("TorusMesh_bhb1u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=686236250]
+libraries/ = SubResource("AnimationLibrary_edtcy")
+autoplay = &"default"

@@ -131,7 +131,7 @@ func _on_player_inventory_item_activated(index: int) -> void:
 		player_items.remove_at(index)
 		_update_items()
 	else:
-		match player_items[index].data.item_type:
+		match player_items[index].data.item_category:
 			ItemData.ITEM_CATEGORY.MELEE_WEAPON:
 				_swap_weapons(true, index)
 			ItemData.ITEM_CATEGORY.RANGED_WEAPON:
@@ -174,6 +174,7 @@ func _swap_weapons(is_main_hand: bool, index: int):
 				equipped_main_hand = player_items[index]
 				player_items.remove_at(index)
 	else:
+		print(player_items[index].data.item_name)
 		if not equipped_off_hand:
 			equipped_off_hand = player_items[index]
 			player_items.remove_at(index)

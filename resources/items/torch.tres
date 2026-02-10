@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_d17os")
+damage = 5
 item_name = "Torch"
 item_id = "2de84977-0bb3-45b8-8ed1-ace14908b311"
 tooltip = "It illuminates the dark!"

@@ -55,14 +55,22 @@ func _on_area_entered(_area: Area3D) -> void:
 	VfxManager.create_vfx_from_enum(explosion_animation, global_position)
 	hit = true
 
-func fire(my_position: Vector3, target_location: Vector3):
+func fire(my_position: Vector3, target_location: Vector3, direction: bool = false):
 	hit = false
 	global_position = my_position
-	
-	if spread:
-		var spread_minus: float = 0-spread/2
-		var spread_plus: float = 0+spread/2
-		target_location = Vector3(target_location.x + randf_range(spread_minus, spread_plus), target_location.y + randf_range(spread_minus, spread_plus), target_location.z + randf_range(spread_minus, spread_plus))
-	fire_direction = my_position.direction_to(target_location)
-	velocity = fire_direction * proj_speed
-	ready_to_fly = true
+	if not direction:
+		if spread:
+			var spread_minus: float = 0-spread/2
+			var spread_plus: float = 0+spread/2
+			target_location = Vector3(target_location.x + randf_range(spread_minus, spread_plus), target_location.y + randf_range(spread_minus, spread_plus), target_location.z + randf_range(spread_minus, spread_plus))
+		fire_direction = my_position.direction_to(target_location)
+		velocity = fire_direction * proj_speed
+		ready_to_fly = true
+	else:
+		if spread:
+			var spread_minus: float = 0-spread/2
+			var spread_plus: float = 0+spread/2
+			target_location = Vector3(target_location.x + randf_range(spread_minus, spread_plus), target_location.y + randf_range(spread_minus, spread_plus), target_location.z + randf_range(spread_minus, spread_plus))
+		fire_direction = target_location
+		velocity = fire_direction * proj_speed
+		ready_to_fly = true

@@ -19,14 +19,15 @@ offset_bottom = 40.0
 
 [node name="InventoryList" type="ItemList" parent="Inventory" unique_id=443316185]
 layout_mode = 0
-offset_left = 750.0
-offset_top = 100.0
-offset_right = 1050.0
-offset_bottom = 400.0
+anchor_left = 30.45
+anchor_top = 6.525
+anchor_right = 41.9
+anchor_bottom = 18.5
 max_columns = 3
 same_column_width = true
-fixed_column_width = 32
-fixed_icon_size = Vector2i(32, 32)
+fixed_column_width = 64
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Character" type="Control" parent="." unique_id=412877429]
 visible = false
@@ -36,45 +37,57 @@ offset_bottom = 40.0
 
 [node name="Head" type="ItemList" parent="Character" unique_id=1693759210]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 25.0
-offset_right = 204.0
-offset_bottom = 149.0
+anchor_left = 8.925
+anchor_top = 3.225
+anchor_right = 13.925
+anchor_bottom = 8.325
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Body" type="ItemList" parent="Character" unique_id=1958195038]
 layout_mode = 0
-offset_left = 90.0
-offset_top = 179.0
-offset_right = 198.0
-offset_bottom = 288.0
+anchor_left = 9.2
+anchor_top = 9.725
+anchor_right = 13.85
+anchor_bottom = 14.075
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Boots" type="ItemList" parent="Character" unique_id=912089763]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 315.0
-offset_right = 190.0
-offset_bottom = 423.0
+anchor_left = 9.125
+anchor_top = 14.625
+anchor_right = 14.1
+anchor_bottom = 19.2
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="MainHand" type="ItemList" parent="Character" unique_id=200975226]
 layout_mode = 0
-offset_left = 83.0
-offset_top = 458.0
-offset_right = 183.0
-offset_bottom = 562.0
+anchor_left = 7.125
+anchor_top = 20.675
+anchor_right = 12.025
+anchor_bottom = 25.6
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="OffHand" type="ItemList" parent="Character" unique_id=2085654]
 layout_mode = 0
-offset_left = 244.0
-offset_top = 454.0
-offset_right = 350.0
-offset_bottom = 571.0
+anchor_left = 13.575
+anchor_top = 20.875
+anchor_right = 18.225
+anchor_bottom = 25.425
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Consumable" type="ItemList" parent="Character" unique_id=116859810]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 305.0
-offset_right = 346.0
-offset_bottom = 422.0
+anchor_left = 17.15
+anchor_top = 14.575
+anchor_right = 22.275
+anchor_bottom = 19.7
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Loot" type="Control" parent="." unique_id=966276740]
 visible = false
@@ -85,30 +98,37 @@ offset_bottom = 40.0
 [node name="LootList" type="ItemList" parent="Loot" unique_id=255561763]
 clip_contents = false
 layout_mode = 0
-offset_left = 150.0
-offset_top = 100.0
-offset_right = 450.0
-offset_bottom = 400.0
+anchor_left = 6.6
+anchor_top = 5.75
+anchor_right = 18.5
+anchor_bottom = 17.325
 max_columns = 3
 same_column_width = true
-fixed_column_width = 32
-fixed_icon_size = Vector2i(32, 32)
+fixed_column_width = 64
+fixed_icon_size = Vector2i(64, 64)
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Loot" unique_id=797299697]
-layout_mode = 0
-offset_left = 445.0
-offset_top = 521.0
-offset_right = 716.0
-offset_bottom = 544.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 16.025
+anchor_top = 18.225
+anchor_right = 30.375
+anchor_bottom = 20.875
+theme_override_font_sizes/font_size = 34
 text = "Press Enter to move selected Items"
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="Loot" unique_id=1255135179]
-layout_mode = 0
-offset_left = 500.0
-offset_top = 548.0
-offset_right = 716.0
-offset_bottom = 571.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 19.125
+anchor_top = 19.925
+anchor_right = 28.025
+anchor_bottom = 21.275
+theme_override_font_sizes/font_size = 34
 text = "Double click loot item"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="item_activated" from="Inventory/InventoryList" to="." method="_on_player_inventory_item_activated"]
 [connection signal="item_activated" from="Loot/LootList" to="." method="_on_loot_list_item_activated"]

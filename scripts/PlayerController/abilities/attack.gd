@@ -17,7 +17,7 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 		weapon.hit.connect(_melee_attack)
 	
 	if not movement.dashing:
-		if input.primary and not swing_in_progress:
+		if input.attack and not swing_in_progress:
 			bodies = []
 			swinging = true
 			swing_in_progress = true

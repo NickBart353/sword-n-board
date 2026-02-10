@@ -99,8 +99,6 @@ func update_items(player_items, new_head_item: Item, new_body_item: Item, new_bo
 	var two_handed: bool = false
 	if new_main_hand_item:
 		two_handed = ((new_main_hand_item == new_off_hand_item) and new_main_hand_item.data.two_handed)
-	else:
-		two_handed = (new_main_hand_item == new_off_hand_item)
 	
 	items = player_items
 	head_item = _reequip_slot(head_item, new_head_item, head_slot)
@@ -173,8 +171,8 @@ func get_looking_direction() -> Vector3:
 	return direction
 	
 
-func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3):
-	spawn_projectile.emit(projectile, spawn_position, direction)
+func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, direction_flag: bool = false):
+	spawn_projectile.emit(projectile, spawn_position, direction, direction_flag)
 
 func _load_preset_items():
 	var sword: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
@@ -183,6 +181,9 @@ func _load_preset_items():
 	var book: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	book.data = ItemManager.ITEMS["magic_tome"]
 	items.append(book)
+	var shield: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	shield.data = ItemManager.ITEMS["wooden_shield"]
+	items.append(shield)
 
 func _die():
 	print("game over")

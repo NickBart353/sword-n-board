@@ -1,28 +1,23 @@
 [gd_scene format=3 uid="uid://b14qrvjayeose"]
 
 [ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_hjrog"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4hyx"]
-shading_mode = 0
-albedo_color = Color(0.50865203, 0.5614737, 1.8820171, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_hjrog"]
-material = SubResource("StandardMaterial3D_e4hyx")
+[ext_resource type="PackedScene" uid="uid://4xjxe8tkssu" path="res://scenes/VFX/magic_projectile.tscn" id="2_dvipt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hjrog"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dvipt"]
-radius = 2.9
+radius = 6.2000003
 
 [node name="MagicProjectile" type="Node3D" unique_id=865170927 node_paths=PackedStringArray("projectile_area", "explosion_area")]
 script = ExtResource("1_hjrog")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
-proj_speed = 15
+proj_speed = 25
+explosion_animation = 5
+damage = 25
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1508242957]
-mesh = SubResource("SphereMesh_hjrog")
+[node name="MagicProjectile" parent="." unique_id=287636320 instance=ExtResource("2_dvipt")]
 
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=754916006]
 collision_layer = 4
