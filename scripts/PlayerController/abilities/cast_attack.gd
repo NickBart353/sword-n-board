@@ -39,7 +39,12 @@ func _book_animation_ended(anim_name: StringName) -> void:
 func _shoot_projectile():
 	var shooting_direction: Vector3 = player.get_looking_direction()
 	var proj_instance = magic_projectile.instantiate()
-	spawn_magic_projectile.emit(proj_instance, $"../../Head/FieldOfView/LeftHand".global_position, shooting_direction, true)
+	var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/LeftHand/MagicBall")
+	if not projectile_spawn_position:
+		projectile_spawn_position = $"../../Head/FieldOfView/LeftHand".global_position
+	else:
+		projectile_spawn_position = projectile_spawn_position.global_position
+	spawn_magic_projectile.emit(proj_instance, projectile_spawn_position, shooting_direction, true)
 
 func _remove_proj(proj: Node):
 	proj.queue_free()

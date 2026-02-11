@@ -64,11 +64,11 @@ func remove_object(object):
 	object.queue_free()
 
 func _spawn_projectile(projectile: Node, spawn_position: Vector3, shooting_direction: Vector3, direction_flag: bool = false):
-	$Attacks.add_child(projectile)
+	$Attacks.add_child(projectile, true)
 	projectile.fire(spawn_position, shooting_direction, direction_flag)
 	projectile.exploded.connect(remove_object)
 
 func _create_vfx(vfx_position: Vector3, scene: PackedScene):
 	var instance = scene.instantiate()
-	$Vfx.add_child(instance)
+	$Vfx.add_child(instance, true)
 	instance.global_position = vfx_position

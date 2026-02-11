@@ -31,6 +31,8 @@ func take_damage(damage_dealt):
 		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	health -= damage_dealt
 	$HealthBar.update_health(health)
+	if $StateMachine.current_state.name.to_lower() == "idle":
+		$StateMachine.on_child_transitioned($StateMachine/Idle, "Engage")
 
 func _remove_me():
 	EventBus.spawn_loot.emit(self)

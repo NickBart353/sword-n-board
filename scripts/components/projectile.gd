@@ -28,32 +28,36 @@ func _ready() -> void:
 	else:
 		gravity = 9.81
 
-func _physics_process(delta: float) -> void:
-	if hit:
+func _physics_process(delta: float) -> void:	
+	if not ready_to_fly: return
+	velocity.y -= gravity * delta
+	global_translate(velocity * delta)
+
+func _on_body_entered(body: Node3D) -> void:
+	if hit: return
+	if (body is Player or body is Enemy) and not target_hit:
+		body.take_damage(damage)
+		target_hit = true
+	_hit_object()
+
+func _on_area_entered(_area: Area3D) -> void:
+	if hit: return
+	_hit_object()
+
+func _hit_object():
+	ready_to_fly = false
+	VfxManager.create_vfx_from_enum(explosion_animation, global_position)
+	hit = true
+	set_physics_process(false) 
+	projectile_area.set_deferred("monitoring", false)
+	if not target_hit:
 		for body in explosion_area.get_overlapping_bodies():
 			if (body is Player or body is Enemy) and not target_hit:
 				body.take_damage(damage)
 				target_hit = true
 		for area in explosion_area.get_overlapping_areas():
 			pass
-		exploded.emit(self)
-	
-	if not ready_to_fly: return
-	velocity.y -= gravity * delta
-	global_translate(velocity * delta)
-
-func _on_body_entered(body: Node3D) -> void:
-	if (body is Player or body is Enemy) and not target_hit:
-		body.take_damage(damage)
-		target_hit = true
-	ready_to_fly = false
-	VfxManager.create_vfx_from_enum(explosion_animation, global_position)
-	hit = true
-
-func _on_area_entered(_area: Area3D) -> void:
-	ready_to_fly = false
-	VfxManager.create_vfx_from_enum(explosion_animation, global_position)
-	hit = true
+	exploded.emit(self)
 
 func fire(my_position: Vector3, target_location: Vector3, direction: bool = false):
 	hit = false

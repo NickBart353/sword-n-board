@@ -6,7 +6,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_hjrog"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dvipt"]
-radius = 6.2000003
+radius = 8.400001
 
 [node name="MagicProjectile" type="Node3D" unique_id=865170927 node_paths=PackedStringArray("projectile_area", "explosion_area")]
 script = ExtResource("1_hjrog")

@@ -7,6 +7,7 @@ const SMALL_TORNADO: PackedScene = preload("res://scenes/VFX/spinning_small_torn
 const CHARGE_POISON: PackedScene = preload("res://scenes/VFX/charge_poison.tscn")
 const STUNNED: PackedScene = preload("res://scenes/VFX/stunned.tscn")
 const SOUND_WAVES: PackedScene = preload("res://scenes/VFX/sound_waves.tscn")
+const MAGIC_EXPLOSION: PackedScene = preload("res://scenes/VFX/blue_magic_explosion.tscn")
 
 enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION}
 
