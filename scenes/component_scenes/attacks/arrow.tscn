@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d21w876t16ds4"]
+
+[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_qpkol"]
+[ext_resource type="ArrayMesh" uid="uid://cpvjgs23ce4wi" path="res://assets/Bow_pack/Objs/arrow.obj" id="2_o5xq5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpkol"]
+radius = 0.16250001
+height = 0.32500002
+
+[node name="Arrow" type="Node3D" unique_id=130418058 node_paths=PackedStringArray("projectile_area", "explosion_area")]
+top_level = true
+script = ExtResource("1_qpkol")
+projectile_area = NodePath("ProjectileArea")
+explosion_area = NodePath("ExplosionArea")
+proj_speed = 100
+gravity_enabled = true
+damage = 15
+metadata/_custom_type_script = "uid://snywren3rqx0"
+
+[node name="ArrowMesh" type="MeshInstance3D" parent="." unique_id=1178956469]
+transform = Transform3D(0.99999994, 1.0530022e-07, 1.421086e-14, 1.4210856e-14, -4.371138e-08, -1, -1.0530022e-07, 0.99999994, -4.3711378e-08, -7.439999, 2.2351639e-08, 1.9595027e-06)
+mesh = ExtResource("2_o5xq5")
+
+[node name="ProjectileArea" type="Area3D" parent="." unique_id=1874975528]
+transform = Transform3D(-4.3711385e-08, 4.3711392e-08, 1, 1, -8.742278e-08, 4.3711385e-08, 8.742278e-08, 1, -4.3711385e-08, 0, 0, 0)
+collision_layer = 0
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=1168519938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5375, 0)
+shape = SubResource("CapsuleShape3D_qpkol")
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=59508493]
+transform = Transform3D(4.371139e-08, 4.371139e-08, 1, 1, -1.1920929e-07, -4.371138e-08, 1.1920929e-07, 1, -4.371138e-08, 0, 0, 0)
+top_level = true
+collision_layer = 0
+collision_mask = 9
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=350698479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5375, 0)
+shape = SubResource("CapsuleShape3D_qpkol")

@@ -49,6 +49,7 @@ func _ready() -> void:
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
+	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
@@ -114,15 +115,15 @@ func update_items(player_items, new_head_item: Item, new_body_item: Item, new_bo
 			_clear_equip_slot(left_hand)
 			var item_instance = ItemGenerator.generate_item(main_hand_item.data)
 			if item_instance:
-				if item_instance is PackedScene:
-					right_hand.add_child(item_instance)
+				if item_instance is Node:
+					right_hand.add_child(item_instance, true)
 				elif item_instance is Dictionary:
 					for item_slot in item_instance:
 						match item_slot:
 							ItemGenerator.SLOTS.MAIN_HAND:
-								right_hand.add_child(item_instance[item_slot])
+								right_hand.add_child(item_instance[item_slot], true)
 							ItemGenerator.SLOTS.OFF_HAND:
-								left_hand.add_child(item_instance[item_slot])
+								left_hand.add_child(item_instance[item_slot], true)
 	else:
 		main_hand_item = _reequip_slot(main_hand_item, new_main_hand_item, right_hand)
 		off_hand_item = _reequip_slot(off_hand_item, new_off_hand_item, left_hand)
@@ -169,10 +170,12 @@ func get_looking_direction() -> Vector3:
 	direction.y *= -1
 	direction = direction.normalized()
 	return direction
-	
 
-func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, direction_flag: bool = false):
-	spawn_projectile.emit(projectile, spawn_position, direction, direction_flag)
+func get_camera_transform() -> Transform3D:
+	return $Head/FieldOfView.global_transform
+
+func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
+	spawn_projectile.emit(projectile, spawn_position, direction, proj_transform, direction_flag)
 
 func _load_preset_items():
 	var sword: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
@@ -184,6 +187,9 @@ func _load_preset_items():
 	var shield: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	shield.data = ItemManager.ITEMS["wooden_shield"]
 	items.append(shield)
+	var bow: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	bow.data = ItemManager.ITEMS["wooden_bow"]
+	items.append(bow)
 
 func _die():
 	print("game over")

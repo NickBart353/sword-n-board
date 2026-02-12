@@ -47,15 +47,15 @@ func set_called(val: bool):
 func create_bombs():
 	for i in range(poison_blast_bullet_amount):
 		var poison_bomb_instance = POISON_BOMB_SCENE.instantiate()
-		poison_bomb_instance.process_mode = Node.PROCESS_MODE_DISABLED
+		poison_bomb_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		poison_bomb_instance.exploded.connect(reset_bomb)
 		bombs.add_child(poison_bomb_instance, true)
 		poison_bomb_instance.global_position = RESET_POSITION
 
 func ready_bombs(player_location):
 	for bomb in bombs.get_children():
-		bomb.process_mode = Node.PROCESS_MODE_INHERIT
-		bomb.fire($BombPosition.global_position, player_location)
+		bomb.set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
+		bomb.fire($BombPosition.global_position, player_location, global_transform)
 
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION

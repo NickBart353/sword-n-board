@@ -19,6 +19,7 @@ var ready_to_fly: bool = false
 var target_hit: bool = false
 var hit: bool = false
 var gravity: float
+var new_transform: Transform3D = Transform3D.IDENTITY
 
 func _ready() -> void:
 	projectile_area.body_entered.connect(_on_body_entered)
@@ -28,8 +29,9 @@ func _ready() -> void:
 	else:
 		gravity = 9.81
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	if not ready_to_fly: return
+	global_basis = new_transform.basis.orthonormalized()
 	velocity.y -= gravity * delta
 	global_translate(velocity * delta)
 
@@ -59,10 +61,13 @@ func _hit_object():
 			pass
 	exploded.emit(self)
 
-func fire(my_position: Vector3, target_location: Vector3, direction: bool = false):
+func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
+	set_physics_process(true) 
+	projectile_area.set_deferred("monitoring", true)
+	new_transform = proj_transform
 	hit = false
 	global_position = my_position
-	if not direction:
+	if not direction_flag:
 		if spread:
 			var spread_minus: float = 0-spread/2
 			var spread_plus: float = 0+spread/2

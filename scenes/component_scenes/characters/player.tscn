@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
+[ext_resource type="PackedScene" uid="uid://q2dyv3pbflul" path="res://scenes/component_scenes/item_entities/weapons/bow.tscn" id="2_8gp4u"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
@@ -8,6 +9,8 @@
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_bnsrg"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_5e2me"]
 [ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="7_m0y8q"]
+[ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="8_m0y8q"]
+[ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_wbsrb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -161,6 +164,119 @@ tracks/4/keys = {
 }, {
 "args": [&"Book2"],
 "method": &"_book_animation_ended"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_v1vyy"]
+resource_name = "Bow1"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.5, 2.1, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.28, -0.2, -0.625), Vector3(0.28, -0.2, -0.54), Vector3(0.28, -0.2, -0.745), Vector3(0.28, -0.2, -0.745)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(-0.02617994, -0.27925268, -0.96865773)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AbilityController/ShootAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"charge_maxed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_aeb6f"]
+resource_name = "Bow2"
+length = 0.73333335
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.28, -0.2, -0.54), Vector3(0.24, -0.17, -0.54), Vector3(0.28, -0.2, -0.54)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.02617994, -0.27925268, -0.96865773), Vector3(-0.02617994, -0.27925268, -0.96865773)]
+}
+
+[sub_resource type="Animation" id="Animation_w8vq5"]
+resource_name = "Bow3"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/RightHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.28, -0.2, -0.745), Vector3(0.28, -0.2, -0.745)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/RightHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.02617994, -0.27925268, -0.96865773)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AbilityController/ShootAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Bow3"],
+"method": &"_on_animation_player_animation_finished"
 }]
 }
 
@@ -383,6 +499,9 @@ tracks/2/keys = {
 _data = {
 &"Book1": SubResource("Animation_wbsrb"),
 &"Book2": SubResource("Animation_1e104"),
+&"Bow1": SubResource("Animation_v1vyy"),
+&"Bow2": SubResource("Animation_aeb6f"),
+&"Bow3": SubResource("Animation_w8vq5"),
 &"Idle": SubResource("Animation_272xh"),
 &"RESET": SubResource("Animation_m0y8q"),
 &"Sword1": SubResource("Animation_8gp4u"),
@@ -395,6 +514,15 @@ animation = &"Book1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1e104"]
 animation = &"Book2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bnsrg"]
+animation = &"Bow1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5qjy"]
+animation = &"Bow2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1vyy"]
+animation = &"Bow3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
 animation = &"Idle"
@@ -463,11 +591,41 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "ability.get_node(\"CastAttack\").cast_in_progress == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w8vq5"]
+xfade_time = 0.2
+advance_expression = "(ability.get_node(\"ShootAttack\").shooting == true and (ability.get_node(\"ShootAttack\").charging == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4bg8r"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false or ability.get_node(\"ShootAttack\").charging == false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81e7k"]
+xfade_time = 0.1
+switch_mode = 2
+advance_expression = "(ability.get_node(\"ShootAttack\").max_charge == true "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_du382"]
+xfade_time = 0.1
+advance_expression = "(ability.get_node(\"ShootAttack\").shoot == 3 and ability.get_node(\"ShootAttack\").max_charge == false)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjkjg"]
+xfade_time = 0.3
+switch_mode = 2
+advance_mode = 2
+advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
 states/Book1/node = SubResource("AnimationNodeAnimation_wbsrb")
 states/Book1/position = Vector2(129, 221)
 states/Book2/node = SubResource("AnimationNodeAnimation_1e104")
 states/Book2/position = Vector2(129, 104)
+states/Bow1/node = SubResource("AnimationNodeAnimation_bnsrg")
+states/Bow1/position = Vector2(129, -18)
+states/Bow2/node = SubResource("AnimationNodeAnimation_i5qjy")
+states/Bow2/position = Vector2(129, -115)
+states/Bow3/node = SubResource("AnimationNodeAnimation_v1vyy")
+states/Bow3/position = Vector2(326, -115)
 states/End/position = Vector2(898, 104)
 states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
 states/Idle/position = Vector2(326, 101)
@@ -478,8 +636,8 @@ states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
 states/Sword2/position = Vector2(698, 104)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
 states/Sword3/position = Vector2(517, 221)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct")]
-graph_offset = Vector2(-237, -81)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg")]
+graph_offset = Vector2(-292, -152)
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 2
@@ -508,6 +666,8 @@ transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5
 
 [node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
 transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
+
+[node name="Bow" parent="Head/FieldOfView/RightHand" unique_id=987246814 instance=ExtResource("2_8gp4u")]
 
 [node name="Slots" type="Node3D" parent="." unique_id=64799682]
 
@@ -553,6 +713,11 @@ player = NodePath("../..")
 [node name="CastAttack" type="Node" parent="AbilityController" unique_id=2117671511 node_paths=PackedStringArray("player")]
 script = ExtResource("7_5e2me")
 magic_projectile = ExtResource("7_m0y8q")
+player = NodePath("../..")
+
+[node name="ShootAttack" type="Node" parent="AbilityController" unique_id=822696841 node_paths=PackedStringArray("player")]
+script = ExtResource("8_m0y8q")
+arrow_projectile = ExtResource("10_wbsrb")
 player = NodePath("../..")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]

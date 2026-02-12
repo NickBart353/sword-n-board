@@ -14,3 +14,7 @@ func apply_animations(input: Node, movement: Node, ability: Node, delta: float) 
 		if cast_attack:
 			if cast_attack.casting:
 				anim_tree_list.travel("Book{0}".format([cast_attack.cast]))
+		var shoot_attack = ability.get_node_or_null("ShootAttack")
+		if shoot_attack:
+			if shoot_attack.shooting:
+				anim_tree_list.travel("Bow{0}".format([shoot_attack.shoot]))

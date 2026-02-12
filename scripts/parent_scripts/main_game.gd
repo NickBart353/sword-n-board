@@ -63,9 +63,9 @@ func update_items(player_items, loot_items, sack: Node, head_item: Item, body_it
 func remove_object(object):
 	object.queue_free()
 
-func _spawn_projectile(projectile: Node, spawn_position: Vector3, shooting_direction: Vector3, direction_flag: bool = false):
+func _spawn_projectile(projectile: Node, spawn_position: Vector3, shooting_direction: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
 	$Attacks.add_child(projectile, true)
-	projectile.fire(spawn_position, shooting_direction, direction_flag)
+	projectile.fire(spawn_position, shooting_direction, proj_transform, direction_flag)
 	projectile.exploded.connect(remove_object)
 
 func _create_vfx(vfx_position: Vector3, scene: PackedScene):
