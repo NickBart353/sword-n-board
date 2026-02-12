@@ -25,10 +25,7 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 			shooting = true
 			shoot_in_progress = true
 		if charging and not input.attack and shoot == 1:
-			shoot = 0
-			shooting = false
-			shoot_in_progress = false
-			charging = false
+			reset()
 		if max_charge and not input.attack:
 			shoot = 3
 			max_charge = false
@@ -39,7 +36,6 @@ func charge_maxed():
 	max_charge = true
 
 func shoot_projectile():
-	#reset()
 	var shooting_direction: Vector3 = player.get_looking_direction()
 	var projectile_transform: Transform3D = player.get_camera_transform()
 	var proj_instance = arrow_projectile.instantiate()

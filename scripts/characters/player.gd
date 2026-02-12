@@ -92,8 +92,8 @@ func get_equipped_primary():
 func get_equipped_secondary():
 	var offhand: Array = $Head/FieldOfView/LeftHand.get_children()
 	if offhand:
-		return offhand[0].name
-	return "Unarmed"
+		return offhand[0]
+	return null
 
 func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
 	_reset_abilities()

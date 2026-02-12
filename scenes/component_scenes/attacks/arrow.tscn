@@ -4,8 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://cpvjgs23ce4wi" path="res://assets/Bow_pack/Objs/arrow.obj" id="2_o5xq5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpkol"]
-radius = 0.16250001
-height = 0.32500002
+radius = 0.1
+height = 1.98125
 
 [node name="Arrow" type="Node3D" unique_id=130418058 node_paths=PackedStringArray("projectile_area", "explosion_area")]
 top_level = true
@@ -14,6 +14,7 @@ projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
 proj_speed = 100
 gravity_enabled = true
+explosion_animation = 6
 damage = 15
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
@@ -28,7 +29,7 @@ collision_mask = 9
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=1168519938]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5375, 0)
+transform = Transform3D(1, 0, -2.6865683e-16, 0, 1, 0, -2.6865725e-16, 0, 1, -7.1054274e-15, -0.709375, 7.1054274e-15)
 shape = SubResource("CapsuleShape3D_qpkol")
 
 [node name="ExplosionArea" type="Area3D" parent="." unique_id=59508493]
@@ -39,5 +40,5 @@ collision_mask = 9
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=350698479]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5375, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7375, 0)
 shape = SubResource("CapsuleShape3D_qpkol")
