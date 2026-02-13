@@ -3,11 +3,13 @@ class_name Projectile
 
 @export var projectile_area: Area3D
 @export var explosion_area: Area3D
+@export var explosion_radius: float = 1.0
 @export var proj_speed = 30
 @export var gravity_enabled: bool = false
 @export var spread: float = 0.0
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
+
 
 signal exploded
 
@@ -24,6 +26,8 @@ var new_transform: Transform3D = Transform3D.IDENTITY
 func _ready() -> void:
 	projectile_area.body_entered.connect(_on_body_entered)
 	projectile_area.area_entered.connect(_on_area_entered)
+	explosion_area.body_entered.connect(_on_explosion_body_entered)
+	explosion_area.area_entered.connect(_on_explosion_area_entered)
 	if not gravity_enabled:
 		gravity = 0  
 	else:
@@ -38,13 +42,24 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if hit: return
 	if (body is Player or body is Enemy) and not target_hit:
-		body.take_damage(damage)
+		body.take_damage(damage, projectile_area)
 		target_hit = true
 	_hit_object()
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return
+	if _area.is_in_group("Shield"):
+		target_hit = true
 	_hit_object()
+
+func _on_explosion_body_entered(body: Node3D) -> void:
+	if (body is Player or body is Enemy) and not target_hit:
+		body.take_damage(damage, explosion_area)
+		target_hit = true
+	_explode()
+
+func _on_explosion_area_entered(_area: Area3D) -> void:
+	_explode()
 
 func _hit_object():
 	ready_to_fly = false
@@ -52,17 +67,24 @@ func _hit_object():
 	hit = true
 	set_physics_process(false) 
 	projectile_area.set_deferred("monitoring", false)
-	if not target_hit:
-		for body in explosion_area.get_overlapping_bodies():
-			if (body is Player or body is Enemy) and not target_hit:
-				body.take_damage(damage)
-				target_hit = true
-		for area in explosion_area.get_overlapping_areas():
-			pass
+	var tween = create_tween()
+	tween.finished.connect(_explode)
+	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.2)
+	#if not target_hit:
+		#for body in explosion_area.get_overlapping_bodies():
+			#if (body is Player or body is Enemy) and not target_hit:
+				#body.take_damage(damage, explosion_area)
+				#target_hit = true
+		#for area in explosion_area.get_overlapping_areas():
+			#pass
+	#exploded.emit(self)
+
+func _explode():
 	exploded.emit(self)
 
 func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
 	set_physics_process(true) 
+	explosion_area.get_children()[0].shape.radius = 0.1
 	projectile_area.set_deferred("monitoring", true)
 	new_transform = proj_transform
 	hit = false

@@ -40,6 +40,7 @@ var boots_item: Item
 var main_hand_item: Item
 var off_hand_item: Item
 var consumable_item: Item
+var blocked_body: Node
 
 func _ready() -> void:
 	_load_preset_items()
@@ -50,6 +51,7 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
+	$AbilityController/Block.blocked.connect(_blocked_attack)
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
@@ -156,11 +158,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
 
-func take_damage(damage):
+func take_damage(damage, body: Node):
+	if blocked_body:
+		print(body.name, " ", blocked_body.name)
+	if body == blocked_body and blocked_body != null:
+		blocked_body = null
+		return
 	health -= damage
 	if health <= MIN_HEALTH:
 		_die()
 	$CanvasLayer/RedBar/HealthBar.value = health
+
+func _blocked_attack(body: Node):
+	blocked_body = body
 
 func get_looking_direction() -> Vector3:
 	#return $Head/FieldOfView.get_global_transform().basis.z

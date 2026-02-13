@@ -19,7 +19,7 @@ damage = 15
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
 [node name="ArrowMesh" type="MeshInstance3D" parent="." unique_id=1178956469]
-transform = Transform3D(0.99999994, 1.0530022e-07, 1.421086e-14, 1.4210856e-14, -4.371138e-08, -1, -1.0530022e-07, 0.99999994, -4.3711378e-08, -7.439999, 2.2351639e-08, 1.9595027e-06)
+transform = Transform3D(0.99999994, 1.0530022e-07, 1.421086e-14, 1.4210856e-14, -4.371138e-08, -1, -1.0530022e-07, 0.99999994, -4.3711378e-08, -7.4699993, 2.2351639e-08, 1.9626616e-06)
 mesh = ExtResource("2_o5xq5")
 
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=1874975528]

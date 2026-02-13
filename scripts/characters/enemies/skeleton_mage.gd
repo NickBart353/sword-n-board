@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	hunting = false
 
-func take_damage(damage_dealt):
+func take_damage(damage_dealt, _body = null):
 	if not dying:
 		if iFrameTimer.is_stopped():
 			iFrameTimer.start()

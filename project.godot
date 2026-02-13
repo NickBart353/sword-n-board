@@ -42,6 +42,7 @@ enabled=PackedStringArray("res://addons/brackeys-particle-controls-main/addons/b
 
 interactable=""
 Player=""
+Shield=""
 
 [input]
 

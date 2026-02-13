@@ -12,6 +12,7 @@ radius = 8.400001
 script = ExtResource("1_hjrog")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
+explosion_radius = 8.4
 proj_speed = 25
 explosion_animation = 5
 damage = 25

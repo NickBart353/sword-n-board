@@ -9,6 +9,7 @@ const ITEM_TYPE_DICT: Dictionary = {
 		SLOTS.OFF_HAND: preload("res://scenes/VFX/magic_ball.tscn")
 	},
 	ItemData.ITEM_TYPE.BOW: preload("res://scenes/component_scenes/item_entities/weapons/bow.tscn"),
+	ItemData.ITEM_TYPE.SHIELD: preload("res://scenes/component_scenes/item_entities/shield/shield.tscn"),
 }
 
 const RESOURCE_DICT: Dictionary = {

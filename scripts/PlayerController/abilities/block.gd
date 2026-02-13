@@ -2,7 +2,7 @@ extends Ability
 
 @onready var anim_player = $"../../AnimationPlayer"
 
-signal spawn_projectile
+signal blocked
 
 var offhand: Node
 var blocking: bool = false
@@ -12,12 +12,18 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 	if not offhand is Shield: 
 		reset()
 		return
+	if not offhand.blocked.is_connected(_blocked):
+		offhand.blocked.connect(_blocked)
 	
 	if not movement.dashing:
 		if input.hold_secondary:
 			blocking = true
 		else:
 			blocking = false
+
+func _blocked(body):
+	if blocking:
+		blocked.emit(body)
 
 func reset():
 	offhand = null

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://d3wbiotwk5tyt"]
+
+[ext_resource type="PackedScene" uid="uid://ctxxrqava1bjf" path="res://assets/sketchfab/shield/scene.gltf" id="1_vuocu"]
+[ext_resource type="Script" uid="uid://7niebdhiadw6" path="res://scripts/item_entity/off_hands/wooden_buckler.gd" id="2_8ynvp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ffst0"]
+height = 0.14999999
+radius = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8ynvp"]
+size = Vector3(28.800001, 0.3, 21.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dmnlx"]
+height = 0.025249999
+radius = 0.6
+
+[node name="Shield" unique_id=119600585 instance=ExtResource("1_vuocu")]
+script = ExtResource("2_8ynvp")
+
+[node name="Sketchfab_model" parent="." index="0" unique_id=1685420743 groups=["Shield"]]
+transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 24
+
+[node name="Fronside" type="CollisionShape3D" parent="Sketchfab_model" index="1" unique_id=160939050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04999999, 0)
+shape = SubResource("CylinderShape3D_ffst0")
+
+[node name="BigSide" type="CollisionShape3D" parent="Sketchfab_model" index="2" unique_id=526313244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000111, -0.1499999, -2.1499996)
+visible = false
+shape = SubResource("BoxShape3D_8ynvp")
+disabled = true
+debug_color = Color(0.30449697, 0.627918, 0, 0.41960785)
+
+[node name="Backside" type="Area3D" parent="." index="1" unique_id=1789316094 groups=["Shield"]]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.01)
+collision_layer = 4
+collision_mask = 24
+
+[node name="BacksideShape" type="CollisionShape3D" parent="Backside" index="0" unique_id=1595411322]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.8857806e-16, -4.278252e-09, -0.09787501)
+shape = SubResource("CylinderShape3D_dmnlx")
+debug_color = Color(0.99008447, 0, 0.2882964, 0.41960785)
+
+[connection signal="area_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_area_entered"]
+[connection signal="body_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_body_entered"]
+[connection signal="area_entered" from="Backside" to="." method="_on_backside_area_entered"]
+[connection signal="body_entered" from="Backside" to="." method="_on_backside_body_entered"]

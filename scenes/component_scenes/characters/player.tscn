@@ -17,8 +17,8 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lu7gk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
-radius = 0.7
-height = 2.15
+radius = 0.55
+height = 2.0875
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oijqy"]
 bg_color = Color(1, 0.2, 0.21568628, 1)
@@ -28,6 +28,34 @@ bg_color = Color(1, 0.2, 0.21568628, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
 bg_color = Color(0, 0.8901961, 0.24313726, 1)
+
+[sub_resource type="Animation" id="Animation_ykwct"]
+resource_name = "Block1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.165, -0.455, -0.695), Vector3(-0.165, -0.455, -0.695)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.008726646, 0.08726646, 0), Vector3(0.008726646, 0.08726646, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wbsrb"]
 resource_name = "Book1"
@@ -497,6 +525,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
 _data = {
+&"Block1": SubResource("Animation_ykwct"),
 &"Book1": SubResource("Animation_wbsrb"),
 &"Book2": SubResource("Animation_1e104"),
 &"Bow1": SubResource("Animation_v1vyy"),
@@ -508,6 +537,9 @@ _data = {
 &"Sword2": SubResource("Animation_bnsrg"),
 &"Sword3": SubResource("Animation_i5qjy")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aeb6f"]
+animation = &"Block1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbsrb"]
 animation = &"Book1"
@@ -615,7 +647,18 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpava"]
+xfade_time = 0.1
+advance_expression = "ability.get_node(\"Block\").blocking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u22gl"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "ability.get_node(\"Block\").blocking == false"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
+states/Block1/node = SubResource("AnimationNodeAnimation_aeb6f")
+states/Block1/position = Vector2(459, -194)
 states/Book1/node = SubResource("AnimationNodeAnimation_wbsrb")
 states/Book1/position = Vector2(129, 221)
 states/Book2/node = SubResource("AnimationNodeAnimation_1e104")
@@ -636,8 +679,8 @@ states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
 states/Sword2/position = Vector2(698, 104)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
 states/Sword3/position = Vector2(517, 221)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg")]
-graph_offset = Vector2(-292, -152)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl")]
+graph_offset = Vector2(-260, -263)
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 2
@@ -684,7 +727,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, -0.1, 0)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=656745909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.024999857, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006250143, 0)
 shape = SubResource("CapsuleShape3D_oijqy")
 debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 

@@ -41,6 +41,7 @@ radius = 1.3000001
 script = ExtResource("1_uwupy")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
+explosion_radius = 10.0
 gravity_enabled = true
 spread = 10.0
 metadata/_custom_type_script = "uid://snywren3rqx0"
@@ -57,7 +58,6 @@ mesh = SubResource("SphereMesh_5wmi7")
 [node name="ExplosionArea" type="Area3D" parent="." unique_id=866413567]
 collision_layer = 16
 collision_mask = 7
-monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=327894388]
 shape = SubResource("SphereShape3D_4h1qo")
@@ -66,7 +66,6 @@ debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=572506448]
 collision_layer = 16
 collision_mask = 7
-monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=306225378]
 shape = SubResource("SphereShape3D_uwupy")
