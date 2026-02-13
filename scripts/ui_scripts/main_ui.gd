@@ -174,7 +174,6 @@ func _swap_weapons(is_main_hand: bool, index: int):
 				equipped_main_hand = player_items[index]
 				player_items.remove_at(index)
 	else:
-		print(player_items[index].data.item_name)
 		if not equipped_off_hand:
 			equipped_off_hand = player_items[index]
 			player_items.remove_at(index)

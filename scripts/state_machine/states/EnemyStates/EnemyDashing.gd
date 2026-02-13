@@ -35,17 +35,18 @@ func Physics_Update(delta: float) -> void:
 		Transitioned.emit(self, "Recovering")
 		return
 	
-	if (enemy.global_position.distance_to(dash_start_position) > dash_range) or last_frame_position == enemy.global_position:
+	if (enemy.global_position.distance_to(dash_start_position) > dash_range) or last_frame_position == enemy.global_position or player_hit:
 		Transitioned.emit(self, "Resetting")
 		return
 	last_frame_position = enemy.global_position
 
 func _on_damage_box_area_entered(area: Area3D) -> void:
 	if state_active:
-		if area.is_in_group("PlayerHurtBox"):
+		if area.is_in_group("Shield") and not player_hit:
+			charge_interrupted = true
+		elif area.is_in_group("PlayerHurtBox") and not player_hit and not charge_interrupted:
 			player.take_damage(dash_damage, $"../../DamageBox")
 			player_hit = true
-			charge_interrupted = true
 
 func _on_damage_box_body_entered(body: Node3D) -> void:
 	if state_active:

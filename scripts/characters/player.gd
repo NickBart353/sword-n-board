@@ -159,8 +159,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.rotate_x(look_rotation.x)
 
 func take_damage(damage, body: Node):
-	if blocked_body:
-		print(body.name, " ", blocked_body.name)
 	if body == blocked_body and blocked_body != null:
 		blocked_body = null
 		return

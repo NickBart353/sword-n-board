@@ -5,10 +5,12 @@ class_name Projectile
 @export var explosion_area: Area3D
 @export var explosion_radius: float = 1.0
 @export var proj_speed = 30
+@export var proj_distance = 100
 @export var gravity_enabled: bool = false
 @export var spread: float = 0.0
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
+@export var explosion_target_raycast: RayCast3D
 
 
 signal exploded
@@ -20,8 +22,11 @@ var fire_direction: Vector3 = Vector3.ZERO
 var ready_to_fly: bool = false
 var target_hit: bool = false
 var hit: bool = false
+var explosion_hit: bool = false
 var gravity: float
 var new_transform: Transform3D = Transform3D.IDENTITY
+var hit_by_explosion_list: Array = []
+var origin: Vector3
 
 func _ready() -> void:
 	projectile_area.body_entered.connect(_on_body_entered)
@@ -35,16 +40,18 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not ready_to_fly: return
+	if origin.distance_to(global_position) > proj_distance: _hit_object()
 	global_basis = new_transform.basis.orthonormalized()
 	velocity.y -= gravity * delta
 	global_translate(velocity * delta)
 
 func _on_body_entered(body: Node3D) -> void:
-	if hit: return
+	if hit or body in hit_by_explosion_list: return
 	if (body is Player or body is Enemy) and not target_hit:
-		body.take_damage(damage, projectile_area)
+		was_object_hit_first(body, projectile_area.get_children()[0].shape.radius)
 		target_hit = true
 	_hit_object()
+	hit_by_explosion_list.append(body)
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return
@@ -53,13 +60,25 @@ func _on_area_entered(_area: Area3D) -> void:
 	_hit_object()
 
 func _on_explosion_body_entered(body: Node3D) -> void:
-	if (body is Player or body is Enemy) and not target_hit:
-		body.take_damage(damage, explosion_area)
+	if body in hit_by_explosion_list: return
+	if (body is Player or body is Enemy):# and not target_hit:
+		was_object_hit_first(body, explosion_radius)
 		target_hit = true
-	_explode()
+	hit_by_explosion_list.append(body)
 
 func _on_explosion_area_entered(_area: Area3D) -> void:
-	_explode()
+	pass#if explosion_hit: return
+	#explosion_area.set_deferred("monitoring", false)
+	#explosion_hit = true
+
+func was_object_hit_first(object: Node, raycast_length: float):
+	#explosion_target_raycast.target_position = (object.global_position - global_position).normalized() * raycast_length
+	var local_target = explosion_target_raycast.to_local(object.global_position)
+	explosion_target_raycast.target_position = local_target.normalized() * raycast_length
+	explosion_target_raycast.force_raycast_update()
+	var first_hit_object = explosion_target_raycast.get_collider()
+	if (first_hit_object and (first_hit_object is Player or first_hit_object is Enemy)) or not first_hit_object:
+		object.take_damage(damage, explosion_area)
 
 func _hit_object():
 	ready_to_fly = false
@@ -67,17 +86,10 @@ func _hit_object():
 	hit = true
 	set_physics_process(false) 
 	projectile_area.set_deferred("monitoring", false)
+	explosion_area.set_deferred("monitoring", true)
 	var tween = create_tween()
 	tween.finished.connect(_explode)
-	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.2)
-	#if not target_hit:
-		#for body in explosion_area.get_overlapping_bodies():
-			#if (body is Player or body is Enemy) and not target_hit:
-				#body.take_damage(damage, explosion_area)
-				#target_hit = true
-		#for area in explosion_area.get_overlapping_areas():
-			#pass
-	#exploded.emit(self)
+	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.1)
 
 func _explode():
 	exploded.emit(self)
@@ -86,9 +98,13 @@ func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transf
 	set_physics_process(true) 
 	explosion_area.get_children()[0].shape.radius = 0.1
 	projectile_area.set_deferred("monitoring", true)
+	explosion_area.set_deferred("monitoring", false)
 	new_transform = proj_transform
 	hit = false
+	explosion_hit = false
 	global_position = my_position
+	hit_by_explosion_list = []
+	origin = my_position
 	if not direction_flag:
 		if spread:
 			var spread_minus: float = 0-spread/2
