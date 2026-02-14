@@ -119,23 +119,23 @@ MAX_HEALTH = 75
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.4668192e-08, 0.99391437, 0.11015626, 1.3234771e-07)
-bones/2/rotation = Quaternion(-0.62276566, -0.21956998, -0.26886395, 0.7011877)
-bones/3/rotation = Quaternion(0.23794705, -0.15537404, 0.051937092, 0.9573624)
-bones/4/rotation = Quaternion(-0.6006011, 0.20260036, 0.30567956, 0.71048677)
-bones/5/rotation = Quaternion(0.23794703, 0.155374, -0.05193705, 0.9573624)
-bones/6/rotation = Quaternion(-0.3437912, 0.40548378, 0.82702297, 0.182821)
-bones/7/rotation = Quaternion(-0.6450469, -0.055696383, 0.37666863, 0.6625204)
+bones/1/rotation = Quaternion(-1.1664333e-08, 0.996156, 0.08759766, 1.3264619e-07)
+bones/2/rotation = Quaternion(-0.539287, -0.17220297, -0.33201456, 0.7545078)
+bones/3/rotation = Quaternion(0.37554654, -0.032274604, 0.010788516, 0.9261786)
+bones/4/rotation = Quaternion(-0.42987815, 0.17095906, 0.24419981, 0.8522584)
+bones/5/rotation = Quaternion(0.3755466, 0.032274608, -0.010788554, 0.9261786)
+bones/6/rotation = Quaternion(-0.33246228, 0.43578315, 0.8258429, 0.13245927)
+bones/7/rotation = Quaternion(-0.5991609, -0.12436699, 0.38662338, 0.689972)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.34379107, 0.40548378, 0.827023, -0.18282095)
-bones/10/rotation = Quaternion(-0.64504665, 0.05569634, -0.37666875, 0.66252047)
+bones/9/rotation = Quaternion(0.33246186, 0.43578345, 0.825843, -0.13245934)
+bones/10/rotation = Quaternion(-0.599161, 0.124366954, -0.3866234, 0.6899719)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.8411207, 0.2573468, 0.09632697, 0.46584296)
+bones/12/rotation = Quaternion(-0.8457769, 0.08055293, 0.2236809, 0.47763965)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.8411194, -0.2573166, -0.09635286, 0.46585664)
+bones/14/rotation = Quaternion(-0.8438091, -0.07954771, -0.22535306, 0.48049378)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.26679137, 3.4839118e-07, -8.0754596e-08, 0.9637543)
-bones/18/rotation = Quaternion(0.16727474, 2.7421842e-07, -6.4431673e-09, 0.9859104)
+bones/17/rotation = Quaternion(-0.41544273, 3.5676698e-07, -2.4800627e-08, 0.90961945)
+bones/18/rotation = Quaternion(0.30480313, 2.9066638e-07, 8.514249e-09, 0.95241547)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
 material_overlay = SubResource("ShaderMaterial_f2g7w")
@@ -145,7 +145,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -
 shape = SubResource("CapsuleShape3D_8403y")
 
 [node name="DamageBox" type="Area3D" parent="." index="2" unique_id=462358425 groups=["Enemy_Part"]]
-collision_layer = 8
+collision_layer = 16
 collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox" index="0" unique_id=590011115]

@@ -198,6 +198,9 @@ func _load_preset_items():
 	var bow: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	bow.data = ItemManager.ITEMS["wooden_bow"]
 	items.append(bow)
+	var torch: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	torch.data = ItemManager.ITEMS["torch"]
+	items.append(torch)
 
 func _die():
 	print("game over")

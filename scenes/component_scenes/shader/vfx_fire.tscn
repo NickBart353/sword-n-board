@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cfnt03x7m17w2"]
+[gd_scene format=3 uid="uid://cfnt03x7m17w2"]
 
-[ext_resource type="Shader" uid="uid://dh3xxekxqxesp" path="res://shaders/VFX_Fire.tres" id="1_fsa03"]
+[ext_resource type="Script" uid="uid://candwkwkehn46" path="res://scripts/VFX/vfx_fire.gd" id="1_e52rn"]
 [ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/GAP_Fire_Textures/Voronoi01.png" id="2_8qqbu"]
+[ext_resource type="Shader" uid="uid://0xe5nwu4aq6" path="res://shaders/fire/vfx_fire_depth_test_ENABLED.tres" id="2_e52rn"]
 [ext_resource type="Texture2D" uid="uid://wiuy6o6d84u5" path="res://assets/GAP_Fire_Textures/Flame01.png" id="2_hl4l8"]
 [ext_resource type="Texture2D" uid="uid://b68vs5ojnscs2" path="res://assets/GAP_Fire_Textures/Flame02.png" id="4_yy0nm"]
 [ext_resource type="Shader" uid="uid://cniftg1yhdrrm" path="res://shaders/SimpleParticleShader.tres" id="5_3btdx"]
@@ -9,7 +10,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hl4l8"]
 render_priority = 0
-shader = ExtResource("1_fsa03")
+shader = ExtResource("2_e52rn")
 shader_parameter/MainTex = ExtResource("2_hl4l8")
 shader_parameter/DissolveTiling = Vector2(0.25, 0.2)
 shader_parameter/DissolveSpeed = Vector2(0, 0.2)
@@ -24,7 +25,7 @@ color = Color(2.638, 2.428, 4.006, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8qqbu"]
 render_priority = 0
-shader = ExtResource("1_fsa03")
+shader = ExtResource("2_e52rn")
 shader_parameter/MainTex = ExtResource("4_yy0nm")
 shader_parameter/DissolveTiling = Vector2(0.2, 0.25)
 shader_parameter/DissolveSpeed = Vector2(0.1, 0.1)
@@ -49,7 +50,7 @@ damping_max = 1.0
 scale_min = 0.75
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_3btdx")
-color = Color(0.684, 0.591, 1.088, 1)
+color = Color(0.9875, 0.85570854, 1.5565991, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_3btdx"]
 
@@ -92,9 +93,10 @@ turbulence_noise_speed_random = 0.27
 
 [sub_resource type="QuadMesh" id="QuadMesh_yhxws"]
 
-[node name="vfx_fire" type="Node3D"]
+[node name="vfx_fire" type="Node3D" unique_id=274732113]
+script = ExtResource("1_e52rn")
 
-[node name="StaticFlame" type="GPUParticles3D" parent="."]
+[node name="StaticFlame" type="GPUParticles3D" parent="." unique_id=1300133694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 visible = false
 material_override = SubResource("ShaderMaterial_hl4l8")
@@ -102,27 +104,30 @@ draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_8qqbu")
 draw_pass_1 = SubResource("QuadMesh_yy0nm")
 
-[node name="Flames" type="GPUParticles3D" parent="."]
+[node name="Flames" type="GPUParticles3D" parent="." unique_id=336928596]
 material_override = SubResource("ShaderMaterial_8qqbu")
 amount = 20
 lifetime = 0.86
+local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_yy0nm")
 draw_pass_1 = SubResource("QuadMesh_3btdx")
 
-[node name="Smoke" type="GPUParticles3D" parent="."]
+[node name="Smoke" type="GPUParticles3D" parent="." unique_id=2002334105]
 sorting_offset = -1.0
 material_override = SubResource("ShaderMaterial_8qqbu")
 amount = 20
+local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_3btdx")
 draw_pass_1 = SubResource("QuadMesh_3btdx")
 
-[node name="FloatingParticles" type="GPUParticles3D" parent="."]
+[node name="FloatingParticles" type="GPUParticles3D" parent="." unique_id=2111606996]
 sorting_offset = 1.0
 material_override = SubResource("ShaderMaterial_sltny")
 amount = 50
 lifetime = 2.0
+local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_e52rn")
 draw_pass_1 = SubResource("QuadMesh_yhxws")

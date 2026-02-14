@@ -8,6 +8,7 @@ var attack: Node
 var cast_attack: Node
 var shoot_attack: Node
 var block_attack: Node
+var light: Node
 
 func apply_animations(input: Node, movement: Node, ability: Node, delta: float) -> void:
 	if not input.dash:
@@ -27,3 +28,7 @@ func apply_animations(input: Node, movement: Node, ability: Node, delta: float) 
 		if block_attack:
 			if block_attack.blocking:
 				anim_tree_list.travel("Block1")
+		light = ability.get_node_or_null("Light")
+		if light:
+			if light.lighting:
+				anim_tree_list.travel("Light1")

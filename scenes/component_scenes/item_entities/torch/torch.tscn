@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dfhfebr25ho24"]
+
+[ext_resource type="PackedScene" uid="uid://cfnt03x7m17w2" path="res://scenes/component_scenes/shader/vfx_fire.tscn" id="1_evctx"]
+[ext_resource type="Script" uid="uid://b7nxgd8p572hu" path="res://scripts/item_entity/off_hands/torch.gd" id="1_tn2iq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_evctx"]
+radius = 0.2
+height = 0.9375
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evctx"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.4966002, 0.3032189, 0.1383932, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_evctx"]
+material = SubResource("StandardMaterial3D_evctx")
+top_radius = 0.1
+bottom_radius = 0.04
+height = 1.0
+
+[node name="Torch" type="Area3D" unique_id=1191162332]
+script = ExtResource("1_tn2iq")
+
+[node name="HitBox" type="CollisionShape3D" parent="." unique_id=1556747030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45624998, 0)
+shape = SubResource("CapsuleShape3D_evctx")
+debug_color = Color(0.9910373, 0, 0.27664915, 0.41960785)
+
+[node name="vfx_fire" parent="." unique_id=274732113 instance=ExtResource("1_evctx")]
+process_priority = 5
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.29999995, 0)
+flame_color = Color(1.6733146, 0.6640268, 0, 1)
+smoke_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+particle_color = Color(1.5446181, 0.6160878, 0, 1)
+see_through_objects = true
+
+[node name="WoodHolder" type="MeshInstance3D" parent="." unique_id=1204688802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("CylinderMesh_evctx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1218468070]
+light_color = Color(1.4330024, 0.6502688, 0, 1)
+omni_range = 3.7
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

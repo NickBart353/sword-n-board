@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://15rcugju6o0q"]
 
 [ext_resource type="Script" uid="uid://d4cpy61csnabh" path="res://scripts/characters/player.gd" id="1_oijqy"]
+[ext_resource type="PackedScene" uid="uid://dfhfebr25ho24" path="res://scenes/component_scenes/item_entities/torch/torch.tscn" id="2_bnsrg"]
 [ext_resource type="Script" uid="uid://dj46vualfbrof" path="res://scripts/PlayerController/input_controller.gd" id="3_qbru3"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_wbsrb"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_1e104"]
@@ -11,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="8_m0y8q"]
 [ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_wbsrb"]
 [ext_resource type="Script" uid="uid://djjedm2u4b7a0" path="res://scripts/PlayerController/abilities/block.gd" id="11_1e104"]
+[ext_resource type="Script" uid="uid://csivj4fpb0ekx" path="res://scripts/PlayerController/abilities/light.gd" id="11_bnsrg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -325,6 +327,34 @@ tracks/0/keys = {
 "values": [Vector3(0, 0.59999996, 0), Vector3(0, 0.59999996, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4bg8r"]
+resource_name = "Light1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.805, -0.475, -0.99), Vector3(-0.805, -0.475, -0.99)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.63529986, -0.34906584, 0), Vector3(-0.63529986, -0.34906584, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_m0y8q"]
 resource_name = "RESET"
 tracks/0/type = "value"
@@ -532,6 +562,7 @@ _data = {
 &"Bow2": SubResource("Animation_aeb6f"),
 &"Bow3": SubResource("Animation_w8vq5"),
 &"Idle": SubResource("Animation_272xh"),
+&"Light1": SubResource("Animation_4bg8r"),
 &"RESET": SubResource("Animation_m0y8q"),
 &"Sword1": SubResource("Animation_8gp4u"),
 &"Sword2": SubResource("Animation_bnsrg"),
@@ -558,6 +589,9 @@ animation = &"Bow3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
 animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8vq5"]
+animation = &"Light1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5e2me"]
 animation = &"Sword1"
@@ -656,6 +690,15 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "ability.get_node(\"Block\").blocking == false"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6arjy"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "ability.get_node(\"Light\").lighting == false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m2pt1"]
+xfade_time = 0.2
+advance_expression = "ability.get_node(\"Light\").lighting == true"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
 states/Block1/node = SubResource("AnimationNodeAnimation_aeb6f")
 states/Block1/position = Vector2(459, -194)
@@ -672,15 +715,17 @@ states/Bow3/position = Vector2(326, -115)
 states/End/position = Vector2(898, 104)
 states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
 states/Idle/position = Vector2(326, 101)
-states/Start/position = Vector2(326, 294)
+states/Light1/node = SubResource("AnimationNodeAnimation_w8vq5")
+states/Light1/position = Vector2(364, 285.42346)
+states/Start/position = Vector2(236, 292)
 states/Sword1/node = SubResource("AnimationNodeAnimation_5e2me")
 states/Sword1/position = Vector2(517, -18)
 states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
 states/Sword2/position = Vector2(698, 104)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
 states/Sword3/position = Vector2(517, 221)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl")]
-graph_offset = Vector2(-260, -263)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl"), "Light1", "Idle", SubResource("AnimationNodeStateMachineTransition_6arjy"), "Idle", "Light1", SubResource("AnimationNodeStateMachineTransition_m2pt1")]
+graph_offset = Vector2(-260, -107.57653)
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 2
@@ -706,6 +751,8 @@ target_position = Vector3(0, 0, -3)
 
 [node name="LeftHand" type="Marker3D" parent="Head/FieldOfView" unique_id=882840607]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5000001, -0.9, -0.59999996)
+
+[node name="Torch" parent="Head/FieldOfView/LeftHand" unique_id=1191162332 instance=ExtResource("2_bnsrg")]
 
 [node name="RightHand" type="Marker3D" parent="Head/FieldOfView" unique_id=1646763569]
 transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
@@ -763,6 +810,10 @@ player = NodePath("../..")
 
 [node name="Block" type="Node" parent="AbilityController" unique_id=1598384866 node_paths=PackedStringArray("player")]
 script = ExtResource("11_1e104")
+player = NodePath("../..")
+
+[node name="Light" type="Node" parent="AbilityController" unique_id=1837859754 node_paths=PackedStringArray("player")]
+script = ExtResource("11_bnsrg")
 player = NodePath("../..")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
