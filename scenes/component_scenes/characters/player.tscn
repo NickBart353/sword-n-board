@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_wbsrb"]
 [ext_resource type="Script" uid="uid://djjedm2u4b7a0" path="res://scripts/PlayerController/abilities/block.gd" id="11_1e104"]
 [ext_resource type="Script" uid="uid://csivj4fpb0ekx" path="res://scripts/PlayerController/abilities/light.gd" id="11_bnsrg"]
+[ext_resource type="Script" uid="uid://bsapn6js1uc0u" path="res://scripts/PlayerController/abilities/consume.gd" id="13_i5qjy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -815,6 +816,9 @@ player = NodePath("../..")
 [node name="Light" type="Node" parent="AbilityController" unique_id=1837859754 node_paths=PackedStringArray("player")]
 script = ExtResource("11_bnsrg")
 player = NodePath("../..")
+
+[node name="Consume" type="Node" parent="AbilityController" unique_id=603745982]
+script = ExtResource("13_i5qjy")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
 script = ExtResource("6_1e104")

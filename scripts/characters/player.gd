@@ -97,6 +97,12 @@ func get_equipped_secondary():
 		return offhand[0]
 	return null
 
+func get_equipped_consumable():
+	var consumable: Array = $Slots/Consumable.get_children()
+	if consumable:
+		return consumable[0]
+	return null
+
 func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
 	_reset_abilities()
 	var two_handed: bool = false

@@ -11,11 +11,10 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 		reset()
 		return
 	if not movement.dashing:
-		if not movement.dashing:
-			if input.hold_secondary:
-				lighting = true
-			else:
-				lighting = false
+		if input.hold_secondary:
+			lighting = true
+		else:
+			lighting = false
 	elif movement.dashing and lighting:
 		lighting = false
 

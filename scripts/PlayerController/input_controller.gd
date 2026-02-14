@@ -8,6 +8,7 @@ var primary: bool
 var secondary: bool
 var hold_secondary: bool
 var attack: bool
+var consume: bool
 var inventory: bool
 var pause_menu: bool
 var interact: bool
@@ -24,6 +25,7 @@ func get_input(_delta: float):
 	attack = Input.is_action_pressed("primary")
 	secondary = Input.is_action_just_pressed("seconday")
 	hold_secondary = Input.is_action_pressed("seconday")
+	consume = Input.is_action_just_pressed("consume")
 	inventory = Input.is_action_just_pressed("inventory")
 	pause_menu = Input.is_action_just_pressed("pause")
 	interact = Input.is_action_just_pressed("interact")

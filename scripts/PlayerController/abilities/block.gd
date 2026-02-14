@@ -15,14 +15,12 @@ func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -
 	if not movement.dashing:
 		if not offhand.blocked.is_connected(_blocked):
 			offhand.blocked.connect(_blocked)
-		
-		if not movement.dashing:
-			if input.hold_secondary:
-				blocking = true
-				offhand.activate_areas()
-			else:
-				blocking = false
-				offhand.deactivate_areas()
+		if input.hold_secondary:
+			blocking = true
+			offhand.activate_areas()
+		else:
+			blocking = false
+			offhand.deactivate_areas()
 	elif movement.dashing and blocking:
 		blocking = false
 
