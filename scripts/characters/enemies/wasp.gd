@@ -16,6 +16,7 @@ var health
 func _ready() -> void:
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	anim_tree.active = true
+	$StateMachine/Idle.reset_health.connect(reset_health)
 	$HealthBar.set_max_vals(MAX_HEALTH)
 	$StateMachine/Dead.died.connect(_remove_me)
 	health = MAX_HEALTH
@@ -29,10 +30,16 @@ func _physics_process(_delta: float) -> void:
 func take_damage(damage_dealt, _body = null):
 	if health > MIN_HEALTH:
 		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	health -= damage_dealt
-	$HealthBar.update_health(health)
+	update_HEALTH( - damage_dealt)
 	if $StateMachine.current_state.name.to_lower() == "idle":
 		$StateMachine.on_child_transitioned($StateMachine/Idle, "Engage")
+
+func reset_health():
+	update_HEALTH(MAX_HEALTH - health)
+
+func update_HEALTH(amount: float):
+	health += amount
+	$HealthBar.update_health(health)
 
 func _remove_me():
 	EventBus.spawn_loot.emit(self)

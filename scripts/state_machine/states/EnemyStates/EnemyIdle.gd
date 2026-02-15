@@ -4,6 +4,8 @@ extends EnemyState
 @export var allowed_distance_to_origin: int = 20
 @export var aggro_range: int = 20
 
+signal reset_health
+
 var wander_time: float = 0.0
 var wander_direction: Vector3
 var distance: Vector3
@@ -18,6 +20,7 @@ func Enter():
 	super()
 	randomize_wander()
 	called = false
+	reset_health.emit()
 
 func Exit():
 	super()
