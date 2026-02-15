@@ -5,12 +5,12 @@ extends Ability
 var offhand: Node
 var lighting: bool = false
 
-func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -> void:
+func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	offhand = player.get_equipped_secondary()
 	if not offhand is Torch: 
 		reset()
 		return
-	if not movement.dashing:
+	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
 		if input.hold_secondary:
 			lighting = true
 		else:

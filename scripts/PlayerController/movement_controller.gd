@@ -10,7 +10,7 @@ var dashing: bool
 var dashing_direction: Vector3
 var dashing_origin: Vector3
 
-func apply_movement(input: Node, delta: float) -> void:
+func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 	if not input.dash and not dashing:
 		var move_dir := (player.transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 		if move_dir:

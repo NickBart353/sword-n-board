@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cyxq2it8nf4ia"]
+
+[ext_resource type="Script" uid="uid://gfr5q01qg5n" path="res://scripts/item_entity/consumable/potion.gd" id="1_gjl3w"]
+[ext_resource type="PackedScene" uid="uid://dh2oafigdqfcq" path="res://assets/RPG_ITEMS_V.1/RPG_ITENS_V.1/BLEND/BLEND/MinorPotion_Health.blend" id="2_iyr0x"]
+
+[node name="HealthPotion" type="Node3D" unique_id=2078521406]
+script = ExtResource("1_gjl3w")
+property = "HEALTH"
+amount = 25.0
+metadata/_custom_type_script = "uid://gfr5q01qg5n"
+
+[node name="MinorPotion_Health2" parent="." unique_id=501202433 instance=ExtResource("2_iyr0x")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.22000001, 0)

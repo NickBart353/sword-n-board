@@ -6,6 +6,7 @@ signal open_pause_menu
 signal spawn_projectile
 
 @onready var input = $InputController
+@onready var state_controller = $StateController
 @onready var movement = $MovementController
 @onready var ability = $AbilityController
 @onready var animation = $AnimationController
@@ -30,7 +31,7 @@ var interacting_object
 var last_hovered_object
 var node_name
 var menu_open = false
-var health: int
+var HEALTH: int
 var collision: bool = false
 
 var items: Array = []
@@ -45,22 +46,25 @@ var blocked_body: Node
 func _ready() -> void:
 	_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	health = MAX_HEALTH
-	$CanvasLayer/RedBar/HealthBar.value = health
+	HEALTH = MAX_HEALTH
+	$CanvasLayer/RedBar/HealthBar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 	$AbilityController/Block.blocked.connect(_blocked_attack)
+	$AbilityController/Consume.consume_item.connect(_consume_item)
+	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
-	movement.apply_movement(input, delta)
-	ability.apply_abilities(input, movement, delta)
-	animation.apply_animations(input, movement, ability, delta)
+	movement.apply_movement(input, state_controller, delta)
+	ability.apply_abilities(input, state_controller, movement, delta)
+	animation.apply_animations(input, state_controller, movement, ability, delta)
 	
-	interact_with_object()
-	_open_inventory()
+	if not state_controller.current_state == StateController.STATE.CONSUMING:
+		interact_with_object()
+		_open_inventory()
 	move_and_slide()
 
 func interact_with_object():
@@ -154,6 +158,21 @@ func _reset_abilities():
 	for ability_instance in ability.get_children():
 		ability_instance.reset()
 
+func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
+	if property in self:
+		match property_type:
+			Potion.PROPERTY_TYPE.INCREASE:
+				if self.has_method("update_{0}".format([property])):
+					call("update_{0}".format([property]), amount)
+			Potion.PROPERTY_TYPE.DECREASE:
+				if self.has_method("update_{0}".format([property])):
+					call("update_{0}".format([property]), -amount)
+			_:
+				print("not implemented yet...")
+
+func _remove_consumable():
+	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
+
 func _unhandled_input(event: InputEvent) -> void:	
 	if event is InputEventMouseMotion:
 		look_rotation.x -= event.relative.y * look_speed
@@ -168,10 +187,16 @@ func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
 		blocked_body = null
 		return
-	health -= damage
-	if health <= MIN_HEALTH:
+	update_HEALTH(-damage)
+
+func update_HEALTH(amount: float):
+	HEALTH += amount
+	if HEALTH <= MIN_HEALTH:
+		HEALTH = MIN_HEALTH
 		_die()
-	$CanvasLayer/RedBar/HealthBar.value = health
+	if HEALTH >= MAX_HEALTH:
+		HEALTH = MAX_HEALTH
+	$CanvasLayer/RedBar/HealthBar.value = HEALTH
 
 func _blocked_attack(body: Node):
 	blocked_body = body
@@ -207,6 +232,9 @@ func _load_preset_items():
 	var torch: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	torch.data = ItemManager.ITEMS["torch"]
 	items.append(torch)
+	var potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	potion.data = ItemManager.ITEMS["health_potion"]
+	items.append(potion)
 
 func _die():
 	print("game over")

@@ -1,3 +1,4 @@
 @abstract class_name Consumable extends ItemEntity
 
-@abstract func consumed()
+#signal consumed
+#@abstract func consume()

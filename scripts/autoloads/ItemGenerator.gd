@@ -11,6 +11,7 @@ const ITEM_TYPE_DICT: Dictionary = {
 	ItemData.ITEM_TYPE.BOW: preload("res://scenes/component_scenes/item_entities/weapons/bow.tscn"),
 	ItemData.ITEM_TYPE.SHIELD: preload("res://scenes/component_scenes/item_entities/shield/shield.tscn"),
 	ItemData.ITEM_TYPE.TORCH: preload("res://scenes/component_scenes/item_entities/torch/torch.tscn"),
+	ItemData.ITEM_TYPE.POTION: preload("res://scenes/component_scenes/item_entities/consumable/health_potion.tscn"),
 }
 
 const RESOURCE_DICT: Dictionary = {

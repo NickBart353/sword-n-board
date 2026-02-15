@@ -9,8 +9,9 @@ var cast_attack: Node
 var shoot_attack: Node
 var block_attack: Node
 var light: Node
+var consume: Node
 
-func apply_animations(input: Node, movement: Node, ability: Node, delta: float) -> void:
+func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if not input.dash:
 		attack = ability.get_node_or_null("Attack")
 		if attack:
@@ -32,3 +33,7 @@ func apply_animations(input: Node, movement: Node, ability: Node, delta: float) 
 		if light:
 			if light.lighting:
 				anim_tree_list.travel("Light1")
+		consume = ability.get_node_or_null("Consume")
+		if consume:
+			if consume.consuming:
+				anim_tree_list.travel("Consume1")

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b76l5kwguucdl"]
-
-[ext_resource type="Script" uid="uid://dllf17w54nkij" path="res://scripts/item_entity/consumable/consumable.gd" id="1_sro3r"]
-
-[node name="Consumable" type="Node3D" unique_id=1600999320]
-script = ExtResource("1_sro3r")

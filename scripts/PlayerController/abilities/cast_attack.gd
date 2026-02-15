@@ -11,13 +11,13 @@ var cast: int = 0
 var casting: bool = false
 var cast_in_progress: bool = false
 
-func apply_ability(input: Node, movement: Node, abilities: Node, delta: float) -> void:
+func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	weapon = player.get_equipped_primary()
 	if not weapon is MagicWeapon: 
 		reset()
 		return
 	
-	if not movement.dashing:
+	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
 		if input.attack and not cast_in_progress:
 			casting = true
 			cast_in_progress = true
