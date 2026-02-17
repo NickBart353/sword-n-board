@@ -10,7 +10,6 @@
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ifh15"]
 panorama = ExtResource("1_uug20")
-energy_multiplier = 0.3
 
 [sub_resource type="Sky" id="Sky_3wwfn"]
 sky_material = SubResource("PanoramaSkyMaterial_ifh15")
@@ -18,20 +17,45 @@ sky_material = SubResource("PanoramaSkyMaterial_ifh15")
 [sub_resource type="Environment" id="Environment_fqmia"]
 background_mode = 2
 background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_3wwfn")
 ambient_light_source = 3
-ambient_light_color = Color(0.41136128, 0.5487805, 0.8715746, 1)
-ambient_light_sky_contribution = 0.27
-ambient_light_energy = 0.0
-reflected_light_source = 1
-tonemap_mode = 3
-tonemap_white = 0.41
-ssao_enabled = true
-ssao_radius = 2.2
-glow_enabled = true
-glow_intensity = 3.0
-glow_strength = 0.67
-glow_bloom = 0.1
+ambient_light_color = Color(0.4800992, 0.5894798, 0.5573003, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.1
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 1.53
+ssr_max_steps = 61
+ssr_fade_in = 0.68921834
+ssr_fade_out = 0.5946034
+ssr_depth_tolerance = 19.91
+ssao_radius = 2.97
+ssao_intensity = 1.85
+ssao_power = 0.89190567
+ssao_detail = 1.8
+ssao_horizon = 0.36
+ssao_sharpness = 0.41
+ssao_light_affect = 0.1
+ssil_radius = 7.87
+ssil_intensity = 2.1
+ssil_sharpness = 0.46
+ssil_normal_rejection = 0.15
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 0.6
+sdfgi_min_cell_size = 2.0
+glow_intensity = 0.48
+glow_strength = 0.54
+glow_bloom = 0.3
+glow_blend_mode = 2
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.5614096, 0.5198922, 0.39677012, 1)
+volumetric_fog_emission = Color(0.31061712, 0.31061712, 0.3106171, 1)
+volumetric_fog_anisotropy = 0.1
+volumetric_fog_length = 10.0
+volumetric_fog_detail_spread = 3.363585
+volumetric_fog_ambient_inject = 2.6
+volumetric_fog_sky_affect = 0.44
 
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
@@ -40,7 +64,7 @@ script = ExtResource("1_t5sjj")
 environment = SubResource("Environment_fqmia")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1029207028]
-transform = Transform3D(-0.982305, -0.023099113, -0.18585771, -0.18704525, 0.07052211, 0.9798165, -0.009525806, 0.9972426, -0.07359478, 78.10998, 260.65897, -150.91495)
+transform = Transform3D(-0.75793165, 0.63955957, -0.12846307, -0.15682346, 0.012511615, 0.98754716, 0.6332027, 0.7686396, 0.09081502, -919.40424, 579.8804, 766.8565)
 light_color = Color(0.89273846, 0.8375007, 0.44696903, 1)
 light_indirect_energy = 0.83
 light_volumetric_fog_energy = 0.662
