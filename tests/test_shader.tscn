@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cclw6mjrydxyc"]
+
+[ext_resource type="Shader" uid="uid://dd5naeoipq3uw" path="res://tests/test_shader.gdshader" id="1_1gsgo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j347u"]
+render_priority = 0
+shader = ExtResource("1_1gsgo")
+
+[sub_resource type="BoxMesh" id="BoxMesh_d76j3"]
+material = SubResource("ShaderMaterial_j347u")
+
+[node name="TestShader" type="Node3D" unique_id=667380844]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=121837011]
+transform = Transform3D(2.2, 0, 0, 0, 1.8000001, 0, 0, 0, 2.08, 0, 0, 0)
+mesh = SubResource("BoxMesh_d76j3")

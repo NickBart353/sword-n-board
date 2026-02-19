@@ -182,6 +182,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(look_rotation.y)
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if Input.is_key_pressed(KEY_ESCAPE):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
