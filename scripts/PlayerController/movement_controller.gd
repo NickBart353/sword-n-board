@@ -20,8 +20,8 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			player.velocity.x = move_toward(player.velocity.x, 0, movement_speed)
 			player.velocity.z = move_toward(player.velocity.z, 0, movement_speed)
 		
-		if not player.is_on_floor():
-			player.velocity += player.get_gravity() * delta
+		#if not player.is_on_floor():
+		player.velocity += player.get_gravity() * delta
 		if player.is_on_floor() and input.jump:
 			player.velocity.y += jump_velocity
 	else:
