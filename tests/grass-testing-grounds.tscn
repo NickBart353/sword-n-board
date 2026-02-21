@@ -2,133 +2,242 @@
 
 [ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="1_3mtte"]
 [ext_resource type="Script" uid="uid://p3s53oooqt50" path="res://tests/grass_testing_grounds.gd" id="1_gp5iy"]
-[ext_resource type="Texture2D" uid="uid://dgcnc7axd4upi" path="res://assets/brackeys_3d_game_assets/sky_background/autumn_field_puresky_4k.hdr" id="2_mexsc"]
+[ext_resource type="PackedScene" uid="uid://dgjyjkbvd3yfs" path="res://scenes/VFX/grass_2.tscn" id="3_640ny"]
 [ext_resource type="PackedScene" uid="uid://chwor3ch1gn6f" path="res://scenes/VFX/grass.tscn" id="3_ov6ic"]
+[ext_resource type="Texture2D" uid="uid://ci4y1mv7gjeuq" path="res://my_assets/b_n_w_textures/height_map.png" id="4_sxjuk"]
+[ext_resource type="PackedScene" uid="uid://bc6yjrtanapwy" path="res://terrain3d_tests/test1.tscn" id="5_640ny"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ov6ic"]
-panorama = ExtResource("2_mexsc")
+[sub_resource type="VisualShaderNodeVaryingGetter" id="VisualShaderNodeVaryingGetter_640ny"]
+varying_name = "world_position"
+varying_type = 4
 
-[sub_resource type="Sky" id="Sky_3wwfn"]
-sky_material = SubResource("PanoramaSkyMaterial_ov6ic")
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_sxjuk"]
+input_name = "time"
 
-[sub_resource type="Environment" id="Environment_gp5iy"]
-background_mode = 2
-background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-background_energy_multiplier = 0.5
-sky = SubResource("Sky_3wwfn")
-ambient_light_source = 3
-ambient_light_color = Color(0.4800992, 0.5894798, 0.5573003, 1)
-ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.1
-reflected_light_source = 2
-tonemap_mode = 2
-tonemap_exposure = 1.53
-ssr_max_steps = 61
-ssr_fade_in = 0.68921834
-ssr_fade_out = 0.5946034
-ssr_depth_tolerance = 19.91
-ssao_radius = 2.97
-ssao_intensity = 1.85
-ssao_power = 0.89190567
-ssao_detail = 1.8
-ssao_horizon = 0.36
-ssao_sharpness = 0.41
-ssao_light_affect = 0.1
-ssil_radius = 7.87
-ssil_intensity = 2.1
-ssil_sharpness = 0.46
-ssil_normal_rejection = 0.15
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.6
-sdfgi_min_cell_size = 2.0
-glow_intensity = 0.48
-glow_strength = 0.54
-glow_bloom = 0.3
-glow_blend_mode = 2
-volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(0.5614096, 0.5198922, 0.39677012, 1)
-volumetric_fog_emission = Color(0.31061712, 0.31061712, 0.3106171, 1)
-volumetric_fog_anisotropy = 0.1
-volumetric_fog_length = 10.0
-volumetric_fog_detail_spread = 3.363585
-volumetric_fog_ambient_inject = 2.6
-volumetric_fog_sky_affect = 0.44
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4tr06"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVec2Constant" id="VisualShaderNodeVec2Constant_44tqd"]
+constant = Vector2(0.05, 0.05)
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_fhyah"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1), 2, Vector3(0.5, 0.5, 0.5)]
+op_type = 3
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_eg2jv"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="Gradient" id="Gradient_8up2x"]
+colors = PackedColorArray(0.17109475, 0.2878367, 9.62615e-08, 1, 0.6543342, 0.46185595, 3.85046e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jjfve"]
+gradient = SubResource("Gradient_8up2x")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_51usl"]
+texture = SubResource("GradientTexture2D_jjfve")
+
+[sub_resource type="Gradient" id="Gradient_w8wxd"]
+colors = PackedColorArray(0.21438089, 0.44923776, 1.92523e-07, 1, 0.80165267, 2.0118654e-05, 0.56434697, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8up2x"]
+gradient = SubResource("Gradient_w8wxd")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 0.3803419)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_wl20q"]
+texture = SubResource("GradientTexture2D_8up2x")
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_g48jg"]
+parameter_name = "color_noise"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_okcjx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_85fej"]
+noise_type = 3
+frequency = 0.0081
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w8wxd"]
+noise = SubResource("FastNoiseLite_85fej")
+seamless = true
+seamless_blend_skirt = 0.867
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1avl1"]
+expanded_output_ports = [0]
+source = 5
+texture = SubResource("NoiseTexture2D_w8wxd")
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_bh8u1"]
+default_input_values = [1, Vector2(-15, -15), 2, Vector2(15, 15), 3, Vector2(0, 0), 4, Vector2(1, 1), 0, Vector2(0, 0)]
+op_type = 1
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_ejcqn"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_62eio"]
+expanded_output_ports = [0]
+source = 5
+texture = SubResource("NoiseTexture2D_w8wxd")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_y60oi"]
+input_name = "model_matrix"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_u722k"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_a0jm1"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_bl8ht"]
+expanded_output_ports = [0]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_3qqpf"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_o7ujh"]
+parameter_name = "height_map"
+color_default = 1
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_w1fwi"]
+parameter_name = "min_height"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_8cnmu"]
+parameter_name = "max_height"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_4sj37"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_t0sdf"]
+operator = 1
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_f0naj"]
+expanded_output_ports = [0]
+input_name = "node_position_world"
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_4tr06"]
+
+[sub_resource type="VisualShaderNodeVaryingSetter" id="VisualShaderNodeVaryingSetter_00ui2"]
+varying_name = "world_position"
+varying_type = 4
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_44tqd"]
+input_name = "node_position_world"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_1vkit"]
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_p7nq2"]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_de3lt"]
+default_input_values = [1, Vector2(-128, -128), 2, Vector2(128, 128), 3, Vector2(0, 0), 4, Vector2(1, 1), 0, Vector2(0, 0)]
+op_type = 1
+
+[sub_resource type="VisualShader" id="VisualShader_62keo"]
+resource_local_to_scene = true
+modes/cull = 2
+modes/diffuse = 3
+varyings/world_pos = "0,0"
+varyings/world_position = "0,4"
+nodes/vertex/0/position = Vector2(880, 20)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_y60oi")
+nodes/vertex/2/position = Vector2(-2120, 460)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_3qqpf")
+nodes/vertex/3/position = Vector2(-2180, 620)
+nodes/vertex/4/node = SubResource("VisualShaderNodeTransformVecMult_4sj37")
+nodes/vertex/4/position = Vector2(-1800, 520)
+nodes/vertex/5/node = SubResource("VisualShaderNodeVaryingSetter_00ui2")
+nodes/vertex/5/position = Vector2(-1360, 540)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorDecompose_1vkit")
+nodes/vertex/6/position = Vector2(-1340, 300)
+nodes/vertex/7/node = SubResource("VisualShaderNodeVectorCompose_p7nq2")
+nodes/vertex/7/position = Vector2(-1080, 280)
+nodes/vertex/9/node = SubResource("VisualShaderNodeRemap_de3lt")
+nodes/vertex/9/position = Vector2(-840, 260)
+nodes/vertex/16/node = SubResource("VisualShaderNodeTexture_62eio")
+nodes/vertex/16/position = Vector2(-540, 160)
+nodes/vertex/22/node = SubResource("VisualShaderNodeVectorCompose_u722k")
+nodes/vertex/22/position = Vector2(540, 20)
+nodes/vertex/23/node = SubResource("VisualShaderNodeFloatOp_a0jm1")
+nodes/vertex/23/position = Vector2(240, 220)
+nodes/vertex/24/node = SubResource("VisualShaderNodeInput_bl8ht")
+nodes/vertex/24/position = Vector2(-300, -200)
+nodes/vertex/31/node = SubResource("VisualShaderNodeTexture2DParameter_o7ujh")
+nodes/vertex/31/position = Vector2(-940, -100)
+nodes/vertex/32/node = SubResource("VisualShaderNodeFloatParameter_w1fwi")
+nodes/vertex/32/position = Vector2(-540, 500)
+nodes/vertex/33/node = SubResource("VisualShaderNodeFloatParameter_8cnmu")
+nodes/vertex/33/position = Vector2(-540, 700)
+nodes/vertex/47/node = SubResource("VisualShaderNodeFloatOp_t0sdf")
+nodes/vertex/47/position = Vector2(340, 840)
+nodes/vertex/48/node = SubResource("VisualShaderNodeInput_f0naj")
+nodes/vertex/48/position = Vector2(300, 640)
+nodes/vertex/49/node = SubResource("VisualShaderNodeRemap_4tr06")
+nodes/vertex/49/position = Vector2(-120, 420)
+nodes/vertex/50/node = SubResource("VisualShaderNodeInput_44tqd")
+nodes/vertex/50/position = Vector2(-1730.3959, 322.06848)
+nodes/vertex/connections = PackedInt32Array(2, 0, 4, 0, 3, 0, 4, 1, 4, 0, 5, 0, 6, 0, 7, 0, 6, 2, 7, 1, 23, 0, 22, 1, 9, 0, 16, 0, 22, 0, 0, 0, 31, 0, 16, 2, 24, 1, 22, 0, 24, 3, 22, 2, 24, 2, 23, 0, 7, 0, 9, 0, 48, 2, 47, 1, 16, 1, 49, 0, 49, 0, 23, 1, 33, 0, 49, 4, 32, 0, 49, 3, 50, 0, 6, 0)
+nodes/fragment/0/position = Vector2(1340, 100)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorDecompose_okcjx")
+nodes/fragment/5/position = Vector2(-380, 360)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_1avl1")
+nodes/fragment/7/position = Vector2(660, 220)
+nodes/fragment/8/node = SubResource("VisualShaderNodeRemap_bh8u1")
+nodes/fragment/8/position = Vector2(80, 320)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorCompose_ejcqn")
+nodes/fragment/9/position = Vector2(-180, 420)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVaryingGetter_640ny")
+nodes/fragment/10/position = Vector2(-620, 420)
+nodes/fragment/12/node = SubResource("VisualShaderNodeInput_sxjuk")
+nodes/fragment/12/position = Vector2(-180, -80)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVectorOp_4tr06")
+nodes/fragment/14/position = Vector2(-40, 60)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVec2Constant_44tqd")
+nodes/fragment/15/position = Vector2(-280, 80)
+nodes/fragment/16/node = SubResource("VisualShaderNodeMix_fhyah")
+nodes/fragment/16/position = Vector2(1000, -20)
+nodes/fragment/18/node = SubResource("VisualShaderNodeVectorOp_eg2jv")
+nodes/fragment/18/position = Vector2(448.70718, 289.88342)
+nodes/fragment/21/node = SubResource("VisualShaderNodeTexture_51usl")
+nodes/fragment/21/position = Vector2(720, -220)
+nodes/fragment/22/node = SubResource("VisualShaderNodeTexture_wl20q")
+nodes/fragment/22/position = Vector2(440, -120)
+nodes/fragment/23/node = SubResource("VisualShaderNodeTexture2DParameter_g48jg")
+nodes/fragment/23/position = Vector2(538.36896, 588.7706)
+nodes/fragment/connections = PackedInt32Array(5, 0, 9, 0, 5, 2, 9, 1, 9, 0, 8, 0, 10, 0, 5, 0, 12, 0, 14, 0, 15, 0, 14, 1, 8, 0, 18, 0, 14, 0, 18, 1, 18, 0, 7, 0, 7, 1, 16, 2, 21, 0, 16, 1, 22, 0, 16, 0, 23, 0, 7, 2, 16, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1kb6m"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("VisualShader_62keo")
+shader_parameter/height_map = ExtResource("4_sxjuk")
+shader_parameter/min_height = 0.0
+shader_parameter/max_height = 95.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laa2b"]
 albedo_color = Color(0, 0.46262062, 0.26379713, 1)
 
 [sub_resource type="Gradient" id="Gradient_gp5iy"]
-offsets = PackedFloat32Array(0.2, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_640ny"]
-noise_type = 2
-frequency = 0.03
-cellular_jitter = 3.0
-cellular_return_type = 0
-domain_warp_enabled = true
-domain_warp_type = 1
-domain_warp_amplitude = 50.0
-domain_warp_fractal_type = 2
-domain_warp_fractal_lacunarity = 1.5
-domain_warp_fractal_gain = 1.0
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_640ny"]
+gradient = SubResource("Gradient_gp5iy")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sxjuk"]
-noise = SubResource("FastNoiseLite_640ny")
-color_ramp = SubResource("Gradient_gp5iy")
-seamless = true
-
-[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_4tr06"]
-_shader_parameters = {
-&"bias_distance": 512.0,
-&"blend_sharpness": 0.5,
-&"depth_blur": 0.0,
-&"enable_macro_variation": true,
-&"enable_projection": true,
-&"flat_terrain_normals": false,
-&"macro_variation1": Color(1, 1, 1, 1),
-&"macro_variation2": Color(1, 1, 1, 1),
-&"macro_variation_slope": 0.333,
-&"mipmap_bias": 1.0,
-&"noise1_angle": 0.0,
-&"noise1_offset": Vector2(0.5, 0.5),
-&"noise1_scale": 0.04,
-&"noise2_scale": 0.076,
-&"noise_texture": SubResource("NoiseTexture2D_sxjuk"),
-&"projection_threshold": 0.8
-}
-show_checkered = true
-show_grey = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44tqd"]
-transparency = 4
-cull_mode = 2
-vertex_color_use_as_albedo = true
-backlight_enabled = true
-backlight = Color(0.5, 0.5, 0.5, 1)
-distance_fade_mode = 1
-distance_fade_min_distance = 128.0
-distance_fade_max_distance = 96.0
-
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_fhyah"]
-generated_type = 1
-height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_44tqd")
-last_lod = 0
-last_shadow_lod = 0
-lod0_range = 128.0
-
-[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_eg2jv"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_fhyah")])
+[sub_resource type="ImageTexture" id="ImageTexture_gp5iy"]
 
 [node name="Node3D" type="Node3D" unique_id=1089192602 node_paths=PackedStringArray("foliage_container", "terrain")]
 script = ExtResource("1_gp5iy")
 detailed_grass_scene = ExtResource("3_ov6ic")
+grid_size = 256
 foliage_container = NodePath("Foliage")
 terrain = NodePath("Terrain3D")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1687867907]
-environment = SubResource("Environment_gp5iy")
+[node name="Grass2" parent="." unique_id=726956355 node_paths=PackedStringArray("terrain") instance=ExtResource("3_640ny")]
+transform = Transform3D(-5.9604645e-08, 0, 1, 0, 1, 0, -1, 0, -5.9604645e-08, 128, 32.200005, -128)
+material_override = SubResource("ShaderMaterial_1kb6m")
+terrain = NodePath("../Terrain3D")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1379996142]
 transform = Transform3D(-0.75793177, 0.63955975, -0.12846315, -0.15682349, 0.012511634, 0.9875474, 0.6332028, 0.7686396, 0.090815015, -919.40424, 579.8804, 766.8565)
@@ -149,15 +258,17 @@ size = Vector3(153.2, 1, 157)
 material = SubResource("StandardMaterial3D_laa2b")
 
 [node name="Player" parent="." unique_id=73090851 instance=ExtResource("1_3mtte")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.800001, 8.400001, 16.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.50001, 24.300003, -47.5)
 
 [node name="Foliage" type="Node3D" parent="." unique_id=737059849]
 
-[node name="Terrain3D" type="Terrain3D" parent="." unique_id=487724834]
-data_directory = "res://tests"
-material = SubResource("Terrain3DMaterial_4tr06")
-assets = SubResource("Terrain3DAssets_eg2jv")
-show_checkered = true
-show_grey = true
-top_level = true
-metadata/_edit_lock_ = true
+[node name="Terrain3D" parent="." unique_id=1694474853 instance=ExtResource("5_640ny")]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=147116351]
+transform = Transform3D(-0.86824083, -1.4901161e-08, -4.9240384, 5.9604645e-08, 4.9999995, -1.31100535e-08, 4.9240384, 5.9604645e-08, -0.8682409, 89.80082, 31.300003, -48.806232)
+visible = false
+texture = SubResource("GradientTexture2D_640ny")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=1825069555]
+transform = Transform3D(-0.86824083, -1.4901161e-08, -4.9240384, 5.9604645e-08, 4.9999995, -1.31100535e-08, 4.9240384, 5.9604645e-08, -0.8682409, 89.80082, 31.300003, -48.806232)
+texture = SubResource("ImageTexture_gp5iy")

@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="SwordNBoard"
 config/version="Alpha 0.2"
-run/main_scene="uid://23kjgnpf3t1i"
+run/main_scene="uid://cngaic8ulsg3q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -36,7 +36,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/brackeys-particle-controls-main/addons/brackeys_particle_controls/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/brackeys-particle-controls-main/addons/brackeys_particle_controls/plugin.cfg", "res://addons/godot_3d_cursor/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -176,6 +176,7 @@ consume={
 
 textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method.mobile="forward_plus"
 textures/default_filters/anisotropic_filtering_level=3
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=2
