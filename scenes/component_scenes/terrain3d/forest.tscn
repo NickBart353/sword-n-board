@@ -4,8 +4,6 @@
 [ext_resource type="Terrain3DAssets" uid="uid://bx8xmxy5g8ck6" path="res://resources/terrain3d/forest/terrain_3d_assets.tres" id="2_gk12b"]
 [ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="3_gk12b"]
 [ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="4_iaavk"]
-[ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="5_y3dnv"]
-[ext_resource type="Script" uid="uid://dt04kfvdc21nb" path="res://addons/godot_3d_cursor/scripts/3d_cursor.gd" id="6_ygug4"]
 
 [sub_resource type="Environment" id="Environment_iaavk"]
 background_mode = 2
@@ -56,7 +54,6 @@ glow_map_strength = 0.0
 fog_light_energy = 0.2
 fog_sun_scatter = 0.17
 fog_sky_affect = 0.157
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0067
 volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
 volumetric_fog_anisotropy = 0.32
@@ -140,15 +137,15 @@ size = Vector3(47.3, 0.2, 21.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="Cave" unique_id=819236499]
-transform = Transform3D(0.85286844, -0.029694801, -0.5212741, 0.51507676, 0.21134648, 0.83066845, 0.085504934, -0.976947, 0.19554567, 33.168976, 5.399, 50.250854)
+transform = Transform3D(0.85286844, -0.029694801, -0.5212741, 0.51507676, 0.21134648, 0.83066845, 0.085504934, -0.976947, 0.19554567, 33.586, 4.7344646, 50.09442)
 use_collision = true
-size = Vector3(14.900001, 0.4, 27.7)
+size = Vector3(14.900001, 0.4, 26.1)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="Cave" unique_id=151367267]
-transform = Transform3D(-0.9396925, -0.32138994, 0.11697612, 2.0076278e-08, 0.34201512, 0.9396812, -0.34202012, 0.8830112, -0.32138896, 26.098053, 7.7307415, 59.051025)
+transform = Transform3D(-0.9396925, -0.32138994, 0.11697612, 2.0076278e-08, 0.34201512, 0.9396812, -0.34202012, 0.8830112, -0.32138896, 25.934296, 6.4151897, 59.500977)
 use_collision = true
-size = Vector3(20.2, 0.4, 20.4)
+size = Vector3(20.2, 0.4, 17.6)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="Cave" unique_id=712257908]
@@ -158,9 +155,9 @@ size = Vector3(19.7, 0.2, 26.5)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D21" type="CSGBox3D" parent="Cave" unique_id=1716000376]
-transform = Transform3D(-0.9855886, -0.16791579, 0.02046958, -0.16882686, 0.98400116, -0.056697156, -0.0106219305, -0.059335995, -0.99816906, 26.588684, 12.385311, 54.72763)
+transform = Transform3D(-0.9855886, -0.16791579, 0.02046958, -0.16882686, 0.98400116, -0.056697156, -0.0106219305, -0.059335995, -0.99816906, 26.650085, 12.215223, 51.733124)
 use_collision = true
-size = Vector3(19.7, 0.2, 26.5)
+size = Vector3(19.7, 0.2, 20.5)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="Cave" unique_id=577120653]
@@ -206,15 +203,15 @@ size = Vector3(36.7, 0.2, 32.600002)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="Cave" unique_id=588468059]
-transform = Transform3D(0.24461721, -0.679781, 0.6914015, -0.27011615, 0.63706124, 0.72191864, -0.93123555, -0.36335272, -0.027783718, 17.107239, 7.608345, 38.22824)
+transform = Transform3D(0.24461721, -0.679781, 0.6914015, -0.27011615, 0.63706124, 0.72191864, -0.93123555, -0.36335272, -0.027783718, 15.309601, 5.731352, 38.300476)
 use_collision = true
-size = Vector3(19.2, 0.2, 28.6)
+size = Vector3(19.2, 0.2, 23.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="Cave" unique_id=897528133]
-transform = Transform3D(-0.53289634, -0.7377356, 0.41442692, -0.006912254, 0.49354076, 0.86968046, -0.8461523, 0.4605847, -0.26810554, 17.107239, 7.608345, 50.928253)
+transform = Transform3D(-0.53289634, -0.7377356, 0.41442692, -0.006912254, 0.49354076, 0.86968046, -0.8461523, 0.4605847, -0.26810554, 15.076538, 3.3469067, 52.241974)
 use_collision = true
-size = Vector3(19.2, 0.2, 28.6)
+size = Vector3(19.2, 0.2, 18.800001)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="Cave" unique_id=657066742]
@@ -248,9 +245,9 @@ size = Vector3(42.3, 0.90000004, 33.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="Cave" unique_id=1712474369]
-transform = Transform3D(1, -1.4901161e-08, 0, 1.4901161e-08, 0.99999994, -1.4901161e-08, 1.6653345e-16, 1.8626451e-08, 0.9999999, 20.224976, 3.1410742, 55.93744)
+transform = Transform3D(1, -1.4901161e-08, 0, 1.4901161e-08, 0.99999994, -1.4901161e-08, 1.6653345e-16, 1.8626451e-08, 0.9999999, 19.474976, 3.1410732, 55.337433)
 use_collision = true
-size = Vector3(46, 0.90000004, 29.300001)
+size = Vector3(47.5, 0.90000004, 28.1)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CaveDirtPath" type="Node3D" parent="." unique_id=1416840663]
@@ -284,15 +281,39 @@ size = Vector3(29.2, 0.90000004, 14.900001)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1750388788]
-transform = Transform3D(0.17101012, -0.9698462, 0.17364812, 0.98480785, 0.17364818, 2.3026558e-10, -0.030153692, 0.17101014, 0.9848076, 27.94516, -16.438013, 35.628784)
+transform = Transform3D(0.17101012, -0.9698462, 0.17364812, 0.98480785, 0.17364818, 2.3026558e-10, -0.030153692, 0.17101014, 0.9848076, 28.124725, -15.403965, 35.597137)
 use_collision = true
-size = Vector3(23.5, 0.90000004, 12.8)
+size = Vector3(25.6, 0.90000004, 12.8)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=556748265]
-transform = Transform3D(0.13302228, -0.75440645, 0.6427876, 0.98480797, 0.1736482, 2.2948783e-09, -0.111618936, 0.6330223, 0.76604444, 28.958963, -19.965477, 41.476974)
+transform = Transform3D(0.16317597, -0.9254165, 0.34202015, 0.9848079, 0.17364818, -1.1177195e-09, -0.059391197, 0.3368242, 0.93969256, 28.66446, -16.223206, 44.352814)
 use_collision = true
-size = Vector3(17.5, 0.90000004, 12.5)
+size = Vector3(25.1, 0.90000004, 12.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=517192060]
+transform = Transform3D(0.11161895, -0.6330222, 0.7660444, 0.9848079, 0.17364818, -4.470878e-09, -0.13302225, 0.7544065, 0.6427876, 32.1015, -17.306496, 52.35202)
+use_collision = true
+size = Vector3(22.9, 0.90000004, 4.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=22393224]
+transform = Transform3D(3.7252903e-08, 0, 0.99999994, 0.984808, 0.1736482, -8.941757e-09, -0.17364824, 0.9848077, 2.9802322e-08, 37.301514, -17.700418, 53.92148)
+use_collision = true
+size = Vector3(22.1, 0.90000004, 4.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=226388164]
+transform = Transform3D(-0.111618906, 0.6330222, 0.76604444, 0.98480815, 0.17364821, -1.2176038e-08, -0.13302232, 0.75440663, -0.64278764, 42.027405, -20.113197, 53.494965)
+use_collision = true
+size = Vector3(17.2, 0.90000004, 4.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1282732258]
+transform = Transform3D(-0.15038377, 0.8528685, 0.5, 0.98480815, 0.1736482, 5.119638e-10, -0.086824186, 0.492404, -0.86602545, 45.555237, -20.950285, 50.368744)
+use_collision = true
+size = Vector3(15.5, 0.90000004, 4.5)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=138184909]
@@ -307,10 +328,144 @@ use_collision = true
 size = Vector3(29.2, 0.90000004, 20.1)
 material = SubResource("StandardMaterial3D_1yqi2")
 
+[node name="CSGBox3D20" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1492582596]
+transform = Transform3D(0.11161895, -0.6330223, 0.7660444, 0.98480785, 0.1736482, -3.427607e-09, -0.13302225, 0.75440645, 0.64278746, 18.366333, -13.6313095, -35.262604)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=62600423]
+transform = Transform3D(0.05939121, -0.33682415, 0.93969244, 0.9848078, 0.17364818, 2.7464344e-09, -0.16317596, 0.9254165, 0.34202003, 2.266327, -13.6313095, -44.36261)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1117875562]
+transform = Transform3D(0.05939121, -0.33682415, 0.93969244, 0.9848078, 0.17364818, 2.7464344e-09, -0.16317596, 0.9254165, 0.34202003, -16.151646, -13.6313095, -51.066204)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1795734700]
+transform = Transform3D(1.8626451e-08, -5.9604645e-08, 0.9999998, 0.9848078, 0.17364816, -6.604881e-09, -0.17364822, 0.9848077, -2.9802322e-08, -34.56961, -13.6313095, -54.869812)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1691769223]
+transform = Transform3D(-0.13302225, 0.75440645, 0.64278746, 0.9848079, 0.17364818, -6.208512e-09, -0.11161895, 0.6330223, -0.7660443, -49.06961, -13.6313095, -48.269806)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=289174375]
+transform = Transform3D(-0.1710101, 0.9698463, 0.17364809, 0.98480785, 0.17364816, -6.7095485e-09, -0.030153722, 0.17101014, -0.98480755, -56.969604, -13.6313095, -32.069794)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 20.1)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1117793729]
+transform = Transform3D(-0.17364821, 0.9848077, -4.4703484e-08, 0.98480785, 0.17364818, -5.3284976e-09, -2.7939677e-08, 7.4505806e-08, -0.99999976, -58.8696, -13.6313095, -9.569794)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 27.300001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=146256949]
+transform = Transform3D(0.86602545, 0.49999994, -2.0296646e-08, 0.49999997, -0.86602527, 4.018509e-08, -2.793968e-08, 7.450581e-08, -0.9999999, -50.55716, 6.282383, -12.099915)
+use_collision = true
+size = Vector3(25.5, 0.90000004, 27.300001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=910725202]
+transform = Transform3D(0.663414, 0.3830222, -0.6427875, 0.49999997, -0.86602527, 4.0185085e-08, -0.5566704, -0.3213937, -0.7660443, -47.024933, 6.700001, 4.131958)
+use_collision = true
+size = Vector3(25.5, 0.90000004, 19.4)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1340949039]
+transform = Transform3D(2.9802326e-08, 7.45058e-08, -1, 0.7660445, -0.64278746, 7.213779e-08, -0.64278793, -0.76604444, 2.6256007e-08, -37.69998, 5.049999, 12.365143)
+use_collision = true
+size = Vector3(20.5, 0.90000004, 19.4)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1176921975]
+transform = Transform3D(2.9802326e-08, 7.45058e-08, -1, 0.7660445, -0.64278746, 7.213779e-08, -0.64278793, -0.76604444, 2.6256007e-08, -16.24997, 5.0999985, 12.600067)
+use_collision = true
+size = Vector3(20.5, 0.90000004, 25.300001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=786923972]
+transform = Transform3D(0.85286856, 0.49240378, 0.17364815, 0.49999997, -0.86602527, 4.0185085e-08, 0.15038371, 0.08682416, -0.9848076, -49.506195, 7.0250015, -32.902527)
+use_collision = true
+size = Vector3(23.2, 0.90000004, 17.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=17093677]
+transform = Transform3D(0.663414, 0.38302207, 0.6427875, 0.49999997, -0.86602527, 4.0185085e-08, 0.5566704, 0.32139382, -0.7660443, -43.159973, 6.375, -45.4411)
+use_collision = true
+size = Vector3(21.9, 0.90000004, 19.300001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=2012000451]
+transform = Transform3D(-2.9802322e-08, -1.0430813e-07, 0.9999998, 0.49999988, -0.86602515, 1.01637035e-07, 0.8660254, 0.49999988, 0, -34.575012, 6.1000023, -49.352478)
+use_collision = true
+size = Vector3(19.9, 0.90000004, 17.800001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=35036501]
+transform = Transform3D(-0.29619813, -0.17101014, 0.9396924, 0.4999999, -0.86602515, 1.0894786e-07, 0.81379765, 0.4698462, 0.3420201, -18.699951, 4.9000015, -46.099915)
+use_collision = true
+size = Vector3(19.9, 0.90000004, 17.800001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1098760677]
+transform = Transform3D(-0.13302228, 0.75440663, -0.6427875, 0.98480797, 0.1736482, -5.328499e-09, 0.1116189, -0.6330222, -0.7660444, -54.00531, -13.6313095, 9.1067505)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 17.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1398857271]
+transform = Transform3D(-2.2351742e-08, 1.1920929e-07, -0.99999994, 0.9848081, 0.17364821, -4.949523e-09, 0.17364822, -0.98480785, -5.9604645e-08, -37.797638, -13.6313095, 15.464661)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 24.800001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=457716769]
+transform = Transform3D(-0.13302226, 0.75440663, -0.64278746, 0.9848081, 0.17364821, -4.396004e-09, 0.111618906, -0.6330222, -0.7660443, -2.3779602, -13.6313095, 33.474304)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 18.800001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=1501185314]
+transform = Transform3D(-0.08682412, 0.49240395, -0.8660251, 0.984808, 0.17364818, -1.3619644e-08, 0.15038376, -0.85286844, -0.4999999, -17.37796, -13.6313095, 21.374329)
+use_collision = true
+size = Vector3(29.2, 0.90000004, 18.800001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CaveDirtPath/Top" unique_id=104635185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.900055, -0.6875, -30.999908)
+use_collision = true
+radius = 11.400001
+height = 1.025
+sides = 16
+material = SubResource("StandardMaterial3D_y3dnv")
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=573353431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.295532, -1.1318665, 2.9605713)
 use_collision = true
 size = Vector3(28.7, 0.9725342, 48.600002)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=181544945]
+transform = Transform3D(0.6427876, 0.044541523, 0.76474845, 1.8626451e-09, 0.9983082, -0.05814483, -0.76604444, 0.037374772, 0.6417, -2.3584595, -2.190609, 26.159332)
+use_collision = true
+size = Vector3(18.800001, 0.9725342, 27.2)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=2105695691]
+transform = Transform3D(0.6040227, 0.21984631, 0.7660443, -0.3420201, 0.9396926, 0, -0.7198462, -0.26200262, 0.64278746, -5.8080444, -0.9906082, 28.176392)
+use_collision = true
+size = Vector3(10, 0.9725342, 26.1)
 material = SubResource("StandardMaterial3D_y3dnv")
 
 [node name="Path" type="Node3D" parent="CaveDirtPath" unique_id=109870991]
@@ -381,6 +536,36 @@ use_collision = true
 size = Vector3(26.6, 1.68, 21.6)
 material = SubResource("StandardMaterial3D_y3dnv")
 
+[node name="CSGBox3D16" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=2079420243]
+transform = Transform3D(1, 0, 0, 0, 0.98480785, -0.17364818, 0, 0.1736482, 0.9848077, 14.040039, -13.370417, 89.308685)
+use_collision = true
+size = Vector3(17.9, 0.6, 64.200005)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=1752336172]
+transform = Transform3D(0.9848077, 0.030153692, 0.17101006, 0, 0.98480785, -0.17364818, -0.17364818, 0.17101008, 0.96984625, 30.259796, -14.803015, 97.65909)
+use_collision = true
+size = Vector3(20.5, 0.6, 47.7)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=806618825]
+transform = Transform3D(0.93464947, 0.11392897, 0.33682403, -0.057261467, 0.9831417, -0.17364818, -0.3509293, 0.14301315, 0.9254165, 50.662357, -16.143385, 94.92893)
+use_collision = true
+size = Vector3(28.2, 0.6, 46.2)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=1147424958]
+transform = Transform3D(0.7604095, 0.11903838, 0.63844126, -0.057751663, 0.99155813, -0.116092935, -0.64687103, 0.051407102, 0.7608646, 67.981705, -16.786188, 83.19924)
+use_collision = true
+size = Vector3(24.699999, 0.6, 46.2)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=305947002]
+transform = Transform3D(0.49330825, 0.07920833, 0.8662407, -0.057751663, 0.99663097, -0.058242574, -0.86793524, -0.021295331, 0.49622044, 79.89151, -17.348974, 66.09128)
+use_collision = true
+size = Vector3(28.2, 0.6, 45.100002)
+material = SubResource("StandardMaterial3D_y3dnv")
+
 [node name="CSGBox3D13" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=121994907]
 transform = Transform3D(0.98480785, 0.17364818, 0, -0.1736482, 0.9848077, 0, 0, 0, 0.99999994, 34.800995, -11.594635, 66.23871)
 use_collision = true
@@ -399,29 +584,115 @@ use_collision = true
 size = Vector3(31.4, 0.61, 21.2)
 material = SubResource("StandardMaterial3D_y3dnv")
 
+[node name="CSGBox3D36" type="CSGBox3D" parent="CaveDirtPath/Path" unique_id=2004513877]
+transform = Transform3D(-4.3711395e-08, 0, -1.0000001, 0.98480785, -0.17364821, -4.304732e-08, -0.17364821, -0.98480785, 7.590405e-09, -68.00159, -9.785082, 0.66851807)
+use_collision = true
+size = Vector3(21.7, 2.7, 13)
+material = SubResource("StandardMaterial3D_1yqi2")
+
 [node name="Bottom" type="Node3D" parent="CaveDirtPath" unique_id=1100793843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.50003, -10.699999, 55.700073)
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="CaveDirtPath/Bottom" unique_id=1676187523]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 12.75, -17.755, -49)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, -91.54999, -21.654999, -49)
 use_collision = true
-size = Vector3(167.1, 19.300001, 217)
+size = Vector3(73.700005, 11.5, 217)
 material = SubResource("StandardMaterial3D_y3dnv")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CaveDirtPath/Bottom/CSGBox3D15" unique_id=1479526126]
-transform = Transform3D(0.9641113, 0.21677464, -0.15328859, -0.05784609, 0.7350043, 0.6755902, 0.2591186, -0.64247715, 0.7211661, -2.55, 104.2, -7)
-cast_shadow = 0
-operation = 2
+[node name="CSGBox3D17" type="CSGBox3D" parent="CaveDirtPath/Bottom" unique_id=159000185]
+transform = Transform3D(0.9848076, -0.17364815, 0, 0.17364816, 0.9848076, 0, 0, 0, 0.99999976, -82.05325, -12.203742, -126.649994)
 use_collision = true
-radius = 101.9
+size = Vector3(46.9, 0.5, 61.7)
 material = SubResource("StandardMaterial3D_y3dnv")
 
-[node name="3DCursor" type="Marker3D" parent="." unique_id=1106223103 groups=["Plugin3DCursor"] instance=ExtResource("5_y3dnv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -366.4, 21.9, -401.8)
-gizmo_extents = 0.0
-script = ExtResource("6_ygug4")
-metadata/cursor_id = 0
-metadata/size_scale = 1.0
-metadata/show_title_label = true
-metadata/show_number_label = true
-metadata/scale_affect_labels = true
+[node name="CSGBox3D16" type="CSGBox3D" parent="CaveDirtPath/Bottom" unique_id=942833139]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999998, 18.050018, -17.755, -41.799988)
+use_collision = true
+size = Vector3(156.5, 19.300001, 231.40001)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="BackCave" type="Node3D" parent="." unique_id=1331457108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -431.00003, 32.6, -413.70007)
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="BackCave" unique_id=2097441923]
+transform = Transform3D(0.3420202, 0.93969274, -4.137861e-08, 0.93969285, -0.34202015, 1.773713e-08, -2.793968e-08, 7.450581e-08, -0.9999999, -66.745514, -25.835806, -6.019806)
+use_collision = true
+size = Vector3(19.4, 0.90000004, 20.2)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="BackCave" unique_id=2030600109]
+transform = Transform3D(-1.0000001, -7.264228e-22, -2.515124e-09, -2.9802322e-08, 1, -4.494964e-08, -2.7939679e-08, 7.4505806e-08, -0.9999999, -65.34552, -26.735806, -5.8697815)
+use_collision = true
+size = Vector3(19.4, 0.90000004, 19.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="BackCave" unique_id=1966978691]
+transform = Transform3D(0.9396928, 0.34202015, -1.3010218e-08, 0.34202024, -0.9396926, 4.309906e-08, -2.7939675e-08, 7.450581e-08, -1, -64.50278, -20.343792, -6.019806)
+use_collision = true
+size = Vector3(10, 0.90000004, 20.2)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="BackCave" unique_id=1528237921]
+transform = Transform3D(-0.0602798, -0.0001565665, -0.99818134, 0.9839058, -0.16853105, -0.059391197, -0.16821532, -0.98569643, 0.010313109, -64.43332, -17.865982, 0.22677612)
+use_collision = true
+size = Vector3(20.6, 0.90000004, 17.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="BackCave" unique_id=1284082036]
+transform = Transform3D(-0.060279798, -0.00015656713, -0.99818134, 0.005193755, -0.9999866, -0.00015674531, -0.9981683, -0.00519377, 0.060279757, -63.25296, -8.604052, -6.541809)
+use_collision = true
+size = Vector3(11.6, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="BackCave" unique_id=2043607343]
+transform = Transform3D(-0.060279798, -0.00015656713, -0.99818134, 0.005193755, -0.9999866, -0.00015674531, -0.9981683, -0.00519377, 0.060279757, -70.848755, -14.304419, -5.551483)
+use_collision = true
+size = Vector3(9.900001, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="BackCave" unique_id=204202406]
+transform = Transform3D(-0.060279798, -0.00015656713, -0.99818134, 0.005193755, -0.9999866, -0.00015674531, -0.9981683, -0.00519377, 0.060279757, -70.72217, -20.015326, -13.455322)
+use_collision = true
+size = Vector3(5.7000003, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="BackCave" unique_id=1313149574]
+transform = Transform3D(-0.005193752, 0.9999866, 0.00015678896, -0.060279805, -0.00015652343, -0.99818146, -0.9981684, -0.00519377, 0.060279764, -67, -11.800003, -6.399933)
+use_collision = true
+size = Vector3(11.6, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="BackCave" unique_id=1344340589]
+transform = Transform3D(0.98390585, -0.168531, -0.0593912, -0.0602798, -0.00015652341, -0.9981814, 0.16821529, 0.9856964, -0.010313066, -64.08859, -12.167387, -11.703949)
+use_collision = true
+size = Vector3(7.2000003, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="BackCave" unique_id=1712606418]
+transform = Transform3D(0.99816835, 0.00519374, -0.060279757, -0.060279798, -0.00015652312, -0.9981814, -0.00519374, 0.99998665, 0.00015678536, -71.38858, -18.067387, -10.603943)
+use_collision = true
+size = Vector3(7.2000003, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="BackCave" unique_id=1928922513]
+transform = Transform3D(0.99816835, 0.00519374, -0.060279757, -0.060279798, -0.00015652312, -0.9981814, -0.00519374, 0.99998665, 0.00015678536, -70.73978, -23.506569, -15.907318)
+use_collision = true
+size = Vector3(8.5, 0.90000004, 7.9)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="HillNextToCave" type="Node3D" parent="." unique_id=806897225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -442.2, 21.9, -359.5)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="HillNextToCave" unique_id=1166538801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.200012, 11.1, -27.700012)
+use_collision = true
+size = Vector3(28.7, 0.9725342, 53.8)
+material = SubResource("StandardMaterial3D_y3dnv")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="HillNextToCave" unique_id=1173386761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.900024, 0.29374695, 7.9000244)
+use_collision = true
+radius = 43.5
+height = 22.6625
+sides = 16
+material = SubResource("StandardMaterial3D_y3dnv")
