@@ -15,13 +15,13 @@ var dashing_origin: Vector3
 func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 	if not input.dash and not dashing:
 		var move_dir := (player.transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
-		if move_dir:
+		if move_dir and not jumping:
 			moving = true
 			player.velocity.x = move_dir.x * movement_speed
 			player.velocity.z = move_dir.z * movement_speed
-			#if not jumping:
-				#player.velocity.y = -5
-		else:
+			player.velocity.y = get_proper_vertical_velocity(input.direction)
+			
+		elif not move_dir and not jumping:
 			moving = false
 			player.velocity.x = move_toward(player.velocity.x, 0, movement_speed)
 			player.velocity.z = move_toward(player.velocity.z, 0, movement_speed)
@@ -33,13 +33,12 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 		if player.is_on_floor() and input.jump:
 			player.velocity.y += jump_velocity
 			jumping = true
-		#elif not jumping and moving and not dashing:
-			#player.velocity.y += -5
 	else:
 		if not dashing:
+			dashing = true
 			dashing_origin = player.global_position
 			if not input.direction:
-				dashing_direction = $"../Head/FieldOfView".get_global_transform().basis.z
+				dashing_direction = player.get_camera_transform().basis.z
 				dashing_direction.z *= -1
 				dashing_direction.x *= -1
 				dashing_direction.y = 0
@@ -50,3 +49,25 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 		player.velocity = dashing_direction * dash_speed
 		if player.global_position.distance_to(dashing_origin) > dash_distance:
 			dashing = false
+
+func get_proper_vertical_velocity(move_direction: Vector2) -> float:
+	var raycast_container: Node3D = player.get_directional_raycasts()
+	if not move_direction.x and not move_direction.y:
+		return player.velocity.y
+	match move_direction.x:
+		1.0:
+			print("right")
+		-1.0:
+			print("left")
+	match move_direction.y:
+		1.0:
+			print("back")
+		-1.0:
+			print("front")
+			var front: RayCast3D = raycast_container.get_node("Front")
+			var down: RayCast3D = raycast_container.get_node("Down")
+			var front_normal: Vector3 = front.get_collision_normal()
+			var down_normal: Vector3 = down.get_collision_normal()
+			if down_normal.y > front_normal.y:
+				pass
+	return player.velocity.y

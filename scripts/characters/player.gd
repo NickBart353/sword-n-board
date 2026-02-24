@@ -219,6 +219,12 @@ func get_looking_direction() -> Vector3:
 func get_camera_transform() -> Transform3D:
 	return $Head/FieldOfView.global_transform
 
+func get_camera() -> Camera3D:
+	return $Head/FieldOfView
+
+func get_directional_raycasts() -> Node3D:
+	return $Head/FieldOfView/GroundRayCasts
+
 func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
 	spawn_projectile.emit(projectile, spawn_position, direction, proj_transform, direction_flag)
 
