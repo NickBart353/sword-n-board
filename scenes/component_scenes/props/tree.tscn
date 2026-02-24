@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://fc2n4hnsylyd"]
 
-[ext_resource type="Material" uid="uid://co5hrjqvfgwxt" path="res://assets/Environoment Pack V.1/FBX/materials/Material.001.tres" id="3_67jlv"]
+[ext_resource type="Material" uid="uid://co5hrjqvfgwxt" path="res://assets/Environoment Pack V.1/FBX/materials/GreenLeaf_Tree03.tres" id="3_67jlv"]
 [ext_resource type="Material" uid="uid://njiag5dmmlqf" path="res://assets/Environoment Pack V.1/FBX/materials/Wood_bark03.tres" id="4_hsu4e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t5t8q"]
