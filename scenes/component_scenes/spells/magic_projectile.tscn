@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4xjxe8tkssu" path="res://scenes/VFX/magic_projectile.tscn" id="2_dvipt"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hjrog"]
+resource_local_to_scene = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dvipt"]
 resource_local_to_scene = true

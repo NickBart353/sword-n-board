@@ -54,7 +54,6 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			dashing = false
 			if not player.is_on_floor():
 				falling = true
-				print("test")
 
 func get_proper_vertical_velocity(move_direction: Vector2, delta: float) -> float:
 	if not move_direction.x and not move_direction.y:
