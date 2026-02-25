@@ -105,6 +105,7 @@ default_value = 1.0
 [sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_8up2x"]
 
 [sub_resource type="VisualShaderNodeTransformVecMult" id="VisualShaderNodeTransformVecMult_h7ohi"]
+expanded_output_ports = [0]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_85fej"]
 operator = 1

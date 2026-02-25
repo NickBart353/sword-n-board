@@ -1,29 +1,32 @@
 [gd_scene format=4 uid="uid://chwor3ch1gn6f"]
 
-[ext_resource type="Shader" uid="uid://c3fppaaxqexf5" path="res://tests/gradient.tres" id="1_48k8l"]
+[ext_resource type="Shader" uid="uid://bed75oxiivlj0" path="res://shaders/grass/waving_grass.tres" id="1_qrc12"]
 [ext_resource type="Script" uid="uid://c537t7e0ygeyf" path="res://tests/grass.gd" id="2_48k8l"]
 [ext_resource type="PackedScene" uid="uid://65e3cu5h2n1c" path="res://my_assets/mesh/grass.glb" id="2_381u1"]
 [ext_resource type="ArrayMesh" uid="uid://bectut2mfq64" path="res://my_assets/mesh/plane.tres" id="3_381u1"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_85fej"]
-noise_type = 0
-seed = 25
-frequency = 0.0085
+[sub_resource type="Gradient" id="Gradient_48k8l"]
+offsets = PackedFloat32Array(0, 0.44285715, 0.99523807)
+colors = PackedColorArray(0, 0.15264928, 0, 1, 0.022562565, 0.31915107, 0.025625726, 1, 0.10980392, 0.93333334, 0.1254902, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qrc12"]
-noise = SubResource("FastNoiseLite_85fej")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7xho2"]
+gradient = SubResource("Gradient_48k8l")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aq56m"]
+frequency = 0.0056
+offset = Vector3(788.74, 83.06, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0aggv"]
+noise = SubResource("FastNoiseLite_aq56m")
 seamless = true
-seamless_blend_skirt = 0.867
-bump_strength = 20.9
+seamless_blend_skirt = 0.244
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qrc12"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8be3w"]
 render_priority = 0
-shader = ExtResource("1_48k8l")
-shader_parameter/height_map = SubResource("NoiseTexture2D_qrc12")
-shader_parameter/min_height = 0.0
-shader_parameter/max_height = 1.0
-shader_parameter/color_noise = SubResource("NoiseTexture2D_qrc12")
+shader = ExtResource("1_qrc12")
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_0aggv")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_7xho2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vw18k"]
 
@@ -71,7 +74,7 @@ material = SubResource("StandardMaterial3D_qrc12")
 size = Vector2(15, 15)
 
 [node name="WavingGrass" type="MultiMeshInstance3D" unique_id=1629821962]
-material_override = SubResource("ShaderMaterial_qrc12")
+material_override = SubResource("ShaderMaterial_8be3w")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_qrc12")
 script = ExtResource("2_48k8l")
