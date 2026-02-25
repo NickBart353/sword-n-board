@@ -44,7 +44,6 @@ var consumable_item: Item
 var blocked_body: Node
 
 func _ready() -> void:
-	#floor_snap_length = 0.2
 	_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
