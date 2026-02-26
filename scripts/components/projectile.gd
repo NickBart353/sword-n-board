@@ -36,7 +36,7 @@ func _ready() -> void:
 	if not gravity_enabled:
 		gravity = 0  
 	else:
-		gravity = 9.81
+		gravity = 5
 
 func _physics_process(delta: float) -> void:
 	if not ready_to_fly: return

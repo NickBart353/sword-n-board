@@ -2,67 +2,8 @@
 
 [ext_resource type="Terrain3DMaterial" uid="uid://sfb2vgptdlal" path="res://resources/terrain3d/forest/terrain_3d_material.tres" id="1_cys02"]
 [ext_resource type="Terrain3DAssets" uid="uid://bx8xmxy5g8ck6" path="res://resources/terrain3d/forest/terrain_3d_assets.tres" id="2_gk12b"]
-[ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="3_gk12b"]
-[ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="4_iaavk"]
 [ext_resource type="PackedScene" uid="uid://dfpatff4d5okj" path="res://addons/godot_3d_cursor/scenes/3d_cursor.tscn" id="5_y3dnv"]
 [ext_resource type="PackedScene" uid="uid://cmqwwwjp7v4fb" path="res://scenes/component_scenes/shader/ocean.tscn" id="5_ygug4"]
-
-[sub_resource type="Environment" id="Environment_iaavk"]
-background_mode = 2
-background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-sky = ExtResource("3_gk12b")
-ambient_light_source = 3
-ambient_light_color = Color(0.48178947, 0.48178947, 0.48178947, 1)
-ambient_light_sky_contribution = 0.01
-ambient_light_energy = 0.2
-reflected_light_source = 1
-tonemap_mode = 2
-tonemap_exposure = 1.35
-tonemap_white = 1.55
-ssr_enabled = true
-ssao_enabled = true
-ssao_radius = 3.45
-ssao_intensity = 5.51
-ssao_power = 1.5528971
-ssao_detail = 1.5
-ssao_horizon = 0.37
-ssao_sharpness = 0.15
-ssao_light_affect = 0.12
-ssil_enabled = true
-ssil_radius = 5.32
-ssil_intensity = 0.5
-ssil_sharpness = 0.43
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.54
-sdfgi_cascades = 8
-sdfgi_min_cell_size = 0.5
-sdfgi_energy = 0.355
-glow_enabled = true
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
-glow_levels/3 = 1.0
-glow_levels/4 = 1.0
-glow_levels/5 = 1.0
-glow_levels/6 = 1.0
-glow_levels/7 = 1.0
-glow_normalized = true
-glow_intensity = 2.0
-glow_strength = 0.69
-glow_bloom = 0.2
-glow_hdr_threshold = 0.66
-glow_hdr_scale = 1.05
-glow_hdr_luminance_cap = 21.15
-glow_map_strength = 0.0
-fog_light_energy = 0.2
-fog_sun_scatter = 0.17
-fog_sky_affect = 0.157
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.0067
-volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
-volumetric_fog_anisotropy = 0.32
-volumetric_fog_length = 66.36
-volumetric_fog_detail_spread = 1.4640857
-volumetric_fog_sky_affect = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1yqi2"]
 albedo_color = Color(0.26293245, 0.26293245, 0.26293245, 1)
@@ -77,7 +18,6 @@ top_level = true
 metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=643802577]
-environment = SubResource("Environment_iaavk")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=929482641]
 transform = Transform3D(-1, -4.3711402e-08, -2.9802319e-08, -2.9802326e-08, -4.3711402e-08, 1, -4.3711395e-08, 1, 4.371138e-08, -26.686157, 458.5637, -138.73749)
@@ -98,6 +38,7 @@ directional_shadow_blend_splits = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=794645578]
 transform = Transform3D(-0.6427875, -4.3711385e-08, -0.7660444, -0.7660443, -4.3711385e-08, 0.6427876, -6.158199e-08, 1.0000001, -5.387731e-09, -689.0862, 458.56366, -138.73752)
+visible = false
 light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
 light_energy = 4.0
 light_indirect_energy = 1.24
@@ -113,9 +54,6 @@ directional_shadow_split_1 = 0.254
 directional_shadow_split_2 = 0.0
 directional_shadow_split_3 = 0.545
 directional_shadow_blend_splits = true
-
-[node name="Player" parent="." unique_id=73090851 instance=ExtResource("4_iaavk")]
-transform = Transform3D(-0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, -0.64278764, -406.80002, 81.8, -414.5)
 
 [node name="Cave" type="Node3D" parent="." unique_id=879119778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -473.80002, 70.100006, -464)
@@ -375,6 +313,12 @@ material = SubResource("StandardMaterial3D_1yqi2")
 transform = Transform3D(2.9802326e-08, 7.45058e-08, -1, 0.7660445, -0.64278746, 7.213779e-08, -0.64278793, -0.76604444, 2.6256007e-08, -16.24997, 5.0999985, 12.600067)
 use_collision = true
 size = Vector3(20.5, 0.90000004, 25.300001)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=310253406]
+transform = Transform3D(-0.03986492, 0.5195956, -0.8534816, 0.9224495, -0.30916741, -0.23130612, -0.38405493, -0.79651463, -0.46697554, -7.0016785, 1.6279678, 13.725128)
+use_collision = true
+size = Vector3(8.2, 0.90000004, 7.2000003)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D32" type="CSGBox3D" parent="CaveDirtPath/Top" unique_id=786923972]

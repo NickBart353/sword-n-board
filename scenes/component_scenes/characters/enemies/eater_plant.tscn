@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ibpe0slijw8t"]
+
+[ext_resource type="PackedScene" uid="uid://cytvliaaddflr" path="res://assets/MonstersPack_Ps1/FBX/EaterPlant.fbx" id="1_ff3iu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ff3iu"]
+radius = 2.8
+height = 11.25
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
+height = 3.9210145
+
+[node name="EaterPlant" unique_id=988514387 instance=ExtResource("1_ff3iu")]
+
+[node name="Skeleton3D" parent="EaterPlant_Armature" parent_id_path=PackedInt32Array(589510084) index="0" unique_id=2038703676]
+bones/0/rotation = Quaternion(0.68917644, 0, 0, 0.7245935)
+bones/1/rotation = Quaternion(-0.09149061, 0, 0, 0.995806)
+bones/2/rotation = Quaternion(-0.11182671, 8.5883265e-05, 0.0007659356, 0.9937275)
+bones/7/position = Vector3(-0.01592531, 0.015405741, 0.009549255)
+bones/9/position = Vector3(-0.0022344212, 0.011923814, 0.016028184)
+bones/9/rotation = Quaternion(0.3265351, 0.7120938, -0.48855034, -0.38420814)
+bones/16/rotation = Quaternion(-0.022200646, 0.0038096807, 0.00848707, 0.99971026)
+bones/19/rotation = Quaternion(0.015994946, -0.32224274, 0.0026308894, 0.94651836)
+bones/22/rotation = Quaternion(0.01990622, -0.58735293, -0.0014667958, 0.8090848)
+bones/25/rotation = Quaternion(0.052319076, -0.765363, -0.022215934, 0.64108413)
+bones/28/rotation = Quaternion(-0.025718257, 0.88371265, -0.0051642954, -0.46729428)
+
+[node name="CollisionBox" type="CollisionShape3D" parent="." index="2" unique_id=612914602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.97499967, -0.4)
+shape = SubResource("CapsuleShape3D_ff3iu")
+debug_color = Color(0.76423717, 0.17559344, 0.9999998, 0.41960785)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=646344663]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.3999999, -5.3845553)
+shape = SubResource("CapsuleShape3D_e5tdy")
+debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="4" unique_id=1003546651]
+transform = Transform3D(0.7273737, -0.68624157, 0, -2.999657e-08, -3.1794514e-08, -1, 0.68624157, 0.7273737, -4.371139e-08, -2.4156842, -3.2000003, 3.9317403)
+shape = SubResource("CapsuleShape3D_e5tdy")
+debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="5" unique_id=285358861]
+transform = Transform3D(0.5495089, 0.83548784, 0, 3.6520337e-08, -2.40198e-08, -1, -0.83548784, 0.5495089, -4.371139e-08, 4.327851, -3.2000003, 2.1265574)
+shape = SubResource("CapsuleShape3D_e5tdy")
+debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." index="6" unique_id=52339737]
+transform = Transform3D(-0.44879922, 0.89363253, 0, 3.9061923e-08, 1.9617636e-08, -1, -0.89363253, -0.44879922, -4.371139e-08, 4.043493, -3.2, -2.4503477)
+shape = SubResource("CapsuleShape3D_e5tdy")
+debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." index="7" unique_id=1535634496]
+transform = Transform3D(-0.23061576, -0.97304475, 0, -4.2533138e-08, 1.0080537e-08, -1, 0.97304475, -0.23061576, -4.371139e-08, -4.820985, -3.2, -1.5495448)
+shape = SubResource("CapsuleShape3D_e5tdy")
+debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
