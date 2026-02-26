@@ -1,13 +1,15 @@
 extends EnemyState
 
-@onready var charge_timer = $"../../Timers/ChargeTimer"
+@export var charge_timer: Timer
+@export var channeling_vfx_position: Node
+@export var channeling_vfx: VfxManager.VFX
 
 func Enter():
 	super()
 	charge_timer.start()
-	var vfx_instance = VfxManager.create_charge_poison(Vector3.ZERO, true).instantiate()
+	var vfx_instance = VfxManager.create_vfx_from_enum(channeling_vfx, Vector3.ZERO, true).instantiate()
 	enemy.add_child(vfx_instance)
-	vfx_instance.global_position = $"../../BombPosition".global_position
+	vfx_instance.global_position = channeling_vfx_position.global_position
 
 func Exit():
 	super()

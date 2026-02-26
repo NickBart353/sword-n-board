@@ -4,17 +4,22 @@ extends EnemyState
 
 @export var cooldown: int = 30
 
+var fired: bool = false
 var target_location: Vector3
 
 func Enter():
 	super()
+	fired = false
 	target_location = player.global_position
 	enemy.ready_bombs(player.global_position)
 	$"../../Timers/PoisonTimer".start(cooldown)
+	fired = true
 
 func Exit():
 	super()
+	fired = false
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
-	Transitioned.emit(self, "Follow")
+	if fired:
+		Transitioned.emit(self, "Follow")

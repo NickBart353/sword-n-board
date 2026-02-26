@@ -119,23 +119,23 @@ MAX_HEALTH = 75
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.1730693e-08, 0.99611205, 0.08809602, 1.3264034e-07)
-bones/2/rotation = Quaternion(-0.5258397, -0.16673684, -0.3362741, 0.7632898)
-bones/3/rotation = Quaternion(0.38109714, -0.027008735, 0.009028326, 0.92409635)
-bones/4/rotation = Quaternion(-0.41612273, 0.16563272, 0.26003003, 0.85544854)
-bones/5/rotation = Quaternion(0.38109714, 0.02700875, -0.0090283165, 0.92409635)
-bones/6/rotation = Quaternion(-0.40405524, 0.3650391, 0.78954303, 0.2830329)
-bones/7/rotation = Quaternion(-0.60710615, -0.13212286, 0.37981907, 0.685349)
+bones/1/rotation = Quaternion(-1.1529375e-08, 0.99624455, 0.08658414, 1.3265799e-07)
+bones/2/rotation = Quaternion(-0.54768836, -0.17925262, -0.32619488, 0.74933493)
+bones/3/rotation = Quaternion(0.36829138, -0.039119285, 0.01307652, 0.9287951)
+bones/4/rotation = Quaternion(-0.44683418, 0.17752166, 0.22418673, 0.8476826)
+bones/5/rotation = Quaternion(0.36829138, 0.03911928, -0.013076505, 0.9287951)
+bones/6/rotation = Quaternion(-0.38466367, 0.3751236, 0.8035199, 0.2562656)
+bones/7/rotation = Quaternion(-0.594569, -0.11488783, 0.39698035, 0.6897066)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.404055, 0.36503938, 0.78954303, -0.28303283)
-bones/10/rotation = Quaternion(-0.60710615, 0.13212284, -0.3798191, 0.6853489)
+bones/9/rotation = Quaternion(0.3846634, 0.37512383, 0.80351985, -0.2562656)
+bones/10/rotation = Quaternion(-0.59456897, 0.11488777, -0.39698035, 0.6897066)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.8428478, 0.08026748, 0.20630285, 0.49051398)
+bones/12/rotation = Quaternion(-0.84883237, 0.081541985, 0.24484502, 0.46139517)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.8414844, -0.083708726, -0.2071915, 0.49190316)
+bones/14/rotation = Quaternion(-0.84836775, -0.081005596, -0.24526387, 0.46212104)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.41011035, 3.5661563e-07, -2.6888845e-08, 0.912036)
-bones/18/rotation = Quaternion(0.25434494, 2.9053632e-07, 2.5983582e-08, 0.96711355)
+bones/17/rotation = Quaternion(-0.41834408, 3.5684428e-07, -2.3661704e-08, 0.9082887)
+bones/18/rotation = Quaternion(0.33807603, 2.897069e-07, -4.3459925e-09, 0.9411189)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
 material_overlay = SubResource("ShaderMaterial_f2g7w")
@@ -216,9 +216,10 @@ script = ExtResource("4_5gd67")
 wander_speed = 2
 enemy = NodePath("../..")
 
-[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=1676483248 node_paths=PackedStringArray("enemy")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=1676483248 node_paths=PackedStringArray("yell_vfx_position", "enemy")]
 script = ExtResource("7_3gwer")
 pull_distance = 20
+yell_vfx_position = NodePath("../../BombPosition")
 enemy = NodePath("../..")
 
 [node name="Follow" type="Node" parent="StateMachine" index="2" unique_id=1703526957 node_paths=PackedStringArray("enemy")]
@@ -231,8 +232,11 @@ enemy = NodePath("../..")
 script = ExtResource("6_outyk")
 enemy = NodePath("../..")
 
-[node name="Channeling" type="Node" parent="StateMachine" index="4" unique_id=719727552 node_paths=PackedStringArray("enemy")]
+[node name="Channeling" type="Node" parent="StateMachine" index="4" unique_id=1723140994 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "enemy")]
 script = ExtResource("9_exisn")
+charge_timer = NodePath("../../Timers/ChargeTimer")
+channeling_vfx_position = NodePath("../../BombPosition")
+channeling_vfx = 2
 enemy = NodePath("../..")
 
 [node name="Fire" type="Node" parent="StateMachine" index="5" unique_id=794741823 node_paths=PackedStringArray("enemy")]

@@ -27,7 +27,7 @@ func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):
 		if not local:
 			create_vfx.emit(position, VFX_DICT.get(vfx_name))
 		else:
-			return VFX.get(vfx_name)
+			return VFX_DICT.get(vfx_name)
 
 func create_poison_explosion(position: Vector3, local = false):
 	if not local:
