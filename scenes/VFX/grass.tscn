@@ -6,18 +6,17 @@
 [ext_resource type="ArrayMesh" uid="uid://bectut2mfq64" path="res://my_assets/mesh/plane.tres" id="3_381u1"]
 
 [sub_resource type="Gradient" id="Gradient_48k8l"]
-offsets = PackedFloat32Array(0, 0.44285715, 0.99523807)
-colors = PackedColorArray(0, 0.15264928, 0, 1, 0.022562565, 0.31915107, 0.025625726, 1, 0.10980392, 0.93333334, 0.1254902, 1)
+offsets = PackedFloat32Array(0.2809524, 1)
+colors = PackedColorArray(0.039455965, 0.1564025, 0, 1, 0.6200156, 0.8360907, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7xho2"]
 gradient = SubResource("Gradient_48k8l")
 fill_from = Vector2(1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_aq56m"]
-frequency = 0.0056
-offset = Vector3(788.74, 83.06, 0)
+frequency = 0.0015
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0aggv"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qrc12"]
 noise = SubResource("FastNoiseLite_aq56m")
 seamless = true
 seamless_blend_skirt = 0.244
@@ -25,7 +24,10 @@ seamless_blend_skirt = 0.244
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8be3w"]
 render_priority = 0
 shader = ExtResource("1_qrc12")
-shader_parameter/wind_noise = SubResource("NoiseTexture2D_0aggv")
+shader_parameter/wind_scale = 5.0
+shader_parameter/wind_speed = Vector2(-0.4, -0.4)
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_qrc12")
+shader_parameter/wind_strength = 5.0
 shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_7xho2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vw18k"]

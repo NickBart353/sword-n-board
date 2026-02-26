@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://4ciu7ermgxv4" path="res://scenes/component_scenes/props/tree_basic.tscn" id="2_5xtfq"]
 [ext_resource type="PackedScene" uid="uid://dsek0e7d7gejh" path="res://scenes/component_scenes/props/tree_fat.tscn" id="3_a8w01"]
 [ext_resource type="Texture2D" uid="uid://chq6b36t73m73" path="res://my_assets/grass_texture.png" id="4_7phl0"]
-[ext_resource type="Shader" uid="uid://ddojud2vx5c7y" path="res://addons/proton_scatter/demos/assets/materials/grass.gdshader" id="4_frqnt"]
+[ext_resource type="Shader" uid="uid://bed75oxiivlj0" path="res://shaders/grass/waving_grass.tres" id="4_frqnt"]
 [ext_resource type="PackedScene" uid="uid://65e3cu5h2n1c" path="res://my_assets/mesh/grass.glb" id="5_8qr76"]
 [ext_resource type="Texture2D" uid="uid://cy8hk7tucc8ms" path="res://my_assets/dirt_texture.png" id="5_fdcgn"]
 [ext_resource type="Texture2D" uid="uid://d1bdoh1v6pg68" path="res://my_assets/sand_texture.png" id="6_6r340"]
@@ -37,44 +37,30 @@ last_lod = 0
 last_shadow_lod = 0
 lod0_range = 256.0
 
-[sub_resource type="Gradient" id="Gradient_frqnt"]
-colors = PackedColorArray(0, 0.6784894, 0.39289895, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_48k8l"]
+offsets = PackedFloat32Array(0.2809524, 1)
+colors = PackedColorArray(0.039455965, 0.1564025, 0, 1, 0.6200156, 0.8360907, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8qr76"]
-gradient = SubResource("Gradient_frqnt")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7xho2"]
+gradient = SubResource("Gradient_48k8l")
 fill_from = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_8sg8r"]
-colors = PackedColorArray(0.7247753, 0.9999998, 0.8105509, 1, 0.3069773, 1, 0.1313155, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_aq56m"]
+frequency = 0.0015
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2l0nx"]
-gradient = SubResource("Gradient_8sg8r")
-fill_from = Vector2(1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l0nx"]
-noise_type = 3
-frequency = 0.0106
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lk67p"]
-noise = SubResource("FastNoiseLite_2l0nx")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_frqnt"]
+noise = SubResource("FastNoiseLite_aq56m")
 seamless = true
-seamless_blend_skirt = 0.276
+seamless_blend_skirt = 0.244
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4wq5a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8qr76"]
 render_priority = 0
 shader = ExtResource("4_frqnt")
-shader_parameter/texture_albedo = SubResource("GradientTexture2D_8qr76")
-shader_parameter/texture_gradient = SubResource("GradientTexture2D_2l0nx")
-shader_parameter/texture_noise = SubResource("NoiseTexture2D_lk67p")
-shader_parameter/alpha_scissor_threshold = 0.4150000197125
-shader_parameter/transmission = Color(0.4121528, 0.41215238, 0.41215247, 1)
-shader_parameter/secondary_color = Color(1, 1, 1, 1)
-shader_parameter/secondary_attenuation = 0.2
-shader_parameter/grass_height = 1.0
-shader_parameter/wind_direction = Vector2(1.11, -0.155)
-shader_parameter/wind_speed = 0.175
-shader_parameter/wind_strength = 0.12
-shader_parameter/noise_scale = 20.0
+shader_parameter/wind_scale = 5.0
+shader_parameter/wind_speed = Vector2(-0.4, -0.4)
+shader_parameter/wind_noise = SubResource("NoiseTexture2D_frqnt")
+shader_parameter/wind_strength = 5.0
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_7xho2")
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_4wq5a"]
 name = "grass"
@@ -82,7 +68,7 @@ id = 3
 scene_file = ExtResource("5_8qr76")
 density = 5.985
 cast_shadows = 0
-material_override = SubResource("ShaderMaterial_4wq5a")
+material_override = SubResource("ShaderMaterial_8qr76")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0

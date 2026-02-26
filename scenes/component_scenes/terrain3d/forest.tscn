@@ -98,7 +98,8 @@ directional_shadow_blend_splits = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=794645578]
 transform = Transform3D(-0.6427875, -4.3711385e-08, -0.7660444, -0.7660443, -4.3711385e-08, 0.6427876, -6.158199e-08, 1.0000001, -5.387731e-09, -689.0862, 458.56366, -138.73752)
-light_color = Color(0.9583097, 0.95620304, 0.8988929, 1)
+light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
+light_energy = 4.0
 light_indirect_energy = 1.24
 light_volumetric_fog_energy = 2.56
 light_angular_distance = 2.04
