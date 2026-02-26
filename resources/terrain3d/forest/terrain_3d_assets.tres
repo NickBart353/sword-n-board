@@ -16,8 +16,7 @@ scene_file = ExtResource("1_q8grl")
 density = 0.01
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 256.0
-lod1_range = 1024.0
+lod0_range = 128.0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_cqe4s"]
 name = "tree_basic"
@@ -26,7 +25,7 @@ scene_file = ExtResource("2_5xtfq")
 density = 0.01
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 256.0
+lod0_range = 128.0
 
 [sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_7phl0"]
 name = "tree_fat"
@@ -35,11 +34,11 @@ scene_file = ExtResource("3_a8w01")
 density = 0.01
 last_lod = 0
 last_shadow_lod = 0
-lod0_range = 256.0
+lod0_range = 128.0
 
 [sub_resource type="Gradient" id="Gradient_48k8l"]
-offsets = PackedFloat32Array(0.2809524, 1)
-colors = PackedColorArray(0.039455965, 0.1564025, 0, 1, 0.6200156, 0.8360907, 0, 1)
+offsets = PackedFloat32Array(0.2809524, 0.9954955)
+colors = PackedColorArray(0.21786952, 0.11994644, 0.123456515, 1, 0.92201, 0.3710873, 0.5803725, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7xho2"]
 gradient = SubResource("Gradient_48k8l")

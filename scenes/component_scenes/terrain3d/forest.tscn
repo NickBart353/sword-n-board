@@ -56,6 +56,7 @@ glow_map_strength = 0.0
 fog_light_energy = 0.2
 fog_sun_scatter = 0.17
 fog_sky_affect = 0.157
+volumetric_fog_enabled = true
 volumetric_fog_density = 0.0067
 volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
 volumetric_fog_anisotropy = 0.32
@@ -80,6 +81,7 @@ environment = SubResource("Environment_iaavk")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=929482641]
 transform = Transform3D(-1, -4.3711402e-08, -2.9802319e-08, -2.9802326e-08, -4.3711402e-08, 1, -4.3711395e-08, 1, 4.371138e-08, -26.686157, 458.5637, -138.73749)
+visible = false
 light_color = Color(0.92863625, 0.92356926, 0.82971716, 1)
 light_indirect_energy = 1.24
 light_volumetric_fog_energy = 2.56
@@ -96,7 +98,6 @@ directional_shadow_blend_splits = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=794645578]
 transform = Transform3D(-0.6427875, -4.3711385e-08, -0.7660444, -0.7660443, -4.3711385e-08, 0.6427876, -6.158199e-08, 1.0000001, -5.387731e-09, -689.0862, 458.56366, -138.73752)
-visible = false
 light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
 light_energy = 4.0
 light_indirect_energy = 1.24
@@ -754,7 +755,7 @@ size = Vector3(27.2, 27.4, 26.5)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="Ocean2" parent="." unique_id=1378425733 instance=ExtResource("5_ygug4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, -4.55, 0.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, -5.235, 0.8)
 
 [node name="3DCursor" parent="." unique_id=631025678 instance=ExtResource("5_y3dnv")]
 metadata/cursor_id = 0
