@@ -32,7 +32,7 @@ advance_expression = "current_state.name == \"Follow\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mom4r"]
 advance_mode = 2
-advance_expression = "current_state.name == \"Idle\" or current_state.name == \"Idle\""
+advance_expression = "current_state.name == \"ChannelingPoisonBurst\" or current_state.name == \"ChannelingTentacleEruption\""
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayg1h"]
 advance_mode = 2

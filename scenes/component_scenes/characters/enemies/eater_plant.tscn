@@ -86,18 +86,19 @@ collision_layer = 8
 collision_mask = 15
 script = ExtResource("2_d6sg8")
 POISON_BOMB_SCENE = ExtResource("3_rxgvd")
+poison_blast_bullet_amount = 30
 anim_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="EaterPlant_Armature" parent_id_path=PackedInt32Array(2070686514) index="0" unique_id=1291498923]
-bones/2/rotation = Quaternion(0.16985047, 1.17477136e-07, 2.0247745e-08, 0.9854699)
-bones/7/position = Vector3(-0.015455526, 0.014550678, 0.0073849936)
-bones/9/position = Vector3(-0.0019285795, 0.012979443, 0.0127980355)
-bones/9/rotation = Quaternion(0.3265351, 0.7120938, -0.48855034, -0.38420814)
-bones/16/rotation = Quaternion(-0.24139471, 0.0021181782, 0.013773609, 0.97032696)
-bones/19/rotation = Quaternion(-0.19396028, -0.31485498, -0.06385311, 0.9269135)
-bones/22/rotation = Quaternion(-0.16116959, -0.57261807, -0.12676641, 0.7937652)
-bones/25/rotation = Quaternion(-0.0934468, -0.7418898, -0.18691531, 0.6371263)
-bones/28/rotation = Quaternion(0.08175083, 0.8632665, 0.18703488, -0.4616338)
+bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
+bones/7/position = Vector3(-0.015925309, 0.0154057415, 0.009549255)
+bones/9/position = Vector3(-0.0022344212, 0.011923813, 0.016028183)
+bones/9/rotation = Quaternion(0.326535, 0.7120938, -0.48855034, -0.38420817)
+bones/16/rotation = Quaternion(-0.2413947, 0.0021181782, 0.013773599, 0.97032696)
+bones/19/rotation = Quaternion(-0.19396022, -0.31485495, -0.0638531, 0.9269135)
+bones/22/rotation = Quaternion(-0.16116956, -0.572618, -0.1267664, 0.79376525)
+bones/25/rotation = Quaternion(-0.09344682, -0.7418898, -0.18691528, 0.6371263)
+bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 
 [node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=128107347]
 material_overlay = SubResource("ShaderMaterial_mcukf")
@@ -175,9 +176,10 @@ wander_speed = 0
 allowed_distance_to_origin = 10
 enemy = NodePath("../..")
 
-[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("enemy")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy")]
 script = ExtResource("5_my8t3")
 pull_distance = 20
+yell_vfx_position = NodePath("../../Bombs")
 enemy = NodePath("../..")
 
 [node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy")]
@@ -201,16 +203,19 @@ channeling_vfx = 2
 follow_up_state = NodePath("../PoisonBurst")
 enemy = NodePath("../..")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("follow_up_state")]
+[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("follow_up_state", "enemy")]
 script = ExtResource("14_piwai")
 follow_up_state = NodePath("../TentacleEruption")
+enemy = NodePath("../..")
 
 [node name="TentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_deve0")
 enemy = NodePath("../..")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="7" unique_id=231634432 node_paths=PackedStringArray("enemy")]
+[node name="PoisonBurst" type="Node" parent="StateMachine" index="7" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
 script = ExtResource("9_d6sg8")
+bullet_position = NodePath("../../Bombs")
+cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 enemy = NodePath("../..")
 
 [node name="TentacleEruption" type="Node" parent="StateMachine" index="8" unique_id=642341359 node_paths=PackedStringArray("enemy")]
