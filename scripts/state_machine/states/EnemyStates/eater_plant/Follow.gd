@@ -3,6 +3,8 @@ extends EnemyState
 @export var follow_speed: int = 1
 @export var attack_range: int = -1
 @export var follow_range: int = 50
+@export var poison_cooldown: Timer
+@export var eruption_cooldown: Timer
 
 func Enter():
 	super()
@@ -21,9 +23,12 @@ func Physics_Update(delta: float) -> void:
 	if distance.length() > follow_range:
 		Transitioned.emit(self, "Idle")
 		return
-	if (distance.length() < attack_range and not $"../../Timers/PoisonTimer".time_left):
-		Transitioned.emit(self, "Channeling")
+	if (distance.length() < attack_range and not poison_cooldown.time_left):
+		Transitioned.emit(self, "ChannelingPoisonBurst")
+		return
+	if distance.length() < attack_range and not eruption_cooldown.time_left:
+		Transitioned.emit(self, "ChannelingTentacleEruption")
 		return
 	if distance.length() < attack_range:
-		Transitioned.emit(self, "Locked")
+		Transitioned.emit(self, "TentacleSlam")
 		return

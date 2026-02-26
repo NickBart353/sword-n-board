@@ -1,4 +1,4 @@
-extends EnemyState
+extends EnemyChanneling
 
 func Enter():
 	super()

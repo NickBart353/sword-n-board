@@ -1,10 +1,5 @@
 extends Enemy
 
-const MAX_HEALTH = 100
-const MIN_HEALTH = 0
-
-var health = MAX_HEALTH
-
 var isKnockedBack = false
 var has_gone_ariborne = false
 var dying = false

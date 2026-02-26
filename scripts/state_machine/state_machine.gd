@@ -24,19 +24,12 @@ func _physics_process(delta: float) -> void:
 		current_state.Physics_Update(delta)
 
 func on_child_transitioned(state: State, new_state_name: String):
-	print(new_state_name)
 	if state != current_state:
-		if new_state_name == "Fire":
-			print("fire1")
 		return
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
-		if new_state_name == "Fire":
-			print("fire2")
 		return
 	if current_state:
-		if new_state_name == "Fire":
-			print("fire3")
 		current_state.Exit()
 	
 	new_state.Enter()

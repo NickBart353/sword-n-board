@@ -110,32 +110,33 @@ nodes/hitflash/node = SubResource("AnimationNodeAnimation_awi1o")
 nodes/hitflash/position = Vector2(-180, 280)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash"]
 
-[node name="Wasp" unique_id=1372833755 groups=["Enemy"] instance=ExtResource("1_8403y")]
+[node name="Wasp" unique_id=1372833755 node_paths=PackedStringArray("anim_tree") groups=["Enemy"] instance=ExtResource("1_8403y")]
 collision_layer = 8
 collision_mask = 7
 safe_margin = 0.05
 script = ExtResource("2_nsq2h")
-MAX_HEALTH = 75
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
+MAX_HEALTH = 75
+anim_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.1529375e-08, 0.99624455, 0.08658414, 1.3265799e-07)
-bones/2/rotation = Quaternion(-0.54768836, -0.17925262, -0.32619488, 0.74933493)
-bones/3/rotation = Quaternion(0.36829138, -0.039119285, 0.01307652, 0.9287951)
-bones/4/rotation = Quaternion(-0.44683418, 0.17752166, 0.22418673, 0.8476826)
-bones/5/rotation = Quaternion(0.36829138, 0.03911928, -0.013076505, 0.9287951)
-bones/6/rotation = Quaternion(-0.38466367, 0.3751236, 0.8035199, 0.2562656)
-bones/7/rotation = Quaternion(-0.594569, -0.11488783, 0.39698035, 0.6897066)
+bones/1/rotation = Quaternion(-1.4988228e-08, 0.99364495, 0.11255969, 1.3231183e-07)
+bones/2/rotation = Quaternion(-0.4730392, -0.15872045, -0.33282527, 0.8001681)
+bones/3/rotation = Quaternion(0.24705501, -0.14763309, 0.04934954, 0.9564168)
+bones/4/rotation = Quaternion(-0.6060027, 0.21302825, 0.30087024, 0.7048807)
+bones/5/rotation = Quaternion(0.247055, 0.14763312, -0.049349517, 0.9564168)
+bones/6/rotation = Quaternion(-0.16859448, 0.521549, 0.82288283, -0.1497544)
+bones/7/rotation = Quaternion(-0.64365673, -0.055288136, 0.38108212, 0.66138166)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.3846634, 0.37512383, 0.80351985, -0.2562656)
-bones/10/rotation = Quaternion(-0.59456897, 0.11488777, -0.39698035, 0.6897066)
+bones/9/rotation = Quaternion(0.1685944, 0.52154887, 0.82288295, 0.14975445)
+bones/10/rotation = Quaternion(-0.6436567, 0.055288162, -0.38108233, 0.6613816)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.84883237, 0.081541985, 0.24484502, 0.46139517)
+bones/12/rotation = Quaternion(-0.836444, 0.2551384, 0.10416965, 0.47372413)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.84836775, -0.081005596, -0.24526387, 0.46212104)
+bones/14/rotation = Quaternion(-0.8364327, -0.25513726, -0.10418209, 0.47374192)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.41834408, 3.5684428e-07, -2.3661704e-08, 0.9082887)
-bones/18/rotation = Quaternion(0.33807603, 2.897069e-07, -4.3459925e-09, 0.9411189)
+bones/17/rotation = Quaternion(-0.25570592, 3.4744087e-07, -8.4750226e-08, 0.9667547)
+bones/18/rotation = Quaternion(0.16149423, 2.7311108e-07, -1.0181488e-08, 0.9868737)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
 material_overlay = SubResource("ShaderMaterial_f2g7w")
@@ -232,11 +233,12 @@ enemy = NodePath("../..")
 script = ExtResource("6_outyk")
 enemy = NodePath("../..")
 
-[node name="Channeling" type="Node" parent="StateMachine" index="4" unique_id=1723140994 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "enemy")]
+[node name="Channeling" type="Node" parent="StateMachine" index="4" unique_id=1723140994 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
 script = ExtResource("9_exisn")
 charge_timer = NodePath("../../Timers/ChargeTimer")
 channeling_vfx_position = NodePath("../../BombPosition")
 channeling_vfx = 2
+follow_up_state = NodePath("../Fire")
 enemy = NodePath("../..")
 
 [node name="Fire" type="Node" parent="StateMachine" index="5" unique_id=794741823 node_paths=PackedStringArray("enemy")]

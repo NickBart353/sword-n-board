@@ -5,6 +5,8 @@ signal died
 func Enter():
 	super()
 	$"../../Timers/DeathRemoveTimer".start()
+	enemy.set_collision_mask_value(1, false)
+	enemy.set_collision_layer_value(4, false)
 
 func Exit():
 	super()

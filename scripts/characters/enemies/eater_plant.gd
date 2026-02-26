@@ -14,9 +14,9 @@ func _ready() -> void:
 	health = MAX_HEALTH
 	if not origin_position:
 		origin_position = global_position
-	create_bombs()
 
 func _physics_process(_delta: float) -> void:
+	velocity += get_gravity()
 	move_and_slide()
 
 func take_damage(damage_dealt, _body = null):

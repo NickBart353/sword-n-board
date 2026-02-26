@@ -1,0 +1,100 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c0utx4rvx0jfo"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eym1i"]
+animation = &"eater_plant/EaterPlant_Armature_AtackEaterPlant"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_od7bd"]
+animation = &"eater_plant/EaterPlant_Armature_IdleEaterPlant"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_piwai"]
+animation = &"eater_plant/EaterPlant_Armature_DeathEaterPlant"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rxgvd"]
+animation = &"eater_plant/EaterPlant_Armature_AtackEaterPlant"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qmp0i"]
+animation = &"eater_plant/EaterPlant_Armature_IdleEaterPlant"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ej3g5"]
+animation = &"eater_plant/EaterPlant_Armature_IdleEaterPlant"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mcukf"]
+advance_mode = 2
+advance_expression = "current_state.name == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xpdqg"]
+advance_mode = 2
+advance_expression = "current_state.name == \"Engage\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gcyd"]
+advance_mode = 2
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mom4r"]
+advance_mode = 2
+advance_expression = "current_state.name == \"Idle\" or current_state.name == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayg1h"]
+advance_mode = 2
+advance_expression = "current_state.name == \"TentacleEruption\" or current_state.name == \"PoisonBurst\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wdb2s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ljboj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_31cd0"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bm5oj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fk03l"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cyi11"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvx8g"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbm22"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eym1i"]
+advance_mode = 2
+advance_expression = "current_state.name == \"TentacleSlam\""
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d6sg8"]
+states/Attack/node = SubResource("AnimationNodeAnimation_eym1i")
+states/Attack/position = Vector2(242, -99)
+states/Channel/node = SubResource("AnimationNodeAnimation_od7bd")
+states/Channel/position = Vector2(462, -99)
+states/Dead/node = SubResource("AnimationNodeAnimation_piwai")
+states/Dead/position = Vector2(655, 66)
+states/End/position = Vector2(820, 66)
+states/Engage/node = SubResource("AnimationNodeAnimation_rxgvd")
+states/Engage/position = Vector2(462, 219)
+states/Follow/node = SubResource("AnimationNodeAnimation_qmp0i")
+states/Follow/position = Vector2(462, 66)
+states/Idle/node = SubResource("AnimationNodeAnimation_ej3g5")
+states/Idle/position = Vector2(242, 219)
+states/Start/position = Vector2(78, 219)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_mcukf"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_xpdqg"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_6gcyd"), "Follow", "Channel", SubResource("AnimationNodeStateMachineTransition_mom4r"), "Channel", "Attack", SubResource("AnimationNodeStateMachineTransition_ayg1h"), "Attack", "Follow", SubResource("AnimationNodeStateMachineTransition_wdb2s"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_ljboj"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_31cd0"), "Channel", "Dead", SubResource("AnimationNodeStateMachineTransition_bm5oj"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_fk03l"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_cyi11"), "Attack", "Dead", SubResource("AnimationNodeStateMachineTransition_tvx8g"), "Dead", "End", SubResource("AnimationNodeStateMachineTransition_dbm22"), "Follow", "Attack", SubResource("AnimationNodeStateMachineTransition_eym1i")]
+graph_offset = Vector2(-149, -146)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6do6"]
+
+[resource]
+graph_offset = Vector2(-426.81818, -65.84297)
+nodes/output/position = Vector2(480, 200)
+nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
+nodes/Main/position = Vector2(-120, 80)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_p4mo3")
+nodes/OneShot/position = Vector2(260, 160)
+nodes/hitflash/node = SubResource("AnimationNodeAnimation_k6do6")
+nodes/hitflash/position = Vector2(-20, 340)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash"]

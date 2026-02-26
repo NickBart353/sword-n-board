@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="2_t5sjj"]
 [ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="3_rbptj"]
+[ext_resource type="PackedScene" uid="uid://ibpe0slijw8t" path="res://scenes/component_scenes/characters/enemies/eater_plant.tscn" id="6_leqql"]
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
-[ext_resource type="PackedScene" uid="uid://dme8w8fah0tn6" path="res://scenes/component_scenes/characters/enemies/wasp_new.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 
 [sub_resource type="Environment" id="Environment_fqmia"]
@@ -124,11 +124,5 @@ visible = false
 
 [node name="MainUI" parent="CanvasLayer" unique_id=1494038655 instance=ExtResource("8_cfqos")]
 
-[node name="Wasp" parent="." unique_id=987104413 instance=ExtResource("7_leqql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -334.2, 65.4, -413.7)
-
-[node name="Wasp2" parent="." unique_id=1372833755 instance=ExtResource("7_leqql")]
-transform = Transform3D(-0.76604444, 0, -0.64278764, 0, 1, 0, 0.64278764, 0, -0.76604444, -350.02472, 63.5, -399.1798)
-
-[node name="Wasp3" parent="." unique_id=946798705 instance=ExtResource("7_leqql")]
-transform = Transform3D(-0.86602545, 0, 0.5, 0, 1, 0, -0.5, 0, -0.86602545, -346.89008, 64.6, -420.11047)
+[node name="EaterPlant" parent="." unique_id=988514387 instance=ExtResource("6_leqql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.30002, 61.399998, -400.6)
