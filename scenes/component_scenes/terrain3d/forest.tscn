@@ -56,7 +56,6 @@ glow_map_strength = 0.0
 fog_light_energy = 0.2
 fog_sun_scatter = 0.17
 fog_sky_affect = 0.157
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0067
 volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
 volumetric_fog_anisotropy = 0.32
@@ -81,7 +80,6 @@ environment = SubResource("Environment_iaavk")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=929482641]
 transform = Transform3D(-1, -4.3711402e-08, -2.9802319e-08, -2.9802326e-08, -4.3711402e-08, 1, -4.3711395e-08, 1, 4.371138e-08, -26.686157, 458.5637, -138.73749)
-visible = false
 light_color = Color(0.92863625, 0.92356926, 0.82971716, 1)
 light_indirect_energy = 1.24
 light_volumetric_fog_energy = 2.56
@@ -98,6 +96,7 @@ directional_shadow_blend_splits = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=794645578]
 transform = Transform3D(-0.6427875, -4.3711385e-08, -0.7660444, -0.7660443, -4.3711385e-08, 0.6427876, -6.158199e-08, 1.0000001, -5.387731e-09, -689.0862, 458.56366, -138.73752)
+visible = false
 light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
 light_energy = 4.0
 light_indirect_energy = 1.24
@@ -534,15 +533,21 @@ size = Vector3(21.9, 2.4, 6.8)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="BeachCavePath" unique_id=635920548]
-transform = Transform3D(0.10810065, -0.0068059117, 0.9941165, -0.12617026, -0.9919845, 0.0069285496, 0.9861012, -0.12617692, -0.10809288, 121.15784, -64.373825, -25.811584)
+transform = Transform3D(0.49207947, -0.033295482, 0.86991334, -0.0180435, -0.99944377, -0.028046548, 0.8703636, -0.0018951334, -0.49240646, 118.972534, -63.312862, -24.554047)
 use_collision = true
-size = Vector3(42.7, 12.6, 15.1)
+size = Vector3(42.7, 8.8, 10)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="BeachCavePath" unique_id=946558696]
+transform = Transform3D(0.27928498, -0.002324985, 0.9602053, -0.010496259, -0.9999448, 0.0006317843, 0.9601514, -0.010255009, -0.27929386, 128.77112, -65.075195, -0.18203735)
+use_collision = true
+size = Vector3(42.7, 11.59, 15.1)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="BeachCavePath" unique_id=278709586]
-transform = Transform3D(0.913839, -0.054806005, 0.40236157, -0.096260205, -0.99184555, 0.08352496, 0.39450306, -0.1150597, -0.91166246, 100.52408, -64.15248, -46.727478)
+transform = Transform3D(0.9140225, 0.05165478, 0.40236157, 0.019536925, -0.99631417, 0.08352496, 0.40519318, -0.06848271, -0.91166246, 100.54474, -64.55101, -46.754883)
 use_collision = true
-size = Vector3(42.7, 12.6, 20.4)
+size = Vector3(42.7, 11.8, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="BeachCavePath" unique_id=1009957975]
@@ -552,21 +557,21 @@ size = Vector3(23.300001, 12.6, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="BeachCavePath" unique_id=170877591]
-transform = Transform3D(0.9967699, 0.024959464, 0.07633609, 0.031230725, -0.9961352, -0.08209507, 0.073992155, 0.084214, -0.99369687, 44.22043, -63.452766, -59.499695)
+transform = Transform3D(0.9967699, 0.024959464, 0.07633609, 0.031230725, -0.9961352, -0.08209507, 0.073992155, 0.084214, -0.99369687, 44.23166, -63.901028, -59.461792)
 use_collision = true
-size = Vector3(40.5, 12.6, 20.4)
+size = Vector3(40.5, 11.7, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="BeachCavePath" unique_id=764920210]
-transform = Transform3D(0.6545806, 0.082454756, -0.75148255, 0.031230725, -0.9961352, -0.082095064, -0.7553472, 0.030268556, -0.6546256, 11.520416, -63.452766, -64.29968)
+transform = Transform3D(0.6545806, 0.082454756, -0.75148255, 0.031230725, -0.9961352, -0.082095064, -0.7553472, 0.030268556, -0.6546256, 11.602875, -65.4489, -64.26941)
 use_collision = true
 size = Vector3(40.5, 12.6, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="BeachCavePath" unique_id=1744214205]
-transform = Transform3D(0.6545806, 0.082454756, -0.75148255, 0.031230725, -0.9961352, -0.082095064, -0.7553472, 0.030268556, -0.6546256, 3.7781067, -60.82195, -55.74176)
+transform = Transform3D(0.6545806, 0.082454756, -0.75148255, 0.031230725, -0.9961352, -0.082095064, -0.7553472, 0.030268556, -0.6546256, 4.2068787, -66.001854, -55.58435)
 use_collision = true
-size = Vector3(17.6, 18.6, 20.4)
+size = Vector3(17.6, 15.8, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="BeachCavePath" unique_id=1546577367]
@@ -575,10 +580,22 @@ use_collision = true
 size = Vector3(39.600002, 29.2, 20.4)
 material = SubResource("StandardMaterial3D_1yqi2")
 
+[node name="CSGBox3D14" type="CSGBox3D" parent="BeachCavePath" unique_id=717813784]
+transform = Transform3D(0.6545806, 0.082454756, -0.75148255, 0.031230725, -0.9961352, -0.082095064, -0.7553472, 0.030268556, -0.6546256, 2.4676514, -73.26947, -54.835327)
+use_collision = true
+size = Vector3(36.3, 28.4, 12.5)
+material = SubResource("StandardMaterial3D_1yqi2")
+
 [node name="CSGBox3D12" type="CSGBox3D" parent="BeachCavePath" unique_id=390538082]
 transform = Transform3D(0.6545806, 0.08245476, -0.75148255, 0.07509743, -0.99621, -0.04389309, -0.75225335, -0.027702771, -0.65829146, -27.964478, -73.11566, -26.559326)
 use_collision = true
 size = Vector3(33, 29.2, 20.4)
+material = SubResource("StandardMaterial3D_1yqi2")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="BeachCavePath" unique_id=1329497282]
+transform = Transform3D(0.6597269, 0.0059050806, -0.75148255, -0.041063257, -0.99819225, -0.04389309, -0.750383, 0.05981584, -0.65829146, -16.104092, -72.655205, -39.141994)
+use_collision = true
+size = Vector3(10.5, 29.2, 8.1)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="BeachCaveEntrance" type="Node3D" parent="." unique_id=1466386609]
@@ -731,9 +748,9 @@ size = Vector3(28.7, 19.4, 36.100002)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="SurroundingRocks" unique_id=1197574717]
-transform = Transform3D(-0.22903225, 0.089347035, 0.96930975, 0.96966004, -0.066483654, 0.23524313, 0.08546155, 0.9937789, -0.07140932, -412.4236, 5.1202536, -515.7303)
+transform = Transform3D(-0.22903225, 0.089347035, 0.96930975, 0.96966004, -0.066483654, 0.23524313, 0.08546155, 0.9937789, -0.07140932, -411.69662, 5.2966857, -515.7838)
 use_collision = true
-size = Vector3(27.2, 27.4, 28)
+size = Vector3(27.2, 27.4, 26.5)
 material = SubResource("StandardMaterial3D_1yqi2")
 
 [node name="Ocean2" parent="." unique_id=1378425733 instance=ExtResource("5_ygug4")]
