@@ -29,6 +29,7 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 		
 		if not player.is_on_floor():
 			player.velocity += player.get_gravity() * delta
+			falling = true
 		if jumping and player.is_on_floor():
 			jumping = false
 		if player.is_on_floor() and input.jump:
@@ -50,7 +51,7 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 				dashing_direction = Vector3(player.input.direction.x, 0, player.input.direction.y)
 				dashing_direction = (player.transform.basis * Vector3(dashing_direction.x, 0, dashing_direction.z)).normalized()
 		player.velocity = dashing_direction * dash_speed
-		if player.global_position.distance_to(dashing_origin) > dash_distance:
+		if player.global_position.distance_to(dashing_origin) > dash_distance or player.is_on_wall():
 			dashing = false
 			if not player.is_on_floor():
 				falling = true
