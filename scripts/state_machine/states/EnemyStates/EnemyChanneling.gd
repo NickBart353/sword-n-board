@@ -25,5 +25,4 @@ func Physics_Update(delta: float) -> void:
 		enemy.look_at(Vector3(player.global_position.x, player.global_position.y + 10, player.global_position.z), Vector3.UP, true)
 
 func _on_charge_timer_timeout() -> void:
-	print(follow_up_state.name)
 	Transitioned.emit(self, follow_up_state.name)

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b3golxe3jp3df"]
+
+[ext_resource type="Script" uid="uid://bibe8vjbh0yer" path="res://scripts/spells/tentacle_eruption.gd" id="1_q82sh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lwa40"]
+radius = 0.4
+height = 5.563281
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q82sh"]
+radius = 0.7
+height = 4.9566407
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwa40"]
+cull_mode = 2
+albedo_color = Color(0.27058825, 0.49411765, 0.23137255, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lwa40"]
+material = SubResource("StandardMaterial3D_lwa40")
+top_radius = 0.0
+bottom_radius = 0.89
+height = 10.355
+radial_segments = 4
+rings = 1
+
+[node name="Tentacle" type="Area3D" unique_id=907101825]
+script = ExtResource("1_q82sh")
+eruption_speed = 48.845
+
+[node name="HitBox" type="CollisionShape3D" parent="." unique_id=446801046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6391277e-07, 7.349922, 3.7252903e-08)
+shape = SubResource("CapsuleShape3D_lwa40")
+debug_color = Color(1, 0.0052555413, 0.08369998, 0.41960785)
+
+[node name="HitBox2" type="CollisionShape3D" parent="." unique_id=516304488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6391277e-07, 2.5231645, 3.7252903e-08)
+shape = SubResource("CapsuleShape3D_q82sh")
+debug_color = Color(1, 0.0052555413, 0.08369998, 0.41960785)
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1733381906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.16, -1.005362e-07)
+mesh = SubResource("CylinderMesh_lwa40")
+
+[node name="Timer" type="Timer" parent="." unique_id=183498393]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

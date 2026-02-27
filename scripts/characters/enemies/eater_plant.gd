@@ -5,6 +5,9 @@ extends Enemy
 @export var POISON_BOMB_SCENE: PackedScene
 @export var poison_blast_bullet_amount: int = 10
 @export var bomb_start_location: Marker3D
+@export var tentacle_container: Node3D
+
+var num_tentacles_erupted: int = 0
 
 func _ready() -> void:
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
@@ -55,9 +58,21 @@ func create_bombs():
 
 func ready_bombs(player_location):
 	for bomb in bombs.get_children():
-		bomb.set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
+		bomb.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 		bomb.fire(bomb_start_location.global_position, player_location, global_transform)
 
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
 	bomb.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+
+func erupt_tentacles():
+	for tentacle in $Tentacles.get_children():
+		tentacle.erupt()
+		if not tentacle.finished_eruption.is_connected(_reset_tentacles):
+			tentacle.finished_eruption.connect(_reset_tentacles)
+
+func _reset_tentacles(tentacle: Area3D):
+	num_tentacles_erupted += 1
+	if num_tentacles_erupted == tentacle_container.get_children().size():
+		num_tentacles_erupted = 0
+		$StateMachine/TentacleEruption.finished_erupting()

@@ -9,14 +9,14 @@ render_priority = 0
 shader = ExtResource("1_x3ptg")
 
 [sub_resource type="Curve" id="Curve_ihu1q"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07834102, 1), 0.0, 0.0, 0, 0, Vector2(0.9815668, 0), -2.813311, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.11160716, 0.9325843), 0.0, 0.0, 0, 0, Vector2(0.91964287, 0), -0.046720047, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_rsiso"]
 curve = SubResource("Curve_ihu1q")
 
 [sub_resource type="Curve" id="Curve_t3l0o"]
-_data = [Vector2(0, 0.08988774), 0.0, 0.0, 0, 0, Vector2(0.9815668, 0.47191018), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.08988774), 0.0, 0.0, 0, 0, Vector2(0.98660713, 0.8539326), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_jisj6"]
@@ -109,7 +109,7 @@ script = ExtResource("1_msjvk")
 [node name="Waves" type="GPUParticles3D" parent="." unique_id=1061976968]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_msjvk")
-amount = 2
+amount = 4
 lifetime = 0.2
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_88mgo")

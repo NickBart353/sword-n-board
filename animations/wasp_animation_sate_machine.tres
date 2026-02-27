@@ -145,6 +145,7 @@ xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
 
 [resource]
+resource_local_to_scene = true
 states/Channeling/node = SubResource("AnimationNodeAnimation_outyk")
 states/Channeling/position = Vector2(-42, -13)
 states/Dashing/node = SubResource("AnimationNodeAnimation_i1xyo")

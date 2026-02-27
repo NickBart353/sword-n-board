@@ -6,7 +6,7 @@ class_name Projectile
 @export var explosion_radius: float = 1.0
 @export var proj_speed = 30
 @export var proj_distance = 100
-@export var gravity_enabled: bool = false
+@export var gravity_strength: float = 0.0
 @export var spread: float = 0.0
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
@@ -23,7 +23,6 @@ var ready_to_fly: bool = false
 var target_hit: bool = false
 var hit: bool = false
 var explosion_hit: bool = false
-var gravity: float
 var new_transform: Transform3D = Transform3D.IDENTITY
 var hit_by_explosion_list: Array = []
 var origin: Vector3
@@ -33,16 +32,12 @@ func _ready() -> void:
 	projectile_area.area_entered.connect(_on_area_entered)
 	explosion_area.body_entered.connect(_on_explosion_body_entered)
 	explosion_area.area_entered.connect(_on_explosion_area_entered)
-	if not gravity_enabled:
-		gravity = 0  
-	else:
-		gravity = 5
 
 func _physics_process(delta: float) -> void:
 	if not ready_to_fly: return
 	if origin.distance_to(global_position) > proj_distance: _hit_object()
 	global_basis = new_transform.basis.orthonormalized()
-	velocity.y -= gravity * delta
+	velocity.y -= gravity_strength * delta
 	global_translate(velocity * delta)
 
 func _on_body_entered(body: Node3D) -> void:
@@ -92,6 +87,10 @@ func _hit_object():
 	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.1)
 
 func _explode():
+	for node in get_children():
+		if node is GPUParticles3D:
+			node.emitting = false
+			node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	exploded.emit(self)
 
 func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
@@ -103,6 +102,10 @@ func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transf
 	hit = false
 	explosion_hit = false
 	global_position = my_position
+	for node in get_children():
+		if node is GPUParticles3D:
+			node.emitting = true
+			node.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	hit_by_explosion_list = []
 	origin = my_position
 	if not direction_flag:
