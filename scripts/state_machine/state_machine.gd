@@ -24,6 +24,7 @@ func _physics_process(delta: float) -> void:
 		current_state.Physics_Update(delta)
 
 func on_child_transitioned(state: State, new_state_name: String):
+	print(state.name, " ", new_state_name)
 	if state != current_state:
 		return
 	var new_state = states.get(new_state_name.to_lower())

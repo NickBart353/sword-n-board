@@ -3,6 +3,7 @@ extends EnemyState
 @export var pull_distance: int = 10
 @export var time_till_engaged: int = 3
 @export var yell_vfx_position: Node
+@export var look_at_enemy: bool = true
 
 func Enter():
 	super()
@@ -24,7 +25,8 @@ func Update(delta: float) -> void:
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
-	enemy.look_at(player.global_position, Vector3.UP, true)
+	if look_at_enemy:
+		enemy.look_at(player.global_position, Vector3.UP, true)
 
 func _on_engage_timer_timeout() -> void:
 	get_child(0).queue_free()

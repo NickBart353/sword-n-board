@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="2_e5tdy"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_6xjkw"]
 [ext_resource type="Animation" uid="uid://be2w5k1m4yy64" path="res://animations/eater_plant/EaterPlant_Armature_AtackEaterPlant.res" id="3_eym1i"]
-[ext_resource type="PackedScene" uid="uid://ccb0r2c11m51l" path="res://scenes/component_scenes/spells/poison_bomb_new.tscn" id="3_rxgvd"]
+[ext_resource type="PackedScene" uid="uid://ccb0r2c11m51l" path="res://scenes/component_scenes/spells/poison_bomb.tscn" id="3_rxgvd"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="4_ej3g5"]
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_i1lff"]
 [ext_resource type="Animation" uid="uid://c1x2054mostu7" path="res://animations/eater_plant/EaterPlant_Armature_DeathEaterPlant.res" id="4_od7bd"]
@@ -74,22 +74,26 @@ _data = {
 &"EaterPlant_Armature_IdleEaterPlant": ExtResource("6_rxgvd")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ff3iu"]
-radius = 2.8
-height = 9.13125
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ej3g5"]
+height = 7.75
+radius = 2.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
 height = 3.9210145
 
-[node name="EaterPlant" unique_id=988514387 node_paths=PackedStringArray("anim_tree") instance=ExtResource("1_ff3iu")]
+[node name="EaterPlant" unique_id=988514387 node_paths=PackedStringArray("bomb_start_location", "anim_tree") instance=ExtResource("1_ff3iu")]
 collision_layer = 8
-collision_mask = 15
+collision_mask = 7
 script = ExtResource("2_d6sg8")
 POISON_BOMB_SCENE = ExtResource("3_rxgvd")
-poison_blast_bullet_amount = 30
+poison_blast_bullet_amount = 50
+bomb_start_location = NodePath("Mouth")
 anim_tree = NodePath("AnimationTree")
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" parent_id_path=PackedInt32Array(2070686514) index="0" unique_id=1291498923]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=2070686514]
+transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
+
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1291498923]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
 bones/7/position = Vector3(-0.015925309, 0.0154057415, 0.009549255)
 bones/9/position = Vector3(-0.0022344212, 0.011923813, 0.016028183)
@@ -116,54 +120,59 @@ parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 
 [node name="CollisionBox" type="CollisionShape3D" parent="." index="4" unique_id=612914602]
-transform = Transform3D(1, 0, 0, 0, 0.99323833, -0.116092905, 0, 0.116092905, 0.99323833, 0, 0.085072435, -0.5319721)
-shape = SubResource("CapsuleShape3D_ff3iu")
+transform = Transform3D(1, 0, 0, 0, 0.99323833, -0.116092905, 0, 0.116092905, 0.99323833, 0, 4.1431704, -0.53686976)
+shape = SubResource("CylinderShape3D_ej3g5")
 debug_color = Color(0.76423717, 0.17559344, 0.9999998, 0.41960785)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=646344663]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.3999999, -5.3845553)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.70000017, -5.3845553)
 shape = SubResource("CapsuleShape3D_e5tdy")
 debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="6" unique_id=1003546651]
-transform = Transform3D(0.7273737, -0.68624157, 0, -2.999657e-08, -3.1794514e-08, -1, 0.68624157, 0.7273737, -4.371139e-08, -2.4156842, -3.2000003, 3.9317403)
+transform = Transform3D(0.9396926, -0.34202, -2.1855694e-08, -3.3484863e-08, -2.8097139e-08, -1, 0.34202, 0.9396926, -3.7855173e-08, -1.7345529, 0.89999974, 4.093171)
 shape = SubResource("CapsuleShape3D_e5tdy")
 debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="." index="7" unique_id=285358861]
-transform = Transform3D(0.5495089, 0.83548784, 0, 3.6520337e-08, -2.40198e-08, -1, -0.83548784, 0.5495089, -4.371139e-08, 4.327851, -3.2000003, 2.1265574)
+transform = Transform3D(0.5495089, 0.83548784, 0, 3.6520337e-08, -2.40198e-08, -1, -0.83548784, 0.5495089, -4.371139e-08, 4.327851, 0.89999974, 2.1265574)
 shape = SubResource("CapsuleShape3D_e5tdy")
 debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="." index="8" unique_id=52339737]
-transform = Transform3D(-0.44879922, 0.89363253, 0, 3.9061923e-08, 1.9617636e-08, -1, -0.89363253, -0.44879922, -4.371139e-08, 4.043493, -3.2, -2.4503477)
+transform = Transform3D(-0.44879922, 0.89363253, 0, 3.9061923e-08, 1.9617636e-08, -1, -0.89363253, -0.44879922, -4.371139e-08, 4.043493, 0.9, -2.4503477)
 shape = SubResource("CapsuleShape3D_e5tdy")
 debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="." index="9" unique_id=1535634496]
-transform = Transform3D(-0.23061576, -0.97304475, 0, -4.2533138e-08, 1.0080537e-08, -1, 0.97304475, -0.23061576, -4.371139e-08, -4.820985, -3.2, -1.5495448)
+transform = Transform3D(-0.23061576, -0.97304475, 0, -4.2533138e-08, 1.0080537e-08, -1, 0.97304475, -0.23061576, -4.371139e-08, -4.820985, 0.9, -1.5495448)
 shape = SubResource("CapsuleShape3D_e5tdy")
 debug_color = Color(0.6916067, 0.49759555, 0, 0.41960785)
 
 [node name="HealthBar" parent="." index="10" unique_id=1652061932 instance=ExtResource("2_e5tdy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1000004, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.200001, 0)
 
 [node name="Timers" type="Node3D" parent="." index="11" unique_id=1833288342]
 
 [node name="EngageTime" type="Timer" parent="Timers" index="0" unique_id=808043179]
 wait_time = 3.0
+one_shot = true
 
 [node name="PoisonTimer" type="Timer" parent="Timers" index="1" unique_id=1004292155]
 wait_time = 3.0
+one_shot = true
 
 [node name="EruptionTimer" type="Timer" parent="Timers" index="2" unique_id=886450516]
 wait_time = 5.0
+one_shot = true
 
 [node name="PoisonCooldown" type="Timer" parent="Timers" index="3" unique_id=1661717249]
 wait_time = 15.0
+one_shot = true
 
 [node name="EruptionCooldown" type="Timer" parent="Timers" index="4" unique_id=977227141]
 wait_time = 15.0
+one_shot = true
 
 [node name="StateMachine" type="Node" parent="." index="12" unique_id=214926727 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_6xjkw")
@@ -173,13 +182,14 @@ metadata/_custom_type_script = "uid://cfxyba70xd7yl"
 [node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1939936216 node_paths=PackedStringArray("enemy")]
 script = ExtResource("4_i1lff")
 wander_speed = 0
-allowed_distance_to_origin = 10
+allowed_distance_to_origin = 100
 enemy = NodePath("../..")
 
 [node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy")]
 script = ExtResource("5_my8t3")
 pull_distance = 20
-yell_vfx_position = NodePath("../../Bombs")
+yell_vfx_position = NodePath("../../Mouth")
+look_at_enemy = false
 enemy = NodePath("../..")
 
 [node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy")]
@@ -193,19 +203,22 @@ attack_range = 40
 follow_range = 40
 poison_cooldown = NodePath("../../Timers/PoisonCooldown")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
+look_at_enemy = false
 enemy = NodePath("../..")
 
 [node name="ChannelingPoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=1394142044 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
 script = ExtResource("13_od7bd")
 charge_timer = NodePath("../../Timers/PoisonTimer")
-channeling_vfx_position = NodePath("../../Bombs")
+channeling_vfx_position = NodePath("../../Mouth")
 channeling_vfx = 2
 follow_up_state = NodePath("../PoisonBurst")
+look_at_target = false
 enemy = NodePath("../..")
 
 [node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("follow_up_state", "enemy")]
 script = ExtResource("14_piwai")
 follow_up_state = NodePath("../TentacleEruption")
+look_at_target = false
 enemy = NodePath("../..")
 
 [node name="TentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
@@ -227,4 +240,7 @@ script = ExtResource("11_bcbdx")
 enemy = NodePath("../..")
 
 [node name="Bombs" type="Node3D" parent="." index="13" unique_id=717428469]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, 0)
+transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)
+
+[node name="Mouth" type="Marker3D" parent="." index="14" unique_id=82055805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.400001, 0)

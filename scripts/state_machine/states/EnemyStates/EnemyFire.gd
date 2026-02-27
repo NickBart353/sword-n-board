@@ -11,7 +11,7 @@ func Enter():
 	super()
 	fired = false
 	target_location = player.global_position
-	enemy.ready_bombs(player.global_position)
+	enemy.ready_bombs(target_location)
 	$"../../Timers/PoisonTimer".start(cooldown)
 	fired = true
 

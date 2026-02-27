@@ -4,6 +4,7 @@ extends Enemy
 
 @export var POISON_BOMB_SCENE: PackedScene
 @export var poison_blast_bullet_amount: int = 10
+@export var bomb_start_location: Marker3D
 
 func _ready() -> void:
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
@@ -11,6 +12,7 @@ func _ready() -> void:
 	$StateMachine/Idle.reset_health.connect(reset_health)
 	$HealthBar.set_max_vals(MAX_HEALTH)
 	$StateMachine/Dead.died.connect(_remove_me)
+	create_bombs()
 	health = MAX_HEALTH
 	if not origin_position:
 		origin_position = global_position
@@ -54,7 +56,7 @@ func create_bombs():
 func ready_bombs(player_location):
 	for bomb in bombs.get_children():
 		bomb.set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
-		bomb.fire($BombPosition.global_position, player_location, global_transform)
+		bomb.fire(bomb_start_location.global_position, player_location, global_transform)
 
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION

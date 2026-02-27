@@ -5,6 +5,7 @@ extends EnemyState
 @export var follow_range: int = 50
 @export var poison_cooldown: Timer
 @export var eruption_cooldown: Timer
+@export var look_at_enemy: bool = true
 
 func Enter():
 	super()
@@ -14,7 +15,9 @@ func Exit():
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
-	enemy.look_at(player.global_position, Vector3.UP, true)
+	
+	if look_at_enemy:
+		enemy.look_at(player.global_position, Vector3.UP, true)
 	
 	var distance = player.global_position - enemy.global_position
 	

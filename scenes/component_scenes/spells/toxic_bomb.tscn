@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://ccb0r2c11m51l"]
+[gd_scene format=3 uid="uid://dp45iolku1t81"]
 
-[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_uwupy"]
+[ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_073vx"]
 
 [sub_resource type="Curve" id="Curve_4h1qo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,11 +40,12 @@ radius = 1.3000001
 
 [node name="PoisonBomb" type="Node3D" unique_id=2126498073 node_paths=PackedStringArray("projectile_area", "explosion_area", "explosion_target_raycast")]
 top_level = true
-script = ExtResource("1_uwupy")
+script = ExtResource("1_073vx")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
 explosion_radius = 1.3
 proj_speed = 40
+proj_distance = 10000
 gravity_enabled = true
 spread = 5.0
 explosion_target_raycast = NodePath("RayCast3D")

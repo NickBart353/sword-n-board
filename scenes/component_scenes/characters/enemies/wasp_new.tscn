@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c387o65siplsf" path="res://assets/MonstersPack_Ps1/BLEND/Wasp.blend" id="1_8403y"]
 [ext_resource type="Script" uid="uid://c8ueshur2ml1c" path="res://scripts/characters/enemies/Wasp/wasp_animation.gd" id="2_42erq"]
 [ext_resource type="Script" uid="uid://b0jlvhm41f4tp" path="res://scripts/characters/enemies/wasp.gd" id="2_nsq2h"]
-[ext_resource type="PackedScene" uid="uid://ccb0r2c11m51l" path="res://scenes/component_scenes/spells/poison_bomb_new.tscn" id="3_f2g7w"]
+[ext_resource type="PackedScene" uid="uid://ccb0r2c11m51l" path="res://scenes/component_scenes/spells/poison_bomb.tscn" id="3_f2g7w"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="3_nsq2h"]
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dv34gxw2ten1h" path="res://animations/wasp_animation_sate_machine.tres" id="4_6eufi"]
@@ -101,7 +101,6 @@ animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
 resource_local_to_scene = true
-graph_offset = Vector2(-414.7836, -19.620575)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_6eufi")
@@ -120,23 +119,23 @@ MAX_HEALTH = 75
 anim_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.4988228e-08, 0.99364495, 0.11255969, 1.3231183e-07)
-bones/2/rotation = Quaternion(-0.4730392, -0.15872045, -0.33282527, 0.8001681)
-bones/3/rotation = Quaternion(0.24705501, -0.14763309, 0.04934954, 0.9564168)
-bones/4/rotation = Quaternion(-0.6060027, 0.21302825, 0.30087024, 0.7048807)
-bones/5/rotation = Quaternion(0.247055, 0.14763312, -0.049349517, 0.9564168)
-bones/6/rotation = Quaternion(-0.16859448, 0.521549, 0.82288283, -0.1497544)
-bones/7/rotation = Quaternion(-0.64365673, -0.055288136, 0.38108212, 0.66138166)
+bones/1/rotation = Quaternion(-3.5444945e-09, 0.9996457, 0.026618712, 1.3311089e-07)
+bones/2/rotation = Quaternion(-0.5542318, -0.21321635, -0.16330513, 0.7878434)
+bones/3/rotation = Quaternion(0.31663308, -0.08665746, 0.02896714, 0.9441372)
+bones/4/rotation = Quaternion(-0.5326055, 0.21065852, 0.11313073, 0.8118842)
+bones/5/rotation = Quaternion(0.3165954, 0.08669147, -0.02897852, 0.94414634)
+bones/6/rotation = Quaternion(-0.40821436, 0.36578533, 0.7864076, 0.28482527)
+bones/7/rotation = Quaternion(-0.64450777, -0.06817491, 0.44289196, 0.6195229)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.1685944, 0.52154887, 0.82288295, 0.14975445)
-bones/10/rotation = Quaternion(-0.6436567, 0.055288162, -0.38108233, 0.6613816)
+bones/9/rotation = Quaternion(0.40821403, 0.36578557, 0.7864076, -0.28482524)
+bones/10/rotation = Quaternion(-0.6445078, 0.06817492, -0.44289201, 0.61952287)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.836444, 0.2551384, 0.10416965, 0.47372413)
+bones/12/rotation = Quaternion(-0.8923138, 0.15289794, 0.26942533, 0.32834196)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.8364327, -0.25513726, -0.10418209, 0.47374192)
+bones/14/rotation = Quaternion(-0.8923042, -0.15295073, -0.26936433, 0.3283933)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.25570592, 3.4744087e-07, -8.4750226e-08, 0.9667547)
-bones/18/rotation = Quaternion(0.16149423, 2.7311108e-07, -1.0181488e-08, 0.9868737)
+bones/17/rotation = Quaternion(-0.39789358, 3.5622475e-07, -3.1649048e-08, 0.9174317)
+bones/18/rotation = Quaternion(0.13259946, 2.8097773e-07, 3.9438174e-08, 0.9911697)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
 material_overlay = SubResource("ShaderMaterial_f2g7w")
