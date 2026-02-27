@@ -26,12 +26,12 @@ func Physics_Update(delta: float) -> void:
 	if distance.length() > follow_range:
 		Transitioned.emit(self, "Idle")
 		return
-	#if (distance.length() < attack_range and not poison_cooldown.time_left):
-		#Transitioned.emit(self, "ChannelingPoisonBurst")
-		#return
-	if distance.length() < attack_range and not eruption_cooldown.time_left:
-		Transitioned.emit(self, "ChannelingTentacleEruption")
+	if (distance.length() < attack_range and not poison_cooldown.time_left):
+		Transitioned.emit(self, "ChannelingPoisonBurst")
 		return
+	#if distance.length() < attack_range and not eruption_cooldown.time_left:
+		#Transitioned.emit(self, "ChannelingTentacleEruption")
+		#return
 	#if distance.length() < attack_range:
 		#Transitioned.emit(self, "TentacleSlam")
 		#return

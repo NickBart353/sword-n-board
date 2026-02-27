@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://4fwojmdcec7c"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_lqe3v"]
+
+[sub_resource type="Curve" id="Curve_q2axt"]
+_limits = [0.0, 0.3, 0.0, 1.0]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, -0.09101136, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lqe3v"]
+curve = SubResource("Curve_q2axt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4h6tc"]
+emission_shape_scale = Vector3(0.38, 0.35, 0.545)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+radial_velocity_min = 4.9999776
+radial_velocity_max = 4.9999776
+scale_curve = SubResource("CurveTexture_lqe3v")
+color = Color(0.95754737, 0.50825846, 1.5565991, 1)
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6xhl"]
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_7de20"]
+material = SubResource("StandardMaterial3D_v6xhl")
+
+[sub_resource type="Curve" id="Curve_lqe3v"]
+_data = [Vector2(0, 0.44943827), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4h6tc"]
+curve = SubResource("Curve_lqe3v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lqe3v"]
+emission_shape_scale = Vector3(1.305, 0, 1.44)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_4h6tc")
+color = Color(1.432062, 0.48106685, 1.9754877, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h6tc"]
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6xhl"]
+material = SubResource("StandardMaterial3D_4h6tc")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="Animation" id="Animation_lqe3v"]
+resource_name = "explode"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PoisonDrops:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EmittingGoo:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4h6tc"]
+_data = {
+&"explode": SubResource("Animation_lqe3v")
+}
+
+[node name="ToxicGround" type="Node3D" unique_id=1444242134 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_lqe3v")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "explode"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="PoisonDrops" type="GPUParticles3D" parent="." unique_id=448411478]
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.94
+fixed_fps = 45
+process_material = SubResource("ParticleProcessMaterial_4h6tc")
+draw_pass_1 = SubResource("SphereMesh_7de20")
+
+[node name="EmittingGoo" type="GPUParticles3D" parent="." unique_id=1148054714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+cast_shadow = 0
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_lqe3v")
+draw_pass_1 = SubResource("SphereMesh_v6xhl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2022718118]
+libraries/ = SubResource("AnimationLibrary_4h6tc")

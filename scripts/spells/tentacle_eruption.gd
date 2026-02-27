@@ -19,7 +19,6 @@ func _ready() -> void:
 	origin_position = global_position
 
 func _physics_process(delta: float) -> void:
-	print(global_position, " ", origin_position)
 	if is_ready_to_erupt:
 		global_translate(velocity * delta)
 		if global_position.distance_to(origin_position) > max_distance:

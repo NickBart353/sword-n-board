@@ -43,7 +43,7 @@ seamless_blend_skirt = 0.399
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jdm4"]
 render_priority = 0
 shader = ExtResource("2_0jskv")
-shader_parameter/ColorParameter = Color(3.3502398, 0.50357836, 4.006, 1)
+shader_parameter/ColorParameter = Color(1.412712, 0.46242, 3.7045925, 1)
 shader_parameter/Speed = Vector2(0.215, 0.35)
 shader_parameter/polar_cord_strength = 2.0
 shader_parameter/polar_cord_repeat = 3.51
@@ -64,9 +64,12 @@ script = ExtResource("1_073vx")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
 explosion_radius = 2.0
+proj_speed = 25
 proj_distance = 10000
 gravity_strength = 20.0
-spread = 5.0
+spread = 8.0
+explosion_animation = 8
+damage = 15
 explosion_target_raycast = NodePath("RayCast3D")
 metadata/_custom_type_script = "uid://snywren3rqx0"
 

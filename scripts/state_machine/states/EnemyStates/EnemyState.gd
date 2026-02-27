@@ -3,12 +3,14 @@ class_name EnemyState
 
 var player
 @export var enemy: CharacterBody3D
-@onready var anim_tree = $"../../AnimationTree"["parameters/Main/playback"]
+@onready var anim_tree = $"../../AnimationTree"
+@onready var state_machine_resource = anim_tree.tree_root.get_node("Main") as AnimationNodeStateMachine
+@onready var state_machine = anim_tree["parameters/Main/playback"]
 
 func Enter():
 	super()
 	player = get_tree().get_first_node_in_group("Player")
-	anim_tree.travel(name)
+	state_machine.travel(name)
 
 func Exit():
 	super()
