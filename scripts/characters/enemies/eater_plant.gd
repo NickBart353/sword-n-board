@@ -77,18 +77,26 @@ func create_tentacles():
 		tentacle_container.add_child(tentacle_instance)
 		tentacle_instance.hide()
 		tentacle_instance.damage = tentacle_damage
-		if not tentacle_instance.finished_eruption.is_connected(_reset_tentacles):
-			tentacle_instance.finished_eruption.connect(_reset_tentacles)
+		#if not tentacle_instance.finished_eruption.is_connected(_reset_tentacles):
+			#tentacle_instance.finished_eruption.connect(_reset_tentacles)
+		#if not tentacle_instance.ground_point_above.is_connected(_create_rumbling_vfx_at_tentacle_spawn):
+			#tentacle_instance.ground_point_above.connect(_create_rumbling_vfx_at_tentacle_spawn)
 		tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
-func ready_tentacles():
-	for tentacle in tentacle_container.get_children():
-		tentacle.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
-		tentacle.global_position = global_position + Vector3(randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius, -12, randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius)
-		tentacle.erupt()
+#func _create_rumbling_vfx_at_tentacle_spawn(tentacle_spawn: Vector3):
+	#VfxManager.create_vfx_from_enum(VfxManager.VFX.RUMBLING, tentacle_spawn)
 
-func _reset_tentacles(_tentacle: Area3D):
-	pass
+#func ready_tentacles():
+	#for tentacle in tentacle_container.get_children():
+		#tentacle.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+		#tentacle.global_position = global_position + Vector3(randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius, -12, randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius)
+
+#func erupt_tentacles():
+	#for tentacle in tentacle_container.get_children():
+		#tentacle.erupt()
+
+#func _reset_tentacles(_tentacle: Area3D):
+	#pass
 	#num_tentacles_erupted += 1
 	#if num_tentacles_erupted == tentacle_container.get_children().size():
 		#num_tentacles_erupted = 0

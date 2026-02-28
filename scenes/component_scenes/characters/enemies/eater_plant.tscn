@@ -177,7 +177,7 @@ wait_time = 20.0
 one_shot = true
 
 [node name="EruptionCooldown" type="Timer" parent="Timers" index="4" unique_id=977227141]
-wait_time = 30.0
+wait_time = 5.0
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="." index="12" unique_id=1149640940 node_paths=PackedStringArray("initial_state")]
@@ -194,6 +194,7 @@ enemy = NodePath("../..")
 script = ExtResource("5_my8t3")
 pull_distance = 20
 yell_vfx_position = NodePath("../../MouthSide")
+only_look_horizontally = true
 enemy = NodePath("../..")
 
 [node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy")]

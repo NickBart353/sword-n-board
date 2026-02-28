@@ -1,11 +1,14 @@
 extends Area3D
 
 @onready var resting_timer: Timer = $Timer
+@onready var ground_detector_raycast: RayCast3D = $GroundDetector
 
 @export_range(0.0, 100.0) var eruption_speed: float = 10
 @export_range(0.0, 100.0) var max_distance: float = 8.0
+@export var rumbling_vfx: VfxManager.VFX = VfxManager.VFX.RUMBLING
 
 signal finished_eruption
+signal ground_point_above
 
 var origin_position: Vector3
 var top_position: Vector3
@@ -40,6 +43,14 @@ func _on_body_entered(body: Node3D) -> void:
 		if (body is Player or body is Enemy) and not hit:
 			body.take_damage(damage, self)
 			hit = true
+
+#func channel_eruption():
+	#var ground_height: Vector3 = ground_detector_raycast.get_collision_point()
+	#max_distance = global_position.distance_to(ground_height)
+	#print(global_position, " ", ground_height)#, ground_detector_raycast.get_collider().get_class())
+	#print(max_distance)
+	#VfxManager.create_vfx_from_enum(rumbling_vfx, ground_height)
+	#ground_point_above.emit(ground_height)
 
 func erupt():
 	show()

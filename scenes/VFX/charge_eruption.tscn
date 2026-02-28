@@ -44,7 +44,7 @@ scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_7mbkf")
 color = Color(0.39814448, 3.4255767, 0.5792729, 1)
-hue_variation_min = -2.2351742e-08
+hue_variation_min = -0.010000022
 hue_variation_max = 0.019999977
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mbkf"]
@@ -62,50 +62,50 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:amount")
+tracks/0/path = NodePath("GPUParticles3D:process_material:directional_velocity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [200]
+"update": 0,
+"values": [Vector2(14.999984, 24.999983)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles3D:process_material:directional_velocity")
+tracks/1/path = NodePath("GPUParticles3D:process_material:radial_velocity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(14.999984, 24.999983)]
+"values": [Vector2(0.99997765, 4.9999776)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles3D:process_material:radial_velocity")
+tracks/2/path = NodePath("GPUParticles3D:lifetime")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.99997765, 4.9999776)]
+"values": [1.21]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GPUParticles3D:lifetime")
+tracks/3/path = NodePath("GPUParticles3D:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.21]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_7mbkf"]
@@ -114,50 +114,50 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:amount")
+tracks/0/path = NodePath("GPUParticles3D:process_material:directional_velocity")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [300]
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(14.999984, 24.999983), Vector2(25, 50)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles3D:process_material:directional_velocity")
+tracks/1/path = NodePath("GPUParticles3D:process_material:radial_velocity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(14.999984, 24.999983), Vector2(25, 50)]
+"values": [Vector2(5, 10), Vector2(20, 40)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles3D:process_material:radial_velocity")
+tracks/2/path = NodePath("GPUParticles3D:lifetime")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(5, 10), Vector2(10, 20)]
+"values": [2.0, 0.3]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("GPUParticles3D:lifetime")
+tracks/3/path = NodePath("GPUParticles3D:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.0, 0.3]
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4ybu"]
@@ -174,7 +174,7 @@ metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1747223059]
 cast_shadow = 0
-amount = 200
+amount = 300
 lifetime = 1.21
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_5refd")

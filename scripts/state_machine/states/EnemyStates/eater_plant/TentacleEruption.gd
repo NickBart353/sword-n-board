@@ -6,7 +6,8 @@ var is_erupted: bool
 func Enter():
 	super()
 	is_erupted = false
-	enemy.ready_tentacles()
+	for tentacle in enemy.tentacle_container.get_children():
+		tentacle.erupt()
 	eruption_cooldown.start()
 	is_erupted = true
 
