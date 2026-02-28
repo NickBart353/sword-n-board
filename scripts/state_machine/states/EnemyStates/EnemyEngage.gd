@@ -4,6 +4,7 @@ extends EnemyState
 @export var time_till_engaged: int = 3
 @export var yell_vfx_position: Node
 @export var look_at_enemy: bool = true
+@export var only_look_horizontally: bool = false
 
 func Enter():
 	super()
@@ -27,6 +28,8 @@ func Physics_Update(delta: float) -> void:
 	super(delta)
 	if look_at_enemy:
 		enemy.look_at(player.global_position, Vector3.UP, true)
+	if only_look_horizontally:
+		enemy.rotate_y(0.0)
 
 func _on_engage_timer_timeout() -> void:
 	get_child(0).queue_free()

@@ -23,8 +23,10 @@ radial_segments = 4
 rings = 1
 
 [node name="Tentacle" type="Area3D" unique_id=907101825]
+top_level = true
 script = ExtResource("1_q82sh")
-eruption_speed = 48.845
+eruption_speed = 45.515
+max_distance = 10.22
 
 [node name="HitBox" type="CollisionShape3D" parent="." unique_id=446801046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6391277e-07, 7.349922, 3.7252903e-08)
@@ -41,7 +43,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.16, -1.005362e-07)
 mesh = SubResource("CylinderMesh_lwa40")
 
 [node name="Timer" type="Timer" parent="." unique_id=183498393]
-wait_time = 2.0
+wait_time = 15.0
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

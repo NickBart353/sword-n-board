@@ -71,6 +71,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [5.28]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChargingParticles:process_material:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(5.6215343, 1.0929868, 8.066951, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_4wesn"]
 resource_name = "charge"
@@ -97,7 +109,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [300, 100]
+"values": [300, 200]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -110,6 +122,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [5.28, 2.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ChargingParticles:process_material:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(5.6215343, 1.0929868, 8.066951, 1), Color(10.920125, 7.100819, 14.416673, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_000or"]

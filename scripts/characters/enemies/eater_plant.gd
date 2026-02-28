@@ -5,7 +5,12 @@ extends Enemy
 @export var POISON_BOMB_SCENE: PackedScene
 @export var poison_blast_bullet_amount: int = 10
 @export var bomb_start_location: Marker3D
+@export var tentacle_scene: PackedScene
 @export var tentacle_container: Node3D
+@export_range(0, 100) var tentacle_amount: int = 15
+@export_range(0.0, 100.0) var tentacle_attack_min_radius: float = 3
+@export_range(0.0, 100.0) var tentacle_attack_max_radius: float = 15
+@export_range(0.0, 100.0) var tentacle_damage: int = 15
 
 var num_tentacles_erupted: int = 0
 
@@ -16,6 +21,7 @@ func _ready() -> void:
 	$HealthBar.set_max_vals(MAX_HEALTH)
 	$StateMachine/Dead.died.connect(_remove_me)
 	create_bombs()
+	create_tentacles()
 	health = MAX_HEALTH
 	if not origin_position:
 		origin_position = global_position
@@ -65,14 +71,25 @@ func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
 	bomb.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
-func erupt_tentacles():
-	for tentacle in $Tentacles.get_children():
-		tentacle.erupt()
-		if not tentacle.finished_eruption.is_connected(_reset_tentacles):
-			tentacle.finished_eruption.connect(_reset_tentacles)
+func create_tentacles():
+	for i in range(tentacle_amount):
+		var tentacle_instance: Area3D = tentacle_scene.instantiate()
+		tentacle_container.add_child(tentacle_instance)
+		tentacle_instance.hide()
+		tentacle_instance.damage = tentacle_damage
+		if not tentacle_instance.finished_eruption.is_connected(_reset_tentacles):
+			tentacle_instance.finished_eruption.connect(_reset_tentacles)
+		tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
-func _reset_tentacles(tentacle: Area3D):
-	num_tentacles_erupted += 1
-	if num_tentacles_erupted == tentacle_container.get_children().size():
-		num_tentacles_erupted = 0
-		$StateMachine/TentacleEruption.finished_erupting()
+func ready_tentacles():
+	for tentacle in tentacle_container.get_children():
+		tentacle.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+		tentacle.global_position = global_position + Vector3(randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius, -12, randf_range(-tentacle_attack_max_radius, tentacle_attack_max_radius) + tentacle_attack_min_radius)
+		tentacle.erupt()
+
+func _reset_tentacles(_tentacle: Area3D):
+	pass
+	#num_tentacles_erupted += 1
+	#if num_tentacles_erupted == tentacle_container.get_children().size():
+		#num_tentacles_erupted = 0
+		#$StateMachine/TentacleEruption.finished_erupting()

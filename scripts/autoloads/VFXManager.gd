@@ -11,8 +11,10 @@ const MAGIC_EXPLOSION: PackedScene = preload("res://scenes/VFX/blue_magic_explos
 const DIRT_EXPLOSION: PackedScene = preload("res://scenes/VFX/dirt_explosion.tscn")
 const CHARGE_TOXIC: PackedScene = preload("res://scenes/VFX/charge_toxic.tscn")
 const TOXIC_GROUND: PackedScene = preload("res://scenes/VFX/toxic_ground.tscn")
+const CHARGE_ERUPTION: PackedScene = preload("res://scenes/VFX/charge_eruption.tscn")
 
-enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, TOXIC_GROUND}
+enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, 
+TOXIC_GROUND, CHARGE_ERUPTION}
 
 const VFX_DICT: Dictionary = {
 	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
@@ -24,6 +26,7 @@ const VFX_DICT: Dictionary = {
 	VFX.DIRT_EXPLOSION : preload("res://scenes/VFX/dirt_explosion.tscn"),
 	VFX.CHARGE_TOXIC : preload("res://scenes/VFX/charge_toxic.tscn"),
 	VFX.TOXIC_GROUND : preload("res://scenes/VFX/toxic_ground.tscn"),
+	VFX.CHARGE_ERUPTION : preload("res://scenes/VFX/charge_eruption.tscn"),
 }
 
 func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):
