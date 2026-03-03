@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
 [ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://animations/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
 [ext_resource type="PackedScene" uid="uid://b3golxe3jp3df" path="res://scenes/component_scenes/spells/tentacle.tscn" id="22_mcukf"]
+[ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mcukf"]
 render_priority = 0
@@ -88,12 +89,13 @@ collision_mask = 7
 safe_margin = 0.02
 script = ExtResource("2_d6sg8")
 POISON_BOMB_SCENE = ExtResource("3_ej3g5")
-poison_blast_bullet_amount = 100
+poison_blast_bullet_amount = 1000
 bomb_start_location = NodePath("MouthTop")
 tentacle_scene = ExtResource("22_mcukf")
 tentacle_container = NodePath("Tentacles")
-tentacle_amount = 100
-tentacle_attack_max_radius = 30.0
+tentacle_amount = 500
+tentacle_attack_max_radius = 50.0
+tentacle_root = ExtResource("23_xpdqg")
 anim_tree = NodePath("AnimationTree")
 
 [node name="EaterPlant_Armature" parent="." index="0" unique_id=2070686514]
@@ -253,8 +255,11 @@ transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, 
 
 [node name="Tentacles" type="Node3D" parent="." index="14" unique_id=1837343989]
 
-[node name="MouthTop" type="Marker3D" parent="." index="15" unique_id=82055805]
+[node name="TentacleRoots" type="Node3D" parent="." index="15" unique_id=110300014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79999995, 0)
+
+[node name="MouthTop" type="Marker3D" parent="." index="16" unique_id=82055805]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6.9000006, 6.556708e-08)
 
-[node name="MouthSide" type="Marker3D" parent="." index="16" unique_id=1010728377]
+[node name="MouthSide" type="Marker3D" parent="." index="17" unique_id=1010728377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 5.5)
