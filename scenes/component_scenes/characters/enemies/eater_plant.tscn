@@ -222,31 +222,32 @@ follow_up_state = NodePath("../PoisonBurst")
 look_at_target = false
 enemy = NodePath("../..")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
+[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("enemy")]
 script = ExtResource("14_piwai")
-charge_timer = NodePath("../../Timers/EruptionTimer")
-channeling_vfx_position = NodePath("../../Tentacles")
-channeling_vfx = 9
-follow_up_state = NodePath("../TentacleEruption")
-look_at_target = false
 enemy = NodePath("../..")
 
-[node name="TentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
+[node name="ChannelingTentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=726626920 node_paths=PackedStringArray("enemy")]
+script = ExtResource("14_piwai")
+wind_up_speed = 0.301
+enemy = NodePath("../..")
+
+[node name="TentacleSlam" type="Node" parent="StateMachine" index="7" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_deve0")
+rotation_speed = 0.125
 enemy = NodePath("../..")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="7" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
+[node name="PoisonBurst" type="Node" parent="StateMachine" index="8" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
 script = ExtResource("9_d6sg8")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 enemy = NodePath("../..")
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="8" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy")]
+[node name="TentacleEruption" type="Node" parent="StateMachine" index="9" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 enemy = NodePath("../..")
 
-[node name="Dead" type="Node" parent="StateMachine" index="9" unique_id=869018545 node_paths=PackedStringArray("enemy")]
+[node name="Dead" type="Node" parent="StateMachine" index="10" unique_id=869018545 node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_bcbdx")
 enemy = NodePath("../..")
 

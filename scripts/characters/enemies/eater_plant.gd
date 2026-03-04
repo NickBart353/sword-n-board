@@ -85,8 +85,8 @@ func create_tentacles():
 		tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func create_tentacle_roots():
-	var radiant_size: int = 360 / tentacle_root_amount
+	var radiant_size: float = 360.0 / tentacle_root_amount
 	for i in range(tentacle_root_amount):
 		var tentacle_root_instance = tentacle_root.instantiate()
 		tentacle_root_container.add_child(tentacle_root_instance, true)
-		tentacle_root_instance.rotation.y = radiant_size * i
+		tentacle_root_instance.rotate_y(deg_to_rad(radiant_size * i))

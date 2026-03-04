@@ -1,19 +1,25 @@
-extends EnemyChanneling
+extends EnemyState
 
-@export var rumbling_vfx: VfxManager.VFX = VfxManager.VFX.RUMBLING
+@export_range(0.0, 1.0) var wind_up_speed: float = 0.5
+var root_counter_top: int
+var root_counter: int
 
 func Enter():
 	super()
-	#enemy.ready_tentacles()
-	for tentacle in enemy.tentacle_container.get_children():
-		tentacle.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
-		tentacle.global_position = enemy.global_position + Vector3(randf_range(-enemy.tentacle_attack_max_radius, enemy.tentacle_attack_max_radius) + enemy.tentacle_attack_min_radius, -15, randf_range(-enemy.tentacle_attack_max_radius, enemy.tentacle_attack_max_radius) + enemy.tentacle_attack_min_radius)
-		#tentacle.channel_eruption()
-		var vfx_pos: Vector3 = Vector3(tentacle.global_position.x, tentacle.global_position.y + 15, tentacle.global_position.z)
-		VfxManager.create_vfx_from_enum(rumbling_vfx, vfx_pos)
+	root_counter_top = enemy.tentacle_root_container.get_children().size()
+	root_counter = 0
+	for tentacle_root in enemy.tentacle_root_container.get_children():
+		tentacle_root.wind_up(wind_up_speed)
+		if not tentacle_root.winded_up.is_connected(_finished_wind_up):
+			tentacle_root.winded_up.connect(_finished_wind_up)
 
 func Exit():
 	super()
 
 func Physics_Update(delta: float) -> void:
 	super(delta)
+
+func _finished_wind_up():
+	root_counter += 1
+	if root_counter == root_counter_top:
+		Transitioned.emit(self, "TentacleSlam")
