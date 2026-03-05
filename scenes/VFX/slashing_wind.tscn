@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://r06beii7nq0q"]
+
+[ext_resource type="Shader" uid="uid://ce1sftlw6iqfg" path="res://shaders/slashing_wind/slashing_wind.tres" id="1_od4go"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_od4go"]
+noise_type = 2
+frequency = 0.0058
+offset = Vector3(676.92, 307.69, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_od4go"]
+noise = SubResource("FastNoiseLite_od4go")
+seamless = true
+seamless_blend_skirt = 0.186
+
+[sub_resource type="Gradient" id="Gradient_od4go"]
+offsets = PackedFloat32Array(0, 0.104166664, 0.796875, 0.9583333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_67xn2"]
+gradient = SubResource("Gradient_od4go")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0.017094018)
+
+[sub_resource type="Gradient" id="Gradient_67xn2"]
+offsets = PackedFloat32Array(0, 0.088541664, 0.90625, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_88auk"]
+gradient = SubResource("Gradient_67xn2")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_67xn2"]
+render_priority = 0
+shader = ExtResource("1_od4go")
+shader_parameter/WindColor = Color(0.36659443, 0.36659467, 0.36659455, 1)
+shader_parameter/WindStrength = Vector2(6, 0)
+shader_parameter/WindNoise = SubResource("NoiseTexture2D_od4go")
+shader_parameter/WindNoise2 = SubResource("GradientTexture2D_67xn2")
+shader_parameter/WindNoise3 = SubResource("GradientTexture2D_88auk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_88auk"]
+material = SubResource("ShaderMaterial_67xn2")
+size = Vector2(2, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0iab"]
+render_priority = 0
+shader = ExtResource("1_od4go")
+shader_parameter/WindColor = Color(0.33660764, 0.3366076, 0.3366076, 1)
+shader_parameter/WindStrength = Vector2(6, 0)
+shader_parameter/WindNoise = SubResource("NoiseTexture2D_od4go")
+shader_parameter/WindNoise2 = SubResource("GradientTexture2D_67xn2")
+shader_parameter/WindNoise3 = SubResource("GradientTexture2D_88auk")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_asfap"]
+material = SubResource("ShaderMaterial_l0iab")
+size = Vector2(2, 4)
+
+[node name="SlashingWind" type="Node3D" unique_id=1788562389]
+
+[node name="Left" type="MeshInstance3D" parent="." unique_id=1340884079]
+transform = Transform3D(0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0, 1, -0.7, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_88auk")
+
+[node name="Right" type="MeshInstance3D" parent="." unique_id=1338939608]
+transform = Transform3D(-0.6427876, -0.7660444, 8.742278e-08, -0.7660444, 0.6427876, 0, -5.6194278e-08, -6.6969726e-08, -1, 0.7, 0, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_asfap")

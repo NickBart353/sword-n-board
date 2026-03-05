@@ -124,5 +124,6 @@ visible = false
 
 [node name="MainUI" parent="CanvasLayer" unique_id=1494038655 instance=ExtResource("8_cfqos")]
 
-[node name="EaterPlant" parent="." unique_id=988514387 instance=ExtResource("6_leqql")]
+[node name="EaterPlant" parent="." unique_id=457762831 instance=ExtResource("6_leqql")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.30002, 81.9, -400.6)
+MAX_HEALTH = 75

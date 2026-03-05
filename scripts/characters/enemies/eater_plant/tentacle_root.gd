@@ -1,36 +1,48 @@
 extends Node3D
 
 signal slammed
+signal winding
 
 @onready var anim_tree = $AnimationTree["parameters/playback"]
-@export_range(0.0, 100.0) var idle_blend_speed: float = 2.0
-@export_range(0.0, 100.0) var slam_blend_speed: float = 2.0
+@onready var impact_points: Array = [$StartSegment/StartImpact, $StartSegment/MiddleOneSegment/MiddleOneImpact, $StartSegment/MiddleOneSegment/MiddleTwoSegment/MiddleTwoImpact, $StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/EndImpact]
 
 @export var damage: int = 30
+
 var hit: bool = false
 var windup: bool = false
 var slamming: bool = false
 var idling: bool = false
 var can_take_damage: bool = false
-var rewind: bool = false
 
 func _ready() -> void:
-	anim_tree.state_finished.connect(_state_finished)
 	anim_tree.state_started.connect(_state_started)
-
-func slam() -> void:
-	hit = false
-	anim_tree.travel("SLAM")
 
 func wind_up() -> void:
 	idling = false
 	windup = true
+	anim_tree.travel("WindUp")
 
 func re_wind() -> void:
-	rewind = true
+	windup = true
+	anim_tree.travel("ReWind")
 
 func idle() -> void:
 	idling = true
+	anim_tree.travel("Return")
+
+func _state_started(state: StringName) -> void:
+	can_take_damage = false
+	match state:
+		"WindUp", "ReWind":
+			slamming = true
+			windup = false
+			winding.emit()
+			anim_tree.travel("SLAM")
+		"SLAM":
+			hit = false
+			can_take_damage = true
+			slamming = false
+			slammed.emit()
 
 func _on_start_segment_body_entered(body: Node3D) -> void:
 	_check_hit(body)
@@ -49,23 +61,6 @@ func _check_hit(body: Node3D):
 		hit = true
 		body.take_damage(damage, self)
 
-func _state_finished(state: StringName) -> void:
-	match state:
-		"WindUp":
-			can_take_damage = true
-		"ReWind":
-			can_take_damage = true
-		"SLAM":
-			can_take_damage = false
-
-func _state_started(state: StringName) -> void:
-	match state:
-		"WindUp":
-			slamming = true
-			windup = false
-		"ReWind":
-			slamming = true
-			rewind = false
-		"SLAM":
-			slamming = false
-			slammed.emit()
+func create_impact_vfx():
+	for impact_point in impact_points:
+		VfxManager.create_vfx_from_enum(VfxManager.VFX.LINE_GROUND_IMPACT, impact_point.global_position)

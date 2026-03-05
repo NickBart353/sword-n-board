@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:
 
 func take_damage(damage_dealt, _body = null):
 	if health > MIN_HEALTH:
-		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		anim_tree.set("parameters/Hitflash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	update_HEALTH( - damage_dealt)
 	if $StateMachine.current_state.name.to_lower() == "idle":
 		$StateMachine.on_child_transitioned($StateMachine/Idle, "Engage")

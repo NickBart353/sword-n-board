@@ -10,7 +10,9 @@
 [ext_resource type="Animation" uid="uid://c1x2054mostu7" path="res://animations/eater_plant/EaterPlant_Armature_DeathEaterPlant.res" id="4_od7bd"]
 [ext_resource type="Script" uid="uid://ba18g0av6r7c6" path="res://scripts/state_machine/states/EnemyStates/EnemyEngage.gd" id="5_my8t3"]
 [ext_resource type="Animation" uid="uid://dkeragtp5b3j2" path="res://animations/eater_plant/EaterPlant_Armature_GetDamageEaterPlant.res" id="5_piwai"]
+[ext_resource type="Texture2D" uid="uid://b6aa1pybomc50" path="res://assets/MonstersPack_Ps1/Textures/EaterPlant01Pixelated.png" id="6_6gcyd"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_b7qlj"]
+[ext_resource type="Shader" uid="uid://in6avbnxht8l" path="res://shaders/dissolve/eater_plant_dissolve_shader_material.gdshader" id="6_mom4r"]
 [ext_resource type="Animation" uid="uid://bo4sf3i064ora" path="res://animations/eater_plant/EaterPlant_Armature_IdleEaterPlant.res" id="6_rxgvd"]
 [ext_resource type="Script" uid="uid://cywoo1femadgj" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Follow.gd" id="7_b7qlj"]
 [ext_resource type="Script" uid="uid://fa3htuacg1ih" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleSlam.gd" id="8_deve0"]
@@ -20,9 +22,35 @@
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="11_bcbdx"]
 [ext_resource type="Script" uid="uid://7g68gy1kovnh" path="res://scripts/state_machine/states/EnemyStates/EnemyStateMachine.gd" id="11_mcukf"]
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
-[ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://animations/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
+[ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
 [ext_resource type="PackedScene" uid="uid://b3golxe3jp3df" path="res://scenes/component_scenes/spells/tentacle.tscn" id="22_mcukf"]
 [ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6gcyd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mom4r"]
+noise = SubResource("FastNoiseLite_6gcyd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayg1h"]
+resource_name = "EaterPLant"
+render_priority = 0
+shader = ExtResource("6_mom4r")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("6_6gcyd")
+shader_parameter/albedo_texture_size = Vector2i(128, 128)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_mom4r")
+shader_parameter/DissolveStrength = 0.958000045505
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mcukf"]
 render_priority = 0
@@ -30,6 +58,22 @@ shader = ExtResource("4_ej3g5")
 shader_parameter/flash_color = Color(1, 0.26487514, 0.28279868, 1)
 shader_parameter/flash_strength = 1.0
 shader_parameter/hit_flash_on = false
+
+[sub_resource type="Animation" id="Animation_mom4r"]
+resource_name = "Dissolve"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_xpdqg"]
 length = 0.001
@@ -44,6 +88,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.958000045505]
 }
 
 [sub_resource type="Animation" id="Animation_6gcyd"]
@@ -64,6 +120,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4r"]
 _data = {
+&"Dissolve": SubResource("Animation_mom4r"),
 &"RESET": SubResource("Animation_xpdqg"),
 &"hitflash": SubResource("Animation_6gcyd")
 }
@@ -77,19 +134,19 @@ _data = {
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ej3g5"]
-height = 7.75
+height = 7.375
 radius = 2.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
 height = 3.9210145
 
-[node name="EaterPlant" unique_id=988514387 node_paths=PackedStringArray("bomb_start_location", "tentacle_container", "anim_tree") instance=ExtResource("1_ff3iu")]
+[node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location", "tentacle_container", "anim_tree") instance=ExtResource("1_ff3iu")]
 collision_layer = 8
 collision_mask = 7
 safe_margin = 0.02
 script = ExtResource("2_d6sg8")
 POISON_BOMB_SCENE = ExtResource("3_ej3g5")
-poison_blast_bullet_amount = 1000
+poison_blast_bullet_amount = 200
 bomb_start_location = NodePath("MouthTop")
 tentacle_scene = ExtResource("22_mcukf")
 tentacle_container = NodePath("Tentacles")
@@ -98,21 +155,47 @@ tentacle_attack_max_radius = 50.0
 tentacle_root = ExtResource("23_xpdqg")
 anim_tree = NodePath("AnimationTree")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=2070686514]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=98460973]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1291498923]
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1766129486]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
+bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
+bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
+bones/3/scale = Vector3(1, 1.0000001, 1)
+bones/5/position = Vector3(-0.017826922, 0.023033146, -0.008302448)
+bones/5/rotation = Quaternion(0.68470806, 0.39999408, -0.44105315, 0.4202996)
+bones/5/scale = Vector3(0.9999999, 0.9999998, 0.9999999)
 bones/7/position = Vector3(-0.015925309, 0.0154057415, 0.009549255)
+bones/7/rotation = Quaternion(0.5826183, 0.7453718, -0.3233489, 0.020549387)
+bones/7/scale = Vector3(1, 0.9999998, 1.0000001)
 bones/9/position = Vector3(-0.0022344212, 0.011923813, 0.016028183)
 bones/9/rotation = Quaternion(0.326535, 0.7120938, -0.48855034, -0.38420817)
+bones/9/scale = Vector3(0.99999994, 1, 1)
+bones/11/position = Vector3(0.014277297, 0.014174198, 0.009093939)
+bones/11/rotation = Quaternion(0.10228245, -0.5498022, 0.572668, 0.59942245)
+bones/11/scale = Vector3(0.99999994, 1, 0.9999998)
+bones/13/position = Vector3(0.016863964, 0.022477014, -0.007975084)
+bones/13/rotation = Quaternion(0.65163463, -0.34152073, 0.43471172, 0.5193859)
+bones/13/scale = Vector3(1, 0.9999999, 1)
+bones/16/position = Vector3(1.4793682e-09, 0.017874656, -2.1234328e-09)
 bones/16/rotation = Quaternion(-0.2413947, 0.0021181782, 0.013773599, 0.97032696)
+bones/16/scale = Vector3(0.99999994, 1, 1.0000001)
+bones/19/position = Vector3(-1.1629571e-09, 0.017874656, 2.0539312e-09)
 bones/19/rotation = Quaternion(-0.19396022, -0.31485495, -0.0638531, 0.9269135)
+bones/19/scale = Vector3(1, 0.99999994, 0.9999999)
+bones/22/position = Vector3(4.5147014e-10, 0.017874656, -6.134487e-11)
 bones/22/rotation = Quaternion(-0.16116956, -0.572618, -0.1267664, 0.79376525)
+bones/22/scale = Vector3(1, 0.99999994, 0.99999994)
+bones/25/position = Vector3(1.5606293e-09, 0.017858336, 1.9006523e-09)
 bones/25/rotation = Quaternion(-0.09344682, -0.7418898, -0.18691528, 0.6371263)
+bones/25/scale = Vector3(1.0000002, 1.0000001, 1.0000001)
+bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
 bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
+bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=128107347]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1136407580]
+material_override = SubResource("ShaderMaterial_ayg1h")
 material_overlay = SubResource("ShaderMaterial_mcukf")
 
 [node name="MyPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1926355120]
@@ -123,12 +206,15 @@ libraries/eater_plant = SubResource("AnimationLibrary_qmp0i")
 tree_root = ExtResource("8_qmp0i")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../MyPlayer")
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
+parameters/Hitflash/active = false
+parameters/Hitflash/internal_active = false
+parameters/Hitflash/request = 0
+parameters/Dissolve/active = false
+parameters/Dissolve/internal_active = false
+parameters/Dissolve/request = 0
 
 [node name="Body" type="CollisionShape3D" parent="." index="4" unique_id=612914602]
-transform = Transform3D(1, 0, 0, 0, 0.99323833, -0.116092905, 0, 0.116092905, 0.99323833, 0, 4.1431704, -0.53686976)
+transform = Transform3D(1, 0, 0, 0, 0.99323833, -0.116092905, 0, 0.116092905, 0.99323833, 0, 4.3294024, -0.5151023)
 shape = SubResource("CylinderShape3D_ej3g5")
 debug_color = Color(0.76423717, 0.17559344, 0.9999998, 0.41960785)
 
@@ -182,6 +268,10 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="DeathRemoveTimer" type="Timer" parent="Timers" index="5" unique_id=469566667]
+wait_time = 2.9
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="." index="12" unique_id=1149640940 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("11_mcukf")
 initial_state = NodePath("Idle")
@@ -222,32 +312,31 @@ follow_up_state = NodePath("../PoisonBurst")
 look_at_target = false
 enemy = NodePath("../..")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("enemy")]
+[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
 script = ExtResource("14_piwai")
+charge_timer = NodePath("../../Timers/EruptionTimer")
+channeling_vfx_position = NodePath("../../Tentacles")
+follow_up_state = NodePath("../TentacleEruption")
+look_at_target = false
 enemy = NodePath("../..")
 
-[node name="ChannelingTentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=726626920 node_paths=PackedStringArray("enemy")]
-script = ExtResource("14_piwai")
-wind_up_speed = 0.301
-enemy = NodePath("../..")
-
-[node name="TentacleSlam" type="Node" parent="StateMachine" index="7" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
+[node name="TentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
 enemy = NodePath("../..")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="8" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
+[node name="PoisonBurst" type="Node" parent="StateMachine" index="7" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
 script = ExtResource("9_d6sg8")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 enemy = NodePath("../..")
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="9" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy")]
+[node name="TentacleEruption" type="Node" parent="StateMachine" index="8" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 enemy = NodePath("../..")
 
-[node name="Dead" type="Node" parent="StateMachine" index="10" unique_id=869018545 node_paths=PackedStringArray("enemy")]
+[node name="Dead" type="Node" parent="StateMachine" index="9" unique_id=869018545 node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_bcbdx")
 enemy = NodePath("../..")
 
@@ -264,3 +353,5 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6
 
 [node name="MouthSide" type="Marker3D" parent="." index="17" unique_id=1010728377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 5.5)
+
+[connection signal="timeout" from="Timers/DeathRemoveTimer" to="StateMachine/Dead" method="_on_death_remove_timer_timeout"]

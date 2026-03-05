@@ -1,5 +1,13 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://c0utx4rvx0jfo"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_k6do6"]
+filter_enabled = true
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
+filter_enabled = true
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_od7bd"]
 animation = &"eater_plant/EaterPlant_Armature_IdleEaterPlant"
 use_custom_timeline = true
@@ -196,20 +204,23 @@ states/TentacleSlam/position = Vector2(462, -352)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_mcukf"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_xpdqg"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_6gcyd"), "Follow", "ChannelingPoisonBurst", SubResource("AnimationNodeStateMachineTransition_mom4r"), "ChannelingPoisonBurst", "PoisonBurst", SubResource("AnimationNodeStateMachineTransition_ayg1h"), "PoisonBurst", "Follow", SubResource("AnimationNodeStateMachineTransition_wdb2s"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_ljboj"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_31cd0"), "ChannelingPoisonBurst", "Dead", SubResource("AnimationNodeStateMachineTransition_bm5oj"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_fk03l"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_cyi11"), "PoisonBurst", "Dead", SubResource("AnimationNodeStateMachineTransition_tvx8g"), "Dead", "End", SubResource("AnimationNodeStateMachineTransition_dbm22"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_k6do6"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_ms5eb"), "Follow", "ChannelingTentacleEruption", SubResource("AnimationNodeStateMachineTransition_p4mo3"), "ChannelingTentacleEruption", "TentacleEruption", SubResource("AnimationNodeStateMachineTransition_uevtb"), "TentacleEruption", "Follow", SubResource("AnimationNodeStateMachineTransition_smapb"), "ChannelingTentacleEruption", "Dead", SubResource("AnimationNodeStateMachineTransition_8ah2v"), "TentacleEruption", "Dead", SubResource("AnimationNodeStateMachineTransition_5v47t"), "TentacleSlam", "Follow", SubResource("AnimationNodeStateMachineTransition_ul6dr"), "TentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_b8dyg"), "ChannelingTentacleSlam", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_0irrl"), "Follow", "ChannelingTentacleSlam", SubResource("AnimationNodeStateMachineTransition_di4vd"), "ChannelingTentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_8qkeg"), "Follow", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_mbkgr")]
 graph_offset = Vector2(-226, -395.08878)
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
-filter_enabled = true
-filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v47t"]
+animation = &"Dissolve"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6do6"]
 animation = &"hitflash"
 
 [resource]
-graph_offset = Vector2(-148, 14)
-nodes/output/position = Vector2(480, 200)
+graph_offset = Vector2(-414.72742, 168.42758)
+nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_p4mo3")
-nodes/OneShot/position = Vector2(260, 160)
+nodes/Hitflash/node = SubResource("AnimationNodeOneShot_p4mo3")
+nodes/Hitflash/position = Vector2(260, 160)
 nodes/hitflash/node = SubResource("AnimationNodeAnimation_k6do6")
 nodes/hitflash/position = Vector2(-20, 340)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash"]
+nodes/Dissolve/node = SubResource("AnimationNodeOneShot_k6do6")
+nodes/Dissolve/position = Vector2(500, 320)
+nodes/dissolve/node = SubResource("AnimationNodeAnimation_5v47t")
+nodes/dissolve/position = Vector2(220, 500)
+node_connections = [&"output", 0, &"Dissolve", &"Hitflash", 0, &"Main", &"Hitflash", 1, &"hitflash", &"Dissolve", 0, &"Hitflash", &"Dissolve", 1, &"dissolve"]

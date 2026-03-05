@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cyjn6nfke5qod"]
 
 [ext_resource type="Script" uid="uid://8rjfmprcwuf6" path="res://scripts/characters/enemies/eater_plant/tentacle_root.gd" id="1_4l43q"]
+[ext_resource type="PackedScene" uid="uid://r06beii7nq0q" path="res://scenes/VFX/slashing_wind.tscn" id="2_43g5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkkqe"]
 radius = 1.78
@@ -97,7 +98,7 @@ tracks/2/path = NodePath("StartSegment/MiddleOneSegment:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.49166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-15.865, -0.69, 0), Vector3(-15.865, -0.69, 0)]
@@ -109,7 +110,7 @@ tracks/3/path = NodePath("StartSegment/MiddleOneSegment:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.49166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.27052602), Vector3(0, 0, 0.27052602)]
@@ -121,7 +122,7 @@ tracks/4/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:positio
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.49166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
@@ -133,7 +134,7 @@ tracks/5/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:rotatio
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.49166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.36651915), Vector3(0, 0, 0.36651915)]
@@ -161,6 +162,54 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.34906584), Vector3(0, 0, 0.34906584)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(-0.008333334, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(-0.008333334, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(-0.008333334, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 
 [sub_resource type="Animation" id="Animation_4cwlq"]
@@ -261,10 +310,58 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_43g5x"]
 resource_name = "ReWind"
-length = 0.51
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -272,7 +369,7 @@ tracks/0/path = NodePath("StartSegment:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
@@ -284,7 +381,7 @@ tracks/1/path = NodePath("StartSegment:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -1.0995574)]
@@ -296,7 +393,7 @@ tracks/2/path = NodePath("StartSegment/MiddleOneSegment:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-15.865, 0, 0), Vector3(-15.865, 0.615, 0)]
@@ -308,7 +405,7 @@ tracks/3/path = NodePath("StartSegment/MiddleOneSegment:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.25307274)]
@@ -320,7 +417,7 @@ tracks/4/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:positio
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
@@ -332,7 +429,7 @@ tracks/5/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:rotatio
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.36651915)]
@@ -344,7 +441,7 @@ tracks/6/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegm
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
@@ -356,14 +453,63 @@ tracks/7/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegm
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, -0.34906584)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
-[sub_resource type="Animation" id="Animation_pkkqe"]
-resource_name = "SLAM"
+[sub_resource type="Animation" id="Animation_mvym0"]
+resource_name = "Return"
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -371,7 +517,7 @@ tracks/0/path = NodePath("StartSegment:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
@@ -383,7 +529,155 @@ tracks/1/path = NodePath("StartSegment:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.3, 0.66),
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 1.0995574)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StartSegment/MiddleOneSegment:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-15.865, 0, 0), Vector3(-15.865, -0.69, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StartSegment/MiddleOneSegment:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.27052602)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.36651915)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.34906584)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pkkqe"]
+resource_name = "SLAM"
+length = 0.67
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartSegment:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14999995),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartSegment:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.16, 0.3, 0.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -1.0995574), Vector3(0, 0, 0.017453292), Vector3(0, 0, 0), Vector3(0, 0, 0)]
@@ -407,7 +701,7 @@ tracks/3/path = NodePath("StartSegment/MiddleOneSegment:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.16, 0.26666668, 0.66),
+"times": PackedFloat32Array(0, 0.16, 0.26666668, 0.65),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, -0.25307274), Vector3(0, 0, 0.008726646), Vector3(0, 0, 0), Vector3(0, 0, 0)]
@@ -460,10 +754,72 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0, 0, -0.34906584), Vector3(0, 0, 0), Vector3(0, 0, 0.017453292), Vector3(0, 0, -0.034906585), Vector3(0, 0, 0)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.024999999, 0.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.025, 0.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.024999999, 0.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.025, 0.19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/12/type = "method"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"create_impact_vfx"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4l43q"]
 resource_name = "WindUp"
-length = 0.51
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -471,7 +827,7 @@ tracks/0/path = NodePath("StartSegment:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
@@ -483,7 +839,7 @@ tracks/1/path = NodePath("StartSegment:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 1.0995574), Vector3(0, 0, -1.0995574)]
@@ -495,7 +851,7 @@ tracks/2/path = NodePath("StartSegment/MiddleOneSegment:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-15.865, -0.69, 0), Vector3(-15.865, 0.615, 0)]
@@ -507,7 +863,7 @@ tracks/3/path = NodePath("StartSegment/MiddleOneSegment:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.27052602), Vector3(0, 0, -0.25307274)]
@@ -519,7 +875,7 @@ tracks/4/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:positio
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
@@ -531,7 +887,7 @@ tracks/5/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment:rotatio
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.36651915), Vector3(0, 0, -0.36651915)]
@@ -543,7 +899,7 @@ tracks/6/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegm
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(-7.8, 0, 0), Vector3(-7.8, 0, 0)]
@@ -555,10 +911,58 @@ tracks/7/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegm
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0.34906584), Vector3(0, 0, -0.34906584)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("StartSegment/SlashingWind:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("StartSegment/MiddleOneSegment/SlashingWind:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment/SlashingWind:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("StartSegment/MiddleOneSegment/MiddleTwoSegment/SlashingWind:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qt3o1"]
@@ -566,6 +970,7 @@ _data = {
 &"Idle": SubResource("Animation_asp1q"),
 &"RESET": SubResource("Animation_4cwlq"),
 &"ReWind": SubResource("Animation_43g5x"),
+&"Return": SubResource("Animation_mvym0"),
 &"SLAM": SubResource("Animation_pkkqe"),
 &"WindUp": SubResource("Animation_4l43q")
 }
@@ -581,18 +986,21 @@ stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7clji"]
+animation = &"Return"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mvym0"]
 resource_local_to_scene = true
 animation = &"SLAM"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_43g5x"]
 resource_local_to_scene = true
 animation = &"WindUp"
-use_custom_timeline = true
-timeline_length = 4.0
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0n2o1"]
 resource_local_to_scene = true
@@ -601,43 +1009,43 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7clji"]
 resource_local_to_scene = true
 xfade_time = 0.2
-advance_mode = 2
 advance_expression = "windup == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hoq3t"]
 resource_local_to_scene = true
 switch_mode = 2
-advance_mode = 2
 advance_expression = "slamming == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qt2y3"]
-resource_local_to_scene = true
-xfade_time = 1.0
-switch_mode = 2
-advance_mode = 2
-advance_expression = "idling == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hc34n"]
 switch_mode = 2
-advance_mode = 2
-advance_expression = "rewind == true"
+advance_expression = "windup == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h3x0r"]
 switch_mode = 2
-advance_mode = 2
 advance_expression = "slamming == true"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1xmw"]
+switch_mode = 2
+advance_expression = "idling == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6p5p7"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4l43q"]
+states/End/position = Vector2(867, 100)
 states/Idle/node = SubResource("AnimationNodeAnimation_4l43q")
 states/Idle/position = Vector2(438, 100)
 states/ReWind/node = SubResource("AnimationNodeAnimation_0n2o1")
 states/ReWind/position = Vector2(630, -58)
+states/Return/node = SubResource("AnimationNodeAnimation_7clji")
+states/Return/position = Vector2(530, 227)
 states/SLAM/node = SubResource("AnimationNodeAnimation_mvym0")
 states/SLAM/position = Vector2(630, 100)
 states/WindUp/node = SubResource("AnimationNodeAnimation_43g5x")
 states/WindUp/position = Vector2(438, -58)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0n2o1"), "Idle", "WindUp", SubResource("AnimationNodeStateMachineTransition_7clji"), "WindUp", "SLAM", SubResource("AnimationNodeStateMachineTransition_hoq3t"), "SLAM", "Idle", SubResource("AnimationNodeStateMachineTransition_qt2y3"), "SLAM", "ReWind", SubResource("AnimationNodeStateMachineTransition_hc34n"), "ReWind", "SLAM", SubResource("AnimationNodeStateMachineTransition_h3x0r")]
-graph_offset = Vector2(-87, -109)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0n2o1"), "Idle", "WindUp", SubResource("AnimationNodeStateMachineTransition_7clji"), "WindUp", "SLAM", SubResource("AnimationNodeStateMachineTransition_hoq3t"), "SLAM", "ReWind", SubResource("AnimationNodeStateMachineTransition_hc34n"), "ReWind", "SLAM", SubResource("AnimationNodeStateMachineTransition_h3x0r"), "SLAM", "Return", SubResource("AnimationNodeStateMachineTransition_n1xmw"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_6p5p7")]
+graph_offset = Vector2(-103, -42)
 
 [node name="Root" type="Node3D" unique_id=1314501579]
 script = ExtResource("1_4l43q")
@@ -655,6 +1063,13 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -6.7
 mesh = SubResource("CylinderMesh_4cwlq")
 skeleton = NodePath("../..")
 
+[node name="SlashingWind" parent="StartSegment" unique_id=1788562389 instance=ExtResource("2_43g5x")]
+transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, -6.4399996, 0.19999993, 9.5963486e-08)
+visible = false
+
+[node name="StartImpact" type="Marker3D" parent="StartSegment" unique_id=1273218261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8, 0, 0)
+
 [node name="MiddleOneSegment" type="Area3D" parent="StartSegment" unique_id=1334430840]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.800001, 0, 0)
 collision_layer = 32
@@ -668,6 +1083,13 @@ shape = SubResource("CapsuleShape3D_qt3o1")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.6699996, -9.666113e-08, 5.9604645e-08)
 mesh = SubResource("CylinderMesh_gpawu")
 skeleton = NodePath("../../..")
+
+[node name="SlashingWind" parent="StartSegment/MiddleOneSegment" unique_id=231313499 instance=ExtResource("2_43g5x")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, -1.8000001, 0, 7.86805e-08)
+visible = false
+
+[node name="MiddleOneImpact" type="Marker3D" parent="StartSegment/MiddleOneSegment" unique_id=623528164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0, 0)
 
 [node name="MiddleTwoSegment" type="Area3D" parent="StartSegment/MiddleOneSegment" unique_id=746828551]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8, 0, 0)
@@ -683,8 +1105,15 @@ transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.9
 mesh = SubResource("CylinderMesh_qt3o1")
 skeleton = NodePath("../../../..")
 
+[node name="SlashingWind" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment" unique_id=1101284175 instance=ExtResource("2_43g5x")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -3.8, 0, 1.6610328e-07)
+visible = false
+
+[node name="MiddleTwoImpact" type="Marker3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment" unique_id=994660480]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -3.6999998, 0, 0)
+
 [node name="EndSegment" type="Area3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment" unique_id=1275139197]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.8, 0, 0)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -7.8, 0, 0)
 collision_layer = 32
 collision_mask = 6
 
@@ -696,6 +1125,13 @@ shape = SubResource("CapsuleShape3D_0vqa6")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -3.0699995, -1.1414566e-07, 5.9604645e-08)
 mesh = SubResource("CylinderMesh_t2ynp")
 skeleton = NodePath("../../../../..")
+
+[node name="SlashingWind" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=901686320 instance=ExtResource("2_43g5x")]
+transform = Transform3D(-6.556708e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.556708e-08, -2.6000001, 0, 1.1364961e-07)
+visible = false
+
+[node name="EndImpact" type="Marker3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=1380574929]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -2.4000003, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2116807664]
 libraries/ = SubResource("AnimationLibrary_qt3o1")

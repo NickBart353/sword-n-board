@@ -1,0 +1,30 @@
+[gd_resource type="VisualShader" format=3 uid="uid://dmfrt1m5sg37a"]
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_uy0py"]
+parameter_name = "Texture2DParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0e0by"]
+source = 5
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_thmfl"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_wvk24"]
+parameter_name = "DissolveStrength"
+hint = 1
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_drxrv"]
+function = 31
+
+[resource]
+nodes/fragment/0/position = Vector2(420, 100)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_uy0py")
+nodes/fragment/2/position = Vector2(-540, 260)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_0e0by")
+nodes/fragment/3/position = Vector2(-500, 60)
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_thmfl")
+nodes/fragment/4/position = Vector2(-140, 720)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_wvk24")
+nodes/fragment/8/position = Vector2(-460, 720)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_drxrv")
+nodes/fragment/9/position = Vector2(140, 800)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19)
