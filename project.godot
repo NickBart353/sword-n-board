@@ -26,6 +26,7 @@ ItemManager="*res://scripts/autoloads/ItemManager.gd"
 EventBus="*res://scripts/autoloads/EventBus.gd"
 VfxManager="*uid://buebjo1lr2too"
 ItemGenerator="*uid://o8iastnqym56"
+MobManager="*uid://wip3ne88h8ge"
 
 [display]
 

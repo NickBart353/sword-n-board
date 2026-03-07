@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmyc18aoi68d0"]
+
+[ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="1_7pf6w"]
+
+[node name="MobSpawn" type="Marker3D" unique_id=584706918]
+script = ExtResource("1_7pf6w")

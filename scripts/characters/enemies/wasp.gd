@@ -33,10 +33,6 @@ func update_HEALTH(amount: float):
 	health += amount
 	$HealthBar.update_health(health)
 
-func _remove_me():
-	EventBus.spawn_loot.emit(self)
-	EventBus.remove_me.emit(self)
-
 func force_engage():
 	$StateMachine/Idle.called = true
 

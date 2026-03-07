@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://1yra0ab82v2v"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_oxlw5"]
+[ext_resource type="Shader" uid="uid://beken2i52fttm" path="res://shaders/dissolve/big_dissolve_particles.tres" id="2_odfxf"]
+
+[sub_resource type="Gradient" id="Gradient_j1g6m"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_16u6b"]
+gradient = SubResource("Gradient_j1g6m")
+
+[sub_resource type="Curve" id="Curve_gvix7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_0u2or"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_mc36u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rjdum"]
+curve_x = SubResource("Curve_gvix7")
+curve_y = SubResource("Curve_0u2or")
+curve_z = SubResource("Curve_mc36u")
+
+[sub_resource type="Curve" id="Curve_odfxf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.0707188, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j1g6m"]
+curve = SubResource("Curve_odfxf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oxlw5"]
+emission_shape = 1
+emission_sphere_radius = 2.31
+direction = Vector3(0, 0, 0)
+directional_velocity_min = 4.999984
+directional_velocity_max = 14.999984
+directional_velocity_curve = SubResource("CurveXYZTexture_rjdum")
+radial_velocity_min = 3.9999776
+radial_velocity_max = 5.9999776
+gravity = Vector3(0, 0, 0)
+scale_min = 0.08
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_j1g6m")
+color_ramp = SubResource("GradientTexture1D_16u6b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvix7"]
+render_priority = 0
+shader = ExtResource("2_odfxf")
+shader_parameter/ColorParameter = Color(0.73489475, 0.90972954, 0.9054163, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j7oq1"]
+material = SubResource("ShaderMaterial_gvix7")
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_odfxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_j1g6m"]
+resource_name = "dissolve"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_16u6b"]
+_data = {
+&"RESET": SubResource("Animation_odfxf"),
+&"dissolve": SubResource("Animation_j1g6m")
+}
+
+[node name="BigKillParticle" type="Node3D" unique_id=1438353791 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_oxlw5")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "dissolve"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=619874964]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -1.3000002, 0)
+cast_shadow = 0
+amount = 600
+lifetime = 1.2
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_oxlw5")
+draw_pass_1 = SubResource("PlaneMesh_j7oq1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1073290712]
+libraries/ = SubResource("AnimationLibrary_16u6b")

@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dv34gxw2ten1h" path="res://animations/wasp_animation_sate_machine.tres" id="4_6eufi"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="4_awi1o"]
+[ext_resource type="Shader" uid="uid://dmfrt1m5sg37a" path="res://shaders/dissolve_shader.tres" id="4_o55j2"]
 [ext_resource type="Animation" uid="uid://cpth8bo8x2h6y" path="res://animations/wasp/Attack.tres" id="5_0bffu"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="5_i1xyo"]
+[ext_resource type="Texture2D" uid="uid://bj5acmkkrx4qm" path="res://assets/MonstersPack_Ps1/Textures/WaspPixelated.png" id="5_jym8u"]
 [ext_resource type="Animation" uid="uid://c32nq7ymf0dxl" path="res://animations/wasp/Damaged.tres" id="6_f2g7w"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_outyk"]
 [ext_resource type="Script" uid="uid://ba18g0av6r7c6" path="res://scripts/state_machine/states/EnemyStates/EnemyEngage.gd" id="7_3gwer"]
@@ -26,7 +28,17 @@
 [ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="25_f2g7w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2g7w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcfq6"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_o55j2")
+shader_parameter/MainTexture = ExtResource("5_jym8u")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Metallic = 1.0
+shader_parameter/Roughness = 1.0
+shader_parameter/DissolveStrength = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhixj"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_awi1o")
@@ -60,6 +72,34 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wasp01_Armature/Skeleton3D/Wasp01:material_override:shader_parameter/DissolveStrength")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_o55j2"]
+resource_name = "dissolve"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wasp01_Armature/Skeleton3D/Wasp01:material_override:shader_parameter/DissolveStrength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_awi1o"]
 resource_name = "hitflash"
@@ -80,6 +120,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qm4s7"]
 _data = {
 &"RESET": SubResource("Animation_qm4s7"),
+&"dissolve": SubResource("Animation_o55j2"),
 &"hitflash": SubResource("Animation_awi1o")
 }
 
@@ -92,23 +133,37 @@ _data = {
 &"Idle": ExtResource("9_jym8u")
 }
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_lcfq6"]
+resource_local_to_scene = true
+filter_enabled = true
+filters = ["Wasp01_Armature/Skeleton3D/Wasp01:material_override:shader_parameter/DissolveStrength"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6eufi"]
+resource_local_to_scene = true
 filter_enabled = true
 filters = ["", "Wasp01_Armature/Skeleton3D/Wasp01:material_overlay:shader_parameter/hit_flash_on"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jym8u"]
+animation = &"dissolve"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_awi1o"]
 animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
 resource_local_to_scene = true
-graph_offset = Vector2(-394, -69)
+graph_offset = Vector2(-466.97665, 3.5727844)
+nodes/output/position = Vector2(480, 200)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_6eufi")
 nodes/OneShot/position = Vector2(80, 140)
 nodes/hitflash/node = SubResource("AnimationNodeAnimation_awi1o")
 nodes/hitflash/position = Vector2(-180, 280)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash"]
+nodes/dissolve/node = SubResource("AnimationNodeAnimation_jym8u")
+nodes/dissolve/position = Vector2(80, 460)
+nodes/Dissolve/node = SubResource("AnimationNodeOneShot_lcfq6")
+nodes/Dissolve/position = Vector2(300, 220)
+node_connections = [&"output", 0, &"Dissolve", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash", &"Dissolve", 0, &"OneShot", &"Dissolve", 1, &"dissolve"]
 
 [node name="Wasp" unique_id=1372833755 node_paths=PackedStringArray("anim_tree") groups=["Enemy"] instance=ExtResource("1_8403y")]
 collision_layer = 8
@@ -120,26 +175,27 @@ MAX_HEALTH = 75
 anim_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.396881e-08, 0.99448234, 0.104903996, 1.3242332e-07)
-bones/2/rotation = Quaternion(-0.62316525, -0.2216445, -0.24131453, 0.7101451)
-bones/3/rotation = Quaternion(0.238955, -0.15451996, 0.051651593, 0.95726496)
-bones/4/rotation = Quaternion(-0.5642797, 0.17605665, 0.32075864, 0.74007195)
-bones/5/rotation = Quaternion(0.238955, 0.15451993, -0.051651575, 0.95726496)
-bones/6/rotation = Quaternion(-0.29573727, 0.4614944, 0.8339056, 0.06452773)
-bones/7/rotation = Quaternion(-0.6365855, -0.062128432, 0.37180415, 0.6728007)
+bones/1/rotation = Quaternion(-1.6046092e-09, 0.99992746, 0.01205042, 1.3314839e-07)
+bones/2/rotation = Quaternion(-0.5632928, -0.2195684, -0.0970329, 0.7906173)
+bones/3/rotation = Quaternion(0.267236, -0.13028736, 0.043551344, 0.95378906)
+bones/4/rotation = Quaternion(-0.52251184, 0.17972891, 0.17434812, 0.81503475)
+bones/5/rotation = Quaternion(0.26723596, 0.13028736, -0.043551352, 0.95378906)
+bones/6/rotation = Quaternion(-0.3907276, 0.3844083, 0.7988244, 0.24787423)
+bones/7/rotation = Quaternion(-0.60699946, -0.08563525, 0.38350943, 0.6907524)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.29573715, 0.46149433, 0.83390564, -0.06452764)
-bones/10/rotation = Quaternion(-0.63658535, 0.062128395, -0.37180427, 0.6728008)
+bones/9/rotation = Quaternion(0.3907274, 0.38440853, 0.7988245, -0.2478742)
+bones/10/rotation = Quaternion(-0.60699946, 0.08563519, -0.38350955, 0.6907523)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.8374946, 0.25801784, 0.09497178, 0.4722395)
+bones/12/rotation = Quaternion(-0.84476197, 0.24683508, 0.16950811, 0.44352773)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.8374906, -0.2579668, -0.09502137, 0.4722644)
+bones/14/rotation = Quaternion(-0.84489775, -0.24681154, -0.16971599, 0.44320232)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.27602577, 3.4914996e-07, -7.740825e-08, 0.9611503)
-bones/18/rotation = Quaternion(0.16142909, 2.746936e-07, -2.7387514e-09, 0.98688436)
+bones/17/rotation = Quaternion(-0.3959866, 3.561582e-07, -3.2389075e-08, 0.9182563)
+bones/18/rotation = Quaternion(0.05767762, 2.7535603e-07, 4.3307903e-08, 0.99833536)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
-material_overlay = SubResource("ShaderMaterial_f2g7w")
+material_override = SubResource("ShaderMaterial_lcfq6")
+material_overlay = SubResource("ShaderMaterial_hhixj")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -176,6 +232,9 @@ anim_player = NodePath("../MyPlayer")
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
+parameters/Dissolve/active = false
+parameters/Dissolve/internal_active = false
+parameters/Dissolve/request = 0
 
 [node name="WaspAnimation" type="Node3D" parent="." index="7" unique_id=1224469209 node_paths=PackedStringArray("wasp", "animation_tree")]
 script = ExtResource("2_42erq")

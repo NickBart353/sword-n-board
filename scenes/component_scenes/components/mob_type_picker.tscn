@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d0emjy7bco8tt"]
+
+[ext_resource type="Script" uid="uid://b51bvm5vdtb0w" path="res://scripts/components/mob_type_picker.gd" id="1_7pf6w"]
+
+[node name="MobTypePicker" type="Node3D" unique_id=6912798]
+script = ExtResource("1_7pf6w")

@@ -27,13 +27,16 @@ material = SubResource("StandardMaterial3D_uayre")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073vx"]
 shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
 albedo_color = Color(2.351395, 0.0874644, 4.6780148, 1)
 disable_receive_shadows = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_no0bl"]
 material = SubResource("StandardMaterial3D_073vx")
-radial_segments = 16
-rings = 19
+radial_segments = 10
+rings = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_uwupy"]
 
@@ -59,6 +62,7 @@ metadata/_custom_type_script = "uid://snywren3rqx0"
 [node name="Goo" type="GPUParticles3D" parent="." unique_id=1369429775]
 amount = 9
 lifetime = 1.18
+fixed_fps = 24
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_aqo3o")
 draw_pass_1 = SubResource("SphereMesh_aq0yo")

@@ -1,10 +1,41 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dmfrt1m5sg37a"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_uy0py"]
-parameter_name = "Texture2DParameter"
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_0e0by"]
+parameter_name = "MainTexture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_thmfl"]
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_uy0py"]
+parameter_name = "Metallic"
+hint = 1
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_0e0by"]
+parameter_name = "Roughness"
+hint = 1
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_thmfl"]
+constant = Color(0.003921569, 0.003921569, 0, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_uy0py"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_uy0py"]
+parameter_name = "Color"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
+noise_type = 3
+frequency = 0.1308
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drxrv"]
+noise = SubResource("FastNoiseLite_wvk24")
+seamless = true
+seamless_blend_skirt = 0.488
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0e0by"]
-source = 5
+texture = SubResource("NoiseTexture2D_drxrv")
 
 [sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_thmfl"]
 
@@ -17,14 +48,26 @@ function = 31
 
 [resource]
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_uy0py")
-nodes/fragment/2/position = Vector2(-540, 260)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_0e0by")
-nodes/fragment/3/position = Vector2(-500, 60)
+nodes/fragment/3/position = Vector2(-980, -140)
 nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_thmfl")
 nodes/fragment/4/position = Vector2(-140, 720)
 nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_wvk24")
 nodes/fragment/8/position = Vector2(-460, 720)
 nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_drxrv")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19)
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_0e0by")
+nodes/fragment/10/position = Vector2(-540, -380)
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_thmfl")
+nodes/fragment/11/position = Vector2(-480, -560)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_uy0py")
+nodes/fragment/12/position = Vector2(-520, 100)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_0e0by")
+nodes/fragment/13/position = Vector2(-160, 220)
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_thmfl")
+nodes/fragment/14/position = Vector2(140, 340)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_uy0py")
+nodes/fragment/15/position = Vector2(-80, -560)
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_uy0py")
+nodes/fragment/16/position = Vector2(-400, -760)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)

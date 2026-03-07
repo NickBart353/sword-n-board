@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="2_t5sjj"]
-[ext_resource type="PackedScene" uid="uid://15rcugju6o0q" path="res://scenes/component_scenes/characters/player.tscn" id="3_rbptj"]
-[ext_resource type="PackedScene" uid="uid://ibpe0slijw8t" path="res://scenes/component_scenes/characters/enemies/eater_plant.tscn" id="6_leqql"]
+[ext_resource type="Script" uid="uid://b51bvm5vdtb0w" path="res://scripts/components/mob_type_picker.gd" id="6_leqql"]
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
+[ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="7_cfqos"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 
 [sub_resource type="Environment" id="Environment_fqmia"]
@@ -107,8 +107,8 @@ directional_shadow_split_2 = 0.0
 directional_shadow_split_3 = 0.545
 directional_shadow_blend_splits = true
 
-[node name="Player" parent="." unique_id=1982396579 instance=ExtResource("3_rbptj")]
-transform = Transform3D(-8.940697e-08, 0, 1, 0, 1, 0, -1, 0, -8.940697e-08, -424.70483, 77.4, -411.77228)
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=655312612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -424.2, 77.79999, -411.89996)
 
 [node name="Vfx" type="Node3D" parent="." unique_id=1480657440]
 
@@ -118,12 +118,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 [node name="Attacks" type="Node3D" parent="." unique_id=1743604351]
 
 [node name="Forest" parent="." unique_id=1776596725 instance=ExtResource("6_t5sjj")]
+collision_radius = 256
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827645919]
 visible = false
 
 [node name="MainUI" parent="CanvasLayer" unique_id=1494038655 instance=ExtResource("8_cfqos")]
 
-[node name="EaterPlant" parent="." unique_id=457762831 instance=ExtResource("6_leqql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -362.30002, 81.9, -400.6)
-MAX_HEALTH = 75
+[node name="MobSpawns" type="Node3D" parent="." unique_id=1203774250]
+
+[node name="EaterPlant" type="Node3D" parent="MobSpawns" unique_id=104262745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -358.9, 60.699997, -409)
+script = ExtResource("6_leqql")
+mob = 1
+metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
+
+[node name="MobSpawn" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=165014573]
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn2" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1644069768]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.5, 18.5, 28.5)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="Wasp" type="Node3D" parent="MobSpawns" unique_id=1031240649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -358.9, 60.699997, -409)
+script = ExtResource("6_leqql")
+metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
+
+[node name="MobSpawn" type="Marker3D" parent="MobSpawns/Wasp" unique_id=62605432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.900001, 0, -54.7)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn2" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1503059975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000004, 0, -26.5)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn3" type="Marker3D" parent="MobSpawns/Wasp" unique_id=738647360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.200005, 0, 56.9)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn4" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1946653072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.5, 19.4, 64.6)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn5" type="Marker3D" parent="MobSpawns/Wasp" unique_id=326106179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.5, 19.4, 76.6)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"

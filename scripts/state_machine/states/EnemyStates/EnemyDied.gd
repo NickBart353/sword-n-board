@@ -8,6 +8,7 @@ func Enter():
 	enemy.set_collision_layer_value(4, false)
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	anim_tree.set("parameters/Dissolve/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	VfxManager.create_vfx_from_enum(VfxManager.VFX.BIG_KILL_PARTICLE, enemy.global_position)
 
 func Exit():
 	super()
