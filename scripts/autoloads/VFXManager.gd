@@ -16,7 +16,7 @@ const RUMBLING: PackedScene = preload("res://scenes/VFX/rumbling.tscn")
 const LINE_GROUND_IMPACT: PackedScene = preload("res://scenes/VFX/line_ground_impact.tscn")
 
 enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, 
-TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE}
+TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF}
 
 const VFX_DICT: Dictionary = {
 	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
@@ -32,6 +32,7 @@ const VFX_DICT: Dictionary = {
 	VFX.RUMBLING : preload("res://scenes/VFX/rumbling.tscn"),
 	VFX.LINE_GROUND_IMPACT : preload("res://scenes/VFX/line_ground_impact.tscn"),
 	VFX.BIG_KILL_PARTICLE : preload("res://scenes/VFX/big_kill_particle.tscn"),
+	VFX.LOOT_PUFF : preload("res://scenes/VFX/loot_puff.tscn"),
 }
 
 func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):

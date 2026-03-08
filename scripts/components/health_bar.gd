@@ -9,6 +9,8 @@ func set_max_vals(max_val: int):
 
 func update_health(val: int):
 	healthbar.value = val
+	if healthbar.value == 0:
+		hide()
 
 func reset_health():
 	update_health(healthbar.max_value)

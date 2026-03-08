@@ -35,7 +35,8 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	var item_sack_instance = ITEM_SACK.instantiate()
 	item_sack_instance.get_node("ItemContainer").items = items_to_generate
 	$Loot.add_child(item_sack_instance, true)
-	item_sack_instance.global_position = loot_position
+	item_sack_instance.global_position = Vector3(loot_position.x, loot_position.y + 1.0, loot_position.z)
+	VfxManager.create_vfx_from_enum(VfxManager.VFX.LOOT_PUFF, loot_position)
 
 func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
 	var show_ui = not main_ui.get_ui()

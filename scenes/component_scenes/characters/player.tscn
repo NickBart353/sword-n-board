@@ -1024,7 +1024,14 @@ script = ExtResource("6_1e104")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 
-[node name="RedBar" type="ProgressBar" parent="CanvasLayer" unique_id=1448724626]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1329951609]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RedBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1448724626]
+layout_mode = 0
 offset_left = 42.0
 offset_top = 47.0
 offset_right = 296.0
@@ -1033,7 +1040,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_oijqy")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/RedBar" unique_id=1720619707]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Control/RedBar" unique_id=1720619707]
 layout_mode = 0
 offset_right = 254.0
 offset_bottom = 27.0

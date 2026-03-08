@@ -28,7 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="25_f2g7w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcfq6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o55j2"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_o55j2")
@@ -38,7 +38,7 @@ shader_parameter/Metallic = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhixj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jym8u"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_awi1o")
@@ -175,27 +175,27 @@ MAX_HEALTH = 75
 anim_tree = NodePath("AnimationTree")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.6046092e-09, 0.99992746, 0.01205042, 1.3314839e-07)
-bones/2/rotation = Quaternion(-0.5632928, -0.2195684, -0.0970329, 0.7906173)
-bones/3/rotation = Quaternion(0.267236, -0.13028736, 0.043551344, 0.95378906)
-bones/4/rotation = Quaternion(-0.52251184, 0.17972891, 0.17434812, 0.81503475)
-bones/5/rotation = Quaternion(0.26723596, 0.13028736, -0.043551352, 0.95378906)
-bones/6/rotation = Quaternion(-0.3907276, 0.3844083, 0.7988244, 0.24787423)
-bones/7/rotation = Quaternion(-0.60699946, -0.08563525, 0.38350943, 0.6907524)
+bones/1/rotation = Quaternion(-1.4988228e-08, 0.99364495, 0.11255969, 1.3231181e-07)
+bones/2/rotation = Quaternion(-0.3386014, -0.13484578, -0.34651467, 0.86434555)
+bones/3/rotation = Quaternion(0.3840498, -0.024197128, 0.008088455, 0.92295986)
+bones/4/rotation = Quaternion(-0.38204944, 0.14814334, 0.34179628, 0.8457347)
+bones/5/rotation = Quaternion(0.3840498, 0.024197118, -0.008088466, 0.92295986)
+bones/6/rotation = Quaternion(-0.22593407, 0.49939096, 0.83447635, -0.056671165)
+bones/7/rotation = Quaternion(-0.5515208, -0.098744236, 0.40312392, 0.7235782)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.3907274, 0.38440853, 0.7988245, -0.2478742)
-bones/10/rotation = Quaternion(-0.60699946, 0.08563519, -0.38350955, 0.6907523)
+bones/9/rotation = Quaternion(0.22593401, 0.49939087, 0.8344765, 0.05667132)
+bones/10/rotation = Quaternion(-0.5515208, 0.09874421, -0.40312386, 0.7235783)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.84476197, 0.24683508, 0.16950811, 0.44352773)
+bones/12/rotation = Quaternion(-0.7215574, 0.2030637, 0.18351959, 0.63595665)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.84489775, -0.24681154, -0.16971599, 0.44320232)
+bones/14/rotation = Quaternion(-0.72151935, -0.20304888, -0.18354212, 0.63599795)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.3959866, 3.561582e-07, -3.2389075e-08, 0.9182563)
-bones/18/rotation = Quaternion(0.05767762, 2.7535603e-07, 4.3307903e-08, 0.99833536)
+bones/17/rotation = Quaternion(-0.24704951, 3.46669e-07, -8.7854175e-08, 0.96900296)
+bones/18/rotation = Quaternion(0.0346468, 2.708799e-07, 9.11402e-09, 0.9993997)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_lcfq6")
-material_overlay = SubResource("ShaderMaterial_hhixj")
+material_override = SubResource("ShaderMaterial_o55j2")
+material_overlay = SubResource("ShaderMaterial_jym8u")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -324,8 +324,9 @@ enemy = NodePath("../..")
 script = ExtResource("14_645re")
 enemy = NodePath("../..")
 
-[node name="Dead" type="Node" parent="StateMachine" index="10" unique_id=1121622876 node_paths=PackedStringArray("enemy")]
+[node name="Dead" type="Node" parent="StateMachine" index="10" unique_id=1121622876 node_paths=PackedStringArray("death_timer", "enemy")]
 script = ExtResource("10_5gd67")
+death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
 
 [node name="Bombs" type="Node3D" parent="." index="10" unique_id=1818539482]

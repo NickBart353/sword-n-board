@@ -17,6 +17,7 @@ signal spawn_projectile
 @onready var head_slot = $Slots/Head
 @onready var body_slot = $Slots/Body
 @onready var boots_slot = $Slots/Boots
+@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
@@ -47,7 +48,7 @@ func _ready() -> void:
 	_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
-	$CanvasLayer/RedBar/HealthBar.value = HEALTH
+	healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
@@ -201,7 +202,7 @@ func update_HEALTH(amount: float):
 		_die()
 	if HEALTH >= MAX_HEALTH:
 		HEALTH = MAX_HEALTH
-	$CanvasLayer/RedBar/HealthBar.value = HEALTH
+	healthbar.value = HEALTH
 
 func _blocked_attack(body: Node):
 	blocked_body = body

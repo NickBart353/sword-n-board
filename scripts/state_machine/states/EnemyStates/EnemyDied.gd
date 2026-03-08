@@ -1,10 +1,14 @@
-extends EnemyState
+class_name EnemyDied extends EnemyState
 
 signal died
 
+@export var death_timer: Timer
+
 func Enter():
 	super()
-	$"../../Timers/DeathRemoveTimer".start()
+	death_timer.start()
+	if not death_timer.timeout.is_connected(_on_death_remove_timer_timeout):
+		death_timer.timeout.connect(_on_death_remove_timer_timeout)
 	enemy.set_collision_layer_value(4, false)
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	anim_tree.set("parameters/Dissolve/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -14,6 +18,7 @@ func Exit():
 	super()
 
 func Physics_Update(_delta: float) -> void:
+	super(_delta)
 	enemy.velocity += enemy.get_gravity()
 
 func _on_death_remove_timer_timeout() -> void:

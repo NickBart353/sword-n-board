@@ -13,6 +13,7 @@ var windup: bool = false
 var slamming: bool = false
 var idling: bool = false
 var can_take_damage: bool = false
+var dead: bool = false
 
 func _ready() -> void:
 	anim_tree.state_started.connect(_state_started)
@@ -64,3 +65,12 @@ func _check_hit(body: Node3D):
 func create_impact_vfx():
 	for impact_point in impact_points:
 		VfxManager.create_vfx_from_enum(VfxManager.VFX.LINE_GROUND_IMPACT, impact_point.global_position)
+
+func die():
+	hit = false
+	windup = false
+	slamming = false
+	idling = false
+	can_take_damage = false
+	dead = true
+	anim_tree.travel("Dead")

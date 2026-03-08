@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b7puvh2oo6c8h"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_puiwu"]
+
+[sub_resource type="Curve" id="Curve_puiwu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.6882021, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_guntr"]
+curve = SubResource("Curve_puiwu")
+
+[sub_resource type="Curve" id="Curve_y6ypi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1207857, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6bxxb"]
+curve = SubResource("Curve_y6ypi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_puiwu"]
+emission_shape_scale = Vector3(0.685, 0.795, 0.295)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = 1.0499777
+radial_velocity_max = 1.0499777
+radial_velocity_curve = SubResource("CurveTexture_guntr")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_6bxxb")
+color = Color(0.446777, 0.44677705, 0.44677705, 1)
+hue_variation_min = -1.0
+hue_variation_max = -0.89
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_puiwu"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_guntr"]
+material = SubResource("StandardMaterial3D_puiwu")
+radius = 0.125
+height = 0.25
+
+[sub_resource type="Animation" id="Animation_puiwu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_guntr"]
+resource_name = "puff"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y6ypi"]
+_data = {
+&"RESET": SubResource("Animation_puiwu"),
+&"puff": SubResource("Animation_guntr")
+}
+
+[node name="LootPuff" type="Node3D" unique_id=996278517 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_puiwu")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "puff"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=662904954]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 0.9
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_puiwu")
+draw_pass_1 = SubResource("SphereMesh_guntr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=524723923]
+libraries/ = SubResource("AnimationLibrary_y6ypi")

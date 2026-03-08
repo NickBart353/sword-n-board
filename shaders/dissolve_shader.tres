@@ -47,6 +47,7 @@ hint = 1
 function = 31
 
 [resource]
+resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_0e0by")
 nodes/fragment/3/position = Vector2(-980, -140)

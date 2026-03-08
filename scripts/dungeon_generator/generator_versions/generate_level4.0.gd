@@ -9,7 +9,6 @@ extends Main
 @export var dungeon_height: int = 10
 @export var room_size: Vector3 = Vector3(20, 20, 20)
 @export_group("Player")
-@export var player_scene: PackedScene
 @export_group("Debug")
 @export var room_locations: bool = false
 

@@ -14,9 +14,8 @@ projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
 explosion_radius = 0.1
 proj_speed = 100
-gravity_enabled = true
 explosion_animation = 6
-damage = 15
+damage = 50
 explosion_target_raycast = NodePath("RayCast3D")
 metadata/_custom_type_script = "uid://snywren3rqx0"
 

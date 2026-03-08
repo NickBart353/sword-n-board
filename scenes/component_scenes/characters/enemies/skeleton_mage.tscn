@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bpu4q570sg727" path="res://scripts/characters/enemies/skeleton_mage.gd" id="1_1kw4o"]
 [ext_resource type="PackedScene" uid="uid://drfr0g6h30ft5" path="res://assets/brackeys_3d_game_assets/skeleton/skeleton_mage.glb" id="1_bxj1e"]
-[ext_resource type="Material" uid="uid://0yl1su0cr6wq" path="res://shaders/hitflash.tres" id="3_8o1bm"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="3_nftgf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nftgf"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_nftgf")
+shader_parameter/flash_color = Color(1, 0.5102555, 0.44386888, 1)
+shader_parameter/flash_strength = 0.1200000057
+shader_parameter/hit_flash_on = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8o1bm"]
 resource_local_to_scene = true
@@ -354,28 +361,28 @@ bones/40/scale = Vector3(1, 1.0000001, 1)
 transform = Transform3D(0.99981403, -0.014102131, -0.013155997, 0.010184139, 0.9653388, -0.26080087, 0.016377866, 0.26061824, 0.965303, -5.751493e-09, 1.0435922, 0.25666142)
 
 [node name="Skeleton_Mage_Hat" parent="skeleton_mage/Rig/Skeleton3D/head" index="0"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_ArmLeft" parent="skeleton_mage/Rig/Skeleton3D" index="1"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_ArmRight" parent="skeleton_mage/Rig/Skeleton3D" index="2"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_Body" parent="skeleton_mage/Rig/Skeleton3D" index="3"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_Eyes" parent="skeleton_mage/Rig/Skeleton3D" index="4"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_Jaw" parent="skeleton_mage/Rig/Skeleton3D" index="5"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_LegLeft" parent="skeleton_mage/Rig/Skeleton3D" index="6"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_LegRight" parent="skeleton_mage/Rig/Skeleton3D" index="7"]
-material_overlay = ExtResource("3_8o1bm")
+material_overlay = SubResource("ShaderMaterial_nftgf")
 
 [node name="Skeleton_Mage_Skull" parent="skeleton_mage/Rig/Skeleton3D" index="8"]
 material_overlay = SubResource("ShaderMaterial_8o1bm")

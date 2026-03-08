@@ -2,15 +2,84 @@
 
 [ext_resource type="Script" uid="uid://dp5yvpytu1wxv" path="res://scripts/interactable/item_sack.gd" id="1_5pxwh"]
 [ext_resource type="PackedScene" uid="uid://dcouhafyjha1f" path="res://scenes/component_scenes/interactable/item_container/item_container.tscn" id="3_87i4b"]
+[ext_resource type="Shader" uid="uid://dx2bjm6p8bavm" path="res://shaders/item_sack/item_sack_particles.tres" id="3_dy6n1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pxwh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_exoak"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pxwh"]
-albedo_color = Color(0.32042378, 0.16982213, 0, 1)
+albedo_color = Color(0.47754848, 0.26125696, 0, 1)
+backlight_enabled = true
+backlight = Color(0.446777, 0.44677705, 0.44677705, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_87i4b"]
+
+[sub_resource type="Curve" id="Curve_87i4b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dy6n1"]
+curve = SubResource("Curve_87i4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o83ng"]
+emission_shape_scale = Vector3(0.36, 0.49, 0.515)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = 0.09997764
+radial_velocity_max = 0.49997765
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_dy6n1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o83ng"]
+render_priority = 0
+shader = ExtResource("3_dy6n1")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k6dni"]
+material = SubResource("ShaderMaterial_o83ng")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_87i4b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:omni_range")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_exoak"]
+resource_name = "glow"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OmniLight3D:omni_range")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [2.0, 2.5, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_87i4b"]
+_data = {
+&"RESET": SubResource("Animation_87i4b"),
+&"glow": SubResource("Animation_exoak")
+}
 
 [node name="ItemSack" type="RigidBody3D" unique_id=280742974]
 physics_material_override = SubResource("PhysicsMaterial_5pxwh")
@@ -25,3 +94,19 @@ mesh = SubResource("BoxMesh_87i4b")
 
 [node name="ItemContainer" parent="." unique_id=306193090 instance=ExtResource("3_87i4b")]
 hover_text = "Press E to loot"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1619943212]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10000002, 0)
+light_bake_mode = 1
+omni_range = 2.0
+omni_attenuation = 2.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1003014505]
+amount = 7
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_o83ng")
+draw_pass_1 = SubResource("PlaneMesh_k6dni")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1061055834]
+libraries/ = SubResource("AnimationLibrary_87i4b")
+autoplay = &"glow"

@@ -10,8 +10,6 @@ var hunting_bodies: Array
 var attacking_bodies: Array
 var damage = 10
 
-signal died
-
 @export var movement_speed = 5
 
 @onready var iFrameTimer = $IFrame
