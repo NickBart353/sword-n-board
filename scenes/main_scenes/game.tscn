@@ -171,3 +171,13 @@ metadata/_custom_type_script = "uid://ddkbytbbno5om"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.5, 19.4, 76.6)
 script = ExtResource("7_cfqos")
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="Rat" type="Node3D" parent="MobSpawns" unique_id=98056911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -406.5, 77, -407.1)
+script = ExtResource("6_leqql")
+mob = 2
+metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
+
+[node name="MobSpawn" type="Marker3D" parent="MobSpawns/Rat" unique_id=2111175554]
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"

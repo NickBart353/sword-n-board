@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://dmfrt1m5sg37a" path="res://shaders/dissolve_shader.tres" id="2_mvym0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkkqe"]
-radius = 1.78
+radius = 2.2
 height = 14.772656
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0n2o1"]
@@ -33,7 +33,7 @@ height = 13.7
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qt3o1"]
-radius = 1.2
+radius = 1.6
 height = 10.670313
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gpawu"]
@@ -45,7 +45,7 @@ height = 10.123
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4cwlq"]
-radius = 0.8
+radius = 1.1
 height = 8.082227
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qt3o1"]
@@ -57,7 +57,7 @@ height = 8.435
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0vqa6"]
-radius = 0.59
+radius = 0.90000004
 height = 6.764453
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t2ynp"]
@@ -1321,7 +1321,7 @@ collision_layer = 32
 collision_mask = 6
 
 [node name="EndBox" type="CollisionShape3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=719107978]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.4812508, -1.4958192e-07, 0)
+transform = Transform3D(-4.3711346e-08, -0.9999993, 0, 0.9999993, -4.3711346e-08, 0, 0, 0, 1, -2.4812508, -1.495819e-07, 0)
 shape = SubResource("CapsuleShape3D_0vqa6")
 
 [node name="EndMesh" type="MeshInstance3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=206398057]

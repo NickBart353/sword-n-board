@@ -23,9 +23,9 @@ func Physics_Update(delta: float) -> void:
 	
 	enemy.velocity = enemy.global_position.direction_to(player.global_position) * follow_speed
 	
-	#if distance.length() > follow_range:
-		#Transitioned.emit(self, "Idle")
-		#return
+	if distance.length() > follow_range:
+		Transitioned.emit(self, "Idle")
+		return
 	#if (distance.length() < attack_range and not poison_cooldown.time_left):
 		#Transitioned.emit(self, "ChannelingPoisonBurst")
 		#return

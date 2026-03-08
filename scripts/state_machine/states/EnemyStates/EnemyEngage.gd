@@ -29,7 +29,7 @@ func Physics_Update(delta: float) -> void:
 	if look_at_enemy:
 		enemy.look_at(player.global_position, Vector3.UP, true)
 	if only_look_horizontally:
-		enemy.rotate_y(0.0)
+		enemy.rotation.x = deg_to_rad(0.0)
 
 func _on_engage_timer_timeout() -> void:
 	get_child(0).queue_free()
