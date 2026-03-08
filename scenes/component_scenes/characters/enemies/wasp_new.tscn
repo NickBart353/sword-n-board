@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="4_5gd67"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dv34gxw2ten1h" path="res://animations/wasp_animation_sate_machine.tres" id="4_6eufi"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="4_awi1o"]
-[ext_resource type="Shader" uid="uid://dmfrt1m5sg37a" path="res://shaders/dissolve_shader.tres" id="4_o55j2"]
 [ext_resource type="Animation" uid="uid://cpth8bo8x2h6y" path="res://animations/wasp/Attack.tres" id="5_0bffu"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="5_i1xyo"]
 [ext_resource type="Texture2D" uid="uid://bj5acmkkrx4qm" path="res://assets/MonstersPack_Ps1/Textures/WaspPixelated.png" id="5_jym8u"]
@@ -28,17 +27,90 @@
 [ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="25_f2g7w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o55j2"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bf4wv"]
+parameter_name = "MainTexture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o55j2"]
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_jym8u"]
+parameter_name = "Metallic"
+hint = 1
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lcfq6"]
+parameter_name = "Roughness"
+hint = 1
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_hhixj"]
+constant = Color(0.003921569, 0.003921569, 0, 1)
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_xaarc"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_y5ov3"]
+parameter_name = "Color"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
+noise_type = 3
+frequency = 0.1308
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_drxrv"]
+noise = SubResource("FastNoiseLite_wvk24")
+seamless = true
+seamless_blend_skirt = 0.488
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ndi4h"]
+texture = SubResource("NoiseTexture2D_drxrv")
+
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_t20u8"]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ughj8"]
+parameter_name = "DissolveStrength"
+hint = 1
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_xedv5"]
+function = 31
+
+[sub_resource type="VisualShader" id="VisualShader_il6m2"]
+resource_local_to_scene = true
+nodes/fragment/0/position = Vector2(420, 100)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_ndi4h")
+nodes/fragment/3/position = Vector2(-980, -140)
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_t20u8")
+nodes/fragment/4/position = Vector2(-140, 720)
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_ughj8")
+nodes/fragment/8/position = Vector2(-460, 720)
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_xedv5")
+nodes/fragment/9/position = Vector2(140, 800)
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_bf4wv")
+nodes/fragment/10/position = Vector2(-540, -380)
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_o55j2")
+nodes/fragment/11/position = Vector2(-480, -560)
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_jym8u")
+nodes/fragment/12/position = Vector2(-520, 100)
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_lcfq6")
+nodes/fragment/13/position = Vector2(-160, 220)
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_hhixj")
+nodes/fragment/14/position = Vector2(140, 340)
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_xaarc")
+nodes/fragment/15/position = Vector2(-80, -560)
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_y5ov3")
+nodes/fragment/16/position = Vector2(-400, -760)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbyea"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("4_o55j2")
+shader = SubResource("VisualShader_il6m2")
 shader_parameter/MainTexture = ExtResource("5_jym8u")
 shader_parameter/Color = Color(1, 1, 1, 1)
 shader_parameter/Metallic = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jym8u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2ab7"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_awi1o")
@@ -165,7 +237,7 @@ nodes/Dissolve/node = SubResource("AnimationNodeOneShot_lcfq6")
 nodes/Dissolve/position = Vector2(300, 220)
 node_connections = [&"output", 0, &"Dissolve", &"OneShot", 0, &"Main", &"OneShot", 1, &"hitflash", &"Dissolve", 0, &"OneShot", &"Dissolve", 1, &"dissolve"]
 
-[node name="Wasp" unique_id=1372833755 node_paths=PackedStringArray("anim_tree") groups=["Enemy"] instance=ExtResource("1_8403y")]
+[node name="Wasp" unique_id=1372833755 node_paths=PackedStringArray("anim_tree", "healthbar", "state_machine") groups=["Enemy"] instance=ExtResource("1_8403y")]
 collision_layer = 8
 collision_mask = 7
 safe_margin = 0.05
@@ -173,29 +245,31 @@ script = ExtResource("2_nsq2h")
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
 MAX_HEALTH = 75
 anim_tree = NodePath("AnimationTree")
+healthbar = NodePath("HealthBar")
+state_machine = NodePath("StateMachine")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" index="0"]
-bones/1/rotation = Quaternion(-1.4988228e-08, 0.99364495, 0.11255969, 1.3231181e-07)
-bones/2/rotation = Quaternion(-0.3386014, -0.13484578, -0.34651467, 0.86434555)
-bones/3/rotation = Quaternion(0.3840498, -0.024197128, 0.008088455, 0.92295986)
-bones/4/rotation = Quaternion(-0.38204944, 0.14814334, 0.34179628, 0.8457347)
-bones/5/rotation = Quaternion(0.3840498, 0.024197118, -0.008088466, 0.92295986)
-bones/6/rotation = Quaternion(-0.22593407, 0.49939096, 0.83447635, -0.056671165)
-bones/7/rotation = Quaternion(-0.5515208, -0.098744236, 0.40312392, 0.7235782)
+bones/1/rotation = Quaternion(-4.8578883e-09, 0.99933434, 0.036482133, 1.3306942e-07)
+bones/2/rotation = Quaternion(-0.5817702, -0.22182164, -0.11930706, 0.7733721)
+bones/3/rotation = Quaternion(0.25655934, -0.13949758, 0.04663007, 0.95527136)
+bones/4/rotation = Quaternion(-0.47645688, 0.12699482, 0.28708622, 0.82124466)
+bones/5/rotation = Quaternion(0.25655934, 0.13949761, -0.046630073, 0.95527136)
+bones/6/rotation = Quaternion(-0.3968863, 0.37307188, 0.79484195, 0.26744148)
+bones/7/rotation = Quaternion(-0.6046483, -0.09091961, 0.37082332, 0.69901663)
 bones/8/rotation = Quaternion(0.045113534, 0.6671274, -0.055009432, 0.7415388)
-bones/9/rotation = Quaternion(0.22593401, 0.49939087, 0.8344765, 0.05667132)
-bones/10/rotation = Quaternion(-0.5515208, 0.09874421, -0.40312386, 0.7235783)
+bones/9/rotation = Quaternion(0.39688608, 0.37307197, 0.79484206, -0.26744145)
+bones/10/rotation = Quaternion(-0.6046483, 0.09091957, -0.37082332, 0.6990166)
 bones/11/rotation = Quaternion(0.045113537, -0.6671274, 0.0550094, 0.7415388)
-bones/12/rotation = Quaternion(-0.7215574, 0.2030637, 0.18351959, 0.63595665)
+bones/12/rotation = Quaternion(-0.8322857, 0.25449768, 0.12452079, 0.4764725)
 bones/13/rotation = Quaternion(0.048498224, -0.01423301, -0.07879991, 0.9956083)
-bones/14/rotation = Quaternion(-0.72151935, -0.20304888, -0.18354212, 0.63599795)
+bones/14/rotation = Quaternion(-0.83239084, -0.25458163, -0.12460527, 0.47622192)
 bones/15/rotation = Quaternion(0.048498213, 0.014233055, 0.078799985, 0.9956083)
-bones/17/rotation = Quaternion(-0.24704951, 3.46669e-07, -8.7854175e-08, 0.96900296)
-bones/18/rotation = Quaternion(0.0346468, 2.708799e-07, 9.11402e-09, 0.9993997)
+bones/17/rotation = Quaternion(-0.36671537, 3.5495415e-07, -4.364908e-08, 0.93033326)
+bones/18/rotation = Quaternion(0.0850341, 2.7580978e-07, 3.106389e-08, 0.99637806)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_o55j2")
-material_overlay = SubResource("ShaderMaterial_jym8u")
+material_override = SubResource("ShaderMaterial_qbyea")
+material_overlay = SubResource("ShaderMaterial_w2ab7")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)

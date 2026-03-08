@@ -197,7 +197,7 @@ radius = 2.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
 height = 3.9210145
 
-[node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location", "tentacle_container", "anim_tree") instance=ExtResource("1_ff3iu")]
+[node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location", "tentacle_container", "anim_tree", "healthbar", "state_machine") instance=ExtResource("1_ff3iu")]
 collision_layer = 8
 collision_mask = 7
 safe_margin = 0.02
@@ -212,6 +212,8 @@ tentacle_attack_max_radius = 50.0
 tentacle_root = ExtResource("23_xpdqg")
 MAX_HEALTH = 100
 anim_tree = NodePath("AnimationTree")
+healthbar = NodePath("HealthBar")
+state_machine = NodePath("StateMachine")
 
 [node name="EaterPlant_Armature" parent="." index="0" unique_id=98460973]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)

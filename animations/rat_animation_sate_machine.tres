@@ -1,0 +1,73 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://j5l3dlt686nd"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_k6do6"]
+resource_local_to_scene = true
+filter_enabled = true
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
+resource_local_to_scene = true
+filter_enabled = true
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_td2g7"]
+animation = &"rat animations/Rat_Armature_AtackRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5s47"]
+animation = &"rat animations/Rat_Armature_AtackRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0w81"]
+animation = &"rat animations/Rat_Armature_DeathRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8uvdi"]
+animation = &"rat animations/Rat_Armature_IdleRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jlswy"]
+animation = &"rat animations/Rat_Armature_RunRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5jwa"]
+animation = &"rat animations/Rat_Armature_IdleRat"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h03at"]
+animation = &"rat animations/Rat_Armature_AtackRat"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d6sg8"]
+resource_local_to_scene = true
+states/Bite/node = SubResource("AnimationNodeAnimation_td2g7")
+states/Bite/position = Vector2(260, -104.088776)
+states/Claw/node = SubResource("AnimationNodeAnimation_n5s47")
+states/Claw/position = Vector2(578, -314.08878)
+states/Dead/node = SubResource("AnimationNodeAnimation_l0w81")
+states/Dead/position = Vector2(578, -104.088776)
+states/End/position = Vector2(720, 23.911224)
+states/Engage/node = SubResource("AnimationNodeAnimation_8uvdi")
+states/Engage/position = Vector2(720, -213.08878)
+states/Follow/node = SubResource("AnimationNodeAnimation_jlswy")
+states/Follow/position = Vector2(439, -213.08878)
+states/Idle/node = SubResource("AnimationNodeAnimation_a5jwa")
+states/Idle/position = Vector2(439, 23.911224)
+states/Return/node = SubResource("AnimationNodeAnimation_h03at")
+states/Return/position = Vector2(439, 146.91122)
+states/Start/position = Vector2(260, 23.911224)
+graph_offset = Vector2(-115, -388.08878)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v47t"]
+animation = &"Dissolve"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6do6"]
+animation = &"hitflash"
+
+[resource]
+graph_offset = Vector2(-229, 42)
+nodes/output/position = Vector2(740, 340)
+nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
+nodes/Main/position = Vector2(-140, 60)
+nodes/Hitflash/node = SubResource("AnimationNodeOneShot_p4mo3")
+nodes/Hitflash/position = Vector2(260, 160)
+nodes/hitflash/node = SubResource("AnimationNodeAnimation_k6do6")
+nodes/hitflash/position = Vector2(-40, 400)
+nodes/Dissolve/node = SubResource("AnimationNodeOneShot_k6do6")
+nodes/Dissolve/position = Vector2(500, 320)
+nodes/dissolve/node = SubResource("AnimationNodeAnimation_5v47t")
+nodes/dissolve/position = Vector2(220, 500)
+node_connections = [&"output", 0, &"Dissolve", &"Hitflash", 0, &"Main", &"Hitflash", 1, &"hitflash", &"Dissolve", 0, &"Hitflash", &"Dissolve", 1, &"dissolve"]

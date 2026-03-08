@@ -3,15 +3,40 @@
 [ext_resource type="PackedScene" uid="uid://b7fxq3y5qsjyc" path="res://assets/MonstersPack_Ps1/FBX/Rat.fbx" id="1_0u8od"]
 [ext_resource type="Script" uid="uid://ctnhr86dan0pn" path="res://scripts/characters/enemies/rat/rat.gd" id="2_aafi7"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="2_juueg"]
+[ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="3_aafi7"]
+[ext_resource type="Animation" uid="uid://ep881riurojv" path="res://animations/rat/Rat_Armature_AtackRat.res" id="4_er0us"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://j5l3dlt686nd" path="res://animations/rat_animation_sate_machine.tres" id="4_ripon"]
+[ext_resource type="Animation" uid="uid://daysicjesas3o" path="res://animations/rat/Rat_Armature_DeathRat.res" id="5_igwkf"]
+[ext_resource type="Animation" uid="uid://dcu74i108qluw" path="res://animations/rat/Rat_Armature_GetDamageRat.res" id="6_nnsjl"]
+[ext_resource type="Animation" uid="uid://ckhboei508aa2" path="res://animations/rat/Rat_Armature_IdleRat.res" id="7_tdv3m"]
+[ext_resource type="Animation" uid="uid://cj856hbqcfqnm" path="res://animations/rat/Rat_Armature_RunRat.res" id="8_46qry"]
+[ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="11_nnsjl"]
+[ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="12_tdv3m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0u8od"]
-radius = 5.5
-height = 18.675001
+radius = 1.3000001
+height = 5.9843755
 
-[node name="Rat" unique_id=1685937082 instance=ExtResource("1_0u8od")]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijteo"]
+_data = {
+&"Rat_Armature_AtackRat": ExtResource("4_er0us"),
+&"Rat_Armature_DeathRat": ExtResource("5_igwkf"),
+&"Rat_Armature_GetDamageRat": ExtResource("6_nnsjl"),
+&"Rat_Armature_IdleRat": ExtResource("7_tdv3m"),
+&"Rat_Armature_RunRat": ExtResource("8_46qry")
+}
+
+[node name="Rat" unique_id=1685937082 node_paths=PackedStringArray("anim_tree", "healthbar", "state_machine") instance=ExtResource("1_0u8od")]
 script = ExtResource("2_aafi7")
+MAX_HEALTH = 150
+anim_tree = NodePath("AnimationTree")
+healthbar = NodePath("HealthBar")
+state_machine = NodePath("StateMachine")
 
-[node name="Skeleton3D" parent="Rat_Armature" parent_id_path=PackedInt32Array(10327569) index="0" unique_id=684709170]
+[node name="Rat_Armature" parent="." index="0" unique_id=10327569]
+transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=684709170]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
 bones/1/rotation = Quaternion(0, 6.617445e-24, 0, 1)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
@@ -67,20 +92,44 @@ bones/26/rotation = Quaternion(0, 0, 0, 1)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=363759929]
-transform = Transform3D(1.0000001, 0, 0, 0, -4.3711378e-08, 1.0000001, 0, -1.0000001, -4.3711378e-08, 0, 1.35, 1.2625003)
+transform = Transform3D(1.0000001, 0, 0, 0, -4.3711378e-08, 1.0000001, 0, -1.0000001, -4.3711378e-08, 0, 0.34999982, 0.4390631)
 shape = SubResource("CapsuleShape3D_0u8od")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1285545981]
+[node name="HealthBar" parent="." index="2" unique_id=1652061932 instance=ExtResource("3_aafi7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3999999, 1)
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=591692422]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1285545981]
+"libraries/rat animations" = SubResource("AnimationLibrary_ijteo")
 
-[node name="StateMachine" type="Node" parent="." index="4" unique_id=845983060]
+[node name="AnimationTree" type="AnimationTree" parent="." index="4" unique_id=591692422]
+tree_root = ExtResource("4_ripon")
+advance_expression_base_node = NodePath("../StateMachine")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Hitflash/active = false
+parameters/Hitflash/internal_active = false
+parameters/Hitflash/request = 0
+parameters/Dissolve/active = false
+parameters/Dissolve/internal_active = false
+parameters/Dissolve/request = 0
+
+[node name="Timers" type="Node3D" parent="." index="5" unique_id=218584737]
+
+[node name="DeathTimer" type="Timer" parent="Timers" index="0" unique_id=1236845956]
+wait_time = 3.0
+
+[node name="StateMachine" type="Node" parent="." index="6" unique_id=845983060 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_juueg")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cfxyba70xd7yl"
 
-[node name="Node" type="Node" parent="StateMachine" index="0" unique_id=688366056]
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=688366056 node_paths=PackedStringArray("enemy")]
+script = ExtResource("11_nnsjl")
+enemy = NodePath("../..")
 
-[node name="Node2" type="Node" parent="StateMachine" index="1" unique_id=936151769]
+[node name="Dead" type="Node" parent="StateMachine" index="1" unique_id=936151769 node_paths=PackedStringArray("death_timer", "enemy")]
+script = ExtResource("12_tdv3m")
+death_timer = NodePath("../../Timers/DeathTimer")
+enemy = NodePath("../..")
 
 [node name="Node3" type="Node" parent="StateMachine" index="2" unique_id=1251843385]
 
