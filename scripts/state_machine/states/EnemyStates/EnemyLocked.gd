@@ -1,13 +1,14 @@
-extends EnemyState
+extends EnemyAbility
 
-@onready var charge_timer = $"../../Timers/ChargeTimer"
+@export var charge_timer: Timer
 @export var pulling_back_speed: float = 0.1
+@export var cutting_wind: Node
 
 func Enter():
 	super()
 	charge_timer.start()
 	VfxManager.create_small_tornado(Vector3(enemy.global_position.x, enemy.global_position.y-4, enemy.global_position.z))
-	$"../../CuttingWind".set_visible(true)
+	cutting_wind.set_visible(true)
 
 func Exit():
 	super()

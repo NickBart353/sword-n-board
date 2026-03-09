@@ -19,6 +19,7 @@ extends Enemy
 var num_tentacles_erupted: int = 0
 
 func _ready() -> void:
+	super()
 	#anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	#anim_tree.active = true
 	#$StateMachine/Idle.reset_health.connect(reset_health)

@@ -1,6 +1,6 @@
 extends EnemyState
 
-@onready var recovery_timer = $"../../Timers/RecoveryTimer"
+@export var recovery_timer: Timer
 
 func Enter():
 	super()

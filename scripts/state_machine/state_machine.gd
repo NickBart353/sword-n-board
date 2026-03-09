@@ -11,6 +11,10 @@ func _ready() -> void:
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transitioned)
+			if child.name == "Follow":
+				for ability in child.get_children():
+					states[ability.name.to_lower()] = ability
+					ability.Transitioned.connect(on_child_transitioned)
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state

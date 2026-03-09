@@ -1,4 +1,4 @@
-extends EnemyState
+extends EnemyAbility
 class_name EnemyChanneling
 
 @export var charge_timer: Timer

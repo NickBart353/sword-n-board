@@ -12,15 +12,15 @@
 [ext_resource type="Animation" uid="uid://dkeragtp5b3j2" path="res://animations/eater_plant/EaterPlant_Armature_GetDamageEaterPlant.res" id="5_piwai"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_b7qlj"]
 [ext_resource type="Animation" uid="uid://bo4sf3i064ora" path="res://animations/eater_plant/EaterPlant_Armature_IdleEaterPlant.res" id="6_rxgvd"]
-[ext_resource type="Script" uid="uid://cywoo1femadgj" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Follow.gd" id="7_b7qlj"]
 [ext_resource type="Texture2D" uid="uid://b6aa1pybomc50" path="res://assets/MonstersPack_Ps1/Textures/EaterPlant01Pixelated.png" id="7_mom4r"]
 [ext_resource type="Script" uid="uid://fa3htuacg1ih" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleSlam.gd" id="8_deve0"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c0utx4rvx0jfo" path="res://animations/eater_plant_animation_sate_machine.tres" id="8_qmp0i"]
 [ext_resource type="Script" uid="uid://cnqlbquajpeqs" path="res://scripts/state_machine/states/EnemyStates/eater_plant/PoisonBurst.gd" id="9_d6sg8"]
 [ext_resource type="Script" uid="uid://hthc22nmtdd4" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleEruption.gd" id="10_ep3x6"]
-[ext_resource type="Script" uid="uid://7g68gy1kovnh" path="res://scripts/state_machine/states/EnemyStates/EnemyStateMachine.gd" id="11_mcukf"]
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
+[ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="14_6gcyd"]
 [ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
+[ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="18_6gcyd"]
 [ext_resource type="PackedScene" uid="uid://b3golxe3jp3df" path="res://scenes/component_scenes/spells/tentacle.tscn" id="22_mcukf"]
 [ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
@@ -333,73 +333,82 @@ wait_time = 2.9
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="." index="12" unique_id=1149640940 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("11_mcukf")
+script = ExtResource("14_6gcyd")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1939936216 node_paths=PackedStringArray("enemy")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1939936216 node_paths=PackedStringArray("enemy", "anim_tree")]
 script = ExtResource("4_i1lff")
 wander_speed = 0
 allowed_distance_to_origin = 100
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy", "anim_tree")]
 script = ExtResource("5_my8t3")
 pull_distance = 20
 yell_vfx_position = NodePath("../../MouthSide")
 only_look_horizontally = true
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy")]
+[node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy", "anim_tree")]
 script = ExtResource("6_b7qlj")
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="Follow" type="Node" parent="StateMachine" index="3" unique_id=1377346068 node_paths=PackedStringArray("poison_cooldown", "eruption_cooldown", "enemy")]
-script = ExtResource("7_b7qlj")
+[node name="Follow" type="Node" parent="StateMachine" index="3" unique_id=1377346068 node_paths=PackedStringArray("enemy", "anim_tree")]
+script = ExtResource("18_6gcyd")
 follow_speed = 0
-attack_range = 40
-follow_range = 40
-poison_cooldown = NodePath("../../Timers/PoisonCooldown")
-eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
-look_at_enemy = false
+attack_range = 30
+look_at_player = false
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="ChannelingPoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=1394142044 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
+[node name="ChannelingPoisonBurst" type="Node" parent="StateMachine/Follow" index="0" unique_id=1394142044 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree")]
 script = ExtResource("13_od7bd")
-charge_timer = NodePath("../../Timers/PoisonTimer")
-channeling_vfx_position = NodePath("../../MouthTop")
+charge_timer = NodePath("../../../Timers/PoisonTimer")
+channeling_vfx_position = NodePath("../../../MouthTop")
 channeling_vfx = 7
-follow_up_state = NodePath("../PoisonBurst")
+follow_up_state = NodePath("../../PoisonBurst")
 look_at_target = false
-enemy = NodePath("../..")
+cool_down_timer = NodePath("../../../Timers/PoisonCooldown")
+enemy = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "enemy")]
+[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine/Follow" index="1" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree")]
 script = ExtResource("14_piwai")
-charge_timer = NodePath("../../Timers/EruptionTimer")
-channeling_vfx_position = NodePath("../../Tentacles")
-follow_up_state = NodePath("../TentacleEruption")
+charge_timer = NodePath("../../../Timers/EruptionTimer")
+channeling_vfx_position = NodePath("../../../Tentacles")
+follow_up_state = NodePath("../../TentacleEruption")
 look_at_target = false
-enemy = NodePath("../..")
+cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
+enemy = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
 
-[node name="TentacleSlam" type="Node" parent="StateMachine" index="6" unique_id=1480137576 node_paths=PackedStringArray("enemy")]
+[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
-enemy = NodePath("../..")
+enemy = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="7" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy")]
+[node name="PoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree")]
 script = ExtResource("9_d6sg8")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="8" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy")]
+[node name="TentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
-[node name="Dead" type="Node" parent="StateMachine" index="9" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy")]
+[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree")]
 script = ExtResource("25_mom4r")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
 
 [node name="Bombs" type="Node3D" parent="." index="13" unique_id=717428469]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)

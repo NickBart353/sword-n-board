@@ -11,7 +11,9 @@
 [ext_resource type="Animation" uid="uid://ckhboei508aa2" path="res://animations/rat/Rat_Armature_IdleRat.res" id="7_tdv3m"]
 [ext_resource type="Animation" uid="uid://cj856hbqcfqnm" path="res://animations/rat/Rat_Armature_RunRat.res" id="8_46qry"]
 [ext_resource type="Script" uid="uid://d2q431ppaijra" path="res://scripts/state_machine/states/EnemyStates/EnemyIdle.gd" id="11_nnsjl"]
+[ext_resource type="Script" uid="uid://ba18g0av6r7c6" path="res://scripts/state_machine/states/EnemyStates/EnemyEngage.gd" id="12_46qry"]
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="12_tdv3m"]
+[ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="13_ijteo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0u8od"]
 radius = 1.3000001
@@ -27,6 +29,8 @@ _data = {
 }
 
 [node name="Rat" unique_id=1685937082 node_paths=PackedStringArray("anim_tree", "healthbar", "state_machine") instance=ExtResource("1_0u8od")]
+collision_layer = 16
+collision_mask = 7
 script = ExtResource("2_aafi7")
 MAX_HEALTH = 150
 anim_tree = NodePath("AnimationTree")
@@ -126,17 +130,21 @@ metadata/_custom_type_script = "uid://cfxyba70xd7yl"
 script = ExtResource("11_nnsjl")
 enemy = NodePath("../..")
 
-[node name="Dead" type="Node" parent="StateMachine" index="1" unique_id=936151769 node_paths=PackedStringArray("death_timer", "enemy")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=1583805113 node_paths=PackedStringArray("yell_vfx_position", "enemy")]
+script = ExtResource("12_46qry")
+yell_vfx_position = NodePath("../../YellPosition")
+enemy = NodePath("../..")
+
+[node name="Follow" type="Node" parent="StateMachine" index="2" unique_id=1251843385 node_paths=PackedStringArray("enemy")]
+script = ExtResource("13_ijteo")
+follow_speed = 15
+attack_range = 5
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" index="3" unique_id=936151769 node_paths=PackedStringArray("death_timer", "enemy")]
 script = ExtResource("12_tdv3m")
 death_timer = NodePath("../../Timers/DeathTimer")
 enemy = NodePath("../..")
 
-[node name="Node3" type="Node" parent="StateMachine" index="2" unique_id=1251843385]
-
-[node name="Node4" type="Node" parent="StateMachine" index="3" unique_id=12192668]
-
-[node name="Node5" type="Node" parent="StateMachine" index="4" unique_id=1751686760]
-
-[node name="Node6" type="Node" parent="StateMachine" index="5" unique_id=840803990]
-
-[node name="Node7" type="Node" parent="StateMachine" index="6" unique_id=1479580009]
+[node name="YellPosition" type="Marker3D" parent="." index="7" unique_id=1682746987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 3.4)

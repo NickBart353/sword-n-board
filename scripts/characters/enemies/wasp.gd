@@ -6,6 +6,7 @@ extends Enemy
 @export var poison_blast_bullet_amount: int = 10
 
 func _ready() -> void:
+	super()
 	#anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	#anim_tree.active = true
 	#$StateMachine/Idle.reset_health.connect(reset_health)
@@ -15,6 +16,9 @@ func _ready() -> void:
 	#if not origin_position:
 		#origin_position = global_position
 	create_bombs()
+
+func _physics_process(_delta: float) -> void:
+	move_and_slide()
 
 #func _physics_process(_delta: float) -> void:
 	#move_and_slide()

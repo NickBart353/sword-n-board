@@ -1,8 +1,7 @@
 extends EnemyState
 
-@onready var bullet_position = $"../../BombPosition"
-
-@export var cooldown: int = 30
+@export var bullet_position: Marker3D
+@export var cooldown_timer: Timer
 
 var fired: bool = false
 var target_location: Vector3
@@ -12,7 +11,7 @@ func Enter():
 	fired = false
 	target_location = player.global_position
 	enemy.ready_bombs(target_location)
-	$"../../Timers/PoisonTimer".start(cooldown)
+	cooldown_timer.start()
 	fired = true
 
 func Exit():

@@ -1,8 +1,10 @@
 extends EnemyState
 
+@export var resetting_timer: Timer
+
 func Enter():
 	super()
-	$"../../Timers/ResettingTimer".start()
+	resetting_timer.start()
 	enemy.set_collision_mask_value(1, false)
 
 func Exit():

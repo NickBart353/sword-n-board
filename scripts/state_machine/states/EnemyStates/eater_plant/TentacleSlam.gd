@@ -1,4 +1,4 @@
-extends EnemyState
+extends EnemyAbility
 
 var root_counter_top: int 
 var root_counter: int

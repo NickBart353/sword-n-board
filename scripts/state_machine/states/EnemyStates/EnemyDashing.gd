@@ -3,8 +3,8 @@ extends EnemyState
 @export var dash_range: int = 40
 @export var dash_speed: int = 50
 @export var dash_damage: int = 50
-
-@onready var charge_timer = $"../../Timers/ChargeTimer"
+@export var charge_timer: Timer
+@export var cutting_wind: Node
 
 var dash_direction: Vector3
 var dash_start_position: Vector3
@@ -22,7 +22,7 @@ func Exit():
 	super()
 	player_hit = false
 	charge_interrupted = false
-	$"../../CuttingWind".set_visible(false)
+	cutting_wind.set_visible(false)
 	last_frame_position = Vector3.ZERO
 	#TODO: 
 	#last_frame_position tech to stop wasps from getting stuck - BUGGED/TEMPORARY - FIX IN FUTURE
@@ -45,7 +45,7 @@ func _on_damage_box_area_entered(area: Area3D) -> void:
 		if area.is_in_group("Shield") and not player_hit:
 			charge_interrupted = true
 		elif area.is_in_group("PlayerHurtBox") and not player_hit and not charge_interrupted:
-			player.take_damage(dash_damage, $"../../DamageBox")
+			player.take_damage(dash_damage, enemy)
 			player_hit = true
 
 func _on_damage_box_body_entered(body: Node3D) -> void:

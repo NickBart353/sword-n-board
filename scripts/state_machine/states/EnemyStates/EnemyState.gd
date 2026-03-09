@@ -3,7 +3,7 @@ class_name EnemyState
 
 var player
 @export var enemy: CharacterBody3D
-@onready var anim_tree = $"../../AnimationTree"
+@export var anim_tree: AnimationTree
 @onready var state_machine_resource = anim_tree.tree_root.get_node("Main") as AnimationNodeStateMachine
 @onready var state_machine = anim_tree["parameters/Main/playback"]
 

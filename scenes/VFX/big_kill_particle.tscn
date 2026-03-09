@@ -98,6 +98,7 @@ _data = {
 script = ExtResource("1_oxlw5")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "dissolve"
+enable_gravity = true
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=619874964]
