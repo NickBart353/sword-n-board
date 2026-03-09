@@ -16,4 +16,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		queue_free()
 
 func _physics_process(delta: float) -> void:
-	global_translate(gravity * delta)
+	if enable_gravity:
+		global_translate(gravity * delta)

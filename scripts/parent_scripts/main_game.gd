@@ -74,10 +74,12 @@ func _spawn_projectile(projectile: Node, spawn_position: Vector3, shooting_direc
 	projectile.fire(spawn_position, shooting_direction, proj_transform, direction_flag)
 	projectile.exploded.connect(remove_object)
 
-func _create_vfx(vfx_position: Vector3, scene: PackedScene):
+func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation = null):
 	var instance = scene.instantiate()
 	$Vfx.add_child(instance, true)
 	instance.global_position = vfx_position
+	if new_global_rotation:
+		instance.rotation = new_global_rotation
 
 func _spawn_mobs():
 	for mob_spawn_group in $MobSpawns.get_children():

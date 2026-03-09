@@ -3,12 +3,12 @@
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_k6do6"]
 resource_local_to_scene = true
 filter_enabled = true
-filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength"]
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_parameter/DissolveStrength", "Rat_Armature/Skeleton3D/Rat_01:material_override:shader_parameter/DissolveStrength"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
 resource_local_to_scene = true
 filter_enabled = true
-filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on"]
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on", "Rat_Armature/Skeleton3D/Rat_01:material_overlay:shader_parameter/hit_flash_on"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_td2g7"]
 animation = &"rat animations/Rat_Armature_AtackRat"
@@ -20,28 +20,97 @@ animation = &"rat animations/Rat_Armature_AtackRat"
 animation = &"rat animations/Rat_Armature_DeathRat"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8uvdi"]
-animation = &"rat animations/Rat_Armature_IdleRat"
+animation = &"rat animations/Rat_Armature_AtackRat"
+use_custom_timeline = true
+timeline_length = 3.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jlswy"]
 animation = &"rat animations/Rat_Armature_RunRat"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5jwa"]
 animation = &"rat animations/Rat_Armature_IdleRat"
+use_custom_timeline = true
+timeline_length = 5.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h03at"]
-animation = &"rat animations/Rat_Armature_AtackRat"
+animation = &"rat animations/Rat_Armature_RunRat"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l0w81"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8uvdi"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Return\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jlswy"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Idle\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a5jwa"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_td2g7"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Bite\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n5s47"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4k7g"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Engage\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_76u85"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t1bm7"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Claw\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kasvi"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Follow\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_noxf2"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjb6w"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f5o0i"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iawyn"]
+xfade_time = 0.5
+advance_expression = "current_state.name == \"Dead\""
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h03at"]
+xfade_time = 0.2
+advance_expression = "current_state.name == \"Idle\""
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d6sg8"]
 resource_local_to_scene = true
 states/Bite/node = SubResource("AnimationNodeAnimation_td2g7")
-states/Bite/position = Vector2(260, -104.088776)
+states/Bite/position = Vector2(260, -67.088776)
 states/Claw/node = SubResource("AnimationNodeAnimation_n5s47")
-states/Claw/position = Vector2(578, -314.08878)
+states/Claw/position = Vector2(580, -331.08878)
 states/Dead/node = SubResource("AnimationNodeAnimation_l0w81")
-states/Dead/position = Vector2(578, -104.088776)
-states/End/position = Vector2(720, 23.911224)
+states/Dead/position = Vector2(720, 23.911224)
+states/End/position = Vector2(720, 146.91122)
 states/Engage/node = SubResource("AnimationNodeAnimation_8uvdi")
-states/Engage/position = Vector2(720, -213.08878)
+states/Engage/position = Vector2(580, -213.08878)
 states/Follow/node = SubResource("AnimationNodeAnimation_jlswy")
 states/Follow/position = Vector2(439, -213.08878)
 states/Idle/node = SubResource("AnimationNodeAnimation_a5jwa")
@@ -49,16 +118,18 @@ states/Idle/position = Vector2(439, 23.911224)
 states/Return/node = SubResource("AnimationNodeAnimation_h03at")
 states/Return/position = Vector2(439, 146.91122)
 states/Start/position = Vector2(260, 23.911224)
-graph_offset = Vector2(-115, -388.08878)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_l0w81"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_8uvdi"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_jlswy"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_a5jwa"), "Follow", "Bite", SubResource("AnimationNodeStateMachineTransition_td2g7"), "Bite", "Follow", SubResource("AnimationNodeStateMachineTransition_n5s47"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_n4k7g"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_76u85"), "Follow", "Claw", SubResource("AnimationNodeStateMachineTransition_t1bm7"), "Claw", "Follow", SubResource("AnimationNodeStateMachineTransition_kasvi"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_noxf2"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_sjb6w"), "Claw", "Dead", SubResource("AnimationNodeStateMachineTransition_f5o0i"), "Bite", "Dead", SubResource("AnimationNodeStateMachineTransition_iawyn"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_h03at")]
+graph_offset = Vector2(-47, -402.08878)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v47t"]
-animation = &"Dissolve"
+animation = &"monster_basics/dissolve"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k6do6"]
-animation = &"hitflash"
+animation = &"monster_basics/hitflash"
 
 [resource]
-graph_offset = Vector2(-229, 42)
+resource_local_to_scene = true
+graph_offset = Vector2(-429.55225, -86.47934)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)

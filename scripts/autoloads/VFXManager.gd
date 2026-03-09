@@ -16,7 +16,7 @@ const RUMBLING: PackedScene = preload("res://scenes/VFX/rumbling.tscn")
 const LINE_GROUND_IMPACT: PackedScene = preload("res://scenes/VFX/line_ground_impact.tscn")
 
 enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, 
-TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF}
+TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF, CRUNCH_PARTICLES}
 
 const VFX_DICT: Dictionary = {
 	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
@@ -33,12 +33,13 @@ const VFX_DICT: Dictionary = {
 	VFX.LINE_GROUND_IMPACT : preload("res://scenes/VFX/line_ground_impact.tscn"),
 	VFX.BIG_KILL_PARTICLE : preload("res://scenes/VFX/big_kill_particle.tscn"),
 	VFX.LOOT_PUFF : preload("res://scenes/VFX/loot_puff.tscn"),
+	VFX.CRUNCH_PARTICLES : preload("res://scenes/VFX/crunched_particles.tscn"),
 }
 
-func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local = false):
+func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local: bool = false, new_global_rotation = null):
 	if VFX_DICT.get(vfx_name):
 		if not local:
-			create_vfx.emit(position, VFX_DICT.get(vfx_name))
+			create_vfx.emit(position, VFX_DICT.get(vfx_name), new_global_rotation)
 		else:
 			return VFX_DICT.get(vfx_name)
 

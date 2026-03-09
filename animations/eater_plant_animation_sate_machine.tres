@@ -215,6 +215,7 @@ animation = &"Dissolve"
 animation = &"hitflash"
 
 [resource]
+resource_local_to_scene = true
 graph_offset = Vector2(-456.6586, 47.725822)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")

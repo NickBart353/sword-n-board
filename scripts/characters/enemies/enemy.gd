@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func take_damage(damage_dealt, _body = null):
 	if health > MIN_HEALTH:
-		anim_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		anim_tree.set("parameters/Hitflash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	update_HEALTH( - damage_dealt)
 	if state_machine.current_state.name.to_lower() == "idle":
 		state_machine.on_child_transitioned(state_machine.get_node("Idle"), "Engage")
