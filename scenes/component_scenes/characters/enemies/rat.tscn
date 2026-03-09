@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="13_ijteo"]
 [ext_resource type="Script" uid="uid://x1n4xqg5f2m8" path="res://scripts/state_machine/states/EnemyStates/rat/Bite.gd" id="18_urxsf"]
 [ext_resource type="PackedScene" uid="uid://bec2tk2jrkk70" path="res://scenes/component_scenes/attacks/bite_attack.tscn" id="19_5bro7"]
+[ext_resource type="Script" uid="uid://xuol2p5begm2" path="res://scripts/state_machine/states/EnemyStates/rat/Claw.gd" id="20_gyxf7"]
+[ext_resource type="PackedScene" uid="uid://daa32y3httqmj" path="res://scenes/component_scenes/attacks/claw_attack.tscn" id="21_7gu7r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_urxsf"]
 resource_local_to_scene = true
@@ -200,6 +202,10 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="ClawCooldown" type="Timer" parent="Timers" index="2" unique_id=1779955811]
+wait_time = 2.0
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="." index="6" unique_id=845983060 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_juueg")
 initial_state = NodePath("Idle")
@@ -230,6 +236,14 @@ script = ExtResource("18_urxsf")
 bite_scene = ExtResource("19_5bro7")
 bite_position = NodePath("../../../BitePosition")
 cool_down_timer = NodePath("../../../Timers/BiteCooldown")
+enemy = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
+
+[node name="Claw" type="Node" parent="StateMachine/Follow" index="1" unique_id=865819282 node_paths=PackedStringArray("claw_position", "cool_down_timer", "enemy", "anim_tree")]
+script = ExtResource("20_gyxf7")
+claw_scene = ExtResource("21_7gu7r")
+claw_position = NodePath("../../../BitePosition")
+cool_down_timer = NodePath("../../../Timers/ClawCooldown")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 
