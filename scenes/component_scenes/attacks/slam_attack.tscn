@@ -1,0 +1,221 @@
+[gd_scene format=3 uid="uid://dh06ehim8m2nd"]
+
+[ext_resource type="Script" uid="uid://oi17yy0gne68" path="res://scripts/attacks/slam.gd" id="1_mmmc7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ilirm"]
+height = 2.5
+radius = 4.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmmc7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ilirm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kd2u2"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.27584755, 0.21596727, 0.18466526, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8bnj1"]
+material = SubResource("StandardMaterial3D_kd2u2")
+
+[sub_resource type="Animation" id="Animation_43ycy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.5999999, -2.9, 0.80000013)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.69813174, -0.69813174, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.1000001, 0, -2.7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.7253724, 1.0334141, 0.83897793)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.3113341, -0.1532089, -1.7446636)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.6981317, 2.0943952, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ob1mv"]
+resource_name = "slam"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.1708353, -6.5170684, -2.5021524), Vector3(-1.787501, -1.3498278, 2.2152088)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.69813174, -0.69813174, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.1000001, -5.6, -2.7), Vector3(-2.1000001, -1.3999996, -2.7)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.7253724, 1.0334141, 0.8389779)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-7.0110555, -10.154662, 4.2149715), Vector3(2.4137359, -1.0228987, -1.2264347)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.6981317, 2.0943952, 0)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"deactivate_slam"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7wo7f"]
+_data = {
+&"RESET": SubResource("Animation_43ycy"),
+&"slam": SubResource("Animation_ob1mv")
+}
+
+[node name="Slam" type="Area3D" unique_id=1179566306]
+collision_layer = 48
+collision_mask = 6
+script = ExtResource("1_mmmc7")
+
+[node name="SlamBox" type="CollisionShape3D" parent="." unique_id=2070751682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_ilirm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=155167449]
+process_material = SubResource("ParticleProcessMaterial_mmmc7")
+draw_pass_1 = SubResource("SphereMesh_ilirm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1000560132]
+transform = Transform3D(-1.0500001, -1.1690078, 4.4879956, 0, 1.6086932, 4.3484583, -1.8186532, 0.674927, -2.5911458, 3.3113341, -0.1532089, -1.7446636)
+mesh = SubResource("BoxMesh_8bnj1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=451353255]
+transform = Transform3D(2.0135498, 3.349164e-07, 1.9529749, 1.463209, 1.4047409, -2.0156446, -0.84478426, 2.4330833, 1.1637323, -2.1000001, 0, -2.7)
+mesh = SubResource("BoxMesh_8bnj1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=699351235]
+transform = Transform3D(2.3070037, 0.87283397, -3.958336, 0, 1.6182685, 5.1672406, 1.935806, -1.040203, 4.717361, -0.5999999, -2.9, 0.80000013)
+mesh = SubResource("BoxMesh_8bnj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=853699665]
+libraries/ = SubResource("AnimationLibrary_7wo7f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
