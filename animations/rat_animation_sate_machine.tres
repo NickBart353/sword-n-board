@@ -52,7 +52,12 @@ loop_mode = 1
 animation = &"rat animations/Rat_Armature_RunRat"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4k7g"]
-animation = &"rat animations/Rat_Armature_AtackRat"
+animation = &"rat animations/rat_slam"
+use_custom_timeline = true
+timeline_length = 0.8
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l0w81"]
 advance_mode = 2
@@ -152,7 +157,6 @@ animation = &"monster_basics/hitflash"
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-294, 128)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)

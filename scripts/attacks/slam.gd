@@ -6,22 +6,32 @@ extends Area3D
 
 signal slam_finished
 
-var hit: bool = true
+var hit: bool = false
 
 func _ready() -> void:
-	monitoring = true
+	monitoring = false
+
+func _process(_delta: float) -> void:
+	if monitoring and not hit:
+		for body in get_overlapping_bodies():
+			if (body is Player or body is Enemy):
+				hit = true
+				body.take_damage(damage, self)
 
 func play_slam(new_damage: int):
 	damage = new_damage
 	anim_player.play("slam")
 
+func activate_slam():
+	monitoring = true
+
 func deactivate_slam():
 	monitoring = false
 
 func _on_body_entered(body: Node3D) -> void:
-	if not hit and (body is Player or body is Enemy):
-		hit = true
-		body.take_damage(damage, self)
+	pass#if not hit and (body is Player or body is Enemy):
+		#hit = true
+		#body.take_damage(damage, self)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "slam":
