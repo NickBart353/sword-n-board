@@ -129,7 +129,6 @@ animation = &"monster_basics/hitflash"
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-429.55225, -86.47934)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)

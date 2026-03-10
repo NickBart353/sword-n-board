@@ -17,6 +17,9 @@ func play_claw(new_transform: Transform3D, new_damage: int):
 		transform = new_transform
 	anim_player.play("swipe")
 
+func activate_claws():
+	monitoring = true
+
 func _on_body_entered(body: Node3D) -> void:
 	if not hit and (body is Player or body is Enemy):
 		hit = true

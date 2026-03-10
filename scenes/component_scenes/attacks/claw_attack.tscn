@@ -1,128 +1,231 @@
 [gd_scene format=3 uid="uid://daa32y3httqmj"]
 
 [ext_resource type="Script" uid="uid://b5gevgtfnuxcc" path="res://scripts/attacks/claw_attack.gd" id="1_rldec"]
+[ext_resource type="ArrayMesh" uid="uid://6d3a803x7wxj" path="res://my_assets/mesh/claw.obj" id="2_miqum"]
 
-[sub_resource type="Curve" id="Curve_o0hkj"]
-_data = [Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_rldec"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Curve" id="Curve_miqum"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ot6bs"]
-curve_x = SubResource("Curve_o0hkj")
-curve_y = SubResource("Curve_rldec")
-curve_z = SubResource("Curve_miqum")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2b154"]
-directional_velocity_min = -30.000015
-directional_velocity_max = -30.000015
-directional_velocity_curve = SubResource("CurveXYZTexture_ot6bs")
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="Curve" id="Curve_gbuys"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.4797843, 0.21481091), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yffi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot6bs"]
 cull_mode = 2
 shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
 vertex_color_use_as_albedo = true
-albedo_color = Color(3.4831548, 2.7716699, 0.9534309, 1)
-use_particle_trails = true
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_wqovq"]
-material = SubResource("StandardMaterial3D_7yffi")
-shape = 0
-size = 0.27
-section_length = 0.245
-curve = SubResource("Curve_gbuys")
+albedo_color = Color(1.753959, 1.3774077, 0.8596497, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_inetf"]
-size = Vector3(2.2, 5.5, 1)
+size = Vector3(2.2, 4.1, 1)
 
 [sub_resource type="Animation" id="Animation_rldec"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D3:emitting")
+tracks/0/path = NodePath("ClawOne:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles3D2:emitting")
+tracks/1/path = NodePath("ClawOne:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/path = NodePath("HitBoxOne:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(2.9802322e-08, -0.75, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBoxOne:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ClawTwo:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ClawTwo:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBoxTwo:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2.9802322e-08, -0.75, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitBoxTwo:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_miqum"]
 resource_name = "swipe"
-length = 0.21
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D3:emitting")
+tracks/0/path = NodePath("ClawOne:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.3006667, 0.40066668, 0.49996668),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-3.245, 1.94, 0.24), Vector3(-3.245, 2.885, -3.3), Vector3(0.245, 0.21, 2.275), Vector3(4.535, -4.065, -2.85)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles3D2:emitting")
+tracks/1/path = NodePath("ClawOne:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0, 0.3006667, 0.40066668, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.567232, -0.9512044, 0.9512044), Vector3(-0.57595867, -1.134464, 1.1955506), Vector3(-0.47996554, -0.65449846, 1.3788102), Vector3(0.19198622, 0.9773844, 0.9773844)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles3D:emitting")
+tracks/2/path = NodePath("HitBoxOne:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-3.245, 1.94, 0.24), Vector3(-3.245, 2.885, -3.3), Vector3(0.245, 0.21, 2.275), Vector3(4.535, -4.065, -2.85)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitBoxOne:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.567232, -0.9512044, 0.9512044), Vector3(-0.57595867, -1.134464, 1.1955506), Vector3(-0.47996554, -0.65449846, 1.3788102), Vector3(0.19198622, 0.9773844, 0.9773844)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ClawTwo:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(3.245, 1.94, 0.24), Vector3(3.245, 2.885, -3.3), Vector3(-0.245, 0.21, 2.275), Vector3(-4.535, -4.065, -2.85)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ClawTwo:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.567232, 0.9512044, -0.9512044), Vector3(-0.57595867, 1.134464, -1.1955506), Vector3(-0.47996554, 0.65449846, -1.3788102), Vector3(0.19198622, -0.9773844, -0.9773844)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBoxTwo:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(3.245, 1.94, 0.24), Vector3(3.245, 2.885, -3.3), Vector3(-0.245, 0.21, 2.275), Vector3(-4.535, -4.065, -2.85)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitBoxTwo:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.29999793, 0.39991903, 0.5),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [Vector3(-0.567232, 0.9512044, -0.9512044), Vector3(-0.57595867, 1.134464, -1.1955506), Vector3(-0.47996554, 0.65449846, -1.3788102), Vector3(0.19198622, -0.9773844, -0.9773844)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [{
+"args": [],
+"method": &"activate_claws"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ot6bs"]
@@ -132,49 +235,28 @@ _data = {
 }
 
 [node name="ClawAttack" type="Area3D" unique_id=184421249]
+collision_layer = 16
+collision_mask = 6
 script = ExtResource("1_rldec")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=752618573]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8000001, 0)
-emitting = false
-amount = 2
-lifetime = 0.2
-one_shot = true
-fixed_fps = 60
-trail_enabled = true
-trail_lifetime = 0.09999999999999999
-process_material = SubResource("ParticleProcessMaterial_2b154")
-draw_pass_1 = SubResource("RibbonTrailMesh_wqovq")
+[node name="ClawOne" type="MeshInstance3D" parent="." unique_id=77433838]
+material_override = SubResource("StandardMaterial3D_ot6bs")
+mesh = ExtResource("2_miqum")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=475712004]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6999999, 1.8000001, 0)
-emitting = false
-amount = 2
-lifetime = 0.2
-one_shot = true
-fixed_fps = 60
-trail_enabled = true
-trail_lifetime = 0.09999999999999999
-process_material = SubResource("ParticleProcessMaterial_2b154")
-draw_pass_1 = SubResource("RibbonTrailMesh_wqovq")
+[node name="ClawTwo" type="MeshInstance3D" parent="." unique_id=978202003]
+material_override = SubResource("StandardMaterial3D_ot6bs")
+mesh = ExtResource("2_miqum")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=37043564]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7000001, 1.8000001, 0)
-emitting = false
-amount = 2
-lifetime = 0.2
-one_shot = true
-fixed_fps = 60
-trail_enabled = true
-trail_lifetime = 0.09999999999999999
-process_material = SubResource("ParticleProcessMaterial_2b154")
-draw_pass_1 = SubResource("RibbonTrailMesh_wqovq")
+[node name="HitBoxOne" type="CollisionShape3D" parent="." unique_id=192801687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.75, 0)
+shape = SubResource("BoxShape3D_inetf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=192801687]
+[node name="HitBoxTwo" type="CollisionShape3D" parent="." unique_id=205455517]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.75, 0)
 shape = SubResource("BoxShape3D_inetf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1213810050]
 libraries/ = SubResource("AnimationLibrary_ot6bs")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
