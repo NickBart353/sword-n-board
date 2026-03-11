@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://dh06ehim8m2nd"]
 
 [ext_resource type="Script" uid="uid://oi17yy0gne68" path="res://scripts/attacks/slam.gd" id="1_mmmc7"]
+[ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/line_ground_impact/line_ground_impact.tres" id="2_ilirm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ilirm"]
-height = 2.5
+height = 1.275
 radius = 4.0
 
 [sub_resource type="Curve" id="Curve_mmmc7"]
@@ -15,11 +16,11 @@ curve = SubResource("Curve_mmmc7")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mmmc7"]
 direction = Vector3(0, 1, 0)
-spread = 66.6
-initial_velocity_min = 7.0
-initial_velocity_max = 12.0
+spread = 93.762
+initial_velocity_min = 15.0
+initial_velocity_max = 20.0
 scale_curve = SubResource("CurveTexture_ilirm")
-color = Color(0.38672024, 0.3223891, 0.27943194, 1)
+color = Color(0.53522664, 0.35218346, 0.23481596, 1)
 hue_variation_min = -1.0
 hue_variation_max = -0.9
 
@@ -41,12 +42,38 @@ albedo_color = Color(0.27584755, 0.21596727, 0.18466526, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_8bnj1"]
 material = SubResource("StandardMaterial3D_kd2u2")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kd2u2"]
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_8bnj1"]
+offsets = PackedFloat32Array(0.47945204, 0.66210043, 0.91780823)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_43ycy"]
+gradient = SubResource("Gradient_8bnj1")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob1mv"]
+render_priority = 0
+shader = ExtResource("2_ilirm")
+shader_parameter/ImpactColor = Color(0.8219938, 0.8249999, 0.7983366, 1)
+shader_parameter/ImpactSpeed = Vector2(0, 0.7)
+shader_parameter/Gradient = SubResource("GradientTexture2D_43ycy")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7wo7f"]
+material = SubResource("ShaderMaterial_ob1mv")
+top_radius = 10.815
+bottom_radius = 0.415
+height = 2.28
+cap_top = false
+cap_bottom = false
+
 [sub_resource type="Animation" id="Animation_43ycy"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D3:position")
+tracks/0/path = NodePath("RockThree:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,7 +85,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D3:rotation")
+tracks/1/path = NodePath("RockThree:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -70,7 +97,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D2:position")
+tracks/2/path = NodePath("RockTwo:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -82,7 +109,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D2:rotation")
+tracks/3/path = NodePath("RockTwo:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -94,7 +121,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MeshInstance3D:position")
+tracks/4/path = NodePath("RockOne:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -106,7 +133,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MeshInstance3D:rotation")
+tracks/5/path = NodePath("RockOne:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -118,7 +145,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("GPUParticles3D:emitting")
+tracks/6/path = NodePath("DustParticles:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -138,80 +165,93 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(),
 "values": []
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ImpactTexture:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ob1mv"]
 resource_name = "slam"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D3:position")
+tracks/0/path = NodePath("RockThree:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(2.1708353, -6.5170684, -2.5021524), Vector3(-0.8770837, -2.538293, 1.1302158)]
+"values": [Vector3(2.1708353, -6.5170684, -2.5021524), Vector3(-0.8770837, -2.538293, 1.1302158), Vector3(-0.8770837, -2.538293, 1.1302158), Vector3(2.1708353, -6.5170684, -2.5021524)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D3:rotation")
+tracks/1/path = NodePath("RockThree:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.69813174, -0.69813174, 0)]
+"values": [Vector3(-0.69813174, -0.69813174, 0), Vector3(-0.69813174, -0.69813174, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeshInstance3D2:position")
+tracks/2/path = NodePath("RockTwo:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-2.1000001, -5.6, -2.7), Vector3(-2.1000001, -1.3999996, -2.7)]
+"values": [Vector3(-2.1000001, -5.6, -2.7), Vector3(-2.1000001, -1.3999996, -2.7), Vector3(-2.1000001, -1.3999996, -2.7), Vector3(-2.1000001, -5.6, -2.7)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MeshInstance3D2:rotation")
+tracks/3/path = NodePath("RockTwo:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.7253724, 1.0334141, 0.8389779)]
+"values": [Vector3(0.7253724, 1.0334141, 0.8389779), Vector3(0.7253724, 1.0334141, 0.8389779)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MeshInstance3D:position")
+tracks/4/path = NodePath("RockOne:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-7.0110555, -10.154662, 4.2149715), Vector3(1.5161366, -1.8925903, -0.7082055)]
+"values": [Vector3(-7.0110555, -10.154662, 4.2149715), Vector3(1.5161366, -1.8925903, -0.7082055), Vector3(1.5161366, -1.8925903, -0.7082055), Vector3(-7.0110555, -10.154662, 4.2149715)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("MeshInstance3D:rotation")
+tracks/5/path = NodePath("RockOne:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.6981317, 2.0943952, 0)]
+"values": [Vector3(-0.6981317, 2.0943952, 0), Vector3(-0.6981317, 2.0943952, 0)]
 }
 tracks/6/type = "method"
 tracks/6/imported = false
@@ -233,10 +273,22 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("GPUParticles3D:emitting")
+tracks/7/path = NodePath("DustParticles:emitting")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ImpactTexture:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -255,12 +307,13 @@ collision_mask = 6
 script = ExtResource("1_mmmc7")
 
 [node name="SlamBox" type="CollisionShape3D" parent="." unique_id=2070751682]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36249998, 0)
 shape = SubResource("CylinderShape3D_ilirm")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=155167449]
+[node name="DustParticles" type="GPUParticles3D" parent="." unique_id=155167449]
 emitting = false
-amount = 15
+amount = 25
+lifetime = 0.4
 one_shot = true
 explosiveness = 0.84
 randomness = 0.25
@@ -269,17 +322,27 @@ trail_lifetime = 1.0
 process_material = SubResource("ParticleProcessMaterial_mmmc7")
 draw_pass_1 = SubResource("SphereMesh_ilirm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1000560132]
+[node name="RockOne" type="MeshInstance3D" parent="." unique_id=1000560132]
 transform = Transform3D(-1.0500001, -1.1690078, 4.4879956, 0, 1.6086932, 4.3484583, -1.8186532, 0.674927, -2.5911458, 3.311, -10.165, -1.745)
 mesh = SubResource("BoxMesh_8bnj1")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=451353255]
+[node name="RockTwo" type="MeshInstance3D" parent="." unique_id=451353255]
 transform = Transform3D(2.0135498, 3.349164e-07, 1.9529749, 1.463209, 1.4047409, -2.0156446, -0.84478426, 2.4330833, 1.1637323, -2.1, -10.165, -2.7)
 mesh = SubResource("BoxMesh_8bnj1")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=699351235]
+[node name="RockThree" type="MeshInstance3D" parent="." unique_id=699351235]
 transform = Transform3D(2.3070037, 0.87283397, -3.958336, 0, 1.6182685, 5.1672406, 1.935806, -1.040203, 4.717361, -0.6, -10.165, 0.8)
 mesh = SubResource("BoxMesh_8bnj1")
+
+[node name="ImpactTexture" type="GPUParticles3D" parent="." unique_id=1335438928]
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_kd2u2")
+draw_pass_1 = SubResource("CylinderMesh_7wo7f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=853699665]
 libraries/ = SubResource("AnimationLibrary_7wo7f")

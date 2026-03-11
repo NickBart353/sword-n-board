@@ -35,6 +35,7 @@ default_input_values = [1, Vector2(1, 1), 2, Vector2(0, 0.505)]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_5or3k"]
 parameter_name = "Gradient"
+texture_repeat = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7t11u"]
 expanded_output_ports = [0]

@@ -19,7 +19,7 @@ var ability_three: bool
 func get_input(_delta: float):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	jump = Input.is_action_just_pressed("jump")
-	dash = Input.is_action_pressed("dash")
+	dash = Input.is_action_just_pressed("dash")
 	freefly = Input.is_action_just_pressed("freefly")
 	primary = Input.is_action_just_pressed("primary")
 	attack = Input.is_action_pressed("primary")

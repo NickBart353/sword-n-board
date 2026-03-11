@@ -1,7 +1,75 @@
-[gd_scene format=3 uid="uid://cyxq2it8nf4ia"]
+[gd_scene format=4 uid="uid://cyxq2it8nf4ia"]
 
 [ext_resource type="Script" uid="uid://gfr5q01qg5n" path="res://scripts/item_entity/consumable/potion.gd" id="1_gjl3w"]
 [ext_resource type="PackedScene" uid="uid://dh2oafigdqfcq" path="res://assets/RPG_ITEMS_V.1/RPG_ITENS_V.1/BLEND/BLEND/MinorPotion_Health.blend" id="2_iyr0x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf76s"]
+resource_name = "Stopper01"
+cull_mode = 2
+albedo_color = Color(0.71372557, 0.6117647, 0.32941183, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipm26"]
+resource_name = "HealthMinor"
+cull_mode = 2
+albedo_color = Color(0.74509805, 0.15686253, 0.10588241, 1)
+roughness = 0.5
+backlight_enabled = true
+backlight = Color(0.65012825, 0.6501283, 0.6501282, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mx1ax"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2.0135522, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Stopper01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}, {
+"aabb": AABB(-1.813016, -5.9005103, -1.7946501, 3.626032, 5.9005103, 3.5893154),
+"format": 34359742465,
+"index_count": 126,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAQAFAAMABAAGAAEAAQAGAAUABAAHAAYAAwAFAAgACQAFAAYAAgADAAoACwAFAAkACwAIAAUACQAGAAwADAAGAAcADAAKAAkADAACAAoACQANAAsACQAKAA0ACwANAAAADgAIAAsADAAHAA4ADgACAAwADgAHAAgACwAAAA4ADgAAAAIADwAIAAcAAwAIAA8ADwAHAAQACgADAA8ADQAPAAQACgAPAA0ADQAEAAAAEAACAAoAEQANAAAAEgAAAAIAEgARAAAAEAASAAIAEQATAA0AEwAKAA0AEgATABEAEwAQAAoAEgAQABMA"),
+"name": "HealthMinor",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("1MCGP69qE79FY4W/bYubv69qE7/495m/1MCGv69qE79FY4W/bYubv69qE794+Jk/bYubP69qE7/495m/bYubvwAAAAB4+Jk/bYubvwAAAAD495m/bYubPwAAAAD495m/bYubPwAAAAB4+Jk/pi59vwAAAADYnno/1MCGv69qE7/FY4U/pi59PwAAAADYnno/pi59vwAAAADYnXq/1MCGP69qE7/FY4U/pi59PwAAAADYnXq/bYubP69qE794+Jk/6RDov/vQvMCYt+U/6RDoP/vQvMAYt+W/6RDov/vQvMAYt+W/6RDoP/vQvMCYt+U/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_iyr0x"]
+resource_name = "MinorPotion_Health_Cube_004"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2.0135522, 2),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_mf76s"),
+"name": "Stopper01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAFTV////////VNX/////AABU1f//AAD//1TV//8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAP//AAD///////8AAP//AAD/////////////VNVU1VTVVNVU1VTVVNVU1f+//7//v/+//7//v/+//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
+}, {
+"aabb": AABB(-1.813016, -5.9005103, -1.7946501, 3.626032, 5.9005103, 3.5893154),
+"attribute_data": PackedByteArray("AAAgPwAAAD8AACA/AABAPwAAID8AAEA/AAAgPwAAgD8AACA/AACAPwAAID8AAAA/AAAgPwAAgD4AACA/AACAPgAAID8AAAAAAAAgPwAAAAAAAMA+AACAPgAAID8AAAAAAAAgPwAAgD4AAMA+AAAAAAAAwD4AAIA/AAAgPwAAQD8AACA/AACAPwAAwD4AAEA/AAAAPgAAAD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAgD4AAMA+AAAAPwAAID8AAIA+AAAgPwAAAD8AAMA+AACAPgAAwD4AAEA/AAAgPwAAAD8AACA/AABAPwAAwD4AAAA/AAAgPwAAQD8AACA/AACAPwAAID8AAIA/AAAgPwAAQD8AACA/AAAAAAAAID8AAIA+AAAgPwAAgD4AACA/AAAAAAAAID8AAAA/AAAgPwAAQD8AACA/AABAPwAAID8AAAA/AAAgPwAAgD4AACA/AAAAPwAAID8AAAA/AAAgPwAAgD4kNCc/SGiOPgAAYD8AAIA+3MtYP0Zojj4AAGA/AAAAPwAAID8AAIA+3stYP7aX8T4kNCc/upfxPgAAID8AAAA/JDQnP0hojj4AACA/AAAAPyQ0Jz+6l/E+AAAgPwAAgD4kNCc/upfxPgAAID8AAEA/3stYP7aX8T4AACA/AAAAP97LWD+2l/E+AAAgPwAAgD/cy1g/RmiOPgAAID8AAEA/3MtYP0Zojj4AACA/AACAPiQ0Jz9IaI4+AAAgPwAAAAA="),
+"format": 34359742487,
+"index_count": 126,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAABgAHAAUACAAHAAYACAAJAAcACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAAMAAvADEALgAyAC8AMAAxADMANAAyAC4AMwAxADUANAA1ADIAMwA1ADQANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMA"),
+"material": SubResource("StandardMaterial3D_ipm26"),
+"name": "HealthMinor",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 70,
+"vertex_data": PackedByteArray("1MCGP69qE79FY4W/bYubv69qE7/495m/1MCGv69qE79FY4W/bYubv69qE794+Jk/1MCGv69qE7/FY4U/bYubP69qE7/495m/1MCGP69qE7/FY4U/bYubP69qE794+Jk/1MCGv69qE7/FY4U/bYubv69qE794+Jk/6RDoP/vQvMCYt+U/1MCGv69qE7/FY4U/1MCGP69qE7/FY4U/6RDov/vQvMCYt+U/6RDov/vQvMCYt+U/1MCGv69qE79FY4W/1MCGv69qE7/FY4U/6RDov/vQvMAYt+W/6RDov/vQvMAYt+W/6RDoP/vQvMCYt+U/6RDoP/vQvMAYt+W/6RDov/vQvMCYt+U/6RDoP/vQvMAYt+W/1MCGP69qE7/FY4U/1MCGP69qE79FY4W/6RDoP/vQvMCYt+U/6RDov/vQvMAYt+W/1MCGP69qE79FY4W/1MCGv69qE79FY4W/6RDoP/vQvMAYt+W/bYubv69qE7/495m/bYubvwAAAAB4+Jk/bYubv69qE794+Jk/bYubvwAAAAD495m/bYubv69qE794+Jk/bYubPwAAAAB4+Jk/bYubP69qE794+Jk/bYubvwAAAAB4+Jk/bYubP69qE7/495m/bYubvwAAAAD495m/bYubv69qE7/495m/bYubPwAAAAD495m/bYubP69qE794+Jk/bYubPwAAAAD495m/bYubP69qE7/495m/bYubPwAAAAB4+Jk/pi59PwAAAADYnno/bYubvwAAAAB4+Jk/pi59vwAAAADYnno/bYubvwAAAAD495m/bYubPwAAAAB4+Jk/pi59vwAAAADYnXq/pi59PwAAAADYnXq/bYubPwAAAAD495m/pi59PwAAAADYnno/1MCGP69qE79FY4W/pi59PwAAAADYnXq/1MCGP69qE7/FY4U/pi59PwAAAADYnXq/1MCGv69qE79FY4W/pi59vwAAAADYnXq/1MCGP69qE79FY4W/pi59vwAAAADYnXq/1MCGv69qE7/FY4U/pi59vwAAAADYnno/1MCGv69qE79FY4W/pi59vwAAAADYnno/1MCGP69qE7/FY4U/pi59PwAAAADYnno/1MCGv69qE7/FY4U//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//f9ePmZYk/P9/14+TbPT9/3/Xj6xj4fj/f9ePUpzh+PwP/I8Ij6P0/A/8j5mTQvj8D/yPUpzh+PwP/I87jtXx/38AAP///7//fwAA////v/9/AAD///+//38AAP///78C8PyPSWl6+ALw/I+GcDH2AvD8j8Nx1fEC8PyPrGPh+Cbw//9LeLH0JvD//xSESPYm8P//O47V8Sbw///DcdXxAAD/f////78AAP9/////vwAA/3////+/AAD/f////7//f/9/////P/9//3////8//3//f////z//f/9/////P/////////8//////////z//////////P/////////8/////f////7////9/////v////3////+/////f////7//f///ywr/v/9///8AAOLF/3///wAAasf/f///+gv/v/9////6C/+//3///8sK/7//f///AABqx/9///8AAOLFwww7cxN1rQ7DDDtz+V00BcMMO3OeVb0Ewww7c/B1jxL/f1lzAAD/P/9/WXMGHF4z/39ZczAYGDX/f1lzTAYpPTvzO3M96jQBO/M7cz2BaTo78ztzCYLINjvzO3O+4p4BWPMAAM0V5zNY8wAArQXZPFjzAAAAAP8/WPMAAEIZ/DE=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mx1ax")
 
 [node name="HealthPotion" type="Node3D" unique_id=2078521406]
 script = ExtResource("1_gjl3w")
@@ -11,3 +79,13 @@ metadata/_custom_type_script = "uid://gfr5q01qg5n"
 
 [node name="MinorPotion_Health2" parent="." unique_id=501202433 instance=ExtResource("2_iyr0x")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.22000001, 0)
+
+[node name="MinorPotion_Health" parent="MinorPotion_Health2" index="0" unique_id=869469411]
+mesh = SubResource("ArrayMesh_iyr0x")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1557890563]
+light_color = Color(2.5395844, 0, 0.037070394, 1)
+light_energy = 0.175
+omni_range = 0.4
+
+[editable path="MinorPotion_Health2"]

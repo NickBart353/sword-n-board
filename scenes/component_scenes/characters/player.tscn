@@ -989,6 +989,7 @@ script = ExtResource("4_v1vyy")
 [node name="MovementController" type="Node" parent="." unique_id=1578698618 node_paths=PackedStringArray("player")]
 script = ExtResource("4_wbsrb")
 player = NodePath("..")
+dash_distance = 5
 
 [node name="AbilityController" type="Node" parent="." unique_id=2010557984]
 script = ExtResource("5_1e104")

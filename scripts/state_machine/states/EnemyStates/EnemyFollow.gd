@@ -1,8 +1,8 @@
 extends EnemyState
 
-@export var follow_speed: int = 1
-@export var attack_range: int = -1
-@export var follow_range: int = 50
+@export var follow_speed: float = 1
+@export var attack_range: float = 0
+@export var follow_range: float = 50
 @export var look_at_player: bool = true
 
 var ability_states: Array[Node]
@@ -32,9 +32,3 @@ func Physics_Update(delta: float) -> void:
 		if ability.ready_to_use():
 			Transitioned.emit(self, ability.name)
 			return
-	#if (distance.length() < attack_range and not $"../../Timers/PoisonTimer".time_left):
-		#Transitioned.emit(self, "Channeling")
-		#return
-	#if distance.length() < attack_range:
-		#Transitioned.emit(self, "Locked")
-		#return

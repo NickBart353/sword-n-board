@@ -53,6 +53,8 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 		player.velocity = dashing_direction * dash_speed
 		if player.global_position.distance_to(dashing_origin) > dash_distance or player.is_on_wall():
 			dashing = false
+			player.velocity.x = 0
+			player.velocity.z = 0
 			if not player.is_on_floor():
 				falling = true
 
