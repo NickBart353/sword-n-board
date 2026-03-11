@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dh06ehim8m2nd"]
 
 [ext_resource type="Script" uid="uid://oi17yy0gne68" path="res://scripts/attacks/slam.gd" id="1_mmmc7"]
-[ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/line_ground_impact/line_ground_impact.tres" id="2_ilirm"]
+[ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/ground_impact/line_ground_impact.tres" id="2_ilirm"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ilirm"]
 height = 1.275
-radius = 4.0
+radius = 5.04
 
 [sub_resource type="Curve" id="Curve_mmmc7"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1734092, 0.0, 0, 0]
@@ -45,23 +45,23 @@ material = SubResource("StandardMaterial3D_kd2u2")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kd2u2"]
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="Gradient" id="Gradient_8bnj1"]
+[sub_resource type="Gradient" id="Gradient_ilirm"]
 offsets = PackedFloat32Array(0.47945204, 0.66210043, 0.91780823)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_43ycy"]
-gradient = SubResource("Gradient_8bnj1")
+gradient = SubResource("Gradient_ilirm")
 fill_from = Vector2(1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ob1mv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kd2u2"]
 render_priority = 0
 shader = ExtResource("2_ilirm")
-shader_parameter/ImpactColor = Color(0.8219938, 0.8249999, 0.7983366, 1)
+shader_parameter/ImpactColor = Color(2.9579966, 2.930239, 2.036927, 1)
 shader_parameter/ImpactSpeed = Vector2(0, 0.7)
 shader_parameter/Gradient = SubResource("GradientTexture2D_43ycy")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7wo7f"]
-material = SubResource("ShaderMaterial_ob1mv")
+material = SubResource("ShaderMaterial_kd2u2")
 top_radius = 10.815
 bottom_radius = 0.415
 height = 2.28
@@ -335,6 +335,7 @@ transform = Transform3D(2.3070037, 0.87283397, -3.958336, 0, 1.6182685, 5.167240
 mesh = SubResource("BoxMesh_8bnj1")
 
 [node name="ImpactTexture" type="GPUParticles3D" parent="." unique_id=1335438928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 emitting = false
 amount = 1
 lifetime = 0.3

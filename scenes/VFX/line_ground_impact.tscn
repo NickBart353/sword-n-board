@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bxi43i32hake2"]
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_rgg5p"]
-[ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/line_ground_impact/line_ground_impact.tres" id="2_lma8k"]
+[ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/ground_impact/line_ground_impact.tres" id="2_lma8k"]
 
 [sub_resource type="Curve" id="Curve_lma8k"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

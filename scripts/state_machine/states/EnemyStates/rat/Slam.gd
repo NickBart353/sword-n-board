@@ -13,6 +13,7 @@ func Enter():
 	add_child(slam_instance)
 	slam_instance.global_position = slam_position.global_position
 	slam_instance.slam_finished.connect(_slam_finished)
+	VfxManager.create_vfx_from_enum(VfxManager.VFX.CHANNELING_GROUND_IMPACT_LONG, slam_position.global_position)
 
 func slam():
 	if slam_instance:
