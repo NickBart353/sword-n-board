@@ -1,10 +1,10 @@
 [gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://dv34gxw2ten1h"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_outyk"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i1xyo"]
-animation = &"wasp/Attack"
+animation = &"wasp-new/AtackWasp"
 play_mode = 1
 use_custom_timeline = true
 timeline_length = 0.1
@@ -13,13 +13,13 @@ start_offset = 0.0
 loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_treog"]
-animation = &"wasp/Death"
+animation = &"wasp-new/DeathWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3gwer"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wo36"]
-animation = &"wasp/Attack"
+animation = &"wasp-new/AtackWasp"
 use_custom_timeline = true
 timeline_length = 0.3
 stretch_time_scale = true
@@ -27,22 +27,22 @@ start_offset = 0.0
 loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_btnlr"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_52jpp"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4gcc"]
-animation = &"wasp/Attack"
+animation = &"wasp-new/AtackWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nsq2h"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_645re"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfb5g"]
-animation = &"wasp/Flying"
+animation = &"wasp-new/FlyingWasp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0js2i"]
 xfade_time = 0.5
@@ -76,9 +76,6 @@ advance_expression = "current_state.name == \"Dead\""
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1bau"]
 xfade_time = 0.5
 advance_expression = "current_state.name == \"Dead\""
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yw4ec"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_treog"]
 xfade_time = 0.5
@@ -170,5 +167,5 @@ states/Resetting/position = Vector2(274, -297)
 states/Return/node = SubResource("AnimationNodeAnimation_xfb5g")
 states/Return/position = Vector2(274, 179)
 states/Start/position = Vector2(-42, 79)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Dead", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Dead", "End", SubResource("AnimationNodeStateMachineTransition_yw4ec"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Dead", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Dead", SubResource("AnimationNodeStateMachineTransition_8wo36"), "Follow", "Channeling", SubResource("AnimationNodeStateMachineTransition_645re"), "Channeling", "Fire", SubResource("AnimationNodeStateMachineTransition_u6q5m"), "Fire", "Follow", SubResource("AnimationNodeStateMachineTransition_3gwer"), "Channeling", "Dead", SubResource("AnimationNodeStateMachineTransition_6eufi"), "Fire", "Dead", SubResource("AnimationNodeStateMachineTransition_awi1o"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_qm4s7"), "Recovering", "Resetting", SubResource("AnimationNodeStateMachineTransition_at8f8"), "Dashing", "Resetting", SubResource("AnimationNodeStateMachineTransition_cc314"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_3r488"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_0bffu"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_f2g7w")]
-graph_offset = Vector2(-253.88661, -344)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0js2i"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_u3q3j"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_llskb"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_mr4ld"), "Follow", "Locked", SubResource("AnimationNodeStateMachineTransition_2w86e"), "Locked", "Dead", SubResource("AnimationNodeStateMachineTransition_gindt"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_qldpb"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_c1bau"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_treog"), "Recovering", "Dead", SubResource("AnimationNodeStateMachineTransition_i1xyo"), "Locked", "Dashing", SubResource("AnimationNodeStateMachineTransition_outyk"), "Dashing", "Recovering", SubResource("AnimationNodeStateMachineTransition_exisn"), "Dashing", "Dead", SubResource("AnimationNodeStateMachineTransition_8wo36"), "Follow", "Channeling", SubResource("AnimationNodeStateMachineTransition_645re"), "Channeling", "Fire", SubResource("AnimationNodeStateMachineTransition_u6q5m"), "Fire", "Follow", SubResource("AnimationNodeStateMachineTransition_3gwer"), "Channeling", "Dead", SubResource("AnimationNodeStateMachineTransition_6eufi"), "Fire", "Dead", SubResource("AnimationNodeStateMachineTransition_awi1o"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_qm4s7"), "Recovering", "Resetting", SubResource("AnimationNodeStateMachineTransition_at8f8"), "Dashing", "Resetting", SubResource("AnimationNodeStateMachineTransition_cc314"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_3r488"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_0bffu"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_f2g7w")]
+graph_offset = Vector2(-282.8866, -166)
