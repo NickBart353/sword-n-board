@@ -14,6 +14,11 @@
 [ext_resource type="Script" uid="uid://djjedm2u4b7a0" path="res://scripts/PlayerController/abilities/block.gd" id="11_1e104"]
 [ext_resource type="Script" uid="uid://csivj4fpb0ekx" path="res://scripts/PlayerController/abilities/light.gd" id="11_bnsrg"]
 [ext_resource type="Script" uid="uid://bsapn6js1uc0u" path="res://scripts/PlayerController/abilities/consume.gd" id="13_i5qjy"]
+[ext_resource type="Script" uid="uid://76adg1knc3xr" path="res://scripts/PlayerController/audio_controller.gd" id="14_v1vyy"]
+[ext_resource type="AudioStream" uid="uid://bas55kwetn8k6" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Dirt/Dirt Walk 1.ogg" id="16_4bg8r"]
+[ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="16_81e7k"]
+[ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="17_81e7k"]
+[ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="18_du382"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -22,6 +27,34 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
 radius = 0.55
 height = 2.0875
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i5qjy"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("16_4bg8r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ykwct"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("16_81e7k")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w8vq5"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("18_du382")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aeb6f"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("17_81e7k")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oijqy"]
 bg_color = Color(1, 0.2, 0.21568628, 1)
@@ -908,6 +941,13 @@ states/Sword3/position = Vector2(517, 221)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl"), "Light1", "Idle", SubResource("AnimationNodeStateMachineTransition_6arjy"), "Idle", "Light1", SubResource("AnimationNodeStateMachineTransition_m2pt1"), "Idle", "Consume1", SubResource("AnimationNodeStateMachineTransition_6xk8q"), "Consume1", "Idle", SubResource("AnimationNodeStateMachineTransition_2pv4g")]
 graph_offset = Vector2(-260, 6.083837)
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_v1vyy"]
+loop = false
+stream_count = 3
+stream_0 = SubResource("AudioStreamRandomizer_aeb6f")
+stream_1 = SubResource("AudioStreamRandomizer_w8vq5")
+stream_2 = SubResource("AudioStreamRandomizer_ykwct")
+
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 2
 collision_mask = 15
@@ -989,7 +1029,9 @@ script = ExtResource("4_v1vyy")
 [node name="MovementController" type="Node" parent="." unique_id=1578698618 node_paths=PackedStringArray("player")]
 script = ExtResource("4_wbsrb")
 player = NodePath("..")
+dash_speed = 40
 dash_distance = 5
+falling_time_threshold = 0.9
 
 [node name="AbilityController" type="Node" parent="." unique_id=2010557984]
 script = ExtResource("5_1e104")
@@ -1019,6 +1061,13 @@ player = NodePath("../..")
 [node name="Consume" type="Node" parent="AbilityController" unique_id=603745982 node_paths=PackedStringArray("player")]
 script = ExtResource("13_i5qjy")
 player = NodePath("../..")
+
+[node name="AudioController" type="Node" parent="." unique_id=1377078437]
+script = ExtResource("14_v1vyy")
+walk_sfx = SubResource("AudioStreamRandomizer_i5qjy")
+jump_sfx = SubResource("AudioStreamRandomizer_ykwct")
+land_sfx = SubResource("AudioStreamRandomizer_w8vq5")
+dash_sfx = SubResource("AudioStreamRandomizer_aeb6f")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
 script = ExtResource("6_1e104")
@@ -1073,6 +1122,17 @@ callback_mode_method = 1
 tree_root = SubResource("AnimationNodeStateMachine_5e2me")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
+stream = SubResource("AudioStreamRandomizer_i5qjy")
+max_polyphony = 4
+
+[node name="MovementOneShotPlayer" type="AudioStreamPlayer3D" parent="." unique_id=2073203264]
+stream = SubResource("AudioStreamPlaylist_v1vyy")
+
+[node name="VoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1748990333]
+
+[node name="AbilityPlayer" type="AudioStreamPlayer3D" parent="." unique_id=678267518]
 
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/CastAttack" method="_on_attack_timer_timeout"]

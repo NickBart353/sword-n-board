@@ -10,6 +10,7 @@ signal spawn_projectile
 @onready var movement = $MovementController
 @onready var ability = $AbilityController
 @onready var animation = $AnimationController
+@onready var audio = $AudioController
 @onready var head: Node3D = $Head
 @onready var left_hand = $Head/FieldOfView/LeftHand
 @onready var right_hand = $Head/FieldOfView/RightHand
@@ -62,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	movement.apply_movement(input, state_controller, delta)
 	ability.apply_abilities(input, state_controller, movement, delta)
 	animation.apply_animations(input, state_controller, movement, ability, delta)
+	audio.apply_audio(state_controller, movement, ability)
 	
 	if not state_controller.current_state == StateController.STATE.CONSUMING:
 		interact_with_object()

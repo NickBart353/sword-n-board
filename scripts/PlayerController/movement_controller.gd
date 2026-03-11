@@ -5,15 +5,23 @@ extends Node
 @export var jump_velocity: int = 5
 @export var dash_speed: int = 50
 @export var dash_distance: int = 10
+@export_range(0.0, 5.0) var falling_time_threshold: float = 0.5
 
 var dashing: bool
+var dash_started: bool
 var jumping: bool
 var moving: bool
 var falling: bool
+var landed: bool
+var is_on_floor: bool
+
 var dashing_direction: Vector3
 var dashing_origin: Vector3
 
+var air_time: float = 0.0
+
 func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
+	dash_started = false
 	if not input.dash and not dashing:
 		var move_dir := (player.transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 		if move_dir and not jumping and not falling:
@@ -32,6 +40,19 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			falling = true
 		if jumping and player.is_on_floor():
 			jumping = false
+		if player.is_on_floor() and landed:
+			landed = false
+		if is_on_floor:
+			if air_time > falling_time_threshold:
+				landed = true
+			air_time = 0.0
+		else:
+			air_time += delta
+			is_on_floor = false
+		if player.is_on_floor():
+			is_on_floor = true
+		else:
+			is_on_floor = false
 		if player.is_on_floor() and input.jump:
 			player.velocity.y = jump_velocity
 			jumping = true
@@ -39,6 +60,7 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			falling = false
 	else:
 		if not dashing:
+			dash_started = true
 			dashing = true
 			dashing_origin = player.global_position
 			if not input.direction:
