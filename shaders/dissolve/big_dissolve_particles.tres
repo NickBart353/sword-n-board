@@ -24,15 +24,15 @@ keep_scale = true
 [resource]
 modes/blend = 1
 modes/cull = 2
-flags/depth_prepass_alpha = true
-flags/sss_mode_skin = true
 flags/unshaded = true
 flags/shadows_disabled = true
 flags/ambient_light_disabled = true
 flags/fog_disabled = true
+flags/specular_occlusion_disabled = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_f47xy")
 nodes/vertex/2/position = Vector2(-20, 420)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/0/position = Vector2(400, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_16xbw")
 nodes/fragment/2/position = Vector2(-100, 220)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_mf6h2")

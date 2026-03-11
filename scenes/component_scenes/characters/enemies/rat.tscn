@@ -26,30 +26,31 @@
 [ext_resource type="Script" uid="uid://cmc2emp2ajmba" path="res://scripts/state_machine/states/EnemyStates/rat/slam_two.gd" id="23_kqh87"]
 [ext_resource type="PackedScene" uid="uid://cj8pj230ayap1" path="res://scenes/component_scenes/attacks/big_slam_attack.tscn" id="24_4mpa1"]
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="24_j6d1h"]
+[ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="26_lj3t4"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_iskec"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lj3t4"]
 parameter_name = "MainTexture"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kqh87"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1gwp6"]
 source = 5
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_j6d1h"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fa8dt"]
 parameter_name = "Metallic"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_4mpa1"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_kvbwt"]
 parameter_name = "Roughness"
 hint = 1
 
-[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_lj3t4"]
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_i1nge"]
 constant = Color(0.003921569, 0.003921569, 0, 1)
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_1gwp6"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_buci7"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_fa8dt"]
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_oeobn"]
 parameter_name = "Color"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
@@ -61,56 +62,56 @@ noise = SubResource("FastNoiseLite_wvk24")
 seamless = true
 seamless_blend_skirt = 0.488
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kvbwt"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sn8vi"]
 texture = SubResource("NoiseTexture2D_drxrv")
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_i1nge"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_vx5t5"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_buci7"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lmxkh"]
 parameter_name = "DissolveStrength"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_oeobn"]
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_x5lcn"]
 function = 31
 
-[sub_resource type="VisualShader" id="VisualShader_sn8vi"]
+[sub_resource type="VisualShader" id="VisualShader_snx0w"]
 resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_kvbwt")
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_sn8vi")
 nodes/fragment/3/position = Vector2(-980, -140)
-nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_i1nge")
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_vx5t5")
 nodes/fragment/4/position = Vector2(-140, 720)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_buci7")
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_lmxkh")
 nodes/fragment/8/position = Vector2(-460, 720)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_oeobn")
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_x5lcn")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_iskec")
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_lj3t4")
 nodes/fragment/10/position = Vector2(-540, -380)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_kqh87")
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_1gwp6")
 nodes/fragment/11/position = Vector2(-480, -560)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_j6d1h")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_fa8dt")
 nodes/fragment/12/position = Vector2(-520, 100)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_4mpa1")
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_kvbwt")
 nodes/fragment/13/position = Vector2(-160, 220)
-nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_lj3t4")
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_i1nge")
 nodes/fragment/14/position = Vector2(140, 340)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_1gwp6")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_buci7")
 nodes/fragment/15/position = Vector2(-80, -560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_fa8dt")
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_oeobn")
 nodes/fragment/16/position = Vector2(-400, -760)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vx5t5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cx1i"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_sn8vi")
+shader = SubResource("VisualShader_snx0w")
 shader_parameter/MainTexture = ExtResource("4_p737n")
 shader_parameter/Color = Color(0.65012825, 0.6501283, 0.6501282, 1)
 shader_parameter/Metallic = 0.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmxkh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjha4"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_ijteo")
@@ -564,63 +565,62 @@ transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06,
 
 [node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=684709170]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
-bones/1/rotation = Quaternion(-4.497857e-17, -8.82744e-11, -0.07285598, 0.9973426)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
-bones/2/rotation = Quaternion(0.033134498, -2.0783765e-10, 1.4300622e-09, 0.999451)
+bones/2/rotation = Quaternion(0.033134498, -9.592799e-11, 2.89353e-09, 0.999451)
 bones/3/position = Vector3(2.7943134e-17, 0.035011638, 5.0474513e-10)
-bones/3/rotation = Quaternion(-0.033127207, 0.00046284846, 0.0139604565, 0.9993536)
+bones/3/rotation = Quaternion(-0.03167324, 0.009731412, 0.29353312, 0.9553746)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/position = Vector3(-6.691533e-17, 0.036299333, -2.7045108e-10)
-bones/4/rotation = Quaternion(0.11517733, -0.031428743, -0.26136512, 0.95782816)
+bones/4/rotation = Quaternion(0.14066617, -0.14540954, -0.04526246, 0.9782743)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(0.011307207, 0.0059834784, -0.0077325143)
-bones/5/rotation = Quaternion(0.83124185, 0.19282727, 0.19279048, -0.48444477)
+bones/5/rotation = Quaternion(0.63654417, 0.5870041, 0.09076141, -0.49193513)
 bones/5/scale = Vector3(1, 1, 0.99999994)
 bones/7/position = Vector3(-0.011307205, 0.0059834784, -0.007732516)
-bones/7/rotation = Quaternion(0.8312418, -0.19282724, -0.1927904, -0.48444465)
+bones/7/rotation = Quaternion(0.63654417, -0.58700407, -0.090761416, -0.49193513)
 bones/7/scale = Vector3(1, 0.99999994, 1.0000002)
 bones/9/position = Vector3(0.02200493, 0.022545217, 0.009580314)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/position = Vector3(-4.1633363e-17, 0.019717818, 6.679613e-10)
-bones/10/rotation = Quaternion(1.6938015e-08, 1.8626453e-08, 6.730727e-16, 1)
+bones/10/rotation = Quaternion(0.030071303, 0.16054636, 0.18163185, 0.96970636)
 bones/11/position = Vector3(0, 0.014769029, 0)
-bones/11/rotation = Quaternion(-1.26600685e-08, -6.5504494e-08, -0.6782689, 0.7348138)
+bones/11/rotation = Quaternion(-1.1858286e-08, -6.957739e-08, -0.6782689, 0.7348138)
 bones/11/scale = Vector3(0.99999994, 1.0000001, 1)
 bones/13/position = Vector3(-0.022004932, 0.022545217, 0.00958031)
 bones/13/rotation = Quaternion(0, 0, 0, -1)
 bones/13/scale = Vector3(1, 0.99999994, 1)
 bones/14/position = Vector3(3.469447e-17, 0.019717816, 8.579172e-10)
-bones/14/rotation = Quaternion(-1.6938024e-08, -1.8626453e-08, 1.6497219e-15, 1)
+bones/14/rotation = Quaternion(0.030071283, -0.1605464, -0.18163188, 0.96970636)
 bones/15/position = Vector3(-6.938894e-18, 0.014769028, -4.8572257e-17)
-bones/15/rotation = Quaternion(-1.7886627e-08, 6.535729e-08, 0.6782688, 0.73481387)
+bones/15/rotation = Quaternion(-1.31078846e-08, 6.842394e-08, 0.6782688, 0.73481387)
 bones/15/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0.025667883, 0.031279262, 0.0063315374)
-bones/17/rotation = Quaternion(0.48630667, 0.5133282, 0.5133282, 0.48630667)
+bones/17/rotation = Quaternion(0.69736195, 0.6973618, 0.11698918, 0.116989024)
 bones/17/scale = Vector3(0.99999994, 0.9999998, 0.9999998)
 bones/18/position = Vector3(4.2915282e-10, 0.019717814, 6.6039924e-10)
-bones/18/rotation = Quaternion(1.674626e-08, 1.1175873e-08, -3.022882e-08, 1)
+bones/18/rotation = Quaternion(0.06752918, 0.24018258, 0.26210377, 0.93223053)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/position = Vector3(9.367507e-17, 0.016380727, 5.2041704e-17)
 bones/19/rotation = Quaternion(-2.3336575e-08, -8.921103e-08, -0.626472, 0.779444)
 bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-0.025667883, 0.031279262, 0.006331533)
-bones/21/rotation = Quaternion(-0.5157039, 0.48378664, 0.48378664, -0.5157039)
+bones/21/rotation = Quaternion(-0.697362, 0.69736177, 0.116989106, -0.116989)
 bones/21/scale = Vector3(0.99999994, 0.99999976, 0.9999998)
 bones/22/position = Vector3(-4.2915302e-10, 0.019717816, 2.3913589e-09)
-bones/22/rotation = Quaternion(-1.674626e-08, -1.4901163e-08, 3.0228826e-08, 1)
+bones/22/rotation = Quaternion(0.06752914, -0.24018258, -0.2621038, 0.93223053)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-2.4286129e-17, 0.01638073, -1.3877788e-17)
 bones/23/rotation = Quaternion(-2.4635192e-08, 8.816729e-08, 0.626472, 0.7794439)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/25/rotation = Quaternion(-0.12096177, 0, 0, 0.99265724)
 bones/26/position = Vector3(0, 0.038294263, 3.469447e-18)
-bones/26/rotation = Quaternion(0.25670326, 0, 0, 0.96649027)
+bones/26/rotation = Quaternion(-0.27680862, -0.63792133, 0.08824334, 0.71319455)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
+bones/27/rotation = Quaternion(-0.4017274, -0.3128136, -0.08678631, 0.856289)
 
 [node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=923565802]
-material_override = SubResource("ShaderMaterial_vx5t5")
-material_overlay = SubResource("ShaderMaterial_lmxkh")
+material_override = SubResource("ShaderMaterial_8cx1i")
+material_overlay = SubResource("ShaderMaterial_cjha4")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=363759929]
 transform = Transform3D(1.0000001, 0, 0, 0, -4.3711378e-08, 1.0000001, 0, -1.0000001, -4.3711378e-08, 0, 0.34999982, 0.4390631)
@@ -667,6 +667,10 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="ResettingTimer" type="Timer" parent="Timers" index="5" unique_id=1772551650]
+wait_time = 1.5
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="." index="6" unique_id=845983060 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_juueg")
 initial_state = NodePath("Idle")
@@ -696,7 +700,7 @@ slam_Scene = ExtResource("22_iskec")
 follow_up_slam_state = NodePath("../../SlamTwo")
 slam_position = NodePath("../../../SlamPosition")
 cool_down_timer = NodePath("../../../Timers/SlamCooldown")
-attack_range = 7
+attack_range = 5
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 
@@ -729,11 +733,18 @@ anim_tree = NodePath("../../AnimationTree")
 [node name="Recover" type="Node" parent="StateMachine" index="4" unique_id=194655057 node_paths=PackedStringArray("recovery_timer", "follow_up_state", "enemy", "anim_tree")]
 script = ExtResource("24_j6d1h")
 recovery_timer = NodePath("../../Timers/RecoveryTimer")
-follow_up_state = NodePath("../Follow")
+follow_up_state = NodePath("../Resetting")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 
-[node name="Dead" type="Node" parent="StateMachine" index="5" unique_id=936151769 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree")]
+[node name="Resetting" type="Node" parent="StateMachine" index="5" unique_id=1890415170 node_paths=PackedStringArray("resetting_timer", "enemy", "anim_tree")]
+script = ExtResource("26_lj3t4")
+resetting_timer = NodePath("../../Timers/ResettingTimer")
+disable_collision_during_reset = false
+enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
+
+[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=936151769 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree")]
 script = ExtResource("12_tdv3m")
 death_timer = NodePath("../../Timers/DeathTimer")
 enemy = NodePath("../..")
@@ -749,6 +760,7 @@ transform = Transform3D(-0.9999999, 0, -1.0232393e-07, 0, 1, 0, 1.0232393e-07, 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 5.5)
 
 [node name="SlamPosition" type="Marker3D" parent="." index="10" unique_id=1272495878]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 3.1999998)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 3.4999998)
 
 [connection signal="timeout" from="Timers/RecoveryTimer" to="StateMachine/Recover" method="_on_recovery_timer_timeout"]
+[connection signal="timeout" from="Timers/ResettingTimer" to="StateMachine/Resetting" method="_on_resetting_timer_timeout"]

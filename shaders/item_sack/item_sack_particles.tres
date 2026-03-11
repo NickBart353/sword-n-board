@@ -24,6 +24,10 @@ keep_scale = true
 [resource]
 modes/blend = 1
 flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+flags/specular_occlusion_disabled = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_d4pxg")
 nodes/vertex/2/position = Vector2(-40, 340)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
