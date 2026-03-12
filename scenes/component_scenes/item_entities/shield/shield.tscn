@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://d3wbiotwk5tyt"]
 
-[ext_resource type="PackedScene" uid="uid://ctxxrqava1bjf" path="res://assets/sketchfab/shield/scene.gltf" id="1_vuocu"]
+[ext_resource type="PackedScene" uid="uid://ctxxrqava1bjf" path="res://assets/Visual/sketchfab/shield/scene.gltf" id="1_vuocu"]
 [ext_resource type="Script" uid="uid://7niebdhiadw6" path="res://scripts/item_entity/off_hands/shield.gd" id="2_8ynvp"]
+[ext_resource type="AudioStream" uid="uid://icwfuhxr0nc6" path="res://assets/Audio/400 Sounds Pack/Other/subtle_knock.wav" id="3_0vplc"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ffst0"]
 height = 0.14999999
@@ -14,10 +15,16 @@ size = Vector3(28.800001, 0.3, 21.5)
 height = 0.025249999
 radius = 0.6
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8ynvp"]
+random_pitch = 1.3348398
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("3_0vplc")
+
 [node name="Shield" unique_id=119600585 instance=ExtResource("1_vuocu")]
 script = ExtResource("2_8ynvp")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=1685420743 groups=["Shield"]]
+[node name="Sketchfab_model" parent="." index="0" unique_id=342974832 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
 collision_layer = 4
 collision_mask = 24
@@ -43,6 +50,10 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.8857806e-16, -4.278252e-09, -0.09787501)
 shape = SubResource("CylinderShape3D_dmnlx")
 debug_color = Color(0.99008447, 0, 0.2882964, 0.41960785)
+
+[node name="BlockPlayer" type="AudioStreamPlayer3D" parent="." index="2" unique_id=345881670]
+stream = SubResource("AudioStreamRandomizer_8ynvp")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_area_entered"]
 [connection signal="body_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_body_entered"]

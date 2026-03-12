@@ -1,5 +1,7 @@
 extends MeleeWeapon
 
+@export var sword_player: AudioStreamPlayer3D
+
 signal hit
 
 func _ready() -> void:
@@ -8,3 +10,4 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		hit.emit(body, data.damage)
+		sword_player.play()

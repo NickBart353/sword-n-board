@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b51bvm5vdtb0w" path="res://scripts/components/mob_type_picker.gd" id="6_leqql"]
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
 [ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="7_cfqos"]
+[ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 
 [sub_resource type="Environment" id="Environment_fqmia"]
@@ -182,3 +183,6 @@ metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1, 0, 0)
 script = ExtResource("7_cfqos")
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="Building" parent="." unique_id=308638420 instance=ExtResource("7_leqql")]
+transform = Transform3D(-0.3420202, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, -0.3420202, -295.50226, 54.2, -372.5128)

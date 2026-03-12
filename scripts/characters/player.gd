@@ -250,6 +250,9 @@ func _load_preset_items():
 	potion.data = ItemManager.ITEMS["health_potion"]
 	items.append(potion)
 
+func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):
+	AudioManager.play_audio_from_resource(resource, global_position, bus, offset)
+
 func _die():
 	print("game over")
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cpja2njqyc3l3"]
+
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="1_mhfqf"]
+
+[node name="FireAndForget" type="Node3D" unique_id=1664024978]
+script = ExtResource("1_mhfqf")

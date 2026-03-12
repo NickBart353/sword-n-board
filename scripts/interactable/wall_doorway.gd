@@ -28,4 +28,3 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		in_motion = false
 	elif anim_name == "open_door":
 		in_motion = false
-		

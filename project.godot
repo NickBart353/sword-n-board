@@ -20,6 +20,10 @@ run/main_scene="uid://23kjgnpf3t1i"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://fmqa0g7fx7tn"
+
 [autoload]
 
 ItemManager="*res://scripts/autoloads/ItemManager.gd"
@@ -27,6 +31,7 @@ EventBus="*res://scripts/autoloads/EventBus.gd"
 VfxManager="*uid://buebjo1lr2too"
 ItemGenerator="*uid://o8iastnqym56"
 MobManager="*uid://wip3ne88h8ge"
+AudioManager="*uid://bmxunujttmtpa"
 
 [display]
 

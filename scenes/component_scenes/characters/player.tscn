@@ -19,6 +19,14 @@
 [ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="16_81e7k"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="17_81e7k"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="18_du382"]
+[ext_resource type="AudioStream" uid="uid://c2ngmje8iqfko" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/bow charge 3.wav" id="20_6arjy"]
+[ext_resource type="AudioStream" uid="uid://bqu7fvmwsaalo" path="res://assets/Audio/400 Sounds Pack/Other/whoosh_1.wav" id="20_6xk8q"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="20_81e7k"]
+[ext_resource type="AudioStream" uid="uid://3ito48o0jmko" path="res://assets/Audio/400 Sounds Pack/Other/drink_slurp.wav" id="20_u22gl"]
+[ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="21_cpava"]
+[ext_resource type="AudioStream" uid="uid://bpo0x5f240exy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Attack 2 - only shot.wav" id="21_m2pt1"]
+[ext_resource type="AudioStream" uid="uid://ciy4u4gpes020" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="24_6xk8q"]
+[ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="26_6xk8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 
@@ -161,6 +169,20 @@ tracks/4/keys = {
 "method": &"_book_animation_ended"
 }]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("20_6xk8q"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_1e104"]
 resource_name = "Book2"
@@ -220,7 +242,7 @@ tracks/4/path = NodePath("AbilityController/CastAttack")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.9, 1.5),
+"times": PackedFloat32Array(0.6333333, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"Book2"],
@@ -228,6 +250,20 @@ tracks/4/keys = {
 }, {
 "args": [&"Book2"],
 "method": &"_book_animation_ended"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.2666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("20_6xk8q"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
 }]
 }
 
@@ -272,6 +308,21 @@ tracks/2/keys = {
 "method": &"charge_maxed"
 }]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AbilityPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_6arjy")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_aeb6f"]
 resource_name = "Bow2"
@@ -343,6 +394,25 @@ tracks/2/keys = {
 "method": &"_on_animation_player_animation_finished"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("21_m2pt1"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
+playback_mode = 1
+streams_count = 1
+stream_0/stream = ExtResource("20_u22gl")
 
 [sub_resource type="Animation" id="Animation_81e7k"]
 resource_name = "Consume1"
@@ -412,6 +482,21 @@ tracks/4/keys = {
 "method": &"done_consuming"
 }]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AbilityPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6arjy")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_du382"]
 resource_name = "Idle"
@@ -617,6 +702,12 @@ tracks/6/keys = {
 "values": [Vector3(0.030511865, 0.112023234, -0.12869062)]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2pv4g"]
+random_pitch = 1.3348398
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("24_6xk8q")
+
 [sub_resource type="Animation" id="Animation_8gp4u"]
 resource_name = "Sword1"
 length = 0.4
@@ -661,6 +752,27 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [SubResource("AudioStreamRandomizer_2pv4g"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cpava"]
+playback_mode = 1
+random_pitch = 1.0594631
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("21_cpava")
 
 [sub_resource type="Animation" id="Animation_bnsrg"]
 resource_name = "Sword2"
@@ -706,6 +818,26 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [SubResource("AudioStreamRandomizer_cpava"), 3, 0.22],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0h55w"]
+random_pitch = 1.3348398
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("26_6xk8q")
 
 [sub_resource type="Animation" id="Animation_i5qjy"]
 resource_name = "Sword3"
@@ -751,6 +883,20 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [SubResource("AudioStreamRandomizer_0h55w"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
 _data = {
@@ -768,178 +914,6 @@ _data = {
 &"Sword2": SubResource("Animation_bnsrg"),
 &"Sword3": SubResource("Animation_i5qjy")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aeb6f"]
-animation = &"Block1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbsrb"]
-animation = &"Book1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1e104"]
-animation = &"Book2"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bnsrg"]
-animation = &"Bow1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i5qjy"]
-animation = &"Bow2"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1vyy"]
-animation = &"Bow3"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ykwct"]
-animation = &"Consume1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8vq5"]
-animation = &"Light1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5e2me"]
-animation = &"Sword1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m0y8q"]
-animation = &"Sword2"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8gp4u"]
-animation = &"Sword3"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5e2me"]
-xfade_time = 0.5
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_272xh"]
-xfade_time = 0.2
-advance_expression = "(ability.get_node(\"Attack\").swinging == true and ability.get_node(\"Attack\").swing == 1)"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m0y8q"]
-xfade_time = 0.05
-switch_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node(\"Attack\").swing == 2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8gp4u"]
-xfade_time = 0.05
-switch_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swinging and ability.get_node(\"Attack\").swing == 3"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbsrb"]
-xfade_time = 0.5
-reset = false
-advance_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.get_node(\"Attack\").attack_timer.time_left == 0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1e104"]
-xfade_time = 0.5
-switch_mode = 2
-advance_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false and ability.get_node(\"Attack\").attack_timer.time_left == 0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnsrg"]
-xfade_time = 0.3
-switch_mode = 2
-advance_mode = 2
-advance_expression = "ability.get_node(\"Attack\").swing_in_progress == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i5qjy"]
-xfade_time = 0.2
-advance_expression = "(ability.get_node(\"CastAttack\").casting == true and ability.get_node(\"CastAttack\").cast == 1)"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v1vyy"]
-advance_mode = 2
-advance_expression = "ability.get_node(\"CastAttack\").cast_in_progress == false and ability.get_node(\"CastAttack\").attack_timer.time_left == 0"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aeb6f"]
-xfade_time = 0.05
-switch_mode = 2
-advance_expression = "ability.get_node(\"CastAttack\").casting and ability.get_node(\"CastAttack\").casting == 2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ykwct"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-advance_expression = "ability.get_node(\"CastAttack\").cast_in_progress == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w8vq5"]
-xfade_time = 0.2
-advance_expression = "(ability.get_node(\"ShootAttack\").shooting == true and (ability.get_node(\"ShootAttack\").charging == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4bg8r"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false or ability.get_node(\"ShootAttack\").charging == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81e7k"]
-xfade_time = 0.1
-switch_mode = 2
-advance_expression = "(ability.get_node(\"ShootAttack\").max_charge == true "
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_du382"]
-xfade_time = 0.1
-advance_expression = "(ability.get_node(\"ShootAttack\").shoot == 3 and ability.get_node(\"ShootAttack\").max_charge == false)"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjkjg"]
-xfade_time = 0.3
-switch_mode = 2
-advance_mode = 2
-advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cpava"]
-xfade_time = 0.1
-advance_expression = "ability.get_node(\"Block\").blocking == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u22gl"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "ability.get_node(\"Block\").blocking == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6arjy"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "ability.get_node(\"Light\").lighting == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m2pt1"]
-xfade_time = 0.2
-advance_expression = "ability.get_node(\"Light\").lighting == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xk8q"]
-advance_expression = "ability.get_node(\"Consume\").consuming == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2pv4g"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-advance_expression = "ability.get_node(\"Consume\").consuming == false"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5e2me"]
-states/Block1/node = SubResource("AnimationNodeAnimation_aeb6f")
-states/Block1/position = Vector2(459, -194)
-states/Book1/node = SubResource("AnimationNodeAnimation_wbsrb")
-states/Book1/position = Vector2(129, 221)
-states/Book2/node = SubResource("AnimationNodeAnimation_1e104")
-states/Book2/position = Vector2(129, 104)
-states/Bow1/node = SubResource("AnimationNodeAnimation_bnsrg")
-states/Bow1/position = Vector2(129, -18)
-states/Bow2/node = SubResource("AnimationNodeAnimation_i5qjy")
-states/Bow2/position = Vector2(129, -115)
-states/Bow3/node = SubResource("AnimationNodeAnimation_v1vyy")
-states/Bow3/position = Vector2(326, -115)
-states/Consume1/node = SubResource("AnimationNodeAnimation_ykwct")
-states/Consume1/position = Vector2(517, 347.42346)
-states/End/position = Vector2(898, 104)
-states/Idle/node = SubResource("AnimationNodeAnimation_272xh")
-states/Idle/position = Vector2(326, 101)
-states/Light1/node = SubResource("AnimationNodeAnimation_w8vq5")
-states/Light1/position = Vector2(129, 347.42346)
-states/Start/position = Vector2(326, 347.42346)
-states/Sword1/node = SubResource("AnimationNodeAnimation_5e2me")
-states/Sword1/position = Vector2(517, -18)
-states/Sword2/node = SubResource("AnimationNodeAnimation_m0y8q")
-states/Sword2/position = Vector2(698, 104)
-states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
-states/Sword3/position = Vector2(517, 221)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl"), "Light1", "Idle", SubResource("AnimationNodeStateMachineTransition_6arjy"), "Idle", "Light1", SubResource("AnimationNodeStateMachineTransition_m2pt1"), "Idle", "Consume1", SubResource("AnimationNodeStateMachineTransition_6xk8q"), "Consume1", "Idle", SubResource("AnimationNodeStateMachineTransition_2pv4g")]
-graph_offset = Vector2(-260, 6.083837)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_v1vyy"]
 loop = false
@@ -1119,20 +1093,25 @@ libraries/ = SubResource("AnimationLibrary_wbsrb")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=68752560]
 callback_mode_method = 1
-tree_root = SubResource("AnimationNodeStateMachine_5e2me")
+tree_root = ExtResource("20_81e7k")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
 stream = SubResource("AudioStreamRandomizer_i5qjy")
 max_polyphony = 4
+bus = &"SFX"
 
 [node name="MovementOneShotPlayer" type="AudioStreamPlayer3D" parent="." unique_id=2073203264]
 stream = SubResource("AudioStreamPlaylist_v1vyy")
+bus = &"SFX"
 
 [node name="VoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1748990333]
+bus = &"Voices"
 
-[node name="AbilityPlayer" type="AudioStreamPlayer3D" parent="." unique_id=678267518]
+[node name="AbilityPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1302160619]
+max_polyphony = 4
+bus = &"SFX"
 
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/CastAttack" method="_on_attack_timer_timeout"]

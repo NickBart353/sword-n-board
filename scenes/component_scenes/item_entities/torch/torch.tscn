@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cfnt03x7m17w2" path="res://scenes/component_scenes/shader/vfx_fire.tscn" id="1_evctx"]
 [ext_resource type="Script" uid="uid://b7nxgd8p572hu" path="res://scripts/item_entity/off_hands/torch.gd" id="1_tn2iq"]
+[ext_resource type="AudioStream" uid="uid://1bollewef3ok" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Torch/Torch Loop.wav" id="3_2445i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_evctx"]
 radius = 0.2
@@ -40,5 +41,10 @@ mesh = SubResource("CylinderMesh_evctx")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1218468070]
 light_color = Color(1.4330024, 0.6502688, 0, 1)
 omni_range = 3.7
+
+[node name="TorchPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1510446642]
+stream = ExtResource("3_2445i")
+autoplay = true
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
