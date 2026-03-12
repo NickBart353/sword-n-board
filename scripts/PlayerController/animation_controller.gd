@@ -13,27 +13,27 @@ var consume: Node
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if not input.dash:
-		attack = ability.get_node_or_null("Attack")
-		if attack:
-			if attack.swinging:
-				anim_tree_list.travel("Sword{0}".format([attack.swing]))
-		cast_attack = ability.get_node_or_null("CastAttack")
-		if cast_attack:
-			if cast_attack.casting:
-				anim_tree_list.travel("Book{0}".format([cast_attack.cast]))
-		shoot_attack = ability.get_node_or_null("ShootAttack")
-		if shoot_attack:
-			if shoot_attack.shooting:
-				anim_tree_list.travel("Bow{0}".format([shoot_attack.shoot]))
-		block_attack = ability.get_node_or_null("Block")
-		if block_attack:
-			if block_attack.blocking:
-				anim_tree_list.travel("Block1")
-		light = ability.get_node_or_null("Light")
-		if light:
-			if light.lighting:
-				anim_tree_list.travel("Light1")
-		consume = ability.get_node_or_null("Consume")
-		if consume:
-			if consume.consuming:
-				anim_tree_list.travel("Consume1")
+		if not attack:
+			attack = ability.get_node_or_null("Attack")
+		if attack.swinging:
+			anim_tree_list.travel("Sword{0}".format([attack.swing]))
+		if not cast_attack:
+			cast_attack = ability.get_node_or_null("CastAttack")
+		if cast_attack.casting:
+			anim_tree_list.travel("Book{0}".format([cast_attack.cast]))
+		if not shoot_attack:
+			shoot_attack = ability.get_node_or_null("ShootAttack")
+		if shoot_attack.shooting:
+			anim_tree_list.travel("Bow{0}".format([shoot_attack.shoot]))
+		if not block_attack:
+			block_attack = ability.get_node_or_null("Block")
+		if block_attack.blocking:
+			anim_tree_list.travel("Block1")
+		if not light:
+			light = ability.get_node_or_null("Light")
+		if light.lighting:
+			anim_tree_list.travel("Light1")
+		if not consume:
+			consume = ability.get_node_or_null("Consume")
+		if consume.consuming:
+			anim_tree_list.travel("Consume1")

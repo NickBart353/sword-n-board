@@ -11,29 +11,36 @@ var shooting: bool = false
 var shoot_in_progress: bool = false
 var charging: bool = false
 var max_charge: bool = false
+var released: bool = true
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	weapon = player.get_equipped_primary()
+	if not weapon == player.get_equipped_primary():
+		weapon = player.get_equipped_primary()
 	if not weapon is RangedWeapon: 
 		reset()
 		return
 	
 	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
-		if input.attack and not shoot_in_progress and not charging:
+		if input.attack and not shoot_in_progress and not charging and released:
 			shoot = 1
 			charging = true
 			shooting = true
 			shoot_in_progress = true
-		if charging and not input.attack and shoot == 1:
+			released = false
+		if charging and not input.attack and shoot == 1 and not released:
+			#BUG: when channeling bow and releasing as charge_maxed() happens - no animation plays
+			released = true
 			reset()
-		if max_charge and not input.attack:
+		if max_charge and not input.attack and not released:
+			released = true
 			shoot = 3
 			max_charge = false
 			shoot_projectile()
 
 func charge_maxed():
-	shoot = 2
-	max_charge = true
+	if not released:
+		shoot = 2
+		max_charge = true
 
 func shoot_projectile():
 	var shooting_direction: Vector3 = player.get_looking_direction()

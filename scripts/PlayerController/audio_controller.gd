@@ -10,9 +10,17 @@ extends Node
 @export var land_sfx: AudioStreamRandomizer
 @export var dash_sfx: AudioStreamRandomizer
 
+var attack: Node
+var cast_attack: Node
+var shoot_attack: Node
+var block: Node
+var light: Node
+var consume: Node
+
 func apply_audio(state_controller: Node, movement: Node, ability_controller: Node) -> void:
 	_apply_movement_audio(state_controller, movement)
 	_apply_voice_audio(state_controller, movement, ability_controller)
+	#_apply_ability_audio(state_controller, ability_controller)
 
 func _apply_movement_audio(_state_controller: Node, movement: Node) -> void:
 	if movement.moving and movement.is_on_floor:
@@ -35,3 +43,18 @@ func _play_oneshot(sfx: AudioStream):
 
 func _apply_voice_audio(state_controller: Node, movement: Node, ability_controller: Node) -> void:
 	pass
+
+#func _apply_ability_audio(state_controller: Node, ability_controller: Node) -> void:
+	#if not attack:
+		#ability_controller.get_node("Attack")
+	#if not cast_attack:
+		#ability_controller.get_node("CastAttack")
+	#if not shoot_attack:
+		#ability_controller.get_node("ShootAttack")
+	#if not block:
+		#ability_controller.get_node("Block")
+	#if not light:
+		#ability_controller.get_node("Light")
+	#if not consume:
+		#ability_controller.get_node("Consume")
+	

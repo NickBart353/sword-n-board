@@ -97,16 +97,15 @@ advance_expression = "(ability.get_node(\"ShootAttack\").shooting == true and (a
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4bg8r"]
 xfade_time = 0.2
+priority = 32
 advance_mode = 2
 advance_expression = "ability.get_node(\"ShootAttack\").shoot_in_progress == false or ability.get_node(\"ShootAttack\").charging == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_81e7k"]
-xfade_time = 0.1
 switch_mode = 2
 advance_expression = "(ability.get_node(\"ShootAttack\").max_charge == true "
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_du382"]
-xfade_time = 0.1
 advance_expression = "(ability.get_node(\"ShootAttack\").shoot == 3 and ability.get_node(\"ShootAttack\").max_charge == false)"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjkjg"]

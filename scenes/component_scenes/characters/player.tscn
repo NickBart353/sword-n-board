@@ -19,10 +19,10 @@
 [ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="16_81e7k"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="17_81e7k"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="18_du382"]
-[ext_resource type="AudioStream" uid="uid://c2ngmje8iqfko" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/bow charge 3.wav" id="20_6arjy"]
 [ext_resource type="AudioStream" uid="uid://bqu7fvmwsaalo" path="res://assets/Audio/400 Sounds Pack/Other/whoosh_1.wav" id="20_6xk8q"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="20_81e7k"]
 [ext_resource type="AudioStream" uid="uid://3ito48o0jmko" path="res://assets/Audio/400 Sounds Pack/Other/drink_slurp.wav" id="20_u22gl"]
+[ext_resource type="AudioStream" uid="uid://crac5kx6axlcw" path="res://assets/Audio/freesound_org/bow-drawn.ogg" id="21_6xk8q"]
 [ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="21_cpava"]
 [ext_resource type="AudioStream" uid="uid://bpo0x5f240exy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Attack 2 - only shot.wav" id="21_m2pt1"]
 [ext_resource type="AudioStream" uid="uid://ciy4u4gpes020" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="24_6xk8q"]
@@ -176,7 +176,7 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.2),
+"times": PackedFloat32Array(1.3333334),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [ExtResource("20_6xk8q"), 3, 0.0],
@@ -259,13 +259,19 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.2666667),
+"times": PackedFloat32Array(1.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [ExtResource("20_6xk8q"), 3, 0.0],
 "method": &"_play_audio_fire_and_forget"
 }]
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6xk8q"]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("21_6xk8q")
 
 [sub_resource type="Animation" id="Animation_v1vyy"]
 resource_name = "Bow1"
@@ -318,9 +324,9 @@ tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource("20_6arjy")
+"stream": SubResource("AudioStreamRandomizer_6xk8q")
 }],
-"times": PackedFloat32Array(0.2)
+"times": PackedFloat32Array(0.06666667)
 }
 tracks/3/use_blend = true
 
@@ -352,6 +358,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(-0.02617994, -0.27925268, -0.96865773), Vector3(-0.02617994, -0.27925268, -0.96865773)]
 }
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ocei"]
+playback_mode = 1
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("21_m2pt1")
 
 [sub_resource type="Animation" id="Animation_w8vq5"]
 resource_name = "Bow3"
@@ -396,18 +409,33 @@ tracks/2/keys = {
 }
 tracks/3/type = "method"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.16666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("21_m2pt1"), 3, 0.0],
+"args": [ExtResource("21_m2pt1"), 3, 0.1],
 "method": &"_play_audio_fire_and_forget"
 }]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AbilityPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6ocei")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
 playback_mode = 1
@@ -1088,10 +1116,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
+callback_mode_process = 0
 callback_mode_method = 1
 libraries/ = SubResource("AnimationLibrary_wbsrb")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=68752560]
+callback_mode_process = 0
 callback_mode_method = 1
 tree_root = ExtResource("20_81e7k")
 advance_expression_base_node = NodePath("..")
