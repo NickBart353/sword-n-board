@@ -5,12 +5,13 @@ signal open_inventory
 signal open_pause_menu
 signal spawn_projectile
 
-@onready var input = $InputController
-@onready var state_controller = $StateController
-@onready var movement = $MovementController
-@onready var ability = $AbilityController
-@onready var animation = $AnimationController
-@onready var audio = $AudioController
+@onready var input: Node = $InputController
+@onready var state_controller: Node = $StateController
+@onready var movement: Node = $MovementController
+@onready var ability: Node = $AbilityController
+@onready var animation: Node = $AnimationController
+@onready var audio: Node = $AudioController
+@onready var ui: Node = $UIController
 @onready var head: Node3D = $Head
 @onready var left_hand = $Head/FieldOfView/LeftHand
 @onready var right_hand = $Head/FieldOfView/RightHand
@@ -64,8 +65,9 @@ func _physics_process(delta: float) -> void:
 	ability.apply_abilities(input, state_controller, movement, delta)
 	animation.apply_animations(input, state_controller, movement, ability, delta)
 	audio.apply_audio(state_controller, movement, ability)
+	ui.apply_ui(input, state_controller)
 	
-	if not state_controller.current_state == StateController.STATE.CONSUMING:
+	if not state_controller.is_player_busy():
 		interact_with_object()
 		_open_inventory()
 	move_and_slide()

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4lxv0gu2qime"]
 
 [ext_resource type="Shader" uid="uid://dssqri1u3dhk3" path="res://shaders/magic_ball.tres" id="1_83yak"]
+[ext_resource type="Script" uid="uid://0edju3le5d36" path="res://scripts/VFX/magic_ball.gd" id="1_jep8n"]
 [ext_resource type="Shader" uid="uid://ds4shpblbskmf" path="res://shaders/magic_ball_particles.tres" id="1_yfukf"]
 
 [sub_resource type="Gradient" id="Gradient_yfukf"]
@@ -69,16 +70,79 @@ height = 0.075
 render_priority = 0
 shader = ExtResource("1_83yak")
 shader_parameter/ColorParameter = Color(0.5845213, 1.1510478, 3.8529434, 1)
-shader_parameter/Vector2Parameter = Vector2(0.55, 0)
+shader_parameter/Intensity = 1.0
+shader_parameter/Vector2Parameter = Vector2(0, -0.1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_jep8n"]
 material = SubResource("ShaderMaterial_yfukf")
 size = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_jep8n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:mesh:material:shader_parameter/Intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h23rm"]
+resource_name = "charge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Main:mesh:material:shader_parameter/Intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Main:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1.3, 1.3, 1.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xdk5l"]
+_data = {
+&"RESET": SubResource("Animation_jep8n"),
+&"charge": SubResource("Animation_h23rm")
+}
+
 [node name="MagicBall" type="Node3D" unique_id=1007022500]
-transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -0.350944, 0.6, -0.23928723)
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_jep8n")
 
 [node name="Particles" type="GPUParticles3D" parent="." unique_id=2141055940]
+transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -0.35, 0.6, -0.23)
 amount = 300
 lifetime = 5.0
 fixed_fps = 60
@@ -87,4 +151,10 @@ process_material = SubResource("ParticleProcessMaterial_83yak")
 draw_pass_1 = SubResource("SphereMesh_h23rm")
 
 [node name="Main" type="MeshInstance3D" parent="." unique_id=430132184]
+transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -0.35, 0.6, -0.23)
 mesh = SubResource("QuadMesh_jep8n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=775687755]
+libraries/ = SubResource("AnimationLibrary_xdk5l")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

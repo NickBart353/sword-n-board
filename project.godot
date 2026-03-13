@@ -32,6 +32,7 @@ VfxManager="*uid://buebjo1lr2too"
 ItemGenerator="*uid://o8iastnqym56"
 MobManager="*uid://wip3ne88h8ge"
 AudioManager="*uid://bmxunujttmtpa"
+LoopMixer="*uid://ch2aookja1ixq"
 
 [display]
 
@@ -42,7 +43,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/brackeys-particle-controls-main/addons/brackeys_particle_controls/plugin.cfg", "res://addons/godot_3d_cursor/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_3d_cursor/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 

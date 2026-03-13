@@ -7,17 +7,21 @@ extends Ability
 signal spawn_magic_projectile
 
 var weapon: Node
+var offhand: Node
 var cast: int = 0
 var casting: bool = false
 var cast_in_progress: bool = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	weapon = player.get_equipped_primary()
+	if not weapon == player.get_equipped_primary() or not weapon:
+		weapon = player.get_equipped_primary()
+	if not offhand and not offhand == weapon:
+		offhand = player.get_equipped_secondary()
 	if not weapon is MagicWeapon: 
 		reset()
 		return
 	
-	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
+	if not movement.dashing and not state_controller.is_player_busy():
 		if input.attack and not cast_in_progress:
 			casting = true
 			cast_in_progress = true
@@ -59,3 +63,7 @@ func reset():
 func _on_attack_timer_timeout() -> void:
 	if not cast_in_progress:
 		cast = 0
+
+func channel_book(channel_time: float):
+	if offhand:
+		offhand.play_charge_animation(channel_time)

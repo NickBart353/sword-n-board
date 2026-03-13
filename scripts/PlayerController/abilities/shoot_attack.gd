@@ -14,13 +14,13 @@ var max_charge: bool = false
 var released: bool = true
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	if not weapon == player.get_equipped_primary():
+	if not weapon == player.get_equipped_primary() or not weapon:
 		weapon = player.get_equipped_primary()
 	if not weapon is RangedWeapon: 
 		reset()
 		return
 	
-	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
+	if not movement.dashing and not state_controller.is_player_busy():
 		if input.attack and not shoot_in_progress and not charging and released:
 			shoot = 1
 			charging = true

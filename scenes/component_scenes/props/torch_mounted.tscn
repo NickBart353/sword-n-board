@@ -34,3 +34,4 @@ shadow_enabled = true
 stream = ExtResource("3_60xvo")
 autoplay = true
 max_distance = 12.0
+bus = &"Ambience"

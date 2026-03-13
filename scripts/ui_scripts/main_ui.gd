@@ -29,6 +29,23 @@ var ui_open: bool = false
 
 signal update_items
 
+@export_group("Audio")
+@export var open_inventory_sound: AudioStream
+@export var close_inventory_sound: AudioStream
+@export var mouse_hover_sounds: AudioStream
+
+func _ready() -> void:
+	connect_mouse_hover_signals(self)
+
+func connect_mouse_hover_signals(ui_node: Control):
+	for child in self.find_children("*", "Control", true, false):
+		if child is Control:
+			if not child.mouse_entered.is_connected(_play_hover_sound):
+				child.mouse_entered.connect(_play_hover_sound)
+
+func _play_hover_sound():
+	AudioManager.player_ui_sfx(mouse_hover_sounds)
+
 func _set_mouse_capture(captured: bool):
 	if captured:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -37,6 +54,7 @@ func _set_mouse_capture(captured: bool):
 
 func open_inventory():
 	if inventory.is_visible():
+		AudioManager.player_ui_sfx(close_inventory_sound)
 		_clear_lists()
 		_refill_lists()
 		ui_open = false
@@ -48,6 +66,7 @@ func open_inventory():
 		loot.set_visible(false)
 		last_open_sack = null
 	elif not inventory.is_visible():
+		AudioManager.player_ui_sfx(open_inventory_sound)
 		ui_open = true
 		_set_mouse_capture(true)
 		inventory.set_visible(true)
@@ -125,24 +144,24 @@ func fill_character_items(p_inventory, p_head, p_body, p_boots, p_main_hand, p_o
 	equipped_off_hand = p_off_hand
 	equipped_consumable = p_consumable
 
-func _on_player_inventory_item_activated(index: int) -> void:
-	if loot.is_visible():
-		loot_items.append(player_items[index])
-		player_items.remove_at(index)
-		_update_items()
-	else:
-		match player_items[index].data.item_category:
-			ItemData.ITEM_CATEGORY.MELEE_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.RANGED_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.OFF_HAND:
-				_swap_weapons(false, index)
-			ItemData.ITEM_CATEGORY.CONSUMABLE:
-				equipped_consumable = _swap_items(equipped_consumable, index)
-		_update_items()
+#func _on_player_inventory_item_activated(index: int) -> void:
+	#if loot.is_visible():
+		#loot_items.append(player_items[index])
+		#player_items.remove_at(index)
+		#_update_items()
+	#else:
+		#match player_items[index].data.item_category:
+			#ItemData.ITEM_CATEGORY.MELEE_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.RANGED_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.OFF_HAND:
+				#_swap_weapons(false, index)
+			#ItemData.ITEM_CATEGORY.CONSUMABLE:
+				#equipped_consumable = _swap_items(equipped_consumable, index)
+		#_update_items()
 
 func _swap_weapons(is_main_hand: bool, index: int):
 	if is_main_hand:
@@ -203,13 +222,13 @@ func _swap_items(slot: Item, index: int):
 func _two_handed_weapon_equipped():
 	return equipped_main_hand == equipped_off_hand
 
-func _on_loot_list_item_activated(index: int) -> void:
-	if player_items.size() < 9:
-		player_items.append(loot_items[index])
-		loot_items.remove_at(index)
-		_update_items()
-	else:
-		print("Inventory full!")
+#func _on_loot_list_item_activated(index: int) -> void:
+	#if player_items.size() < 9:
+		#player_items.append(loot_items[index])
+		#loot_items.remove_at(index)
+		#_update_items()
+	#else:
+		#print("Inventory full!")
 
 func _update_items():
 	update_items.emit(player_items, loot_items, last_open_sack, equipped_head, equipped_body, equipped_boots, equipped_main_hand, equipped_off_hand, equipped_consumable)
@@ -222,3 +241,58 @@ func _set_item_data(index, list, data):
 	
 	list.set_item_tooltip_enabled(index, true)
 	list.set_item_tooltip(index, data.item_name)
+
+
+func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+	if loot.is_visible():
+		loot_items.append(player_items[index])
+		player_items.remove_at(index)
+		_update_items()
+	else:
+		match player_items[index].data.item_category:
+			ItemData.ITEM_CATEGORY.MELEE_WEAPON:
+				_swap_weapons(true, index)
+			ItemData.ITEM_CATEGORY.RANGED_WEAPON:
+				_swap_weapons(true, index)
+			ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
+				_swap_weapons(true, index)
+			ItemData.ITEM_CATEGORY.OFF_HAND:
+				_swap_weapons(false, index)
+			ItemData.ITEM_CATEGORY.CONSUMABLE:
+				equipped_consumable = _swap_items(equipped_consumable, index)
+		_update_items()
+
+func take_item_from_list(index: int, list: Array):
+	if player_items.size() < 9:
+		player_items.append(list[index])
+		list.remove_at(index)
+		_update_items()
+	else:
+		print("Inventory full!")
+
+func take_item_from_slot(index: int, slot: Item):
+	if player_items.size() < 9:
+		player_items.append(slot)
+		slot = null
+		_update_items()
+	else:
+		print("Inventory full!")
+
+func _on_loot_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	take_item_from_list(index, loot_items)
+
+func _on_off_hand_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if equipped_off_hand == equipped_main_hand:
+		equipped_main_hand = null
+	equipped_off_hand = take_item_from_slot(index, equipped_off_hand)
+	_update_items()
+
+func _on_main_hand_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	if equipped_off_hand == equipped_main_hand:
+		equipped_off_hand = null
+	equipped_main_hand = take_item_from_slot(index, equipped_main_hand)
+	_update_items()
+
+func _on_consumable_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
+	equipped_consumable = take_item_from_slot(index, equipped_consumable)
+	_update_items()

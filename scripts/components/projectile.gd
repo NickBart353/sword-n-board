@@ -11,8 +11,11 @@ class_name Projectile
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
 @export var explosion_target_raycast: RayCast3D
+@export_group("Audio")
 @export var audio_resource: AudioStream
-@export var offset_audio: float = 0.0
+@export_range(-100.0, 100.0) var offset_audio: float = 0.0
+@export_range(-100.0, 100.0) var audio_volume: float = 0.0
+@export_range(-100.0, 100.0) var audio_max_range: float = 0.0 
 
 signal exploded
 
@@ -48,7 +51,7 @@ func _on_body_entered(body: Node3D) -> void:
 		target_hit = true
 	_hit_object()
 	hit_by_explosion_list.append(body)
-	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio)
+	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return

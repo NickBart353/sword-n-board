@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://covjft2d4qaw3"]
 
 [ext_resource type="Script" uid="uid://tndqhv22gl7j" path="res://scripts/ui_scripts/main_ui.gd" id="1_tskmm"]
+[ext_resource type="AudioStream" uid="uid://c8rwhq52sgyx4" path="res://assets/Audio/pixabay/(open-bag) freesound_community-backpack-34942.wav" id="2_8ifah"]
+[ext_resource type="AudioStream" uid="uid://dyg0bky84m1wg" path="res://assets/Audio/pixabay/(close-bag) freesound_community-backpack-rummaging-69868.wav" id="3_l243e"]
+[ext_resource type="AudioStream" uid="uid://dhldf5uehojup" path="res://assets/Audio/400 Sounds Pack/UI/select_2.wav" id="4_l243e"]
 
 [node name="MainUI" type="Control" unique_id=1110628191]
 layout_mode = 3
@@ -10,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tskmm")
+open_inventory_sound = ExtResource("2_8ifah")
+close_inventory_sound = ExtResource("3_l243e")
+mouse_hover_sounds = ExtResource("4_l243e")
 
 [node name="Inventory" type="Control" parent="." unique_id=2085284406]
 visible = false
@@ -131,4 +137,9 @@ text = "Double click loot item"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="item_activated" from="Inventory/InventoryList" to="." method="_on_player_inventory_item_activated"]
+[connection signal="item_clicked" from="Inventory/InventoryList" to="." method="_on_inventory_list_item_clicked"]
+[connection signal="item_clicked" from="Character/MainHand" to="." method="_on_main_hand_item_clicked"]
+[connection signal="item_clicked" from="Character/OffHand" to="." method="_on_off_hand_item_clicked"]
+[connection signal="item_clicked" from="Character/Consumable" to="." method="_on_consumable_item_clicked"]
 [connection signal="item_activated" from="Loot/LootList" to="." method="_on_loot_list_item_activated"]
+[connection signal="item_clicked" from="Loot/LootList" to="." method="_on_loot_list_item_clicked"]

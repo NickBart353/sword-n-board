@@ -8,11 +8,12 @@ var offhand: Node
 var blocking: bool = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	offhand = player.get_equipped_secondary()
+	if not offhand == player.get_equipped_secondary() or not offhand:
+		offhand = player.get_equipped_secondary()
 	if not offhand is Shield: 
 		reset()
 		return
-	if not movement.dashing and state_controller.current_state != StateController.STATE.CONSUMING:
+	if not movement.dashing and not state_controller.is_player_busy():
 		if not offhand.blocked.is_connected(_blocked):
 			offhand.blocked.connect(_blocked)
 		if input.hold_secondary:

@@ -8,7 +8,6 @@ parameter_name = "Alpha"
 
 [resource]
 modes/cull = 2
-flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_weyfi")
 nodes/fragment/2/position = Vector2(-200, 120)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_r46y2")

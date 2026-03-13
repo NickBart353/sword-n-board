@@ -19,6 +19,8 @@
 [ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="16_81e7k"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="17_81e7k"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="18_du382"]
+[ext_resource type="Script" uid="uid://dh2p1pfxar5wu" path="res://scripts/PlayerController/ui_controller.gd" id="20_0h55w"]
+[ext_resource type="AudioStream" uid="uid://7c7ctdo8uedy" path="res://assets/Audio/pixabay/yodguard-casting-magic-3-382381.mp3" id="20_2pv4g"]
 [ext_resource type="AudioStream" uid="uid://bqu7fvmwsaalo" path="res://assets/Audio/400 Sounds Pack/Other/whoosh_1.wav" id="20_6xk8q"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="20_81e7k"]
 [ext_resource type="AudioStream" uid="uid://3ito48o0jmko" path="res://assets/Audio/400 Sounds Pack/Other/drink_slurp.wav" id="20_u22gl"]
@@ -176,11 +178,25 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.3333334),
+"times": PackedFloat32Array(0.6333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("20_6xk8q"), 3, 0.0],
+"args": [ExtResource("20_2pv4g"), 3, 0.0],
 "method": &"_play_audio_fire_and_forget"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AbilityController/CastAttack")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.76666665),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.4],
+"method": &"channel_book"
 }]
 }
 
@@ -259,11 +275,25 @@ tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(1.4),
+"times": PackedFloat32Array(0.6666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [ExtResource("20_6xk8q"), 3, 0.0],
+"args": [ExtResource("20_2pv4g"), 3, 0.0],
 "method": &"_play_audio_fire_and_forget"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AbilityController/CastAttack")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.4],
+"method": &"channel_book"
 }]
 }
 
@@ -1073,6 +1103,9 @@ dash_sfx = SubResource("AudioStreamRandomizer_aeb6f")
 
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
 script = ExtResource("6_1e104")
+
+[node name="UIController" type="Node" parent="." unique_id=285300187]
+script = ExtResource("20_0h55w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 

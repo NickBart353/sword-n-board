@@ -45,6 +45,6 @@ omni_range = 3.7
 [node name="TorchPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1510446642]
 stream = ExtResource("3_2445i")
 autoplay = true
-bus = &"SFX"
+bus = &"Ambience"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

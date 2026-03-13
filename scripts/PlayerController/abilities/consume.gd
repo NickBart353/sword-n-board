@@ -10,16 +10,17 @@ var consuming: bool = false
 var consumed: bool = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	consumable = player.get_equipped_consumable()
+	if not consumable == player.get_equipped_consumable() or not consumable:
+		consumable = player.get_equipped_consumable()
 	if not consumable is Consumable:
 		reset()
 		return
 	if not movement.dashing:
-		if input.consume and not consuming:
-			state_controller.update_state(StateController.STATE.CONSUMING)
+		if input.consume and not consuming and not state_controller.is_player_busy():
+			state_controller.update_action_state(StateController.ACTION_STATE.CONSUMING)
 			consuming = true
-		elif consumed and state_controller.current_state == StateController.STATE.CONSUMING:
-			state_controller.update_state(StateController.STATE.IDLE)
+		elif consumed and state_controller.is_player_busy():
+			state_controller.reset_action_state()
 			finished_consuming.emit()
 			consuming = false
 			consumed = false

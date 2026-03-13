@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5jmop"]
 render_priority = 0
 shader = ExtResource("1_bhb1u")
-shader_parameter/Color = Color(0.5144225, 1.187185, 1.6852883, 1)
+shader_parameter/Color = Color(0.84586054, 1.1203161, 1.685, 1)
 shader_parameter/Alpha = Color(0.24477637, 0.2447764, 0.24477637, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_kvtdx"]

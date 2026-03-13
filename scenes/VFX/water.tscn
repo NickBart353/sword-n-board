@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cod5nau233ary"]
+[gd_scene format=3 uid="uid://cod5nau233ary"]
 
 [ext_resource type="Shader" uid="uid://bt45n8cxryg4h" path="res://shaders/s_water.tres" id="1_lee2t"]
 
@@ -70,7 +70,7 @@ size = Vector2(10, 10)
 subdivide_width = 20
 subdivide_depth = 20
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1808405476]
 
-[node name="WaterMesh" type="MeshInstance3D" parent="."]
+[node name="WaterMesh" type="MeshInstance3D" parent="." unique_id=814872586]
 mesh = SubResource("PlaneMesh_gcigq")
