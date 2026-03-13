@@ -176,6 +176,9 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 				print("not implemented yet...")
 
 func _remove_consumable():
+	consumable_item.data.stack_size -= 1
+	if consumable_item.data.stack_size < 0:
+		return
 	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:	

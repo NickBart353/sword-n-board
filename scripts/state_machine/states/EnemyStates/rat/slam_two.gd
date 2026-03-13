@@ -17,6 +17,7 @@ func Enter():
 func slam():
 	if slam_instance:
 		slam_instance.play_slam(damage)
+		AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 
 func _slam_finished(_slam: Area3D):
 	_slam.queue_free()

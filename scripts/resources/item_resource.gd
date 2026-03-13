@@ -11,5 +11,7 @@ extends Resource
 @export var item_category: ITEM_CATEGORY
 @export var item_type: ITEM_TYPE
 
+var stack_size: int = 1
+
 enum ITEM_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, OFF_HAND, CONSUMABLE}
 enum ITEM_TYPE {SWORD, BOOK, BOW, POTION, TORCH, SHIELD}

@@ -18,6 +18,10 @@ func Enter():
 func slam():
 	if slam_instance:
 		slam_instance.play_slam(damage)
+		audio_player.volume_db = audio_volume
+		audio_player.max_distance = audio_max_range
+		audio_player.stream = audio_resource
+		audio_player.play(offset_audio)
 
 func _slam_finished(_slam: Area3D):
 	_slam.queue_free()

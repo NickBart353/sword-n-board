@@ -18,7 +18,7 @@ func Enter():
 	super()
 	player = get_tree().get_first_node_in_group("Player")
 	state_machine.travel(name)
-	if audio_player and audio_resource:
+	if audio_player and audio_resource and play_audio:
 		audio_player.volume_db = audio_volume
 		audio_player.max_distance = audio_max_range
 		audio_player.stream = audio_resource

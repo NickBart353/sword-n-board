@@ -209,6 +209,7 @@ func _swap_weapons(is_main_hand: bool, index: int):
 			player_items.append(temp_item)
 
 func _swap_items(slot: Item, index: int):
+	#if slot and slot == player_items[index] and slot.stackable:
 	if slot:
 		var temp_item: Item = slot
 		slot = player_items[index]
@@ -263,6 +264,29 @@ func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_but
 		_update_items()
 
 func take_item_from_list(index: int, list: Array):
+	#if list[index].data.stackable:
+		#print("test1")
+		#match list[index].data.item_category:
+				#ItemData.ITEM_CATEGORY.MELEE_WEAPON:
+					#pass
+				#ItemData.ITEM_CATEGORY.RANGED_WEAPON:
+					#pass
+				#ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
+					#pass
+				#ItemData.ITEM_CATEGORY.OFF_HAND:
+					#pass
+				#ItemData.ITEM_CATEGORY.CONSUMABLE:
+					#print("test2")
+					#if equipped_consumable == list[index]:
+						#print("test3")
+						#list.remove_at(index)
+						#equipped_consumable.data.stack_size += 1
+					#else:
+						#for item in loot_items:
+							#if item == list[index]:
+								#print("5")
+								#list.remove_at(index)
+								#equipped_consumable.data.stack_size += 1
 	if player_items.size() < 9:
 		player_items.append(list[index])
 		list.remove_at(index)

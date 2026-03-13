@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_oxlw5"]
 [ext_resource type="Shader" uid="uid://beken2i52fttm" path="res://shaders/dissolve/big_dissolve_particles.tres" id="2_odfxf"]
+[ext_resource type="AudioStream" uid="uid://c8pgohtld5es" path="res://assets/Audio/pixabay/freesound_community-aspirin-in-water-16738.wav" id="3_16u6b"]
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="4_gvix7"]
 
 [sub_resource type="Gradient" id="Gradient_j1g6m"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -87,6 +89,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireAndForget")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("3_16u6b"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_16u6b"]
 _data = {
@@ -111,3 +127,8 @@ draw_pass_1 = SubResource("PlaneMesh_j7oq1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1073290712]
 libraries/ = SubResource("AnimationLibrary_16u6b")
+
+[node name="FireAndForget" type="Node3D" parent="." unique_id=1906010213 node_paths=PackedStringArray("_audio_position")]
+script = ExtResource("4_gvix7")
+_audio_position = NodePath("..")
+metadata/_custom_type_script = "uid://glf7b81sjiep"

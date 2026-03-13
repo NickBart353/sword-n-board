@@ -10,6 +10,7 @@ var swinging: bool = false
 var swing_in_progress: bool = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
+	#print(swing)
 	if not weapon == player.get_equipped_primary() or not weapon:
 		weapon = player.get_equipped_primary()
 	
@@ -58,7 +59,7 @@ func _sword_animation_ended(anim_name: StringName) -> void:
 		weapon.set_collision_mask_value(1, true)
 
 func reset():
-	weapon = null
+	#weapon = null
 	bodies = []
 	swing = 0
 	swinging = false

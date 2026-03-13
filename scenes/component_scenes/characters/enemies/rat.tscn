@@ -26,9 +26,11 @@
 [ext_resource type="PackedScene" uid="uid://daa32y3httqmj" path="res://scenes/component_scenes/attacks/claw_attack.tscn" id="21_7gu7r"]
 [ext_resource type="Script" uid="uid://dk07ew5xsnn88" path="res://scripts/state_machine/states/EnemyStates/rat/Slam.gd" id="21_iskec"]
 [ext_resource type="PackedScene" uid="uid://dh06ehim8m2nd" path="res://scenes/component_scenes/attacks/slam_attack.tscn" id="22_iskec"]
+[ext_resource type="AudioStream" uid="uid://pe2mny6vre6l" path="res://assets/Audio/pixabay/slam/slam-combi.wav" id="22_vx5t5"]
 [ext_resource type="Script" uid="uid://cmc2emp2ajmba" path="res://scripts/state_machine/states/EnemyStates/rat/slam_two.gd" id="23_kqh87"]
 [ext_resource type="PackedScene" uid="uid://cj8pj230ayap1" path="res://scenes/component_scenes/attacks/big_slam_attack.tscn" id="24_4mpa1"]
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="24_j6d1h"]
+[ext_resource type="AudioStream" uid="uid://xo6w4crc3tlo" path="res://assets/Audio/pixabay/freesound_community-taco-crunch-108204.mp3" id="25_lmxkh"]
 [ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="26_lj3t4"]
 [ext_resource type="AudioStream" uid="uid://d3xnxrgxl68kc" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Land.wav" id="28_kvbwt"]
 [ext_resource type="AudioStream" uid="uid://b4om26u03naih" path="res://assets/Audio/FreeSFX/GameSFX/FootStep/Retro FootStep Grass 01.wav" id="30_i1nge"]
@@ -757,13 +759,13 @@ bones/3/position = Vector3(2.7943134e-17, 0.035011638, 5.0474513e-10)
 bones/3/rotation = Quaternion(-0.032742683, 0.005080462, 0.15324433, 0.98763275)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/position = Vector3(-6.691533e-17, 0.036299333, -2.7045108e-10)
-bones/4/rotation = Quaternion(0.25022915, 0.0014712894, 0.041849986, 0.9672806)
+bones/4/rotation = Quaternion(0.4706692, -0.023462988, -0.1269325, 0.87281626)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(0.011307207, 0.0059834784, -0.0077325143)
-bones/5/rotation = Quaternion(0.73109734, 0.42429686, 0.16423929, -0.50842327)
+bones/5/rotation = Quaternion(0.6344707, 0.5681623, 0.13838255, -0.5054591)
 bones/5/scale = Vector3(1, 1, 0.99999994)
 bones/7/position = Vector3(-0.011307205, 0.0059834784, -0.007732516)
-bones/7/rotation = Quaternion(0.73109746, -0.42429692, -0.16423926, -0.50842327)
+bones/7/rotation = Quaternion(0.6344707, -0.5681622, -0.13838245, -0.50545913)
 bones/7/scale = Vector3(1, 0.99999994, 1.0000002)
 bones/9/position = Vector3(0.02200493, 0.022545217, 0.009580314)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
@@ -782,7 +784,7 @@ bones/15/position = Vector3(-6.938894e-18, 0.014769028, -4.8572257e-17)
 bones/15/rotation = Quaternion(-1.7886627e-08, 6.535729e-08, 0.6782688, 0.73481387)
 bones/15/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0.025667883, 0.031279262, 0.0063315374)
-bones/17/rotation = Quaternion(0.5280448, 0.47028577, 0.4702859, 0.52804476)
+bones/17/rotation = Quaternion(0.5894382, 0.39059266, 0.39059275, 0.5894382)
 bones/17/scale = Vector3(0.99999994, 0.9999998, 0.9999998)
 bones/18/position = Vector3(4.2915282e-10, 0.019717814, 6.6039924e-10)
 bones/18/rotation = Quaternion(1.674626e-08, 1.1175873e-08, -3.022882e-08, 1)
@@ -791,7 +793,7 @@ bones/19/position = Vector3(9.367507e-17, 0.016380727, 5.2041704e-17)
 bones/19/rotation = Quaternion(-2.3336575e-08, -8.921103e-08, -0.626472, 0.779444)
 bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-0.025667883, 0.031279262, 0.006331533)
-bones/21/rotation = Quaternion(-0.6234478, 0.33363593, 0.333636, -0.6234477)
+bones/21/rotation = Quaternion(-0.56236154, 0.42866027, 0.42866024, -0.5623615)
 bones/21/scale = Vector3(0.99999994, 0.99999976, 0.9999998)
 bones/22/position = Vector3(-4.2915302e-10, 0.019717816, 2.3913589e-09)
 bones/22/rotation = Quaternion(-1.674626e-08, -1.4901163e-08, 3.0228826e-08, 1)
@@ -799,9 +801,9 @@ bones/22/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-2.4286129e-17, 0.01638073, -1.3877788e-17)
 bones/23/rotation = Quaternion(-2.4635192e-08, 8.816729e-08, 0.626472, 0.7794439)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/25/rotation = Quaternion(0.27191827, 0, 0, 0.9623204)
+bones/25/rotation = Quaternion(0.32246956, 0, 0, 0.94657993)
 bones/26/position = Vector3(0, 0.038294263, 3.469447e-18)
-bones/26/rotation = Quaternion(0.06090441, 0, 0, 0.9981437)
+bones/26/rotation = Quaternion(0.10321086, 0, 0, 0.99465954)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 
 [node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1356767653]
@@ -898,6 +900,7 @@ attack_range = 5
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
+audio_resource = ExtResource("22_vx5t5")
 
 [node name="Bite" type="Node" parent="StateMachine/Follow" index="1" unique_id=1297285949 node_paths=PackedStringArray("bite_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("18_urxsf")
@@ -908,6 +911,7 @@ attack_range = 7
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
+audio_resource = ExtResource("25_lmxkh")
 
 [node name="Claw" type="Node" parent="StateMachine/Follow" index="2" unique_id=865819282 node_paths=PackedStringArray("claw_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("20_gyxf7")
@@ -927,6 +931,8 @@ damage = 50
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../RatPlayer")
+audio_resource = ExtResource("22_vx5t5")
+audio_volume = 5.0
 
 [node name="Recover" type="Node" parent="StateMachine" index="4" unique_id=194655057 node_paths=PackedStringArray("recovery_timer", "follow_up_state", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("24_j6d1h")
@@ -969,6 +975,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 5.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 3.4999998)
 
 [node name="RatPlayer" type="AudioStreamPlayer3D" parent="." index="11" unique_id=1528253678]
+max_polyphony = 4
 bus = &"SFX"
 
 [node name="FireAndForget" type="Node3D" parent="." index="12" unique_id=330988906 node_paths=PackedStringArray("_audio_position")]
