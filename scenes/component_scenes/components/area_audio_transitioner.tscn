@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cshjoc0yem7u6"]
+
+[ext_resource type="Script" uid="uid://cfe2qv7i2dv0i" path="res://scripts/components/AreaAudioTransitioner.gd" id="1_h7sew"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h7sew"]
+size = Vector3(100, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h7sew"]
+size = Vector3(100, 100, 100)
+
+[node name="AreaAudioTransitioner" type="Area3D" unique_id=1633038498]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_h7sew")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=474606993]
+shape = SubResource("BoxShape3D_h7sew")
+debug_color = Color(0.98304313, 0, 0.36095843, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1290367847]
+visible = false
+mesh = SubResource("BoxMesh_h7sew")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
