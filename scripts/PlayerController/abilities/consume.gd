@@ -32,5 +32,5 @@ func done_consuming():
 	consumed = true
 
 func reset():
-	consumable = null
+	#consumable = null
 	consuming = false

@@ -30,5 +30,5 @@ func _blocked(body):
 		blocked.emit(body)
 
 func reset():
-	offhand = null
+	#offhand = null
 	blocking = false

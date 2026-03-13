@@ -20,5 +20,5 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 		lighting = false
 
 func reset():
-	offhand = null
+	#offhand = null
 	lighting = false

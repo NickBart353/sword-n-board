@@ -55,7 +55,7 @@ func _remove_proj(proj: Node):
 	proj.queue_free()
 
 func reset():
-	weapon = null
+	#weapon = null
 	cast = 0 
 	casting = false
 	cast_in_progress = false

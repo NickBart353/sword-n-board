@@ -60,7 +60,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func reset():
 	shoot = 0
 	max_charge = false
-	weapon = null
+	#weapon = null
 	shooting = false
 	shoot_in_progress = false
 	charging = false
+	released = true
