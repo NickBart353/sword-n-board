@@ -5,3 +5,4 @@ assets/*
 demo/
 addons/*
 assets.zip
+*.tmp
