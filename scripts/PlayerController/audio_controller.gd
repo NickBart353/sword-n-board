@@ -31,15 +31,15 @@ func _apply_movement_audio(_state_controller: Node, movement: Node) -> void:
 		movement_loop_player.stop()
 	
 	if movement.landed:
-		_play_oneshot(land_sfx)
+		_play_oneshot(land_sfx, 0.05)
 	if movement.jumping and movement.is_on_floor:
-		_play_oneshot(jump_sfx)
+		_play_oneshot(jump_sfx, 0.05)
 	if movement.dash_started:
 		_play_oneshot(dash_sfx)
 
-func _play_oneshot(sfx: AudioStream):
+func _play_oneshot(sfx: AudioStream, offset: float = 0.0):
 	movement_one_shot_player.stream = sfx
-	movement_one_shot_player.play()
+	movement_one_shot_player.play(offset)
 
 func _apply_voice_audio(state_controller: Node, movement: Node, ability_controller: Node) -> void:
 	pass

@@ -19,5 +19,6 @@ func play_audio_from_resource(audio_resource: AudioStream, location: Vector3, au
 			audio_player_instance.bus = "Voices"
 		BUS.SFX:
 			audio_player_instance.bus = "SFX"
+	audio_player_instance.max_distance = 30.0
 	audio_player_instance.play(offset)
 	audio_player_instance.finished.connect(audio_player_instance.queue_free)

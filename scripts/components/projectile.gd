@@ -11,7 +11,8 @@ class_name Projectile
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
 @export var explosion_target_raycast: RayCast3D
-
+@export var audio_resource: AudioStream
+@export var offset_audio: float = 0.0
 
 signal exploded
 
@@ -47,6 +48,7 @@ func _on_body_entered(body: Node3D) -> void:
 		target_hit = true
 	_hit_object()
 	hit_by_explosion_list.append(body)
+	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio)
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return
@@ -56,7 +58,7 @@ func _on_area_entered(_area: Area3D) -> void:
 
 func _on_explosion_body_entered(body: Node3D) -> void:
 	if body in hit_by_explosion_list: return
-	if (body is Player or body is Enemy):# and not target_hit:
+	if (body is Player or body is Enemy):
 		was_object_hit_first(body, explosion_radius)
 		target_hit = true
 	hit_by_explosion_list.append(body)

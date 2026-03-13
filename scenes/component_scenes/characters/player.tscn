@@ -326,7 +326,7 @@ tracks/3/keys = {
 "start_offset": 0.0,
 "stream": SubResource("AudioStreamRandomizer_6xk8q")
 }],
-"times": PackedFloat32Array(0.06666667)
+"times": PackedFloat32Array(0)
 }
 tracks/3/use_blend = true
 
@@ -364,7 +364,7 @@ playback_mode = 1
 random_pitch = 1.0594631
 random_volume_offset_db = 1.0
 streams_count = 1
-stream_0/stream = ExtResource("21_m2pt1")
+stream_0/stream = ExtResource("20_6xk8q")
 
 [sub_resource type="Animation" id="Animation_w8vq5"]
 resource_name = "Bow3"
@@ -430,7 +430,7 @@ tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
-"start_offset": 0.0,
+"start_offset": 0.016226362,
 "stream": SubResource("AudioStreamRandomizer_6ocei")
 }],
 "times": PackedFloat32Array(0)
@@ -1134,7 +1134,9 @@ bus = &"SFX"
 
 [node name="MovementOneShotPlayer" type="AudioStreamPlayer3D" parent="." unique_id=2073203264]
 stream = SubResource("AudioStreamPlaylist_v1vyy")
+max_polyphony = 4
 bus = &"SFX"
+playback_type = 1
 
 [node name="VoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1748990333]
 bus = &"Voices"

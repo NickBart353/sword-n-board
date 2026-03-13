@@ -1,29 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://fobgvab5f5wb"]
+[gd_scene format=3 uid="uid://fobgvab5f5wb"]
 
-[ext_resource type="PackedScene" uid="uid://01x8d83uwjmy" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/torch_mounted.glb" id="1_q6hjl"]
+[ext_resource type="PackedScene" uid="uid://01x8d83uwjmy" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/torch_mounted.glb" id="1_q6hjl"]
 [ext_resource type="PackedScene" uid="uid://cfnt03x7m17w2" path="res://scenes/component_scenes/shader/vfx_fire.tscn" id="2_07236"]
+[ext_resource type="AudioStream" uid="uid://1bollewef3ok" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Torch/Torch Loop.wav" id="3_60xvo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_07236"]
 size = Vector3(0.55, 1.01, 0.59999996)
 
-[node name="torch_mounted" type="StaticBody3D"]
+[node name="torch_mounted" type="StaticBody3D" unique_id=1669217469]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1195255307]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0050000474, 0.16125011, 0.3)
 shape = SubResource("BoxShape3D_07236")
 
-[node name="torch_mounted2" parent="." instance=ExtResource("1_q6hjl")]
+[node name="torch_mounted2" parent="." unique_id=1116630507 instance=ExtResource("1_q6hjl")]
 
-[node name="vfx_fire" parent="torch_mounted2" instance=ExtResource("2_07236")]
+[node name="vfx_fire" parent="torch_mounted2" unique_id=324557053 instance=ExtResource("2_07236")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.4)
+flame_color = Color(1.4959992, 0.7829131, 0.47453701, 1)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=903963681]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96792996, 0.42300868)
+visible = false
 light_color = Color(0.6922583, 0.65924823, 0.9361789, 1)
 shadow_enabled = true
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1408323499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96792996, 0.42300868)
-visible = false
 light_color = Color(0.9845906, 0.5812982, 0.3624126, 1)
 shadow_enabled = true
+
+[node name="TorchPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1301302810]
+stream = ExtResource("3_60xvo")
+autoplay = true
+max_distance = 12.0

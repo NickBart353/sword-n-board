@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ibpe0slijw8t"]
 
-[ext_resource type="PackedScene" uid="uid://cytvliaaddflr" path="res://assets/MonstersPack_Ps1/FBX/EaterPlant.fbx" id="1_ff3iu"]
+[ext_resource type="PackedScene" uid="uid://cytvliaaddflr" path="res://assets/Visual/MonstersPack_Ps1/FBX/EaterPlant.fbx" id="1_ff3iu"]
 [ext_resource type="Script" uid="uid://c5cahqi0flfnq" path="res://scripts/characters/enemies/eater_plant.gd" id="2_d6sg8"]
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="2_e5tdy"]
 [ext_resource type="PackedScene" uid="uid://dp45iolku1t81" path="res://scenes/component_scenes/spells/toxic_bomb.tscn" id="3_ej3g5"]
@@ -12,7 +12,7 @@
 [ext_resource type="Animation" uid="uid://dkeragtp5b3j2" path="res://animations/eater_plant/EaterPlant_Armature_GetDamageEaterPlant.res" id="5_piwai"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_b7qlj"]
 [ext_resource type="Animation" uid="uid://bo4sf3i064ora" path="res://animations/eater_plant/EaterPlant_Armature_IdleEaterPlant.res" id="6_rxgvd"]
-[ext_resource type="Texture2D" uid="uid://b6aa1pybomc50" path="res://assets/MonstersPack_Ps1/Textures/EaterPlant01Pixelated.png" id="7_mom4r"]
+[ext_resource type="Texture2D" uid="uid://b6aa1pybomc50" path="res://assets/Visual/MonstersPack_Ps1/Textures/EaterPlant01Pixelated.png" id="7_mom4r"]
 [ext_resource type="Script" uid="uid://fa3htuacg1ih" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleSlam.gd" id="8_deve0"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c0utx4rvx0jfo" path="res://animations/eater_plant_animation_sate_machine.tres" id="8_qmp0i"]
 [ext_resource type="Script" uid="uid://cnqlbquajpeqs" path="res://scripts/state_machine/states/EnemyStates/eater_plant/PoisonBurst.gd" id="9_d6sg8"]
@@ -215,10 +215,10 @@ anim_tree = NodePath("AnimationTree")
 healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=98460973]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=1821157464]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1766129486]
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=615591823]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
 bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
 bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
@@ -254,7 +254,7 @@ bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
 bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1136407580]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1367683672]
 material_override = SubResource("ShaderMaterial_alvsb")
 material_overlay = SubResource("ShaderMaterial_ewj3n")
 

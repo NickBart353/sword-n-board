@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://d21w876t16ds4"]
 
 [ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_qpkol"]
-[ext_resource type="ArrayMesh" uid="uid://cpvjgs23ce4wi" path="res://assets/Bow_pack/Objs/arrow.obj" id="2_o5xq5"]
+[ext_resource type="ArrayMesh" uid="uid://cpvjgs23ce4wi" path="res://assets/Visual/Bow_pack/Objs/arrow.obj" id="2_o5xq5"]
+[ext_resource type="AudioStream" uid="uid://b612ujhatf5oy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Impact Hit 3.wav" id="3_o5xq5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rujhh"]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("3_o5xq5")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qpkol"]
 radius = 0.1
@@ -17,6 +24,8 @@ proj_speed = 100
 explosion_animation = 6
 damage = 50
 explosion_target_raycast = NodePath("RayCast3D")
+audio_resource = SubResource("AudioStreamRandomizer_rujhh")
+offset_audio = 0.15
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
 [node name="ArrowMesh" type="MeshInstance3D" parent="." unique_id=1178956469]
