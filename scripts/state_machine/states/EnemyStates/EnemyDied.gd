@@ -6,6 +6,7 @@ signal died
 
 func Enter():
 	super()
+	AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	death_timer.start()
 	if not death_timer.timeout.is_connected(_on_death_remove_timer_timeout):
 		death_timer.timeout.connect(_on_death_remove_timer_timeout)
