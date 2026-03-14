@@ -11,5 +11,6 @@
 - hand crafted semi-open world to explore (some kind of world-tile system, where there are a bunch of large "chunks" seperated by loading screens. maybe also just one, idk yet)
 - procedurally generated dungeons with loot and bosses
 - upgrading weapons and gear
+- npc#s, vendors, maybe even quests?
 - basic crafting?
 - casino!!!!
