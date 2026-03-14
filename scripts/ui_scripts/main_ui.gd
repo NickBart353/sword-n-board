@@ -302,6 +302,17 @@ func take_item_from_slot(index: int, slot: Item):
 	else:
 		print("Inventory full!")
 
+func fill_player_items(new_player_items: Array, new_equipped_head: Item, new_equipped_body: Item, new_equipped_boots: Item, new_equipped_main_hand: Item, new_equipped_off_hand: Item, new_equipped_consumable: Item):
+	_clear_lists()
+	player_items = new_player_items
+	equipped_head = new_equipped_head
+	equipped_body = new_equipped_body
+	equipped_boots = new_equipped_boots
+	equipped_main_hand = new_equipped_main_hand
+	equipped_off_hand = new_equipped_off_hand
+	equipped_consumable = new_equipped_consumable
+	_refill_lists()
+
 func _on_loot_list_item_clicked(index: int, _at_position: Vector2, _mouse_button_index: int) -> void:
 	take_item_from_list(index, loot_items)
 

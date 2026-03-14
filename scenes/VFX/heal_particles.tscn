@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://bwccm7lfw107s"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_cld4u"]
+[ext_resource type="Shader" uid="uid://beken2i52fttm" path="res://shaders/dissolve/big_dissolve_particles.tres" id="2_xttqi"]
+[ext_resource type="AudioStream" uid="uid://c2ywlfnc1kvgc" path="res://assets/Audio/pixabay/yodguard-healing-magic-4-378668.mp3" id="3_e1bg7"]
+
+[sub_resource type="Curve" id="Curve_xttqi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e1bg7"]
+curve = SubResource("Curve_xttqi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xttqi"]
+emission_shape_scale = Vector3(1.83, 1.98, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 1)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_e1bg7")
+color = Color(5.6880865, 5.6880865, 5.6880865, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1bg7"]
+render_priority = 0
+shader = ExtResource("2_xttqi")
+shader_parameter/ColorParameter = Color(0.6564955, 1.8828079, 0.52008915, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e5kd7"]
+material = SubResource("ShaderMaterial_e1bg7")
+radius = 0.125
+height = 0.25
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Animation" id="Animation_xttqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e1bg7"]
+resource_name = "heal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HealPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 6.3,
+"start_offset": 0.07000011,
+"stream": ExtResource("3_e1bg7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5kd7"]
+_data = {
+&"RESET": SubResource("Animation_xttqi"),
+&"heal": SubResource("Animation_e1bg7")
+}
+
+[node name="HealParticles" type="Node3D" unique_id=1760349175 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_cld4u")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "heal"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=271644974]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+emitting = false
+amount = 100
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.7
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xttqi")
+draw_pass_1 = SubResource("SphereMesh_e5kd7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=272727760]
+libraries/ = SubResource("AnimationLibrary_e5kd7")
+
+[node name="HealPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1886288387]

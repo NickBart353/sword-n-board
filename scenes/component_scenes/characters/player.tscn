@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="21_cpava"]
 [ext_resource type="AudioStream" uid="uid://bpo0x5f240exy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Attack 2 - only shot.wav" id="21_m2pt1"]
 [ext_resource type="AudioStream" uid="uid://ciy4u4gpes020" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="24_6xk8q"]
+[ext_resource type="AudioStream" uid="uid://dvqma5cpj270t" path="res://assets/Audio/pixabay/freesound_community-health-pickup-6860.mp3" id="26_6ocei"]
 [ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="26_6xk8q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
@@ -555,6 +556,21 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.6333333)
 }
 tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AbilityPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("26_6ocei")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_du382"]
 resource_name = "Idle"

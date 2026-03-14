@@ -44,6 +44,7 @@ var boots_item: Item
 var main_hand_item: Item
 var off_hand_item: Item
 var consumable_item: Item
+
 var blocked_body: Node
 
 func _ready() -> void:
@@ -169,6 +170,8 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 			Potion.PROPERTY_TYPE.INCREASE:
 				if self.has_method("update_{0}".format([property])):
 					call("update_{0}".format([property]), amount)
+					var heal_vfx = VfxManager.create_vfx_from_enum(VfxManager.VFX.HEAL_PARTICLES, global_position, true).instantiate()
+					add_child(heal_vfx)
 			Potion.PROPERTY_TYPE.DECREASE:
 				if self.has_method("update_{0}".format([property])):
 					call("update_{0}".format([property]), -amount)
@@ -176,9 +179,9 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 				print("not implemented yet...")
 
 func _remove_consumable():
-	consumable_item.data.stack_size -= 1
-	if consumable_item.data.stack_size < 0:
-		return
+	#consumable_item.data.stack_size -= 1
+	#if consumable_item.data.stack_size < 0:
+		#return
 	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:	

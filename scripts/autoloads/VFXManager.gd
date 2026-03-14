@@ -16,7 +16,8 @@ const RUMBLING: PackedScene = preload("res://scenes/VFX/rumbling.tscn")
 const LINE_GROUND_IMPACT: PackedScene = preload("res://scenes/VFX/line_ground_impact.tscn")
 
 enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, 
-TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF, CRUNCH_PARTICLES, CHANNELING_GROUND_IMPACT_LONG, CHANNELING_GROUND_IMPACT_SHORT}
+TOXIC_GROUND, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF, CRUNCH_PARTICLES, CHANNELING_GROUND_IMPACT_LONG, CHANNELING_GROUND_IMPACT_SHORT,
+HEAL_PARTICLES}
 
 const VFX_DICT: Dictionary = {
 	VFX.POISON_EXPLOSION : preload("res://scenes/VFX/poison_explosion.tscn"),
@@ -36,6 +37,7 @@ const VFX_DICT: Dictionary = {
 	VFX.CRUNCH_PARTICLES : preload("res://scenes/VFX/crunched_particles.tscn"),
 	VFX.CHANNELING_GROUND_IMPACT_SHORT : preload("res://scenes/VFX/channeling_ground_impact_short.tscn"),
 	VFX.CHANNELING_GROUND_IMPACT_LONG : preload("res://scenes/VFX/channeling_ground_impact.tscn"),
+	VFX.HEAL_PARTICLES : preload("res://scenes/VFX/heal_particles.tscn"),
 }
 
 func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local: bool = false, new_global_rotation = null):

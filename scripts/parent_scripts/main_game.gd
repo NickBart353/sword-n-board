@@ -42,6 +42,7 @@ func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_
 
 func _open_container(container: Node):
 	_change_ui_state(true)
+	main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
 	main_ui.fill_loot(container.items)
 	main_ui.open_sack(container)
 
