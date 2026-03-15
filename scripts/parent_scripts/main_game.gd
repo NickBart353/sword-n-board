@@ -83,9 +83,10 @@ func _spawn_mobs():
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
-					mob_spawn.add_child(mob_instance)
-					if not mob_instance.died.is_connected(mob_spawn.mob_died):
-						mob_instance.died.connect(mob_spawn.mob_died)
+					if mob_instance:
+						mob_spawn.add_child(mob_instance)
+						if not mob_instance.died.is_connected(mob_spawn.mob_died):
+							mob_instance.died.connect(mob_spawn.mob_died)
 
 func _spawn_player():
 	player = player_scene.instantiate()

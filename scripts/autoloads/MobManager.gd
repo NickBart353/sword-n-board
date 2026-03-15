@@ -9,4 +9,7 @@ const MOB_DICT: Dictionary = {
 }
 
 func spawn_mob_from_enum(mob_type: MOBS):
-	return MOB_DICT[mob_type]
+	if MOB_DICT.get(mob_type):
+		return MOB_DICT.get(mob_type)
+	else:
+		return null
