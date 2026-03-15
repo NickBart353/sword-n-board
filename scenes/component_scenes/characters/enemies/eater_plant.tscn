@@ -14,16 +14,26 @@
 [ext_resource type="Animation" uid="uid://bo4sf3i064ora" path="res://animations/eater_plant/EaterPlant_Armature_IdleEaterPlant.res" id="6_rxgvd"]
 [ext_resource type="Texture2D" uid="uid://b6aa1pybomc50" path="res://assets/Visual/MonstersPack_Ps1/Textures/EaterPlant01Pixelated.png" id="7_mom4r"]
 [ext_resource type="Script" uid="uid://fa3htuacg1ih" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleSlam.gd" id="8_deve0"]
+[ext_resource type="AudioStream" uid="uid://efuhgxtublu1" path="res://assets/Audio/Monster Roar/Ogre Roar 13.wav" id="8_ljboj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c0utx4rvx0jfo" path="res://animations/eater_plant_animation_sate_machine.tres" id="8_qmp0i"]
 [ext_resource type="Script" uid="uid://cnqlbquajpeqs" path="res://scripts/state_machine/states/EnemyStates/eater_plant/PoisonBurst.gd" id="9_d6sg8"]
 [ext_resource type="Script" uid="uid://hthc22nmtdd4" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleEruption.gd" id="10_ep3x6"]
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="14_6gcyd"]
 [ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
+[ext_resource type="AudioStream" uid="uid://847c2bfisw2m" path="res://assets/Audio/Monster Roar/Ogre Roar 03 - edited.wav" id="17_mom4r"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="18_6gcyd"]
+[ext_resource type="AudioStream" uid="uid://dj4dbhe4j844c" path="res://assets/Audio/pixabay/freesound_community-moving-plant-75923.mp3" id="21_bm5oj"]
 [ext_resource type="PackedScene" uid="uid://b3golxe3jp3df" path="res://scenes/component_scenes/spells/tentacle.tscn" id="22_mcukf"]
+[ext_resource type="AudioStream" uid="uid://ctijoqgx8uboe" path="res://assets/Audio/pixabay/freesound_community-power-charge-6798 - edited.wav" id="23_fk03l"]
 [ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
+[ext_resource type="AudioStream" uid="uid://brlq485so3kyn" path="res://assets/Audio/pixabay/freesound_community-052256_cracking-earthquake-cracking-soil-cracking-stone-86770.wav" id="25_cyi11"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
+[ext_resource type="AudioStream" uid="uid://ch1iaqrgut08l" path="res://assets/Audio/Monster Roar/Ogre Roar 05.wav" id="26_ayg1h"]
+[ext_resource type="AudioStream" uid="uid://b6bo32fn2agjj" path="res://assets/Audio/pixabay/freesound_community-spit-36265.mp3" id="27_fk03l"]
+[ext_resource type="AudioStream" uid="uid://6me0coy3qlki" path="res://assets/Audio/pixabay/freesound_community-plant-95044.mp3" id="27_tvx8g"]
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="28_31cd0"]
+[ext_resource type="AudioStream" uid="uid://b1r3nkokje0wp" path="res://assets/Audio/pixabay/lordsonny_two-debris-break-253779.mp3" id="31_dbm22"]
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_6gcyd"]
 parameter_name = "MainTexture"
@@ -174,6 +184,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireAndForget")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("8_ljboj"), 3, 0.1],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4r"]
 _data = {
@@ -215,10 +239,10 @@ anim_tree = NodePath("AnimationTree")
 healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=1821157464]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=1135167227]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=615591823]
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=139055691]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
 bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
 bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
@@ -254,7 +278,7 @@ bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
 bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1367683672]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=297209059]
 material_override = SubResource("ShaderMaterial_alvsb")
 material_overlay = SubResource("ShaderMaterial_ewj3n")
 
@@ -332,39 +356,54 @@ one_shot = true
 wait_time = 2.9
 one_shot = true
 
+[node name="BombDelay" type="Timer" parent="Timers" index="6" unique_id=361486950]
+one_shot = true
+
 [node name="StateMachine" type="Node" parent="." index="12" unique_id=1149640940 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("14_6gcyd")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1939936216 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=1939936216 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("4_i1lff")
 wander_speed = 0
 allowed_distance_to_origin = 100
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("21_bm5oj")
+audio_max_range = 100.0
 
-[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy", "anim_tree")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=22800277 node_paths=PackedStringArray("yell_vfx_position", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("5_my8t3")
 pull_distance = 20
 yell_vfx_position = NodePath("../../MouthSide")
 only_look_horizontally = true
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("17_mom4r")
+audio_volume = 10.0
 
-[node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Return" type="Node" parent="StateMachine" index="2" unique_id=527693967 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("6_b7qlj")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
 
-[node name="Follow" type="Node" parent="StateMachine" index="3" unique_id=1377346068 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Follow" type="Node" parent="StateMachine" index="3" unique_id=1377346068 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("18_6gcyd")
-follow_speed = 0
-attack_range = 30
+follow_speed = 0.0
+attack_range = 50.0
 look_at_player = false
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("21_bm5oj")
 
-[node name="ChannelingPoisonBurst" type="Node" parent="StateMachine/Follow" index="0" unique_id=1394142044 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree")]
+[node name="ChannelingPoisonBurst" type="Node" parent="StateMachine/Follow" index="0" unique_id=1394142044 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("13_od7bd")
 charge_timer = NodePath("../../../Timers/PoisonTimer")
 channeling_vfx_position = NodePath("../../../MouthTop")
@@ -374,8 +413,11 @@ look_at_target = false
 cool_down_timer = NodePath("../../../Timers/PoisonCooldown")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("23_fk03l")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine/Follow" index="1" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree")]
+[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine/Follow" index="1" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("14_piwai")
 charge_timer = NodePath("../../../Timers/EruptionTimer")
 channeling_vfx_position = NodePath("../../../Tentacles")
@@ -384,31 +426,45 @@ look_at_target = false
 cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("25_cyi11")
 
-[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../PlantPlayer")
+audio_resource = ExtResource("27_tvx8g")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree")]
+[node name="PoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("9_d6sg8")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+audio_resource = ExtResource("27_fk03l")
+audio_volume = 5.0
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree")]
+[node name="TentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+audio_resource = ExtResource("31_dbm22")
+offset_audio = 0.4899999999999949
 
-[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree")]
+[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("25_mom4r")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("26_ayg1h")
 
 [node name="Bombs" type="Node3D" parent="." index="13" unique_id=717428469]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)
@@ -423,3 +479,14 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6
 
 [node name="MouthSide" type="Marker3D" parent="." index="17" unique_id=1010728377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 5.5)
+
+[node name="PlantPlayer" type="AudioStreamPlayer3D" parent="." index="18" unique_id=2008908463]
+max_polyphony = 10
+bus = &"SFX"
+
+[node name="FireAndForget" type="Node3D" parent="." index="19" unique_id=1781275387 node_paths=PackedStringArray("_audio_position")]
+script = ExtResource("28_31cd0")
+_audio_position = NodePath("..")
+metadata/_custom_type_script = "uid://glf7b81sjiep"
+
+[connection signal="timeout" from="Timers/BombDelay" to="." method="_on_bomb_delay_timeout"]

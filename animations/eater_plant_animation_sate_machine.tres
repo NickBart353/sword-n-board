@@ -8,7 +8,7 @@ filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_override:shader_p
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_p4mo3"]
 resource_local_to_scene = true
 filter_enabled = true
-filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on"]
+filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_parameter/hit_flash_on", "FireAndForget"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_od7bd"]
 animation = &"eater_plant/EaterPlant_Armature_IdleEaterPlant"
@@ -216,12 +216,12 @@ animation = &"hitflash"
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-456.6586, 47.725822)
+graph_offset = Vector2(-154.52762, 160.76826)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)
 nodes/Hitflash/node = SubResource("AnimationNodeOneShot_p4mo3")
-nodes/Hitflash/position = Vector2(260, 160)
+nodes/Hitflash/position = Vector2(256, 160)
 nodes/hitflash/node = SubResource("AnimationNodeAnimation_k6do6")
 nodes/hitflash/position = Vector2(-20, 340)
 nodes/Dissolve/node = SubResource("AnimationNodeOneShot_k6do6")

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://8rjfmprcwuf6" path="res://scripts/characters/enemies/eater_plant/tentacle_root.gd" id="1_4l43q"]
 [ext_resource type="PackedScene" uid="uid://r06beii7nq0q" path="res://scenes/VFX/slashing_wind.tscn" id="2_43g5x"]
 [ext_resource type="Shader" uid="uid://dmfrt1m5sg37a" path="res://shaders/dissolve_shader.tres" id="2_mvym0"]
+[ext_resource type="AudioStream" uid="uid://pe2mny6vre6l" path="res://assets/Audio/pixabay/slam/slam-combi.wav" id="4_7clji"]
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="5_hoq3t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkkqe"]
 radius = 2.2
@@ -993,6 +995,20 @@ tracks/12/keys = {
 "method": &"create_impact_vfx"
 }]
 }
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("FireAndForget")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("4_7clji"), 3, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4l43q"]
 resource_name = "WindUp"
@@ -1343,6 +1359,11 @@ libraries/ = SubResource("AnimationLibrary_qt3o1")
 tree_root = SubResource("AnimationNodeStateMachine_4l43q")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="FireAndForget" type="Node3D" parent="." unique_id=2050598536 node_paths=PackedStringArray("_audio_position")]
+script = ExtResource("5_hoq3t")
+_audio_position = NodePath("../StartSegment/MiddleOneSegment/MiddleTwoSegment")
+metadata/_custom_type_script = "uid://glf7b81sjiep"
 
 [connection signal="body_entered" from="StartSegment" to="." method="_on_start_segment_body_entered"]
 [connection signal="body_entered" from="StartSegment/MiddleOneSegment" to="." method="_on_middle_one_segment_body_entered"]

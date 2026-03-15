@@ -7,6 +7,12 @@ extends Area3D
 @export_range(0.0, 100.0) var max_distance: float = 8.0
 @export var rumbling_vfx: VfxManager.VFX = VfxManager.VFX.RUMBLING
 
+@export_group("Audio")
+@export var audio_resource: AudioStream
+@export_range(-100.0, 100.0) var offset_audio: float = 0.0
+@export_range(-100.0, 100.0) var audio_volume: float = 0.0
+@export_range(-100.0, 1000.0) var audio_max_range: float = 0.0 
+
 signal finished_eruption
 signal ground_point_above
 
@@ -28,6 +34,7 @@ func _physics_process(delta: float) -> void:
 		if global_position.distance_to(origin_position) > max_distance:
 			is_ready_to_erupt = false
 			velocity = Vector3(0, eruption_speed  * -1, 0)
+			#AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 			if not top_position:
 				top_position = global_position
 			resting_timer.start()

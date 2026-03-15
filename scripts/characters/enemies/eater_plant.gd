@@ -2,6 +2,7 @@ extends Enemy
 
 @onready var bombs: Node3D = $Bombs
 @onready var tentacle_root_container: Node3D = $TentacleRoots
+@onready var bomb_delay: Timer = $Timers/BombDelay
 
 @export var POISON_BOMB_SCENE: PackedScene
 @export var poison_blast_bullet_amount: int = 10
@@ -36,10 +37,25 @@ func create_bombs():
 		bombs.add_child(poison_bomb_instance, true)
 		poison_bomb_instance.global_position = RESET_POSITION
 
-func ready_bombs(player_location):
+var shot = false
+
+func ready_bombs(player_location: Vector3):
+	#var bullet_delay: float = 0.01
+	#var time_accumulator: float = 0.0
 	for bomb in bombs.get_children():
+		#time_accumulator = 0.0
+		#var delta = get_process_delta_time() 
+		#while time_accumulator < bullet_delay:
+			#time_accumulator += delta
 		bomb.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 		bomb.fire(bomb_start_location.global_position, player_location, global_transform)
+		
+		#bomb_delay.start()
+		#await bomb_delay.timeout
+
+	$StateMachine/PoisonBurst.burst_finished()
+
+
 
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
@@ -59,3 +75,7 @@ func create_tentacle_roots():
 		var tentacle_root_instance = tentacle_root.instantiate()
 		tentacle_root_container.add_child(tentacle_root_instance, true)
 		tentacle_root_instance.rotate_y(deg_to_rad(radiant_size * i))
+
+
+func _on_bomb_delay_timeout() -> void:
+	pass

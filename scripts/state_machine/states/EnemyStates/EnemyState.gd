@@ -12,7 +12,7 @@ var player
 @export var audio_resource: AudioStream
 @export_range(-100.0, 100.0) var offset_audio: float = 0.0
 @export_range(-100.0, 100.0) var audio_volume: float = 0.0
-@export_range(-100.0, 100.0) var audio_max_range: float = 0.0 
+@export_range(-100.0, 1000.0) var audio_max_range: float = 0.0 
 
 func Enter():
 	super()
