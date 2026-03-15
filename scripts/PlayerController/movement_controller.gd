@@ -73,6 +73,7 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 				dashing_direction = Vector3(player.input.direction.x, 0, player.input.direction.y)
 				dashing_direction = (player.transform.basis * Vector3(dashing_direction.x, 0, dashing_direction.z)).normalized()
 		player.velocity = dashing_direction * dash_speed
+		player.velocity += player.get_gravity()
 		if player.global_position.distance_to(dashing_origin) > dash_distance or player.is_on_wall():
 			dashing = false
 			player.velocity.x = 0

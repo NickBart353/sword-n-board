@@ -37,8 +37,8 @@ last_shadow_lod = 0
 lod0_range = 128.0
 
 [sub_resource type="Gradient" id="Gradient_48k8l"]
-offsets = PackedFloat32Array(0.2809524, 0.9954955)
-colors = PackedColorArray(0.21786952, 0.11994644, 0.123456515, 1, 0.92201, 0.3710873, 0.5803725, 1)
+offsets = PackedFloat32Array(0.2650273, 0.9954955)
+colors = PackedColorArray(0.13725491, 0.33333334, 0, 1, 0, 0.9137255, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7xho2"]
 gradient = SubResource("Gradient_48k8l")
