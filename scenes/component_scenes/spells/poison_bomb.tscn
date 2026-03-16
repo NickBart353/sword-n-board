@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ccb0r2c11m51l"]
 
 [ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_7w6vo"]
-[ext_resource type="AudioStream" uid="uid://b0jml7ygehdfv" path="res://assets/Audio/pixabay/freesound_community-bubbles-03-91268.wav" id="2_ps286"]
+[ext_resource type="AudioStream" uid="uid://cnhvy2r3ispku" path="res://assets/Audio/pixabay/dennish18-small-explosion-129477.mp3" id="2_ps286"]
 
 [sub_resource type="Curve" id="Curve_4h1qo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -51,6 +51,8 @@ gravity_strength = 3.88
 spread = 5.0
 explosion_target_raycast = NodePath("RayCast3D")
 audio_resource = ExtResource("2_ps286")
+audio_volume = -30.0
+audio_max_range = 50.0
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
 [node name="Goo" type="GPUParticles3D" parent="." unique_id=1369429775]

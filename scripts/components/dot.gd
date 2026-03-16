@@ -20,7 +20,8 @@ func _process(_delta: float) -> void:
 		for body in get_overlapping_bodies():
 			if (body is Player or body is Enemy):
 				for dot in overlapping_areas:
-					dot.start_timer_from_overlap()
+					if dot:
+						dot.start_timer_from_overlap()
 				timer.start(tick_speed)
 				body.take_damage(dot_damage, self)
 

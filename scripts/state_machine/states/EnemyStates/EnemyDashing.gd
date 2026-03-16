@@ -5,6 +5,7 @@ extends EnemyState
 @export var dash_damage: int = 50
 @export var charge_timer: Timer
 @export var cutting_wind: Node
+@export var stab_audio_resource: AudioStream
 
 var dash_direction: Vector3
 var dash_start_position: Vector3
@@ -46,6 +47,8 @@ func _on_damage_box_area_entered(area: Area3D) -> void:
 			charge_interrupted = true
 		elif area.is_in_group("PlayerHurtBox") and not player_hit and not charge_interrupted:
 			player.take_damage(dash_damage, enemy)
+			AudioManager.play_audio_from_resource(stab_audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
+			print("test")
 			player_hit = true
 
 func _on_damage_box_body_entered(body: Node3D) -> void:

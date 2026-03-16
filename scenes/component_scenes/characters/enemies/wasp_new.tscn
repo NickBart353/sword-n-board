@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bj5acmkkrx4qm" path="res://assets/Visual/MonstersPack_Ps1/Textures/WaspPixelated.png" id="5_jym8u"]
 [ext_resource type="Animation" uid="uid://c32nq7ymf0dxl" path="res://animations/wasp/Damaged.tres" id="6_f2g7w"]
 [ext_resource type="Script" uid="uid://cpaa4csvfuah1" path="res://scripts/state_machine/states/EnemyStates/EnemyReturn.gd" id="6_outyk"]
+[ext_resource type="AudioStream" uid="uid://crp0v2ctm7085" path="res://assets/Audio/Monster Roar/Ghost Roar 10.wav" id="6_t20u8"]
 [ext_resource type="Script" uid="uid://ba18g0av6r7c6" path="res://scripts/state_machine/states/EnemyStates/EnemyEngage.gd" id="7_3gwer"]
 [ext_resource type="Animation" uid="uid://fvbh0x8x0ull" path="res://animations/wasp/Death.tres" id="7_bf4wv"]
 [ext_resource type="Script" uid="uid://cguhqgwmkpmqk" path="res://scripts/state_machine/states/EnemyStates/EnemyLocked.gd" id="7_exisn"]
@@ -23,38 +24,49 @@
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="9_nsq2h"]
 [ext_resource type="Script" uid="uid://dda88ptav4g8l" path="res://scripts/state_machine/states/EnemyStates/EnemyDied.gd" id="10_5gd67"]
 [ext_resource type="Script" uid="uid://dqhemwoe2317a" path="res://scripts/state_machine/states/EnemyStates/EnemyFire.gd" id="10_8wo36"]
-[ext_resource type="Animation" uid="uid://7f7s4ke42foe" path="res://animations/wasp/new import/AtackWasp.res" id="11_xaarc"]
-[ext_resource type="Animation" uid="uid://bcc7d87kw83oi" path="res://animations/wasp/new import/DeathWasp.res" id="12_y5ov3"]
-[ext_resource type="Animation" uid="uid://cxrug10eg8r6t" path="res://animations/wasp/new import/FlyingWasp.res" id="13_ndi4h"]
+[ext_resource type="AudioStream" uid="uid://d3xnxrgxl68kc" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Land.wav" id="10_aefyq"]
+[ext_resource type="Animation" uid="uid://bkxh52lcvp70v" path="res://animations/wasp/new import/AtackWasp.res" id="11_xaarc"]
+[ext_resource type="Animation" uid="uid://crndg0bsgar32" path="res://animations/wasp/new import/DeathWasp.res" id="12_y5ov3"]
+[ext_resource type="Animation" uid="uid://4usqu7iuanq7" path="res://animations/wasp/new import/FlyingWasp.res" id="13_ndi4h"]
 [ext_resource type="Script" uid="uid://b0oihkxfxk40e" path="res://scripts/state_machine/states/EnemyStates/EnemyResetting.gd" id="14_645re"]
-[ext_resource type="Animation" uid="uid://c0plm6hah8o5m" path="res://animations/wasp/new import/GetDamageWasp.res" id="14_t20u8"]
-[ext_resource type="Animation" uid="uid://c0ia5dt474wpg" path="res://animations/wasp/new import/IdleWasp.res" id="15_ughj8"]
+[ext_resource type="Animation" uid="uid://dhmfn2efiw1si" path="res://animations/wasp/new import/GetDamageWasp.res" id="14_t20u8"]
+[ext_resource type="Animation" uid="uid://emv1pvgw5yt4" path="res://animations/wasp/new import/IdleWasp.res" id="15_ughj8"]
 [ext_resource type="PackedScene" uid="uid://c4otxsclcfj2p" path="res://scenes/VFX/cutting_wind.tscn" id="16_u6q5m"]
+[ext_resource type="AudioStream" uid="uid://utost1bgvwm3" path="res://assets/Audio/pixabay/freesound_community-helicopter-sound-41975.mp3" id="21_m5gis"]
+[ext_resource type="AudioStream" uid="uid://bocnkhtii1oee" path="res://assets/Audio/Monster Roar/Ghost Roar 06.wav" id="21_ndi4h"]
 [ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="25_f2g7w"]
+[ext_resource type="AudioStream" uid="uid://dkxsa4t72khyi" path="res://assets/Audio/pixabay/freesound_community-energy-hum-29083.wav" id="25_il6m2"]
+[ext_resource type="AudioStream" uid="uid://c1ryvnwr0gtvr" path="res://assets/Audio/pixabay/dragon-studio-blizzard-wind-463217.wav" id="25_xedv5"]
+[ext_resource type="AudioStream" uid="uid://b6bo32fn2agjj" path="res://assets/Audio/pixabay/freesound_community-spit-36265.mp3" id="29_qbyea"]
+[ext_resource type="AudioStream" uid="uid://crgowywtr3lhn" path="res://assets/Audio/Monster Roar/Ghost Roar 14.wav" id="32_ughj8"]
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="32_y5ov3"]
+[ext_resource type="AudioStream" uid="uid://bf3p2fc5lw0vf" path="res://assets/Audio/pixabay/freesound_community-knife-stab-sound-effect-36354.wav" id="33_2lma5"]
+[ext_resource type="AudioStream" uid="uid://dlbnuhs4tq1wb" path="res://assets/Audio/pixabay/universfield-swoosh-08-352049.wav" id="33_aefyq"]
+[ext_resource type="Script" uid="uid://kh35fbvxguxq" path="res://scripts/components/loop_player.gd" id="42_x420n"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_bf4wv"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ndi4h"]
 parameter_name = "MainTexture"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_o55j2"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_t20u8"]
 source = 5
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_jym8u"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ughj8"]
 parameter_name = "Metallic"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lcfq6"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_xedv5"]
 parameter_name = "Roughness"
 hint = 1
 
-[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_hhixj"]
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_il6m2"]
 constant = Color(0.003921569, 0.003921569, 0, 1)
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_xaarc"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_qbyea"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_y5ov3"]
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_w2ab7"]
 parameter_name = "Color"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
@@ -66,56 +78,56 @@ noise = SubResource("FastNoiseLite_wvk24")
 seamless = true
 seamless_blend_skirt = 0.488
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ndi4h"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_m5gis"]
 texture = SubResource("NoiseTexture2D_drxrv")
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_t20u8"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_aefyq"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ughj8"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_2lma5"]
 parameter_name = "DissolveStrength"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_xedv5"]
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_x420n"]
 function = 31
 
-[sub_resource type="VisualShader" id="VisualShader_il6m2"]
+[sub_resource type="VisualShader" id="VisualShader_atm0s"]
 resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_ndi4h")
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_m5gis")
 nodes/fragment/3/position = Vector2(-980, -140)
-nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_t20u8")
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_aefyq")
 nodes/fragment/4/position = Vector2(-140, 720)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_ughj8")
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_2lma5")
 nodes/fragment/8/position = Vector2(-460, 720)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_xedv5")
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_x420n")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_bf4wv")
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_ndi4h")
 nodes/fragment/10/position = Vector2(-540, -380)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_o55j2")
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_t20u8")
 nodes/fragment/11/position = Vector2(-480, -560)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_jym8u")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_ughj8")
 nodes/fragment/12/position = Vector2(-520, 100)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_lcfq6")
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_xedv5")
 nodes/fragment/13/position = Vector2(-160, 220)
-nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_hhixj")
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_il6m2")
 nodes/fragment/14/position = Vector2(140, 340)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_xaarc")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_qbyea")
 nodes/fragment/15/position = Vector2(-80, -560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_y5ov3")
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_w2ab7")
 nodes/fragment/16/position = Vector2(-400, -760)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qbyea"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ymjw"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_il6m2")
+shader = SubResource("VisualShader_atm0s")
 shader_parameter/MainTexture = ExtResource("5_jym8u")
 shader_parameter/Color = Color(1, 1, 1, 1)
 shader_parameter/Metallic = 1.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2ab7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbnjv"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_awi1o")
@@ -193,6 +205,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireAndForget")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("6_t20u8"), 3, 0.0, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qm4s7"]
 _data = {
@@ -201,11 +227,156 @@ _data = {
 &"hitflash": SubResource("Animation_awi1o")
 }
 
+[sub_resource type="Animation" id="Animation_2lma5"]
+resource_name = "Fall"
+length = 0.45
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wasp01_Armature/Skeleton3D:Chest")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -7.238561e-08, -0.28416136, 0.9587765, -2.1453586e-08, 0.033333335, 1, -7.2442035e-08, -0.2816274, 0.95952386, -2.1262275e-08, 0.05, 1, -7.247006e-08, -0.28035966, 0.959895, -2.1166565e-08, 0.1, 1, -7.269092e-08, -0.27014208, 0.9628205, -2.0395158e-08, 0.15, 1, -7.299645e-08, -0.25527936, 0.9668673, -1.9273054e-08, 0.2, 1, -7.333652e-08, -0.23756438, 0.97137177, -1.7935612e-08, 0.25, 1, -7.3668e-08, -0.21883306, 0.9757623, -1.6521435e-08, 0.3, 1, -7.395767e-08, -0.20096153, 0.9795991, -1.5172171e-08, 0.35, 1, -7.4182594e-08, -0.18584865, 0.9825784, -1.4031182e-08, 0.4, 1, -7.432753e-08, -0.17539528, 0.9844981, -1.3241974e-08, 0.45, 1, -7.437942e-08, -0.17149259, 0.9851854, -1.29473285e-08)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wasp01_Armature/Skeleton3D:Head")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 5.042198e-15, 1, -3.1086249e-15, 1.3315805e-07, 0.05, 1, 1.7047754e-09, 0.99991804, -0.012802614, 1.3314714e-07, 0.15, 1, 9.205782e-09, 0.99760735, -0.06913423, 1.3283946e-07, 0.2, 1, 1.0905716e-08, 0.9966405, -0.08190052, 1.3271071e-07, 0.45, 1, 1.0905712e-08, 0.9966405, -0.08190052, 1.3271071e-07)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wasp01_Armature/Skeleton3D:Wing.L")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.8602409, 0.37645903, 0.27417222, 0.20759049, 0.05, 1, -0.85637504, 0.37464923, 0.28137094, 0.21700269, 0.1, 1, -0.8476951, 0.3691927, 0.29624367, 0.2394774, 0.15, 1, -0.83907443, 0.36026728, 0.3086629, 0.26624942, 0.2, 1, -0.83657604, 0.3486535, 0.30875984, 0.2885283, 0.25, 1, -0.8435749, 0.3329644, 0.2933832, 0.3023945, 0.26666668, 1, -0.8478098, 0.32668692, 0.285478, 0.30495334, 0.3, 1, -0.85583997, 0.31346816, 0.26981053, 0.31060892, 0.35, 1, -0.8688795, 0.29400134, 0.24437268, 0.31447357, 0.4, 1, -0.87896043, 0.27888423, 0.22386101, 0.3154971, 0.45, 1, -0.8829916, 0.27279508, 0.21542326, 0.3154385)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("Wasp01_Armature/Skeleton3D:UpperSting.L")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.5325783, -0.10706186, 0.40673596, 0.7344821, 0.05, 1, -0.52291864, -0.07600995, 0.40681595, 0.7451707, 0.1, 1, -0.49597424, 0.0016173183, 0.405962, 0.7675948, 0.15, 1, -0.4557923, 0.10066115, 0.4028596, 0.78728956, 0.2, 1, -0.41138163, 0.19403787, 0.3996399, 0.79586583, 0.25, 1, -0.37417924, 0.26375955, 0.39987975, 0.794051, 0.3, 1, -0.34702697, 0.3120406, 0.40311533, 0.7872109, 0.35, 1, -0.3290865, 0.3431037, 0.40809736, 0.77938336, 0.4, 1, -0.31925085, 0.36004388, 0.41290325, 0.7732776, 0.45, 1, -0.31627947, 0.36522505, 0.4151071, 0.7708852)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("Wasp01_Armature/Skeleton3D:Wing.R")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.86024076, -0.37645933, -0.27417228, 0.2075903, 0.05, 1, -0.856375, -0.3746495, -0.2813712, 0.2170021, 0.1, 1, -0.8476951, -0.36919284, -0.2962437, 0.23947725, 0.15, 1, -0.8390744, -0.36026752, -0.30866307, 0.26624924, 0.2, 1, -0.836576, -0.3486537, -0.30875993, 0.2885282, 0.25, 1, -0.8435749, -0.33296445, -0.29338324, 0.30239442, 0.26666668, 1, -0.8478098, -0.32668698, -0.28547803, 0.30495325, 0.3, 1, -0.85583997, -0.31346828, -0.26981068, 0.31060877, 0.35, 1, -0.8688794, -0.29400152, -0.24437292, 0.31447354, 0.4, 1, -0.87896043, -0.27888438, -0.22386104, 0.31549692, 0.45, 1, -0.8829917, -0.27279514, -0.2154232, 0.3154384)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("Wasp01_Armature/Skeleton3D:UpperSting.R")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -0.5325783, 0.10706186, -0.40673608, 0.73448205, 0.05, 1, -0.5229186, 0.076009884, -0.40681595, 0.7451707, 0.1, 1, -0.49597418, -0.0016174007, -0.40596202, 0.7675948, 0.15, 1, -0.45579225, -0.100661226, -0.40285963, 0.78728956, 0.2, 1, -0.41138163, -0.19403791, -0.39963996, 0.7958658, 0.25, 1, -0.37417915, -0.2637597, -0.3998797, 0.794051, 0.3, 1, -0.34702697, -0.3120407, -0.4031154, 0.7872108, 0.35, 1, -0.32908645, -0.34310386, -0.40809745, 0.7793833, 0.4, 1, -0.3192508, -0.36004412, -0.4129032, 0.7732775, 0.45, 1, -0.31627938, -0.36522517, -0.4151071, 0.7708852)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("Wasp01_Armature/Skeleton3D:BackUpperSting.L")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.6951195, 0.19137934, 0.19764781, 0.6641673, 0.05, 1, -0.6839304, 0.22504888, 0.20286144, 0.6636561, 0.1, 1, -0.6535988, 0.30616692, 0.21651198, 0.65741384, 0.15, 1, -0.6107497, 0.40317547, 0.23559819, 0.63947463, 0.16666667, 1, -0.5991049, 0.43263173, 0.24205108, 0.6287403, 0.2, 1, -0.5691899, 0.4858374, 0.25886273, 0.61071676, 0.25, 1, -0.5382682, 0.5410851, 0.2804556, 0.5820987, 0.26666668, 1, -0.53145814, 0.554042, 0.2846729, 0.5740654, 0.3, 1, -0.5153369, 0.5768176, 0.29530722, 0.56080574, 0.35, 1, -0.50019336, 0.59816617, 0.30499977, 0.5467897, 0.36666667, 1, -0.497562, 0.60186344, 0.30672443, 0.5441623, 0.4, 1, -0.49200046, 0.60887736, 0.31046113, 0.5392752, 0.45, 1, -0.4895773, 0.6118691, 0.31220493, 0.5370832)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("Wasp01_Armature/Skeleton3D:BackUpperSting.R")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, -0.6951195, -0.19137952, -0.19764794, 0.66416717, 0.05, 1, -0.68393034, -0.22504903, -0.20286152, 0.6636561, 0.1, 1, -0.6535987, -0.30616707, -0.21651196, 0.6574139, 0.15, 1, -0.61074966, -0.40317568, -0.23559833, 0.6394745, 0.16666667, 1, -0.5991048, -0.4326319, -0.24205118, 0.6287402, 0.2, 1, -0.56918985, -0.4858375, -0.2588628, 0.6107167, 0.25, 1, -0.53826815, -0.5410851, -0.28045565, 0.5820987, 0.26666668, 1, -0.53145814, -0.55404204, -0.28467292, 0.5740653, 0.3, 1, -0.5153368, -0.5768177, -0.29530725, 0.5608056, 0.35, 1, -0.50019336, -0.59816617, -0.3049999, 0.54678965, 0.36666667, 1, -0.49756196, -0.6018635, -0.30672452, 0.54416215, 0.4, 1, -0.49200043, -0.6088775, -0.31046116, 0.5392751, 0.45, 1, -0.48957717, -0.6118693, -0.31220496, 0.5370831)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("Wasp01_Armature/Skeleton3D:Back")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, -0.3978698, 3.2810286e-07, -1.4228934e-07, 0.9174419, 0.05, 1, -0.36413163, 3.244881e-07, -1.2432916e-07, 0.9313475, 0.1, 1, -0.2826888, 3.1694836e-07, -1.2220234e-07, 0.9592117, 0.15, 1, -0.18632512, 3.1055225e-07, -1.2398887e-07, 0.98248816, 0.2, 1, -0.111915536, 3.0976992e-07, -1.18624065e-07, 0.99371773, 0.25, 1, -0.06988521, 3.15098e-07, -1.0364525e-07, 0.997555, 0.3, 1, -0.043913536, 3.2362806e-07, -8.414767e-08, 0.99903536, 0.35, 1, -0.030094055, 3.3414753e-07, -6.11156e-08, 0.99954706, 0.4, 1, -0.024589188, 3.4567122e-07, -3.5520358e-08, 0.9996976, 0.45, 1, -0.023599558, 3.5752836e-07, -8.439853e-09, 0.99972147)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = true
+tracks/9/enabled = true
+tracks/9/path = NodePath("Wasp01_Armature/Skeleton3D:LowerAntenna.L")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, 0.15240264, 0.095705874, -0.21500084, 0.9598898, 0.05, 1, 0.15294851, 0.0959264, -0.22467802, 0.95756185, 0.1, 1, 0.1543428, 0.096472725, -0.25062582, 0.9508197, 0.15, 1, 0.156176, 0.0971446, -0.2881288, 0.93976265, 0.2, 1, 0.15804917, 0.09775111, -0.33227295, 0.9246945, 0.25, 1, 0.15965123, 0.098159924, -0.3780399, 0.90662116, 0.3, 1, 0.16081305, 0.098327756, -0.4205936, 0.8874524, 0.35, 1, 0.16151707, 0.09830332, -0.45557198, 0.8698867, 0.4, 1, 0.16185692, 0.098199435, -0.47916237, 0.85706633, 0.45, 1, 0.1619534, 0.09814284, -0.48783487, 0.852148)
+tracks/10/type = "rotation_3d"
+tracks/10/imported = true
+tracks/10/enabled = true
+tracks/10/path = NodePath("Wasp01_Armature/Skeleton3D:LowerAntenna.R")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.15240262, -0.095705874, 0.21500084, 0.9598898, 0.05, 1, 0.15294847, -0.095926374, 0.22467797, 0.95756185, 0.1, 1, 0.1543428, -0.09647273, 0.25062588, 0.9508196, 0.15, 1, 0.15617603, -0.09714459, 0.28812885, 0.9397626, 0.2, 1, 0.15804912, -0.09775111, 0.33227295, 0.9246945, 0.25, 1, 0.15965123, -0.09815991, 0.37804, 0.90662116, 0.3, 1, 0.16081311, -0.098327786, 0.42059374, 0.88745236, 0.35, 1, 0.16151714, -0.09830331, 0.4555721, 0.86988664, 0.4, 1, 0.16185695, -0.098199464, 0.4791624, 0.8570663, 0.45, 1, 0.1619534, -0.09814282, 0.4878348, 0.85214806)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = true
+tracks/11/enabled = true
+tracks/11/path = NodePath("Wasp01_Armature/Skeleton3D:LowerSting.L")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, 0.045113545, 0.6671274, -0.05500943, 0.7415388)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = true
+tracks/12/enabled = true
+tracks/12/path = NodePath("Wasp01_Armature/Skeleton3D:LowerSting.R")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, 0.045113556, -0.66712743, 0.05500943, 0.74153876)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = true
+tracks/13/enabled = true
+tracks/13/path = NodePath("Wasp01_Armature/Skeleton3D:BackLowerSting.L")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, 0.048498232, -0.014233007, -0.07879992, 0.9956083)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = true
+tracks/14/enabled = true
+tracks/14/path = NodePath("Wasp01_Armature/Skeleton3D:BackLowerSting.R")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.048498202, 0.014233039, 0.07879997, 0.9956083)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = true
+tracks/15/enabled = true
+tracks/15/path = NodePath("Wasp01_Armature/Skeleton3D:StingBack")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, -0.0049742106, 2.7020235e-07, -4.9018327e-09, 0.9999876)
+tracks/16/type = "rotation_3d"
+tracks/16/imported = true
+tracks/16/enabled = true
+tracks/16/path = NodePath("Wasp01_Armature/Skeleton3D:UpperAntenna.L")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0.4091424, 1.0410737e-07, 5.613632e-08, 0.9124705)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = true
+tracks/17/enabled = true
+tracks/17/path = NodePath("Wasp01_Armature/Skeleton3D:UpperAntenna.R")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, 0.4091424, -1.0206606e-07, -6.22603e-08, 0.9124705)
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("FireAndForget")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("10_aefyq"), 3, 0.0, 0.0],
+"method": &"_play_audio_fire_and_forget"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lcfq6"]
 _data = {
 &"Attack": ExtResource("5_0bffu"),
 &"Damaged": ExtResource("6_f2g7w"),
 &"Death": ExtResource("7_bf4wv"),
+&"Fall": SubResource("Animation_2lma5"),
 &"Flying": ExtResource("8_o55j2"),
 &"Idle": ExtResource("9_jym8u")
 }
@@ -227,7 +398,7 @@ filters = ["Wasp01_Armature/Skeleton3D/Wasp01:material_override:shader_parameter
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6eufi"]
 resource_local_to_scene = true
 filter_enabled = true
-filters = ["", "Wasp01_Armature/Skeleton3D/Wasp01:material_overlay:shader_parameter/hit_flash_on"]
+filters = ["", "FireAndForget", "Wasp01_Armature/Skeleton3D/Wasp01:material_overlay:shader_parameter/hit_flash_on"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jym8u"]
 animation = &"dissolve"
@@ -237,7 +408,7 @@ animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
 resource_local_to_scene = true
-graph_offset = Vector2(-433, 28)
+graph_offset = Vector2(-433.75748, -21.358715)
 nodes/output/position = Vector2(480, 200)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
@@ -262,29 +433,27 @@ anim_tree = NodePath("AnimationTree")
 healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(1909613312) index="0" unique_id=1390667931]
+[node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(401455736) index="0" unique_id=1886714984]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
-bones/2/rotation = Quaternion(-0.33529794, -0.13423824, -0.3467443, 0.865635)
-bones/3/rotation = Quaternion(0.40416145, -0.004847026, 0.0016203143, 0.9146733)
-bones/4/rotation = Quaternion(-0.34448013, 0.13700274, 0.3458506, 0.8619461)
-bones/5/rotation = Quaternion(0.40416145, 0.004847037, -0.001620301, 0.9146733)
-bones/6/rotation = Quaternion(-0.3883485, 0.38681132, 0.80033857, 0.24294144)
-bones/7/rotation = Quaternion(-0.5364042, -0.10539727, 0.40602925, 0.7323266)
+bones/1/rotation = Quaternion(-7.233554e-16, 1, 9.581133e-09, 7.54979e-08)
+bones/2/rotation = Quaternion(-0.058636747, 7.04445e-15, -4.137756e-16, 0.9982794)
+bones/3/rotation = Quaternion(0.40914243, 1.0877496e-07, 4.8773583e-08, 0.9124705)
+bones/4/rotation = Quaternion(-0.058636747, 7.04445e-15, -4.137756e-16, 0.9982794)
+bones/5/rotation = Quaternion(0.40914243, -1.0877496e-07, -4.8773583e-08, 0.9124705)
+bones/6/rotation = Quaternion(-0.40678176, 0.3673774, 0.78751457, 0.2817504)
+bones/7/rotation = Quaternion(-0.5325784, -0.107061855, 0.40673596, 0.7344821)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/9/rotation = Quaternion(0.3883484, 0.38681147, 0.8003386, -0.24294136)
-bones/10/rotation = Quaternion(-0.53640413, 0.10539719, -0.4060293, 0.7323266)
+bones/10/rotation = Quaternion(-0.53257835, 0.10706177, -0.40673605, 0.7344821)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.70051134, 0.19375312, 0.1948555, 0.658616)
-bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.700502, -0.19374962, -0.19486067, 0.65862536)
-bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.24676836, 3.4668847e-07, -8.79739e-08, 0.96907455)
-bones/18/rotation = Quaternion(0.014793172, 2.7016847e-07, 1.454444e-08, 0.9998907)
+bones/12/rotation = Quaternion(-0.69511956, 0.19137941, 0.19764785, 0.6641673)
+bones/14/rotation = Quaternion(-0.69511944, -0.19137958, -0.19764793, 0.6641673)
+bones/15/rotation = Quaternion(0.048498217, 0.014233052, 0.07879998, 0.9956083)
+bones/17/rotation = Quaternion(-0.3978698, 3.2810283e-07, -1.4228932e-07, 0.9174419)
+bones/18/rotation = Quaternion(-0.22283334, 2.6341178e-07, -2.1959362e-07, 0.97485656)
 
-[node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=1368714826]
-material_override = SubResource("ShaderMaterial_qbyea")
-material_overlay = SubResource("ShaderMaterial_w2ab7")
+[node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=397092938]
+material_override = SubResource("ShaderMaterial_2ymjw")
+material_overlay = SubResource("ShaderMaterial_tbnjv")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -0.40000004, -1.3000001)
@@ -316,6 +485,7 @@ libraries/wasp = SubResource("AnimationLibrary_lcfq6")
 libraries/wasp-new = SubResource("AnimationLibrary_xedv5")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="6" unique_id=932781127]
+active = false
 tree_root = SubResource("AnimationNodeBlendTree_awi1o")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../MyPlayer")
@@ -361,27 +531,35 @@ one_shot = true
 script = ExtResource("3_nsq2h")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=2074090328 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Idle" type="Node" parent="StateMachine" index="0" unique_id=2074090328 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("4_5gd67")
 wander_speed = 2
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+audio_resource = ExtResource("21_m5gis")
 
-[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=1676483248 node_paths=PackedStringArray("yell_vfx_position", "enemy", "anim_tree")]
+[node name="Engage" type="Node" parent="StateMachine" index="1" unique_id=1676483248 node_paths=PackedStringArray("yell_vfx_position", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("7_3gwer")
 pull_distance = 50
 yell_vfx_position = NodePath("../../BombPosition")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+play_audio = true
+audio_resource = ExtResource("21_ndi4h")
+audio_volume = 10.0
 
-[node name="Follow" type="Node" parent="StateMachine" index="2" unique_id=1703526957 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Follow" type="Node" parent="StateMachine" index="2" unique_id=1703526957 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("5_i1xyo")
 follow_speed = 10.0
 attack_range = 25.0
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+audio_resource = ExtResource("21_m5gis")
 
-[node name="Channeling" type="Node" parent="StateMachine/Follow" index="0" unique_id=1723140994 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree")]
+[node name="Channeling" type="Node" parent="StateMachine/Follow" index="0" unique_id=1723140994 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("9_exisn")
 charge_timer = NodePath("../../../Timers/ChargeTimer")
 channeling_vfx_position = NodePath("../../../BombPosition")
@@ -390,54 +568,75 @@ follow_up_state = NodePath("../../Fire")
 cool_down_timer = NodePath("../../../Timers/PoisonTimer")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../WaspPlayer")
+play_audio = true
+audio_resource = ExtResource("25_il6m2")
 
-[node name="Locked" type="Node" parent="StateMachine/Follow" index="1" unique_id=1859916361 node_paths=PackedStringArray("charge_timer", "cutting_wind", "enemy", "anim_tree")]
+[node name="Locked" type="Node" parent="StateMachine/Follow" index="1" unique_id=1859916361 node_paths=PackedStringArray("charge_timer", "cutting_wind", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("7_exisn")
 charge_timer = NodePath("../../../Timers/ChargeTimer")
 cutting_wind = NodePath("../../../CuttingWind")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../WaspPlayer")
+play_audio = true
+audio_resource = ExtResource("25_xedv5")
 
-[node name="Fire" type="Node" parent="StateMachine" index="3" unique_id=794741823 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree")]
+[node name="Fire" type="Node" parent="StateMachine" index="3" unique_id=794741823 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("10_8wo36")
 bullet_position = NodePath("../../BombPosition")
 cooldown_timer = NodePath("../../Timers/PoisonTimer")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+play_audio = true
+audio_resource = ExtResource("29_qbyea")
 
-[node name="Dashing" type="Node" parent="StateMachine" index="4" unique_id=849246252 node_paths=PackedStringArray("charge_timer", "cutting_wind", "enemy", "anim_tree")]
+[node name="Dashing" type="Node" parent="StateMachine" index="4" unique_id=849246252 node_paths=PackedStringArray("charge_timer", "cutting_wind", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("9_i1xyo")
 dash_range = 45
 dash_speed = 80
 dash_damage = 45
 charge_timer = NodePath("../../Timers/ChargeTimer")
 cutting_wind = NodePath("../../CuttingWind")
+stab_audio_resource = ExtResource("33_2lma5")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+play_audio = true
+audio_resource = ExtResource("33_aefyq")
 
-[node name="Return" type="Node" parent="StateMachine" index="5" unique_id=1961292612 node_paths=PackedStringArray("enemy", "anim_tree")]
+[node name="Return" type="Node" parent="StateMachine" index="5" unique_id=1961292612 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("6_outyk")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+audio_resource = ExtResource("21_m5gis")
 
-[node name="Recovering" type="Node" parent="StateMachine" index="6" unique_id=1232032500 node_paths=PackedStringArray("recovery_timer", "follow_up_state", "enemy", "anim_tree")]
+[node name="Recovering" type="Node" parent="StateMachine" index="6" unique_id=1232032500 node_paths=PackedStringArray("recovery_timer", "follow_up_state", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("9_nsq2h")
 recovery_timer = NodePath("../../Timers/RecoveryTimer")
 follow_up_state = NodePath("../Resetting")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
 
-[node name="Resetting" type="Node" parent="StateMachine" index="7" unique_id=717346719 node_paths=PackedStringArray("resetting_timer", "enemy", "anim_tree")]
+[node name="Resetting" type="Node" parent="StateMachine" index="7" unique_id=717346719 node_paths=PackedStringArray("resetting_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("14_645re")
 resetting_timer = NodePath("../../Timers/ResettingTimer")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+audio_resource = ExtResource("21_m5gis")
 
-[node name="Dead" type="Node" parent="StateMachine" index="8" unique_id=1121622876 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree")]
+[node name="Dead" type="Node" parent="StateMachine" index="8" unique_id=1121622876 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("10_5gd67")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../WaspPlayer")
+audio_resource = ExtResource("32_ughj8")
+audio_volume = 10.0
 
 [node name="Bombs" type="Node3D" parent="." index="10" unique_id=1818539482]
 
@@ -453,6 +652,23 @@ visible = false
 
 [node name="HealthBar" parent="." index="14" unique_id=1652061932 instance=ExtResource("25_f2g7w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6000001, 0)
+
+[node name="WaspPlayer" type="AudioStreamPlayer3D" parent="." index="15" unique_id=1362537056]
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="WaspLoopPlayer" type="AudioStreamPlayer3D" parent="." index="16" unique_id=604390774]
+stream = ExtResource("21_m5gis")
+volume_db = 20.0
+unit_size = 4.3
+autoplay = true
+max_distance = 100.0
+script = ExtResource("42_x420n")
+
+[node name="FireAndForget" type="Node3D" parent="." index="17" unique_id=514482214 node_paths=PackedStringArray("_audio_position")]
+script = ExtResource("32_y5ov3")
+_audio_position = NodePath("..")
+metadata/_custom_type_script = "uid://glf7b81sjiep"
 
 [connection signal="area_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_area_entered"]
 [connection signal="body_entered" from="DamageBox" to="StateMachine/Dashing" method="_on_damage_box_body_entered"]
