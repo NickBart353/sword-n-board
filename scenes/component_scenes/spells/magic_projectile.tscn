@@ -16,11 +16,12 @@ script = ExtResource("1_hjrog")
 projectile_area = NodePath("ProjectileArea")
 explosion_area = NodePath("ExplosionArea")
 explosion_radius = 8.4
-proj_speed = 25
+proj_speed = 10
+proj_distance = 50
 gravity_strength = null
 spread = null
 explosion_animation = 5
-damage = 25
+damage = 13
 explosion_target_raycast = NodePath("ExplosionTargeting")
 audio_resource = ExtResource("2_d8qc7")
 offset_audio = null
@@ -29,6 +30,7 @@ audio_max_range = 45.833
 metadata/_custom_type_script = "uid://snywren3rqx0"
 
 [node name="MagicProjectile" parent="." unique_id=287636320 instance=ExtResource("2_dvipt")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=754916006]
 collision_layer = 4

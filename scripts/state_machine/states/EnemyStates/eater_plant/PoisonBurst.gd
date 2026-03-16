@@ -3,6 +3,7 @@ extends EnemyState
 @export var bullet_position: Node
 @export var cooldown_timer: Timer
 @export var fire_rate: float = 0.01
+@export var poison_burst_damage: int = 9
 
 var fired: bool = false
 var target_location: Vector3
@@ -29,6 +30,7 @@ func Physics_Update(delta: float) -> void:
 		if time_accumulator > fire_rate:
 			fire_queue[0].set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 			fire_queue[0].fire(enemy.bomb_start_location.global_position, target_location, enemy.global_transform)
+			fire_queue[0].damage = poison_burst_damage
 			fire_queue.remove_at(0)
 			if not fire_queue:
 				fired = true

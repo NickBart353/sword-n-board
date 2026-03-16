@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://daa32y3httqmj" path="res://scenes/component_scenes/attacks/claw_attack.tscn" id="21_7gu7r"]
 [ext_resource type="Script" uid="uid://dk07ew5xsnn88" path="res://scripts/state_machine/states/EnemyStates/rat/Slam.gd" id="21_iskec"]
 [ext_resource type="PackedScene" uid="uid://dh06ehim8m2nd" path="res://scenes/component_scenes/attacks/slam_attack.tscn" id="22_iskec"]
-[ext_resource type="AudioStream" uid="uid://pe2mny6vre6l" path="res://assets/Audio/pixabay/slam/slam-combi.wav" id="22_vx5t5"]
+[ext_resource type="AudioStream" uid="uid://cnkbbhhd630ia" path="res://assets/Audio/pixabay/lordsonny-small-rock-break-194553.mp3" id="22_lmxkh"]
 [ext_resource type="Script" uid="uid://cmc2emp2ajmba" path="res://scripts/state_machine/states/EnemyStates/rat/slam_two.gd" id="23_kqh87"]
 [ext_resource type="PackedScene" uid="uid://cj8pj230ayap1" path="res://scenes/component_scenes/attacks/big_slam_attack.tscn" id="24_4mpa1"]
 [ext_resource type="Script" uid="uid://dcmf7db6exnlt" path="res://scripts/state_machine/states/EnemyStates/EnemyRecovering.gd" id="24_j6d1h"]
@@ -37,29 +37,29 @@
 [ext_resource type="AudioStream" uid="uid://bfm2hytbmcy60" path="res://assets/Audio/Monster Roar/Goblin Roar 05.wav" id="32_buci7"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="33_oeobn"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lj3t4"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lmxkh"]
 parameter_name = "MainTexture"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1gwp6"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_x5lcn"]
 source = 5
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fa8dt"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_snx0w"]
 parameter_name = "Metallic"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_kvbwt"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_8cx1i"]
 parameter_name = "Roughness"
 hint = 1
 
-[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_i1nge"]
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_cjha4"]
 constant = Color(0.003921569, 0.003921569, 0, 1)
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_buci7"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_yfrfu"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_oeobn"]
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_k1k5h"]
 parameter_name = "Color"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
@@ -71,56 +71,56 @@ noise = SubResource("FastNoiseLite_wvk24")
 seamless = true
 seamless_blend_skirt = 0.488
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sn8vi"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_hv8us"]
 texture = SubResource("NoiseTexture2D_drxrv")
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_vx5t5"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_q4erw"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_lmxkh"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_sky5t"]
 parameter_name = "DissolveStrength"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_x5lcn"]
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_a5hc5"]
 function = 31
 
-[sub_resource type="VisualShader" id="VisualShader_snx0w"]
+[sub_resource type="VisualShader" id="VisualShader_vq1cf"]
 resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_sn8vi")
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_hv8us")
 nodes/fragment/3/position = Vector2(-980, -140)
-nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_vx5t5")
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_q4erw")
 nodes/fragment/4/position = Vector2(-140, 720)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_lmxkh")
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_sky5t")
 nodes/fragment/8/position = Vector2(-460, 720)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_x5lcn")
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_a5hc5")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_lj3t4")
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_lmxkh")
 nodes/fragment/10/position = Vector2(-540, -380)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_1gwp6")
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_x5lcn")
 nodes/fragment/11/position = Vector2(-480, -560)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_fa8dt")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_snx0w")
 nodes/fragment/12/position = Vector2(-520, 100)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_kvbwt")
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_8cx1i")
 nodes/fragment/13/position = Vector2(-160, 220)
-nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_i1nge")
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_cjha4")
 nodes/fragment/14/position = Vector2(140, 340)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_buci7")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_yfrfu")
 nodes/fragment/15/position = Vector2(-80, -560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_oeobn")
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_k1k5h")
 nodes/fragment/16/position = Vector2(-400, -760)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cx1i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18ja3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_snx0w")
+shader = SubResource("VisualShader_vq1cf")
 shader_parameter/MainTexture = ExtResource("4_p737n")
 shader_parameter/Color = Color(0.65012825, 0.6501283, 0.6501282, 1)
 shader_parameter/Metallic = 0.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjha4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76dw5"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_ijteo")
@@ -742,30 +742,30 @@ _data = {
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("2_aafi7")
-MAX_HEALTH = 150
+MAX_HEALTH = 65
 anim_tree = NodePath("AnimationTree")
 healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="Rat_Armature" parent="." index="0" unique_id=939121433]
+[node name="Rat_Armature" parent="." index="0" unique_id=554419154]
 transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=2000930738]
+[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=518039951]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
 bones/1/rotation = Quaternion(-4.497857e-17, -8.82744e-11, -0.07285598, 0.9973426)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
 bones/2/rotation = Quaternion(0.033134498, -2.0783765e-10, 1.4300622e-09, 0.999451)
 bones/3/position = Vector3(2.7943134e-17, 0.035011638, 5.0474513e-10)
-bones/3/rotation = Quaternion(-0.032742683, 0.005080462, 0.15324433, 0.98763275)
+bones/3/rotation = Quaternion(-0.03298636, 0.0031295787, 0.09439892, 0.9949829)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/position = Vector3(-6.691533e-17, 0.036299333, -2.7045108e-10)
-bones/4/rotation = Quaternion(0.4706692, -0.023462988, -0.1269325, 0.87281626)
+bones/4/rotation = Quaternion(0.11886767, 0.01113831, 0.09262741, 0.9885174)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(0.011307207, 0.0059834784, -0.0077325143)
-bones/5/rotation = Quaternion(0.6344707, 0.5681623, 0.13838255, -0.5054591)
+bones/5/rotation = Quaternion(0.820607, 0.22678934, 0.18967958, -0.48907316)
 bones/5/scale = Vector3(1, 1, 0.99999994)
 bones/7/position = Vector3(-0.011307205, 0.0059834784, -0.007732516)
-bones/7/rotation = Quaternion(0.6344707, -0.5681622, -0.13838245, -0.50545913)
+bones/7/rotation = Quaternion(0.820607, -0.22678946, -0.18967956, -0.489073)
 bones/7/scale = Vector3(1, 0.99999994, 1.0000002)
 bones/9/position = Vector3(0.02200493, 0.022545217, 0.009580314)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
@@ -784,7 +784,7 @@ bones/15/position = Vector3(-6.938894e-18, 0.014769028, -4.8572257e-17)
 bones/15/rotation = Quaternion(-1.7886627e-08, 6.535729e-08, 0.6782688, 0.73481387)
 bones/15/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0.025667883, 0.031279262, 0.0063315374)
-bones/17/rotation = Quaternion(0.5894382, 0.39059266, 0.39059275, 0.5894382)
+bones/17/rotation = Quaternion(0.3997367, 0.58327574, 0.58327574, 0.3997367)
 bones/17/scale = Vector3(0.99999994, 0.9999998, 0.9999998)
 bones/18/position = Vector3(4.2915282e-10, 0.019717814, 6.6039924e-10)
 bones/18/rotation = Quaternion(1.674626e-08, 1.1175873e-08, -3.022882e-08, 1)
@@ -793,7 +793,7 @@ bones/19/position = Vector3(9.367507e-17, 0.016380727, 5.2041704e-17)
 bones/19/rotation = Quaternion(-2.3336575e-08, -8.921103e-08, -0.626472, 0.779444)
 bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-0.025667883, 0.031279262, 0.006331533)
-bones/21/rotation = Quaternion(-0.56236154, 0.42866027, 0.42866024, -0.5623615)
+bones/21/rotation = Quaternion(-0.59671676, 0.37937996, 0.37937996, -0.5967167)
 bones/21/scale = Vector3(0.99999994, 0.99999976, 0.9999998)
 bones/22/position = Vector3(-4.2915302e-10, 0.019717816, 2.3913589e-09)
 bones/22/rotation = Quaternion(-1.674626e-08, -1.4901163e-08, 3.0228826e-08, 1)
@@ -801,14 +801,14 @@ bones/22/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-2.4286129e-17, 0.01638073, -1.3877788e-17)
 bones/23/rotation = Quaternion(-2.4635192e-08, 8.816729e-08, 0.626472, 0.7794439)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/25/rotation = Quaternion(0.32246956, 0, 0, 0.94657993)
+bones/25/rotation = Quaternion(-0.047993034, 0, 0, 0.9988478)
 bones/26/position = Vector3(0, 0.038294263, 3.469447e-18)
-bones/26/rotation = Quaternion(0.10321086, 0, 0, 0.99465954)
+bones/26/rotation = Quaternion(0.10155936, 0, 0, 0.99482954)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 
-[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1356767653]
-material_override = SubResource("ShaderMaterial_8cx1i")
-material_overlay = SubResource("ShaderMaterial_cjha4")
+[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=98836496]
+material_override = SubResource("ShaderMaterial_18ja3")
+material_overlay = SubResource("ShaderMaterial_76dw5")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=363759929]
 transform = Transform3D(1.0000001, 0, 0, 0, -4.3711378e-08, 1.0000001, 0, -1.0000001, -4.3711378e-08, 0, 0.34999982, 0.4390631)
@@ -900,12 +900,13 @@ attack_range = 5
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
-audio_resource = ExtResource("22_vx5t5")
+audio_resource = ExtResource("22_lmxkh")
 
 [node name="Bite" type="Node" parent="StateMachine/Follow" index="1" unique_id=1297285949 node_paths=PackedStringArray("bite_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("18_urxsf")
 bite_scene = ExtResource("19_5bro7")
 bite_position = NodePath("../../../BitePosition")
+damage = 10
 cool_down_timer = NodePath("../../../Timers/BiteCooldown")
 attack_range = 7
 enemy = NodePath("../../..")
@@ -917,6 +918,7 @@ audio_resource = ExtResource("25_lmxkh")
 script = ExtResource("20_gyxf7")
 claw_scene = ExtResource("21_7gu7r")
 claw_position = NodePath("../../../ClawPosition")
+damage = 15
 cool_down_timer = NodePath("../../../Timers/ClawCooldown")
 attack_range = 7
 enemy = NodePath("../../..")
@@ -931,7 +933,7 @@ damage = 50
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../RatPlayer")
-audio_resource = ExtResource("22_vx5t5")
+audio_resource = ExtResource("22_lmxkh")
 audio_volume = 5.0
 
 [node name="Recover" type="Node" parent="StateMachine" index="4" unique_id=194655057 node_paths=PackedStringArray("recovery_timer", "follow_up_state", "enemy", "anim_tree", "audio_player")]
