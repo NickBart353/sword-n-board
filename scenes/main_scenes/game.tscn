@@ -182,7 +182,47 @@ script = ExtResource("7_cfqos")
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn9" type="Marker3D" parent="MobSpawns/Wasp" unique_id=2104424037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89001465, -4.3583603, 138.82278)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.38617, -4.3583603, 114.61105)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn10" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1134922241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.085205, -4.3583603, 115.60663)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn11" type="Marker3D" parent="MobSpawns/Wasp" unique_id=2011762599]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.01944, -4.3583603, 103.3074)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn12" type="Marker3D" parent="MobSpawns/Wasp" unique_id=521168071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.417725, -13.22842, 194.28566)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn13" type="Marker3D" parent="MobSpawns/Wasp" unique_id=807533480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.73126, -21.038143, 203.47147)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn14" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1501033203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.944244, -28.482796, 216.14545)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn15" type="Marker3D" parent="MobSpawns/Wasp" unique_id=798635429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.08374, -28.482796, 230.26)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn16" type="Marker3D" parent="MobSpawns/Wasp" unique_id=404519487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.496704, -25.19777, 205.87798)
+script = ExtResource("7_cfqos")
+metadata/_custom_type_script = "uid://ddkbytbbno5om"
+
+[node name="MobSpawn17" type="Marker3D" parent="MobSpawns/Wasp" unique_id=747896033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.14662, -19.989063, 182.65198)
 script = ExtResource("7_cfqos")
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
