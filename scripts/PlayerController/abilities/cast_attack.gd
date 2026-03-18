@@ -2,7 +2,10 @@ extends Ability
 
 @onready var anim_player = $"../../AnimationPlayer"
 @onready var attack_timer = $"../../Timers/AttackTimer"
+
 @export var magic_projectile: PackedScene
+@export_group("ManaCost")
+@export_range(0.0, 100.0) var casting_cost = 25.0
 
 signal spawn_magic_projectile
 
@@ -22,7 +25,7 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 		return
 	
 	if not movement.dashing and not state_controller.is_player_busy():
-		if input.attack and not cast_in_progress:
+		if input.attack and not cast_in_progress and player.use_mana(casting_cost):
 			casting = true
 			cast_in_progress = true
 			if cast == 0 or cast == 2:

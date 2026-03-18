@@ -2,6 +2,9 @@ extends Ability
 
 @onready var anim_player = $"../../AnimationPlayer"
 
+@export_group("StaminaCost")
+@export_range(0.0, 100.0) var base_block_cost = 15.0
+
 signal blocked
 
 var offhand: Node

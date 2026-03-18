@@ -89,7 +89,6 @@ source = 5
 [resource]
 modes/cull = 2
 modes/diffuse = 3
-flags/unshaded = true
 varyings/world_pos = "0,4"
 nodes/vertex/0/position = Vector2(2140, 260)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_7s5ys")

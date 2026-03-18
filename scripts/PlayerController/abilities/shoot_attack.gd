@@ -1,7 +1,11 @@
 extends Ability
 
 @onready var anim_player = $"../../AnimationPlayer"
+
 @export var arrow_projectile: PackedScene
+@export var arrow_damage: int = 15
+@export_group("StaminaCost")
+@export_range(0.0, 100.0) var bow_cost = 15.0
 
 signal spawn_projectile
 
@@ -12,6 +16,7 @@ var shoot_in_progress: bool = false
 var charging: bool = false
 var max_charge: bool = false
 var released: bool = true
+var enough_stamina: bool = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not weapon == player.get_equipped_primary() or not weapon:
@@ -19,16 +24,25 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	if not weapon is RangedWeapon: 
 		reset()
 		return
-	
+	if charging:
+		enough_stamina = player.use_stamina(bow_cost * delta)
+	if max_charge and not released and not enough_stamina:
+		released = true
+		shoot = 3
+		max_charge = false
+		shoot_projectile()
+	if charging and not enough_stamina:
+		reset()
+		return
+		
 	if not movement.dashing and not state_controller.is_player_busy():
-		if input.attack and not shoot_in_progress and not charging and released:
+		if (input.attack and not shoot_in_progress and not charging and released):
 			shoot = 1
 			charging = true
 			shooting = true
 			shoot_in_progress = true
 			released = false
-		if charging and not input.attack and shoot == 1 and not released:
-			#BUG: when channeling bow and releasing as charge_maxed() happens - no animation plays
+		if (charging and not input.attack and shoot == 1 and not released):
 			released = true
 			reset()
 		if max_charge and not input.attack and not released:
@@ -46,6 +60,7 @@ func shoot_projectile():
 	var shooting_direction: Vector3 = player.get_looking_direction()
 	var projectile_transform: Transform3D = player.get_camera_transform()
 	var proj_instance = arrow_projectile.instantiate()
+	proj_instance.damage = arrow_damage
 	var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/RightHand/Bow")
 	if not projectile_spawn_position:
 		projectile_spawn_position = $"../../Head/FieldOfView/RightHand".global_position

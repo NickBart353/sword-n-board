@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://brygmvt023b1x"]
+
+[ext_resource type="Script" uid="uid://d1jexxjeonu31" path="res://scripts/ui_scripts/game_menus.gd" id="1_t65je"]
+[ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6q64"]
+bg_color = Color(0.15585998, 0.1584456, 0.16554853, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn7vt"]
+bg_color = Color(0.8202974, 0, 0.08527536, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t65je"]
+bg_color = Color(7.508397e-06, 0.99813706, 0.12184777, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr7jk"]
+bg_color = Color(3.85046e-07, 0.60261935, 0.95547444, 1)
+
+[node name="GameMenus" type="CanvasLayer" unique_id=1661559513]
+script = ExtResource("1_t65je")
+
+[node name="Hud" type="Control" parent="." unique_id=2124242350]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_t6q64")
+
+[node name="CrossHair" type="ColorRect" parent="Hud" unique_id=1354946558]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -2.5
+offset_right = 2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayerResourceContainer" type="VBoxContainer" parent="Hud" unique_id=871089400]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.2
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthMargin" type="MarginContainer" parent="Hud/PlayerResourceContainer" unique_id=309612923]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HealthBar" type="ProgressBar" parent="Hud/PlayerResourceContainer/HealthMargin" unique_id=360241095]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_t6q64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wn7vt")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="StaminaMargin" type="MarginContainer" parent="Hud/PlayerResourceContainer" unique_id=1478708992]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="StaminaBar" type="ProgressBar" parent="Hud/PlayerResourceContainer/StaminaMargin" unique_id=986053779]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_t6q64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t65je")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ManaMargin" type="MarginContainer" parent="Hud/PlayerResourceContainer" unique_id=451489556]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ManaBar" type="ProgressBar" parent="Hud/PlayerResourceContainer/ManaMargin" unique_id=226604690]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_t6q64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nr7jk")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemController" type="Control" parent="." unique_id=1780862195]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EscapeMenu" type="Control" parent="." unique_id=762123373]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -20,12 +20,19 @@ signal spawn_projectile
 @onready var body_slot = $Slots/Body
 @onready var boots_slot = $Slots/Boots
 @onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
+@onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
+@export_range(0.0, 100.0) var stamina_regeneration_speed: float = 10.0
+@export_range(0.0, 100.0) var mana_regeneration_speed: float = 10.0
 
 const MAX_HEALTH: int = 100
 const MIN_HEALTH: int = 0
+const MAX_STAMINA: int = 100
+const MIN_STAMINA: float = 0.0
+const MAX_MANA: float = 100.0
+const MIN_MANA: float = 0.0
 
 var primary_equipped: String = "None"
 var secondary_equipped: String = "None"
@@ -34,8 +41,11 @@ var interacting_object
 var last_hovered_object
 var node_name
 var menu_open = false
-var HEALTH: int
 var collision: bool = false
+
+var HEALTH: float
+var STAMINA: float
+var MANA: float
 
 var items: Array = []
 var head_item: Item
@@ -51,7 +61,12 @@ func _ready() -> void:
 	_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
-	healthbar.value = HEALTH
+	STAMINA = MAX_STAMINA
+	MANA = MAX_MANA
+	UiController.update_healthbar(HEALTH)
+	UiController.update_staminabar(STAMINA)
+	UiController.update_manabar(MANA)
+	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
@@ -59,6 +74,18 @@ func _ready() -> void:
 	$AbilityController/Block.blocked.connect(_blocked_attack)
 	$AbilityController/Consume.consume_item.connect(_consume_item)
 	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
+
+func _process(delta: float) -> void:
+	if not stamina_regeneration_delay.time_left and not STAMINA == MAX_STAMINA:
+		STAMINA += stamina_regeneration_speed * delta
+		if STAMINA > MAX_STAMINA:
+			STAMINA = MAX_STAMINA
+		UiController.update_staminabar(STAMINA)
+	if not MANA == MAX_MANA:
+		MANA += mana_regeneration_speed * delta
+		if MANA > MAX_MANA:
+			MANA = MAX_MANA
+		UiController.update_manabar(MANA)
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
@@ -202,7 +229,11 @@ func _unhandled_input(event: InputEvent) -> void:
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
 		blocked_body = null
-		return
+		if use_stamina($AbilityController/Block.base_block_cost * damage * 0.1):
+			damage *= 0.2
+		else:
+			use_stamina(STAMINA)
+			damage *= 3
 	update_HEALTH(-damage)
 
 func update_HEALTH(amount: float):
@@ -212,7 +243,25 @@ func update_HEALTH(amount: float):
 		_die()
 	if HEALTH >= MAX_HEALTH:
 		HEALTH = MAX_HEALTH
-	healthbar.value = HEALTH
+	UiController.update_healthbar(HEALTH)
+
+func use_stamina(stamina_cost: float) -> bool:
+	if STAMINA - stamina_cost < MIN_STAMINA:
+		return false
+	else:
+		STAMINA -= stamina_cost
+		print(STAMINA)
+		UiController.update_staminabar(STAMINA)
+		stamina_regeneration_delay.start()
+		return true
+
+func use_mana(mana_cost: float) -> bool:
+	if MANA - mana_cost < MIN_MANA:
+		return false
+	else:
+		MANA -= mana_cost
+		UiController.update_manabar(MANA)
+		return true
 
 func _blocked_attack(body: Node):
 	blocked_body = body

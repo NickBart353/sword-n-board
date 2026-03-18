@@ -3,6 +3,9 @@ extends Ability
 @onready var anim_player = $"../../AnimationPlayer"
 @onready var attack_timer = $"../../Timers/AttackTimer"
 
+@export_group("StaminaCost")
+@export_range(0.0, 100.0) var attack_cost = 15.0
+
 var weapon: Node
 var bodies: Array = []
 var swing: int = 0
@@ -25,7 +28,7 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 		#state_controller.reset_action_state()
 	
 	if not movement.dashing and not state_controller.is_player_busy():# and swing > 0) or swing == 0:
-		if input.attack and not swing_in_progress:
+		if input.attack and not swing_in_progress  and player.use_stamina(attack_cost):
 			#state_controller.update_action_state(StateController.ACTION_STATE.ATTACK)
 			bodies = []
 			swinging = true

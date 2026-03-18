@@ -71,10 +71,10 @@ stream_0/stream = ExtResource("17_81e7k")
 bg_color = Color(1, 0.2, 0.21568628, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbru3"]
-bg_color = Color(1, 0.2, 0.21568628, 1)
+bg_color = Color(0.31719914, 0.29925177, 0.2915, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
-bg_color = Color(0, 0.8901961, 0.24313726, 1)
+bg_color = Color(0.9999997, 0.124572285, 0.086494304, 1)
 
 [sub_resource type="Animation" id="Animation_ykwct"]
 resource_name = "Block1"
@@ -1001,6 +1001,8 @@ collision_layer = 2
 collision_mask = 15
 safe_margin = 0.1
 script = ExtResource("1_oijqy")
+stamina_regeneration_speed = 30.0
+mana_regeneration_speed = 3.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 shape = SubResource("CapsuleShape3D_lu7gk")
@@ -1068,6 +1070,9 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 wait_time = 0.5
 one_shot = true
 
+[node name="StaminaRegenerationDelay" type="Timer" parent="Timers" unique_id=505252433]
+one_shot = true
+
 [node name="InputController" type="Node" parent="." unique_id=710520110]
 script = ExtResource("3_qbru3")
 
@@ -1080,22 +1085,27 @@ player = NodePath("..")
 dash_speed = 40
 dash_distance = 5
 falling_time_threshold = 0.9
+dash_cost = 18.0
 
 [node name="AbilityController" type="Node" parent="." unique_id=2010557984]
 script = ExtResource("5_1e104")
 
 [node name="Attack" type="Node" parent="AbilityController" unique_id=2054717099 node_paths=PackedStringArray("player")]
 script = ExtResource("6_bnsrg")
+attack_cost = 17.0
 player = NodePath("../..")
 
 [node name="CastAttack" type="Node" parent="AbilityController" unique_id=2117671511 node_paths=PackedStringArray("player")]
 script = ExtResource("7_5e2me")
 magic_projectile = ExtResource("7_m0y8q")
+casting_cost = 29.0
 player = NodePath("../..")
 
 [node name="ShootAttack" type="Node" parent="AbilityController" unique_id=822696841 node_paths=PackedStringArray("player")]
 script = ExtResource("8_m0y8q")
 arrow_projectile = ExtResource("10_wbsrb")
+arrow_damage = 20
+bow_cost = 4.0
 player = NodePath("../..")
 
 [node name="Block" type="Node" parent="AbilityController" unique_id=1598384866 node_paths=PackedStringArray("player")]
@@ -1124,6 +1134,7 @@ script = ExtResource("6_1e104")
 script = ExtResource("20_0h55w")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1329951609]
 layout_mode = 3
@@ -1139,7 +1150,6 @@ offset_right = 296.0
 offset_bottom = 74.0
 theme_override_styles/background = SubResource("StyleBoxFlat_oijqy")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Control/RedBar" unique_id=1720619707]
 layout_mode = 0
@@ -1148,7 +1158,6 @@ offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_qbru3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_xu2ah")
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=547511172]
 anchors_preset = 8

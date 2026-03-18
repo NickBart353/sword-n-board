@@ -7,6 +7,10 @@ extends Node
 @export var dash_distance: int = 10
 @export_range(0.0, 5.0) var falling_time_threshold: float = 0.5
 
+@export_group("StaminaCost")
+@export_range(0.0, 100.0) var jump_cost = 15.0
+@export_range(0.0, 100.0) var dash_cost = 25.0
+
 var dashing: bool
 var dash_started: bool
 var jumping: bool
@@ -53,13 +57,13 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			is_on_floor = true
 		else:
 			is_on_floor = false
-		if player.is_on_floor() and input.jump:
+		if player.is_on_floor() and input.jump and player.use_stamina(jump_cost):
 			player.velocity.y = jump_velocity
 			jumping = true
 		if player.is_on_floor() and falling:
 			falling = false
 	else:
-		if not dashing:
+		if not dashing and player.use_stamina(dash_cost):
 			dash_started = true
 			dashing = true
 			dashing_origin = player.global_position

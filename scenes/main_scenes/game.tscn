@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="2_t5sjj"]
+[ext_resource type="PackedScene" uid="uid://brygmvt023b1x" path="res://scenes/ui_scenes/game_menus.tscn" id="4_cfqos"]
 [ext_resource type="Script" uid="uid://b51bvm5vdtb0w" path="res://scripts/components/mob_type_picker.gd" id="6_leqql"]
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
 [ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="7_cfqos"]
@@ -119,6 +120,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 [node name="Forest" parent="." unique_id=1776596725 instance=ExtResource("6_t5sjj")]
 collision_radius = 256
 
+[node name="GameMenus" parent="." unique_id=1661559513 instance=ExtResource("4_cfqos")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827645919]
 visible = false
 
@@ -173,11 +176,6 @@ metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn2" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1503059975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000004, 0, -26.5)
-script = ExtResource("7_cfqos")
-metadata/_custom_type_script = "uid://ddkbytbbno5om"
-
-[node name="MobSpawn3" type="Marker3D" parent="MobSpawns/Wasp" unique_id=738647360]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.200005, 0, 56.9)
 script = ExtResource("7_cfqos")
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
