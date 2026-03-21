@@ -97,6 +97,7 @@ _data = {
 script = ExtResource("1_cld4u")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "heal"
+queue_free_on_finish = true
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=271644974]

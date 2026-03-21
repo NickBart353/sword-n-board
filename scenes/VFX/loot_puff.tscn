@@ -96,6 +96,7 @@ _data = {
 }
 
 [node name="LootPuff" type="Node3D" unique_id=996278517 node_paths=PackedStringArray("animation_player")]
+top_level = true
 script = ExtResource("1_puiwu")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "puff"

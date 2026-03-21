@@ -572,10 +572,11 @@ audio_player = NodePath("../../../WaspPlayer")
 play_audio = true
 audio_resource = ExtResource("25_il6m2")
 
-[node name="Locked" type="Node" parent="StateMachine/Follow" index="1" unique_id=1859916361 node_paths=PackedStringArray("charge_timer", "cutting_wind", "enemy", "anim_tree", "audio_player")]
+[node name="Locked" type="Node" parent="StateMachine/Follow" index="1" unique_id=1859916361 node_paths=PackedStringArray("charge_timer", "cutting_wind", "tornado_vfx_container", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("7_exisn")
 charge_timer = NodePath("../../../Timers/ChargeTimer")
 cutting_wind = NodePath("../../../CuttingWind")
+tornado_vfx_container = NodePath("../../../TornadoVFX")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../WaspPlayer")
@@ -646,18 +647,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40000007, 2.9999998)
 [node name="PierceMarker" type="Marker3D" parent="." index="12" unique_id=2042459230]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -3.74, 4.1)
 
-[node name="CuttingWind" parent="." index="13" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
+[node name="TornadoVFX" type="Marker3D" parent="." index="13" unique_id=1186658911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.932339, 0)
+
+[node name="CuttingWind" parent="." index="14" unique_id=1660320358 instance=ExtResource("16_u6q5m")]
 transform = Transform3D(1, 0, 0, 0, 0.23061588, 0.9730449, 0, -0.9730449, 0.23061588, -0.9499999, -5.132751, 6.0685706)
 visible = false
 
-[node name="HealthBar" parent="." index="14" unique_id=1652061932 instance=ExtResource("25_f2g7w")]
+[node name="HealthBar" parent="." index="15" unique_id=1652061932 instance=ExtResource("25_f2g7w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6000001, 0)
 
-[node name="WaspPlayer" type="AudioStreamPlayer3D" parent="." index="15" unique_id=1362537056]
+[node name="WaspPlayer" type="AudioStreamPlayer3D" parent="." index="16" unique_id=1362537056]
 max_polyphony = 2
 bus = &"SFX"
 
-[node name="WaspLoopPlayer" type="AudioStreamPlayer3D" parent="." index="16" unique_id=604390774]
+[node name="WaspLoopPlayer" type="AudioStreamPlayer3D" parent="." index="17" unique_id=604390774]
 stream = ExtResource("21_m5gis")
 volume_db = 20.0
 unit_size = 4.3
@@ -666,7 +670,7 @@ max_distance = 50.0
 bus = &"SFX"
 script = ExtResource("42_x420n")
 
-[node name="FireAndForget" type="Node3D" parent="." index="17" unique_id=514482214 node_paths=PackedStringArray("_audio_position")]
+[node name="FireAndForget" type="Node3D" parent="." index="18" unique_id=514482214 node_paths=PackedStringArray("_audio_position")]
 script = ExtResource("32_y5ov3")
 _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"

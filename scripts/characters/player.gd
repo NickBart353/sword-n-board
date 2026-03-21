@@ -199,6 +199,7 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 					call("update_{0}".format([property]), amount)
 					var heal_vfx = VfxManager.create_vfx_from_enum(VfxManager.VFX.HEAL_PARTICLES, global_position, true).instantiate()
 					add_child(heal_vfx)
+					heal_vfx.play()
 			Potion.PROPERTY_TYPE.DECREASE:
 				if self.has_method("update_{0}".format([property])):
 					call("update_{0}".format([property]), -amount)

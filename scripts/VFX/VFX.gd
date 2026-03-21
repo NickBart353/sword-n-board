@@ -5,6 +5,7 @@ signal vfx_finished
 @export var animation_player: AnimationPlayer
 @export var animation_name: String
 @export var enable_gravity: bool = false
+@export var queue_free_on_finish: bool = false
 
 var gravity: Vector3 = Vector3(0.0, -1.0, 0)
 
@@ -20,6 +21,8 @@ func play() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == animation_name:
 		hide()
+		if queue_free_on_finish:
+			queue_free()
 		vfx_finished.emit()
 		animation_player.play("RESET")
 

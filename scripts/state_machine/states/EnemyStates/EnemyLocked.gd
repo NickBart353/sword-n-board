@@ -3,12 +3,13 @@ extends EnemyAbility
 @export var charge_timer: Timer
 @export var pulling_back_speed: float = 0.1
 @export var cutting_wind: Node
+@export var tornado_vfx_container: Marker3D
 
 var vfx_tornado_instance: Basic_VFX
 
 func _ready() -> void:
-	vfx_tornado_instance = VfxManager.create_vfx_from_enum(VfxManager.VFX.SMALL_TORNADO, Vector3(enemy.global_position.x, enemy.global_position.y-4, enemy.global_position.z), true).instantiate()
-	add_child.call_deferred(vfx_tornado_instance)
+	vfx_tornado_instance = VfxManager.create_vfx_from_enum(VfxManager.VFX.SMALL_TORNADO, Vector3.ZERO, true).instantiate()
+	tornado_vfx_container.add_child.call_deferred(vfx_tornado_instance)
 
 func Enter():
 	super()

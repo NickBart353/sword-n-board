@@ -31,9 +31,10 @@ shader_parameter/triplanar_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_l84kh"]
+resource_local_to_scene = true
 material = SubResource("ShaderMaterial_iaf3s")
-radius = 6.0
-height = 12.0
+radius = 11.435342
+height = 22.870636
 
 [sub_resource type="Curve" id="Curve_iaf3s"]
 _data = [Vector2(0, 1), 0.0, -1.8014975, 0, 0, Vector2(0.61621624, 0), -0.6017154, -0.6017154, 0, 0, Vector2(1, 0), -0.9387465, 0.0, 0, 0]
@@ -135,7 +136,7 @@ tracks/0/path = NodePath("MeshInstance3D:mesh:material:shader_parameter/Transpar
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.53333336, 3),
+"times": PackedFloat32Array(0, 0.13333334, 0.5333, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0, 0.0]
@@ -183,7 +184,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.6),
+"times": PackedFloat32Array(0.5333),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -197,8 +198,13 @@ _data = {
 &"default": SubResource("Animation_iaf3s")
 }
 
-[node name="BlueMagicExplosion" type="Node3D" unique_id=1933036792]
+[node name="BlueMagicExplosion" type="Node3D" unique_id=1335928819 node_paths=PackedStringArray("mesh_to_remove", "animation_player")]
 script = ExtResource("1_iaf3s")
+mesh_to_remove = NodePath("MeshInstance3D")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "default"
+queue_free_on_finish = true
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=964582124]
 mesh = SubResource("SphereMesh_l84kh")
@@ -219,4 +225,3 @@ reset_on_save = false
 libraries/ = SubResource("AnimationLibrary_l84kh")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
