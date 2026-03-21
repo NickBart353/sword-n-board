@@ -104,9 +104,9 @@ func _explode():
 		if node is GPUParticles3D:
 			node.emitting = false
 			node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
-	for child in get_children():
-		if not child is Basic_VFX:
-			child.hide()
+		if not node is Basic_VFX:
+			node.hide()
+		
 	await vfx_instance.vfx_finished
 	exploded.emit(self)
 
@@ -119,10 +119,10 @@ func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transf
 	hit = false
 	explosion_hit = false
 	global_position = my_position
-	for child in get_children():
-		child.show()
 	for node in get_children():
+		node.show()
 		if node is GPUParticles3D:
+			node.restart()
 			node.emitting = true
 			node.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	hit_by_explosion_list = []

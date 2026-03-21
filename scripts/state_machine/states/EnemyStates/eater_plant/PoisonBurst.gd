@@ -12,6 +12,7 @@ var time_accumulator: float =  0.0
 
 func Enter():
 	super()
+	time_accumulator = 0.0
 	AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	fired = false
 	fire_queue = enemy.bombs.get_children()

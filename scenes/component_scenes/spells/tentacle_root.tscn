@@ -1185,6 +1185,11 @@ loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7clji"]
 animation = &"Return"
+use_custom_timeline = true
+timeline_length = 5.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mvym0"]
 resource_local_to_scene = true
@@ -1264,7 +1269,7 @@ states/SLAM/position = Vector2(783, 100)
 states/WindUp/node = SubResource("AnimationNodeAnimation_43g5x")
 states/WindUp/position = Vector2(438, -58)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0n2o1"), "Idle", "WindUp", SubResource("AnimationNodeStateMachineTransition_7clji"), "WindUp", "SLAM", SubResource("AnimationNodeStateMachineTransition_hoq3t"), "SLAM", "ReWind", SubResource("AnimationNodeStateMachineTransition_hc34n"), "ReWind", "SLAM", SubResource("AnimationNodeStateMachineTransition_h3x0r"), "SLAM", "Return", SubResource("AnimationNodeStateMachineTransition_n1xmw"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_6p5p7"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_qt2y3"), "SLAM", "Dead", SubResource("AnimationNodeStateMachineTransition_6je27"), "ReWind", "Dead", SubResource("AnimationNodeStateMachineTransition_p682n"), "WindUp", "Dead", SubResource("AnimationNodeStateMachineTransition_fvd7y"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_3xlys")]
-graph_offset = Vector2(-19, -128)
+graph_offset = Vector2(120, -158)
 
 [node name="Root" type="Node3D" unique_id=1314501579]
 script = ExtResource("1_4l43q")

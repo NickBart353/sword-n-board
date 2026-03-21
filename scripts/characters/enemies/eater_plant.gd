@@ -67,6 +67,7 @@ func create_tentacles():
 		tentacle_container.add_child(tentacle_instance)
 		tentacle_instance.hide()
 		tentacle_instance.damage = tentacle_damage
+		tentacle_instance.wait_duration = $Timers/EruptionCooldown.wait_time - 3
 		tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func create_tentacle_roots():

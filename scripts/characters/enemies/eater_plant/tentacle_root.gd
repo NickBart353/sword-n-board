@@ -15,8 +15,14 @@ var idling: bool = false
 var can_take_damage: bool = false
 var dead: bool = false
 
+var vfx_instances: Array[Basic_VFX] = []
+
 func _ready() -> void:
 	anim_tree.state_started.connect(_state_started)
+	for impact_point in impact_points:
+		var vfx_instance: Basic_VFX = VfxManager.create_vfx_from_enum(VfxManager.VFX.LINE_GROUND_IMPACT, Vector3.ZERO, true).instantiate()
+		impact_point.add_child(vfx_instance)
+		vfx_instances.append(vfx_instance)
 
 func wind_up() -> void:
 	idling = false
@@ -63,8 +69,9 @@ func _check_hit(body: Node3D):
 		body.take_damage(damage, self)
 
 func create_impact_vfx():
-	for impact_point in impact_points:
-		VfxManager.create_vfx_from_enum(VfxManager.VFX.LINE_GROUND_IMPACT, impact_point.global_position)
+	for i in range(vfx_instances.size()):
+		vfx_instances[i].global_transform = impact_points[i].global_transform
+		vfx_instances[i].play()
 
 func die():
 	hit = false

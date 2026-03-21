@@ -2,9 +2,12 @@
 
 @export var cool_down_timer: Timer
 @export var attack_range: int = 0
+@export var disable_me: bool = false
 
 func ready_to_use() -> bool:
-	if cool_down_timer:
+	if disable_me:
+		return false
+	elif cool_down_timer:
 		if not cool_down_timer.time_left and enemy.global_position.distance_to(player.global_position) < attack_range:
 			return true
 	elif enemy.global_position.distance_to(player.global_position) < attack_range:

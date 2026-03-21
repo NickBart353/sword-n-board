@@ -220,7 +220,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("Rocks:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -230,6 +230,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rocks")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tluyp"]
 _data = {
@@ -238,13 +252,14 @@ _data = {
 }
 
 [node name="LineGroundImpact" type="Node3D" unique_id=222180938 node_paths=PackedStringArray("animation_player")]
+top_level = true
 script = ExtResource("1_rgg5p")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "impact"
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Rocks" type="GPUParticles3D" parent="." unique_id=1628573704]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044205725, 0)
 emitting = false
 amount = 15
 lifetime = 2.0

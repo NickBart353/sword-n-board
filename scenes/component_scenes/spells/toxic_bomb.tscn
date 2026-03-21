@@ -3,6 +3,25 @@
 [ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_073vx"]
 [ext_resource type="AudioStream" uid="uid://b0jml7ygehdfv" path="res://assets/Audio/pixabay/freesound_community-bubbles-03-91268.wav" id="2_0jskv"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073vx"]
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(2.351395, 0.0874644, 4.6780148, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_no0bl"]
+material = SubResource("StandardMaterial3D_073vx")
+radial_segments = 10
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uwupy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4h1qo"]
+resource_local_to_scene = true
+radius = 2.3
+
 [sub_resource type="Curve" id="Curve_4h1qo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -26,25 +45,6 @@ albedo_color = Color(4.0717306, 0.34431335, 5.402755, 1)
 [sub_resource type="SphereMesh" id="SphereMesh_aq0yo"]
 material = SubResource("StandardMaterial3D_uayre")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073vx"]
-shading_mode = 0
-disable_ambient_light = true
-disable_fog = true
-disable_specular_occlusion = true
-albedo_color = Color(2.351395, 0.0874644, 4.6780148, 1)
-disable_receive_shadows = true
-
-[sub_resource type="SphereMesh" id="SphereMesh_no0bl"]
-material = SubResource("StandardMaterial3D_073vx")
-radial_segments = 10
-rings = 4
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_uwupy"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4h1qo"]
-resource_local_to_scene = true
-radius = 2.3
-
 [node name="ToxicBomb" type="Node3D" unique_id=2126498073 node_paths=PackedStringArray("projectile_area", "explosion_area", "explosion_target_raycast")]
 top_level = true
 script = ExtResource("1_073vx")
@@ -61,14 +61,6 @@ explosion_target_raycast = NodePath("RayCast3D")
 audio_resource = ExtResource("2_0jskv")
 audio_max_range = 15.0
 metadata/_custom_type_script = "uid://snywren3rqx0"
-
-[node name="Goo" type="GPUParticles3D" parent="." unique_id=1369429775]
-amount = 9
-lifetime = 1.18
-fixed_fps = 24
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_aqo3o")
-draw_pass_1 = SubResource("SphereMesh_aq0yo")
 
 [node name="BombMesh" type="MeshInstance3D" parent="." unique_id=1301921339]
 mesh = SubResource("SphereMesh_no0bl")
@@ -91,3 +83,10 @@ debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=455690448]
 collision_mask = 7
+
+[node name="Goo" type="GPUParticles3D" parent="." unique_id=2127526811]
+amount = 9
+lifetime = 1.18
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_aqo3o")
+draw_pass_1 = SubResource("SphereMesh_aq0yo")

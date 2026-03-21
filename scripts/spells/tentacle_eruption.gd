@@ -23,6 +23,7 @@ var velocity: Vector3 = Vector3.ZERO
 var is_ready_to_erupt: bool
 var is_ready_to_return: bool
 var damage: int = 5
+var wait_duration: int = 15
 
 func _ready() -> void:
 	hide()
@@ -37,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			#AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 			if not top_position:
 				top_position = global_position
-			resting_timer.start()
+			resting_timer.start(wait_duration)
 	if is_ready_to_return:
 		global_translate(velocity * delta)
 		if global_position.distance_to(top_position) > max_distance:

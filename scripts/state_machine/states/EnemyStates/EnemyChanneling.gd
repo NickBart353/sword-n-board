@@ -15,10 +15,11 @@ func _ready() -> void:
 
 func Enter():
 	super()
-	vfx_instance.global_position = channeling_vfx_position.global_position
 	if not charge_timer.timeout.is_connected(_on_charge_timer_timeout):
 		charge_timer.timeout.connect(_on_charge_timer_timeout)
-	vfx_instance.play()
+	if vfx_instance and channeling_vfx_position:
+		vfx_instance.global_position = channeling_vfx_position.global_position
+		vfx_instance.play()
 	charge_timer.start()
 
 func Exit():
