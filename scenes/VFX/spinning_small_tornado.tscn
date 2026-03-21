@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dg3s0mfgkqw0"]
 
-[ext_resource type="Script" uid="uid://deml2r5rur1s6" path="res://scripts/VFX/spinning_small_tornado.gd" id="1_bm2yd"]
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_bm2yd"]
 [ext_resource type="Shader" uid="uid://dvth7fdrmy5ef" path="res://shaders/spinning_small_tornado.tres" id="1_l7dht"]
 [ext_resource type="ArrayMesh" uid="uid://c7bbbuw83jbrd" path="res://my_assets/mesh/spinning_open_cone.obj" id="1_na5eo"]
 
@@ -203,8 +203,11 @@ _data = {
 &"Tornado": SubResource("Animation_gq7nj")
 }
 
-[node name="SpinningSmallTornado" type="Node3D" unique_id=1231432937]
+[node name="SpinningSmallTornado" type="Node3D" unique_id=240751861 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_bm2yd")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "Tornado"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Tornado" type="GPUParticles3D" parent="." unique_id=1227166609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.685755e-08, 0, 0)

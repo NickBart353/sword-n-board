@@ -4,6 +4,12 @@ signal died
 
 @export var death_timer: Timer
 
+var particle_dissolve: Basic_VFX
+
+func _ready() -> void:
+	particle_dissolve = VfxManager.create_vfx_from_enum(VfxManager.VFX.BIG_KILL_PARTICLE, enemy.global_position, true).instantiate()
+	add_child.call_deferred(particle_dissolve)
+
 func Enter():
 	super()
 	AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
@@ -13,7 +19,8 @@ func Enter():
 	enemy.set_collision_layer_value(4, false)
 	anim_tree.tree_root = anim_tree.tree_root.duplicate(true)
 	anim_tree.set("parameters/Dissolve/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	VfxManager.create_vfx_from_enum(VfxManager.VFX.BIG_KILL_PARTICLE, enemy.global_position)
+	particle_dissolve.play()
+	particle_dissolve.global_position = enemy.global_position
 
 func Exit():
 	super()

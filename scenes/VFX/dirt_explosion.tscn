@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://msts6rhfq7ta"]
 
-[ext_resource type="Script" uid="uid://5ehxwed8uswq" path="res://scripts/VFX/dirt_explosion.gd" id="1_ufcj0"]
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_ufcj0"]
 
 [sub_resource type="Curve" id="Curve_l3i8e"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -107,7 +107,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -155,8 +155,11 @@ _data = {
 &"default": SubResource("Animation_8l385")
 }
 
-[node name="DirtExplosion" type="Node3D" unique_id=2065508724]
+[node name="DirtExplosion" type="Node3D" unique_id=349612914 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_ufcj0")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "default"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Rocks" type="GPUParticles3D" parent="." unique_id=1836570082]
 emitting = false
@@ -169,6 +172,7 @@ process_material = SubResource("ParticleProcessMaterial_l3i8e")
 draw_pass_1 = SubResource("BoxMesh_ufcj0")
 
 [node name="DirtSmoke" type="GPUParticles3D" parent="." unique_id=837843769]
+emitting = false
 one_shot = true
 explosiveness = 0.91
 fixed_fps = 60

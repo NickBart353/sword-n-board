@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c8ix5qvpvvmkx"
-path="res://.godot/imported/tree.blend-23c140d7cfab4d517b5b40da3b42f595.scn"
+path="res://.godot/imported/tree.blend-5a608196059f36dad0c80678a8d5606c.scn"
 
 [deps]
 
-source_file="res://tree.blend"
-dest_files=["res://.godot/imported/tree.blend-23c140d7cfab4d517b5b40da3b42f595.scn"]
+source_file="res://my_assets/models/tree_copy/tree.blend"
+dest_files=["res://.godot/imported/tree.blend-5a608196059f36dad0c80678a8d5606c.scn"]
 
 [params]
 
@@ -48,6 +48,7 @@ blender/meshes/colors=false
 blender/meshes/uvs=true
 blender/meshes/normals=true
 blender/meshes/export_geometry_nodes_instances=false
+blender/meshes/gpu_instances=false
 blender/meshes/tangents=true
 blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false

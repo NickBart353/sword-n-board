@@ -7,14 +7,19 @@ class_name EnemyChanneling
 @export var follow_up_state: State
 @export var look_at_target: bool = true
 
+var vfx_instance: Basic_VFX
+
+func _ready() -> void:
+	vfx_instance = VfxManager.create_vfx_from_enum(channeling_vfx, Vector3.ZERO, true).instantiate()
+	enemy.add_child.call_deferred(vfx_instance)
+
 func Enter():
 	super()
+	vfx_instance.global_position = channeling_vfx_position.global_position
 	if not charge_timer.timeout.is_connected(_on_charge_timer_timeout):
 		charge_timer.timeout.connect(_on_charge_timer_timeout)
+	vfx_instance.play()
 	charge_timer.start()
-	var vfx_instance = VfxManager.create_vfx_from_enum(channeling_vfx, Vector3.ZERO, true).instantiate()
-	enemy.add_child(vfx_instance)
-	vfx_instance.global_position = channeling_vfx_position.global_position
 
 func Exit():
 	super()

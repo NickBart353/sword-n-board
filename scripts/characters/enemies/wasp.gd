@@ -22,7 +22,7 @@ func create_bombs():
 
 func ready_bombs(player_location):
 	for bomb in bombs.get_children():
-		bomb.set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
+		bomb.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 		bomb.fire($BombPosition.global_position, player_location, global_transform)
 
 func reset_bomb(bomb):

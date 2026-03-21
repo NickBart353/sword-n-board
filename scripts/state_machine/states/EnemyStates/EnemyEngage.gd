@@ -6,14 +6,21 @@ extends EnemyState
 @export var look_at_enemy: bool = true
 @export var only_look_horizontally: bool = false
 
+var yell_vfx: Basic_VFX
+
+func _ready() -> void:
+	yell_vfx = VfxManager.create_sound_waves(Vector3.ZERO, true).instantiate()
+	yell_vfx_position.add_child(yell_vfx)
+
 func Enter():
 	super()
 	var engage_timer: Timer = Timer.new()
 	add_child(engage_timer, true)
 	engage_timer.timeout.connect(_on_engage_timer_timeout)
 	engage_timer.start(time_till_engaged)
-	var vfx_instance = VfxManager.create_sound_waves(Vector3.ZERO, true).instantiate()
-	yell_vfx_position.add_child(vfx_instance)
+	#var vfx_instance = VfxManager.create_sound_waves(Vector3.ZERO, true).instantiate()
+	#yell_vfx_position.add_child(vfx_instance)
+	yell_vfx.play()
 	for called_enemy in get_tree().get_nodes_in_group("Enemy"):
 		if enemy.global_position.distance_to(called_enemy.global_position) < (pull_distance * 2):
 			called_enemy.force_engage()

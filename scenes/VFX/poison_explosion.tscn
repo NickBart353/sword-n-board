@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cs5c23h610uly"]
 
-[ext_resource type="Script" uid="uid://s15e4fnd4fq0" path="res://scripts/VFX/poison_explosion.gd" id="1_pyu6s"]
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_pyu6s"]
 
 [sub_resource type="Curve" id="Curve_dxmqh"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7394367, 0.6613603), -1.6219763, -1.6219763, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -147,7 +147,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -159,7 +159,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -180,10 +180,14 @@ _data = {
 &"RESET": SubResource("Animation_7tbhl")
 }
 
-[node name="PoisonExplosion" type="Node3D" unique_id=216004118]
+[node name="PoisonExplosion" type="Node3D" unique_id=528288120 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_pyu6s")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "Explosion"
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Smoke" type="GPUParticles3D" parent="." unique_id=1144379772]
+emitting = false
 amount = 16
 one_shot = true
 explosiveness = 0.81
@@ -193,6 +197,7 @@ process_material = SubResource("ParticleProcessMaterial_dxmqh")
 draw_pass_1 = SubResource("SphereMesh_7tbhl")
 
 [node name="PoisonSmoke" type="GPUParticles3D" parent="." unique_id=2065821935]
+emitting = false
 one_shot = true
 explosiveness = 0.81
 randomness = 0.12

@@ -11,11 +11,15 @@ class_name Projectile
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
 @export var explosion_target_raycast: RayCast3D
+
 @export_group("Audio")
 @export var audio_resource: AudioStream
 @export_range(-100.0, 100.0) var offset_audio: float = 0.0
 @export_range(-100.0, 100.0) var audio_volume: float = 0.0
 @export_range(-100.0, 100.0) var audio_max_range: float = 0.0 
+
+#@export_group("VFX")
+#@export var impact_vfx: PackedScene
 
 signal exploded
 
@@ -30,12 +34,15 @@ var explosion_hit: bool = false
 var new_transform: Transform3D = Transform3D.IDENTITY
 var hit_by_explosion_list: Array = []
 var origin: Vector3
+var vfx_instance: Basic_VFX
 
 func _ready() -> void:
 	projectile_area.body_entered.connect(_on_body_entered)
 	projectile_area.area_entered.connect(_on_area_entered)
 	explosion_area.body_entered.connect(_on_explosion_body_entered)
 	explosion_area.area_entered.connect(_on_explosion_area_entered)
+	vfx_instance = VfxManager.create_vfx_from_enum(explosion_animation, global_position, true).instantiate()
+	add_child(vfx_instance)
 
 func _physics_process(delta: float) -> void:
 	if not ready_to_fly: return
@@ -52,6 +59,8 @@ func _on_body_entered(body: Node3D) -> void:
 	_hit_object()
 	hit_by_explosion_list.append(body)
 	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
+	#VfxManager.create_vfx_from_enum(explosion_animation, global_position)
+	vfx_instance.play()
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return
@@ -82,7 +91,6 @@ func was_object_hit_first(object: Node, raycast_length: float):
 
 func _hit_object():
 	ready_to_fly = false
-	VfxManager.create_vfx_from_enum(explosion_animation, global_position)
 	hit = true
 	set_physics_process(false) 
 	projectile_area.set_deferred("monitoring", false)
@@ -96,6 +104,10 @@ func _explode():
 		if node is GPUParticles3D:
 			node.emitting = false
 			node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	for child in get_children():
+		if not child is Basic_VFX:
+			child.hide()
+	await vfx_instance.vfx_finished
 	exploded.emit(self)
 
 func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
@@ -107,6 +119,8 @@ func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transf
 	hit = false
 	explosion_hit = false
 	global_position = my_position
+	for child in get_children():
+		child.show()
 	for node in get_children():
 		if node is GPUParticles3D:
 			node.emitting = true

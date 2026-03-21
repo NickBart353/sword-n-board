@@ -4,11 +4,17 @@ extends EnemyAbility
 @export var pulling_back_speed: float = 0.1
 @export var cutting_wind: Node
 
+var vfx_tornado_instance: Basic_VFX
+
+func _ready() -> void:
+	vfx_tornado_instance = VfxManager.create_vfx_from_enum(VfxManager.VFX.SMALL_TORNADO, Vector3(enemy.global_position.x, enemy.global_position.y-4, enemy.global_position.z), true).instantiate()
+	add_child.call_deferred(vfx_tornado_instance)
+
 func Enter():
 	super()
 	charge_timer.start()
-	VfxManager.create_small_tornado(Vector3(enemy.global_position.x, enemy.global_position.y-4, enemy.global_position.z))
 	cutting_wind.set_visible(true)
+	vfx_tornado_instance.play()
 
 func Exit():
 	super()
