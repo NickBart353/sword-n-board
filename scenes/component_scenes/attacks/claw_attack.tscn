@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://daa32y3httqmj"]
 
-[ext_resource type="Script" uid="uid://b5gevgtfnuxcc" path="res://scripts/attacks/claw_attack.gd" id="1_rldec"]
+[ext_resource type="Script" uid="uid://boinaqwsxhwtm" path="res://scripts/attacks/Attack.gd" id="1_2b154"]
 [ext_resource type="ArrayMesh" uid="uid://6d3a803x7wxj" path="res://my_assets/mesh/claw.obj" id="2_miqum"]
 [ext_resource type="AudioStream" uid="uid://67e0prfttj0g" path="res://assets/Audio/pixabay/yodguard-scorpion-claw-attack-2-482516.wav" id="3_2b154"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="4_gbuys"]
@@ -115,6 +115,20 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"disable_monitoring"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_miqum"]
 resource_name = "swipe"
@@ -218,29 +232,29 @@ tracks/7/keys = {
 tracks/8/type = "method"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath(".")
+tracks/8/path = NodePath("FireAndForget")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"activate_claws"
-}]
-}
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("FireAndForget")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
 "times": PackedFloat32Array(0.33333334),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [ExtResource("3_2b154"), 3, 0.0],
 "method": &"_play_audio_fire_and_forget"
+}]
+}
+tracks/9/type = "method"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"activate_monitoring"
 }]
 }
 
@@ -250,10 +264,13 @@ _data = {
 &"swipe": SubResource("Animation_miqum")
 }
 
-[node name="ClawAttack" type="Area3D" unique_id=184421249]
+[node name="ClawAttack" type="Area3D" unique_id=915435010 node_paths=PackedStringArray("anim_player")]
 collision_layer = 16
 collision_mask = 6
-script = ExtResource("1_rldec")
+script = ExtResource("1_2b154")
+anim_player = NodePath("AnimationPlayer")
+animation_name = "swipe"
+metadata/_custom_type_script = "uid://boinaqwsxhwtm"
 
 [node name="ClawOne" type="MeshInstance3D" parent="." unique_id=77433838]
 material_override = SubResource("StandardMaterial3D_ot6bs")
@@ -278,6 +295,3 @@ libraries/ = SubResource("AnimationLibrary_ot6bs")
 script = ExtResource("4_gbuys")
 _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

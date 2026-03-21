@@ -114,7 +114,6 @@ _data = {
 }
 
 [node name="ChannelingGroundImpact" type="Node3D" unique_id=353193469 node_paths=PackedStringArray("animation_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 script = ExtResource("1_7voqq")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "charge"

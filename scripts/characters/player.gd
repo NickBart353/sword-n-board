@@ -250,7 +250,6 @@ func use_stamina(stamina_cost: float) -> bool:
 		return false
 	else:
 		STAMINA -= stamina_cost
-		print(STAMINA)
 		UiController.update_staminabar(STAMINA)
 		stamina_regeneration_delay.start()
 		return true

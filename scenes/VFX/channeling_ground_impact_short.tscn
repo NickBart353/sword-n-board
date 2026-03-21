@@ -56,7 +56,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_loptt"]
-resource_name = "charge"
+resource_name = "charge_short"
 length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -86,13 +86,13 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2y01r"]
 _data = {
 &"RESET": SubResource("Animation_bouqb"),
-&"charge": SubResource("Animation_loptt")
+&"charge_short": SubResource("Animation_loptt")
 }
 
 [node name="ChannelingGroundImpactSHORT" type="Node3D" unique_id=353193469 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_bouqb")
 animation_player = NodePath("AnimationPlayer2")
-animation_name = "charge"
+animation_name = "charge_short"
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1727825823]

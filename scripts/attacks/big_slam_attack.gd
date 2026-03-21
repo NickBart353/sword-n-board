@@ -10,6 +10,7 @@ var hit: bool = false
 
 func _ready() -> void:
 	monitoring = false
+	hide()
 
 func _process(_delta: float) -> void:
 	if monitoring and not hit:
@@ -24,6 +25,7 @@ func play_slam(new_damage: int):
 
 func activate_slam():
 	monitoring = true
+	show()
 
 func deactivate_slam():
 	monitoring = false
@@ -31,3 +33,5 @@ func deactivate_slam():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "slam":
 		slam_finished.emit(self)
+		anim_player.play("RESET")
+		hide()

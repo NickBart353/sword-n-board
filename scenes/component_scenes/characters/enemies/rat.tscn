@@ -749,10 +749,10 @@ anim_tree = NodePath("AnimationTree")
 healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="Rat_Armature" parent="." index="0" unique_id=939121433]
+[node name="Rat_Armature" parent="." index="0" unique_id=875898708]
 transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=2000930738]
+[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=1124200626]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
 bones/1/rotation = Quaternion(-4.497857e-17, -8.82744e-11, -0.07285598, 0.9973426)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
@@ -761,13 +761,13 @@ bones/3/position = Vector3(2.7943134e-17, 0.035011638, 5.0474513e-10)
 bones/3/rotation = Quaternion(-0.032742683, 0.005080462, 0.15324433, 0.98763275)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/position = Vector3(-6.691533e-17, 0.036299333, -2.7045108e-10)
-bones/4/rotation = Quaternion(0.4512753, -0.023127554, -0.1280395, 0.8828486)
+bones/4/rotation = Quaternion(0.18356846, 0.020083185, 0.18249416, 0.96570975)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(0.011307207, 0.0059834784, -0.0077325143)
-bones/5/rotation = Quaternion(0.64469165, 0.55498, 0.1410753, -0.50642645)
+bones/5/rotation = Quaternion(0.7549387, 0.38011736, 0.17079936, -0.5063653)
 bones/5/scale = Vector3(1, 1, 0.99999994)
 bones/7/position = Vector3(-0.011307205, 0.0059834784, -0.007732516)
-bones/7/rotation = Quaternion(0.64469165, -0.55497986, -0.14107528, -0.5064265)
+bones/7/rotation = Quaternion(0.7549387, -0.38011745, -0.17079934, -0.5063652)
 bones/7/scale = Vector3(1, 0.99999994, 1.0000002)
 bones/9/position = Vector3(0.02200493, 0.022545217, 0.009580314)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
@@ -786,7 +786,7 @@ bones/15/position = Vector3(-6.938894e-18, 0.014769028, -4.8572257e-17)
 bones/15/rotation = Quaternion(-1.7886627e-08, 6.535729e-08, 0.6782688, 0.73481387)
 bones/15/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0.025667883, 0.031279262, 0.0063315374)
-bones/17/rotation = Quaternion(0.5980743, 0.3772361, 0.3772362, 0.5980743)
+bones/17/rotation = Quaternion(0.4440263, 0.5503096, 0.5503096, 0.44402635)
 bones/17/scale = Vector3(0.99999994, 0.9999998, 0.9999998)
 bones/18/position = Vector3(4.2915282e-10, 0.019717814, 6.6039924e-10)
 bones/18/rotation = Quaternion(1.674626e-08, 1.1175873e-08, -3.022882e-08, 1)
@@ -795,7 +795,7 @@ bones/19/position = Vector3(9.367507e-17, 0.016380727, 5.2041704e-17)
 bones/19/rotation = Quaternion(-2.3336575e-08, -8.921103e-08, -0.626472, 0.779444)
 bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-0.025667883, 0.031279262, 0.006331533)
-bones/21/rotation = Quaternion(-0.570114, 0.41829422, 0.41829422, -0.57011396)
+bones/21/rotation = Quaternion(-0.6337219, 0.31368226, 0.31368226, -0.6337219)
 bones/21/scale = Vector3(0.99999994, 0.99999976, 0.9999998)
 bones/22/position = Vector3(-4.2915302e-10, 0.019717816, 2.3913589e-09)
 bones/22/rotation = Quaternion(-1.674626e-08, -1.4901163e-08, 3.0228826e-08, 1)
@@ -803,12 +803,12 @@ bones/22/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-2.4286129e-17, 0.01638073, -1.3877788e-17)
 bones/23/rotation = Quaternion(-2.4635192e-08, 8.816729e-08, 0.626472, 0.7794439)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/25/rotation = Quaternion(0.32246956, 0, 0, 0.9465799)
+bones/25/rotation = Quaternion(0.21948647, 0, 0, 0.97561556)
 bones/26/position = Vector3(0, 0.038294263, 3.469447e-18)
-bones/26/rotation = Quaternion(0.103210844, 0, 0, 0.9946595)
+bones/26/rotation = Quaternion(0.02724317, 0, 0, 0.9996289)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 
-[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1356767653]
+[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=962997572]
 material_override = SubResource("ShaderMaterial_18ja3")
 material_overlay = SubResource("ShaderMaterial_76dw5")
 
@@ -904,11 +904,11 @@ anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
 audio_resource = ExtResource("22_lmxkh")
 
-[node name="Bite" type="Node" parent="StateMachine/Follow" index="1" unique_id=1297285949 node_paths=PackedStringArray("bite_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+[node name="Bite" type="Node" parent="StateMachine/Follow" index="1" unique_id=1297285949 node_paths=PackedStringArray("attack_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("18_urxsf")
-bite_scene = ExtResource("19_5bro7")
-bite_position = NodePath("../../../BitePosition")
-damage = 10
+damage = 7
+attack_scene = ExtResource("19_5bro7")
+attack_position = NodePath("../../../BitePosition")
 cool_down_timer = NodePath("../../../Timers/BiteCooldown")
 attack_range = 7
 enemy = NodePath("../../..")
@@ -916,11 +916,11 @@ anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
 audio_resource = ExtResource("25_lmxkh")
 
-[node name="Claw" type="Node" parent="StateMachine/Follow" index="2" unique_id=865819282 node_paths=PackedStringArray("claw_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+[node name="Claw" type="Node" parent="StateMachine/Follow" index="2" unique_id=865819282 node_paths=PackedStringArray("attack_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("20_gyxf7")
-claw_scene = ExtResource("21_7gu7r")
-claw_position = NodePath("../../../ClawPosition")
-damage = 15
+damage = 10
+attack_scene = ExtResource("21_7gu7r")
+attack_position = NodePath("../../../BitePosition")
 cool_down_timer = NodePath("../../../Timers/ClawCooldown")
 attack_range = 7
 enemy = NodePath("../../..")

@@ -10,6 +10,7 @@ var hit: bool = false
 
 func _ready() -> void:
 	monitoring = false
+	hide()
 
 func _process(_delta: float) -> void:
 	if monitoring and not hit:
@@ -19,6 +20,7 @@ func _process(_delta: float) -> void:
 				body.take_damage(damage, self)
 
 func play_slam(new_damage: int):
+	show()
 	damage = new_damage
 	anim_player.play("slam")
 
@@ -36,3 +38,5 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "slam":
 		slam_finished.emit(self)
+		anim_player.play("RESET")
+		hide()

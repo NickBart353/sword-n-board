@@ -1,5 +1,4 @@
-extends EnemyState
-class_name EnemyAbility
+@abstract class_name EnemyAbility extends EnemyState
 
 @export var cool_down_timer: Timer
 @export var attack_range: int = 0
