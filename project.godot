@@ -34,6 +34,7 @@ MobManager="*uid://wip3ne88h8ge"
 AudioManager="*uid://bmxunujttmtpa"
 LoopMixer="*uid://ch2aookja1ixq"
 UiController="*uid://6nyjvijyispu"
+DataManager="*uid://cccrtb8kflebj"
 
 [display]
 

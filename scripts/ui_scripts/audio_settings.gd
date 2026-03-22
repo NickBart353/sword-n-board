@@ -1,5 +1,12 @@
 extends GridContainer
 
+@onready var master_slider: HSlider = $MasterSlider
+@onready var music_slider: HSlider = $MusicSlider
+@onready var voice_slider: HSlider = $VoiceSlider
+@onready var sfx_slider: HSlider = $SFXSlider
+@onready var ui_slider: HSlider = $UISlider
+@onready var ambience_slider: HSlider = $AmbienceSlider
+
 const master: String = "Master"
 const music: String = "Music"
 const voices: String = "Voices"
@@ -28,13 +35,33 @@ var saved_audio_settings: Dictionary = {
 var audio_settings: Dictionary = {}
 
 func _ready() -> void:
-	audio_settings = default_audio_settings
+	var loaded_volume_dict: Dictionary = DataManager.load_volume()
+	if loaded_volume_dict:
+		audio_settings = loaded_volume_dict
+	else:
+		audio_settings = default_audio_settings
+	_load_volume()
 
-func parse_volume(volume_dict: Dictionary):
-	audio_settings = volume_dict
+func _load_volume():
+	for key in audio_settings:
+		print(db_to_linear(audio_settings[key]), " ", audio_settings[key])
+		match key:
+			master:
+				master_slider.value = audio_settings[key]
+			music:
+				music_slider.value = audio_settings[key]
+			voices:
+				voice_slider.value = audio_settings[key]
+			sfx:
+				sfx_slider.value = audio_settings[key]
+			ui:
+				ui_slider.value = audio_settings[key]
+			ambience:
+				ambience_slider.value = audio_settings[key]
 
 func reset_volume():
 	audio_settings = default_audio_settings
+	_load_volume()
 
 func _on_master_slider_value_changed(value: float) -> void:
 	_set_volume(master, value)
@@ -58,3 +85,10 @@ func _set_volume(bus: String, value: float):
 	saved_audio_settings[bus] = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), linear_to_db(value))
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus), value < 0.05)
+
+func _on_save_button_pressed() -> void:
+	DataManager.save_volume(saved_audio_settings)
+
+func _on_reset_button_pressed() -> void:
+	DataManager.save_volume(default_audio_settings)
+	reset_volume()

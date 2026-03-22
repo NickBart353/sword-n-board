@@ -6,3 +6,4 @@ demo/
 addons/*
 *.zip
 *.tmp
+{}

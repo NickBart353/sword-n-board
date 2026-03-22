@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1jexxjeonu31" path="res://scripts/ui_scripts/game_menus.gd" id="1_t65je"]
 [ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
+[ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_v06nt"]
+[ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_l4c86"]
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="4_nr7jk"]
 [ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="4_v06nt"]
 
@@ -23,6 +25,8 @@ font_size = 90
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513]
 process_mode = 3
 script = ExtResource("1_t65je")
+button_hover_sound = ExtResource("2_v06nt")
+button_click_sound = ExtResource("3_l4c86")
 
 [node name="Hud" type="Control" parent="." unique_id=2124242350]
 visible = false
@@ -255,7 +259,7 @@ layout_mode = 2
 theme = ExtResource("4_nr7jk")
 current_tab = 0
 
-[node name="AudioMargin" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1660483641]
+[node name="Audio" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1660483641]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -263,19 +267,19 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="Audio" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin" unique_id=88914688]
+[node name="Audio" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio" unique_id=88914688]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 4
 columns = 2
 script = ExtResource("4_v06nt")
 
-[node name="MasterLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1729759271]
+[node name="MasterLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1729759271]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Master"
 
-[node name="MasterSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1745330218]
+[node name="MasterSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1745330218]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -284,12 +288,12 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="MusicLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=239696569]
+[node name="MusicLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=239696569]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1402641720]
+[node name="MusicSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1402641720]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -298,12 +302,12 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="VoiceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=2009762474]
+[node name="VoiceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=2009762474]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Voices"
 
-[node name="VoiceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=411005536]
+[node name="VoiceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=411005536]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -312,12 +316,12 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="SFXLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=989084348]
+[node name="SFXLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=989084348]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Sound Effects"
 
-[node name="SFXSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=308851215]
+[node name="SFXSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=308851215]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -326,12 +330,12 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="UILabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1650159624]
+[node name="UILabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1650159624]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "User Interface"
 
-[node name="UISlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1471870378]
+[node name="UISlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1471870378]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -340,12 +344,12 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="AmbienceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1970187411]
+[node name="AmbienceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1970187411]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Ambience"
 
-[node name="AmbienceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1055399282]
+[node name="AmbienceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" unique_id=1055399282]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -382,10 +386,12 @@ text = "Reset to default"
 
 [connection signal="pressed" from="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/MasterSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_master_slider_value_changed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/MusicSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/VoiceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_voice_slider_value_changed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/SFXSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_sfx_slider_value_changed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/UISlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_ui_slider_value_changed"]
-[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/AmbienceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_ambience_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/MasterSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/MusicSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/VoiceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_voice_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/SFXSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/UISlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ui_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/AmbienceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ambience_slider_value_changed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_save_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_reset_button_pressed"]
