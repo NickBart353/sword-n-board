@@ -3,17 +3,31 @@ extends CanvasLayer
 @onready var hud: Control = $Hud
 @onready var item_controller: Control = $ItemController
 @onready var escape_menu: Control = $EscapeMenu
+@onready var pause_menu: Control = $EscapeMenu/PauseMenu
+@onready var settings_menu: Control = $EscapeMenu/SettingsMenu
+
+var escape_menu_open: bool
 
 func _ready() -> void:
+	escape_menu_open = false
+	
+	hud.show()
+	
 	UiController.inventory.connect(_inventory)
 	UiController.character_panel.connect(_character_panel)
 	UiController.lootbag.connect(_lootbag)
-	UiController.game_menu.connect(_game_menu)
+	UiController.escape_menu_signal.connect(_escape_menu)
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
 	UiController._update_manabar.connect(_update_manabar)
 	UiController._update_hud.connect(_update_hud)
-	
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("escape_menu"):
+		_escape_menu()
+	if Input.is_action_just_pressed("inventory"):
+		_inventory()
+
 func _inventory():
 	pass
 
@@ -23,8 +37,18 @@ func _character_panel():
 func _lootbag():
 	pass
 
-func _game_menu():
-	pass
+func _escape_menu():
+	if not escape_menu_open:
+		escape_menu_open = true
+		escape_menu.show()
+		pause_menu.show()
+	elif escape_menu_open:
+		escape_menu_open = false
+		pause_menu.hide()
+		settings_menu.hide()
+		escape_menu.hide()
+		
+	get_tree().paused = escape_menu_open
 
 func _update_healthbar(health: float):
 	hud.update_health(health)
@@ -37,3 +61,14 @@ func _update_manabar(mana: float):
 
 func _update_hud():
 	pass
+
+func _on_continue_button_pressed() -> void:
+	_escape_menu()
+
+func _on_settings_button_pressed() -> void:
+	settings_menu.show()
+	pause_menu.hide()
+
+func _on_back_button_pressed() -> void:
+	pause_menu.show()
+	settings_menu.hide()

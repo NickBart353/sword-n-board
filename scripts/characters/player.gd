@@ -93,7 +93,6 @@ func _physics_process(delta: float) -> void:
 	ability.apply_abilities(input, state_controller, movement, delta)
 	animation.apply_animations(input, state_controller, movement, ability, delta)
 	audio.apply_audio(state_controller, movement, ability)
-	ui.apply_ui(input, state_controller)
 	
 	if not state_controller.is_player_busy():
 		interact_with_object()

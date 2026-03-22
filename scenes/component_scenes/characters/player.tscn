@@ -1130,8 +1130,9 @@ dash_sfx = SubResource("AudioStreamRandomizer_aeb6f")
 [node name="AnimationController" type="Node" parent="." unique_id=963017014]
 script = ExtResource("6_1e104")
 
-[node name="UIController" type="Node" parent="." unique_id=285300187]
+[node name="UIController" type="Node" parent="." unique_id=285300187 node_paths=PackedStringArray("player")]
 script = ExtResource("20_0h55w")
+player = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
 visible = false

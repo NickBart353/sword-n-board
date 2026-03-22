@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1jexxjeonu31" path="res://scripts/ui_scripts/game_menus.gd" id="1_t65je"]
 [ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
-[ext_resource type="Script" uid="uid://d2xra5ssfyrvn" path="res://scripts/ui_scripts/escape_menu.gd" id="3_wn7vt"]
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="4_nr7jk"]
+[ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="4_v06nt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6q64"]
 bg_color = Color(0.15585998, 0.1584456, 0.16554853, 1)
@@ -21,9 +21,11 @@ bg_color = Color(3.85046e-07, 0.60261935, 0.95547444, 1)
 font_size = 90
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513]
+process_mode = 3
 script = ExtResource("1_t65je")
 
 [node name="Hud" type="Control" parent="." unique_id=2124242350]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +36,6 @@ mouse_filter = 2
 script = ExtResource("2_t6q64")
 
 [node name="CrossHair" type="ColorRect" parent="Hud" unique_id=1354946558]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,7 +51,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PlayerResourceContainer" type="VBoxContainer" parent="Hud" unique_id=871089400]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -122,24 +122,34 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EscapeMenu" type="Control" parent="." unique_id=762123373]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_wn7vt")
 
-[node name="Panel" type="Panel" parent="EscapeMenu" unique_id=396412738]
+[node name="PauseMenu" type="Control" parent="EscapeMenu" unique_id=2124964910]
+visible = false
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="EscapeMenu/PauseMenu" unique_id=396412738]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.3
+anchor_top = 0.26
 anchor_right = 0.9
-anchor_bottom = 0.7
+anchor_bottom = 0.81
 theme = ExtResource("4_nr7jk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EscapeMenu" unique_id=1364226364]
+[node name="VBoxContainer" type="VBoxContainer" parent="EscapeMenu/PauseMenu" unique_id=1364226364]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.15
@@ -148,24 +158,234 @@ anchor_right = 0.85
 anchor_bottom = 0.7
 theme = ExtResource("4_nr7jk")
 
-[node name="Label" type="Label" parent="EscapeMenu/VBoxContainer" unique_id=983577192]
+[node name="Label" type="Label" parent="EscapeMenu/PauseMenu/VBoxContainer" unique_id=983577192]
 layout_mode = 2
 text = "Pause"
 label_settings = SubResource("LabelSettings_wn7vt")
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=911659656]
+[node name="MarginContainer" type="MarginContainer" parent="EscapeMenu/PauseMenu/VBoxContainer" unique_id=609919656]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="ContinueButton" type="Button" parent="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer" unique_id=911659656]
 layout_mode = 2
 text = "Continue"
 
-[node name="OptionsButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=405296874]
+[node name="MarginContainer2" type="MarginContainer" parent="EscapeMenu/PauseMenu/VBoxContainer" unique_id=833605641]
 layout_mode = 2
-text = "Options"
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
 
-[node name="MainMenuButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=2050616509]
+[node name="SettingsButton" type="Button" parent="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer2" unique_id=405296874]
+layout_mode = 2
+text = "Settings"
+
+[node name="MarginContainer3" type="MarginContainer" parent="EscapeMenu/PauseMenu/VBoxContainer" unique_id=156127174]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="MainMenuButton" type="Button" parent="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer3" unique_id=2050616509]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ExitGameButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=1858744950]
+[node name="MarginContainer4" type="MarginContainer" parent="EscapeMenu/PauseMenu/VBoxContainer" unique_id=1849089763]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="ExitGameButton" type="Button" parent="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer4" unique_id=1858744950]
 layout_mode = 2
 text = "Exit Game"
+
+[node name="SettingsMenu" type="Control" parent="EscapeMenu" unique_id=873186409]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="EscapeMenu/SettingsMenu" unique_id=1428832606]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_nr7jk")
+
+[node name="SettingsOrganizer" type="VBoxContainer" parent="EscapeMenu/SettingsMenu" unique_id=1986455567]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+
+[node name="Settings" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=272756560]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Settings"
+label_settings = SubResource("LabelSettings_wn7vt")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=354061855]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SettingTabs" type="TabContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer" unique_id=2020529111]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+current_tab = 0
+
+[node name="AudioMargin" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1660483641]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
+
+[node name="Audio" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin" unique_id=88914688]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 4
+columns = 2
+script = ExtResource("4_v06nt")
+
+[node name="MasterLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1729759271]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1745330218]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="MusicLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=239696569]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1402641720]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="VoiceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=2009762474]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Voices"
+
+[node name="VoiceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=411005536]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="SFXLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=989084348]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Sound Effects"
+
+[node name="SFXSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=308851215]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="UILabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1650159624]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "User Interface"
+
+[node name="UISlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1471870378]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="AmbienceLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1970187411]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Ambience"
+
+[node name="AmbienceSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" unique_id=1055399282]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="BottomButtons" type="HBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=575902562]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="BackButton" type="Button" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons" unique_id=872025586]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("4_nr7jk")
+text = "Back"
+
+[node name="SaveButton" type="Button" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons" unique_id=989834428]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("4_nr7jk")
+text = "Save"
+
+[node name="ResetButton" type="Button" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons" unique_id=151316326]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("4_nr7jk")
+text = "Reset to default"
+
+[connection signal="pressed" from="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/PauseMenu/VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/MasterSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/MusicSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/VoiceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_voice_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/SFXSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/UISlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_ui_slider_value_changed"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio/AmbienceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/AudioMargin/Audio" method="_on_ambience_slider_value_changed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/BackButton" to="." method="_on_back_button_pressed"]
