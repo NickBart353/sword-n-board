@@ -44,7 +44,6 @@ func _ready() -> void:
 
 func _load_volume():
 	for key in audio_settings:
-		print(db_to_linear(audio_settings[key]), " ", audio_settings[key])
 		match key:
 			master:
 				master_slider.value = audio_settings[key]
