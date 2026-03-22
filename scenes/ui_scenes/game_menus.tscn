@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_l4c86"]
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="4_nr7jk"]
 [ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="4_v06nt"]
+[ext_resource type="Script" uid="uid://n2n8go70u23" path="res://scripts/ui_scripts/display.gd" id="7_ry5bu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6q64"]
 bg_color = Color(0.15585998, 0.1584456, 0.16554853, 1)
@@ -270,7 +271,7 @@ metadata/_tab_index = 0
 [node name="Audio" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio" unique_id=88914688]
 layout_mode = 2
 theme_override_constants/h_separation = 100
-theme_override_constants/v_separation = 4
+theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("4_v06nt")
 
@@ -358,6 +359,55 @@ max_value = 1.0
 step = 0.05
 value = 0.8
 
+[node name="Display" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1534718526]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="Display" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display" unique_id=755428469]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 20
+columns = 2
+script = ExtResource("7_ry5bu")
+
+[node name="WindowModeLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=1250330426]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Window Mode"
+
+[node name="WindowModePicker" type="OptionButton" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=1282052732]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_nr7jk")
+alignment = 1
+
+[node name="AspectRatioLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=1536308677]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Aspect Ratio"
+
+[node name="AspectRatioPicker" type="OptionButton" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=693743212]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_nr7jk")
+alignment = 1
+
+[node name="ResolutionLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=656010164]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Resolution"
+
+[node name="ResolutionPicker" type="OptionButton" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" unique_id=1650124369]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_nr7jk")
+alignment = 1
+
 [node name="BottomButtons" type="HBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=575902562]
 layout_mode = 2
 theme_override_constants/separation = 50
@@ -392,6 +442,9 @@ text = "Reset to default"
 [connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/SFXSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/UISlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ui_slider_value_changed"]
 [connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/AmbienceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ambience_slider_value_changed"]
+[connection signal="item_selected" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display/AspectRatioPicker" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_aspect_ratio_picker_item_selected"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_save_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_save_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_reset_button_pressed"]

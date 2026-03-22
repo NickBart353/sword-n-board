@@ -13,6 +13,7 @@ var current_area: AREA
 @onready var player_two: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _ready() -> void:
+	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	add_child(player_one)
 	add_child(player_two)
 	player_one.bus = "Music"
