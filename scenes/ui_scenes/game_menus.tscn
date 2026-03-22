@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d1jexxjeonu31" path="res://scripts/ui_scripts/game_menus.gd" id="1_t65je"]
 [ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
+[ext_resource type="Script" uid="uid://d2xra5ssfyrvn" path="res://scripts/ui_scripts/escape_menu.gd" id="3_wn7vt"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="4_nr7jk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6q64"]
 bg_color = Color(0.15585998, 0.1584456, 0.16554853, 1)
@@ -14,6 +16,9 @@ bg_color = Color(7.508397e-06, 0.99813706, 0.12184777, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr7jk"]
 bg_color = Color(3.85046e-07, 0.60261935, 0.95547444, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wn7vt"]
+font_size = 90
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513]
 script = ExtResource("1_t65je")
@@ -29,6 +34,7 @@ mouse_filter = 2
 script = ExtResource("2_t6q64")
 
 [node name="CrossHair" type="ColorRect" parent="Hud" unique_id=1354946558]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,11 +50,12 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PlayerResourceContainer" type="VBoxContainer" parent="Hud" unique_id=871089400]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.1
-anchor_right = 0.9
+anchor_right = 0.95
 anchor_bottom = 0.2
 grow_horizontal = 2
 grow_vertical = 2
@@ -115,8 +122,50 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EscapeMenu" type="Control" parent="." unique_id=762123373]
-visible = false
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_wn7vt")
+
+[node name="Panel" type="Panel" parent="EscapeMenu" unique_id=396412738]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.3
+anchor_right = 0.9
+anchor_bottom = 0.7
+theme = ExtResource("4_nr7jk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EscapeMenu" unique_id=1364226364]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.3
+anchor_right = 0.85
+anchor_bottom = 0.7
+theme = ExtResource("4_nr7jk")
+
+[node name="Label" type="Label" parent="EscapeMenu/VBoxContainer" unique_id=983577192]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_wn7vt")
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=911659656]
+layout_mode = 2
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=405296874]
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=2050616509]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitGameButton" type="Button" parent="EscapeMenu/VBoxContainer" unique_id=1858744950]
+layout_mode = 2
+text = "Exit Game"
