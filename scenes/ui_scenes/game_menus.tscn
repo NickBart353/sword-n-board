@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="4_nr7jk"]
 [ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="4_v06nt"]
 [ext_resource type="Script" uid="uid://n2n8go70u23" path="res://scripts/ui_scripts/display.gd" id="7_ry5bu"]
+[ext_resource type="Script" uid="uid://o6latw3qhdw2" path="res://scripts/ui_scripts/input.gd" id="8_1xi2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6q64"]
 bg_color = Color(0.15585998, 0.1584456, 0.16554853, 1)
@@ -22,6 +23,9 @@ bg_color = Color(3.85046e-07, 0.60261935, 0.95547444, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wn7vt"]
 font_size = 90
+
+[sub_resource type="LabelSettings" id="LabelSettings_ry5bu"]
+font_size = 70
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513]
 process_mode = 3
@@ -127,7 +131,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="EscapeMenu" type="Control" parent="." unique_id=762123373]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,7 +217,6 @@ layout_mode = 2
 text = "Exit Game"
 
 [node name="SettingsMenu" type="Control" parent="EscapeMenu" unique_id=873186409]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -250,6 +252,7 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=354061855]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -258,9 +261,10 @@ theme_override_constants/margin_bottom = 10
 [node name="SettingTabs" type="TabContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer" unique_id=2020529111]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
-current_tab = 0
+current_tab = 2
 
 [node name="Audio" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1660483641]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -407,6 +411,63 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_nr7jk")
 alignment = 1
+
+[node name="Input" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=763735473]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 2
+
+[node name="Input" type="VBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input" unique_id=1872274997]
+layout_mode = 2
+script = ExtResource("8_1xi2f")
+
+[node name="MouseHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=1533480582]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Mouse"
+label_settings = SubResource("LabelSettings_ry5bu")
+horizontal_alignment = 1
+
+[node name="MouseInput" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=2141146435]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Mouse Sensitivity" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input/MouseInput" unique_id=141063279]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Mouse Sensitivity"
+
+[node name="MasterSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input/MouseInput" unique_id=1925885201]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("4_nr7jk")
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="Seperator" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=695704531]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="KeybindingsHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=214780429]
+layout_mode = 2
+theme = ExtResource("4_nr7jk")
+text = "Keybindings"
+label_settings = SubResource("LabelSettings_ry5bu")
+horizontal_alignment = 1
+
+[node name="Keybindings" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=150876119]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 20
+columns = 2
 
 [node name="BottomButtons" type="HBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=575902562]
 layout_mode = 2
