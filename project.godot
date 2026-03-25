@@ -35,11 +35,12 @@ AudioManager="*uid://bmxunujttmtpa"
 LoopMixer="*uid://ch2aookja1ixq"
 UiController="*uid://6nyjvijyispu"
 DataManager="*uid://cccrtb8kflebj"
+PlayerControls="*uid://chvg8cb3p5tn4"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=900
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

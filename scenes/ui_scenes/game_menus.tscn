@@ -216,15 +216,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 text = "Exit Game"
 
-[node name="SettingsMenu" type="Control" parent="EscapeMenu" unique_id=873186409]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="EscapeMenu/SettingsMenu" unique_id=1428832606]
+[node name="SettingsMenu" type="PanelContainer" parent="EscapeMenu" unique_id=1800732632]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -236,12 +228,7 @@ grow_vertical = 2
 theme = ExtResource("4_nr7jk")
 
 [node name="SettingsOrganizer" type="VBoxContainer" parent="EscapeMenu/SettingsMenu" unique_id=1986455567]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 0.9
-anchor_bottom = 0.9
+layout_mode = 2
 
 [node name="Settings" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer" unique_id=272756560]
 layout_mode = 2
@@ -420,51 +407,59 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 2
 
-[node name="Input" type="VBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input" unique_id=1872274997]
+[node name="ScrollContainer" type="ScrollContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input" unique_id=436013814]
 layout_mode = 2
+
+[node name="Input" type="VBoxContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer" unique_id=1872274997]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_nr7jk")
 script = ExtResource("8_1xi2f")
 
-[node name="MouseHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=1533480582]
+[node name="MouseHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=1533480582]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Mouse"
 label_settings = SubResource("LabelSettings_ry5bu")
 horizontal_alignment = 1
 
-[node name="MouseInput" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=2141146435]
+[node name="MouseInput" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=2141146435]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
 
-[node name="Mouse Sensitivity" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input/MouseInput" unique_id=141063279]
+[node name="MouseSensitivityLabel" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input/MouseInput" unique_id=141063279]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Mouse Sensitivity"
 
-[node name="MasterSlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input/MouseInput" unique_id=1925885201]
+[node name="MouseSensitivitySlider" type="HSlider" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input/MouseInput" unique_id=1925885201]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("4_nr7jk")
-max_value = 1.0
-step = 0.05
-value = 0.8
+max_value = 10.0
+step = 0.1
+value = 1.0
 
-[node name="Seperator" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=695704531]
+[node name="Seperator" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=695704531]
 layout_mode = 2
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="KeybindingsHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=214780429]
+[node name="KeybindingsHeadline" type="Label" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=214780429]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
 text = "Keybindings"
 label_settings = SubResource("LabelSettings_ry5bu")
 horizontal_alignment = 1
 
-[node name="Keybindings" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/Input" unique_id=150876119]
+[node name="Keybindings" type="GridContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=150876119]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
@@ -504,8 +499,11 @@ text = "Reset to default"
 [connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/UISlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ui_slider_value_changed"]
 [connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio/AmbienceSlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_ambience_slider_value_changed"]
 [connection signal="item_selected" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display/AspectRatioPicker" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_aspect_ratio_picker_item_selected"]
+[connection signal="value_changed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input/MouseInput/MouseSensitivitySlider" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_mouse_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_save_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_save_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/SaveButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_save_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="EscapeMenu/SettingsMenu/SettingsOrganizer/BottomButtons/ResetButton" to="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_reset_button_pressed"]

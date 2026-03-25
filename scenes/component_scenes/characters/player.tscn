@@ -67,15 +67,6 @@ random_volume_offset_db = 0.2
 streams_count = 1
 stream_0/stream = ExtResource("17_81e7k")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oijqy"]
-bg_color = Color(1, 0.2, 0.21568628, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbru3"]
-bg_color = Color(0.31719914, 0.29925177, 0.2915, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu2ah"]
-bg_color = Color(0.9999997, 0.124572285, 0.086494304, 1)
-
 [sub_resource type="Animation" id="Animation_ykwct"]
 resource_name = "Block1"
 loop_mode = 1
@@ -1133,46 +1124,6 @@ script = ExtResource("6_1e104")
 [node name="UIController" type="Node" parent="." unique_id=285300187 node_paths=PackedStringArray("player")]
 script = ExtResource("20_0h55w")
 player = NodePath("..")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2075586681]
-visible = false
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1329951609]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="RedBar" type="ProgressBar" parent="CanvasLayer/Control" unique_id=1448724626]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 47.0
-offset_right = 296.0
-offset_bottom = 74.0
-theme_override_styles/background = SubResource("StyleBoxFlat_oijqy")
-show_percentage = false
-
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/Control/RedBar" unique_id=1720619707]
-layout_mode = 0
-offset_right = 254.0
-offset_bottom = 27.0
-theme_override_styles/background = SubResource("StyleBoxFlat_qbru3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xu2ah")
-show_percentage = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=547511172]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -2.5
-offset_top = -2.5
-offset_right = 2.5
-offset_bottom = 2.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
 callback_mode_process = 0

@@ -19,7 +19,7 @@ signal spawn_projectile
 @onready var head_slot = $Slots/Head
 @onready var body_slot = $Slots/Body
 @onready var boots_slot = $Slots/Boots
-@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
+#@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
 @onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
 
 @export var movement_speed = 4
@@ -217,9 +217,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
 		look_rotation.y -= event.relative.x * look_speed
 		transform.basis = Basis()
-		rotate_y(look_rotation.y)
+		rotate_y(look_rotation.y * PlayerControls.sensitivity)
 		head.transform.basis = Basis()
-		head.rotate_x(look_rotation.x)
+		head.rotate_x(look_rotation.x * PlayerControls.sensitivity)
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

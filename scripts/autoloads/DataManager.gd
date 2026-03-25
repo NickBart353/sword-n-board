@@ -4,6 +4,7 @@ const save_path: String = "user://logs/"
 const audio_file: String = "audio_settings.json"
 const screen_data_file: String = "screen_settings.json"
 const input_data_file: String = "input_settings.json"
+const sensitivity_data_file: String = "sensitivity_settings.txt"
 
 func save_volume(volume_dict: Dictionary) -> bool:
 	var full_path: String = "{0}{1}".format([save_path, audio_file])
@@ -64,3 +65,25 @@ func load_input_settings() -> Dictionary:
 		return input_data
 	else:
 		return {}
+
+func save_sensitivity(sensitivity: float):
+	var full_path: String = "{0}{1}".format([save_path, sensitivity_data_file])
+	var file = FileAccess.open(full_path, FileAccess.WRITE)
+	if file:
+		file.store_float(sensitivity)
+	if FileAccess.get_open_error():
+		return false
+	else:
+		return true
+
+func load_sensitivity() -> float:
+	var full_path: String = "{0}{1}".format([save_path, sensitivity_data_file])
+	var file = FileAccess.open(full_path, FileAccess.READ)
+	var sensitivity : float
+	if file:
+		file.store_float(sensitivity)
+		sensitivity = file.get_float()
+	if FileAccess.get_open_error():
+		return -1.0
+	else:
+		return sensitivity
