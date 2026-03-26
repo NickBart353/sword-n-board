@@ -90,6 +90,9 @@ var saved_resolution: Array
 var saved_window_mode: String
 
 func _ready() -> void:
+	pass
+
+func load_settings():
 	var screen_data: Dictionary = DataManager.load_screen_settings()
 	if screen_data:
 		current_window_mode = screen_data["window_mode"]

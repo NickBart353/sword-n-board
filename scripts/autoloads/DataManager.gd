@@ -6,6 +6,9 @@ const screen_data_file: String = "screen_settings.json"
 const input_data_file: String = "input_settings.json"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 
+func _ready() -> void:
+	print(OS.get_data_dir())
+
 func save_volume(volume_dict: Dictionary) -> bool:
 	var full_path: String = "{0}{1}".format([save_path, audio_file])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)

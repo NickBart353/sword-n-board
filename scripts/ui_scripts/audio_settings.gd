@@ -35,6 +35,9 @@ var saved_audio_settings: Dictionary = {
 var audio_settings: Dictionary = {}
 
 func _ready() -> void:
+	pass
+
+func load_settings():
 	var loaded_volume_dict: Dictionary = DataManager.load_volume()
 	if loaded_volume_dict:
 		audio_settings = loaded_volume_dict

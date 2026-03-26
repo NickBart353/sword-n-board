@@ -217,6 +217,7 @@ layout_mode = 2
 text = "Exit Game"
 
 [node name="SettingsMenu" type="PanelContainer" parent="EscapeMenu" unique_id=1800732632]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -248,10 +249,9 @@ theme_override_constants/margin_bottom = 10
 [node name="SettingTabs" type="TabContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer" unique_id=2020529111]
 layout_mode = 2
 theme = ExtResource("4_nr7jk")
-current_tab = 2
+current_tab = 0
 
 [node name="Audio" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=1660483641]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -400,6 +400,7 @@ theme = ExtResource("4_nr7jk")
 alignment = 1
 
 [node name="Input" type="MarginContainer" parent="EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs" unique_id=763735473]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -440,7 +441,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("4_nr7jk")
-max_value = 10.0
+max_value = 5.0
 step = 0.1
 value = 1.0
 

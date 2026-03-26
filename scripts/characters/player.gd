@@ -211,15 +211,15 @@ func _remove_consumable():
 		#return
 	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
-func _unhandled_input(event: InputEvent) -> void:	
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		look_rotation.x -= event.relative.y * look_speed
+		look_rotation.x -= event.relative.y * look_speed * PlayerControls.sensitivity
 		look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
-		look_rotation.y -= event.relative.x * look_speed
+		look_rotation.y -= event.relative.x * look_speed * PlayerControls.sensitivity
 		transform.basis = Basis()
-		rotate_y(look_rotation.y * PlayerControls.sensitivity)
+		rotate_y(look_rotation.y)
 		head.transform.basis = Basis()
-		head.rotate_x(look_rotation.x * PlayerControls.sensitivity)
+		head.rotate_x(look_rotation.x)
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -5,15 +5,20 @@ extends CanvasLayer
 @onready var escape_menu: Control = $EscapeMenu
 @onready var pause_menu: Control = $EscapeMenu/PauseMenu
 @onready var settings_menu: Control = $EscapeMenu/SettingsMenu
+@onready var input: VBoxContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
 
 var escape_menu_open: bool
+var block_input: bool
 
 func _ready() -> void:
+	block_input = false
 	escape_menu_open = false
+	input.block_input.connect(_block_input)
+	input.unblock_input.connect(_unblock_input)
 	
 	for child in self.find_children("*", "Control", true, false):
 		if child is Button:
@@ -34,10 +39,11 @@ func _ready() -> void:
 	UiController._update_hud.connect(_update_hud)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("escape_menu"):
-		_escape_menu()
-	if Input.is_action_just_pressed("inventory"):
-		_inventory()
+	if not block_input:
+		if Input.is_action_just_pressed("escape_menu"):
+			_escape_menu()
+		if Input.is_action_just_pressed("inventory"):
+			_inventory()
 
 func _inventory():
 	pass
@@ -89,3 +95,9 @@ func _play_hover_sound():
 
 func _play_click_sound():
 	AudioManager.player_ui_sfx(button_click_sound)
+
+func _block_input():
+	block_input = true
+
+func _unblock_input():
+	block_input = false
