@@ -4,6 +4,9 @@ signal new_input
 signal block_input
 signal unblock_input
 
+signal saved_settings
+signal unsaved_settings
+
 @onready var keybindings: GridContainer = $Keybindings
 @onready var main_ui_theme: Theme = preload("res://resources/ui/main_ui_theme.res")
 @onready var mouse_sensitivity_slider: HSlider = $MouseInput/MouseSensitivitySlider
@@ -42,11 +45,13 @@ const input_keys: Array[String] = [
 	"Primary", "Secondary", "Move Forward", "Move Left", "Move Right",
 	"Move Backward", "Interact", "Consume", "Jump", "Dash", "Open Inventory", "Open Pause Menu"
 ]
-
-var input_map: Dictionary = {}
 const default_sensitivity: float = 1.0
 
+var input_map: Dictionary = {}
+var saved_input_map
 var sensitivity: float = 1.0
+var saved_sensitivity
+
 var saved_input: InputEvent
 var remapping: bool = false
 
@@ -64,6 +69,9 @@ func load_settings():
 	if not input_map:
 		input_map = default_input_map.duplicate(true)
 	PlayerControls.player_input_dictionary = input_map
+	
+	saved_input_map = input_map.duplicate(true)
+	saved_sensitivity = float(sensitivity)
 	
 	for key in input_map:
 		_create_input_action_from_dict(key)
@@ -125,9 +133,6 @@ func _input(event: InputEvent) -> void:
 		return
 
 func _create_input_action_from_dict(key: String):
-	
-	#if key == "Primary":
-		#print(input_map[key]["ButtonIndex"])
 	InputMap.action_erase_events(key)
 	var new_keybind
 	match input_map[key]["InputType"]:
@@ -149,9 +154,33 @@ func _on_mouse_sensitivity_slider_value_changed(value: float) -> void:
 	PlayerControls.sensitivity = sensitivity
 
 func _on_save_button_pressed() -> void:
+	saved_input_map = input_map.duplicate(true)
+	saved_sensitivity = float(sensitivity)
+	
 	DataManager.save_sensitivity(sensitivity)
 	DataManager.save_input_settings(input_map)
 
 func _on_reset_button_pressed() -> void:
-	sensitivity = default_sensitivity
+	input_map = default_input_map.duplicate(true)
+	sensitivity = float(default_sensitivity)
+	
+	saved_input_map = default_input_map.duplicate(true)
+	saved_sensitivity = float(sensitivity)
+	
+	DataManager.save_sensitivity(sensitivity)
+	DataManager.save_input_settings(input_map)
 	PlayerControls.sensitivity = sensitivity
+
+func _on_back_button_pressed() -> void:
+	if input_map == saved_input_map and sensitivity == saved_sensitivity:
+		saved_settings.emit()
+	else:
+		unsaved_settings.emit(self)
+
+func reset_current_to_saved() -> void:
+	input_map = saved_input_map.duplicate(true)
+	sensitivity = float(saved_sensitivity)
+	PlayerControls.sensitivity = sensitivity
+	for key in input_map:
+		_create_input_action_from_dict(key)
+	_populate_keybinds()

@@ -1,5 +1,8 @@
 extends GridContainer
 
+signal saved_settings
+signal unsaved_settings
+
 @onready var master_slider: HSlider = $MasterSlider
 @onready var music_slider: HSlider = $MusicSlider
 @onready var voice_slider: HSlider = $VoiceSlider
@@ -36,6 +39,7 @@ func load_settings():
 		audio_settings = loaded_volume_dict
 	else:
 		audio_settings = default_audio_settings
+	saved_audio_settings = audio_settings.duplicate(true)
 	_load_volume()
 
 func _load_volume():
@@ -77,16 +81,26 @@ func _on_ambience_slider_value_changed(value: float) -> void:
 	_set_volume(ambience, value)
 
 func _set_volume(bus: String, value: float):
-	saved_audio_settings[bus] = value
+	audio_settings[bus] = value
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus), linear_to_db(value))
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus), value < 0.05)
 
 func _on_save_button_pressed() -> void:
-	DataManager.save_volume(saved_audio_settings)
+	saved_audio_settings = audio_settings.duplicate(true)
+	DataManager.save_volume(audio_settings)
 
 func _on_reset_button_pressed() -> void:
+	audio_settings = default_audio_settings.duplicate(true)
+	saved_audio_settings = default_audio_settings.duplicate(true)
 	DataManager.save_volume(default_audio_settings)
 	reset_volume()
 
 func _on_back_button_pressed() -> void:
-	pass # Replace with function body.
+	if saved_audio_settings == audio_settings:
+		saved_settings.emit()
+	else:
+		unsaved_settings.emit(self)
+
+func reset_current_to_saved() -> void:
+	audio_settings = saved_audio_settings.duplicate(true)
+	_load_volume()
