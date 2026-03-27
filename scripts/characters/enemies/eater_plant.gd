@@ -55,8 +55,6 @@ func ready_bombs(player_location: Vector3):
 
 	$StateMachine/PoisonBurst.burst_finished()
 
-
-
 func reset_bomb(bomb):
 	bomb.global_position = RESET_POSITION
 	bomb.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)

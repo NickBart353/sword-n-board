@@ -5,7 +5,10 @@ extends CanvasLayer
 @onready var escape_menu: Control = $EscapeMenu
 @onready var pause_menu: Control = $EscapeMenu/PauseMenu
 @onready var settings_menu: Control = $EscapeMenu/SettingsMenu
+
+@onready var audio: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio
 @onready var input: VBoxContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input
+@onready var display: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -13,6 +16,11 @@ extends CanvasLayer
 
 var escape_menu_open: bool
 var block_input: bool
+
+func load_data():
+	audio.load_settings()
+	input.load_settings()
+	display.load_settings()
 
 func _ready() -> void:
 	block_input = false

@@ -106,7 +106,8 @@ func _explode():
 			node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		if not node is Basic_VFX:
 			node.hide()
-		
+	
+	explosion_area.set_deferred("monitoring", false)
 	await vfx_instance.vfx_finished
 	exploded.emit(self)
 

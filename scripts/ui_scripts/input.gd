@@ -24,7 +24,7 @@ const mouse_button_label_dict: Dictionary = {
 }
 
 const default_input_map: Dictionary = {
-	"Primary": {"InputType": "InputEventMouseButton", "ButtonIndex": 1, "DisplayName": "LMB"},
+	"Primary": {"InputType": "InputEventMouseButton", "ButtonIndex": 2, "DisplayName": "LMB"},
 	"Secondary": {"InputType": "InputEventMouseButton", "ButtonIndex": 2, "DisplayName": "RMB"},
 	"Move Forward": {"InputType": "InputEventKey", "Keycode": 87 , "DisplayName": "W"},
 	"Move Left": {"InputType": "InputEventKey", "Keycode": 65 , "DisplayName": "A"},
@@ -125,6 +125,9 @@ func _input(event: InputEvent) -> void:
 		return
 
 func _create_input_action_from_dict(key: String):
+	
+	#if key == "Primary":
+		#print(input_map[key]["ButtonIndex"])
 	InputMap.action_erase_events(key)
 	var new_keybind
 	match input_map[key]["InputType"]:
@@ -134,6 +137,7 @@ func _create_input_action_from_dict(key: String):
 		"InputEventMouseButton":
 			new_keybind = InputEventMouseButton.new()
 			new_keybind.button_index = input_map[key]["ButtonIndex"]
+			print(key, " : ", new_keybind.button_index, " : ", input_map[key]["DisplayName"])
 	InputMap.action_add_event(key, new_keybind)
 
 func _on_mouse_sensitivity_slider_value_changed(value: float) -> void:

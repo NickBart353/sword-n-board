@@ -160,7 +160,7 @@ libraries/ = SubResource("AnimationLibrary_4h6tc")
 collision_layer = 32
 collision_mask = 34
 script = ExtResource("3_4h6tc")
-dot_damage = 2.0
+dot_damage = 1.0
 dot_effect_name = "toxic_ground"
 
 [node name="DotHitBox" type="CollisionShape3D" parent="DOTArea" unique_id=1997705086]

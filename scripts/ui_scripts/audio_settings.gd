@@ -23,14 +23,7 @@ var default_audio_settings: Dictionary = {
 	ambience : 0.8,
 	}
 
-var saved_audio_settings: Dictionary = {
-	master : 0.8,
-	music : 0.8,
-	voices : 0.8,
-	sfx : 0.8,
-	ui : 0.8,
-	ambience : 0.8,
-	}
+var saved_audio_settings: Dictionary = {}
 
 var audio_settings: Dictionary = {}
 
@@ -94,3 +87,6 @@ func _on_save_button_pressed() -> void:
 func _on_reset_button_pressed() -> void:
 	DataManager.save_volume(default_audio_settings)
 	reset_volume()
+
+func _on_back_button_pressed() -> void:
+	pass # Replace with function body.
