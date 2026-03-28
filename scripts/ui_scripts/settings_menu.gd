@@ -62,8 +62,12 @@ func _process(_delta: float) -> void:
 	if save_list:
 		unsaved_settings_popup.show()
 	if save_counter >= 3:
-		close_settings.emit()
 		save_counter = 0
+		if checking:
+			checking = false
+			done_checking.emit()
+		else:
+			close_settings.emit()
 
 func _unsaved_settings(setting: Control):
 	save_list.append(setting)
