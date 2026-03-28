@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bfo7c5l74qhwf"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_o8qos"]
+[ext_resource type="Script" uid="uid://62v8rk8ntokq" path="res://scripts/ui_scripts/pause_menu.gd" id="2_ggsj7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wn7vt"]
+font_size = 90
+
+[node name="PauseMenu" type="PanelContainer" unique_id=446500743]
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.26
+anchor_right = 0.84
+anchor_bottom = 0.6
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o8qos")
+script = ExtResource("2_ggsj7")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=663867219]
+layout_mode = 2
+theme = ExtResource("1_o8qos")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1099240925]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_wn7vt")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=990320466]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer/MarginContainer" unique_id=1181543016]
+layout_mode = 2
+text = "Continue"
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1821024036]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer/MarginContainer2" unique_id=308692336]
+layout_mode = 2
+text = "Settings"
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer" unique_id=1003875245]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer/MarginContainer3" unique_id=858522340]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer" unique_id=2142699470]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="ExitGameButton" type="Button" parent="VBoxContainer/MarginContainer4" unique_id=709885331]
+layout_mode = 2
+text = "Exit Game"
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer4/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

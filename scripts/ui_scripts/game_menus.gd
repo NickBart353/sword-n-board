@@ -3,27 +3,22 @@ extends CanvasLayer
 @onready var hud: Control = $Hud
 @onready var item_controller: Control = $ItemController
 
-@onready var escape_menu: Control = $EscapeMenu
-
-@onready var pause_menu: Control = $EscapeMenu/PauseMenu
-@onready var settings_menu: Control = $EscapeMenu/SettingsMenu
+@onready var pause_menu: Control = $PauseMenu
+@onready var settings_menu: Control = $SettingsMenu
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
 
-var escape_menu_open: bool
+var pause_menu_open: bool
 var is_input_blocked: bool
 
 func load_data():
 	settings_menu.load_settings()
 
 func _ready() -> void:
-	#save_counter = 0
 	is_input_blocked = false
-	escape_menu_open = false
-	
-	settings_menu.close_settings.connect(close_settings)
+	pause_menu_open = false
 	
 	for child in self.find_children("*", "Control", true, false):
 		if child is Button:
@@ -45,10 +40,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not is_input_blocked:
-		#if Input.is_action_just_pressed("Open Pause Menu"):
-			#_escape_menu()
 		if Input.is_action_just_pressed("escape_menu"):
-			print("test")
 			_escape_menu()
 		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
@@ -63,17 +55,17 @@ func _lootbag():
 	pass
 
 func _escape_menu():
-	if not escape_menu_open:
-		escape_menu_open = true
-		escape_menu.show()
+	if not pause_menu_open:
+		pause_menu_open = true
 		pause_menu.show()
-	elif escape_menu_open:
-		escape_menu_open = false
+		get_tree().paused = pause_menu_open
+	elif pause_menu_open:
+		pause_menu_open = false
 		pause_menu.hide()
-		settings_menu.hide()
-		escape_menu.hide()
-		
-	get_tree().paused = escape_menu_open
+		if settings_menu.is_visible():
+			settings_menu.check_for_unsaved_settings()
+		else:
+			get_tree().paused = pause_menu_open
 
 func _update_healthbar(health: float):
 	hud.update_health(health)
@@ -86,13 +78,6 @@ func _update_manabar(mana: float):
 
 func _update_hud():
 	pass
-
-func _on_continue_button_pressed() -> void:
-	_escape_menu()
-
-func _on_settings_button_pressed() -> void:
-	settings_menu.show()
-	pause_menu.hide()
 
 func close_settings() -> void:
 	pause_menu.show()
@@ -109,3 +94,23 @@ func block_input():
 
 func unblock_input():
 	is_input_blocked = false
+
+func _on_settings_menu_close_settings() -> void:
+	close_settings()
+
+func _on_pause_menu_continue_game() -> void:
+	_escape_menu()
+
+func _on_pause_menu_open_settings() -> void:
+	settings_menu.show()
+	pause_menu.hide()
+
+func _on_pause_menu_main_menu() -> void:
+	pass # Replace with function body.
+
+func _on_pause_menu_exit_game() -> void:
+	get_tree().quit()
+
+func _on_settings_menu_done_checking() -> void:
+	settings_menu.hide()
+	get_tree().paused = pause_menu_open
