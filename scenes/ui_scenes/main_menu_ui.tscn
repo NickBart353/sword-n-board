@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://4kle7xyjxhw8"]
+
+[node name="MainMenuUI" type="CanvasLayer" unique_id=833057206]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=462554003]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2043017059]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=147847312]
+layout_mode = 2
+text = "MAIN MENU"
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=844000095]
+layout_mode = 2
+text = "test"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer" unique_id=595700661]
+layout_mode = 2
+text = "test"
+
+[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer" unique_id=256631426]
+layout_mode = 2
+text = "test"
+
+[node name="Button4" type="Button" parent="PanelContainer/VBoxContainer" unique_id=286939544]
+layout_mode = 2
+text = "test"
+
+[node name="Button5" type="Button" parent="PanelContainer/VBoxContainer" unique_id=556142378]
+layout_mode = 2
+text = "test"
+
+[node name="Button6" type="Button" parent="PanelContainer/VBoxContainer" unique_id=768080620]
+layout_mode = 2
+text = "test"
