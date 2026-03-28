@@ -2,43 +2,28 @@ extends CanvasLayer
 
 @onready var hud: Control = $Hud
 @onready var item_controller: Control = $ItemController
+
 @onready var escape_menu: Control = $EscapeMenu
+
 @onready var pause_menu: Control = $EscapeMenu/PauseMenu
 @onready var settings_menu: Control = $EscapeMenu/SettingsMenu
-@onready var unsaved_settings_panel: PanelContainer = $EscapeMenu/SettingsMenu/UnsavedSettings
-
-@onready var audio: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio
-@onready var input: VBoxContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input
-@onready var display: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
 
 var escape_menu_open: bool
-var block_input: bool
-var save_list: Array[Control]
-var save_counter: int
+var is_input_blocked: bool
 
 func load_data():
-	audio.load_settings()
-	input.load_settings()
-	display.load_settings()
+	settings_menu.load_settings()
 
 func _ready() -> void:
-	save_counter = 0
-	block_input = false
+	#save_counter = 0
+	is_input_blocked = false
 	escape_menu_open = false
-	input.block_input.connect(_block_input)
-	input.unblock_input.connect(_unblock_input)
 	
-	audio.saved_settings.connect(_saved_settings)
-	input.saved_settings.connect(_saved_settings)
-	display.saved_settings.connect(_saved_settings)
-	
-	audio.unsaved_settings.connect(_unsaved_settings)
-	input.unsaved_settings.connect(_unsaved_settings)
-	display.unsaved_settings.connect(_unsaved_settings)
+	settings_menu.close_settings.connect(close_settings)
 	
 	for child in self.find_children("*", "Control", true, false):
 		if child is Button:
@@ -58,21 +43,14 @@ func _ready() -> void:
 	UiController._update_manabar.connect(_update_manabar)
 	UiController._update_hud.connect(_update_hud)
 
-func _unsaved_settings(setting: Control):
-	save_list.append(setting)
-	save_counter += 1
-
-func _saved_settings():
-	save_counter += 1
-
 func _process(_delta: float) -> void:
-	if save_counter >= 3:
-		unsaved_settings_panel.show()
-	
-	if not block_input:
+	if not is_input_blocked:
+		#if Input.is_action_just_pressed("Open Pause Menu"):
+			#_escape_menu()
 		if Input.is_action_just_pressed("escape_menu"):
+			print("test")
 			_escape_menu()
-		if Input.is_action_just_pressed("inventory"):
+		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
 
 func _inventory():
@@ -116,9 +94,9 @@ func _on_settings_button_pressed() -> void:
 	settings_menu.show()
 	pause_menu.hide()
 
-func _on_back_button_pressed() -> void:
-	pass#pause_menu.show()
-	#settings_menu.hide()
+func close_settings() -> void:
+	pause_menu.show()
+	settings_menu.hide()
 
 func _play_hover_sound():
 	AudioManager.player_ui_sfx(button_hover_sound)
@@ -126,26 +104,8 @@ func _play_hover_sound():
 func _play_click_sound():
 	AudioManager.player_ui_sfx(button_click_sound)
 
-func _block_input():
-	block_input = true
+func block_input():
+	is_input_blocked = true
 
-func _unblock_input():
-	block_input = false
-
-func _on_save_unchanged_button_pressed() -> void:
-	for setting in save_list:
-		setting._on_save_button_pressed()
-	save_counter = 0
-	save_list.clear()
-	pause_menu.show()
-	settings_menu.hide()
-	unsaved_settings_panel.hide()
-
-func _on_cancel_unchanged_button_pressed() -> void:
-	for setting in save_list:
-		setting.reset_current_to_saved()
-	save_counter = 0
-	save_list.clear()
-	pause_menu.show()
-	settings_menu.hide()
-	unsaved_settings_panel.hide()
+func unblock_input():
+	is_input_blocked = false
