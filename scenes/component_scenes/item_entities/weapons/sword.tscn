@@ -7,9 +7,10 @@
 size = Vector3(0.07220459, 1.3728409, 0.23364258)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7aiw0"]
-albedo_color = Color(0.67481464, 0.67481464, 0.6748146, 1)
-metallic = 0.24
-roughness = 0.16
+albedo_color = Color(0.90359825, 0.90359825, 0.9035982, 1)
+metallic = 0.9
+metallic_specular = 0.29
+roughness = 0.12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmyro"]
 resource_name = "Black_handle_hoplite"

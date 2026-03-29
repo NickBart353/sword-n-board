@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://djrce73udgnwy"]
 
 [ext_resource type="Shader" uid="uid://bqf0601bs3a8r" path="res://shaders/campfire/campfire.tres" id="1_gqb6a"]
-[ext_resource type="Texture2D" uid="uid://dpvuw4hiuh7dh" path="res://my_assets/b_n_w_textures/flame6.png" id="2_trv0t"]
+[ext_resource type="Texture2D" uid="uid://b08dwl4p2at3n" path="res://my_assets/b_n_w_textures/flame7.png" id="2_a2kyu"]
 [ext_resource type="Texture2D" uid="uid://dfhy2xj7fqp8q" path="res://my_assets/b_n_w_textures/flame.png" id="3_iic63"]
 [ext_resource type="Shader" uid="uid://cniftg1yhdrrm" path="res://shaders/SimpleParticleShader.tres" id="5_6eots"]
+[ext_resource type="AudioStream" uid="uid://cktnea8okdqem" path="res://assets/Audio/pixabay/capaholiczsfx-crackle-fireplace-campfire-402289.mp3" id="6_a2kyu"]
 [ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/Visual/GAP_Fire_Textures/Flare00.PNG" id="6_crtiq"]
-[ext_resource type="AudioStream" uid="uid://1bollewef3ok" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Torch/Torch Loop.wav" id="7_5uc6t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a2kyu"]
 size = Vector3(0.52319336, 0.475708, 0.54833984)
@@ -46,6 +46,7 @@ point_count = 2
 curve = SubResource("Curve_16v27")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iic63"]
+particle_flag_align_y = true
 emission_shape_scale = Vector3(0.2, 0.135, 0.2)
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -63,7 +64,7 @@ turbulence_influence_max = 0.07
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g1e7s"]
 render_priority = 0
 shader = ExtResource("1_gqb6a")
-shader_parameter/FlameTexture = ExtResource("2_trv0t")
+shader_parameter/FlameTexture = ExtResource("2_a2kyu")
 shader_parameter/FlameColor = Color(2.055, 0.75303924, 0, 1)
 shader_parameter/backlighting_level = Color(1, 1, 1, 1)
 
@@ -71,14 +72,14 @@ shader_parameter/backlighting_level = Color(1, 1, 1, 1)
 material = SubResource("ShaderMaterial_g1e7s")
 
 [sub_resource type="Curve" id="Curve_g1e7s"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12169312, 0.68539333), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_a2kyu"]
 curve = SubResource("Curve_g1e7s")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_crtiq"]
-emission_shape_scale = Vector3(0.34, 0.755, 0.33)
+emission_shape_scale = Vector3(0.17, 0.325, 0.19)
 emission_shape = 1
 emission_sphere_radius = 1.0
 gravity = Vector3(0, 4, 0)
@@ -86,10 +87,11 @@ scale_min = 0.19999999
 scale_max = 0.39999998
 scale_curve = SubResource("CurveTexture_a2kyu")
 turbulence_enabled = true
-turbulence_noise_strength = 0.0
-turbulence_noise_scale = 0.793
+turbulence_noise_strength = 0.43
+turbulence_noise_scale = 0.441
+turbulence_noise_speed_random = 0.63
 turbulence_influence_min = 0.0
-turbulence_influence_max = 0.020000001
+turbulence_influence_max = 0.030000001
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6eots"]
 expanded_output_ports = [0]
@@ -128,13 +130,10 @@ nodes/fragment/5/node = SubResource("VisualShaderNodeTexture2DParameter_6ayh5")
 nodes/fragment/5/position = Vector2(-280, 300)
 nodes/fragment/connections = PackedInt32Array(2, 1, 0, 1, 4, 0, 3, 1, 3, 0, 0, 0, 2, 1, 3, 0, 5, 0, 2, 2)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8i6qg"]
-load_path = "res://.godot/imported/flame6.png-266762939ce5a9b2b051edbe6f08c6bb.s3tc.ctex"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmlhn"]
 render_priority = -1
 shader = SubResource("VisualShader_gb3ya")
-shader_parameter/FlameTexture = SubResource("CompressedTexture2D_8i6qg")
+shader_parameter/FlameTexture = ExtResource("2_a2kyu")
 shader_parameter/FlameColor = Color(0.24477652, 0.24477637, 0.24477637, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_y1n0q"]
@@ -213,14 +212,14 @@ skeleton = NodePath("../..")
 
 [node name="Fire" type="GPUParticles3D" parent="." unique_id=2029692034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14945737, 0)
-amount = 100
+amount = 500
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_iic63")
 draw_pass_1 = SubResource("QuadMesh_a2kyu")
 
 [node name="Smoke" type="GPUParticles3D" parent="." unique_id=1026333600]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21467656, 0)
-amount = 161
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2709943, 0)
+amount = 500
 lifetime = 2.36
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_crtiq")
@@ -228,7 +227,7 @@ draw_pass_1 = SubResource("QuadMesh_y1n0q")
 
 [node name="FireParticles" type="GPUParticles3D" parent="." unique_id=1316851727]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2850375, 0)
-amount = 30
+amount = 20
 lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_mi1uv")
 draw_pass_1 = SubResource("PlaneMesh_8i6qg")
@@ -243,7 +242,7 @@ shadow_enabled = true
 shadow_opacity = 0.32
 
 [node name="CampfirePlayer" type="AudioStreamPlayer3D" parent="." unique_id=515844234]
-stream = ExtResource("7_5uc6t")
+stream = ExtResource("6_a2kyu")
 autoplay = true
 max_distance = 10.0
 bus = &"Ambience"

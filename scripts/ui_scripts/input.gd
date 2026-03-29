@@ -33,7 +33,7 @@ const mouse_button_label_dict: Dictionary = {
 }
 
 const default_input_map: Dictionary = {
-	"Primary": {"InputType": "InputEventMouseButton", "ButtonIndex": 2, "DisplayName": "LMB"},
+	"Primary": {"InputType": "InputEventMouseButton", "ButtonIndex": 1, "DisplayName": "LMB"},
 	"Secondary": {"InputType": "InputEventMouseButton", "ButtonIndex": 2, "DisplayName": "RMB"},
 	"Move Forward": {"InputType": "InputEventKey", "Keycode": 87 , "DisplayName": "W"},
 	"Move Left": {"InputType": "InputEventKey", "Keycode": 65 , "DisplayName": "A"},

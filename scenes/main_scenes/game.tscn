@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
-[ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="2_t5sjj"]
+[ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="2_5amgp"]
 [ext_resource type="PackedScene" uid="uid://brygmvt023b1x" path="res://scenes/ui_scenes/game_menus.tscn" id="4_cfqos"]
 [ext_resource type="Script" uid="uid://b51bvm5vdtb0w" path="res://scripts/components/mob_type_picker.gd" id="6_leqql"]
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
@@ -9,67 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="9_rbptj"]
-
-[sub_resource type="Environment" id="Environment_fqmia"]
-background_mode = 2
-background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-sky = ExtResource("2_t5sjj")
-ambient_light_source = 3
-ambient_light_color = Color(0.48178947, 0.48178947, 0.48178947, 1)
-ambient_light_sky_contribution = 0.01
-ambient_light_energy = 0.2
-reflected_light_source = 1
-tonemap_mode = 2
-tonemap_exposure = 1.35
-tonemap_white = 1.55
-ssr_enabled = true
-ssao_enabled = true
-ssao_radius = 3.45
-ssao_intensity = 5.51
-ssao_power = 1.5528971
-ssao_detail = 1.5
-ssao_horizon = 0.37
-ssao_sharpness = 0.15
-ssao_light_affect = 0.12
-ssil_enabled = true
-ssil_radius = 5.32
-ssil_intensity = 0.5
-ssil_sharpness = 0.43
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.54
-sdfgi_cascades = 8
-sdfgi_min_cell_size = 0.5
-sdfgi_energy = 0.355
-glow_enabled = true
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
-glow_levels/3 = 1.0
-glow_levels/4 = 1.0
-glow_levels/5 = 1.0
-glow_levels/6 = 1.0
-glow_levels/7 = 1.0
-glow_normalized = true
-glow_intensity = 2.0
-glow_strength = 0.69
-glow_bloom = 0.2
-glow_hdr_threshold = 0.66
-glow_hdr_scale = 1.05
-glow_hdr_luminance_cap = 21.15
-glow_map_strength = 0.0
-fog_light_energy = 0.2
-fog_sun_scatter = 0.17
-fog_sky_affect = 0.157
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.002
-volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
-volumetric_fog_length = 66.36
-volumetric_fog_detail_spread = 1.4640857
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="10_5amgp"]
 
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=893180735]
-environment = SubResource("Environment_fqmia")
+environment = ExtResource("2_5amgp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1029207028]
 transform = Transform3D(-0.6448342, -0.021372654, -0.76402336, -0.764318, 0.02142901, 0.6444832, 0.0025979877, 0.999542, -0.030153614, -178.76183, 232.1607, -164.09059)
@@ -296,3 +242,6 @@ transform = Transform3D(-0.3420202, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, -0.342
 
 [node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("9_rbptj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.31482, 73.59751, -419.91974)
+
+[node name="Sword" parent="." unique_id=1495302004 instance=ExtResource("10_5amgp")]
+transform = Transform3D(0.015148855, 0, 0.9998852, 0, 0.9999999, 0, -0.99988544, 0, 0.015148849, -413.41345, 76.28529, -404.91565)

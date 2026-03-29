@@ -1,67 +1,13 @@
 [gd_scene format=3 uid="uid://rq8vovc7ih5t"]
 
-[ext_resource type="Sky" uid="uid://c2vwpfyfpagxc" path="res://resources/world_environments/sky.tres" id="1_xfcpj"]
+[ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="1_kllu6"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="2_6r42y"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="3_enjcu"]
 [ext_resource type="PackedScene" uid="uid://dhejqjiw10he8" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_03.blend" id="4_kllu6"]
 [ext_resource type="PackedScene" uid="uid://wxv8kwgnyiwy" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_02.blend" id="5_wukam"]
 [ext_resource type="PackedScene" uid="uid://cvggdeekqh8o2" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_05.blend" id="6_x6xjm"]
 [ext_resource type="PackedScene" uid="uid://4kle7xyjxhw8" path="res://scenes/ui_scenes/main_menu_ui.tscn" id="7_enjcu"]
-
-[sub_resource type="Environment" id="Environment_ggekg"]
-background_mode = 2
-background_color = Color(0.31061712, 0.31061712, 0.3106171, 1)
-sky = ExtResource("1_xfcpj")
-ambient_light_source = 3
-ambient_light_color = Color(0.48178947, 0.48178947, 0.48178947, 1)
-ambient_light_sky_contribution = 0.01
-ambient_light_energy = 0.2
-reflected_light_source = 1
-tonemap_mode = 2
-tonemap_exposure = 1.35
-tonemap_white = 1.55
-ssr_enabled = true
-ssao_enabled = true
-ssao_radius = 3.45
-ssao_intensity = 5.51
-ssao_power = 1.5528971
-ssao_detail = 1.5
-ssao_horizon = 0.37
-ssao_sharpness = 0.15
-ssao_light_affect = 0.12
-ssil_enabled = true
-ssil_radius = 5.32
-ssil_intensity = 0.5
-ssil_sharpness = 0.43
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.54
-sdfgi_cascades = 8
-sdfgi_min_cell_size = 0.5
-sdfgi_energy = 0.355
-glow_enabled = true
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
-glow_levels/3 = 1.0
-glow_levels/4 = 1.0
-glow_levels/5 = 1.0
-glow_levels/6 = 1.0
-glow_levels/7 = 1.0
-glow_normalized = true
-glow_intensity = 2.0
-glow_strength = 0.69
-glow_bloom = 0.2
-glow_hdr_threshold = 0.66
-glow_hdr_scale = 1.05
-glow_hdr_luminance_cap = 21.15
-glow_map_strength = 0.0
-fog_light_energy = 0.2
-fog_sun_scatter = 0.17
-fog_sky_affect = 0.157
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.002
-volumetric_fog_albedo = Color(0.9843828, 0.9354538, 0.8213023, 1)
-volumetric_fog_length = 66.36
-volumetric_fog_detail_spread = 1.4640857
+[ext_resource type="PackedScene" uid="uid://d3wbiotwk5tyt" path="res://scenes/component_scenes/item_entities/shield/shield.tscn" id="7_kllu6"]
 
 [sub_resource type="Gradient" id="Gradient_6r42y"]
 colors = PackedColorArray(0.32915837, 0.3291584, 0.3291584, 1, 1, 1, 1, 1)
@@ -79,7 +25,7 @@ material = SubResource("StandardMaterial3D_kllu6")
 [node name="MainMenu" type="Node3D" unique_id=524630767]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=448911666]
-environment = SubResource("Environment_ggekg")
+environment = ExtResource("1_kllu6")
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1861557497]
 transform = Transform3D(-0.64278764, -4.3711392e-08, -0.76604444, -0.76604444, -4.3711392e-08, 0.64278764, -6.158201e-08, 1, -5.3877263e-09, -689.0862, 458.56366, -138.73752)
@@ -100,7 +46,7 @@ directional_shadow_split_3 = 0.545
 directional_shadow_blend_splits = true
 
 [node name="Sword" parent="." unique_id=1495302004 instance=ExtResource("2_6r42y")]
-transform = Transform3D(-0.5563755, 0.14365572, -0.8184188, -0.18415205, -0.9817667, -0.047138285, -0.8102684, 0.12448688, 0.57268524, -2.0810208, 2.4103801, -0.3320995)
+transform = Transform3D(-0.5502458, 0.06124341, -0.83275366, -0.1912378, -0.98004127, 0.054285638, -0.81280875, 0.18912438, 0.55097544, -2.0810208, 2.4103801, -0.3320995)
 
 [node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("3_enjcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5509467, 0.60178256, 1.5907551)
@@ -140,5 +86,8 @@ transform = Transform3D(8.70715, 0, 0, 0, 0.3901751, 0, 0, 0, 11.097998, -0.3182
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cave" unique_id=1932885010]
 transform = Transform3D(11.165788, 0, 0, 0, 1, 0, 0, 0, 8.251402, 0, 0, 3.582494)
 mesh = SubResource("BoxMesh_wukam")
+
+[node name="Shield" parent="Cave" unique_id=119600585 instance=ExtResource("7_kllu6")]
+transform = Transform3D(-0.77491266, -0.12713447, -0.6191504, 0.15655848, 0.91043115, -0.38288972, 0.6123723, -0.3936394, -0.6856006, -1.477309, 1.066883, -0.72120607)
 
 [node name="MainMenuUI" parent="." unique_id=833057206 instance=ExtResource("7_enjcu")]
