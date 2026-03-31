@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rq8vovc7ih5t"]
 
 [ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="1_kllu6"]
+[ext_resource type="Script" uid="uid://dsyieg0v5lfpd" path="res://scripts/ui_scripts/main_menu.gd" id="1_wukam"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="2_6r42y"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="3_enjcu"]
 [ext_resource type="PackedScene" uid="uid://dhejqjiw10he8" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_03.blend" id="4_kllu6"]
@@ -23,6 +24,7 @@ albedo_texture = SubResource("GradientTexture1D_enjcu")
 material = SubResource("StandardMaterial3D_kllu6")
 
 [node name="MainMenu" type="Node3D" unique_id=524630767]
+script = ExtResource("1_wukam")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=448911666]
 environment = ExtResource("1_kllu6")
@@ -91,3 +93,5 @@ mesh = SubResource("BoxMesh_wukam")
 transform = Transform3D(-0.77491266, -0.12713447, -0.6191504, 0.15655848, 0.91043115, -0.38288972, 0.6123723, -0.3936394, -0.6856006, -1.477309, 1.066883, -0.72120607)
 
 [node name="MainMenuUI" parent="." unique_id=833057206 instance=ExtResource("7_enjcu")]
+
+[connection signal="game_started" from="MainMenuUI" to="." method="_on_main_menu_ui_game_started"]

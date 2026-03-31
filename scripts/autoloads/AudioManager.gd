@@ -34,3 +34,13 @@ func play_audio_from_resource(audio_resource: AudioStream, location: Vector3, au
 func player_ui_sfx(stream: AudioStream):
 	ui_player.stream = stream
 	ui_player.play()
+
+func play_menu_sfx_from_resource(audio_resource: AudioStream, offset: float = 0.0, audio_volume: float = 0.0):
+	var audio_player_instance: AudioStreamPlayer = AudioStreamPlayer.new()
+	add_child(audio_player_instance)
+	audio_player_instance.max_polyphony = 4
+	audio_player_instance.stream = audio_resource
+	audio_player_instance.bus = "UI"
+	audio_player_instance.volume_db = audio_volume
+	audio_player_instance.play(offset)
+	audio_player_instance.finished.connect(audio_player_instance.queue_free)
