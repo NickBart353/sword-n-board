@@ -14,6 +14,7 @@ font_size = 100
 
 [node name="MainMenuUI" type="CanvasLayer" unique_id=833057206]
 script = ExtResource("1_y3g6i")
+main_game_scene = "uid://23kjgnpf3t1i"
 button_hover_sound = ExtResource("2_kuvi5")
 button_click_sound = ExtResource("3_iuew7")
 start_button_click_sound = ExtResource("4_kuvi5")

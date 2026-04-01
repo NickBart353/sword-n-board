@@ -13,6 +13,7 @@
 
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
+main_menu_scene = "uid://rq8vovc7ih5t"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=893180735]
 environment = ExtResource("2_5amgp")
@@ -245,3 +246,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.31482, 73.59751, -419.91
 
 [node name="Sword" parent="." unique_id=1495302004 instance=ExtResource("10_5amgp")]
 transform = Transform3D(0.015148855, 0, 0.9998852, 0, 0.9999999, 0, -0.99988544, 0, 0.015148849, -413.41345, 76.28529, -404.91565)
+
+[connection signal="return_to_main_menu" from="GameMenus" to="." method="_on_game_menus_return_to_main_menu"]

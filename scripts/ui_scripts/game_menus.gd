@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal return_to_main_menu
+
 @onready var hud: Control = $Hud
 @onready var item_controller: Control = $ItemController
 
@@ -106,7 +108,7 @@ func _on_pause_menu_open_settings() -> void:
 	pause_menu.hide()
 
 func _on_pause_menu_main_menu() -> void:
-	pass # Replace with function body.
+	return_to_main_menu.emit()
 
 func _on_pause_menu_exit_game() -> void:
 	get_tree().quit()

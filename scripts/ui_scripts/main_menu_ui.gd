@@ -2,6 +2,8 @@ extends CanvasLayer
 
 signal game_started
 
+@export var main_game_scene: String = &""
+
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
@@ -34,7 +36,7 @@ func _pressed_start_button():
 	game_started.emit()
 
 func _on_start_game_pressed() -> void:
-	pass # StartGame
+	SceneLoader.load_scene(main_game_scene)
 
 func _on_reset_game_pressed() -> void:
 	pass # Reset all Game settings and save-files
