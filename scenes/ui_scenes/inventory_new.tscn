@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://bub18fmie3reu"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_h7awd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ntrp"]
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 0.3254902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfnqs"]
+font_size = 70
+
+[node name="PanelContainer" type="PanelContainer" unique_id=2082482980]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_h7awd")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ntrp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1009717299]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="HBoxContainer" unique_id=2083244432]
+layout_mode = 2
+size_flags_horizontal = 3
+current_tab = 0
+
+[node name="All" type="ItemList" parent="HBoxContainer/TabContainer" unique_id=1926197311]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Weapons" type="ItemList" parent="HBoxContainer/TabContainer" unique_id=1268024630]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Consumable" type="ItemList" parent="HBoxContainer/TabContainer" unique_id=442377210]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Materials" type="ItemList" parent="HBoxContainer/TabContainer" unique_id=1858319450]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=828670135]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=321038121]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=795190702]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Stats" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1518132109]
+layout_mode = 2
+text = "Stats"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="_" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=622968007]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="Health" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1183356930]
+layout_mode = 2
+text = "Health "
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="HealthValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1323277112]
+layout_mode = 2
+text = "100/100"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="Stamina" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=269386533]
+layout_mode = 2
+text = "Stamina"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="StaminaValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=91706506]
+layout_mode = 2
+text = "100/100"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="Mana" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=621702940]
+layout_mode = 2
+text = "Mana"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="ManaValue" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=538163849]
+layout_mode = 2
+text = "100/100"
+label_settings = SubResource("LabelSettings_rfnqs")
+
+[node name="Control2" type="Control" parent="HBoxContainer/VBoxContainer/HBoxContainer" unique_id=22823580]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/VBoxContainer" unique_id=162598311]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=2105040619]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=81690851]
+layout_mode = 2
+size_flags_horizontal = 3
