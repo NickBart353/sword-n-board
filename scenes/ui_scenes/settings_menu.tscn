@@ -82,11 +82,10 @@ theme_override_constants/margin_bottom = 10
 [node name="SettingTabs" type="TabContainer" parent="SettingsOrganizer/SettingsContainer" unique_id=1737563260]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
-current_tab = 1
+current_tab = 0
 switch_on_drag_hover = false
 
 [node name="Audio" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=546489574]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -186,6 +185,7 @@ step = 0.05
 value = 0.8
 
 [node name="Display" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=1945567615]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10

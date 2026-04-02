@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="7_leqql"]
 [ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="9_rbptj"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="10_5amgp"]
 
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
@@ -242,9 +241,6 @@ metadata/_custom_type_script = "uid://ddkbytbbno5om"
 transform = Transform3D(-0.3420202, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, -0.3420202, -295.50226, 54.2, -372.5128)
 
 [node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("9_rbptj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -453.31482, 73.59751, -419.91974)
-
-[node name="Sword" parent="." unique_id=1495302004 instance=ExtResource("10_5amgp")]
-transform = Transform3D(0.015148855, 0, 0.9998852, 0, 0.9999999, 0, -0.99988544, 0, 0.015148849, -413.41345, 76.28529, -404.91565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.3159, 74.22158, -409.73868)
 
 [connection signal="return_to_main_menu" from="GameMenus" to="." method="_on_game_menus_return_to_main_menu"]
