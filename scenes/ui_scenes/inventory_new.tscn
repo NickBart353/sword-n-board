@@ -2,8 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="1_gwmof"]
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_gwmof"]
+[ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
-[ext_resource type="Texture2D" uid="uid://dcgq320jghn3y" path="res://my_assets/sprites/iron_sword.png" id="4_ev5oe"]
+[ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
+[ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="4_fywa2"]
+[ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_suhgw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ntrp"]
 bg_color = Color(0.2159017, 0.21590173, 0.21590161, 0.3254902)
@@ -23,13 +26,13 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwmof"]
-bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
+bg_color = Color(0.16078432, 0.19215687, 0.16862746, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev5oe"]
-bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
+bg_color = Color(0.16124701, 0.19223273, 0.16935626, 1)
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
@@ -45,121 +48,141 @@ offset_bottom = 40.0
 pivot_offset = Vector2(-59, 707)
 theme = ExtResource("1_gwmof")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ntrp")
+script = ExtResource("2_hn110")
+inventory_item_scene = ExtResource("3_mkjgx")
 
-[node name="Inventory" type="HBoxContainer" parent="." unique_id=1009717299]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=950240407]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Inventory" type="HBoxContainer" parent="MarginContainer" unique_id=1009717299]
 layout_mode = 2
 
-[node name="ItemContainer" type="TabContainer" parent="Inventory" unique_id=2083244432]
+[node name="ItemContainer" type="TabContainer" parent="MarginContainer/Inventory" unique_id=2083244432]
 layout_mode = 2
 size_flags_horizontal = 3
 current_tab = 0
 
-[node name="All" type="ItemList" parent="Inventory/ItemContainer" unique_id=1926197311]
+[node name="All" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=414674633]
 layout_mode = 2
+columns = 5
 metadata/_tab_index = 0
 
-[node name="Weapons" type="ItemList" parent="Inventory/ItemContainer" unique_id=1268024630]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="Armor" type="ItemList" parent="Inventory/ItemContainer" unique_id=172163922]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="Consumable" type="ItemList" parent="Inventory/ItemContainer" unique_id=442377210]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 3
-
-[node name="Materials" type="ItemList" parent="Inventory/ItemContainer" unique_id=1858319450]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 4
-
-[node name="Right" type="VBoxContainer" parent="Inventory" unique_id=828670135]
+[node name="Right" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=828670135]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="StatContainer" type="HBoxContainer" parent="Inventory/Right" unique_id=321038121]
+[node name="StatContainer" type="HBoxContainer" parent="MarginContainer/Inventory/Right" unique_id=321038121]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="ItemStatMargin" type="MarginContainer" parent="Inventory/Right/StatContainer" unique_id=2053971525]
+[node name="ItemStatMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer" unique_id=2053971525]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ItemPanel" type="PanelContainer" parent="Inventory/Right/StatContainer/ItemStatMargin" unique_id=1153613697]
+[node name="ItemPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin" unique_id=1153613697]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_h7awd")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rfnqs")
 
-[node name="_InsideMargin" type="MarginContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel" unique_id=1171193300]
+[node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel" unique_id=1171193300]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin" unique_id=120262353]
+[node name="WeaponScroller" type="ScrollContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin" unique_id=120262353]
+visible = false
 layout_mode = 2
+script = ExtResource("4_fywa2")
 
-[node name="ItemStats" type="VBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer" unique_id=1765649366]
+[node name="WeaponStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller" unique_id=1765649366]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=221899490]
+[node name="ItemName" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=221899490]
 layout_mode = 2
+size_flags_vertical = 1
 text = "Flaming Greatsword"
 label_settings = ExtResource("2_gwmof")
 vertical_alignment = 1
 clip_text = true
 
-[node name="ItemType" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=2073005526]
+[node name="FlavorText" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=971431835]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Flaming Greatsword"
+label_settings = ExtResource("3_ev5oe")
+vertical_alignment = 1
+clip_text = true
+
+[node name="ItemType" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=2073005526]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/ItemType" unique_id=965410597]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/ItemType" unique_id=965410597]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Item Type:"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/ItemType" unique_id=731904041]
+[node name="Type" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/ItemType" unique_id=731904041]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Sword"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Normal" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=1223541459]
+[node name="Normal" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1223541459]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Normal" unique_id=525227002]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Normal" unique_id=525227002]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Normal Damage:"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Normal" unique_id=758193726]
+[node name="NormalValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Normal" unique_id=758193726]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Fire" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=1293826034]
+[node name="Magic" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=2007870402]
+modulate = Color(0.60784316, 0.654902, 1, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Fire" unique_id=681167484]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Magic" unique_id=1669816964]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Magic Damage:"
+label_settings = ExtResource("3_ev5oe")
+
+[node name="MagicValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Magic" unique_id=226138211]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "0"
+label_settings = ExtResource("3_ev5oe")
+
+[node name="Fire" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1293826034]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Fire" unique_id=681167484]
 modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -167,7 +190,7 @@ size_flags_vertical = 1
 text = "Fire Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Fire" unique_id=273792430]
+[node name="FireValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Fire" unique_id=273792430]
 modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -175,10 +198,10 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Lightning" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=1455787897]
+[node name="Lightning" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1455787897]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Lightning" unique_id=621042874]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Lightning" unique_id=621042874]
 modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -186,7 +209,7 @@ size_flags_vertical = 1
 text = "Lightning Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Lightning" unique_id=1358214018]
+[node name="LightningValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Lightning" unique_id=1358214018]
 modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -194,10 +217,10 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Cold" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=795594013]
+[node name="Cold" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=795594013]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Cold" unique_id=539966698]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Cold" unique_id=539966698]
 modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -205,7 +228,7 @@ size_flags_vertical = 1
 text = "Cold Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Cold" unique_id=1236873660]
+[node name="ColdValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Cold" unique_id=1236873660]
 modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -213,10 +236,10 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Ground" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=401809467]
+[node name="Ground" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=401809467]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Ground" unique_id=1653593117]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Ground" unique_id=1653593117]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -224,7 +247,7 @@ size_flags_vertical = 1
 text = "Ground Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Ground" unique_id=780391895]
+[node name="GroundValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Ground" unique_id=780391895]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -232,10 +255,10 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Chaos" type="HBoxContainer" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats" unique_id=925741895]
+[node name="Chaos" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=925741895]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Chaos" unique_id=403334082]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Chaos" unique_id=403334082]
 modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -243,7 +266,7 @@ size_flags_vertical = 1
 text = "Chaos Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ScrollContainer/ItemStats/Chaos" unique_id=1381998768]
+[node name="ChaosValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Chaos" unique_id=1381998768]
 modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -251,7 +274,47 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="ItemDisplayMargin" type="MarginContainer" parent="Inventory/Right/StatContainer" unique_id=1320271491]
+[node name="ConsumableScroller" type="ScrollContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin" unique_id=194257725]
+visible = false
+layout_mode = 2
+script = ExtResource("7_suhgw")
+
+[node name="WeaponStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller" unique_id=363179620]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1466036315]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Flaming Greatsword"
+label_settings = ExtResource("2_gwmof")
+vertical_alignment = 1
+clip_text = true
+
+[node name="InfoTextLabel" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1725134646]
+layout_mode = 2
+label_settings = ExtResource("3_ev5oe")
+autowrap_mode = 2
+
+[node name="ItemType" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1848673592]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats/ItemType" unique_id=1995782947]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Item Type:"
+label_settings = ExtResource("3_ev5oe")
+
+[node name="Type" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats/ItemType" unique_id=1603210141]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Sword"
+label_settings = ExtResource("3_ev5oe")
+
+[node name="ItemDisplayMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer" unique_id=1320271491]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -259,24 +322,23 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="DisplayPanel" type="PanelContainer" parent="Inventory/Right/StatContainer/ItemDisplayMargin" unique_id=871509938]
+[node name="DisplayPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin" unique_id=871509938]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hn110")
 
-[node name="_InsideMargin" type="MarginContainer" parent="Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel" unique_id=1566112210]
+[node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel" unique_id=1566112210]
 layout_mode = 2
 
-[node name="DisplayViewport" type="TextureRect" parent="Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel/_InsideMargin" unique_id=2043619048]
+[node name="DisplayViewport" type="TextureRect" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel/_InsideMargin" unique_id=2043619048]
 layout_mode = 2
-texture = ExtResource("4_ev5oe")
+stretch_mode = 5
 
-[node name="Player" type="HBoxContainer" parent="Inventory/Right" unique_id=162598311]
+[node name="Player" type="HBoxContainer" parent="MarginContainer/Inventory/Right" unique_id=162598311]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 
-[node name="EquippedItemsMargin" type="MarginContainer" parent="Inventory/Right/Player" unique_id=1481390982]
-modulate = Color(1, 1, 0.85490197, 1)
+[node name="EquippedItemsMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player" unique_id=1481390982]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
@@ -284,211 +346,276 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 5
 
-[node name="EquipPanel" type="PanelContainer" parent="Inventory/Right/Player/EquippedItemsMargin" unique_id=1136671372]
+[node name="EquipPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin" unique_id=1136671372]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_h7awd")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gwmof")
 
-[node name="InsideMargin" type="MarginContainer" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel" unique_id=1882868928]
+[node name="InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel" unique_id=1882868928]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin" unique_id=96899840]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin" unique_id=96899840]
 layout_mode = 2
 
-[node name="Equipment" type="Label" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=1999669168]
+[node name="Equipment" type="Label" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=1999669168]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Equipment"
 label_settings = ExtResource("2_gwmof")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=144693942]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=144693942]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Body" type="VBoxContainer" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=1093288719]
+[node name="Body" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=1093288719]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Hands" type="VBoxContainer" parent="Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=484931474]
+[node name="Head" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=560908851]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Head" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head" unique_id=579061347]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Body" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=1379687010]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Body" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body" unique_id=808660022]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Feet" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=373154546]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Feet" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Feet" unique_id=472952552]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Hands" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=484931474]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PlayerStatMargin" type="MarginContainer" parent="Inventory/Right/Player" unique_id=1817497888]
-modulate = Color(1, 1, 0.85490197, 1)
+[node name="MainHand" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands" unique_id=218449963]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="MainHand" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand" unique_id=1328320863]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OffHand" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands" unique_id=1769292941]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="OffHand" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand" unique_id=935156365]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerStatMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player" unique_id=1817497888]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="StatPanel" type="PanelContainer" parent="Inventory/Right/Player/PlayerStatMargin" unique_id=1419953540]
+[node name="StatPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin" unique_id=1419953540]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_h7awd")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ev5oe")
 
-[node name="_InsideMargin" type="MarginContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel" unique_id=624390022]
+[node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel" unique_id=624390022]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="PlayerStats" type="VBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin" unique_id=897083645]
+[node name="PlayerStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin" unique_id=897083645]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1283969788]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1283969788]
 layout_mode = 2
 text = "El Stinko"
 label_settings = ExtResource("2_gwmof")
 vertical_alignment = 1
 clip_text = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1458963406]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1458963406]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer" unique_id=852100067]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer" unique_id=852100067]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Level" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1196054009]
+[node name="Level" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1196054009]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Level" unique_id=2066177311]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Level" unique_id=2066177311]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Level"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Level" unique_id=1649363083]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Level" unique_id=1649363083]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="XP" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=89355440]
+[node name="XP" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=89355440]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/XP" unique_id=2082330982]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/XP" unique_id=2082330982]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Experience"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/XP" unique_id=659743828]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/XP" unique_id=659743828]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Health" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=715414945]
+[node name="Health" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=715414945]
+modulate = Color(1, 0.60784316, 0.60784316, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Health" unique_id=1869746882]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Health" unique_id=1869746882]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Health"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Health" unique_id=1014315569]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Health" unique_id=1014315569]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Stamina" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=268373032]
+[node name="Stamina" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=268373032]
+modulate = Color(0.54901963, 1, 0.54901963, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Stamina" unique_id=17599224]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Stamina" unique_id=17599224]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Stamina"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Stamina" unique_id=2058153673]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Stamina" unique_id=2058153673]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Mana" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1138822297]
+[node name="Mana" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1138822297]
+modulate = Color(0.60784316, 0.76862746, 1, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Mana" unique_id=1050419644]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Mana" unique_id=1050419644]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Mana"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Mana" unique_id=447464948]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Mana" unique_id=447464948]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Strength" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=741092410]
+[node name="Strength" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=741092410]
+modulate = Color(1, 0.60784316, 0.60784316, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Strength" unique_id=1824122107]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Strength" unique_id=1824122107]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Strength"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Strength" unique_id=1522542808]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Strength" unique_id=1522542808]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Dexterity" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1730065694]
+[node name="Dexterity" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1730065694]
+modulate = Color(0.54901963, 1, 0.54901963, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Dexterity" unique_id=1615795522]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Dexterity" unique_id=1615795522]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Dexterity"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Dexterity" unique_id=502508664]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Dexterity" unique_id=502508664]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Intelligence" type="HBoxContainer" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=190373079]
+[node name="Intelligence" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=190373079]
+modulate = Color(0.60784316, 0.76862746, 1, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Intelligence" unique_id=911189539]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Intelligence" unique_id=911189539]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Intelligence"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Label2" type="Label" parent="Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Intelligence" unique_id=240073374]
+[node name="Label2" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Intelligence" unique_id=240073374]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

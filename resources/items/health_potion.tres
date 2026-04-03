@@ -8,6 +8,7 @@ script = ExtResource("1_mr6qb")
 item_name = "Health Potion"
 item_id = "405c2076-e86a-4c6d-8b9c-e48e4a16c317"
 tooltip = "It heals!"
+explanation_text = "A flask filled with a red liquid, intended to heal the player."
 stackable = true
 sprite = ExtResource("2_tip3f")
 drop_chance = 1.0

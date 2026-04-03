@@ -66,6 +66,7 @@ func _ready() -> void:
 	UiController.update_healthbar(HEALTH)
 	UiController.update_staminabar(STAMINA)
 	UiController.update_manabar(MANA)
+	UiController.get_updated_player_items.connect(_give_player_items)
 	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
@@ -96,7 +97,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not state_controller.is_player_busy():
 		interact_with_object()
-		_open_inventory()
+		#_open_inventory()
 	move_and_slide()
 
 func interact_with_object():
@@ -221,10 +222,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	if Input.is_key_pressed(KEY_ESCAPE):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#if Input.is_key_pressed(KEY_ESCAPE):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
@@ -318,3 +319,6 @@ func _die():
 		#motion *= freefly_speed * delta
 		#move_and_collide(motion)
 		#return
+
+func _give_player_items():
+	UiController.give_updated_player_items(items)

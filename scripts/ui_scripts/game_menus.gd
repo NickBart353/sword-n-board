@@ -3,7 +3,8 @@ extends CanvasLayer
 signal return_to_main_menu
 
 @onready var hud: Control = $Hud
-@onready var item_controller: Control = $ItemController
+
+@onready var inventory: PanelContainer = $Inventory
 
 @onready var pause_menu: Control = $PauseMenu
 @onready var settings_menu: Control = $SettingsMenu
@@ -13,6 +14,7 @@ signal return_to_main_menu
 @export var button_click_sound: AudioStream
 
 var pause_menu_open: bool
+var inventory_open: bool
 var is_input_blocked: bool
 
 func load_data():
@@ -21,6 +23,7 @@ func load_data():
 func _ready() -> void:
 	is_input_blocked = false
 	pause_menu_open = false
+	inventory_open = false
 	
 	for child in self.find_children("*", "Control", true, false):
 		if child is Button:
@@ -35,6 +38,7 @@ func _ready() -> void:
 	UiController.character_panel.connect(_character_panel)
 	UiController.lootbag.connect(_lootbag)
 	UiController.escape_menu_signal.connect(_escape_menu)
+	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
 	UiController._update_manabar.connect(_update_manabar)
@@ -48,7 +52,14 @@ func _process(_delta: float) -> void:
 			_inventory()
 
 func _inventory():
-	pass
+	if not pause_menu_open:
+		inventory.get_player_items()
+		inventory.set_visible(not inventory.is_visible())
+		get_tree().paused = inventory.is_visible()
+		if inventory.is_visible():
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _character_panel():
 	pass
@@ -58,6 +69,8 @@ func _lootbag():
 
 func _escape_menu():
 	if not pause_menu_open:
+		if inventory.is_visible():
+			_inventory()
 		pause_menu_open = true
 		pause_menu.show()
 		get_tree().paused = pause_menu_open
@@ -68,6 +81,10 @@ func _escape_menu():
 			settings_menu.check_for_unsaved_settings()
 		else:
 			get_tree().paused = pause_menu_open
+	if pause_menu_open:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _update_healthbar(health: float):
 	hud.update_health(health)

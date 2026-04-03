@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="SwordNBoard"
 config/version="Alpha 0.2"
-run/main_scene="uid://rq8vovc7ih5t"
+run/main_scene="uid://23kjgnpf3t1i"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

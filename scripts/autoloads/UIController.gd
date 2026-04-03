@@ -5,6 +5,9 @@ signal character_panel
 signal lootbag
 signal escape_menu_signal
 
+signal update_player_items
+signal get_updated_player_items
+
 signal _update_healthbar
 signal _update_staminabar
 signal _update_manabar
@@ -38,6 +41,12 @@ func escape_menu():
 	ui_open = escape_menu_open
 	get_tree().paused = escape_menu_open
 	escape_menu_signal.emit()
+
+func get_player_items():
+	get_updated_player_items.emit()
+
+func give_updated_player_items(updated_player_items: Array):
+	update_player_items.emit(updated_player_items)
 
 func is_ui_open() -> bool:
 	return ui_open

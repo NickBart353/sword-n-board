@@ -12,6 +12,7 @@
 [ext_resource type="StyleBox" uid="uid://d1yamar4tig0x" path="res://resources/ui/resource_bars/staminabar_fill_stylebox.tres" id="8_h2ykw"]
 [ext_resource type="StyleBox" uid="uid://ba52ybq1l3p5a" path="res://resources/ui/resource_bars/manabar_background_stylebox.tres" id="9_0men4"]
 [ext_resource type="StyleBox" uid="uid://c6v5i8we77r6o" path="res://resources/ui/resource_bars/manabar_fill_stylebox.tres" id="10_25rgj"]
+[ext_resource type="PackedScene" uid="uid://bub18fmie3reu" path="res://scenes/ui_scenes/inventory_new.tscn" id="11_h2ykw"]
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513 groups=["BlockInput"]]
 process_mode = 3
@@ -111,12 +112,7 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="ItemController" type="Control" parent="." unique_id=1780862195]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
 
 [node name="PauseMenu" parent="." unique_id=446500743 instance=ExtResource("5_l4c86")]
 visible = false
