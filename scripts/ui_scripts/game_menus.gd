@@ -50,6 +50,8 @@ func _process(_delta: float) -> void:
 			_escape_menu()
 		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
+		if Input.is_action_just_pressed("Scroll Consumable"):
+			_rotate_consumable()
 
 func _inventory():
 	if not pause_menu_open:
@@ -85,6 +87,10 @@ func _escape_menu():
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _rotate_consumable():
+	if get_tree().paused:
+		hud.rotate_consumable()
 
 func _update_healthbar(health: float):
 	hud.update_health(health)

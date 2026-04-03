@@ -21,5 +21,18 @@ vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("4_r2s1f")
 
+[node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 8.0
+offset_right = -7.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.59607846, 0.13725491, 1)
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

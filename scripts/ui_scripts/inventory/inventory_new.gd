@@ -34,7 +34,7 @@ func _ready() -> void:
 func get_player_items():
 	UiController.get_player_items()
 
-func _update_player_items(updated_player_items: Array):
+func _update_player_items(updated_player_items: Array, updated_player_consumables: Array, _updated_player_helmet: Item, _updated_player_body: Item, _updated_player_boots: Item, _updated_player_mainhand: Item, _updated_player_offhand: Item) -> void:
 	if not player_items == updated_player_items or not player_items:
 		sort_player_items()
 		player_items = updated_player_items
@@ -45,6 +45,7 @@ func _update_player_items(updated_player_items: Array):
 			inventory_item.item_pressed.connect(activate_item)
 			inventory_item.set_data(item)
 			item_grid.add_child(inventory_item)
+	UiController.update_player_consumables(player_consumables)
 
 func update_item_display(item: Item):
 	match item.data.item_category:
@@ -59,15 +60,14 @@ func update_item_display(item: Item):
 			
 	display_viewport.texture = item.data.sprite
 
-func activate_item(item: Item, mousebutton: String, slot: String):
-	print(item.data)
+func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
 			equip_weapon(item, mousebutton)
 		ItemData.ITEM_CATEGORY.ARMOR:
 			pass
 		ItemData.ITEM_CATEGORY.CONSUMABLE:
-			pass
+			equip_consumable(inventory_item, item)
 		ItemData.ITEM_CATEGORY.MATERIAL:
 			pass
 
@@ -130,17 +130,10 @@ func equip_weapon(item: Item, mousebutton: String):
 			inventory_item.set_slot("OFFHAND")
 			offhand.add_child(inventory_item)
 	
-	update_player_items.emit(player_items,
-		player_consumables,
-		player_helmet,
-		player_body,
-		player_boots,
-		player_mainhand,
-		player_offhand,
-	)
+	_emit_update_player_items()
 
-func unequip_item(item: Item, mousebutton: String, slot: String):
-	match item.data.item_type:
+func unequip_item(_inventory_item: InventoryItem, item: Item, _mousebutton: String, slot: String):
+	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
 			if slot == "MAINHAND":
 				_remove_mainhand()
@@ -160,3 +153,23 @@ func _remove_offhand():
 	player_offhand = null
 	for child in offhand.get_children():
 		child.queue_free()
+
+func equip_consumable(inventory_item: InventoryItem, item: Item):
+	if not player_consumables.has(item):
+		player_consumables.append(item)
+		inventory_item.mark_consumable()
+	else:
+		player_consumables.remove_at(player_consumables.find(item))
+		inventory_item.unmark_consumable()
+	_emit_update_player_items()
+
+func _emit_update_player_items():
+	UiController.update_player_consumables(player_consumables)
+	update_player_items.emit(player_items,
+		player_consumables,
+		player_helmet,
+		player_body,
+		player_boots,
+		player_mainhand,
+		player_offhand,
+	)

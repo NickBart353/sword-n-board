@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
 [ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_v06nt"]
 [ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_l4c86"]
+[ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="5_0men4"]
 [ext_resource type="StyleBox" uid="uid://cvquvl4pw2xsl" path="res://resources/ui/resource_bars/healthbar_background_stylebox.tres" id="5_1xi2f"]
 [ext_resource type="PackedScene" uid="uid://bfo7c5l74qhwf" path="res://scenes/ui_scenes/pause_menu.tscn" id="5_l4c86"]
 [ext_resource type="StyleBox" uid="uid://dmk0uyv5u566a" path="res://resources/ui/resource_bars/healthbar_fill_stylebox.tres" id="6_hkf0r"]
@@ -29,6 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_t6q64")
+temp_consumable_display = ExtResource("5_0men4")
 
 [node name="CrossHair" type="ColorRect" parent="Hud" unique_id=1354946558]
 layout_mode = 1
@@ -50,10 +52,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.1
-anchor_right = 0.95
-anchor_bottom = 0.2
+anchor_right = 0.95000005
+anchor_bottom = 0.1
+offset_right = -0.00012207031
+offset_bottom = 108.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HealthMargin" type="MarginContainer" parent="Hud/PlayerResourceContainer" unique_id=309612923]
 layout_mode = 2
@@ -112,7 +115,20 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
+[node name="ConsumableDisplay" type="GridContainer" parent="Hud" unique_id=1817877383]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.079
+anchor_top = 0.601
+anchor_right = 0.18100001
+anchor_bottom = 0.78900003
+offset_left = -0.68000793
+offset_top = -0.08001709
+offset_right = 0.47998047
+offset_bottom = -0.12005615
+
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
+visible = false
 
 [node name="PauseMenu" parent="." unique_id=446500743 instance=ExtResource("5_l4c86")]
 visible = false

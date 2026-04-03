@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
-		hit.emit(body, data.damage)
+		hit.emit(body, data.normal_damage)
 		sword_player.play()

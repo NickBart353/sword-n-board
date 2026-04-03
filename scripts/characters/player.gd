@@ -49,6 +49,7 @@ var STAMINA: float
 var MANA: float
 
 var items: Array = []
+var consumables: Array = []
 var head_item: Item
 var body_item: Item
 var boots_item: Item
@@ -144,9 +145,7 @@ func get_equipped_consumable():
 
 func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
 	_reset_abilities()
-	var two_handed: bool = false
-	if new_main_hand_item:
-		two_handed = ((new_main_hand_item == new_off_hand_item) and new_main_hand_item.data.two_handed)
+	var two_handed: bool = new_main_hand_item.data.two_handed
 	
 	items = player_items
 	head_item = _reequip_slot(head_item, new_head_item, head_slot)
@@ -193,8 +192,38 @@ func _reset_abilities():
 	for ability_instance in ability.get_children():
 		ability_instance.reset()
 
-func new_player_items():
-	pass
+func new_player_items(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+	_reset_abilities()
+	var two_handed: bool = false
+	if player_mainhand:
+		two_handed = player_mainhand.data.two_handed
+	
+	items = player_items
+	head_item = _reequip_slot(head_item, player_helmet, head_slot)
+	body_item = _reequip_slot(body_item, player_body, body_slot)
+	boots_item = _reequip_slot(boots_item, player_boots, boots_slot)
+	consumables = player_consumables
+	
+	if two_handed:
+		if main_hand_item != player_mainhand:
+			main_hand_item = player_mainhand
+			off_hand_item = player_offhand
+			_clear_equip_slot(right_hand)
+			_clear_equip_slot(left_hand)
+			var item_instance = ItemGenerator.generate_item(main_hand_item.data)
+			if item_instance:
+				if item_instance is Node:
+					right_hand.add_child(item_instance, true)
+				elif item_instance is Dictionary:
+					for item_slot in item_instance:
+						match item_slot:
+							ItemGenerator.SLOTS.MAIN_HAND:
+								right_hand.add_child(item_instance[item_slot], true)
+							ItemGenerator.SLOTS.OFF_HAND:
+								left_hand.add_child(item_instance[item_slot], true)
+	else:
+		main_hand_item = _reequip_slot(main_hand_item, player_mainhand, right_hand)
+		off_hand_item = _reequip_slot(off_hand_item, player_offhand, left_hand)
 
 func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
 	if property in self:
@@ -212,9 +241,9 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 				print("not implemented yet...")
 
 func _remove_consumable():
-	#consumable_item.data.stack_size -= 1
-	#if consumable_item.data.stack_size < 0:
-		#return
+	consumable_item.data.stack_size -= 1
+	if consumable_item.data.stack_size > 0:
+		return
 	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -326,4 +355,4 @@ func _die():
 		#return
 
 func _give_player_items():
-	UiController.give_updated_player_items(items)
+	UiController.give_updated_player_items(items, consumables, head_item, body_item, boots_item, main_hand_item, off_hand_item)

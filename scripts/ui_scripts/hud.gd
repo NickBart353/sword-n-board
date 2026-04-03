@@ -4,6 +4,17 @@ extends Control
 @onready var stamina_bar: ProgressBar = $PlayerResourceContainer/StaminaMargin/StaminaBar
 @onready var mana_bar: ProgressBar = $PlayerResourceContainer/ManaMargin/ManaBar
 
+@onready var consumable_display: GridContainer = $ConsumableDisplay
+
+@export var temp_consumable_display: PackedScene
+
+var player_consumables: Array = []
+var current_consumable_index: int
+var current_consumable: Item
+
+func _ready() -> void:
+	UiController.set_player_consumables.connect(_set_player_consumables)
+
 func update_health(health: float):
 	health_bar.value = health
 
@@ -12,3 +23,25 @@ func update_stamina(stamina: float):
 
 func update_mana(mana: float):
 	mana_bar.value = mana
+
+func rotate_consumable():
+	if player_consumables.size() > 0:
+		for child in consumable_display.get_children():
+			child.hide()
+		current_consumable_index += 1
+		consumable_display.get_child(current_consumable_index).show()
+
+func _set_player_consumables(consumables: Array):
+	player_consumables = consumables
+	for child in consumable_display.get_children():
+		child.queue_free()
+	if player_consumables.size() > 0:
+		current_consumable_index = 0
+		for item in player_consumables:
+			var display_instance = temp_consumable_display.instantiate()
+			display_instance.disabled = true
+			display_instance.text = item.data.item_name
+			display_instance.icon = item.data.sprite
+			consumable_display.add_child(display_instance)
+			display_instance.hide()
+		consumable_display.get_child(current_consumable_index).show()
