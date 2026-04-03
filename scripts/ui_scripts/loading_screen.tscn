@@ -1,9 +1,18 @@
 [gd_scene format=3 uid="uid://c8x8sbc47lju0"]
 
 [ext_resource type="Script" uid="uid://cr13ku1fkte6f" path="res://scripts/ui_scripts/loading_screen.gd" id="1_c3kp2"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_0tibr"]
+[ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="3_8vkso"]
+[ext_resource type="Environment" uid="uid://cuk3q8w8eu6i1" path="res://resources/world_environments/standard.tres" id="3_tejke"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghkhy"]
 bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tejke"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vkso"]
+font_size = 80
 
 [sub_resource type="Animation" id="Animation_c3kp2"]
 length = 0.001
@@ -19,6 +28,33 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/Label:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8vkso"]
+resource_name = "spinny"
 
 [sub_resource type="Animation" id="Animation_0tibr"]
 resource_name = "transition"
@@ -34,12 +70,56 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/Label:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tejke"]
+resource_name = "transition_reversed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8vkso"]
 _data = {
 &"RESET": SubResource("Animation_c3kp2"),
-&"transition": SubResource("Animation_0tibr")
+&"spinny": SubResource("Animation_8vkso"),
+&"transition": SubResource("Animation_0tibr"),
+&"transition_reversed": SubResource("Animation_tejke")
 }
+
+[sub_resource type="World3D" id="World3D_tejke"]
+environment = ExtResource("3_tejke")
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=255350983 node_paths=PackedStringArray("anim_player")]
 layer = 100
@@ -54,6 +134,49 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ghkhy")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=821260328]
+anchors_preset = -1
+offset_left = 1542.0
+offset_top = 485.0
+offset_right = 2054.0
+offset_bottom = 997.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_tejke")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=630505926]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -298.0
+offset_top = -122.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=2035541627]
+layout_mode = 2
+theme = ExtResource("2_0tibr")
+text = "Loading..."
+label_settings = SubResource("LabelSettings_8vkso")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=449298665]
 libraries/ = SubResource("AnimationLibrary_8vkso")
 autoplay = &"transition"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1239215898]
+own_world_3d = true
+world_3d = SubResource("World3D_tejke")
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1824389032]
+transform = Transform3D(0.94900817, -0.02862685, -0.31394914, 0, 0.99586874, -0.09080638, 0.31525153, 0.08617599, 0.94508743, -0.9018469, 1.6896456, 1.6895258)
+
+[node name="Campfire" parent="SubViewport" unique_id=1728524800 instance=ExtResource("3_8vkso")]
+transform = Transform3D(0.4342723, 0, 0.90078163, 0, 1, 0, -0.90078163, 0, 0.4342723, -0.04635799, 0, -1.5385494)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

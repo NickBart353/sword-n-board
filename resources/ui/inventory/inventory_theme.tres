@@ -1,0 +1,8 @@
+[gd_resource type="Theme" format=3 uid="uid://dmk7hqj020c1"]
+
+[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="1_lvrj6"]
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/fonts/font = ExtResource("1_lvrj6")
+TabContainer/styles/panel = null
