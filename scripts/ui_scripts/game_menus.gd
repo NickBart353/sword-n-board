@@ -133,3 +133,6 @@ func _on_pause_menu_exit_game() -> void:
 func _on_settings_menu_done_checking() -> void:
 	settings_menu.hide()
 	get_tree().paused = pause_menu_open
+
+func _on_inventory_update_player_items(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+		UiController.update_player_items_from_inventory(player_items, player_consumables, player_helmet, player_body, player_boots, player_mainhand, player_offhand)

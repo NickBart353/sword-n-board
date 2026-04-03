@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
 [ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="4_fywa2"]
 [ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_suhgw"]
+[ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="8_suhgw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ntrp"]
 bg_color = Color(0.2159017, 0.21590173, 0.21590161, 0.3254902)
@@ -61,13 +62,14 @@ theme_override_constants/margin_bottom = 10
 [node name="Inventory" type="HBoxContainer" parent="MarginContainer" unique_id=1009717299]
 layout_mode = 2
 
-[node name="ItemContainer2" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=281748038]
+[node name="ItemContainer" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=281748038]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="MarginContainer/Inventory/ItemContainer2" unique_id=12589894]
+[node name="TabBar" type="TabBar" parent="MarginContainer/Inventory/ItemContainer" unique_id=12589894]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 current_tab = 0
 tab_count = 5
 tab_0/title = "All"
@@ -76,47 +78,16 @@ tab_2/title = "Armor"
 tab_3/title = "Consumable"
 tab_4/title = "Material"
 
-[node name="ItemGrid" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer2" unique_id=1153937680]
+[node name="ItemPanel" type="PanelContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=874376443]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel" unique_id=1153937680]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 3
-
-[node name="ItemContainer" type="TabContainer" parent="MarginContainer/Inventory" unique_id=2083244432]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-current_tab = 1
-
-[node name="All" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=414674633]
-visible = false
-layout_mode = 2
-columns = 5
-metadata/_tab_index = 0
-
-[node name="Weapons" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=1789563960]
-layout_mode = 2
-columns = 5
-metadata/_tab_index = 1
-
-[node name="Armor" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=244353880]
-visible = false
-layout_mode = 2
-columns = 5
-metadata/_tab_index = 2
-
-[node name="Consumables" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=2136198217]
-visible = false
-layout_mode = 2
-columns = 5
-metadata/_tab_index = 3
-
-[node name="Materials" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=770707233]
-visible = false
-layout_mode = 2
-columns = 5
-metadata/_tab_index = 4
 
 [node name="Right" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=828670135]
 layout_mode = 2
@@ -170,7 +141,7 @@ clip_text = true
 layout_mode = 2
 size_flags_vertical = 1
 text = "Flaming Greatsword"
-label_settings = ExtResource("3_ev5oe")
+label_settings = ExtResource("8_suhgw")
 vertical_alignment = 1
 clip_text = true
 
@@ -342,7 +313,7 @@ clip_text = true
 [node name="InfoTextLabel" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1725134646]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-label_settings = ExtResource("3_ev5oe")
+label_settings = ExtResource("8_suhgw")
 autowrap_mode = 2
 
 [node name="ItemType" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1848673592]
@@ -432,7 +403,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Head" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head" unique_id=579061347]
+[node name="Head" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head" unique_id=1620117800]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -444,7 +415,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Body" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body" unique_id=808660022]
+[node name="Body" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body" unique_id=1527239668]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -456,7 +427,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Feet" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Feet" unique_id=472952552]
+[node name="Feet" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Feet" unique_id=2030552520]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -472,7 +443,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="MainHand" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand" unique_id=1328320863]
+[node name="MainHand" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand" unique_id=1244490059]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -484,7 +455,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="OffHand" type="ItemList" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand" unique_id=935156365]
+[node name="OffHand" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand" unique_id=87536218]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -669,3 +640,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
+
+[connection signal="tab_changed" from="MarginContainer/Inventory/ItemContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]

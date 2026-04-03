@@ -120,6 +120,7 @@ visible = false
 [node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("6_l4c86")]
 visible = false
 
+[connection signal="update_player_items" from="Inventory" to="." method="_on_inventory_update_player_items"]
 [connection signal="continue_game" from="PauseMenu" to="." method="_on_pause_menu_continue_game"]
 [connection signal="exit_game" from="PauseMenu" to="." method="_on_pause_menu_exit_game"]
 [connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]

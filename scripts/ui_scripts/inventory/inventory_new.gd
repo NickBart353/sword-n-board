@@ -1,20 +1,28 @@
 extends PanelContainer
 
+signal update_player_items
+
 var player_items: Array = []
+var player_consumables: Array = []
+var player_helmet: Item
+var player_body: Item
+var player_boots: Item
+var player_mainhand: Item
+var player_offhand: Item
 
-@onready var all: GridContainer = $MarginContainer/Inventory/ItemContainer/All
-@onready var weapons: GridContainer = $MarginContainer/Inventory/ItemContainer/Weapons
-@onready var armor: GridContainer = $MarginContainer/Inventory/ItemContainer/Armor
-@onready var consumables: GridContainer = $MarginContainer/Inventory/ItemContainer/Consumables
-@onready var materials: GridContainer = $MarginContainer/Inventory/ItemContainer/Materials
-
-@onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer2/TabBar
-@onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer2/ItemGrid
+@onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/TabBar
+@onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ItemGrid
 
 @onready var weapon_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
 @onready var consumable_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller
 
 @onready var display_viewport: TextureRect = $MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel/_InsideMargin/DisplayViewport
+
+@onready var head: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head/Head
+@onready var body: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body/Body
+@onready var feet: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Feet/Feet
+@onready var mainhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand/MainHand
+@onready var offhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand/OffHand
 
 @export var inventory_item_scene: PackedScene
 
@@ -36,17 +44,7 @@ func _update_player_items(updated_player_items: Array):
 			inventory_item.item_hovered.connect(update_item_display)
 			inventory_item.item_pressed.connect(activate_item)
 			inventory_item.set_data(item)
-			all.add_child(inventory_item)
-			
-			match item.data.item_category:
-				ItemData.ITEM_CATEGORY.WEAPON:
-					weapons.add_child(inventory_item.duplicate())
-				ItemData.ITEM_CATEGORY.ARMOR:
-					armor.add_child(inventory_item.duplicate())
-				ItemData.ITEM_CATEGORY.CONSUMABLE:
-					consumables.add_child(inventory_item.duplicate())
-				ItemData.ITEM_CATEGORY.MATERIAL:
-					materials.add_child(inventory_item.duplicate())
+			item_grid.add_child(inventory_item)
 
 func update_item_display(item: Item):
 	match item.data.item_category:
@@ -61,8 +59,104 @@ func update_item_display(item: Item):
 			
 	display_viewport.texture = item.data.sprite
 
-func activate_item(item: Item):
-	pass
+func activate_item(item: Item, mousebutton: String, slot: String):
+	print(item.data)
+	match item.data.item_category:
+		ItemData.ITEM_CATEGORY.WEAPON:
+			equip_weapon(item, mousebutton)
+		ItemData.ITEM_CATEGORY.ARMOR:
+			pass
+		ItemData.ITEM_CATEGORY.CONSUMABLE:
+			pass
+		ItemData.ITEM_CATEGORY.MATERIAL:
+			pass
 
 func sort_player_items():
-	pass
+	for i in range(player_items.size() - 1):
+		for j in range(player_items.size() - 1):
+			if player_items[i].data.item_category > player_items[j+1].data.item_category:
+				var temp_item: Item = player_items[i].data.item_category
+				player_items[i].data.item_category = player_items[j+1].data.item_category
+				player_items[j+1].data.item_category = temp_item
+
+func _on_tab_bar_tab_changed(tab: int) -> void:
+	match tab:
+		0:
+			for item in item_grid.get_children():
+				item.show()
+		1:
+			change_displayed_tab(ItemData.ITEM_CATEGORY.WEAPON)
+		2:
+			change_displayed_tab(ItemData.ITEM_CATEGORY.ARMOR)
+		3:
+			change_displayed_tab(ItemData.ITEM_CATEGORY.CONSUMABLE)
+		4:
+			change_displayed_tab(ItemData.ITEM_CATEGORY.MATERIAL)
+
+func change_displayed_tab(category: ItemData.ITEM_CATEGORY):
+	for item in item_grid.get_children():
+		if item.item.data.item_category == category:
+			item.show()
+		else:
+			item.hide()
+
+func equip_weapon(item: Item, mousebutton: String):
+	var inventory_item = inventory_item_scene.instantiate()
+	inventory_item.item_hovered.connect(update_item_display)
+	inventory_item.item_pressed.connect(unequip_item)
+	inventory_item.set_data(item)
+	
+	if item.data.two_handed:
+		_remove_mainhand()
+		_remove_offhand()
+		player_mainhand = item
+		player_offhand = null
+		inventory_item.set_slot("MAINHAND")
+		mainhand.add_child(inventory_item)
+		var duplicate_item = inventory_item.duplicate()
+		duplicate_item.disabled = true
+		offhand.add_child(duplicate_item)
+	else:
+		if mousebutton == "LEFT":
+			_remove_mainhand()
+			if not player_offhand:
+				_remove_offhand()
+			player_mainhand = item
+			inventory_item.set_slot("MAINHAND")
+			mainhand.add_child(inventory_item)
+		else:
+			_remove_offhand()
+			player_offhand = item
+			inventory_item.set_slot("OFFHAND")
+			offhand.add_child(inventory_item)
+	
+	update_player_items.emit(player_items,
+		player_consumables,
+		player_helmet,
+		player_body,
+		player_boots,
+		player_mainhand,
+		player_offhand,
+	)
+
+func unequip_item(item: Item, mousebutton: String, slot: String):
+	match item.data.item_type:
+		ItemData.ITEM_CATEGORY.WEAPON:
+			if slot == "MAINHAND":
+				_remove_mainhand()
+				if item.data.two_handed:
+					_remove_offhand()
+			else:
+				_remove_offhand()
+		ItemData.ITEM_CATEGORY.ARMOR:
+			pass
+
+func _remove_mainhand():
+	player_mainhand = null
+	for child in mainhand.get_children():
+		child.queue_free()
+
+func _remove_offhand():
+	player_offhand = null
+	for child in offhand.get_children():
+		child.queue_free()

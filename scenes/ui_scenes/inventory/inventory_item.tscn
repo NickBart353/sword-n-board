@@ -13,6 +13,7 @@ size_flags_vertical = 4
 theme = ExtResource("1_kwdn5")
 theme_override_fonts/font = ExtResource("2_xvvta")
 theme_override_font_sizes/font_size = 40
+button_mask = 3
 autowrap_mode = 2
 autowrap_trim_flags = 192
 icon_alignment = 1

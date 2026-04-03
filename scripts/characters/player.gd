@@ -21,6 +21,7 @@ signal spawn_projectile
 @onready var boots_slot = $Slots/Boots
 #@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
 @onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
+@onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
@@ -67,6 +68,7 @@ func _ready() -> void:
 	UiController.update_staminabar(STAMINA)
 	UiController.update_manabar(MANA)
 	UiController.get_updated_player_items.connect(_give_player_items)
+	UiController.new_player_items.connect(new_player_items)
 	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
@@ -77,7 +79,7 @@ func _ready() -> void:
 	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
 
 func _process(delta: float) -> void:
-	if not stamina_regeneration_delay.time_left and not STAMINA == MAX_STAMINA:
+	if not stamina_regeneration_delay.time_left and not slow_stamina_regeneration_delay.time_left and not STAMINA == MAX_STAMINA:
 		STAMINA += stamina_regeneration_speed * delta
 		if STAMINA > MAX_STAMINA:
 			STAMINA = MAX_STAMINA
@@ -191,6 +193,9 @@ func _reset_abilities():
 	for ability_instance in ability.get_children():
 		ability_instance.reset()
 
+func new_player_items():
+	pass
+
 func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
 	if property in self:
 		match property_type:
@@ -221,11 +226,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(look_rotation.y)
 		head.transform.basis = Basis()
 		head.rotate_x(look_rotation.x)
-	
-	#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#if Input.is_key_pressed(KEY_ESCAPE):
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
@@ -247,8 +247,13 @@ func update_HEALTH(amount: float):
 	UiController.update_healthbar(HEALTH)
 
 func use_stamina(stamina_cost: float) -> bool:
-	if STAMINA - stamina_cost < MIN_STAMINA:
+	if STAMINA < 1:
 		return false
+	elif STAMINA - stamina_cost < MIN_STAMINA and not STAMINA < 1:
+		STAMINA = 0
+		slow_stamina_regeneration_delay.start()
+		UiController.update_staminabar(STAMINA)
+		return true
 	else:
 		STAMINA -= stamina_cost
 		UiController.update_staminabar(STAMINA)
