@@ -1,4 +1,4 @@
-extends ScrollContainer
+extends InventoryItemText
 
 @onready var label: Label = $WeaponStats/Label
 @onready var info_text_label: Label = $WeaponStats/InfoTextLabel

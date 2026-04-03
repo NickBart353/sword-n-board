@@ -3,6 +3,13 @@ extends PanelContainer
 var player_items: Array = []
 
 @onready var all: GridContainer = $MarginContainer/Inventory/ItemContainer/All
+@onready var weapons: GridContainer = $MarginContainer/Inventory/ItemContainer/Weapons
+@onready var armor: GridContainer = $MarginContainer/Inventory/ItemContainer/Armor
+@onready var consumables: GridContainer = $MarginContainer/Inventory/ItemContainer/Consumables
+@onready var materials: GridContainer = $MarginContainer/Inventory/ItemContainer/Materials
+
+@onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer2/TabBar
+@onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer2/ItemGrid
 
 @onready var weapon_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
 @onready var consumable_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller
@@ -20,7 +27,8 @@ func get_player_items():
 	UiController.get_player_items()
 
 func _update_player_items(updated_player_items: Array):
-	if not player_items == updated_player_items:
+	if not player_items == updated_player_items or not player_items:
+		sort_player_items()
 		player_items = updated_player_items
 		
 		for item in player_items:
@@ -29,10 +37,20 @@ func _update_player_items(updated_player_items: Array):
 			inventory_item.item_pressed.connect(activate_item)
 			inventory_item.set_data(item)
 			all.add_child(inventory_item)
+			
+			match item.data.item_category:
+				ItemData.ITEM_CATEGORY.WEAPON:
+					weapons.add_child(inventory_item.duplicate())
+				ItemData.ITEM_CATEGORY.ARMOR:
+					armor.add_child(inventory_item.duplicate())
+				ItemData.ITEM_CATEGORY.CONSUMABLE:
+					consumables.add_child(inventory_item.duplicate())
+				ItemData.ITEM_CATEGORY.MATERIAL:
+					materials.add_child(inventory_item.duplicate())
 
 func update_item_display(item: Item):
 	match item.data.item_category:
-		ItemData.ITEM_CATEGORY.MELEE_WEAPON, ItemData.ITEM_CATEGORY.RANGED_WEAPON, ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
+		ItemData.ITEM_CATEGORY.WEAPON:
 			weapon_text.show()
 			consumable_text.hide()
 			weapon_text.set_text(item)
@@ -44,4 +62,7 @@ func update_item_display(item: Item):
 	display_viewport.texture = item.data.sprite
 
 func activate_item(item: Item):
+	pass
+
+func sort_player_items():
 	pass

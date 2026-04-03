@@ -1,4 +1,4 @@
-extends ScrollContainer
+extends InventoryItemText
 
 @onready var item_name: Label = $WeaponStats/ItemName
 @onready var flavor_text: Label = $WeaponStats/FlavorText
@@ -10,6 +10,9 @@ extends ScrollContainer
 @onready var cold_value: Label = $WeaponStats/Cold/ColdValue
 @onready var ground_value: Label = $WeaponStats/Ground/GroundValue
 @onready var chaos_value: Label = $WeaponStats/Chaos/ChaosValue
+
+func _ready() -> void:
+	hide()
 
 func set_text(item: Item):
 	item_name.text = item.data.item_name

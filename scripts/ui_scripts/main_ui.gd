@@ -244,24 +244,24 @@ func _set_item_data(index, list, data):
 	list.set_item_tooltip(index, data.item_name)
 
 
-func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
-	if loot.is_visible():
-		loot_items.append(player_items[index])
-		player_items.remove_at(index)
-		_update_items()
-	else:
-		match player_items[index].data.item_category:
-			ItemData.ITEM_CATEGORY.MELEE_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.RANGED_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
-				_swap_weapons(true, index)
-			ItemData.ITEM_CATEGORY.OFF_HAND:
-				_swap_weapons(false, index)
-			ItemData.ITEM_CATEGORY.CONSUMABLE:
-				equipped_consumable = _swap_items(equipped_consumable, index)
-		_update_items()
+#func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+	#if loot.is_visible():
+		#loot_items.append(player_items[index])
+		#player_items.remove_at(index)
+		#_update_items()
+	#else:
+		#match player_items[index].data.item_category:
+			#ItemData.ITEM_CATEGORY.MELEE_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.RANGED_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.MAGIC_WEAPON:
+				#_swap_weapons(true, index)
+			#ItemData.ITEM_CATEGORY.OFF_HAND:
+				#_swap_weapons(false, index)
+			#ItemData.ITEM_CATEGORY.CONSUMABLE:
+				#equipped_consumable = _swap_items(equipped_consumable, index)
+		#_update_items()
 
 func take_item_from_list(index: int, list: Array):
 	#if list[index].data.stackable:
