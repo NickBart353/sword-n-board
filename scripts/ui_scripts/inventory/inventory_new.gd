@@ -10,7 +10,7 @@ var player_boots: Item
 var player_mainhand: Item
 var player_offhand: Item
 
-@onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/TabBar
+@onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar
 @onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ItemGrid
 
 @onready var weapon_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller

@@ -1,19 +1,29 @@
 [gd_scene format=3 uid="uid://dmc2y42r6de2g"]
 
 [ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="1_kwdn5"]
-[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="2_xvvta"]
+[ext_resource type="Texture2D" uid="uid://dcgq320jghn3y" path="res://my_assets/sprites/iron_sword.png" id="2_l452j"]
 [ext_resource type="Script" uid="uid://d1qghioas5oxp" path="res://scripts/ui_scripts/inventory/inventory_item.gd" id="4_r2s1f"]
 
 [node name="InventoryItem" type="Button" unique_id=550894679]
 custom_minimum_size = Vector2(200, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
 offset_right = 100.0
 offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_kwdn5")
-theme_override_fonts/font = ExtResource("2_xvvta")
-theme_override_font_sizes/font_size = 40
 button_mask = 3
+text = "aaaaaaahhhh teeeeeeest reeeeeee"
+icon = ExtResource("2_l452j")
+text_overrun_behavior = 2
 autowrap_mode = 2
 autowrap_trim_flags = 192
 icon_alignment = 1
@@ -32,7 +42,7 @@ offset_right = -7.0
 offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.59607846, 0.13725491, 1)
+color = Color(0.29449034, 0.84160805, 0, 1)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
