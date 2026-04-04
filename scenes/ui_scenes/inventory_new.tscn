@@ -5,26 +5,16 @@
 [ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
 [ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
+[ext_resource type="StyleBox" uid="uid://ddjsfk7p1jiyv" path="res://resources/ui/inventory/item_text_panel_left.tres" id="4_a6s62"]
 [ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="4_fywa2"]
 [ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_suhgw"]
 [ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="8_suhgw"]
+[ext_resource type="StyleBox" uid="uid://bkbju5em5sd8o" path="res://resources/ui/inventory/item_text_panel_right.tres" id="10_3732a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ntrp"]
 bg_color = Color(0.2159017, 0.21590173, 0.21590161, 0.3254902)
 
 [sub_resource type="Theme" id="Theme_h7awd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfnqs"]
-bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hn110"]
-bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwmof"]
 bg_color = Color(0.16078432, 0.19215687, 0.16862746, 1)
@@ -67,9 +57,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="TabBar" type="TabBar" parent="MarginContainer/Inventory/ItemContainer" unique_id=12589894]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=1315602240]
+layout_mode = 2
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_right = 10
+
+[node name="TabBar" type="TabBar" parent="MarginContainer/Inventory/ItemContainer/MarginContainer" unique_id=12589894]
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("1_gwmof")
 current_tab = 0
 tab_count = 5
 tab_0/title = "All"
@@ -110,7 +106,7 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_h7awd")
-theme_override_styles/panel = SubResource("StyleBoxFlat_rfnqs")
+theme_override_styles/panel = ExtResource("4_a6s62")
 
 [node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel" unique_id=1171193300]
 layout_mode = 2
@@ -343,7 +339,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="DisplayPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin" unique_id=871509938]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hn110")
+theme_override_styles/panel = ExtResource("10_3732a")
 
 [node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel" unique_id=1566112210]
 layout_mode = 2
@@ -641,4 +637,4 @@ size_flags_vertical = 1
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
-[connection signal="tab_changed" from="MarginContainer/Inventory/ItemContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="tab_changed" from="MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
