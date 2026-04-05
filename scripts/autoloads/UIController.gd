@@ -52,9 +52,11 @@ func give_updated_player_items(updated_player_items: Array, updated_player_consu
 
 func update_player_items_from_inventory(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
 	new_player_items.emit(player_items, player_consumables, player_helmet, player_body, player_boots, player_mainhand, player_offhand)
+	#set_player_consumables.emit(player_consumables)
 
 func update_player_consumables(player_consumables: Array):
 	set_player_consumables.emit(player_consumables)
+	print("fest")
 
 func is_ui_open() -> bool:
 	return ui_open

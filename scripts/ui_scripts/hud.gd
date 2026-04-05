@@ -4,7 +4,7 @@ extends Control
 @onready var stamina_bar: ProgressBar = $PlayerResourceContainer/StaminaMargin/StaminaBar
 @onready var mana_bar: ProgressBar = $PlayerResourceContainer/ManaMargin/ManaBar
 
-@onready var consumable_display: GridContainer = $ConsumableDisplay
+@onready var consumable_display: GridContainer = $PanelContainer/ConsumableDisplay
 
 @export var temp_consumable_display: PackedScene
 
@@ -29,12 +29,15 @@ func rotate_consumable():
 		for child in consumable_display.get_children():
 			child.hide()
 		current_consumable_index += 1
+		if current_consumable_index >= player_consumables.size():
+			current_consumable_index = 0
 		consumable_display.get_child(current_consumable_index).show()
 
 func _set_player_consumables(consumables: Array):
 	player_consumables = consumables
 	for child in consumable_display.get_children():
 		child.queue_free()
+	print(consumables)
 	if player_consumables.size() > 0:
 		current_consumable_index = 0
 		for item in player_consumables:
