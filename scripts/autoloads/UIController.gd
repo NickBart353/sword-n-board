@@ -56,7 +56,6 @@ func update_player_items_from_inventory(player_items: Array, player_consumables:
 
 func update_player_consumables(player_consumables: Array):
 	set_player_consumables.emit(player_consumables)
-	print("fest")
 
 func is_ui_open() -> bool:
 	return ui_open

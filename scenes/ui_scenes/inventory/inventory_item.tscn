@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dcgq320jghn3y" path="res://my_assets/sprites/iron_sword.png" id="2_l452j"]
 [ext_resource type="Script" uid="uid://d1qghioas5oxp" path="res://scripts/ui_scripts/inventory/inventory_item.gd" id="4_r2s1f"]
 
-[node name="InventoryItem" type="Button" unique_id=550894679]
+[sub_resource type="LabelSettings" id="LabelSettings_l452j"]
+font_size = 25
+
+[node name="InventoryItem" type="Button" unique_id=550894679 node_paths=PackedStringArray("count_label")]
 custom_minimum_size = Vector2(200, 200)
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,6 +33,7 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("4_r2s1f")
+count_label = NodePath("Label")
 
 [node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
 layout_mode = 1
@@ -43,6 +47,18 @@ offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.29449034, 0.84160805, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=782010721]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.05
+anchor_right = 0.31500003
+anchor_bottom = 0.05
+offset_right = 10.999996
+offset_bottom = 26.0
+text = "222"
+label_settings = SubResource("LabelSettings_l452j")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,7 +1,19 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://djfvq7uhn028j"]
 
 [ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_7wmtr"]
+[ext_resource type="Texture2D" uid="uid://dxqhf5v580v4b" path="res://my_assets/sprites/mana_flask.png" id="2_jrcf6"]
 
 [resource]
 script = ExtResource("1_7wmtr")
+item_name = "Mana Potion"
+item_id = "77766544456"
+tooltip = "It's blue!"
+explanation_text = "A flask filled with a blue liquid, intended to recover the players mana.
+"
+stackable = true
+sprite = ExtResource("2_jrcf6")
+drop_chance = 1.0
+item_category = 2
+item_sub_category = 3
+item_type = 3
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

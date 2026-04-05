@@ -4,12 +4,15 @@ signal item_hovered
 signal item_pressed
 
 @onready var consumable_marker: ColorRect = $ConsumableMarker
+#@onready var count_label: Label = $Label
+@export var count_label: Label
 
 var item: Item
 var slot: String = ""
 
 func _ready() -> void:
 	consumable_marker.hide()
+	
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -29,6 +32,11 @@ func set_data(new_item: Item) -> void:
 	item = new_item
 	text = item.data.item_name
 	icon = item.data.sprite
+	if item.data.stackable:
+		count_label.show.call_deferred()
+		count_label.text = str(item.data.stack_size)
+	else:
+		count_label.hide.call_deferred()
 
 func set_slot(new_slot: String) -> void:
 	slot = new_slot

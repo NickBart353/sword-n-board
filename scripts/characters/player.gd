@@ -340,6 +340,10 @@ func _load_preset_items():
 	var potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	potion.data = ItemManager.ITEMS["health_potion"]
 	items.append(potion)
+	var minor_mana_potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
+	minor_mana_potion.data = ItemManager.ITEMS["mana_potion"]
+	minor_mana_potion.data.stack_size = 19
+	items.append(minor_mana_potion)
 
 func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):
 	AudioManager.play_audio_from_resource(resource, global_position, bus, offset)
