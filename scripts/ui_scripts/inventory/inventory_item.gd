@@ -37,6 +37,7 @@ func set_data(new_item: Item) -> void:
 		count_label.text = str(item.data.stack_size)
 	else:
 		count_label.hide.call_deferred()
+		count_label.text = ""
 
 func set_slot(new_slot: String) -> void:
 	slot = new_slot

@@ -45,7 +45,7 @@ func _update_player_items(updated_player_items: Array, updated_player_consumable
 			inventory_item.item_pressed.connect(activate_item)
 			inventory_item.set_data(item)
 			item_grid.add_child(inventory_item)
-	UiController.update_player_consumables(player_consumables)
+	#UiController.update_player_consumables(player_consumables)
 
 func update_item_display(item: Item):
 	match item.data.item_category:

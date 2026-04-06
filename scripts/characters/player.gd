@@ -70,6 +70,7 @@ func _ready() -> void:
 	UiController.update_manabar(MANA)
 	UiController.get_updated_player_items.connect(_give_player_items)
 	UiController.new_player_items.connect(new_player_items)
+	UiController.new_consumable.connect(_new_consumable)
 	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = head.rotation.x
@@ -225,6 +226,9 @@ func new_player_items(player_items: Array, player_consumables: Array, player_hel
 		main_hand_item = _reequip_slot(main_hand_item, player_mainhand, right_hand)
 		off_hand_item = _reequip_slot(off_hand_item, player_offhand, left_hand)
 
+func _new_consumable(item: Item):
+	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
+
 func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
 	if property in self:
 		match property_type:
@@ -265,6 +269,14 @@ func take_damage(damage, body: Node):
 			use_stamina(STAMINA)
 			damage *= 3
 	update_HEALTH(-damage)
+
+func update_MANA(amount: float):
+	MANA += amount
+	if MANA < MIN_MANA:
+		MANA = MIN_MANA
+	if MANA >= MAX_MANA:
+		MANA = MAX_MANA
+	UiController.update_manabar(MANA)
 
 func update_HEALTH(amount: float):
 	HEALTH += amount

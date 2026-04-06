@@ -2,15 +2,15 @@
 
 [ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="1_lvrj6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4deqw"]
-bg_color = Color(0.37230912, 0.36903253, 0.3080628, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhsk0"]
+bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhsk0"]
-bg_color = Color(0.17641908, 0.17641911, 0.17641899, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4deqw"]
+bg_color = Color(0.37230912, 0.36903253, 0.3080628, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -73,6 +73,7 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 130
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_lvrj6")
+Button/styles/disabled = SubResource("StyleBoxFlat_xhsk0")
 Button/styles/hover = SubResource("StyleBoxFlat_4deqw")
 Button/styles/normal = SubResource("StyleBoxFlat_xhsk0")
 Button/styles/pressed = SubResource("StyleBoxFlat_wn17g")

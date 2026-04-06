@@ -31,20 +31,30 @@ func rotate_consumable():
 		current_consumable_index += 1
 		if current_consumable_index >= player_consumables.size():
 			current_consumable_index = 0
+		current_consumable = consumable_display.get_child(current_consumable_index).item
 		consumable_display.get_child(current_consumable_index).show()
+		_update_player_consumable()
 
 func _set_player_consumables(consumables: Array):
 	player_consumables = consumables
 	for child in consumable_display.get_children():
 		child.queue_free()
-	print(consumables)
 	if player_consumables.size() > 0:
-		current_consumable_index = 0
+		if current_consumable_index > player_consumables.size() - 1:
+			current_consumable_index = 0
+		var temp_consumable_counter: int = 0
 		for item in player_consumables:
 			var display_instance = temp_consumable_display.instantiate()
 			display_instance.disabled = true
-			display_instance.text = item.data.item_name
-			display_instance.icon = item.data.sprite
+			display_instance.set_data(item)
 			consumable_display.add_child(display_instance)
-			display_instance.hide()
-		consumable_display.get_child(current_consumable_index).show()
+			display_instance.name = item.data.item_name
+			if temp_consumable_counter != current_consumable_index: 
+				display_instance.hide()
+			else:
+				current_consumable = item
+				_update_player_consumable()
+			temp_consumable_counter += 1
+
+func _update_player_consumable():
+	UiController.give_player_new_consumable(current_consumable)

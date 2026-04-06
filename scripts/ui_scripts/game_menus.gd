@@ -89,7 +89,7 @@ func _escape_menu():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _rotate_consumable():
-	if get_tree().paused:
+	if not get_tree().paused:
 		hud.rotate_consumable()
 
 func _update_healthbar(health: float):

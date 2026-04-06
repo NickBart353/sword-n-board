@@ -15,5 +15,5 @@ sprite = ExtResource("2_jrcf6")
 drop_chance = 1.0
 item_category = 2
 item_sub_category = 3
-item_type = 3
+item_type = 4
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

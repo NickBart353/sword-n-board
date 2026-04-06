@@ -10,6 +10,8 @@ signal get_updated_player_items
 signal new_player_items
 signal set_player_consumables
 
+signal new_consumable
+
 signal _update_healthbar
 signal _update_staminabar
 signal _update_manabar
@@ -56,6 +58,9 @@ func update_player_items_from_inventory(player_items: Array, player_consumables:
 
 func update_player_consumables(player_consumables: Array):
 	set_player_consumables.emit(player_consumables)
+
+func give_player_new_consumable(item: Item):
+	new_consumable.emit(item)
 
 func is_ui_open() -> bool:
 	return ui_open
