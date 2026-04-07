@@ -71,9 +71,7 @@ func _remove_player_consumable(item: Item):
 			current_consumable = item
 	else:
 		_remove(item)
-	
 	_update_player_consumable()
-	#rotate_consumable()
 
 func _remove(item : Item):
 	UiController.remove_consumable_from_inventory(item, false)
@@ -81,10 +79,15 @@ func _remove(item : Item):
 		if inventory_item.item.data.item_id == item.data.item_id:
 			inventory_item.queue_free()
 			break
-	var remove_index: int = player_consumables.find(item)
-	if remove_index:
-		player_consumables.remove_at(remove_index)
+	for consumable in player_consumables:
+		if item.data.item_id == consumable.data.item_id:
+			player_consumables.remove_at(player_consumables.find(consumable))
+			break
 	current_consumable = null
+	#current_consumable_index -= 1
+	#if current_consumable_index < 0:
+		#current_consumable_index = 0
+	rotate_consumable()
 
 func _update_player_consumable():
 	UiController.give_player_new_consumable(current_consumable)
