@@ -29,6 +29,7 @@ var player_offhand: Item
 func _ready() -> void:
 	hide()
 	UiController.update_player_items.connect(_update_player_items)
+	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.get_player_items.call_deferred()
 
 func get_player_items():
@@ -162,6 +163,25 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 		player_consumables.remove_at(player_consumables.find(item))
 		inventory_item.unmark_consumable()
 	_emit_update_player_items()
+
+func _remove_consumable(item: Item, remove_stack: bool):
+	if remove_stack:
+		for inventory_item in item_grid.get_children():
+			if inventory_item.item.data.item_id == item.data.item_id:
+				inventory_item.set_data(item)
+				break
+	else:
+		for inventory_item in item_grid.get_children():
+			if inventory_item.item.data.item_id == item.data.item_id:
+				inventory_item.queue_free()
+				break
+		var remove_index: int = player_items.find(item)
+		if remove_index:
+			player_items.remove_at(remove_index)
+		
+		remove_index = player_consumables.find(item)
+		if remove_index:
+			player_consumables.remove_at(remove_index)
 
 func _emit_update_player_items():
 	UiController.update_player_consumables(player_consumables)

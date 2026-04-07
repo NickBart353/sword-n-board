@@ -245,10 +245,11 @@ func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount
 				print("not implemented yet...")
 
 func _remove_consumable():
-	consumable_item.data.stack_size -= 1
-	if consumable_item.data.stack_size > 0:
-		return
-	consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
+	UiController.consumed(consumable_item)
+	#consumable_item.data.stack_size -= 1
+	#if consumable_item.data.stack_size > 0:
+		#return
+	#consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -351,10 +352,11 @@ func _load_preset_items():
 	items.append(torch)
 	var potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	potion.data = ItemManager.ITEMS["health_potion"]
+	potion.data.stack_size = 5
 	items.append(potion)
 	var minor_mana_potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
 	minor_mana_potion.data = ItemManager.ITEMS["mana_potion"]
-	minor_mana_potion.data.stack_size = 19
+	minor_mana_potion.data.stack_size = 3
 	items.append(minor_mana_potion)
 
 func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):

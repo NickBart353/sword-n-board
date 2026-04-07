@@ -11,6 +11,8 @@ signal new_player_items
 signal set_player_consumables
 
 signal new_consumable
+signal player_consumed_item
+signal remove_consumable
 
 signal _update_healthbar
 signal _update_staminabar
@@ -61,6 +63,12 @@ func update_player_consumables(player_consumables: Array):
 
 func give_player_new_consumable(item: Item):
 	new_consumable.emit(item)
+
+func consumed(item: Item):
+	player_consumed_item.emit(item)
+
+func remove_consumable_from_inventory(item: Item, remove_stack: bool):
+	remove_consumable.emit(item, remove_stack)
 
 func is_ui_open() -> bool:
 	return ui_open

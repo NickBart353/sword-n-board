@@ -14,6 +14,7 @@ var current_consumable: Item
 
 func _ready() -> void:
 	UiController.set_player_consumables.connect(_set_player_consumables)
+	UiController.player_consumed_item.connect(_remove_player_consumable)
 
 func update_health(health: float):
 	health_bar.value = health
@@ -55,6 +56,35 @@ func _set_player_consumables(consumables: Array):
 				current_consumable = item
 				_update_player_consumable()
 			temp_consumable_counter += 1
+
+func _remove_player_consumable(item: Item):
+	if item.data.stackable:
+		item.data.stack_size -= 1
+		if item.data.stack_size <= 0:
+			_remove(item)
+		else:
+			UiController.remove_consumable_from_inventory(item, true)
+			for inventory_item in consumable_display.get_children():
+				if inventory_item.item.data.item_id == item.data.item_id:
+					inventory_item.set_data(item)
+					break
+			current_consumable = item
+	else:
+		_remove(item)
+	
+	_update_player_consumable()
+	#rotate_consumable()
+
+func _remove(item : Item):
+	UiController.remove_consumable_from_inventory(item, false)
+	for inventory_item in consumable_display.get_children():
+		if inventory_item.item.data.item_id == item.data.item_id:
+			inventory_item.queue_free()
+			break
+	var remove_index: int = player_consumables.find(item)
+	if remove_index:
+		player_consumables.remove_at(remove_index)
+	current_consumable = null
 
 func _update_player_consumable():
 	UiController.give_player_new_consumable(current_consumable)
