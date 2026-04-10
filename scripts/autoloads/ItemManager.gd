@@ -8,7 +8,7 @@ const ITEMS: Dictionary = {
 	"health_potion": preload("res://resources/items/health_potion.tres"),
 	"mana_potion": preload("res://resources/items/mana_potion.tres"),
 	"MinorManaPotion" : preload("res://scenes/component_scenes/item_entities/consumable/mana_potion.tscn"),
-"iron_sword": preload("res://resources/items/iron_sword.tres"),
+	"short_sword": preload("res://resources/items/short_sword.tres"),
 	"wooden_shield": preload("res://resources/items/wooden_shield.tres"),
 	"torch": preload("res://resources/items/torch.tres"),
 	"magic_tome": preload("res://resources/items/magic_tome.tres"),

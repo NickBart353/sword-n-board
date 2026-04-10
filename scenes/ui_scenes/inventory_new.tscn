@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
 [ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
+[ext_resource type="PackedScene" uid="uid://rcj82iq4a6fk" path="res://scenes/ui_scenes/inventory/equipped_item.tscn" id="4_3732a"]
 [ext_resource type="StyleBox" uid="uid://ddjsfk7p1jiyv" path="res://resources/ui/inventory/item_text_panel_left.tres" id="4_a6s62"]
 [ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="4_fywa2"]
 [ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_suhgw"]
@@ -41,6 +42,7 @@ theme = ExtResource("1_gwmof")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ntrp")
 script = ExtResource("2_hn110")
 inventory_item_scene = ExtResource("3_mkjgx")
+equipped_item_scene = ExtResource("4_3732a")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=950240407]
 layout_mode = 2

@@ -19,7 +19,7 @@ const ITEM_TYPE_DICT: Dictionary = {
 
 const RESOURCE_DICT: Dictionary = {
 	"405c2076-e86a-4c6d-8b9c-e48e4a16c317": preload("res://resources/items/health_potion.tres"),
-	"0f955077-40b4-47d4-bb60-d0e8a7f73775": preload("res://resources/items/iron_sword.tres"),
+	"0f955077-40b4-47d4-bb60-d0e8a7f73775": preload("res://resources/items/short_sword.tres"),
 	"8f767e0e-2df8-41e3-bc02-50d0e9147584": preload("res://resources/items/wooden_shield.tres"),
 	"2de84977-0bb3-45b8-8ed1-ace14908b311": preload("res://resources/items/torch.tres"),
 	"182471841": preload("res://resources/items/magic_tome.tres"),

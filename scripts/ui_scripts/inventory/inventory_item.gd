@@ -1,18 +1,17 @@
-class_name InventoryItem extends Button
+class_name InventoryItem extends UIItem
 
-signal item_hovered
-signal item_pressed
+@export var consumable_marker: ColorRect
+@export var armor_equipped_marker: ColorRect
+@export var mainhand_equipped_marker: ColorRect
+@export var offhand_equipped_marker: ColorRect
 
-@onready var consumable_marker: ColorRect = $ConsumableMarker
-#@onready var count_label: Label = $Label
 @export var count_label: Label
-
-var item: Item
-var slot: String = ""
 
 func _ready() -> void:
 	consumable_marker.hide()
-	
+	armor_equipped_marker.hide()
+	mainhand_equipped_marker.hide()
+	offhand_equipped_marker.hide()
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -28,19 +27,50 @@ func _on_mouse_entered() -> void:
 #func _on_pressed() -> void:
 	#item_pressed.emit(item)
 
-func set_data(new_item: Item) -> void:
+func set_data(new_item: Item, new_slot: String = "") -> void:
 	item = new_item
 	text = item.data.item_name
 	icon = item.data.sprite
+	
 	if item.data.stackable:
 		count_label.show.call_deferred()
 		count_label.text = str(item.data.stack_size)
 	else:
 		count_label.hide.call_deferred()
 		count_label.text = ""
+	
+	#if item.data.equipped:
+		#armor_equipped_marker.show.call_deferred()
+	#else:
+		#armor_equipped_marker.hide.call_deferred()
+
+	set_slot(new_slot)
+	if item.data.equipped == false:
+		consumable_marker.hide()
+		armor_equipped_marker.hide()
+		mainhand_equipped_marker.hide()
+		offhand_equipped_marker.hide()
 
 func set_slot(new_slot: String) -> void:
 	slot = new_slot
+	if item.data is WeaponData:
+		if slot == "MAINHAND":
+			mainhand_equipped_marker.show()
+			offhand_equipped_marker.hide()
+		if slot == "OFFHAND":
+			offhand_equipped_marker.show()
+			mainhand_equipped_marker.hide()
+		if item.data.two_handed:
+			offhand_equipped_marker.show()
+			mainhand_equipped_marker.show()
+
+func unequip():
+	consumable_marker.hide()
+	armor_equipped_marker.hide()
+	mainhand_equipped_marker.hide()
+	offhand_equipped_marker.hide()
+	#item.data.equipped = false
+	#slot = ""
 
 func mark_consumable():
 	consumable_marker.show()

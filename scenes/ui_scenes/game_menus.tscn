@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cwinrusgyo4uw" path="res://scripts/ui_scripts/hud.gd" id="2_t6q64"]
 [ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_v06nt"]
 [ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_l4c86"]
-[ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="5_0men4"]
+[ext_resource type="PackedScene" uid="uid://bodtuwhpm380p" path="res://scenes/ui_scenes/hud/hud_consumable.tscn" id="5_0men4"]
 [ext_resource type="StyleBox" uid="uid://cvquvl4pw2xsl" path="res://resources/ui/resource_bars/healthbar_background_stylebox.tres" id="5_1xi2f"]
 [ext_resource type="PackedScene" uid="uid://bfo7c5l74qhwf" path="res://scenes/ui_scenes/pause_menu.tscn" id="5_l4c86"]
 [ext_resource type="StyleBox" uid="uid://dmk0uyv5u566a" path="res://resources/ui/resource_bars/healthbar_fill_stylebox.tres" id="6_hkf0r"]
@@ -14,6 +14,7 @@
 [ext_resource type="StyleBox" uid="uid://ba52ybq1l3p5a" path="res://resources/ui/resource_bars/manabar_background_stylebox.tres" id="9_0men4"]
 [ext_resource type="StyleBox" uid="uid://c6v5i8we77r6o" path="res://resources/ui/resource_bars/manabar_fill_stylebox.tres" id="10_25rgj"]
 [ext_resource type="PackedScene" uid="uid://bub18fmie3reu" path="res://scenes/ui_scenes/inventory_new.tscn" id="11_h2ykw"]
+[ext_resource type="Theme" uid="uid://dhredoyg6oik8" path="res://resources/ui/hud/hud_theme.tres" id="12_25rgj"]
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513 groups=["BlockInput"]]
 process_mode = 3
@@ -30,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_t6q64")
-temp_consumable_display = ExtResource("5_0men4")
+display_item = ExtResource("5_0men4")
 
 [node name="CrossHair" type="ColorRect" parent="Hud" unique_id=1354946558]
 layout_mode = 1
@@ -115,19 +116,67 @@ value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="PanelContainer" type="PanelContainer" parent="Hud" unique_id=712990739]
+[node name="ConsumablePanel" type="PanelContainer" parent="Hud" unique_id=712990739]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.039
-offset_left = 129.0
-offset_top = 755.0
-offset_right = 212.12
-offset_bottom = 914.0
+anchor_left = 0.14500001
+anchor_top = 0.711
+anchor_right = 0.21100001
+anchor_bottom = 0.711
+offset_left = -0.4000244
+offset_top = 0.11999512
+offset_bottom = 128.12
+theme = ExtResource("12_25rgj")
 
-[node name="ConsumableDisplay" type="GridContainer" parent="Hud/PanelContainer" unique_id=1817877383]
+[node name="ConsumableMargin" type="MarginContainer" parent="Hud/ConsumablePanel" unique_id=1315885596]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ConsumableDisplay" type="GridContainer" parent="Hud/ConsumablePanel/ConsumableMargin" unique_id=1817877383]
+layout_mode = 2
+
+[node name="MainhandPanel" type="PanelContainer" parent="Hud" unique_id=1656855291]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.743
+anchor_right = 0.135
+anchor_bottom = 0.746
+offset_bottom = 128.0
+theme = ExtResource("12_25rgj")
+
+[node name="MainhandMargin" type="MarginContainer" parent="Hud/MainhandPanel" unique_id=794614874]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MainhandDisplay" type="GridContainer" parent="Hud/MainhandPanel/MainhandMargin" unique_id=18482322]
+layout_mode = 2
+
+[node name="OffhandPanel" type="PanelContainer" parent="Hud" unique_id=1348186050]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.22
+anchor_top = 0.743
+anchor_right = 0.285
+anchor_bottom = 0.746
+offset_bottom = 128.0
+theme = ExtResource("12_25rgj")
+
+[node name="OffhandMargin" type="MarginContainer" parent="Hud/OffhandPanel" unique_id=2036046445]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="OffhandDisplay" type="GridContainer" parent="Hud/OffhandPanel/OffhandMargin" unique_id=180798788]
+layout_mode = 2
 
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
 visible = false

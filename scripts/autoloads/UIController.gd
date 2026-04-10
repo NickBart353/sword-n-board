@@ -9,6 +9,8 @@ signal update_player_items
 signal get_updated_player_items
 signal new_player_items
 signal set_player_consumables
+signal new_mainhand
+signal new_offhand
 
 signal new_consumable
 signal player_consumed_item
@@ -63,6 +65,12 @@ func update_player_consumables(player_consumables: Array):
 
 func give_player_new_consumable(item: Item):
 	new_consumable.emit(item)
+
+func update_hud_mainhand(player_mainhand: Item):
+	new_mainhand.emit(player_mainhand)
+
+func update_hud_offhand(player_offhand: Item, two_hand_duplicate: bool):
+	new_offhand.emit(player_offhand, two_hand_duplicate)
 
 func consumed(item: Item):
 	player_consumed_item.emit(item)

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bodtuwhpm380p"]
+
+[ext_resource type="Script" uid="uid://bdhs2tyg4onf2" path="res://scripts/ui_scripts/hud/hud_consumable.gd" id="1_e14jv"]
+[ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="2_lorbw"]
+[ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_lorbw"]
+
+[node name="HudConsumable" type="TextureRect" unique_id=1356221324 node_paths=PackedStringArray("count_label")]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_e14jv")
+count_label = NodePath("CountLabel")
+
+[node name="CountLabel" type="Label" parent="." unique_id=1023041239]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_lorbw")
+text = "test"
+label_settings = ExtResource("3_lorbw")
