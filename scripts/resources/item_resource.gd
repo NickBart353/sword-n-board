@@ -17,8 +17,9 @@ var stack_size: int = 1
 var equipped: bool = false
 
 enum ITEM_CATEGORY {WEAPON, ARMOR, CONSUMABLE, MATERIAL}
-enum ITEM_SUB_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, POTION, SHARD}
-enum ITEM_TYPE {SWORD, BOOK, BOW, POTION, MANA_POTION, TORCH, SHIELD}
+enum ITEM_SUB_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, CONSUMABLE, THROWABLE, MATERIAL}
+enum ITEM_TYPE {SHORTSWORD, GREATSWORD, AXE, DAGGER, GREATHAMMER, KATANA, SPEAR, TORCH, SHIELD,
+				BOOK, BOW, POTION, MANA_POTION, CONSUMABLE, GRENADE}
 
 func get_item_category_value(value: ITEM_CATEGORY) -> String:
 	match value:
@@ -40,22 +41,40 @@ func get_item_sub_category_value(value: ITEM_SUB_CATEGORY) -> String:
 			return "Ranged Weapon"
 		ITEM_SUB_CATEGORY.MAGIC_WEAPON:
 			return "Magic Weapon"
-		ITEM_SUB_CATEGORY.POTION:
-			return "Potion"
-		ITEM_SUB_CATEGORY.SHARD:
-			return "Shard"
+		ITEM_SUB_CATEGORY.CONSUMABLE:
+			return "Consumable"
+		ITEM_SUB_CATEGORY.THROWABLE:
+			return "Throwable"
+		ITEM_SUB_CATEGORY.MATERIAL:
+			return "Material"
 	return ""
 
 func get_item_type_value(value: ITEM_TYPE) -> String:
 	match value:
-		ITEM_TYPE.SWORD:
-			return "Sword"
+		ITEM_TYPE.SHORTSWORD:
+			return "Shortsword"
+		ITEM_TYPE.GREATSWORD:
+			return "Greatsword"
+		ITEM_TYPE.AXE:
+			return "Axe"
+		ITEM_TYPE.DAGGER:
+			return "Dagger"
+		ITEM_TYPE.GREATHAMMER:
+			return "Greathammer"
+		ITEM_TYPE.KATANA:
+			return "Katana"
+		ITEM_TYPE.SPEAR:
+			return "Spear"
 		ITEM_TYPE.BOOK:
 			return "Book"
 		ITEM_TYPE.BOW:
 			return "Bow"
 		ITEM_TYPE.POTION:
 			return "Potion"
+		ITEM_TYPE.GRENADE:
+			return "Grenade"
+		ITEM_TYPE.CONSUMABLE:
+			return "Consumable"
 		ITEM_TYPE.TORCH:
 			return "Torch"
 		ITEM_TYPE.SHIELD:

@@ -5,8 +5,7 @@
 
 [resource]
 script = ExtResource("1_6but8")
-normal_damage = 0
-magic_damage = 23
+normal_damage = 15.0
 two_handed = true
 item_name = "Magic Tome"
 item_id = "182471841"
@@ -14,5 +13,5 @@ tooltip = "You're a wizard!"
 sprite = ExtResource("2_6but8")
 drop_chance = 1.0
 item_sub_category = 2
-item_type = 1
+item_type = 9
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

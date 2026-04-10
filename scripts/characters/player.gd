@@ -335,32 +335,7 @@ func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vec
 	spawn_projectile.emit(projectile, spawn_position, direction, proj_transform, direction_flag)
 
 func _load_preset_items():
-	var sword: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	sword.data = ItemManager.ITEMS["short_sword"]
-	items.append(sword)
-	var sword_two: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	sword_two.data = ItemManager.ITEMS["short_sword"]
-	items.append(sword_two)
-	var book: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	book.data = ItemManager.ITEMS["magic_tome"]
-	items.append(book)
-	var shield: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	shield.data = ItemManager.ITEMS["wooden_shield"]
-	items.append(shield)
-	var bow: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	bow.data = ItemManager.ITEMS["wooden_bow"]
-	items.append(bow)
-	var torch: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	torch.data = ItemManager.ITEMS["torch"]
-	items.append(torch)
-	var potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	potion.data = ItemManager.ITEMS["health_potion"]
-	potion.data.stack_size = 2
-	items.append(potion)
-	var minor_mana_potion: Control = preload("res://scenes/ui_scenes/item.tscn").instantiate()
-	minor_mana_potion.data = ItemManager.ITEMS["mana_potion"]
-	minor_mana_potion.data.stack_size = 2
-	items.append(minor_mana_potion)
+	items = ItemManager.load_debug_items()
 
 func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):
 	AudioManager.play_audio_from_resource(resource, global_position, bus, offset)

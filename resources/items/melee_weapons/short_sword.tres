@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_wnj3e")
-normal_damage = 25
+normal_damage = 32.0
 item_name = "Shortsword"
 item_id = "0f955077-40b4-47d4-bb60-d0e8a7f73775"
 tooltip = "It's a sword!"

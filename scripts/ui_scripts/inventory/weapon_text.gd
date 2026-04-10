@@ -23,5 +23,5 @@ func set_text(item: Item):
 	fire_value.text = "{0}".format([item.data.fire_damage])
 	lightning_value.text = "{0}".format([item.data.lightning_damage])
 	cold_value.text = "{0}".format([item.data.cold_damage])
-	ground_value.text = "{0}".format([item.data.ground_damage])
+	ground_value.text = "{0}".format([item.data.nature_damage])
 	chaos_value.text = "{0}".format([item.data.chaos_damage])
