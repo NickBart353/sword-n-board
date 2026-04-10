@@ -197,6 +197,7 @@ func get_item(key: String, drop_chance: float, stack_amount: int) -> Control:
 			print("Data not found for: {0} - {1}".format([item_instance, key]))
 			return null
 		else:
+			item_data = item_data.duplicate()
 			if item_data.stackable:
 				item_data.stack_size = stacksize
 		item_instance.data = item_data

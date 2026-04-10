@@ -45,7 +45,7 @@ func _ready() -> void:
 func get_player_items():
 	UiController.get_player_items()
 
-func _update_player_items(updated_player_items: Array, updated_player_consumables: Array, _updated_player_helmet: Item, _updated_player_body: Item, _updated_player_boots: Item, _updated_player_mainhand: Item, _updated_player_offhand: Item) -> void:
+func _update_player_items(updated_player_items: Array, _updated_player_consumables: Array, _updated_player_helmet: Item, _updated_player_body: Item, _updated_player_boots: Item, _updated_player_mainhand: Item, _updated_player_offhand: Item) -> void:
 	if not player_items == updated_player_items or not player_items:
 		sort_player_items()
 		player_items = updated_player_items
@@ -118,7 +118,7 @@ func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: Inven
 	else:
 		slot = OFFHAND
 	
-	_clear_previous_equipped_slot(slot, item)
+	_clear_previous_equipped_slot(slot, item, pressed_inventory_item)
 	
 	if item.data.equipped and _reequip_weapon_in_other_slot(item, pressed_inventory_item, mousebutton):
 		unequip_item(pressed_inventory_item, item, "", pressed_inventory_item.slot)
@@ -174,7 +174,7 @@ func _reequip_weapon_in_other_slot(item: Item, pressed_inventory_item: Inventory
 	else:
 		return false
 
-func _clear_previous_equipped_slot(slot: String, item: Item) -> void:
+func _clear_previous_equipped_slot(slot: String, item: Item, _pressed_item: InventoryItem) -> void:
 	for inventory_item in item_grid.get_children():
 		var success: bool = false
 		if item.data.item_id == inventory_item.item.data.item_id and inventory_item.item.data.equipped:
@@ -195,7 +195,8 @@ func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slo
 	item.data.equipped = false
 	var empty_slot: String = ""
 	for iterated_inventory_item in item_grid.get_children():
-		if item.data.item_id == iterated_inventory_item.item.data.item_id and slot == iterated_inventory_item.slot:
+		if item.data.item_id == iterated_inventory_item.item.data.item_id and slot == iterated_inventory_item.slot:# and iterated_inventory_item.item.data.equipped:
+			#print("1")
 			iterated_inventory_item.set_data(item, empty_slot)
 			break
 	
