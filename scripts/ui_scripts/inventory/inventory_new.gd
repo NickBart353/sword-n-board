@@ -20,7 +20,7 @@ var player_mainhand: Item
 var player_offhand: Item
 
 @onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar
-@onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ItemGrid
+@onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ScrollContainer/ItemGrid
 
 @onready var weapon_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
 @onready var consumable_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller
@@ -195,8 +195,7 @@ func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slo
 	item.data.equipped = false
 	var empty_slot: String = ""
 	for iterated_inventory_item in item_grid.get_children():
-		if item.data.item_id == iterated_inventory_item.item.data.item_id and slot == iterated_inventory_item.slot:# and iterated_inventory_item.item.data.equipped:
-			#print("1")
+		if item.data.item_id == iterated_inventory_item.item.data.item_id and slot == iterated_inventory_item.slot:
 			iterated_inventory_item.set_data(item, empty_slot)
 			break
 	

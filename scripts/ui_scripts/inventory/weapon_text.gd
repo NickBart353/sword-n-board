@@ -8,7 +8,7 @@ extends InventoryItemText
 @onready var fire_value: Label = $WeaponStats/Fire/FireValue
 @onready var lightning_value: Label = $WeaponStats/Lightning/LightningValue
 @onready var cold_value: Label = $WeaponStats/Cold/ColdValue
-@onready var ground_value: Label = $WeaponStats/Ground/GroundValue
+@onready var nature_value: Label = $WeaponStats/Nature/NatureValue
 @onready var chaos_value: Label = $WeaponStats/Chaos/ChaosValue
 
 func _ready() -> void:
@@ -23,5 +23,5 @@ func set_text(item: Item):
 	fire_value.text = "{0}".format([item.data.fire_damage])
 	lightning_value.text = "{0}".format([item.data.lightning_damage])
 	cold_value.text = "{0}".format([item.data.cold_damage])
-	ground_value.text = "{0}".format([item.data.nature_damage])
+	nature_value.text = "{0}".format([item.data.nature_damage])
 	chaos_value.text = "{0}".format([item.data.chaos_damage])

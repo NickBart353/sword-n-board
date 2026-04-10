@@ -80,7 +80,11 @@ tab_4/title = "Material"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ItemGrid" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel" unique_id=1153937680]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel" unique_id=1026092022]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ItemGrid" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel/ScrollContainer" unique_id=1153937680]
 layout_mode = 2
 size_flags_vertical = 2
 theme_override_constants/h_separation = 4
@@ -252,18 +256,18 @@ size_flags_vertical = 1
 text = "0"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="Ground" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=401809467]
+[node name="Nature" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=401809467]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Ground" unique_id=1653593117]
+[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Nature" unique_id=1653593117]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "Ground Damage"
+text = "Nature Damage"
 label_settings = ExtResource("3_ev5oe")
 
-[node name="GroundValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Ground" unique_id=780391895]
+[node name="NatureValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Nature" unique_id=780391895]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
