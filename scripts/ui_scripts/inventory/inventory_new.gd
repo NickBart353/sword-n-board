@@ -177,7 +177,7 @@ func _reequip_weapon_in_other_slot(item: Item, pressed_inventory_item: Inventory
 func _clear_previous_equipped_slot(slot: String, item: Item, _pressed_item: InventoryItem) -> void:
 	for inventory_item in item_grid.get_children():
 		var success: bool = false
-		if item.data.item_id == inventory_item.item.data.item_id and inventory_item.item.data.equipped:
+		if item.data.item_id == inventory_item.item.data.item_id and inventory_item.item.data.equipped and _pressed_item == inventory_item:
 			continue
 		if inventory_item.item.data is WeaponData and inventory_item.item.data.two_handed and (inventory_item.slot == MAINHAND or inventory_item.slot == OFFHAND):
 			success = true
