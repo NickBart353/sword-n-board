@@ -1,6 +1,15 @@
 extends PanelContainer
 
 signal update_player_items
+const HELMET : String = "HELMET"
+const BODY : String = "BODY"
+const BOOTS : String = "BOOTS"
+const MAINHAND : String = "MAINHAND"
+const OFFHAND : String = "OFFHAND"
+const CONSUMABLE : String = "CONSUMABLE"
+
+const LEFT : String = "LEFT"
+const RIGHT : String = "RIGHT"
 
 var player_items: Array = []
 var player_consumables: Array = []
@@ -104,15 +113,14 @@ func change_displayed_tab(category: ItemData.ITEM_CATEGORY):
 
 func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: InventoryItem, _pressed_slot: String = ""):
 	var slot: String
-	if mousebutton == "LEFT" or item.data.two_handed:
-		slot = "MAINHAND"
+	if mousebutton == LEFT or item.data.two_handed:
+		slot = MAINHAND
 	else:
-		slot = "OFFHAND"
+		slot = OFFHAND
 	
 	_clear_previous_equipped_slot(slot, item)
 	
 	if item.data.equipped and _reequip_weapon_in_other_slot(item, pressed_inventory_item, mousebutton):
-		print("test")
 		unequip_item(pressed_inventory_item, item, "", pressed_inventory_item.slot)
 	
 	if not item.data.equipped:
@@ -133,16 +141,20 @@ func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: Inven
 			duplicate_item.disabled = true
 			offhand.add_child(duplicate_item)
 			UiController.update_hud_mainhand(player_mainhand)
-			UiController.update_hud_offhand(player_offhand, true)
+			UiController.update_hud_offhand(player_mainhand, true)
 		else:
-			if mousebutton == "LEFT":
+			if mousebutton == LEFT:
 				_remove_mainhand()
+				if player_mainhand and player_mainhand.data.two_handed:
+					_remove_offhand()
 				if not player_offhand:
 					_remove_offhand()
 				player_mainhand = item
 				mainhand.add_child(inventory_item)
 				UiController.update_hud_mainhand(player_mainhand)
 			else:
+				if player_mainhand and player_mainhand.data.two_handed:
+					_remove_mainhand()
 				_remove_offhand()
 				player_offhand = item
 				offhand.add_child(inventory_item)
@@ -155,23 +167,33 @@ func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: Inven
 func _reequip_weapon_in_other_slot(item: Item, pressed_inventory_item: InventoryItem, mousebutton: String) -> bool:
 	if item.data.two_handed:
 		return false
-	elif item.data.equipped and pressed_inventory_item.slot == "MAINHAND" and mousebutton == "RIGHT":
+	elif item.data.equipped and pressed_inventory_item.slot == MAINHAND and mousebutton == RIGHT:
 		return true
-	elif item.data.equipped and pressed_inventory_item.slot == "OFFHAND" and mousebutton == "LEFT":
+	elif item.data.equipped and pressed_inventory_item.slot == OFFHAND and mousebutton == LEFT:
 		return true
 	else:
 		return false
 
-func _clear_previous_equipped_slot(slot: String, item: Item):
+func _clear_previous_equipped_slot(slot: String, item: Item) -> void:
 	for inventory_item in item_grid.get_children():
-		if inventory_item.slot == slot and item.data.item_id != inventory_item.item.data.item_id:
+		var success: bool = false
+		if item.data.item_id == inventory_item.item.data.item_id and inventory_item.item.data.equipped:
+			continue
+		if inventory_item.item.data is WeaponData and inventory_item.item.data.two_handed and (inventory_item.slot == MAINHAND or inventory_item.slot == OFFHAND):
+			success = true
+		elif (item.data is WeaponData and item.data.two_handed and (inventory_item.slot == MAINHAND or inventory_item.slot == OFFHAND)):
 			inventory_item.unequip()
 			unequip_item(inventory_item, inventory_item.item, "", inventory_item.slot)
+		elif inventory_item.slot == slot:
+			success = true
+		if success:
+			inventory_item.unequip()
+			unequip_item(inventory_item, inventory_item.item, "", inventory_item.slot)
+			return
 
 func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slot: String):
 	item.data.equipped = false
 	var empty_slot: String = ""
-	#print(_inventory_item.item.data.item_name, " : ", _inventory_item.slot, " : ", slot," : ", item.data.item_name)
 	for iterated_inventory_item in item_grid.get_children():
 		if item.data.item_id == iterated_inventory_item.item.data.item_id and slot == iterated_inventory_item.slot:
 			iterated_inventory_item.set_data(item, empty_slot)
@@ -179,7 +201,7 @@ func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slo
 	
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
-			if slot == "MAINHAND":
+			if slot == MAINHAND:
 				_remove_mainhand()
 				if item.data.two_handed:
 					_remove_offhand()

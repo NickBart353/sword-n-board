@@ -5,6 +5,7 @@ var jump: bool
 var dash: bool
 var freefly: bool
 var primary: bool
+var hold_primary: bool
 var secondary: bool
 var hold_secondary: bool
 var attack: bool
@@ -36,6 +37,7 @@ func get_input(_delta: float):
 		jump = Input.is_action_just_pressed("Jump")
 		dash = Input.is_action_just_pressed("Dash")
 		primary = Input.is_action_just_pressed("Primary")
+		hold_primary = Input.is_action_pressed("Primary")
 		attack = Input.is_action_just_pressed("Primary")
 		secondary = Input.is_action_just_pressed("Secondary")
 		hold_secondary = Input.is_action_pressed("Secondary")

@@ -36,16 +36,16 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 		return
 		
 	if not movement.dashing and not state_controller.is_player_busy():
-		if (input.attack and not shoot_in_progress and not charging and released):
+		if (input.hold_primary and not shoot_in_progress and not charging and released):
 			shoot = 1
 			charging = true
 			shooting = true
 			shoot_in_progress = true
 			released = false
-		if (charging and not input.attack and shoot == 1 and not released):
+		if (charging and not input.hold_primary and shoot == 1 and not released):
 			released = true
 			reset()
-		if max_charge and not input.attack and not released:
+		if max_charge and not input.hold_primary and not released:
 			released = true
 			shoot = 3
 			max_charge = false

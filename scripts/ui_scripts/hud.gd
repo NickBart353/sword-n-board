@@ -117,4 +117,4 @@ func _new_offhand(item: Item, two_handed_duplicate: bool):
 		offhand_display.add_child(display_instance)
 		display_instance.name = item.data.item_name
 		if two_handed_duplicate:
-			display_instance.modulate = Color(1, 1, 1, 0.5)
+			display_instance.modulate = Color(1, 1, 1, 0.3)
