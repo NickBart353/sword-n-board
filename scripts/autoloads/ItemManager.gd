@@ -17,7 +17,7 @@ const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 
 const MELEE_WEAPONS: Dictionary = {
 	"shortsword": preload("res://resources/items/melee_weapons/short_sword.tres"),
-	"greatsword": "",
+	"greatsword": preload("uid://qpdw7kpnlexp"),
 	"greataxe": "",
 	"greathammer": "",
 	"katana": "",
@@ -212,18 +212,19 @@ func get_item(key: String, drop_chance: float, stack_amount: int) -> Control:
 
 func load_debug_items() -> Array:
 	var items: Array = []
-	for item_key in MELEE_WEAPONS:
-		var new_item: Item = get_item(item_key, 1, 5)
-		if new_item:
-			items.append(new_item)
-	for item_key in RANGED_WEAPONS:
-		var new_item: Item = get_item(item_key, 1, 5)
-		if new_item:
-			items.append(new_item)
-	for item_key in MAGIC_WEAPONS:
-		var new_item: Item = get_item(item_key, 1, 5)
-		if new_item:
-			items.append(new_item)
+	for i in range(2):
+		for item_key in MELEE_WEAPONS:
+			var new_item: Item = get_item(item_key, 1, 5)
+			if new_item:
+				items.append(new_item)
+		for item_key in RANGED_WEAPONS:
+			var new_item: Item = get_item(item_key, 1, 5)
+			if new_item:
+				items.append(new_item)
+		for item_key in MAGIC_WEAPONS:
+			var new_item: Item = get_item(item_key, 1, 5)
+			if new_item:
+				items.append(new_item)
 	for item_key in CONSUMABLES:
 		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:

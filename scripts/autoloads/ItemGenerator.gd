@@ -19,7 +19,7 @@ const ITEM_TYPE_DICT: Dictionary = {
 
 const MELEE_WEAPONS: Dictionary = {
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword
-	"greatsword": "",
+	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),
 	"greataxe": "",
 	"greathammer": "",
 	"katana": "",

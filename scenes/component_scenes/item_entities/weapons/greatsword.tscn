@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://djkqe144fuvf5"]
+
+[ext_resource type="PackedScene" uid="uid://dlu3yaqq5m0et" path="res://my_assets/models/weapons/Greatsword.blend" id="1_4s0vc"]
+[ext_resource type="Script" uid="uid://kwqunlyag8rp" path="res://scripts/item_entity/weapons/greatsword.gd" id="2_3lr8e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lr8e"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.646029, 0.646029, 0.646029, 1)
+metallic = 0.83
+roughness = 0.21
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpuau"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+metallic = 0.53
+roughness = 0.64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a61jr"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+metallic = 0.16
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dncq"]
+size = Vector3(0.40631104, 1.8612671, 0.13470459)
+
+[node name="Greatsword" unique_id=1216685605 instance=ExtResource("1_4s0vc")]
+script = ExtResource("2_3lr8e")
+
+[node name="Blade" parent="." index="0" unique_id=1721232006]
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+material_override = SubResource("StandardMaterial3D_3lr8e")
+
+[node name="Brick" parent="." index="1" unique_id=1151172184]
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+material_override = SubResource("StandardMaterial3D_tpuau")
+
+[node name="Hilt" parent="." index="2" unique_id=1981990706]
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+material_override = SubResource("StandardMaterial3D_a61jr")
+
+[node name="Tip" parent="." index="3" unique_id=1244220211]
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+material_override = SubResource("StandardMaterial3D_a61jr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=592149061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0080218315, 0.38034046, -0.012542725)
+shape = SubResource("BoxShape3D_2dncq")
