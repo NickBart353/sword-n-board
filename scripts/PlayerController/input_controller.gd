@@ -35,6 +35,15 @@ func get_input(_delta: float):
 		#interact = Input.is_action_just_pressed("interact")
 		interact = Input.is_action_just_pressed("Interact")
 		if PlayerControls.input_blocked():
+			direction = Vector2.ZERO
+			jump = false
+			dash = false
+			primary = false
+			hold_primary = false
+			attack = false
+			secondary = false
+			hold_secondary = false
+			consume = false
 			return
 		direction = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
 		jump = Input.is_action_just_pressed("Jump")
