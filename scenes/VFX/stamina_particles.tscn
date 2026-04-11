@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://llh5d5opjlql"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_ndf1k"]
+[ext_resource type="AudioStream" uid="uid://dhgf0fhnbjt46" path="res://assets/Audio/FreeSFX/GameSFX/Charge/Retro Charge Magic 11.wav" id="2_eyu0c"]
+
+[sub_resource type="Curve" id="Curve_eyu0c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cce3p"]
+curve = SubResource("Curve_eyu0c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gp5gh"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(1.83, 1.98, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 5)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_cce3p")
+color = Color(0, 4.4499154, 1.2264005, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e43n"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wqih8"]
+material = SubResource("StandardMaterial3D_6e43n")
+radius = 0.01
+height = 0.535
+
+[sub_resource type="Animation" id="Animation_rnpy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mpkw0"]
+resource_name = "consume"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaminaPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_eyu0c")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmj1c"]
+_data = {
+&"RESET": SubResource("Animation_rnpy3"),
+&"consume": SubResource("Animation_mpkw0")
+}
+
+[node name="StaminaParticles" type="Node3D" unique_id=1760349175 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_ndf1k")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "consume"
+queue_free_on_finish = true
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=271644974]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+cast_shadow = 0
+emitting = false
+amount = 100
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.7
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gp5gh")
+draw_pass_1 = SubResource("CapsuleMesh_wqih8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1751868745]
+libraries/ = SubResource("AnimationLibrary_gmj1c")
+
+[node name="StaminaPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1886288387]
+bus = &"SFX"

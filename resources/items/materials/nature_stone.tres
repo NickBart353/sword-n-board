@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://iak0iw4x0cdp"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_547ql"]
+[ext_resource type="Texture2D" uid="uid://jfhxn60f18jl" path="res://my_assets/sprites/Nature Stone Small.png" id="2_v2pvj"]
+
+[resource]
+script = ExtResource("1_547ql")
+item_name = "Nature Stone"
+item_id = "50005"
+tooltip = "A small stone covered in vines, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_v2pvj")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

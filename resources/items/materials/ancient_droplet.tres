@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bburj521tlqiy"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_6o26h"]
+[ext_resource type="Texture2D" uid="uid://br1wfo6tjuaac" path="res://my_assets/sprites/Upgrade Stone Medium.png" id="2_xgumu"]
+
+[resource]
+script = ExtResource("1_6o26h")
+item_name = "Ancient droplet"
+item_id = "50002"
+tooltip = "A small droplet used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_xgumu")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

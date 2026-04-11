@@ -19,7 +19,7 @@ animation = &"Bow2"
 animation = &"Bow3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ykwct"]
-animation = &"Consume1"
+animation = &"Consume2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_272xh"]
 animation = &"Idle"
@@ -169,4 +169,4 @@ states/Sword2/position = Vector2(698, 104)
 states/Sword3/node = SubResource("AnimationNodeAnimation_8gp4u")
 states/Sword3/position = Vector2(517, 221)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5e2me"), "Idle", "Sword1", SubResource("AnimationNodeStateMachineTransition_272xh"), "Sword1", "Sword2", SubResource("AnimationNodeStateMachineTransition_m0y8q"), "Sword2", "Sword3", SubResource("AnimationNodeStateMachineTransition_8gp4u"), "Sword1", "Idle", SubResource("AnimationNodeStateMachineTransition_wbsrb"), "Sword2", "Idle", SubResource("AnimationNodeStateMachineTransition_1e104"), "Sword3", "Idle", SubResource("AnimationNodeStateMachineTransition_bnsrg"), "Idle", "Book1", SubResource("AnimationNodeStateMachineTransition_i5qjy"), "Book1", "Idle", SubResource("AnimationNodeStateMachineTransition_v1vyy"), "Book1", "Book2", SubResource("AnimationNodeStateMachineTransition_aeb6f"), "Book2", "Idle", SubResource("AnimationNodeStateMachineTransition_ykwct"), "Idle", "Bow1", SubResource("AnimationNodeStateMachineTransition_w8vq5"), "Bow1", "Idle", SubResource("AnimationNodeStateMachineTransition_4bg8r"), "Bow1", "Bow2", SubResource("AnimationNodeStateMachineTransition_81e7k"), "Bow2", "Bow3", SubResource("AnimationNodeStateMachineTransition_du382"), "Bow3", "Idle", SubResource("AnimationNodeStateMachineTransition_mjkjg"), "Idle", "Block1", SubResource("AnimationNodeStateMachineTransition_cpava"), "Block1", "Idle", SubResource("AnimationNodeStateMachineTransition_u22gl"), "Light1", "Idle", SubResource("AnimationNodeStateMachineTransition_6arjy"), "Idle", "Light1", SubResource("AnimationNodeStateMachineTransition_m2pt1"), "Idle", "Consume1", SubResource("AnimationNodeStateMachineTransition_6xk8q"), "Consume1", "Idle", SubResource("AnimationNodeStateMachineTransition_2pv4g")]
-graph_offset = Vector2(-269, 96.08383)
+graph_offset = Vector2(-234, -86.91617)

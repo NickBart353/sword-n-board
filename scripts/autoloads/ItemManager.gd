@@ -36,9 +36,13 @@ const MAGIC_WEAPONS: Dictionary = {
 }
 
 const CONSUMABLES: Dictionary = {
+	"minor_health_potion": preload("res://resources/items/consumables/minor_health_potion.tres"),
+	"minor_mana_potion": preload("res://resources/items/consumables/minor_mana_potion.tres"),
 	"health_potion": preload("res://resources/items/consumables/health_potion.tres"),
 	"mana_potion": preload("res://resources/items/consumables/mana_potion.tres"),
-	"green_leaf": "",
+	"major_health_potion": preload("res://resources/items/consumables/major_health_potion.tres"),
+	"major_mana_potion": preload("res://resources/items/consumables/major_mana_potion.tres"),
+	"green_leaf": preload("uid://c6rg8eaeuxc5w"),
 	"rat_tooth": "",
 	"bat_wing": "",
 	"spider_blood": "",
@@ -46,21 +50,21 @@ const CONSUMABLES: Dictionary = {
 }
 
 const MATERIAL: Dictionary = {
-	"small_upgrade_fragment": "",
-	"medium_upgrade_fragment": "",
-	"large_upgrade_fragment": "",
-	"massive_upgrade_fragment": "",
+	"small_upgrade_fragment": preload("uid://cu14hpnk5pru"),
+	"medium_upgrade_fragment": preload("uid://bburj521tlqiy"),
+	"large_upgrade_fragment": preload("uid://d3ro71qa6lcdy"),
+	"massive_upgrade_fragment": preload("uid://hi0sh3roww7k"),
 	
-	"small_fire": "",
-	"small_lightning": "",
-	"small_cold": "",
-	"small_nature": "",
-	"small_chaos": "",
-	"large_fire": "",
-	"large_lightning": "",
-	"large_cold": "",
-	"large_nature": "",
-	"large_chaos": "",
+	"small_fire": preload("uid://jlv2epo5gglj"),
+	"small_lightning": preload("uid://ckmfb1xefgy6u"),
+	"small_cold": preload("uid://d1quidydrljqr"),
+	"small_nature": preload("uid://iak0iw4x0cdp"),
+	"small_chaos": preload("uid://dcnixd1d4orvf"),
+	"large_fire": preload("uid://dhf6iqjep7ffq"),
+	"large_lightning": preload("uid://d0kg5j8bdr7ix"),
+	"large_cold": preload("uid://772uumedashc"),
+	"large_nature": preload("uid://boypt4wyawuij"),
+	"large_chaos": preload("uid://dxo3kkiumamju"),
 }
 
 const BASE_DROPTABLE: Dictionary = {

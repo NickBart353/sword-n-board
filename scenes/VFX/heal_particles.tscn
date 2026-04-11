@@ -32,7 +32,7 @@ color = Color(5.6880865, 5.6880865, 5.6880865, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e1bg7"]
 render_priority = 0
 shader = ExtResource("2_xttqi")
-shader_parameter/ColorParameter = Color(0.6564955, 1.8828079, 0.52008915, 1)
+shader_parameter/ColorParameter = Color(1.8826746, 1.8826746, 0.5213867, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_e5kd7"]
 material = SubResource("ShaderMaterial_e1bg7")
@@ -115,3 +115,4 @@ draw_pass_1 = SubResource("SphereMesh_e5kd7")
 libraries/ = SubResource("AnimationLibrary_e5kd7")
 
 [node name="HealPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1886288387]
+bus = &"SFX"

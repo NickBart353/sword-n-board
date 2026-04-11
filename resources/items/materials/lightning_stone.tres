@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://ckmfb1xefgy6u"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_5pprh"]
+[ext_resource type="Texture2D" uid="uid://c733nmb23fmh1" path="res://my_assets/sprites/Lightning Stone Small.png" id="2_5pprh"]
+
+[resource]
+script = ExtResource("1_5pprh")
+item_name = "Lightning Stone"
+item_id = "50011"
+tooltip = "A small stone emitting pulses of lightning, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_5pprh")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

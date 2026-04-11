@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://dckvuabmjbx5n"]
+
+[ext_resource type="PackedScene" uid="uid://bns68t48sk46d" path="res://assets/Visual/RPG_ITEMS_V.1/RPG_ITENS_V.1/BLEND/BLEND/BigPotion_Health.blend" id="1_ajwpu"]
+[ext_resource type="Script" uid="uid://d3f12fo6m1a5b" path="res://scripts/resources/consumable_resource.gd" id="1_o5o3l"]
+[ext_resource type="Texture2D" uid="uid://bk22a0h3wbp50" path="res://my_assets/sprites/major_health_potion.png" id="3_ajwpu"]
+[ext_resource type="PackedScene" uid="uid://bwccm7lfw107s" path="res://scenes/VFX/heal_particles.tscn" id="4_xgokh"]
+
+[resource]
+script = ExtResource("1_o5o3l")
+player_property = "HEALTH"
+amount = 60.0
+consumable_type = 1
+model = ExtResource("1_ajwpu")
+model_scale = 0.1
+vfx = ExtResource("4_xgokh")
+use_light = true
+light_color = Color(2.54, 0, 0.037, 1)
+item_name = "Major Health Potion"
+item_id = "40003"
+tooltip = "It heals!"
+explanation_text = "A large flask filled with a red liquid, intended to heal the player."
+stackable = true
+sprite = ExtResource("3_ajwpu")
+item_category = 2
+item_sub_category = 3
+item_type = 11
+metadata/_custom_type_script = "uid://d3f12fo6m1a5b"

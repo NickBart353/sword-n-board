@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cu14hpnk5pru"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_dae1p"]
+[ext_resource type="Texture2D" uid="uid://cs744reoyf4t7" path="res://my_assets/sprites/Upgrade Stone Small.png" id="2_e2bp6"]
+
+[resource]
+script = ExtResource("1_dae1p")
+item_name = "Ancient Shard"
+item_id = "50001"
+tooltip = "A small shard used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_e2bp6")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

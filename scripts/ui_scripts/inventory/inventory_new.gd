@@ -19,6 +19,8 @@ var player_boots: Item
 var player_mainhand: Item
 var player_offhand: Item
 
+var currently_selected_tab: int
+
 @onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar
 @onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ScrollContainer/ItemGrid
 
@@ -57,6 +59,7 @@ func _refresh_items():
 			if consumable.data.item_id == item.data.item_id:
 				consumable.data.stack_size = item.data.stack_size
 				break
+	_on_tab_bar_tab_changed(currently_selected_tab)
 	_emit_update_player_items()
 
 func update_item_display(item: Item):
@@ -82,6 +85,7 @@ func sort_player_items():
 				player_items[j+1] = temp_item
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
+	currently_selected_tab = tab
 	match tab:
 		0:
 			for item in item_grid.get_children():

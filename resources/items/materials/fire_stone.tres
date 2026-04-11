@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://jlv2epo5gglj"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_0l5qn"]
+[ext_resource type="Texture2D" uid="uid://b3d3w7ibss8k5" path="res://my_assets/sprites/Fire Stone small.png" id="2_0l5qn"]
+
+[resource]
+script = ExtResource("1_0l5qn")
+item_name = "Fire Stone"
+item_id = "50007"
+tooltip = "A small burning stone, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_0l5qn")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

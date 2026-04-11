@@ -26,9 +26,9 @@ func sort_items():
 	for i in range(loot_items.size() - 1):
 		for j in range(loot_items.size() - 1):
 			if loot_items[i].data.item_category > loot_items[j+1].data.item_category:
-				var temp_item: Item = loot_items[i].data.item_category
-				loot_items[i].data.item_category = loot_items[j+1].data.item_category
-				loot_items[j+1].data.item_category = temp_item
+				var temp_item: Item = loot_items[i]#.data.item_category
+				loot_items[i] = loot_items[j+1]#.data.item_category
+				loot_items[j+1] = temp_item
 
 func update_item_display(item: Item) -> void:
 	stat_container.set_text(item)

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://djjedm2u4b7a0" path="res://scripts/PlayerController/abilities/block.gd" id="11_1e104"]
 [ext_resource type="Script" uid="uid://csivj4fpb0ekx" path="res://scripts/PlayerController/abilities/light.gd" id="11_bnsrg"]
 [ext_resource type="Script" uid="uid://bsapn6js1uc0u" path="res://scripts/PlayerController/abilities/consume.gd" id="13_i5qjy"]
+[ext_resource type="AudioStream" uid="uid://ctjwuw7mbviuk" path="res://assets/Audio/pixabay/freesound_community-eating-apple-6928.wav" id="14_gnmgq"]
 [ext_resource type="Script" uid="uid://76adg1knc3xr" path="res://scripts/PlayerController/audio_controller.gd" id="14_v1vyy"]
 [ext_resource type="AudioStream" uid="uid://bas55kwetn8k6" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Dirt/Dirt Walk 1.ogg" id="16_4bg8r"]
 [ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="16_81e7k"]
@@ -38,6 +39,11 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
 radius = 0.55
 height = 2.0875
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
+playback_mode = 1
+streams_count = 1
+stream_0/stream = ExtResource("20_u22gl")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i5qjy"]
 playback_mode = 1
@@ -459,11 +465,6 @@ tracks/4/keys = {
 }
 tracks/4/use_blend = true
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
-playback_mode = 1
-streams_count = 1
-stream_0/stream = ExtResource("20_u22gl")
-
 [sub_resource type="Animation" id="Animation_81e7k"]
 resource_name = "Consume1"
 length = 3.0
@@ -562,6 +563,122 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0.2)
 }
 tracks/6/use_blend = true
+
+[sub_resource type="Animation" id="Animation_6ocei"]
+resource_name = "Consume2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slots/Consumable:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.402, -0.115, -0.701), Vector3(-0.177, 0.285, -0.796), Vector3(-0.022, 0.335, -0.656), Vector3(-0.022, 0.335, -0.656), Vector3(-0.177, 0.05, -0.796), Vector3(-0.402, -0.1, -0.701), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slots/Consumable:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/FieldOfView/LeftHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.687, -1, -0.011), Vector3(-0.402, -0.715, -0.701), Vector3(-0.177, -0.315, -0.796), Vector3(-0.022, -0.265, -0.656), Vector3(-0.022, -0.265, -0.656), Vector3(-0.177, -0.55, -0.796), Vector3(-0.402, -0.7, -0.701), Vector3(-0.687, -1, -0.011), Vector3(-0.5000001, -0.9, -0.59999996)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/FieldOfView/LeftHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0, 2.0861626e-07, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AbilityController/Consume")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.7, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_consumed"
+}, {
+"args": [],
+"method": &"done_consuming"
+}]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("AbilityPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_6arjy")
+}],
+"times": PackedFloat32Array(0.6333333)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = false
+tracks/6/path = NodePath("AbilityPlayer")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("26_6ocei")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/6/use_blend = true
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AbilityController/Consume")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2, 0.6333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_consume_sound_one"
+}, {
+"args": [],
+"method": &"play_consume_sound_two"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_du382"]
 resource_name = "Idle"
@@ -972,6 +1089,7 @@ _data = {
 &"Bow2": SubResource("Animation_aeb6f"),
 &"Bow3": SubResource("Animation_w8vq5"),
 &"Consume1": SubResource("Animation_81e7k"),
+&"Consume2": SubResource("Animation_6ocei"),
 &"Idle": SubResource("Animation_du382"),
 &"Light1": SubResource("Animation_4bg8r"),
 &"RESET": SubResource("Animation_m0y8q"),
@@ -1062,10 +1180,11 @@ wait_time = 0.5
 one_shot = true
 
 [node name="StaminaRegenerationDelay" type="Timer" parent="Timers" unique_id=505252433]
+wait_time = 0.5
 one_shot = true
 
 [node name="SlowStaminaRegenerationDelay" type="Timer" parent="Timers" unique_id=1820270977]
-wait_time = 3.0
+wait_time = 2.5
 one_shot = true
 
 [node name="InputController" type="Node" parent="." unique_id=710520110]
@@ -1111,8 +1230,12 @@ player = NodePath("../..")
 script = ExtResource("11_bnsrg")
 player = NodePath("../..")
 
-[node name="Consume" type="Node" parent="AbilityController" unique_id=603745982 node_paths=PackedStringArray("player")]
+[node name="Consume" type="Node" parent="AbilityController" unique_id=603745982 node_paths=PackedStringArray("ability_player", "player")]
 script = ExtResource("13_i5qjy")
+eating_sound_two = ExtResource("14_gnmgq")
+drinking_sound_one = ExtResource("26_6ocei")
+drinking_sound_two = SubResource("AudioStreamRandomizer_6arjy")
+ability_player = NodePath("../../AbilityPlayer")
 player = NodePath("../..")
 
 [node name="AudioController" type="Node" parent="." unique_id=1377078437]

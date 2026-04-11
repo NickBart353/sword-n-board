@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://w6vumhtbh4y7"]
+
+[ext_resource type="Script" uid="uid://d3f12fo6m1a5b" path="res://scripts/resources/consumable_resource.gd" id="1_ercle"]
+[ext_resource type="PackedScene" uid="uid://bovpwrju5f1h" path="res://assets/Visual/RPG_ITEMS_V.1/RPG_ITENS_V.1/BLEND/BLEND/BigPotion_Mana.blend" id="1_lgh10"]
+[ext_resource type="Texture2D" uid="uid://npnahwa3p3uw" path="res://my_assets/sprites/major_mana_potiont.png" id="3_lgh10"]
+[ext_resource type="PackedScene" uid="uid://y43842rbmh10" path="res://scenes/VFX/mana_particles.tscn" id="4_qg1w7"]
+
+[resource]
+script = ExtResource("1_ercle")
+player_property = "MANA"
+amount = 100.0
+consumable_type = 1
+model = ExtResource("1_lgh10")
+model_scale = 0.1
+vfx = ExtResource("4_qg1w7")
+use_light = true
+light_color = Color(0.258, 0.443, 1.129, 1)
+item_name = "Major Mana Potion"
+item_id = "40006"
+tooltip = "It's blue!"
+explanation_text = "A large flask filled with a blue liquid, intended to recover the players mana.
+"
+stackable = true
+sprite = ExtResource("3_lgh10")
+item_category = 2
+item_sub_category = 3
+item_type = 11
+metadata/_custom_type_script = "uid://d3f12fo6m1a5b"

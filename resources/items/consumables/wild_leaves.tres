@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ConsumableData" format=3 uid="uid://c6rg8eaeuxc5w"]
+
+[ext_resource type="PackedScene" uid="uid://cndn6qxuuu8a2" path="res://scenes/component_scenes/item_entities/consumable/temp_green_leave_mesh.tscn" id="1_3ymrj"]
+[ext_resource type="Script" uid="uid://d3f12fo6m1a5b" path="res://scripts/resources/consumable_resource.gd" id="1_eb85u"]
+[ext_resource type="Texture2D" uid="uid://xwd1p6go1xs1" path="res://my_assets/sprites/Stamina Consumable.png" id="2_fc21k"]
+[ext_resource type="PackedScene" uid="uid://llh5d5opjlql" path="res://scenes/VFX/stamina_particles.tscn" id="4_ls2wn"]
+
+[resource]
+script = ExtResource("1_eb85u")
+player_property = "stamina_regeneration_speed"
+amount = 20.0
+temporary = true
+model = ExtResource("1_3ymrj")
+vfx = ExtResource("4_ls2wn")
+item_name = "Wild Leaves"
+item_id = "40007"
+explanation_text = "Wild leaves that boost stamina."
+stackable = true
+sprite = ExtResource("2_fc21k")
+item_category = 2
+item_sub_category = 3
+item_type = 13
+metadata/_custom_type_script = "uid://d3f12fo6m1a5b"

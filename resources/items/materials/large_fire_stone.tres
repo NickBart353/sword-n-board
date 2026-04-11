@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dhf6iqjep7ffq"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_0l5qn"]
+[ext_resource type="Texture2D" uid="uid://dpeavepkt518k" path="res://my_assets/sprites/Fire Stone Large.png" id="2_0l5qn"]
+
+[resource]
+script = ExtResource("1_0l5qn")
+item_name = "Large Fire Stone"
+item_id = "50008"
+tooltip = "A large stone containing a blinding flare, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_0l5qn")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

@@ -22,6 +22,7 @@ signal spawn_projectile
 #@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
 @onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
+@onready var timers: Node3D = $Timers
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
@@ -43,6 +44,8 @@ var last_hovered_object
 var node_name
 var menu_open = false
 var collision: bool = false
+
+var saved_stamina_regeneration_speed: float
 
 var HEALTH: float
 var STAMINA: float
@@ -182,7 +185,6 @@ func _reequip_slot(old, new, slot):
 		if old:
 			var item_instance = ItemGenerator.generate_item(old.data)
 			if item_instance:
-				print(item_instance)
 				slot.add_child(item_instance)
 	return old
 
@@ -221,30 +223,35 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
-	if consumable_item:
-		print(consumable_item.data.item_name)
 
-func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
-	if property in self:
-		match property_type:
-			Potion.PROPERTY_TYPE.INCREASE:
-				if self.has_method("update_{0}".format([property])):
-					call("update_{0}".format([property]), amount)
-					var heal_vfx = VfxManager.create_vfx_from_enum(VfxManager.VFX.HEAL_PARTICLES, global_position, true).instantiate()
-					add_child(heal_vfx)
-					heal_vfx.play()
-			Potion.PROPERTY_TYPE.DECREASE:
-				if self.has_method("update_{0}".format([property])):
-					call("update_{0}".format([property]), -amount)
+func _consume_item(consumable: Node) -> void:
+	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):
+	if consumable.property in self:
+		match consumable.property_type:
+			ConsumableData.PROPERTY_TYPE.INCREASE:
+				if self.has_method("update_{0}".format([consumable.property])):
+					call("update_{0}".format([consumable.property]), consumable.amount)
+					if consumable.data.temporary:
+						var timer_instance = Timer.new()
+						timers.add_child(timer_instance)
+						timer_instance.one_shot = true
+						timer_instance.start(consumable.data.duration_seconds)
+						var method_name = "reset_{0}".format([consumable.property])
+						timer_instance.timeout.connect(Callable(self, method_name))
+						timer_instance.timeout.connect(_on_buff_timeout.bind(timer_instance))
+					
+					#var heal_vfx = VfxManager.create_vfx_from_enum(VfxManager.VFX.HEAL_PARTICLES, global_position, true).instantiate()
+					var consume_vfx = consumable.data.vfx.instantiate()
+					add_child(consume_vfx)
+					consume_vfx.play()
+			ConsumableData.PROPERTY_TYPE.DECREASE:
+				if self.has_method("update_{0}".format([consumable.property])):
+					call("update_{0}".format([consumable.property]), -consumable.amount)
 			_:
 				print("not implemented yet...")
 
 func _remove_consumable():
 	UiController.consumed(consumable_item)
-	#consumable_item.data.stack_size -= 1
-	#if consumable_item.data.stack_size > 0:
-		#return
-	#consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if PlayerControls.input_blocked():
@@ -267,6 +274,14 @@ func take_damage(damage, body: Node):
 			use_stamina(STAMINA)
 			damage *= 3
 	update_HEALTH(-damage)
+
+func update_stamina_regeneration_speed(amount: float):
+	saved_stamina_regeneration_speed = stamina_regeneration_speed
+	stamina_regeneration_speed += amount
+
+func reset_stamina_regeneration_speed():
+	stamina_regeneration_speed = saved_stamina_regeneration_speed
+	saved_stamina_regeneration_speed = 0
 
 func update_MANA(amount: float):
 	MANA += amount
@@ -338,6 +353,9 @@ func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vec
 
 func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):
 	AudioManager.play_audio_from_resource(resource, global_position, bus, offset)
+
+func _on_buff_timeout(timer_ref: Timer):
+	timer_ref.queue_free()
 
 func _die():
 	print("game over")

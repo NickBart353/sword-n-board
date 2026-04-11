@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://boypt4wyawuij"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_54s5t"]
+[ext_resource type="Texture2D" uid="uid://bcd0t0so7emw5" path="res://my_assets/sprites/Nature Stone Large.png" id="2_54s5t"]
+
+[resource]
+script = ExtResource("1_54s5t")
+item_name = "Large Nature Stone"
+item_id = "50006"
+tooltip = "A large stone covered in vines, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_54s5t")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

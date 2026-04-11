@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dcnixd1d4orvf"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_uhdx0"]
+[ext_resource type="Texture2D" uid="uid://ddr4enjnf6uxw" path="res://my_assets/sprites/Chaos Stone Small.png" id="2_uhdx0"]
+
+[resource]
+script = ExtResource("1_uhdx0")
+item_name = "Chaos Stone"
+item_id = "50013"
+tooltip = "A small stone emitting pure darkness, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_uhdx0")
+item_category = 3
+item_sub_category = 5
+item_type = 15
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

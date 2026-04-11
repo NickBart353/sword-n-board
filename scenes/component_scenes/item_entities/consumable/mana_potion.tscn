@@ -77,10 +77,10 @@ property = "MANA"
 amount = 20.0
 metadata/_custom_type_script = "uid://gfr5q01qg5n"
 
-[node name="MinorPotion_Mana2" parent="." unique_id=2087003504 instance=ExtResource("2_e8ljm")]
+[node name="MinorPotion_Mana2" parent="." unique_id=689955332 instance=ExtResource("2_e8ljm")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="MinorPotion_Mana" parent="MinorPotion_Mana2" index="1" unique_id=1469637367]
+[node name="MinorPotion_Mana" parent="MinorPotion_Mana2" index="0" unique_id=656280980]
 mesh = SubResource("ArrayMesh_s87sl")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=639339294]

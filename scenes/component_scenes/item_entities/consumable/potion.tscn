@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cm6r85odwjvkt"]
+
+[ext_resource type="Script" uid="uid://gfr5q01qg5n" path="res://scripts/item_entity/consumable/potion.gd" id="1_27uqt"]
+
+[node name="Potion" type="Node3D" unique_id=2011244273 node_paths=PackedStringArray("emitting_light")]
+script = ExtResource("1_27uqt")
+emitting_light = NodePath("OmniLight3D")
+metadata/_custom_type_script = "uid://gfr5q01qg5n"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2089037343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042904735, 0)

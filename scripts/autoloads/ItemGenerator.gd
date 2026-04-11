@@ -38,6 +38,7 @@ const MAGIC_WEAPONS: Dictionary = {
 }
 
 const CONSUMABLES: Dictionary = {
+	"potion_scene": preload("uid://cm6r85odwjvkt"),
 	"40001": preload("res://scenes/component_scenes/item_entities/consumable/health_potion.tscn"),#healthpotion
 	"40002": preload("res://scenes/component_scenes/item_entities/consumable/mana_potion.tscn"),#manapotion
 	"green_leaf": "",
@@ -59,7 +60,8 @@ func generate_item(data: ItemData) -> Node3D:
 		ItemData.ITEM_SUB_CATEGORY.MAGIC_WEAPON:
 			item_instance = MAGIC_WEAPONS.get(data.item_id).instantiate()
 		ItemData.ITEM_SUB_CATEGORY.CONSUMABLE:
-			item_instance = CONSUMABLES.get(data.item_id).instantiate()
+			#item_instance = CONSUMABLES.get(data.item_id).instantiate()
+			item_instance = CONSUMABLES.get("potion_scene").instantiate()
 	item_instance.set_data(data)
 	return item_instance
 
