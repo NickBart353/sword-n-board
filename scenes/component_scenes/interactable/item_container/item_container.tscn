@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dcouhafyjha1f"]
 
 [ext_resource type="Script" uid="uid://ctolpc6ydk6j1" path="res://scripts/interactable/item_container/item_container.gd" id="1_7tnl2"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_jrc18"]
+[ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_5hiqp"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7tnl2"]
 viewport_path = NodePath("Node3D/SubViewport")
@@ -26,6 +28,8 @@ offset_right = 63.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_jrc18")
+label_settings = ExtResource("3_5hiqp")
 horizontal_alignment = 1
 vertical_alignment = 1
 

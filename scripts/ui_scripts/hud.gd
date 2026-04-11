@@ -19,8 +19,6 @@ func _ready() -> void:
 	UiController.player_consumed_item.connect(_remove_player_consumable)
 	UiController.new_mainhand.connect(_new_mainhand)
 	UiController.new_offhand.connect(_new_offhand)
-	#(player_mainhand)
-#(player_offhand, two_hand_duplicate)
 
 func update_health(health: float):
 	health_bar.value = health

@@ -5,16 +5,17 @@ signal character_panel
 signal lootbag
 signal escape_menu_signal
 
-signal update_player_items
-signal get_updated_player_items
 signal new_player_items
 signal set_player_consumables
 signal new_mainhand
 signal new_offhand
+signal added_item_to_inventory
 
 signal new_consumable
 signal player_consumed_item
 signal remove_consumable
+
+signal item_container_interacted
 
 signal _update_healthbar
 signal _update_staminabar
@@ -50,15 +51,11 @@ func escape_menu():
 	get_tree().paused = escape_menu_open
 	escape_menu_signal.emit()
 
-func get_player_items():
-	get_updated_player_items.emit()
-
-func give_updated_player_items(updated_player_items: Array, updated_player_consumables: Array, updated_player_helmet: Item, updated_player_body: Item, updated_player_boots: Item, updated_player_mainhand: Item, updated_player_offhand: Item) -> void:
-	update_player_items.emit(updated_player_items, updated_player_consumables, updated_player_helmet, updated_player_body, updated_player_boots, updated_player_mainhand, updated_player_offhand)
-
-func update_player_items_from_inventory(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
-	new_player_items.emit(player_items, player_consumables, player_helmet, player_body, player_boots, player_mainhand, player_offhand)
+#func update_player_items_from_inventory(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+#	new_player_items.emit(player_items, player_consumables, player_helmet, player_body, player_boots, player_mainhand, player_offhand)
 	#set_player_consumables.emit(player_consumables)
+func update_player_items_from_inventory(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+	new_player_items.emit(player_helmet, player_body, player_boots, player_mainhand, player_offhand)
 
 func update_player_consumables(player_consumables: Array):
 	set_player_consumables.emit(player_consumables)
@@ -77,6 +74,12 @@ func consumed(item: Item):
 
 func remove_consumable_from_inventory(item: Item, remove_stack: bool):
 	remove_consumable.emit(item, remove_stack)
+
+func interact_with_loot_container(item_container: ItemContainer):
+	item_container_interacted.emit(item_container)
+
+func add_item_to_inventory(item: Item):
+	added_item_to_inventory.emit(item)
 
 func is_ui_open() -> bool:
 	return ui_open

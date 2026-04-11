@@ -7,7 +7,7 @@
 script = ExtResource("1_wnj3e")
 normal_damage = 32.0
 item_name = "Shortsword"
-item_id = "0f955077-40b4-47d4-bb60-d0e8a7f73775"
+item_id = "10001"
 tooltip = "It's a sword!"
 sprite = ExtResource("2_6gvdd")
 drop_chance = 1.0

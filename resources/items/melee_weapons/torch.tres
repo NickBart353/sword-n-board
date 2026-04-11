@@ -7,7 +7,7 @@
 script = ExtResource("1_d17os")
 normal_damage = 10.0
 item_name = "Torch"
-item_id = "2de84977-0bb3-45b8-8ed1-ace14908b311"
+item_id = "10002"
 tooltip = "It illuminates the dark!"
 sprite = ExtResource("2_d17os")
 drop_chance = 1.0

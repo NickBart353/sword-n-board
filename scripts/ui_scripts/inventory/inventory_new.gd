@@ -22,10 +22,7 @@ var player_offhand: Item
 @onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar
 @onready var item_grid: GridContainer = $MarginContainer/Inventory/ItemContainer/ItemPanel/ScrollContainer/ItemGrid
 
-@onready var weapon_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
-@onready var consumable_text: ScrollContainer = $MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller
-
-@onready var display_viewport: TextureRect = $MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel/_InsideMargin/DisplayViewport
+@onready var stat_container: HBoxContainer = $MarginContainer/Inventory/Right/StatContainer
 
 @onready var head: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head/Head
 @onready var body: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body/Body
@@ -38,38 +35,32 @@ var player_offhand: Item
 
 func _ready() -> void:
 	hide()
-	UiController.update_player_items.connect(_update_player_items)
+	player_items = ItemManager.load_debug_items()
+	_refresh_items()
 	UiController.remove_consumable.connect(_remove_consumable)
-	UiController.get_player_items.call_deferred()
+	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
 
-func get_player_items():
-	UiController.get_player_items()
-
-func _update_player_items(updated_player_items: Array, _updated_player_consumables: Array, _updated_player_helmet: Item, _updated_player_body: Item, _updated_player_boots: Item, _updated_player_mainhand: Item, _updated_player_offhand: Item) -> void:
-	if not player_items == updated_player_items or not player_items:
-		sort_player_items()
-		player_items = updated_player_items
-		
+func _refresh_items():
+	sort_player_items()
+	for inventory_item in item_grid.get_children():
+		inventory_item.queue_free()
+	
+	for item in player_items:
+		var inventory_item = inventory_item_scene.instantiate()
+		inventory_item.item_hovered.connect(update_item_display)
+		inventory_item.item_pressed.connect(activate_item)
+		inventory_item.set_data(item)
+		item_grid.add_child(inventory_item)
+	
+	for consumable in player_consumables:
 		for item in player_items:
-			var inventory_item = inventory_item_scene.instantiate()
-			inventory_item.item_hovered.connect(update_item_display)
-			inventory_item.item_pressed.connect(activate_item)
-			inventory_item.set_data(item)
-			item_grid.add_child(inventory_item)
-	#UiController.update_player_consumables(player_consumables)
+			if consumable.data.item_id == item.data.item_id:
+				consumable.data.stack_size = item.data.stack_size
+				break
+	_emit_update_player_items()
 
 func update_item_display(item: Item):
-	match item.data.item_category:
-		ItemData.ITEM_CATEGORY.WEAPON:
-			weapon_text.show()
-			consumable_text.hide()
-			weapon_text.set_text(item)
-		ItemData.ITEM_CATEGORY.CONSUMABLE:
-			weapon_text.hide()
-			consumable_text.show()
-			consumable_text.set_text(item)
-			
-	display_viewport.texture = item.data.sprite
+	stat_container.set_text(item)
 
 func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
 	match item.data.item_category:
@@ -86,9 +77,9 @@ func sort_player_items():
 	for i in range(player_items.size() - 1):
 		for j in range(player_items.size() - 1):
 			if player_items[i].data.item_category > player_items[j+1].data.item_category:
-				var temp_item: Item = player_items[i].data.item_category
-				player_items[i].data.item_category = player_items[j+1].data.item_category
-				player_items[j+1].data.item_category = temp_item
+				var temp_item: Item = player_items[i]
+				player_items[i] = player_items[j+1]
+				player_items[j+1] = temp_item
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
 	match tab:
@@ -251,11 +242,21 @@ func _remove_consumable(item: Item, remove_stack: bool):
 		if remove_index:
 			player_consumables.remove_at(remove_index)
 
+func _add_item_to_inventory(item: Item):
+	var find_index: int = -1
+	for i in range(player_items.size()):
+		if player_items[i].data.item_id == item.data.item_id:
+			find_index = i
+			break
+	if find_index == -1 or not item.data.stackable:
+		player_items.append(item)
+	else:
+		player_items[find_index].data.stack_size += item.data.stack_size
+		_refresh_items()
+
 func _emit_update_player_items():
 	UiController.update_player_consumables(player_consumables)
-	update_player_items.emit(player_items,
-		player_consumables,
-		player_helmet,
+	update_player_items.emit(player_helmet,
 		player_body,
 		player_boots,
 		player_mainhand,

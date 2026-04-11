@@ -15,6 +15,7 @@
 [ext_resource type="StyleBox" uid="uid://c6v5i8we77r6o" path="res://resources/ui/resource_bars/manabar_fill_stylebox.tres" id="10_25rgj"]
 [ext_resource type="PackedScene" uid="uid://bub18fmie3reu" path="res://scenes/ui_scenes/inventory_new.tscn" id="11_h2ykw"]
 [ext_resource type="Theme" uid="uid://dhredoyg6oik8" path="res://resources/ui/hud/hud_theme.tres" id="12_25rgj"]
+[ext_resource type="PackedScene" uid="uid://bt7gpwk7b4gi0" path="res://scenes/ui_scenes/loot_container/loot_container.tscn" id="14_u26ox"]
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513 groups=["BlockInput"]]
 process_mode = 3
@@ -179,6 +180,9 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
+visible = false
+
+[node name="LootContainer" parent="." unique_id=1077246189 instance=ExtResource("14_u26ox")]
 visible = false
 
 [node name="PauseMenu" parent="." unique_id=446500743 instance=ExtResource("5_l4c86")]

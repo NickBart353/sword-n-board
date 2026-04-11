@@ -11,6 +11,11 @@ signal _un_hover
 
 func _ready() -> void:
 	$Node3D/SubViewport/Label.text = hover_text
+	PlayerControls.interact_key_updated.connect(_update_interact_text)
+	update_text("[{0}] {1}".format([PlayerControls.interact_keybind_text, hover_text]))
+
+func _update_interact_text(new_keybind_text: String):
+	update_text("[{0}] {1}".format([new_keybind_text, hover_text]))
 
 func interact():
 	_interact.emit()
@@ -27,7 +32,11 @@ func un_hover():
 		hovered = false
 	_un_hover.emit()
 
-func update_text(new_text):
+func refresh_text(new_text: String):
+	hover_text = new_text
+	update_text("[{0}] {1}".format([PlayerControls.interact_keybind_text, hover_text]))
+
+func update_text(new_text: String):
 	$Node3D/SubViewport/Label.text = new_text
 
 func get_text_visibility():

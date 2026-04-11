@@ -5,9 +5,9 @@ signal return_to_main_menu
 @onready var hud: Control = $Hud
 
 @onready var inventory: PanelContainer = $Inventory
-
 @onready var pause_menu: Control = $PauseMenu
 @onready var settings_menu: Control = $SettingsMenu
+@onready var loot_container: LootContainer = $LootContainer
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -21,6 +21,11 @@ func load_data():
 	settings_menu.load_settings()
 
 func _ready() -> void:
+	inventory.hide()
+	pause_menu.hide()
+	settings_menu.hide()
+	loot_container.hide()
+	
 	is_input_blocked = false
 	pause_menu_open = false
 	inventory_open = false
@@ -36,8 +41,8 @@ func _ready() -> void:
 	
 	UiController.inventory.connect(_inventory)
 	UiController.character_panel.connect(_character_panel)
-	UiController.lootbag.connect(_lootbag)
 	UiController.escape_menu_signal.connect(_escape_menu)
+	UiController.item_container_interacted.connect(_open_loot_container)
 	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
@@ -55,7 +60,9 @@ func _process(_delta: float) -> void:
 
 func _inventory():
 	if not pause_menu_open:
-		inventory.get_player_items()
+		if loot_container.is_visible():
+			_open_loot_container(null)
+		#inventory.get_player_items()
 		inventory.set_visible(not inventory.is_visible())
 		get_tree().paused = inventory.is_visible()
 		if inventory.is_visible():
@@ -66,16 +73,27 @@ func _inventory():
 func _character_panel():
 	pass
 
-func _lootbag():
-	pass
+func _open_loot_container(item_container: ItemContainer):
+	if loot_container.is_visible():
+		loot_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+	else:
+		loot_container.show()
+		loot_container.set_data(item_container)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		PlayerControls.block_input()
 
 func _escape_menu():
+	if loot_container.is_visible():
+		_open_loot_container(null)
 	if not pause_menu_open:
 		if inventory.is_visible():
 			_inventory()
 		pause_menu_open = true
 		pause_menu.show()
 		get_tree().paused = pause_menu_open
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif pause_menu_open:
 		pause_menu_open = false
 		pause_menu.hide()
@@ -83,10 +101,7 @@ func _escape_menu():
 			settings_menu.check_for_unsaved_settings()
 		else:
 			get_tree().paused = pause_menu_open
-	if pause_menu_open:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	else:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _rotate_consumable():
 	if not get_tree().paused:
@@ -139,6 +154,7 @@ func _on_pause_menu_exit_game() -> void:
 func _on_settings_menu_done_checking() -> void:
 	settings_menu.hide()
 	get_tree().paused = pause_menu_open
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func _on_inventory_update_player_items(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
-		UiController.update_player_items_from_inventory(player_items, player_consumables, player_helmet, player_body, player_boots, player_mainhand, player_offhand)
+func _on_inventory_update_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+		UiController.update_player_items_from_inventory(player_helmet, player_body, player_boots, player_mainhand, player_offhand)

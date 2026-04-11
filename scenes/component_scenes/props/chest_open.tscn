@@ -23,13 +23,14 @@ shape = SubResource("BoxShape3D_n5hii")
 
 [node name="chest_gold2" parent="." unique_id=2004012028 instance=ExtResource("1_o33qj")]
 
-[node name="chest_gold_lid" parent="chest_gold2/chest_gold" parent_id_path=PackedInt32Array(2004012028, 2106402272) index="0" unique_id=1314426737]
+[node name="chest_gold_lid" parent="chest_gold2/chest_gold" parent_id_path=PackedInt32Array(2004012028, 1008932597) index="0" unique_id=966650337]
 transform = Transform3D(1, 0, 0, 0, -0.76604444, 0.64278764, 0, -0.64278764, -0.76604444, 0, 0.5, -0.56488323)
 
 [node name="ItemContainer" parent="." unique_id=1427992213 node_paths=PackedStringArray("parent") instance=ExtResource("2_n5hii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6256739, 0)
 parent = NodePath("..")
 open_audio_resource = ExtResource("3_s5aga")
 close_audio_resource = ExtResource("4_75hcd")
-hover_text = "Press E to open"
+hover_text = "Open"
 
 [editable path="chest_gold2"]

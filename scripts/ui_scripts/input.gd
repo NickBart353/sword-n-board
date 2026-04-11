@@ -74,6 +74,7 @@ func load_settings():
 	if not input_map:
 		input_map = default_input_map.duplicate(true)
 	PlayerControls.player_input_dictionary = input_map
+	PlayerControls.updated_interact_keybind(input_map["Interact"]["DisplayName"])
 	
 	saved_input_map = input_map.duplicate(true)
 	saved_sensitivity = float(sensitivity)
@@ -161,6 +162,7 @@ func _on_save_button_pressed() -> void:
 	saved_input_map = input_map.duplicate(true)
 	saved_sensitivity = float(sensitivity)
 	
+	PlayerControls.updated_interact_keybind(input_map["Interact"]["DisplayName"])
 	DataManager.save_sensitivity(sensitivity)
 	DataManager.save_input_settings(input_map)
 

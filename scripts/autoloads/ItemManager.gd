@@ -1,5 +1,7 @@
 extends Node
 
+var debug: bool = true
+
 const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 
 #const ITEMS: Dictionary = {
@@ -179,7 +181,7 @@ func generate_loot(level: int, additional_drop_keys: Dictionary = {}):
 	return items
 
 func get_item(key: String, drop_chance: float, stack_amount: int) -> Control:
-	if randf_range(0.0,1.0) <= drop_chance:
+	if randf_range(0.0,1.0) <= drop_chance or debug:
 		var stacksize: int = randi_range(1, stack_amount)
 		var item_data: ItemData
 		var item_instance: Control = ui_item_scene.instantiate()
@@ -207,23 +209,23 @@ func get_item(key: String, drop_chance: float, stack_amount: int) -> Control:
 func load_debug_items() -> Array:
 	var items: Array = []
 	for item_key in MELEE_WEAPONS:
-		var new_item: Control = get_item(item_key, 1, 5)
+		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
 	for item_key in RANGED_WEAPONS:
-		var new_item: Control = get_item(item_key, 1, 5)
+		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
 	for item_key in MAGIC_WEAPONS:
-		var new_item: Control = get_item(item_key, 1, 5)
+		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
 	for item_key in CONSUMABLES:
-		var new_item: Control = get_item(item_key, 1, 5)
+		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
 	for item_key in MATERIAL:
-		var new_item: Control = get_item(item_key, 1, 5)
+		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
 	return items

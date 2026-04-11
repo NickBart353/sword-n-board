@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_7wmtr")
 item_name = "Mana Potion"
-item_id = "77766544456"
+item_id = "40002"
 tooltip = "It's blue!"
 explanation_text = "A flask filled with a blue liquid, intended to recover the players mana.
 "

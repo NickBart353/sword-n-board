@@ -33,6 +33,9 @@ func get_input(_delta: float):
 		#ability_three = Input.is_action_just_pressed("ability_three")
 		#inventory = Input.is_action_just_pressed("inventory")
 		#interact = Input.is_action_just_pressed("interact")
+		interact = Input.is_action_just_pressed("Interact")
+		if PlayerControls.input_blocked():
+			return
 		direction = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
 		jump = Input.is_action_just_pressed("Jump")
 		dash = Input.is_action_just_pressed("Dash")
@@ -42,7 +45,6 @@ func get_input(_delta: float):
 		secondary = Input.is_action_just_pressed("Secondary")
 		hold_secondary = Input.is_action_pressed("Secondary")
 		consume = Input.is_action_just_pressed("Consume")
-		interact = Input.is_action_just_pressed("Interact")
-		inventory = Input.is_action_just_pressed("Open Inventory")
+			#inventory = Input.is_action_just_pressed("Open Inventory")
 
 	#pause_menu = Input.is_action_just_pressed("pause")

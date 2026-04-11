@@ -48,8 +48,8 @@ var HEALTH: float
 var STAMINA: float
 var MANA: float
 
-var items: Array = []
-var consumables: Array = []
+#var items: Array = []
+#var consumables: Array = []
 var head_item: Item
 var body_item: Item
 var boots_item: Item
@@ -60,7 +60,7 @@ var consumable_item: Item
 var blocked_body: Node
 
 func _ready() -> void:
-	_load_preset_items()
+	#_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
 	STAMINA = MAX_STAMINA
@@ -68,7 +68,6 @@ func _ready() -> void:
 	UiController.update_healthbar(HEALTH)
 	UiController.update_staminabar(STAMINA)
 	UiController.update_manabar(MANA)
-	UiController.get_updated_player_items.connect(_give_player_items)
 	UiController.new_player_items.connect(new_player_items)
 	UiController.new_consumable.connect(_new_consumable)
 	#healthbar.value = HEALTH
@@ -122,9 +121,9 @@ func interact_with_object():
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
 
-func _open_inventory():
-	if input.inventory:
-		open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
+#func _open_inventory():
+	#if input.inventory:
+		#open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
 func get_equipped_primary():
 	var weapon: Array = $Head/FieldOfView/RightHand.get_children()
@@ -144,36 +143,37 @@ func get_equipped_consumable():
 		return consumable[0]
 	return null
 
-func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
-	_reset_abilities()
-	var two_handed: bool = new_main_hand_item.data.two_handed
-	
-	items = player_items
-	head_item = _reequip_slot(head_item, new_head_item, head_slot)
-	body_item = _reequip_slot(body_item, new_body_item, body_slot)
-	boots_item = _reequip_slot(boots_item, new_boots_item, boots_slot)
-	consumable_item = _reequip_slot(consumable_item, new_consumable_item, consumable_slot)
-	
-	if two_handed:
-		if main_hand_item != new_main_hand_item:
-			main_hand_item = new_main_hand_item
-			off_hand_item = new_off_hand_item
-			_clear_equip_slot(right_hand)
-			_clear_equip_slot(left_hand)
-			var item_instance = ItemGenerator.generate_item(main_hand_item.data)
-			if item_instance:
-				if item_instance is Node:
-					right_hand.add_child(item_instance, true)
-				elif item_instance is Dictionary:
-					for item_slot in item_instance:
-						match item_slot:
-							ItemGenerator.SLOTS.MAIN_HAND:
-								right_hand.add_child(item_instance[item_slot], true)
-							ItemGenerator.SLOTS.OFF_HAND:
-								left_hand.add_child(item_instance[item_slot], true)
-	else:
-		main_hand_item = _reequip_slot(main_hand_item, new_main_hand_item, right_hand)
-		off_hand_item = _reequip_slot(off_hand_item, new_off_hand_item, left_hand)
+##func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
+#func update_items(new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
+	#_reset_abilities()
+	#var two_handed: bool = new_main_hand_item.data.two_handed
+	#
+	##items = player_items
+	#head_item = _reequip_slot(head_item, new_head_item, head_slot)
+	#body_item = _reequip_slot(body_item, new_body_item, body_slot)
+	#boots_item = _reequip_slot(boots_item, new_boots_item, boots_slot)
+	#consumable_item = _reequip_slot(consumable_item, new_consumable_item, consumable_slot)
+	#
+	#if two_handed:
+		#if main_hand_item != new_main_hand_item:
+			#main_hand_item = new_main_hand_item
+			#off_hand_item = new_off_hand_item
+			#_clear_equip_slot(right_hand)
+			#_clear_equip_slot(left_hand)
+			#var item_instance = ItemGenerator.generate_item(main_hand_item.data)
+			#if item_instance:
+				#if item_instance is Node:
+					#right_hand.add_child(item_instance, true)
+				#elif item_instance is Dictionary:
+					#for item_slot in item_instance:
+						#match item_slot:
+							#ItemGenerator.SLOTS.MAIN_HAND:
+								#right_hand.add_child(item_instance[item_slot], true)
+							#ItemGenerator.SLOTS.OFF_HAND:
+								#left_hand.add_child(item_instance[item_slot], true)
+	#else:
+		#main_hand_item = _reequip_slot(main_hand_item, new_main_hand_item, right_hand)
+		#off_hand_item = _reequip_slot(off_hand_item, new_off_hand_item, left_hand)
 
 func _reequip_slot(old, new, slot):
 	if old != new:
@@ -182,6 +182,7 @@ func _reequip_slot(old, new, slot):
 		if old:
 			var item_instance = ItemGenerator.generate_item(old.data)
 			if item_instance:
+				print(item_instance)
 				slot.add_child(item_instance)
 	return old
 
@@ -193,17 +194,15 @@ func _reset_abilities():
 	for ability_instance in ability.get_children():
 		ability_instance.reset()
 
-func new_player_items(player_items: Array, player_consumables: Array, player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
 	_reset_abilities()
 	var two_handed: bool = false
 	if player_mainhand:
 		two_handed = player_mainhand.data.two_handed
 	
-	items = player_items
 	head_item = _reequip_slot(head_item, player_helmet, head_slot)
 	body_item = _reequip_slot(body_item, player_body, body_slot)
 	boots_item = _reequip_slot(boots_item, player_boots, boots_slot)
-	consumables = player_consumables
 	
 	if two_handed:
 		if main_hand_item != player_mainhand:
@@ -215,19 +214,15 @@ func new_player_items(player_items: Array, player_consumables: Array, player_hel
 			if item_instance:
 				if item_instance is Node:
 					right_hand.add_child(item_instance, true)
-				elif item_instance is Dictionary:
-					for item_slot in item_instance:
-						match item_slot:
-							ItemGenerator.SLOTS.MAIN_HAND:
-								right_hand.add_child(item_instance[item_slot], true)
-							ItemGenerator.SLOTS.OFF_HAND:
-								left_hand.add_child(item_instance[item_slot], true)
+	
 	else:
 		main_hand_item = _reequip_slot(main_hand_item, player_mainhand, right_hand)
 		off_hand_item = _reequip_slot(off_hand_item, player_offhand, left_hand)
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
+	if consumable_item:
+		print(consumable_item.data.item_name)
 
 func _consume_item(property: String, property_type: Potion.PROPERTY_TYPE, amount: float):
 	if property in self:
@@ -252,6 +247,8 @@ func _remove_consumable():
 	#consumable_item = _reequip_slot(consumable_item, null, consumable_slot)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if PlayerControls.input_blocked():
+		return
 	if event is InputEventMouseMotion:
 		look_rotation.x -= event.relative.y * look_speed * PlayerControls.sensitivity
 		look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
@@ -334,10 +331,10 @@ func get_directional_raycasts() -> Node3D:
 func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
 	spawn_projectile.emit(projectile, spawn_position, direction, proj_transform, direction_flag)
 
-func _load_preset_items():
-	items = ItemManager.load_debug_items()
-	items.append_array(ItemManager.load_debug_items())
-	items.append_array(ItemManager.load_debug_items())
+#func _load_preset_items():
+	#items = ItemManager.load_debug_items()
+	#items.append_array(ItemManager.load_debug_items())
+	#items.append_array(ItemManager.load_debug_items())
 
 func _play_audio_fire_and_forget(resource: AudioStream, bus: AudioManager.BUS, offset: float = 0.0):
 	AudioManager.play_audio_from_resource(resource, global_position, bus, offset)
@@ -351,6 +348,3 @@ func _die():
 		#motion *= freefly_speed * delta
 		#move_and_collide(motion)
 		#return
-
-func _give_player_items():
-	UiController.give_updated_player_items(items, consumables, head_item, body_item, boots_item, main_hand_item, off_hand_item)

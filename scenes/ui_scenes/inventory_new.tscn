@@ -1,19 +1,13 @@
 [gd_scene format=3 uid="uid://bub18fmie3reu"]
 
 [ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="1_gwmof"]
+[ext_resource type="StyleBox" uid="uid://b7n70qrk2wbjp" path="res://resources/ui/inventory/inventory_background_panel_stylebox.tres" id="2_0o35j"]
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_gwmof"]
 [ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
 [ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
 [ext_resource type="PackedScene" uid="uid://rcj82iq4a6fk" path="res://scenes/ui_scenes/inventory/equipped_item.tscn" id="4_3732a"]
-[ext_resource type="StyleBox" uid="uid://ddjsfk7p1jiyv" path="res://resources/ui/inventory/item_text_panel_left.tres" id="4_a6s62"]
-[ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="4_fywa2"]
-[ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_suhgw"]
-[ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="8_suhgw"]
-[ext_resource type="StyleBox" uid="uid://bkbju5em5sd8o" path="res://resources/ui/inventory/item_text_panel_right.tres" id="10_3732a"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ntrp"]
-bg_color = Color(0.2159017, 0.21590173, 0.21590161, 0.3254902)
+[ext_resource type="PackedScene" uid="uid://ctpi1vp12n7hf" path="res://scenes/ui_scenes/inventory/stat_container.tscn" id="12_mgch1"]
 
 [sub_resource type="Theme" id="Theme_h7awd"]
 
@@ -39,7 +33,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(-59, 707)
 theme = ExtResource("1_gwmof")
-theme_override_styles/panel = SubResource("StyleBoxFlat_1ntrp")
+theme_override_styles/panel = ExtResource("2_0o35j")
 script = ExtResource("2_hn110")
 inventory_item_scene = ExtResource("3_mkjgx")
 equipped_item_scene = ExtResource("4_3732a")
@@ -96,263 +90,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="StatContainer" type="HBoxContainer" parent="MarginContainer/Inventory/Right" unique_id=321038121]
+[node name="StatContainer" parent="MarginContainer/Inventory/Right" unique_id=1833489514 instance=ExtResource("12_mgch1")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="ItemStatMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer" unique_id=2053971525]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ItemPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin" unique_id=1153613697]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_h7awd")
-theme_override_styles/panel = ExtResource("4_a6s62")
-
-[node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel" unique_id=1171193300]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="WeaponScroller" type="ScrollContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin" unique_id=120262353]
-visible = false
-layout_mode = 2
-script = ExtResource("4_fywa2")
-
-[node name="WeaponStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller" unique_id=1765649366]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ItemName" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=221899490]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Flaming Greatsword"
-label_settings = ExtResource("2_gwmof")
-vertical_alignment = 1
-clip_text = true
-
-[node name="FlavorText" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=971431835]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Flaming Greatsword"
-label_settings = ExtResource("8_suhgw")
-vertical_alignment = 1
-clip_text = true
-
-[node name="ItemType" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=2073005526]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/ItemType" unique_id=965410597]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Item Type:"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Type" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/ItemType" unique_id=731904041]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Sword"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Normal" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1223541459]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Normal" unique_id=525227002]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Normal Damage:"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="NormalValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Normal" unique_id=758193726]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "5"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Magic" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=2007870402]
-modulate = Color(0.60784316, 0.654902, 1, 1)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Magic" unique_id=1669816964]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Magic Damage:"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="MagicValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Magic" unique_id=226138211]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Fire" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1293826034]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Fire" unique_id=681167484]
-modulate = Color(1, 0.63529414, 0.63529414, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Fire Damage"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="FireValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Fire" unique_id=273792430]
-modulate = Color(1, 0.63529414, 0.63529414, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Lightning" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1455787897]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Lightning" unique_id=621042874]
-modulate = Color(1, 1, 0.63529414, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Lightning Damage"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="LightningValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Lightning" unique_id=1358214018]
-modulate = Color(1, 1, 0.63529414, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Cold" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=795594013]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Cold" unique_id=539966698]
-modulate = Color(0.63529414, 1, 1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Cold Damage"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="ColdValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Cold" unique_id=1236873660]
-modulate = Color(0.63529414, 1, 1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Nature" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=401809467]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Nature" unique_id=1653593117]
-modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Nature Damage"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="NatureValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Nature" unique_id=780391895]
-modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Chaos" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=925741895]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Chaos" unique_id=403334082]
-modulate = Color(0.9254902, 0.69803923, 1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Chaos Damage"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="ChaosValue" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Chaos" unique_id=1381998768]
-modulate = Color(0.9254902, 0.69803923, 1, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "0"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="ConsumableScroller" type="ScrollContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin" unique_id=194257725]
-visible = false
-layout_mode = 2
-script = ExtResource("7_suhgw")
-
-[node name="WeaponStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller" unique_id=363179620]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1466036315]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Flaming Greatsword"
-label_settings = ExtResource("2_gwmof")
-vertical_alignment = 1
-clip_text = true
-
-[node name="InfoTextLabel" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1725134646]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-label_settings = ExtResource("8_suhgw")
-autowrap_mode = 2
-
-[node name="ItemType" type="HBoxContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1848673592]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats/ItemType" unique_id=1995782947]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Item Type:"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="Type" type="Label" parent="MarginContainer/Inventory/Right/StatContainer/ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats/ItemType" unique_id=1603210141]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-text = "Sword"
-label_settings = ExtResource("3_ev5oe")
-
-[node name="ItemDisplayMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer" unique_id=1320271491]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="DisplayPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin" unique_id=871509938]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("10_3732a")
-
-[node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel" unique_id=1566112210]
-layout_mode = 2
-
-[node name="DisplayViewport" type="TextureRect" parent="MarginContainer/Inventory/Right/StatContainer/ItemDisplayMargin/DisplayPanel/_InsideMargin" unique_id=2043619048]
-layout_mode = 2
-stretch_mode = 5
 
 [node name="Player" type="HBoxContainer" parent="MarginContainer/Inventory/Right" unique_id=162598311]
 layout_mode = 2
