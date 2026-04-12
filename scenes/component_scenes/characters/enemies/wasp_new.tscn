@@ -408,7 +408,7 @@ animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
 resource_local_to_scene = true
-graph_offset = Vector2(-433.75748, -21.358715)
+graph_offset = Vector2(-423.75748, 83.64128)
 nodes/output/position = Vector2(480, 200)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
@@ -435,21 +435,23 @@ state_machine = NodePath("StateMachine")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(502241600) index="0" unique_id=1148020218]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-7.233554e-16, 1, 9.581133e-09, 7.54979e-08)
-bones/2/rotation = Quaternion(-0.058636747, 7.04445e-15, -4.137756e-16, 0.9982794)
-bones/3/rotation = Quaternion(0.40914243, 1.0877496e-07, 4.8773583e-08, 0.9124705)
-bones/4/rotation = Quaternion(-0.058636747, 7.04445e-15, -4.137756e-16, 0.9982794)
-bones/5/rotation = Quaternion(0.40914243, -1.0877496e-07, -4.8773583e-08, 0.9124705)
-bones/6/rotation = Quaternion(-0.40678176, 0.3673774, 0.78751457, 0.2817504)
-bones/7/rotation = Quaternion(-0.5325784, -0.107061855, 0.40673596, 0.7344821)
+bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
+bones/2/rotation = Quaternion(-0.36303458, -0.1393102, -0.3446658, 0.8544028)
+bones/3/rotation = Quaternion(0.32568565, -0.078473285, 0.026231425, 0.94185066)
+bones/4/rotation = Quaternion(-0.4845559, 0.17819673, 0.32696146, 0.7915478)
+bones/5/rotation = Quaternion(0.32568568, 0.078473285, -0.026231399, 0.9418507)
+bones/6/rotation = Quaternion(-0.29758826, 0.460303, 0.83363974, 0.06787622)
+bones/7/rotation = Quaternion(-0.59281224, -0.07992101, 0.39421776, 0.69769526)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/10/rotation = Quaternion(-0.53257835, 0.10706177, -0.40673605, 0.7344821)
+bones/9/rotation = Quaternion(0.29758817, 0.46030307, 0.8336398, -0.06787616)
+bones/10/rotation = Quaternion(-0.5928122, 0.07992097, -0.39421776, 0.6976953)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.69511956, 0.19137941, 0.19764785, 0.6641673)
-bones/14/rotation = Quaternion(-0.69511944, -0.19137958, -0.19764793, 0.6641673)
-bones/15/rotation = Quaternion(0.048498217, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.3978698, 3.2810283e-07, -1.4228932e-07, 0.9174419)
-bones/18/rotation = Quaternion(-0.22283334, 2.6341178e-07, -2.1959362e-07, 0.97485656)
+bones/12/rotation = Quaternion(-0.77630115, 0.22774968, 0.15024045, 0.56825554)
+bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
+bones/14/rotation = Quaternion(-0.7762366, -0.22772525, -0.15028706, 0.5683413)
+bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
+bones/17/rotation = Quaternion(-0.24826917, 3.4698687e-07, -8.750618e-08, 0.9686912)
+bones/18/rotation = Quaternion(0.09019771, 2.6897976e-07, 8.834186e-08, 0.9959239)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=2138545314]
 material_override = SubResource("ShaderMaterial_qot2e")
@@ -485,7 +487,6 @@ libraries/wasp = SubResource("AnimationLibrary_lcfq6")
 libraries/wasp-new = SubResource("AnimationLibrary_xedv5")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="6" unique_id=932781127]
-active = false
 tree_root = SubResource("AnimationNodeBlendTree_awi1o")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../MyPlayer")
