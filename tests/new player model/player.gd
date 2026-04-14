@@ -18,6 +18,11 @@ const right_moving_foot_position = Vector3(-0.138, -0.13, -0.445)
 
 var look_rotation : Vector2
 
+var jumping: bool = false
+var ascending: bool = false
+var falling: bool = false
+var landed: bool = false
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	anim_tree.active = true
@@ -28,9 +33,13 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		jumping = true
 	
+	if falling and is_on_floor():
+		falling = false
+		landed = true
+	
+	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	anim_tree.set("parameters/Movement/blend_position", input_dir)
 	if Input.is_action_just_pressed("primary"):
@@ -66,3 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		self.rotation.y = look_rotation.y + PI
 
 		head.rotation = Vector3(look_rotation.x, PI, 0)
+
+func jump_animation_finished():
+	jumping = false
+	falling = true

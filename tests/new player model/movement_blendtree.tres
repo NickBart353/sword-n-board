@@ -1,31 +1,31 @@
 [gd_resource type="AnimationNodeBlendSpace2D" format=3 uid="uid://besgyesy2efn2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wv5de"]
-animation = &"Left"
+animation = &"Movement/Left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u1dgj"]
-animation = &"Idle"
+animation = &"Movement/Idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wdvg2"]
-animation = &"Backward"
+animation = &"Movement/Backward"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1gfwj"]
-animation = &"Forward"
+animation = &"Movement/Forward"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kpaba"]
-animation = &"Right"
+animation = &"Movement/Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6f6ns"]
-animation = &"BackLeft"
+animation = &"Movement/BackLeft"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
-animation = &"BackRight"
+animation = &"Movement/BackRight"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yml72"]
-animation = &"ForwardRight"
+animation = &"Movement/ForwardRight"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pmhlb"]
-animation = &"ForwardLeft"
+animation = &"Movement/ForwardLeft"
 
 [resource]
 blend_point_0/node = SubResource("AnimationNodeAnimation_wv5de")

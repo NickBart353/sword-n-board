@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cksgb5ql4qohd" path="res://my_assets/models/Player/Player.glb" id="1_wv5de"]
 [ext_resource type="Script" uid="uid://y5hnhpntpscs" path="res://tests/new player model/player.gd" id="2_u1dgj"]
+[ext_resource type="AnimationLibrary" uid="uid://bdlqr4cwu8qfj" path="res://animations/player/movement/Movement.res" id="3_1gfwj"]
+[ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="3_kpaba"]
 [ext_resource type="Texture2D" uid="uid://d21pq7oryjh6v" path="res://my_assets/models/Player/Player_modified_Material.png" id="3_u1dgj"]
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://besgyesy2efn2" path="res://tests/new player model/movement_blendtree.tres" id="3_wdvg2"]
 
@@ -9,362 +11,6 @@
 top_radius = 0.02
 bottom_radius = 0.02
 height = 1.0
-
-[sub_resource type="Animation" id="Animation_wv5de"]
-resource_name = "BackLeft"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-3.1415927, 0, -3.1415927), Vector3(-6.2831855, 0, -6.2831855)]
-}
-
-[sub_resource type="Animation" id="Animation_u1dgj"]
-resource_name = "BackRight"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-3.1415927, 0, 3.1415927), Vector3(-6.2831855, 0, 6.2831855)]
-}
-
-[sub_resource type="Animation" id="Animation_wdvg2"]
-resource_name = "Backward"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-3.1415927, 0, 0), Vector3(-6.2831855, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_1gfwj"]
-resource_name = "Forward"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(3.1415927, 0, 0), Vector3(6.2831855, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_i3n1o"]
-resource_name = "ForwardLeft"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(3.1415927, 0, -3.1415927), Vector3(6.2831855, 0, -6.2831855)]
-}
-
-[sub_resource type="Animation" id="Animation_pmhlb"]
-resource_name = "ForwardRight"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.085, -0.13, 0.445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.138, -0.13, -0.445)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(3.1415927, 0, 3.1415927), Vector3(6.2831855, 0, 6.2831855)]
-}
-
-[sub_resource type="Animation" id="Animation_kpaba"]
-resource_name = "Idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.138, 0, 0), Vector3(-0.138, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.085, 0, 0), Vector3(0.085, 0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("BoneMarkers/LeftFoot:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BoneMarkers:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BoneMarkers:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_6f6ns"]
-resource_name = "Left"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.388, -0.1, 0.135)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.405, -0.11, -0.175)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.1415927), Vector3(0, 0, -6.2831855)]
-}
 
 [sub_resource type="Animation" id="Animation_lnme8"]
 length = 0.001
@@ -465,46 +111,6 @@ tracks/7/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_yml72"]
-resource_name = "Right"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/RightFoot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.388, -0.1, 0.135)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/LeftFoot:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.405, -0.11, -0.175)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BoneMarkers:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 3.1415927), Vector3(0, 0, 6.2831855)]
-}
-
 [sub_resource type="Animation" id="Animation_557ab"]
 resource_name = "swing"
 tracks/0/type = "value"
@@ -534,20 +140,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pmhlb"]
 _data = {
-&"BackLeft": SubResource("Animation_wv5de"),
-&"BackRight": SubResource("Animation_u1dgj"),
-&"Backward": SubResource("Animation_wdvg2"),
-&"Forward": SubResource("Animation_1gfwj"),
-&"ForwardLeft": SubResource("Animation_i3n1o"),
-&"ForwardRight": SubResource("Animation_pmhlb"),
-&"Idle": SubResource("Animation_kpaba"),
-&"Left": SubResource("Animation_6f6ns"),
 &"RESET": SubResource("Animation_lnme8"),
-&"Right": SubResource("Animation_yml72"),
 &"swing": SubResource("Animation_557ab")
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3n1o"]
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6f6ns"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_kpaba"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wdvg2"]
 animation = &"swing"
@@ -556,15 +155,70 @@ animation = &"swing"
 filter_enabled = true
 filters = ["MeshInstance3D:position", "MeshInstance3D:rotation"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6f6ns"]
+animation = &"Jump/descending"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
+animation = &"Jump/jump-start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yml72"]
+animation = &"Jump/landing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pmhlb"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "jumping = true "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3n1o"]
+advance_mode = 2
+advance_expression = "jumping = false
+falling = true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_557ab"]
+advance_mode = 2
+advance_expression = "jumping = false
+falling = false
+landed = true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qs16r"]
+advance_mode = 2
+advance_expression = "jumping = false
+falling = false
+landed = false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twng8"]
+advance_mode = 2
+advance_expression = "jumping = false
+falling = true"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wllh"]
+states/End/position = Vector2(624, 100)
+states/Jump_descending/node = SubResource("AnimationNodeAnimation_6f6ns")
+states/Jump_descending/position = Vector2(430, -31)
+states/Jump_jump-start/node = SubResource("AnimationNodeAnimation_lnme8")
+states/Jump_jump-start/position = Vector2(214, -31)
+states/Jump_landing/node = SubResource("AnimationNodeAnimation_yml72")
+states/Jump_landing/position = Vector2(430, 100)
+states/Start/position = Vector2(214, 100)
+transitions = ["Start", "Jump_jump-start", SubResource("AnimationNodeStateMachineTransition_pmhlb"), "Jump_jump-start", "Jump_descending", SubResource("AnimationNodeStateMachineTransition_i3n1o"), "Jump_descending", "Jump_landing", SubResource("AnimationNodeStateMachineTransition_557ab"), "Jump_landing", "End", SubResource("AnimationNodeStateMachineTransition_qs16r"), "Start", "Jump_descending", SubResource("AnimationNodeStateMachineTransition_twng8")]
+graph_offset = Vector2(-226, -142)
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_twng8"]
-graph_offset = Vector2(-516.7125, -32.064285)
+graph_offset = Vector2(-234.94632, -60.398956)
+nodes/output/position = Vector2(860, 260)
 nodes/Movement/node = ExtResource("3_wdvg2")
-nodes/Movement/position = Vector2(-280, 320)
+nodes/Movement/position = Vector2(-300, 200)
 nodes/Attack/node = SubResource("AnimationNodeOneShot_1gfwj")
-nodes/Attack/position = Vector2(60, 180)
+nodes/Attack/position = Vector2(100, 240)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_wdvg2")
-nodes/Animation/position = Vector2(-180, 120)
-node_connections = [&"output", 0, &"Attack", &"Attack", 0, &"Movement", &"Attack", 1, &"Animation"]
+nodes/Animation/position = Vector2(-100, 380)
+nodes/ActionSpeed/node = SubResource("AnimationNodeTimeScale_6f6ns")
+nodes/ActionSpeed/position = Vector2(320, 260)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_kpaba")
+nodes/Add2/position = Vector2(620, 200)
+nodes/JumpingStateMachine/node = SubResource("AnimationNodeStateMachine_7wllh")
+nodes/JumpingStateMachine/position = Vector2(220, 0)
+node_connections = [&"output", 0, &"Add2", &"Attack", 0, &"Movement", &"Attack", 1, &"Animation", &"ActionSpeed", 0, &"Attack", &"Add2", 0, &"ActionSpeed", &"Add2", 1, &"JumpingStateMachine"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ub2l1"]
 radius = 0.33251953
@@ -579,12 +233,14 @@ anim_tree = NodePath("AnimationTree")
 
 [node name="Head" type="Node3D" parent="." index="0" unique_id=1266497573]
 transform = Transform3D(-0.99999994, -6.46606e-08, 5.8836616e-08, 0, 0.6730125, 0.73963094, -8.742277e-08, 0.739631, -0.67301244, 0, 1.6789606, 0.22460383)
+visible = false
 
 [node name="FieldOfView" type="Camera3D" parent="Head" index="0" unique_id=440960416]
 transform = Transform3D(1, 0, -2.0861624e-07, 0, 1, 0, 2.0861624e-07, 0, 1, 0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView" index="0" unique_id=2110556359]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
+visible = false
 target_position = Vector3(0, 0, -3)
 
 [node name="LeftHand" type="Marker3D" parent="Head/FieldOfView" index="1" unique_id=477365924]
@@ -594,6 +250,7 @@ transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5
 transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
 
 [node name="GroundRayCasts" type="Node3D" parent="Head/FieldOfView" index="3" unique_id=939489298]
+visible = false
 
 [node name="Down" type="RayCast3D" parent="Head/FieldOfView/GroundRayCasts" index="0" unique_id=466717302]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.90000004, 0)
@@ -620,16 +277,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32754195, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=910745899]
 libraries/ = SubResource("AnimationLibrary_pmhlb")
-libraries/Movement = SubResource("AnimationLibrary_i3n1o")
+libraries/Jump = ExtResource("3_kpaba")
+libraries/Movement = ExtResource("3_1gfwj")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=2145938487]
 active = false
 tree_root = SubResource("AnimationNodeBlendTree_twng8")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Movement/blend_position = Vector2(0, 0)
+parameters/Movement/blend_position = Vector2(0.628, 0.781)
 parameters/Attack/active = false
 parameters/Attack/internal_active = false
 parameters/Attack/request = 0
+parameters/ActionSpeed/scale = 1.0
+parameters/Add2/add_amount = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=189300244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8936157, 0)
@@ -638,10 +298,10 @@ shape = SubResource("CapsuleShape3D_ub2l1")
 [node name="PoleNodes" type="Node3D" parent="." index="5" unique_id=918450647]
 
 [node name="LeftKnee" type="Marker3D" parent="PoleNodes" index="0" unique_id=1799527691]
-transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999995, 0.11919212, 0.5956347, 0.5636393)
+transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999995, 0.3164106, 0.5956347, 0.47873223)
 
 [node name="RightKnee" type="Marker3D" parent="PoleNodes" index="1" unique_id=1884218687]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105719924, 0.5871538, 0.55364305)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4472139, 0.58715403, 0.7417891)
 
 [node name="LeftElbow" type="Marker3D" parent="PoleNodes" index="2" unique_id=1316107350]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1056154, 0.81722903, -0.51238126)
@@ -653,10 +313,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6174345, 1.1158458, -0.460
 transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0)
 
 [node name="LeftFoot" type="Marker3D" parent="BoneMarkers" index="0" unique_id=965495092]
-transform = Transform3D(1, 0, 0, 0, 0.9999979, 0, 0, 0, 0.9999982, 0.13202794, -0.03585944, -0.057049107)
+transform = Transform3D(1, 0, 0, 0, 0.9999979, 0, 0, 0, 0.9999982, 0.085, 0, 0)
 
 [node name="RightFoot" type="Marker3D" parent="BoneMarkers" index="1" unique_id=990437389]
-transform = Transform3D(1, 0, 0, 0, 0.99999946, 0, 0, 0, 0.99999946, -0.12648603, -0.03259949, 0.044009313)
+transform = Transform3D(1, 0, 0, 0, 0.99999946, 0, 0, 0, 0.99999946, -0.138, 0, 0)
+
+[node name="AirborneMarker" type="Marker3D" parent="BoneMarkers" index="2" unique_id=1333251384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.086, 0)
 
 [node name="metarig" parent="." index="7" unique_id=2020944853]
 visible = false
@@ -724,6 +387,26 @@ settings/0/end_bone_name = "DEF-f_index.02.R"
 settings/0/end_bone = 52
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
+
+[node name="Spine" type="FABRIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="5" unique_id=514267234]
+setting_count = 1
+settings/0/target_node = NodePath("../../../BoneMarkers/AirborneMarker")
+settings/0/root_bone_name = "DEF-spine"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "DEF-spine.004"
+settings/0/end_bone = 4
+settings/0/extend_end_bone = false
+settings/0/joint_count = 5
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/limitation = null
+settings/0/joints/4/rotation_axis = 3
+settings/0/joints/4/limitation = null
 
 [node name="WGT-rig_spine_fk" parent="." index="9" unique_id=1838833547]
 transform = Transform3D(0.14020151, 0, 0, 0, -0.034999844, -0.13576257, 0, 0.13576256, -0.034999847, 0, 1.0659302, -0.015842019)
