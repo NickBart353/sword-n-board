@@ -19,20 +19,20 @@ height = 1.0
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("BoneMarkers/RightFoot:position")
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoneMarkers:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.138, 0, 0)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("BoneMarkers/RightFoot:rotation")
+tracks/1/enabled = true
+tracks/1/path = NodePath("BoneMarkers:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -43,20 +43,20 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("BoneMarkers/LeftFoot:position")
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponAnimationPoint:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.085, 0, 0)]
+"values": [Vector3(-0.17, 1.655, 0.345)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("BoneMarkers/LeftFoot:rotation")
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponAnimationPoint:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -68,46 +68,118 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("BoneMarkers:position")
+tracks/4/path = NodePath("rig/Skeleton3D/Spine:active")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("BoneMarkers:rotation")
+tracks/5/path = NodePath("rig/Skeleton3D/Spine:influence")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [1.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("WeaponAnimationPoint:position")
+tracks/6/path = NodePath("rig:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.17, 1.655, 0.345)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("WeaponAnimationPoint:rotation")
+tracks/7/path = NodePath("rig:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Head:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.6789606, 0.22460383)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AirborneMarker:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.9037709, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BoneMarkers/RightFoot:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.138, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BoneMarkers/RightFoot:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BoneMarkers/LeftFoot:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.138, 0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BoneMarkers/LeftFoot:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -126,11 +198,71 @@ _data = {
 &"swing3": ExtResource("7_pmhlb")
 }
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_yml72"]
+filter_enabled = true
+filters = ["WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation"]
+
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6f6ns"]
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1gfwj"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pmhlb"]
 filter_enabled = true
-filters = [".", "MeshInstance3D:position", "MeshInstance3D:rotation", "WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation"]
+filters = [".", "BoneMarkers/LeftFoot:position", "BoneMarkers/LeftFoot:rotation", "BoneMarkers/RightFoot:position", "BoneMarkers/RightFoot:rotation", "BoneMarkers:position", "BoneMarkers:rotation", "Head:position", "rig/Skeleton3D/Spine:active", "rig/Skeleton3D/Spine:influence", "rig:position", "rig:rotation"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_pmhlb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6f6ns"]
+animation = &"Jump/descending"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
+animation = &"Jump/jump-start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yml72"]
+animation = &"Jump/landing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pmhlb"]
+xfade_time = 0.1
+advance_expression = "jumping == true "
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3n1o"]
+xfade_time = 0.05
+advance_expression = "jumping == false
+falling == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_557ab"]
+xfade_time = 0.05
+advance_expression = "jumping == false
+falling == false
+landed == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qs16r"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twng8"]
+advance_expression = "jumping == false
+falling == true"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wllh"]
+states/End/position = Vector2(624, 100)
+states/Start/position = Vector2(214, 100)
+states/falling/node = SubResource("AnimationNodeAnimation_6f6ns")
+states/falling/position = Vector2(430, -31)
+states/jump/node = SubResource("AnimationNodeAnimation_lnme8")
+states/jump/position = Vector2(214, -31)
+states/landing/node = SubResource("AnimationNodeAnimation_yml72")
+states/landing/position = Vector2(430, 100)
+transitions = ["Start", "jump", SubResource("AnimationNodeStateMachineTransition_pmhlb"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_i3n1o"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_557ab"), "landing", "End", SubResource("AnimationNodeStateMachineTransition_qs16r"), "Start", "falling", SubResource("AnimationNodeStateMachineTransition_twng8")]
+graph_offset = Vector2(-237, -103)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qs16r"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_twng8"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mji0a"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ndi1x"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ub2l1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pmhlb"]
 animation = &"shortsword/swing1"
@@ -198,72 +330,42 @@ states/Start/position = Vector2(132, 54)
 transitions = ["Start", "Attack1", SubResource("AnimationNodeStateMachineTransition_7wllh"), "Attack1", "End", SubResource("AnimationNodeStateMachineTransition_mji0a"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_ndi1x"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_ub2l1"), "Attack3", "End", SubResource("AnimationNodeStateMachineTransition_2pcy3"), "Attack3", "Attack4", SubResource("AnimationNodeStateMachineTransition_hsxqk"), "Attack4", "End", SubResource("AnimationNodeStateMachineTransition_a80ok"), "Attack2", "End", SubResource("AnimationNodeStateMachineTransition_6f6ns")]
 graph_offset = Vector2(-164, -45)
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_kpaba"]
+[sub_resource type="AnimationNodeAdd3" id="AnimationNodeAdd3_i3n1o"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6f6ns"]
-animation = &"Jump/descending"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
-animation = &"Jump/jump-start"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yml72"]
-animation = &"Jump/landing"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pmhlb"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "jumping == true "
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3n1o"]
-advance_mode = 2
-advance_expression = "jumping == false
-falling == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_557ab"]
-advance_mode = 2
-advance_expression = "jumping == false
-falling == false
-landed == true"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qs16r"]
-advance_mode = 2
-advance_expression = "jumping == false
-falling == false
-landed == false"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twng8"]
-advance_mode = 2
-advance_expression = "jumping == false
-falling == true"
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wllh"]
-states/End/position = Vector2(624, 100)
-states/Jump_descending/node = SubResource("AnimationNodeAnimation_6f6ns")
-states/Jump_descending/position = Vector2(430, -31)
-states/Jump_jump-start/node = SubResource("AnimationNodeAnimation_lnme8")
-states/Jump_jump-start/position = Vector2(214, -31)
-states/Jump_landing/node = SubResource("AnimationNodeAnimation_yml72")
-states/Jump_landing/position = Vector2(430, 100)
-states/Start/position = Vector2(214, 100)
-transitions = ["Start", "Jump_jump-start", SubResource("AnimationNodeStateMachineTransition_pmhlb"), "Jump_jump-start", "Jump_descending", SubResource("AnimationNodeStateMachineTransition_i3n1o"), "Jump_descending", "Jump_landing", SubResource("AnimationNodeStateMachineTransition_557ab"), "Jump_landing", "End", SubResource("AnimationNodeStateMachineTransition_qs16r"), "Start", "Jump_descending", SubResource("AnimationNodeStateMachineTransition_twng8")]
-graph_offset = Vector2(-226, -142)
+[sub_resource type="AnimationNodeAdd3" id="AnimationNodeAdd3_557ab"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_twng8"]
-graph_offset = Vector2(-461.56552, 57.68448)
+graph_offset = Vector2(-512.21344, -291.97464)
 nodes/output/position = Vector2(860, 160)
 nodes/Walking/node = ExtResource("3_wdvg2")
 nodes/Walking/position = Vector2(-180, 60)
-nodes/Attack/node = SubResource("AnimationNodeOneShot_1gfwj")
-nodes/Attack/position = Vector2(100, 240)
-nodes/AttackStateMachine/node = SubResource("AnimationNodeStateMachine_0xpfn")
-nodes/AttackStateMachine/position = Vector2(-260, 360)
+nodes/Airborne/node = SubResource("AnimationNodeBlend2_pmhlb")
+nodes/Airborne/position = Vector2(594.51355, 145.23685)
+nodes/TwohandStateMachine/node = SubResource("AnimationNodeStateMachine_0xpfn")
+nodes/TwohandStateMachine/position = Vector2(-560, 260)
 nodes/ActionSpeed/node = SubResource("AnimationNodeTimeScale_6f6ns")
 nodes/ActionSpeed/position = Vector2(320, 260)
 nodes/JumpingStateMachine/node = SubResource("AnimationNodeStateMachine_7wllh")
-nodes/JumpingStateMachine/position = Vector2(240, -100)
-nodes/Jump/node = SubResource("AnimationNodeOneShot_kpaba")
-nodes/Jump/position = Vector2(600, 120)
-node_connections = [&"output", 0, &"Jump", &"Attack", 0, &"Walking", &"Attack", 1, &"AttackStateMachine", &"ActionSpeed", 0, &"Attack", &"Jump", 0, &"ActionSpeed", &"Jump", 1, &"JumpingStateMachine"]
+nodes/JumpingStateMachine/position = Vector2(140, -400)
+nodes/Action/node = SubResource("AnimationNodeAdd2_yml72")
+nodes/Action/position = Vector2(80, 260)
+nodes/Jumping/node = SubResource("AnimationNodeAdd2_pmhlb")
+nodes/Jumping/position = Vector2(420, -200)
+nodes/OffhandStateMachine/node = SubResource("AnimationNodeStateMachine_ndi1x")
+nodes/OffhandStateMachine/position = Vector2(-500, 720)
+nodes/WeaponStateMachine/node = SubResource("AnimationNodeAdd3_557ab")
+nodes/WeaponStateMachine/position = Vector2(-180, 400)
+nodes/MainhandStateMachine/node = SubResource("AnimationNodeStateMachine_twng8")
+nodes/MainhandStateMachine/position = Vector2(-520, 500)
+nodes/WeaponJumping/node = SubResource("AnimationNodeAdd3_i3n1o")
+nodes/WeaponJumping/position = Vector2(-40, -260)
+nodes/OffhandJumping/node = SubResource("AnimationNodeStateMachine_mji0a")
+nodes/OffhandJumping/position = Vector2(-460, -60)
+nodes/MainhandJumping/node = SubResource("AnimationNodeStateMachine_qs16r")
+nodes/MainhandJumping/position = Vector2(-460, -280)
+nodes/TwohandJumping/node = SubResource("AnimationNodeStateMachine_ub2l1")
+nodes/TwohandJumping/position = Vector2(-460, -500)
+node_connections = [&"output", 0, &"Airborne", &"Airborne", 0, &"ActionSpeed", &"Airborne", 1, &"Jumping", &"ActionSpeed", 0, &"Action", &"Action", 0, &"Walking", &"Action", 1, &"WeaponStateMachine", &"Jumping", 0, &"JumpingStateMachine", &"Jumping", 1, &"WeaponJumping", &"WeaponStateMachine", 0, &"TwohandStateMachine", &"WeaponStateMachine", 1, &"MainhandStateMachine", &"WeaponStateMachine", 2, &"OffhandStateMachine", &"WeaponJumping", 0, &"TwohandJumping", &"WeaponJumping", 1, &"MainhandJumping", &"WeaponJumping", 2, &"OffhandJumping"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ub2l1"]
 radius = 0.33251953
@@ -277,7 +379,7 @@ script = ExtResource("2_u1dgj")
 anim_tree = NodePath("AnimationTree")
 
 [node name="Head" type="Node3D" parent="." index="0" unique_id=1266497573]
-transform = Transform3D(-0.99999994, 0, -8.742276e-08, 0, 0.9999999, 0, 8.742277e-08, 0, -0.9999998, 0, 1.6789606, 0.22460383)
+transform = Transform3D(-0.99999994, 0, -1.5099577e-07, 0, 0.9999999, 0, 1.5099579e-07, 0, -0.9999998, 0, 1.6789606, 0.22460383)
 
 [node name="FieldOfView" type="Camera3D" parent="Head" index="0" unique_id=440960416]
 transform = Transform3D(1, 0, -2.0861624e-07, 0, 1, 0, 2.0861624e-07, 0, 1, 0, 0, 0)
@@ -335,17 +437,15 @@ libraries/Movement = ExtResource("3_1gfwj")
 libraries/shortsword = SubResource("AnimationLibrary_lnme8")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4" unique_id=2145938487]
-active = false
 tree_root = SubResource("AnimationNodeBlendTree_twng8")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Walking/blend_position = Vector2(1, 0)
-parameters/Attack/active = false
-parameters/Attack/internal_active = false
-parameters/Attack/request = 0
+parameters/Walking/blend_position = Vector2(0, 1)
+parameters/Airborne/blend_amount = 1.0
 parameters/ActionSpeed/scale = 1.0
-parameters/Jump/active = false
-parameters/Jump/internal_active = false
-parameters/Jump/request = 0
+parameters/Action/add_amount = 1.0
+parameters/Jumping/add_amount = 1.0
+parameters/WeaponStateMachine/add_amount = -1.0
+parameters/WeaponJumping/add_amount = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="5" unique_id=189300244]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8936157, 0)
@@ -369,21 +469,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7864454, 0.6005838, -0.460
 transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0)
 
 [node name="LeftFoot" type="Marker3D" parent="BoneMarkers" index="0" unique_id=965495092]
-transform = Transform3D(1, 0, 0, 0, 0.9999979, 0, 0, 0, 0.9999982, 0.085, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999979, 0, 0, 0, 0.9999982, 0.138, 0, 0)
 
 [node name="RightFoot" type="Marker3D" parent="BoneMarkers" index="1" unique_id=990437389]
 transform = Transform3D(1, 0, 0, 0, 0.99999946, 0, 0, 0, 0.99999946, -0.138, 0, 0)
 
 [node name="AirborneMarker" type="Marker3D" parent="." index="8" unique_id=1333251384]
-transform = Transform3D(-0.1462551, -0.98924655, 0, -0.11312708, 0.016725255, 0.9934394, -0.9827572, 0.14529559, -0.114356734, -2.0635684, 0.034888882, 0.3030866)
+transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.9999996, 0, 1.9037709, 0)
 
-[node name="metarig" parent="." index="9" unique_id=517745359]
+[node name="metarig" parent="." index="9" unique_id=2020944853]
 visible = false
 
-[node name="Cube_001" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="0" unique_id=1512092867]
+[node name="Cube_001" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="0" unique_id=284341477]
 material_override = SubResource("StandardMaterial3D_wdvg2")
 
-[node name="LeftLeg" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="1" unique_id=525235423]
+[node name="LeftLeg" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="1" unique_id=525235423]
 setting_count = 1
 settings/0/target_node = NodePath("../../../BoneMarkers/LeftFoot")
 settings/0/pole_node = NodePath("../../../PoleNodes/LeftKnee")
@@ -399,7 +499,7 @@ settings/0/extend_end_bone = true
 settings/0/end_bone/direction = 6
 settings/0/end_bone/length = 0.0
 
-[node name="RightLeg" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="2" unique_id=1987045221]
+[node name="RightLeg" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="2" unique_id=1987045221]
 transform = Transform3D(0.98216605, 0, -0.18801561, 0, 1, 0, 0.18801561, 0, 0.98216605, 0, 0, 0)
 setting_count = 1
 settings/0/target_node = NodePath("../../../BoneMarkers/RightFoot")
@@ -412,9 +512,11 @@ settings/0/pole_direction = 0
 settings/0/end_bone_name = "DEF-foot.R"
 settings/0/end_bone = 18
 settings/0/use_virtual_end = false
-settings/0/extend_end_bone = false
+settings/0/extend_end_bone = true
+settings/0/end_bone/direction = 6
+settings/0/end_bone/length = 0.0
 
-[node name="LeftHand" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="3" unique_id=653610744]
+[node name="LeftHand" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="3" unique_id=653610744]
 setting_count = 1
 settings/0/target_node = NodePath("../../../WeaponAnimationPoint/Weapon/Lefthand")
 settings/0/pole_node = NodePath("../../../PoleNodes/LeftElbow")
@@ -430,7 +532,7 @@ settings/0/extend_end_bone = true
 settings/0/end_bone/direction = 6
 settings/0/end_bone/length = 0.0
 
-[node name="RightHand" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="4" unique_id=1330431101]
+[node name="RightHand" type="TwoBoneIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="4" unique_id=1330431101]
 setting_count = 1
 settings/0/target_node = NodePath("../../../WeaponAnimationPoint/Weapon/Lefthand")
 settings/0/pole_node = NodePath("../../../PoleNodes/RightElbow")
@@ -444,7 +546,7 @@ settings/0/end_bone = 52
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="Spine" type="FABRIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="5" unique_id=514267234]
+[node name="Spine" type="FABRIK3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="5" unique_id=514267234]
 active = false
 setting_count = 1
 settings/0/target_node = NodePath("../../../AirborneMarker")
@@ -465,7 +567,7 @@ settings/0/joints/3/limitation = null
 settings/0/joints/4/rotation_axis = 3
 settings/0/joints/4/limitation = null
 
-[node name="RightHandCopyTrans" type="CopyTransformModifier3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="6" unique_id=949531406]
+[node name="RightHandCopyTrans" type="CopyTransformModifier3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="6" unique_id=949531406]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "DEF-hand.R"
@@ -477,7 +579,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="LeftHandCopyTrans" type="CopyTransformModifier3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1963306731) index="7" unique_id=1429826758]
+[node name="LeftHandCopyTrans" type="CopyTransformModifier3D" parent="rig/Skeleton3D" parent_id_path=PackedInt32Array(1105298343) index="7" unique_id=1429826758]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "DEF-hand.L"
@@ -489,367 +591,367 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="WGT-rig_spine_fk" parent="." index="11" unique_id=1507904576]
+[node name="WGT-rig_spine_fk" parent="." index="11" unique_id=1838833547]
 transform = Transform3D(0.14020151, 0, 0, 0, -0.034999844, -0.13576257, 0, 0.13576256, -0.034999847, 0, 1.0659302, -0.015842019)
 
-[node name="WGT-rig_spine_fk_001" parent="." index="12" unique_id=443972886]
+[node name="WGT-rig_spine_fk_001" parent="." index="12" unique_id=254112974]
 transform = Transform3D(0.12584916, 0, 0, 0, -0.015473607, -0.12489425, 0, 0.12489423, -0.015473609, 0, 1.1908245, -0.00036839768)
 
-[node name="WGT-rig_spine_fk_002" parent="." index="13" unique_id=1818049661]
+[node name="WGT-rig_spine_fk_002" parent="." index="13" unique_id=1512820761]
 transform = Transform3D(0.159238, 0, 0, 0, 0.005065778, -0.15915741, 0, 0.1591574, 0.0050657783, 0, 1.1908245, -0.00036839768)
 
-[node name="WGT-rig_spine_fk_003" parent="." index="14" unique_id=95022786]
+[node name="WGT-rig_spine_fk_003" parent="." index="14" unique_id=1373715251]
 transform = Transform3D(0.17737436, 0, 0, 0, 0.0050657988, -0.177302, 0, 0.17730199, 0.005065799, 0, 1.3499819, -0.00543417)
 
-[node name="WGT-rig_tweak_spine" parent="." index="15" unique_id=1092893317]
+[node name="WGT-rig_tweak_spine" parent="." index="15" unique_id=1911443117]
 transform = Transform3D(0.070100754, 0, 0, 0, -0.017499922, -0.067881286, 0, 0.06788128, -0.017499924, 0, 0.93016756, -0.05084189)
 
-[node name="WGT-rig_tweak_spine_001" parent="." index="16" unique_id=1974383372]
+[node name="WGT-rig_tweak_spine_001" parent="." index="16" unique_id=1788064771]
 transform = Transform3D(0.06292463, 0, 0, 0, -0.007736811, -0.062447183, 0, 0.062447175, -0.007736812, 0, 1.0659302, -0.015842015)
 
-[node name="WGT-rig_tweak_spine_002" parent="." index="17" unique_id=781687424]
+[node name="WGT-rig_tweak_spine_002" parent="." index="17" unique_id=2145857272]
 transform = Transform3D(0.07961894, 0, 0, 0, 0.002532887, -0.07957865, 0, 0.07957864, 0.0025328875, 0, 1.1908245, -0.0003683963)
 
-[node name="WGT-rig_tweak_spine_003" parent="." index="18" unique_id=1136016396]
+[node name="WGT-rig_tweak_spine_003" parent="." index="18" unique_id=882912596]
 transform = Transform3D(0.08868724, 0, 0, 0, 0.002532901, -0.08865106, 0, 0.08865105, 0.0025329012, 0, 1.3499819, -0.005434168)
 
-[node name="WGT-rig_tweak_spine_004" parent="." index="19" unique_id=147075747]
+[node name="WGT-rig_tweak_spine_004" parent="." index="19" unique_id=1261332159]
 transform = Transform3D(0.030469883, 0, 0, 0, -0.011236803, -0.028322222, 0, 0.028322218, -0.011236804, 0, 1.5272839, -0.010499946)
 
-[node name="WGT-rig_hips" parent="." index="21" unique_id=316711416]
+[node name="WGT-rig_hips" parent="." index="21" unique_id=2042927126]
 transform = Transform3D(0.15066579, 0, 0, 0, -0.03761209, -0.14589553, 0, 0.14589553, -0.03761209, 0, 0.93016756, -0.05084189)
 
-[node name="WGT-rig_chest" parent="." index="22" unique_id=1833446145]
+[node name="WGT-rig_chest" parent="." index="22" unique_id=1911242456]
 transform = Transform3D(0.2008877, 0, 0, 0, 0.0057373364, -0.20080571, 0, 0.2008057, 0.0057373373, 0, 1.3499819, -0.005434168)
 
-[node name="WGT-rig_shoulder_L" parent="." index="23" unique_id=412922972]
+[node name="WGT-rig_shoulder_L" parent="." index="23" unique_id=1249521820]
 transform = Transform3D(0.08188125, 8.547178e-05, -0.13917054, -1.1936579e-05, 0.16147129, 9.214493e-05, 0.13917054, -3.6438185e-05, 0.081881255, 0.02252864, 1.4632471, 0.06299979)
 
-[node name="WGT-rig_upper_arm_parent_L" parent="." index="24" unique_id=1604225032]
+[node name="WGT-rig_upper_arm_parent_L" parent="." index="24" unique_id=2029664118]
 transform = Transform3D(-0.009917345, -0.00028475287, -0.07224131, -0.07157324, 0.009936522, 0.009786472, 0.009805901, 0.07223866, -0.0016309052, 0.19968565, 1.4422268, -0.024592007)
 
-[node name="WGT-rig_upper_arm_fk_L" parent="." index="25" unique_id=451020752]
+[node name="WGT-rig_upper_arm_fk_L" parent="." index="25" unique_id=1677846189]
 transform = Transform3D(-0.039669417, -0.0011390016, -0.2889651, -0.2862928, 0.039746065, 0.03914593, 0.039223578, 0.28895447, -0.0065236175, 0.19968562, 1.4422268, -0.024592005)
 
-[node name="WGT-rig_forearm_fk_L" parent="." index="26" unique_id=28528190]
+[node name="WGT-rig_forearm_fk_L" parent="." index="26" unique_id=2123988779]
 transform = Transform3D(-0.040758412, -0.06604352, -0.28946063, -0.29415137, 0.048642, 0.03032073, 0.04030065, 0.28824055, -0.07143983, 0.48865068, 1.4030808, -0.0180684)
 
-[node name="WGT-rig_hand_fk_L" parent="." index="27" unique_id=1998695598]
+[node name="WGT-rig_hand_fk_L" parent="." index="27" unique_id=488323360]
 transform = Transform3D(0.0020952912, -0.03034668, -0.08766623, -0.09107426, 0.01601692, -0.0077211894, 0.017656963, 0.086216085, -0.029422693, 0.7781113, 1.37276, 0.05337136)
 
-[node name="WGT-rig_upper_arm_ik_L" parent="." index="28" unique_id=1437237520]
+[node name="WGT-rig_upper_arm_ik_L" parent="." index="28" unique_id=1108208696]
 transform = Transform3D(-0.039669424, -0.0011389665, -0.2889651, -0.28629282, 0.039746072, 0.03914594, 0.03922358, 0.28895453, -0.006523583, 0.1996856, 1.4422268, -0.024592005)
 
-[node name="WGT-rig_upper_arm_ik_target_L" parent="." index="29" unique_id=1038351181]
+[node name="WGT-rig_upper_arm_ik_target_L" parent="." index="29" unique_id=991684623]
 transform = Transform3D(0.020148074, 0.07015425, 0.008397838, 0.07015436, -0.018825494, -0.011048455, -0.008397811, 0.011048418, -0.07214939, 0.5558334, 1.314693, -0.59526354)
 
-[node name="WGT-rig_hand_ik_L" parent="." index="30" unique_id=24803362]
+[node name="WGT-rig_hand_ik_L" parent="." index="30" unique_id=1479719138]
 transform = Transform3D(0.0020952676, -0.03034671, -0.08766623, -0.09107427, 0.01601691, -0.007721168, 0.017656948, 0.08621609, -0.029422728, 0.7781113, 1.37276, 0.053371347)
 
-[node name="WGT-rig_VIS_upper_arm_ik_pole_L" parent="." index="31" unique_id=1326603505]
+[node name="WGT-rig_VIS_upper_arm_ik_pole_L" parent="." index="31" unique_id=1370173033]
 transform = Transform3D(0.020301947, 0.587425, -2.567716e-08, 0, -2.5692492e-08, -0.5877757, -0.587425, 0.020301947, -8.874263e-10, 0.48865065, 1.4030808, -0.018068433)
 
-[node name="WGT-rig_upper_arm_tweak_L" parent="." index="32" unique_id=1698927978]
+[node name="WGT-rig_upper_arm_tweak_L" parent="." index="32" unique_id=1290515975]
 transform = Transform3D(-0.009917354, -0.0002847582, -0.07224126, -0.07157319, 0.009936521, 0.009786479, 0.009805899, 0.072238594, -0.0016309128, 0.19968563, 1.4422269, -0.024592012)
 
-[node name="WGT-rig_upper_arm_tweak_L_001" parent="." index="33" unique_id=2078264590]
+[node name="WGT-rig_upper_arm_tweak_L_001" parent="." index="33" unique_id=1854239840]
 transform = Transform3D(-0.009917375, -0.00028474815, -0.072241284, -0.07157322, 0.009936517, 0.009786502, 0.009805896, 0.07223863, -0.0016309047, 0.3441682, 1.4226539, -0.021330211)
 
-[node name="WGT-rig_forearm_tweak_L" parent="." index="34" unique_id=1344181992]
+[node name="WGT-rig_forearm_tweak_L" parent="." index="34" unique_id=2035139941]
 transform = Transform3D(-0.010189581, -0.01651088, -0.072365135, -0.07353782, 0.012160488, 0.0075801625, 0.010075155, 0.07206013, -0.017859953, 0.4886507, 1.4030809, -0.0180684)
 
-[node name="WGT-rig_forearm_tweak_L_001" parent="." index="35" unique_id=2036956266]
+[node name="WGT-rig_forearm_tweak_L_001" parent="." index="35" unique_id=1391047174]
 transform = Transform3D(-0.010189583, -0.016510876, -0.07236516, -0.07353783, 0.012160483, 0.0075801685, 0.010075146, 0.07206015, -0.017859947, 0.633381, 1.3879206, 0.01765147)
 
-[node name="WGT-rig_hand_tweak_L" parent="." index="36" unique_id=441852117]
+[node name="WGT-rig_hand_tweak_L" parent="." index="36" unique_id=1210924828]
 transform = Transform3D(0.0005237392, -0.0075866897, -0.021916568, -0.022768557, 0.004004306, -0.0019302405, 0.0044142925, 0.021554014, -0.0073557026, 0.7781112, 1.3727602, 0.053371355)
 
-[node name="WGT-rig_palm_L" parent="." index="37" unique_id=100228731]
+[node name="WGT-rig_palm_L" parent="." index="37" unique_id=1463500269]
 transform = Transform3D(0.0077760527, -0.012777571, -0.06611787, 0.0038205779, -0.06636629, 0.0132749155, -0.06723275, -0.005249178, -0.0068927445, 0.89554226, 1.3798417, 0.049394164)
 
-[node name="WGT-rig_f_index_01_L" parent="." index="38" unique_id=345120007]
+[node name="WGT-rig_f_index_01_L" parent="." index="38" unique_id=148700787]
 transform = Transform3D(0.006292279, -0.010266118, -0.03969807, 0.009568473, -0.038686305, 0.011521112, -0.039871965, -0.010904056, -0.0035, 0.93987954, 1.3812159, 0.13845962)
 
-[node name="WGT-rig_f_index_02_L" parent="." index="39" unique_id=914913658]
+[node name="WGT-rig_f_index_02_L" parent="." index="39" unique_id=931467415]
 transform = Transform3D(0.004285582, -0.01020214, -0.023522317, 0.0058369646, -0.022834199, 0.010967144, -0.024966232, -0.007089756, -0.0014736706, 0.9795776, 1.3696948, 0.14195962)
 
-[node name="WGT-rig_f_index_03_L" parent="." index="40" unique_id=1928623511]
+[node name="WGT-rig_f_index_03_L" parent="." index="40" unique_id=101429394]
 transform = Transform3D(0.0028884162, -0.012472317, -0.01666784, 0.0050783763, -0.015896987, 0.012775542, -0.02018875, -0.0057832273, 0.00082894455, 1.0030999, 1.3587277, 0.14343329)
 
-[node name="WGT-rig_f_index_01_L_001" parent="." index="41" unique_id=828466268]
+[node name="WGT-rig_f_index_01_L_001" parent="." index="41" unique_id=1696514303]
 transform = Transform3D(0.0020766812, -0.00605501, 0.008333945, 0.0020543665, -0.008087399, -0.0063877967, 0.010094426, 0.0028915773, -0.00041449317, 1.0197678, 1.3459522, 0.14260435)
 
-[node name="WGT-rig_f_index_01_master_L" parent="." index="42" unique_id=1429001384]
+[node name="WGT-rig_f_index_01_master_L" parent="." index="42" unique_id=784988794]
 transform = Transform3D(0.022867689, -0.03730965, -0.14427263, 0.034774184, -0.14059566, 0.041870594, -0.14490469, -0.039628014, -0.012719851, 0.93987954, 1.3812159, 0.13845962)
 
-[node name="WGT-rig_thumb_01_L" parent="." index="43" unique_id=480798856]
+[node name="WGT-rig_thumb_01_L" parent="." index="43" unique_id=104050064]
 transform = Transform3D(-0.015568284, 0.025272934, -0.024438083, 0.027762236, 0.025235265, 0.008411412, 0.021568472, -0.014239825, -0.028466487, 0.8576853, 1.3622918, 0.14592564)
 
-[node name="WGT-rig_thumb_02_L" parent="." index="44" unique_id=2053998704]
+[node name="WGT-rig_thumb_02_L" parent="." index="44" unique_id=1102129041]
 transform = Transform3D(-0.011918536, 0.012284987, -0.025612885, 0.022251718, 0.021303391, -0.00013649765, 0.0176579, -0.018553618, -0.017115895, 0.8821234, 1.3538804, 0.17439212)
 
-[node name="WGT-rig_thumb_03_L" parent="." index="45" unique_id=587622546]
+[node name="WGT-rig_thumb_03_L" parent="." index="45" unique_id=1916796161]
 transform = Transform3D(-0.0083178375, 0.0065472093, -0.015957305, 0.013773185, 0.013185457, -0.0017694229, 0.01038271, -0.012246044, -0.01043655, 0.9077363, 1.3540169, 0.19150801)
 
-[node name="WGT-rig_thumb_01_L_001" parent="." index="46" unique_id=1152859740]
+[node name="WGT-rig_thumb_01_L_001" parent="." index="46" unique_id=2102934094]
 transform = Transform3D(0.0025492553, -0.004638413, 0.007978607, 0.007630443, 0.005715372, 0.0008846538, -0.005191279, 0.006123022, 0.0052183294, 0.9236936, 1.3557863, 0.20194456)
 
-[node name="WGT-rig_thumb_01_master_L" parent="." index="47" unique_id=2078915966]
+[node name="WGT-rig_thumb_01_master_L" parent="." index="47" unique_id=841762927]
 transform = Transform3D(-0.059510518, 0.09660699, -0.093415804, 0.1061225, 0.09646305, 0.032153033, 0.08244655, -0.05443244, -0.10881453, 0.8576853, 1.3622918, 0.14592564)
 
-[node name="WGT-rig_f_middle_01_L" parent="." index="48" unique_id=1334981338]
+[node name="WGT-rig_f_middle_01_L" parent="." index="48" unique_id=326846565]
 transform = Transform3D(0.009082389, -0.014971218, -0.042135406, 0.006139225, -0.04217112, 0.016307233, -0.044292655, -0.008915076, -0.006379756, 0.9473834, 1.3847253, 0.11467067)
 
-[node name="WGT-rig_f_middle_02_L" parent="." index="49" unique_id=1336516728]
+[node name="WGT-rig_f_middle_02_L" parent="." index="49" unique_id=1015732967]
 transform = Transform3D(0.0060781753, -0.015934097, -0.024259504, 0.0038683552, -0.024119888, 0.016811606, -0.028765514, -0.006610504, -0.002865245, 0.9895188, 1.3684181, 0.12105041)
 
-[node name="WGT-rig_f_middle_03_L" parent="." index="50" unique_id=509201576]
+[node name="WGT-rig_f_middle_03_L" parent="." index="50" unique_id=1446681599]
 transform = Transform3D(0.004001875, -0.013245099, -0.015680075, 0.0029552525, -0.015437058, 0.013794061, -0.020311672, -0.0048556137, -0.001082371, 1.0137783, 1.3516065, 0.12391566)
 
-[node name="WGT-rig_f_middle_01_L_001" parent="." index="51" unique_id=647073462]
+[node name="WGT-rig_f_middle_01_L_001" parent="." index="51" unique_id=817486835]
 transform = Transform3D(0.0012105483, -0.0068114684, 0.007840009, 0.0021729914, -0.0075522684, -0.0068970015, 0.010155787, 0.0024278401, 0.0005412101, 1.0294584, 1.3378124, 0.12499803)
 
-[node name="WGT-rig_f_middle_01_master_L" parent="." index="52" unique_id=1234599122]
+[node name="WGT-rig_f_middle_01_master_L" parent="." index="52" unique_id=1989122401]
 transform = Transform3D(0.032743882, -0.053974506, -0.15190706, 0.022133172, -0.15203582, 0.05879111, -0.15968446, -0.032140695, -0.023000315, 0.9473834, 1.3847253, 0.11467067)
 
-[node name="WGT-rig_f_ring_01_L" parent="." index="53" unique_id=197420352]
+[node name="WGT-rig_f_ring_01_L" parent="." index="53" unique_id=718350114]
 transform = Transform3D(0.00794565, -0.014844182, -0.038461566, -0.0009544815, -0.039225113, 0.014941693, -0.041215666, -0.001953311, -0.0077607315, 0.9518085, 1.3768705, 0.072748154)
 
-[node name="WGT-rig_f_ring_02_L" parent="." index="54" unique_id=682507004]
+[node name="WGT-rig_f_ring_02_L" parent="." index="54" unique_id=825416136]
 transform = Transform3D(0.0063803806, -0.012661, -0.021876233, -0.0014293899, -0.022707086, 0.012724969, -0.025235437, -0.0019149549, -0.006251829, 0.9902701, 1.3619288, 0.08050888)
 
-[node name="WGT-rig_f_ring_03_L" parent="." index="55" unique_id=314686579]
+[node name="WGT-rig_f_ring_03_L" parent="." index="55" unique_id=2028556796]
 transform = Transform3D(0.002257842, -0.0137605155, -0.009872436, 0.0010097192, -0.0098326905, 0.013936045, -0.01690554, -0.0024250823, -0.0004861667, 1.0121464, 1.3492038, 0.086760715)
 
-[node name="WGT-rig_f_ring_01_L_001" parent="." index="56" unique_id=1471020030]
+[node name="WGT-rig_f_ring_01_L_001" parent="." index="56" unique_id=528211983]
 transform = Transform3D(0.0008507328, -0.006920164, 0.004936217, 0.0008975497, -0.004860014, -0.006968021, 0.008452768, 0.0012125395, 0.00024308522, 1.0220188, 1.3352678, 0.08724688)
 
-[node name="WGT-rig_f_ring_01_master_L" parent="." index="57" unique_id=946642428]
+[node name="WGT-rig_f_ring_01_master_L" parent="." index="57" unique_id=1645542630]
 transform = Transform3D(0.027553663, -0.051476263, -0.13337585, -0.0033099551, -0.1360237, 0.05181439, -0.14292647, -0.006773602, -0.026912414, 0.9518085, 1.3768705, 0.072748154)
 
-[node name="WGT-rig_f_pinky_01_L" parent="." index="58" unique_id=604091220]
+[node name="WGT-rig_f_pinky_01_L" parent="." index="58" unique_id=470620817]
 transform = Transform3D(0.005188432, -0.0077943625, -0.023251468, -0.0053803534, -0.023548923, 0.0066934815, -0.02392561, 0.0036053837, -0.006547459, 0.9684872, 1.364835, 0.056958232)
 
-[node name="WGT-rig_f_pinky_02_L" parent="." index="59" unique_id=610144388]
+[node name="WGT-rig_f_pinky_02_L" parent="." index="59" unique_id=2105568676]
 transform = Transform3D(0.0048806197, -0.0083113015, -0.01051199, -0.0043820925, -0.011562266, 0.007107136, -0.012664003, 0.00079774327, -0.0065105134, 0.9917387, 1.3581415, 0.06350569)
 
-[node name="WGT-rig_f_pinky_03_L" parent="." index="60" unique_id=770298782]
+[node name="WGT-rig_f_pinky_03_L" parent="." index="60" unique_id=1137059101]
 transform = Transform3D(0.0014145689, -0.011120572, -0.008102773, -0.00096989406, -0.00820581, 0.011092656, -0.013725209, -0.0005662608, -0.0016189648, 1.0022507, 1.3510344, 0.0700162)
 
-[node name="WGT-rig_f_pinky_01_L_001" parent="." index="61" unique_id=563726357]
+[node name="WGT-rig_f_pinky_01_L_001" parent="." index="61" unique_id=1334427306]
 transform = Transform3D(-0.0002468904, -0.005599622, 0.0040513654, 0.0008212373, -0.004048997, -0.0055463025, 0.0068625696, 0.0002830856, 0.0008094743, 1.0103534, 1.3399417, 0.07163517)
 
-[node name="WGT-rig_f_pinky_01_master_L" parent="." index="62" unique_id=215944129]
+[node name="WGT-rig_f_pinky_01_master_L" parent="." index="62" unique_id=1698241293]
 transform = Transform3D(0.018350793, -0.027567545, -0.08223727, -0.019029515, -0.08328935, 0.02367389, -0.08462161, 0.012751702, -0.023157459, 0.9684872, 1.364835, 0.056958232)
 
-[node name="WGT-rig_shoulder_R" parent="." index="63" unique_id=1207588651]
+[node name="WGT-rig_shoulder_R" parent="." index="63" unique_id=1225129568]
 transform = Transform3D(-0.08188125, -8.546745e-05, 0.13917056, -1.1920187e-05, 0.16147129, 9.214954e-05, 0.13917056, -3.6454647e-05, 0.081881255, -0.02252864, 1.4632471, 0.06299979)
 
-[node name="WGT-rig_upper_arm_parent_R" parent="." index="64" unique_id=983392690]
+[node name="WGT-rig_upper_arm_parent_R" parent="." index="64" unique_id=1094691779]
 transform = Transform3D(0.009917346, 0.0002847472, 0.0722413, -0.07157325, 0.00993652, 0.00978647, 0.0098059, 0.07223867, -0.0016308989, -0.19968565, 1.4422268, -0.024592007)
 
-[node name="WGT-rig_upper_arm_fk_R" parent="." index="65" unique_id=851796520]
+[node name="WGT-rig_upper_arm_fk_R" parent="." index="65" unique_id=2131245385]
 transform = Transform3D(0.039669417, 0.0011389429, 0.2889651, -0.2862928, 0.03974605, 0.03914594, 0.03922357, 0.28895447, -0.0065235584, -0.19968562, 1.4422268, -0.024592005)
 
-[node name="WGT-rig_forearm_fk_R" parent="." index="66" unique_id=1496683681]
+[node name="WGT-rig_forearm_fk_R" parent="." index="66" unique_id=124543065]
 transform = Transform3D(0.040758446, 0.06604355, 0.2894606, -0.29415134, 0.048642103, 0.030320736, 0.04030073, 0.28824058, -0.07143987, -0.48865068, 1.4030808, -0.0180684)
 
-[node name="WGT-rig_hand_fk_R" parent="." index="67" unique_id=1513932032]
+[node name="WGT-rig_hand_fk_R" parent="." index="67" unique_id=340466841]
 transform = Transform3D(-0.0020952786, 0.030346712, 0.08766623, -0.09107425, 0.016016915, -0.007721184, 0.017656956, 0.08621607, -0.02942273, -0.7781113, 1.37276, 0.05337136)
 
-[node name="WGT-rig_upper_arm_ik_R" parent="." index="68" unique_id=220547428]
+[node name="WGT-rig_upper_arm_ik_R" parent="." index="68" unique_id=1036353462]
 transform = Transform3D(0.039669435, 0.0011391826, 0.28896505, -0.28629282, 0.03974609, 0.039145906, 0.039223578, 0.28895453, -0.0065237978, -0.1996856, 1.4422268, -0.024592005)
 
-[node name="WGT-rig_upper_arm_ik_target_R" parent="." index="69" unique_id=1712307495]
+[node name="WGT-rig_upper_arm_ik_target_R" parent="." index="69" unique_id=1230230797]
 transform = Transform3D(-0.020148085, -0.07015424, -0.008397837, 0.070154354, -0.018825503, -0.011048459, -0.008397817, 0.0110484185, -0.072149396, -0.5558334, 1.314693, -0.59526354)
 
-[node name="WGT-rig_hand_ik_R" parent="." index="70" unique_id=631816344]
+[node name="WGT-rig_hand_ik_R" parent="." index="70" unique_id=728900453]
 transform = Transform3D(-0.0020952781, 0.030346729, 0.08766623, -0.09107427, 0.016016899, -0.0077211773, 0.01765694, 0.0862161, -0.029422741, -0.7781113, 1.37276, 0.053371347)
 
-[node name="WGT-rig_VIS_upper_arm_ik_pole_R" parent="." index="71" unique_id=2133132021]
+[node name="WGT-rig_VIS_upper_arm_ik_pole_R" parent="." index="71" unique_id=1254590847]
 transform = Transform3D(-0.020302016, -0.587425, -2.567716e-08, 0, 2.5692492e-08, -0.5877757, -0.587425, 0.020302016, 8.8742935e-10, -0.48865065, 1.4030808, -0.018068433)
 
-[node name="WGT-rig_upper_arm_tweak_R" parent="." index="72" unique_id=371748605]
+[node name="WGT-rig_upper_arm_tweak_R" parent="." index="72" unique_id=268555628]
 transform = Transform3D(0.009917355, 0.0002846992, 0.07224127, -0.07157319, 0.009936517, 0.00978649, 0.009805905, 0.07223859, -0.001630855, -0.19968563, 1.4422269, -0.024592012)
 
-[node name="WGT-rig_upper_arm_tweak_R_001" parent="." index="73" unique_id=1866415257]
+[node name="WGT-rig_upper_arm_tweak_R_001" parent="." index="73" unique_id=1295109816]
 transform = Transform3D(0.009917357, 0.0002847183, 0.07224129, -0.07157322, 0.009936516, 0.00978649, 0.009805898, 0.07223864, -0.0016308728, -0.3441682, 1.4226539, -0.021330211)
 
-[node name="WGT-rig_forearm_tweak_R" parent="." index="74" unique_id=1289665745]
+[node name="WGT-rig_forearm_tweak_R" parent="." index="74" unique_id=89895115]
 transform = Transform3D(0.010189577, 0.016510863, 0.07236517, -0.07353785, 0.012160482, 0.007580163, 0.01007515, 0.07206017, -0.017859938, -0.48865068, 1.4030809, -0.018068409)
 
-[node name="WGT-rig_forearm_tweak_R_001" parent="." index="75" unique_id=1437525015]
+[node name="WGT-rig_forearm_tweak_R_001" parent="." index="75" unique_id=1179400086]
 transform = Transform3D(0.0101895835, 0.016510872, 0.07236516, -0.07353783, 0.012160486, 0.0075801676, 0.010075152, 0.07206013, -0.01785995, -0.633381, 1.3879206, 0.017651469)
 
-[node name="WGT-rig_hand_tweak_R" parent="." index="76" unique_id=689769453]
+[node name="WGT-rig_hand_tweak_R" parent="." index="76" unique_id=423070470]
 transform = Transform3D(-0.00052373885, 0.007586671, 0.021916574, -0.022768563, 0.0040043048, -0.0019302358, 0.0044142907, 0.021554017, -0.0073556863, -0.7781113, 1.3727602, 0.053371355)
 
-[node name="WGT-rig_palm_R" parent="." index="77" unique_id=439917996]
+[node name="WGT-rig_palm_R" parent="." index="77" unique_id=538837889]
 transform = Transform3D(-0.0077760685, 0.01277756, 0.06611786, 0.0038205688, -0.06636629, 0.013274905, -0.06723275, -0.0052491706, -0.0068927617, -0.89554226, 1.3798417, 0.04939416)
 
-[node name="WGT-rig_f_index_01_R" parent="." index="78" unique_id=915594916]
+[node name="WGT-rig_f_index_01_R" parent="." index="78" unique_id=656033211]
 transform = Transform3D(-0.0062922672, 0.010266117, 0.039698068, 0.009568465, -0.03868631, 0.011521107, -0.03987197, -0.010904045, -0.0034999915, -0.93987954, 1.3812159, 0.13845962)
 
-[node name="WGT-rig_f_index_02_R" parent="." index="79" unique_id=764547728]
+[node name="WGT-rig_f_index_02_R" parent="." index="79" unique_id=102549942]
 transform = Transform3D(-0.00428557, 0.010202116, 0.023522265, 0.0058369567, -0.02283415, 0.010967117, -0.024966182, -0.007089744, -0.0014736623, -0.9795776, 1.3696948, 0.14195962)
 
-[node name="WGT-rig_f_index_03_R" parent="." index="80" unique_id=859371455]
+[node name="WGT-rig_f_index_03_R" parent="." index="80" unique_id=2114191495]
 transform = Transform3D(-0.002888418, 0.012472316, 0.016667841, 0.005078376, -0.015896985, 0.012775543, -0.020188753, -0.005783227, 0.0008289421, -1.0030999, 1.3587277, 0.14343329)
 
-[node name="WGT-rig_f_index_01_R_001" parent="." index="81" unique_id=356763237]
+[node name="WGT-rig_f_index_01_R_001" parent="." index="81" unique_id=2065564514]
 transform = Transform3D(-0.0020766852, 0.00605501, -0.008333947, 0.0020543667, -0.0080874, -0.0063877986, 0.0100944275, 0.0028915794, -0.0004144965, -1.0197678, 1.3459522, 0.14260435)
 
-[node name="WGT-rig_f_index_01_master_R" parent="." index="82" unique_id=1268221562]
+[node name="WGT-rig_f_index_01_master_R" parent="." index="82" unique_id=681011171]
 transform = Transform3D(-0.022867668, 0.037309658, 0.14427263, 0.034774154, -0.14059563, 0.041870605, -0.14490466, -0.03962798, -0.012719838, -0.93987954, 1.3812159, 0.13845962)
 
-[node name="WGT-rig_thumb_01_R" parent="." index="83" unique_id=880213096]
+[node name="WGT-rig_thumb_01_R" parent="." index="83" unique_id=1295223190]
 transform = Transform3D(0.015568279, -0.02527292, 0.024438081, 0.027762234, 0.025235262, 0.0084114075, 0.021568475, -0.014239831, -0.028466467, -0.8576853, 1.3622918, 0.14592564)
 
-[node name="WGT-rig_thumb_02_R" parent="." index="84" unique_id=518628879]
+[node name="WGT-rig_thumb_02_R" parent="." index="84" unique_id=161718323]
 transform = Transform3D(0.011918529, -0.012284989, 0.025612872, 0.022251721, 0.021303385, -0.00013649002, 0.017657906, -0.01855362, -0.017115882, -0.8821234, 1.3538804, 0.1743921)
 
-[node name="WGT-rig_thumb_03_R" parent="." index="85" unique_id=1942932824]
+[node name="WGT-rig_thumb_03_R" parent="." index="85" unique_id=833054773]
 transform = Transform3D(0.008317836, -0.0065472103, 0.015957294, 0.013773187, 0.013185451, -0.00176942, 0.010382708, -0.012246042, -0.010436545, -0.9077363, 1.3540169, 0.191508)
 
-[node name="WGT-rig_thumb_01_R_001" parent="." index="86" unique_id=1750555100]
+[node name="WGT-rig_thumb_01_R_001" parent="." index="86" unique_id=52788459]
 transform = Transform3D(-0.0025492373, 0.004638388, -0.00797857, 0.007630404, 0.0057153404, 0.0008846526, -0.005191254, 0.006122992, 0.0052183, -0.9236936, 1.3557863, 0.20194456)
 
-[node name="WGT-rig_thumb_01_master_R" parent="." index="87" unique_id=665494491]
+[node name="WGT-rig_thumb_01_master_R" parent="." index="87" unique_id=1745057907]
 transform = Transform3D(0.059510518, -0.096606955, 0.09341581, 0.10612248, 0.09646306, 0.032153007, 0.08244657, -0.054432455, -0.10881449, -0.8576853, 1.3622918, 0.14592564)
 
-[node name="WGT-rig_f_middle_01_R" parent="." index="88" unique_id=1271353764]
+[node name="WGT-rig_f_middle_01_R" parent="." index="88" unique_id=1376065158]
 transform = Transform3D(-0.00908239, 0.014971215, 0.042135406, 0.006139225, -0.04217112, 0.016307231, -0.044292655, -0.008915076, -0.0063797575, -0.9473834, 1.3847253, 0.11467067)
 
-[node name="WGT-rig_f_middle_02_R" parent="." index="89" unique_id=502540652]
+[node name="WGT-rig_f_middle_02_R" parent="." index="89" unique_id=999885580]
 transform = Transform3D(-0.006078188, 0.015934126, 0.024259545, 0.0038683582, -0.024119927, 0.016811637, -0.028765563, -0.0066105137, -0.0028652537, -0.9895188, 1.3684181, 0.12105041)
 
-[node name="WGT-rig_f_middle_03_R" parent="." index="90" unique_id=66529761]
+[node name="WGT-rig_f_middle_03_R" parent="." index="90" unique_id=1718941717]
 transform = Transform3D(-0.0040018843, 0.013245099, 0.015680073, 0.002955253, -0.0154370535, 0.013794065, -0.020311669, -0.004855621, -0.0010823769, -1.0137783, 1.3516065, 0.12391566)
 
-[node name="WGT-rig_f_middle_01_R_001" parent="." index="91" unique_id=1819883673]
+[node name="WGT-rig_f_middle_01_R_001" parent="." index="91" unique_id=1937491345]
 transform = Transform3D(-0.0012105514, 0.006811472, -0.007840006, 0.002172993, -0.007552267, -0.006897003, 0.010155787, 0.0024278436, 0.0005412096, -1.0294584, 1.3378124, 0.12499803)
 
-[node name="WGT-rig_f_middle_01_master_R" parent="." index="92" unique_id=1502071080]
+[node name="WGT-rig_f_middle_01_master_R" parent="." index="92" unique_id=1300618275]
 transform = Transform3D(-0.032743864, 0.053974442, 0.151907, 0.022133157, -0.15203574, 0.058791053, -0.15968436, -0.032140676, -0.023000313, -0.9473834, 1.3847253, 0.11467067)
 
-[node name="WGT-rig_f_ring_01_R" parent="." index="93" unique_id=101235458]
+[node name="WGT-rig_f_ring_01_R" parent="." index="93" unique_id=90166364]
 transform = Transform3D(-0.00794565, 0.014844186, 0.038461555, -0.0009544702, -0.03922511, 0.014941695, -0.041215666, -0.001953323, -0.007760726, -0.9518085, 1.3768705, 0.072748154)
 
-[node name="WGT-rig_f_ring_02_R" parent="." index="94" unique_id=1012363865]
+[node name="WGT-rig_f_ring_02_R" parent="." index="94" unique_id=262348219]
 transform = Transform3D(-0.0063804043, 0.012661051, 0.021876313, -0.001429393, -0.022707168, 0.012725021, -0.02523554, -0.0019149649, -0.0062518492, -0.9902701, 1.3619288, 0.08050888)
 
-[node name="WGT-rig_f_ring_03_R" parent="." index="95" unique_id=389673482]
+[node name="WGT-rig_f_ring_03_R" parent="." index="95" unique_id=814941637]
 transform = Transform3D(-0.0022578402, 0.013760519, 0.009872429, 0.0010097185, -0.009832688, 0.013936042, -0.016905542, -0.0024250804, -0.00048616555, -1.0121464, 1.3492038, 0.086760715)
 
-[node name="WGT-rig_f_ring_01_R_001" parent="." index="96" unique_id=83087921]
+[node name="WGT-rig_f_ring_01_R_001" parent="." index="96" unique_id=1381626708]
 transform = Transform3D(-0.0008507337, 0.006920164, -0.0049362164, 0.0008975488, -0.004860014, -0.00696802, 0.008452771, 0.0012125394, 0.00024308386, -1.0220188, 1.3352678, 0.08724688)
 
-[node name="WGT-rig_f_ring_01_master_R" parent="." index="97" unique_id=763125357]
+[node name="WGT-rig_f_ring_01_master_R" parent="." index="97" unique_id=526641568]
 transform = Transform3D(-0.027553733, 0.051476326, 0.13337597, -0.003309946, -0.1360238, 0.051814467, -0.1429266, -0.0067736404, -0.026912477, -0.9518085, 1.3768705, 0.072748154)
 
-[node name="WGT-rig_f_pinky_01_R" parent="." index="98" unique_id=1669009053]
+[node name="WGT-rig_f_pinky_01_R" parent="." index="98" unique_id=1690543893]
 transform = Transform3D(-0.0051884297, 0.0077943625, 0.023251463, -0.005380354, -0.023548923, 0.00669348, -0.02392561, 0.003605385, -0.0065474557, -0.9684872, 1.3648351, 0.056958232)
 
-[node name="WGT-rig_f_pinky_02_R" parent="." index="99" unique_id=157829976]
+[node name="WGT-rig_f_pinky_02_R" parent="." index="99" unique_id=779989776]
 transform = Transform3D(-0.0048806113, 0.0083113015, 0.010511992, -0.00438209, -0.011562265, 0.0071071363, -0.012664005, 0.0007977462, -0.0065105045, -0.9917387, 1.3581417, 0.063505694)
 
-[node name="WGT-rig_f_pinky_03_R" parent="." index="100" unique_id=146744514]
+[node name="WGT-rig_f_pinky_03_R" parent="." index="100" unique_id=1285903158]
 transform = Transform3D(-0.0014145686, 0.011120575, 0.008102768, -0.0009698942, -0.008205805, 0.011092659, -0.013725213, -0.00056626106, -0.0016189642, -1.0022507, 1.3510345, 0.070016205)
 
-[node name="WGT-rig_f_pinky_01_R_001" parent="." index="101" unique_id=517704503]
+[node name="WGT-rig_f_pinky_01_R_001" parent="." index="101" unique_id=1062316146]
 transform = Transform3D(0.00024689027, 0.0055996226, -0.0040513636, 0.0008212385, -0.0040489966, -0.0055463007, 0.006862572, 0.00028308632, 0.0008094748, -1.0103534, 1.3399419, 0.07163517)
 
-[node name="WGT-rig_f_pinky_01_master_R" parent="." index="102" unique_id=1950670939]
+[node name="WGT-rig_f_pinky_01_master_R" parent="." index="102" unique_id=1353270193]
 transform = Transform3D(-0.0183508, 0.027567554, 0.08223731, -0.019029532, -0.083289385, 0.023673892, -0.084621675, 0.012751713, -0.023157462, -0.9684872, 1.3648351, 0.056958232)
 
-[node name="WGT-rig_neck" parent="." index="103" unique_id=1773950896]
+[node name="WGT-rig_neck" parent="." index="103" unique_id=238044327]
 transform = Transform3D(0.060939766, 0, 0, 0, -0.022473605, -0.056644443, 0, 0.056644436, -0.02247361, 0, 1.5272839, -0.010499943)
 
-[node name="WGT-rig_head" parent="." index="104" unique_id=1931503975]
+[node name="WGT-rig_head" parent="." index="104" unique_id=1575226175]
 transform = Transform3D(0.057750918, 0, 0, 0, -0.010776278, -0.05673659, 0, 0.056736574, -0.01077628, 0, 1.5839283, 0.011973659)
 
-[node name="WGT-rig_thigh_parent_L" parent="." index="105" unique_id=1708359143]
+[node name="WGT-rig_thigh_parent_L" parent="." index="105" unique_id=1875364978]
 transform = Transform3D(0.09290939, 0.0504449, 0.005294744, -0.0024390316, -0.0065937196, 0.105619304, 0.050663248, -0.092826396, -0.0046250992, 0.12867449, 0.9172649, 0.007359994)
 
-[node name="WGT-rig_thigh_fk_L" parent="." index="106" unique_id=964844887]
+[node name="WGT-rig_thigh_fk_L" parent="." index="106" unique_id=182556162]
 transform = Transform3D(0.37163755, 0.20177916, 0.021178907, -0.009756031, -0.026374869, 0.42247725, 0.2026529, -0.37130502, -0.018500479, 0.12867449, 0.9172648, 0.0073599895)
 
-[node name="WGT-rig_shin_fk_L" parent="." index="107" unique_id=999742077]
+[node name="WGT-rig_shin_fk_L" parent="." index="107" unique_id=366328825]
 transform = Transform3D(0.3927581, 0.21441703, 0.0006537757, -0.010310566, 0.01752339, 0.44701296, 0.21416995, -0.39236757, 0.020321157, 0.10749544, 0.49478757, 0.025860688)
 
-[node name="WGT-rig_foot_fk_L" parent="." index="108" unique_id=999998492]
+[node name="WGT-rig_foot_fk_L" parent="." index="108" unique_id=467791178]
 transform = Transform3D(0.086513944, 0.0065354006, 0.016578877, 1.495545e-07, -0.082176134, 0.032393105, 0.017820511, -0.03172698, -0.0804864, 0.1068417, 0.047774583, 0.005539641)
 
-[node name="WGT-rig_thigh_ik_L" parent="." index="110" unique_id=1019206942]
+[node name="WGT-rig_thigh_ik_L" parent="." index="110" unique_id=1236918811]
 transform = Transform3D(0.3716375, 0.20177908, 0.021179184, -0.009756132, -0.026375255, 0.42247722, 0.20265286, -0.3713049, -0.018500775, 0.12867449, 0.9172648, 0.007359989)
 
-[node name="WGT-rig_thigh_ik_target_L" parent="." index="111" unique_id=1032815892]
+[node name="WGT-rig_thigh_ik_target_L" parent="." index="111" unique_id=151611573]
 transform = Transform3D(0.095465034, 0.0002819036, -0.052024543, 0.00028190343, 0.108714774, 0.0011063818, 0.052024543, -0.0011063818, 0.095459044, -0.30870092, 0.50363857, 0.7895331)
 
-[node name="WGT-rig_VIS_thigh_ik_pole_L" parent="." index="113" unique_id=1145016279]
+[node name="WGT-rig_VIS_thigh_ik_pole_L" parent="." index="113" unique_id=2132843118]
 transform = Transform3D(0.7628304, 0.41783243, -1.8264036e-08, 0, -3.801871e-08, -0.8697667, -0.41783243, 0.7628304, -3.3344374e-08, 0.10749544, 0.49478763, 0.025860667)
 
-[node name="WGT-rig_thigh_tweak_L" parent="." index="114" unique_id=1803476068]
+[node name="WGT-rig_thigh_tweak_L" parent="." index="114" unique_id=244680968]
 transform = Transform3D(0.09290938, 0.050444815, 0.0052947924, -0.0024390272, -0.006593819, 0.1056193, 0.050663248, -0.092826255, -0.004625197, 0.12867449, 0.9172648, 0.0073599806)
 
-[node name="WGT-rig_thigh_tweak_L_001" parent="." index="115" unique_id=1332195040]
+[node name="WGT-rig_thigh_tweak_L_001" parent="." index="115" unique_id=1819141678]
 transform = Transform3D(0.092909366, 0.05044492, 0.005294747, -0.0024390344, -0.0065937187, 0.105619304, 0.05066327, -0.09282638, -0.004625096, 0.118084975, 0.7060263, 0.016610343)
 
-[node name="WGT-rig_shin_tweak_L" parent="." index="116" unique_id=12877351]
+[node name="WGT-rig_shin_tweak_L" parent="." index="116" unique_id=2012601646]
 transform = Transform3D(0.09818952, 0.053604383, 0.00016343754, -0.0025776378, 0.0043808566, 0.11175326, 0.05354253, -0.098092034, 0.00508029, 0.10749544, 0.49478757, 0.02586069)
 
-[node name="WGT-rig_shin_tweak_L_001" parent="." index="117" unique_id=105911856]
+[node name="WGT-rig_shin_tweak_L_001" parent="." index="117" unique_id=111925656]
 transform = Transform3D(0.09818953, 0.053604364, 0.00016342448, -0.002577626, 0.0043808646, 0.11175328, 0.053542513, -0.09809206, 0.005080291, 0.10716857, 0.271281, 0.015700165)
 
-[node name="WGT-rig_foot_tweak_L" parent="." index="118" unique_id=1251523923]
+[node name="WGT-rig_foot_tweak_L" parent="." index="118" unique_id=1144181582]
 transform = Transform3D(0.021628452, 0.0016338544, 0.004144714, 4.228663e-08, -0.020544002, 0.008098292, 0.0044551175, -0.007931748, -0.020121599, 0.1068417, 0.047774546, 0.0055396385)
 
-[node name="WGT-rig_toe_ik_L" parent="." index="121" unique_id=688608769]
+[node name="WGT-rig_toe_ik_L" parent="." index="121" unique_id=869898640]
 transform = Transform3D(-0.061894543, 0, -9.345813e-09, 0, 0.061894596, 0, 9.345817e-09, 0, -0.06189452, 0.09026282, 0.0153815225, 0.08602601)
 
-[node name="WGT-rig_thigh_parent_R" parent="." index="122" unique_id=717763607]
+[node name="WGT-rig_thigh_parent_R" parent="." index="122" unique_id=101779427]
 transform = Transform3D(-0.09290938, -0.05044492, -0.0052947556, -0.0024390465, -0.006593714, 0.10561931, 0.050663274, -0.09282638, -0.0046250867, -0.12867449, 0.9172649, 0.007359994)
 
-[node name="WGT-rig_thigh_fk_R" parent="." index="123" unique_id=1601589830]
+[node name="WGT-rig_thigh_fk_R" parent="." index="123" unique_id=1972598463]
 transform = Transform3D(-0.37163752, -0.20177917, -0.021178907, -0.0097560305, -0.026374869, 0.42247725, 0.20265292, -0.37130502, -0.018500477, -0.12867449, 0.9172648, 0.0073599895)
 
-[node name="WGT-rig_shin_fk_R" parent="." index="124" unique_id=893375882]
+[node name="WGT-rig_shin_fk_R" parent="." index="124" unique_id=500609847]
 transform = Transform3D(-0.3927581, -0.21441698, -0.0006538062, -0.01031059, 0.017523374, 0.44701296, 0.21416989, -0.3923676, 0.020321155, -0.10749544, 0.49478757, 0.025860688)
 
-[node name="WGT-rig_foot_fk_R" parent="." index="125" unique_id=1661990796]
+[node name="WGT-rig_foot_fk_R" parent="." index="125" unique_id=1800711892]
 transform = Transform3D(-0.086513944, -0.0065354113, -0.016578877, 1.5794679e-07, -0.082176134, 0.032393117, 0.017820513, -0.031726986, -0.08048641, -0.1068417, 0.047774583, 0.005539641)
 
-[node name="WGT-rig_thigh_ik_R" parent="." index="127" unique_id=459696908]
+[node name="WGT-rig_thigh_ik_R" parent="." index="127" unique_id=1162058561]
 transform = Transform3D(-0.3716375, -0.20177914, -0.021179188, -0.0097561395, -0.026375253, 0.4224772, 0.20265292, -0.37130484, -0.018500764, -0.12867449, 0.9172648, 0.007359989)
 
-[node name="WGT-rig_thigh_ik_target_R" parent="." index="128" unique_id=381287816]
+[node name="WGT-rig_thigh_ik_target_R" parent="." index="128" unique_id=1328466205]
 transform = Transform3D(-0.095465034, -0.00028191268, 0.052024536, 0.00028189292, 0.108714774, 0.0011063816, 0.052024536, -0.0011063766, 0.095459044, 0.30870092, 0.50363857, 0.7895331)
 
-[node name="WGT-rig_foot_ik_R" parent="." index="129" unique_id=1968084871]
+[node name="WGT-rig_foot_ik_R" parent="." index="129" unique_id=642778967]
 transform = Transform3D(-0.08833025, 0, 0, 0, 0.08833025, -1.3337496e-08, 0, 1.3337496e-08, 0.08833025, -0.1068417, 0.047774646, 0.0055396087)
 
-[node name="WGT-rig_VIS_thigh_ik_pole_R" parent="." index="130" unique_id=1372306052]
+[node name="WGT-rig_VIS_thigh_ik_pole_R" parent="." index="130" unique_id=586285072]
 transform = Transform3D(-0.7628304, -0.41783243, -1.8264036e-08, 0, 3.801871e-08, -0.8697667, -0.41783243, 0.7628304, 3.3344374e-08, -0.10749544, 0.49478763, 0.025860667)
 
-[node name="WGT-rig_thigh_tweak_R" parent="." index="131" unique_id=1458222281]
+[node name="WGT-rig_thigh_tweak_R" parent="." index="131" unique_id=2082844149]
 transform = Transform3D(-0.09290937, -0.050444808, -0.0052947905, -0.0024390244, -0.0065938197, 0.105619304, 0.050663237, -0.092826255, -0.0046252003, -0.12867449, 0.9172648, 0.0073599806)
 
-[node name="WGT-rig_thigh_tweak_R_001" parent="." index="132" unique_id=631710870]
+[node name="WGT-rig_thigh_tweak_R_001" parent="." index="132" unique_id=290243925]
 transform = Transform3D(-0.09290937, -0.050444935, -0.0052947514, -0.00243904, -0.006593717, 0.105619304, 0.05066328, -0.09282638, -0.004625091, -0.118084975, 0.7060263, 0.016610343)
 
-[node name="WGT-rig_shin_tweak_R" parent="." index="133" unique_id=1596492156]
+[node name="WGT-rig_shin_tweak_R" parent="." index="133" unique_id=1810858979]
 transform = Transform3D(-0.09818952, -0.05360438, -0.00016341404, -0.0025776175, 0.0043808687, 0.11175326, 0.053542532, -0.09809204, 0.005080291, -0.10749544, 0.49478757, 0.02586069)
 
-[node name="WGT-rig_shin_tweak_R_001" parent="." index="134" unique_id=1132764346]
+[node name="WGT-rig_shin_tweak_R_001" parent="." index="134" unique_id=1704273825]
 transform = Transform3D(-0.098189496, -0.05360437, -0.00016341291, -0.0025775454, 0.0043807398, 0.11175325, 0.053542517, -0.098092034, 0.0050801435, -0.10716857, 0.271281, 0.015700165)
 
-[node name="WGT-rig_foot_tweak_R" parent="." index="135" unique_id=903370512]
+[node name="WGT-rig_foot_tweak_R" parent="." index="135" unique_id=1466173241]
 transform = Transform3D(-0.021628452, -0.0016338541, -0.004144716, 4.1131912e-08, -0.020544004, 0.008098291, 0.00445512, -0.007931748, -0.020121597, -0.1068417, 0.047774546, 0.0055396385)
 
-[node name="WGT-rig_foot_spin_ik_R" parent="." index="136" unique_id=2064064162]
+[node name="WGT-rig_foot_spin_ik_R" parent="." index="136" unique_id=1414516823]
 transform = Transform3D(-0.04416512, 0, 0, 0, 0.04416512, -6.6687478e-09, 0, 6.6687478e-09, 0.04416512, -0.09026282, 0.0153815225, 0.08602599)
 
-[node name="WGT-rig_foot_heel_ik_R" parent="." index="137" unique_id=313690022]
+[node name="WGT-rig_foot_heel_ik_R" parent="." index="137" unique_id=1105781867]
 transform = Transform3D(-0.04416512, 0, 0, 0, 0.04416512, -6.6687478e-09, 0, 6.6687478e-09, 0.04416512, -0.1068417, 0.047774646, 0.0055396035)
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
