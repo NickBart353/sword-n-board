@@ -7,7 +7,26 @@ extends CharacterBody3D
 
 @onready var attack_state_machine = $AnimationTree["parameters/AttackStateMachine/playback"]
 @onready var jumping_state_machine = $AnimationTree["parameters/JumpingStateMachine/playback"]
-#var jumping_state_machine
+
+@onready var twohand_movement = $AnimationPlayer["parameters/TwohandMovement/playback"]
+@onready var mainhand_movement = $AnimationPlayer["parameters/MainhandMovement/playback"]
+@onready var offhand_movement = $AnimationPlayer["parameters/OffhandMovement/playback"]
+#@onready var weapon_movement_blender = $AnimationPlayer["parameters/WeaponMovement"]
+
+@onready var twohand_action = $AnimationPlayer["parameters/TwohandStateMachine/playback"]
+#@onready var mainhand_action = $AnimationPlayer["parameters/MainhandStateMachine/playback"]
+#@onready var offhand_action = $AnimationPlayer["parameters/OffhandStateMachine/playback"]
+#@onready var weapon_action_blender = $AnimationPlayer["parameters/Attack"]
+
+#@onready var weapon_state_blender = $AnimationPlayer["parameters/WeaponState"]
+
+const weapon_movement_blender: String = "parameters/WeaponMovment/blend_amount"
+const weapon_state_machine_blender: String = "parameters/WeaponStateMachineBlender/blend_amount"
+const weapon_state_blender: String = "parameters/WeaponState/blend_amount"
+const walking: String = "parameters/Walking/blend_position"
+const action_speed: String = "parameters/ActionSpeed/blend_amount"
+const weapon_jump_blender: String = "parameters/WeaponJumpBlender/blend_amount"
+const airborne_blender: String = "parameters/Airborne/blend_amount"
 
 const animation_dict: Dictionary = {
 	"katana": {
@@ -27,6 +46,7 @@ const right_foot_position = Vector3(-0.138, 0, 0)
 const left_moving_foot_position = Vector3(0.138, -0.13, 0.445)
 const right_moving_foot_position = Vector3(-0.138, -0.13, -0.445)
 
+@export var blend_speed: float = 15
 @export var look_speed: float = 0.002
 @export var anim_tree: AnimationTree
 
@@ -44,12 +64,16 @@ var attack_in_progress: bool
 
 var time_till_fall_counter: float = 0.0
 
+var two_handed: bool = true
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	anim_tree.active = true
 	combo_finished = true
 	if not attack_state_machine.state_finished.is_connected(_attack_state_finished):
 		attack_state_machine.state_finished.connect(_attack_state_finished)
+	
+	_set_weapon_animation_type()
 
 func _process(delta: float) -> void:
 	if landing:
@@ -68,7 +92,6 @@ func _process(delta: float) -> void:
 			anim_tree.set("parameters/Airborne/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 			falling = true
 			jumping_state_machine.travel("falling")
-			print("falling")
 			time_till_fall_counter = 0.0
 
 func _physics_process(delta: float) -> void:
@@ -83,7 +106,6 @@ func _physics_process(delta: float) -> void:
 	
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
-	anim_tree.set("parameters/Walking/blend_position", input_dir)
 	if Input.is_action_just_pressed("primary") and combo_finished:
 		current_attack_counter = 1
 		anim_tree.set("parameters/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -103,11 +125,6 @@ func _physics_process(delta: float) -> void:
 	elif not attack_timer.time_left and not attack_in_progress:
 		pass
 	
-	#if not attack_timer.time_left and not combo_finished and not attack_in_progress:
-		#_on_attack_timer_timeout()
-	
-	#print(attack_state_machine.get_current_node(), attack_timer.time_left, combo_finished, attack_in_progress)
-	
 	var direction := (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 	
 	if direction:
@@ -124,6 +141,18 @@ func _physics_process(delta: float) -> void:
 		left_foot.position = left_foot.position.move_toward(left_foot_position, delta)
 		right_foot.position = right_foot.position.move_toward(right_foot_position, delta)
 	
+	
+	anim_tree.set(walking, input_dir)
+	
+	if combo_finished:
+		anim_tree.set(weapon_state_blender, lerpf(0, 1.0, blend_speed * delta))
+	else:
+		anim_tree.set(weapon_state_blender, lerpf(1.0, 0, blend_speed * delta))
+	
+	if jumping or falling or landing:
+		anim_tree.set(airborne_blender, lerpf(0, 1.0, blend_speed * delta))
+	else:
+		anim_tree.set(airborne_blender, lerpf(1.0, 0, blend_speed * delta))
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -148,10 +177,10 @@ func attack_finished():
 	attack_timer.start()
 	attack_in_progress = false
 
-func _attack_state_finished(state_name: String):
+func _attack_state_finished(_state_name: String):
 	pass
-	#print(state_name)
-	#if state_name != "Start" and not attack_timer.time_left:
+	#print(_state_name)
+	#if _state_name != "Start" and not attack_timer.time_left:
 		#print("test")
 		#attack_timer.start()
 		#attack_in_progress = false
@@ -161,3 +190,13 @@ func _on_attack_timer_timeout() -> void:
 	combo_finished = true
 	attack_in_progress = false
 	attack_state_machine.travel("End")
+
+func _set_weapon_animation_type():
+	if two_handed:
+		anim_tree.set(weapon_movement_blender, 0)
+		anim_tree.set(weapon_state_machine_blender, 0)
+		anim_tree.set(weapon_jump_blender, 0)
+	else:
+		anim_tree.set(weapon_movement_blender, 1)
+		anim_tree.set(weapon_state_machine_blender, 1)
+		anim_tree.set(weapon_jump_blender, 1)
