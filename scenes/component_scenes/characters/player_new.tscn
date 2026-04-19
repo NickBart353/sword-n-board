@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="29_qqhsp"]
 [ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="30_ebfxs"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="31_tg14s"]
+[ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0hxxe"]
@@ -1119,6 +1120,134 @@ _data = {
 &"Sword3": SubResource("Animation_i5qjy")
 }
 
+[sub_resource type="Animation" id="Animation_8rwn3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Player - Kopie/IKMarkers/Torso/Head:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Player - Kopie/IKMarkers/Torso/Head:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.6806612, -0.08780861)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Player - Kopie/IKMarkers/Arms/HandRight:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.26520532, 0.8455571, 0.0014194101)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Player - Kopie/IKMarkers/Arms/HandLeft:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.27714828, 0.85065806, -0.06536512)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Player - Kopie/IKMarkers/Feet/LegLeft:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 3.1415927)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Player - Kopie/IKMarkers/Feet/LegRight:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 3.1415927)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Player - Kopie/IKMarkers/Feet/FootLeft:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.094653904, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Player - Kopie/IKMarkers/Feet/FootRight:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.087554455, 0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Player - Kopie/IKMarkers/Feet/FootRight:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, -1.5707964)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Player - Kopie/IKMarkers/Feet/FootLeft:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.5707964, 1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
+_data = {
+&"RESET": SubResource("Animation_8rwn3")
+}
+
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_v1vyy"]
 loop = false
 stream_count = 3
@@ -1220,24 +1349,77 @@ settings/0/joints/3/limitation = null
 [node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="7" unique_id=77210507]
 
 [node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="8" unique_id=1214134667]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "ankle.r"
+settings/0/apply_bone = 33
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../IKMarkers/Feet/FootRight")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
 
 [node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="9" unique_id=1048711463]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "ankle.l"
+settings/0/apply_bone = 28
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../IKMarkers/Feet/FootLeft")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="10" unique_id=521497604]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+active = false
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "upper_leg.r"
+settings/0/apply_bone = 31
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../IKMarkers/Feet/LegRight")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
+
+[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="11" unique_id=1579301299]
+active = false
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "upper_leg.l"
+settings/0/apply_bone = 26
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../IKMarkers/Feet/LegLeft")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
 
 [node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
 
 [node name="Feet" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=1426899377]
 
 [node name="FootLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=2132491396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11854498, 0, 0)
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1.0000001, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.3711392e-08, -0.094653904, 0, 0)
 
 [node name="FootRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=2013031307]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.087554455, 0, 0)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 0.087554455, 0, 0)
 
 [node name="KneeLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=326930262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08964737, 0.6424949, -0.6248595)
 
 [node name="KneeRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=1451815323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12012446, 0.67658454, -0.62651944)
+
+[node name="LegRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=1395267293]
+transform = Transform3D(4.3711385e-08, -3.8213705e-15, 1, -8.742277e-08, -0.99999994, 0, 0.99999994, -8.742277e-08, -4.371139e-08, 0, 0, 0)
+
+[node name="LegLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=301813334]
+transform = Transform3D(4.371139e-08, -3.821371e-15, -1, -8.742278e-08, -1, 0, -1, 8.742278e-08, -4.371139e-08, 0, 0, 0)
 
 [node name="Arms" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=1137537991]
 
@@ -1410,23 +1592,30 @@ tree_root = ExtResource("31_tg14s")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="AnimationPlayerNew" type="AnimationPlayer" parent="." unique_id=1558370106]
+root_node = NodePath("../AnimationTreeNew")
+libraries/ = SubResource("AnimationLibrary_ysvla")
+libraries/movement = ExtResource("34_0hxxe")
+
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423]
+root_node = NodePath(".")
 callback_mode_process = 0
 callback_mode_method = 1
 tree_root = ExtResource("34_oij22")
 advance_expression_base_node = NodePath("..")
-parameters/Walking/blend_position = Vector2(0, 0)
+anim_player = NodePath("../AnimationPlayerNew")
 parameters/Airborne/blend_amount = 0.0
 parameters/ActionSpeed/scale = 1.0
 parameters/Action/add_amount = 0.0
 parameters/Jumping/add_amount = 0.0
+"parameters/WeaponCombiner 3/add_amount" = 0.0
 parameters/WeaponMovment/blend_amount = 0.0
-"parameters/WeaponCombiner 2/add_amount" = 0.0
+"parameters/WeaponCombiner 2/add_amount" = 1.0
 parameters/WeaponState/blend_amount = 0.0
-parameters/WeaponCombiner/add_amount = 0.0
+parameters/WeaponCombiner/add_amount = 1.0
 parameters/WeaponStateMachineBlender/blend_amount = 0.0
 parameters/WeaponJumpBlender/blend_amount = 0.0
-"parameters/WeaponCombiner 3/add_amount" = 0.0
+parameters/Walking/blend_position = Vector2(0.53361344, -0.501992)
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
 visible = false
