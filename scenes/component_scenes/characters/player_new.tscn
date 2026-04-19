@@ -33,6 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="29_qqhsp"]
 [ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="30_ebfxs"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="31_tg14s"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0hxxe"]
 resource_name = "Player - Kopie_Cube_002"
@@ -53,12 +54,12 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
-radius = 0.22021484
+radius = 0.1899414
 height = 1.8134766
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
-radius = 0.22167969
-height = 1.8720214
+radius = 0.20019531
+height = 1.8495849
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
 playback_mode = 1
@@ -1135,18 +1136,138 @@ mana_regeneration_speed = 3.0
 
 [node name="Player - Kopie" parent="." unique_id=1362714860 instance=ExtResource("2_p0cqj")]
 
-[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1071807549) index="0" unique_id=617060629]
+[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="0" unique_id=581842220]
 mesh = SubResource("ArrayMesh_0hxxe")
 
+[node name="LegLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="1" unique_id=1163306929]
+setting_count = 1
+settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootLeft")
+settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeLeft")
+settings/0/root_bone_name = "upper_leg.l"
+settings/0/root_bone = 26
+settings/0/middle_bone_name = "lower_leg.l"
+settings/0/middle_bone = 27
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "ankle.l"
+settings/0/end_bone = 28
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="LegRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="2" unique_id=1028330868]
+setting_count = 1
+settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootRight")
+settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeRight")
+settings/0/root_bone_name = "upper_leg.r"
+settings/0/root_bone = 31
+settings/0/middle_bone_name = "lower_leg.r"
+settings/0/middle_bone = 32
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "ankle.r"
+settings/0/end_bone = 33
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="3" unique_id=2059326306]
+setting_count = 1
+settings/0/target_node = NodePath("../../../IKMarkers/Arms/HandLeft")
+settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
+settings/0/root_bone_name = "upper_arm.l"
+settings/0/root_bone = 8
+settings/0/middle_bone_name = "forearm.l"
+settings/0/middle_bone = 9
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "hand.l"
+settings/0/end_bone = 10
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="4" unique_id=2035196472]
+setting_count = 1
+settings/0/target_node = NodePath("../../../IKMarkers/Arms/HandRight")
+settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
+settings/0/root_bone_name = "upper_arm.r"
+settings/0/root_bone = 17
+settings/0/middle_bone_name = "forearm.r"
+settings/0/middle_bone = 18
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "hand.r"
+settings/0/end_bone = 19
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="5" unique_id=1146749179]
+angular_delta_limit = 3.141592653589793
+deterministic = true
+setting_count = 1
+settings/0/target_node = NodePath("../../../IKMarkers/Torso/Head")
+settings/0/root_bone_name = "Bone"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "Bone.006"
+settings/0/end_bone = 6
+settings/0/extend_end_bone = false
+settings/0/joint_count = 4
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/limitation = null
+
+[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="6" unique_id=1364208870]
+
+[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="7" unique_id=77210507]
+
+[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="8" unique_id=1214134667]
+
+[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1905293898) index="9" unique_id=1048711463]
+
+[node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
+
+[node name="Feet" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=1426899377]
+
+[node name="FootLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=2132491396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11854498, 0, 0)
+
+[node name="FootRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=2013031307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.087554455, 0, 0)
+
+[node name="KneeLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=326930262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08964737, 0.6424949, -0.6248595)
+
+[node name="KneeRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Feet" unique_id=1451815323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12012446, 0.67658454, -0.62651944)
+
+[node name="Arms" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=1137537991]
+
+[node name="HandRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1802248655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26520532, 0.8455571, 0.0014194101)
+
+[node name="HandLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1440092663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27714828, 0.85065806, -0.06536512)
+
+[node name="ElbowRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1205254174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51984733, 1.2604917, 0.9327944)
+
+[node name="ElbowLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1910430969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41359305, 1.3218328, 1.0142287)
+
+[node name="Torso" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=2034446224]
+
+[node name="Head" type="Marker3D" parent="Player - Kopie/IKMarkers/Torso" unique_id=1160109020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6806612, -0.08780861)
+
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
 shape = SubResource("CapsuleShape3D_lu7gk")
 
 [node name="Head" type="Node3D" parent="." unique_id=187604380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59999996, 0)
+visible = false
 
 [node name="FieldOfView" type="Camera3D" parent="Head" unique_id=2099136400]
-transform = Transform3D(1, 0, -2.0861621e-07, 0, 1, 0, 2.0861621e-07, 0, 1, -3.6294487e-08, 1.0950649, -0.03935498)
+transform = Transform3D(1, 0, -2.0861621e-07, 0, 1, 0, 2.0861621e-07, 0, 1, -3.6294487e-08, 1.1137741, -0.20903385)
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
@@ -1159,6 +1280,7 @@ transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5
 transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
 
 [node name="GroundRayCasts" type="Node3D" parent="Head/FieldOfView" unique_id=755495095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.916348e-08, 0, 0.1397949)
 
 [node name="Down" type="RayCast3D" parent="Head/FieldOfView/GroundRayCasts" unique_id=1512821252]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.90000004, 0)
@@ -1193,7 +1315,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.366194, 0)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=656745909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45310068, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44188243, -0.07037162)
 shape = SubResource("CapsuleShape3D_oijqy")
 debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 
@@ -1288,21 +1410,43 @@ tree_root = ExtResource("31_tg14s")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423]
+callback_mode_process = 0
+callback_mode_method = 1
+tree_root = ExtResource("34_oij22")
+advance_expression_base_node = NodePath("..")
+parameters/Walking/blend_position = Vector2(0, 0)
+parameters/Airborne/blend_amount = 0.0
+parameters/ActionSpeed/scale = 1.0
+parameters/Action/add_amount = 0.0
+parameters/Jumping/add_amount = 0.0
+parameters/WeaponMovment/blend_amount = 0.0
+"parameters/WeaponCombiner 2/add_amount" = 0.0
+parameters/WeaponState/blend_amount = 0.0
+parameters/WeaponCombiner/add_amount = 0.0
+parameters/WeaponStateMachineBlender/blend_amount = 0.0
+parameters/WeaponJumpBlender/blend_amount = 0.0
+"parameters/WeaponCombiner 3/add_amount" = 0.0
+
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
+visible = false
 stream = SubResource("AudioStreamRandomizer_i5qjy")
 max_polyphony = 4
 bus = &"SFX"
 
 [node name="MovementOneShotPlayer" type="AudioStreamPlayer3D" parent="." unique_id=2073203264]
+visible = false
 stream = SubResource("AudioStreamPlaylist_v1vyy")
 max_polyphony = 4
 bus = &"SFX"
 playback_type = 1
 
 [node name="VoicePlayer" type="AudioStreamPlayer3D" parent="." unique_id=1748990333]
+visible = false
 bus = &"Voices"
 
 [node name="AbilityPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1302160619]
+visible = false
 max_polyphony = 4
 bus = &"SFX"
 
