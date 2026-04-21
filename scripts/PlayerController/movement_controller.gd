@@ -110,3 +110,7 @@ func _check_raycast(direction: String, delta):
 		return -3 + player.get_gravity().y * delta
 	else:
 		return player.velocity.y
+
+#func jump_animation_finished():
+	#jumping = false
+	#falling = true

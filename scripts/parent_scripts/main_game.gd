@@ -2,7 +2,7 @@ class_name Main
 extends Node3D
 
 const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactable/item_sack.tscn")
-const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player.tscn")
+const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player_new.tscn")
 
 @onready var main_ui = $CanvasLayer/MainUI
 var player: CharacterBody3D
