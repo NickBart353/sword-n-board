@@ -10,11 +10,15 @@ signal spawn_projectile
 @onready var movement: Node = $MovementController
 @onready var ability: Node = $AbilityController
 @onready var animation: Node = $AnimationController
+@onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
 @onready var ui: Node = $UIController
 @onready var head: Node3D = $Head
-@onready var left_hand = $Head/FieldOfView/LeftHand
-@onready var right_hand = $Head/FieldOfView/RightHand
+@onready var ground_raycast = $GroundRayCasts
+@onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
+@onready var player_interactor = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/RayCast3D"
+@onready var left_hand = $Head/LeftHand
+@onready var right_hand = $Head/RightHand
 @onready var consumable_slot = $Slots/Consumable
 @onready var head_slot = $Slots/Head
 @onready var body_slot = $Slots/Body
@@ -75,7 +79,7 @@ func _ready() -> void:
 	UiController.new_consumable.connect(_new_consumable)
 	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
-	look_rotation.x = head.rotation.x
+	look_rotation.x = player_camera.rotation.x
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 	$AbilityController/Block.blocked.connect(_blocked_attack)
@@ -98,7 +102,8 @@ func _physics_process(delta: float) -> void:
 	input.get_input(delta)
 	movement.apply_movement(input, state_controller, delta)
 	ability.apply_abilities(input, state_controller, movement, delta)
-	animation.apply_animations(input, state_controller, movement, ability, delta)
+	#animation.apply_animations(input, state_controller, movement, ability, delta)
+	new_animation.apply_animations(input, state_controller, movement, ability, delta)
 	audio.apply_audio(state_controller, movement, ability)
 	
 	if not state_controller.is_player_busy():
@@ -107,7 +112,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func interact_with_object():
-	interacting_object = $"Head/FieldOfView/RayCast3D".get_collider()
+	interacting_object = player_interactor.get_collider()
 	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
 		last_hovered_object.get_node(node_name).un_hover()
 		last_hovered_object = null
@@ -129,13 +134,13 @@ func interact_with_object():
 		#open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
 func get_equipped_primary():
-	var weapon: Array = $Head/FieldOfView/RightHand.get_children()
+	var weapon: Array = $Head/RightHand.get_children()
 	if weapon:
 		return weapon[0]
 	return null
 
 func get_equipped_secondary():
-	var offhand: Array = $Head/FieldOfView/LeftHand.get_children()
+	var offhand: Array = $Head/LeftHand.get_children()
 	if offhand:
 		return offhand[0]
 	return null
@@ -262,8 +267,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		look_rotation.y -= event.relative.x * look_speed * PlayerControls.sensitivity
 		transform.basis = Basis()
 		rotate_y(look_rotation.y)
-		head.transform.basis = Basis()
-		head.rotate_x(look_rotation.x)
+		player_camera.transform.basis = Basis()
+		player_camera.rotate_x(look_rotation.x)
 
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:
@@ -327,7 +332,7 @@ func _blocked_attack(body: Node):
 
 func get_looking_direction() -> Vector3:
 	#return $Head/FieldOfView.get_global_transform().basis.z
-	var direction = $Head/FieldOfView.get_global_transform().basis.z
+	var direction = player_camera.get_global_transform().basis.z
 	direction.z *= -1
 	direction.x *= -1
 	direction.y *= -1
@@ -335,13 +340,13 @@ func get_looking_direction() -> Vector3:
 	return direction
 
 func get_camera_transform() -> Transform3D:
-	return $Head/FieldOfView.global_transform
+	return player_camera.global_transform
 
 func get_camera() -> Camera3D:
-	return $Head/FieldOfView
+	return player_camera
 
 func get_directional_raycasts() -> Node3D:
-	return $Head/FieldOfView/GroundRayCasts
+	return ground_raycast
 
 func _spawn_projectile(projectile: Node, spawn_position: Vector3, direction: Vector3, proj_transform: Transform3D, direction_flag: bool = false):
 	spawn_projectile.emit(projectile, spawn_position, direction, proj_transform, direction_flag)

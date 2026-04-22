@@ -184,7 +184,7 @@ filters = ["", ".", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_yml72"]
 
 [resource]
-graph_offset = Vector2(-370.92804, -40.518204)
+graph_offset = Vector2(-664.1598, -6.467697)
 nodes/output/position = Vector2(860, 160)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-1060, 360)

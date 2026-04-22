@@ -61,9 +61,11 @@ func shoot_projectile():
 	var projectile_transform: Transform3D = player.get_camera_transform()
 	var proj_instance = arrow_projectile.instantiate()
 	proj_instance.damage = arrow_damage
-	var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/RightHand/Bow")
+	#var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/RightHand/Bow")
+	var projectile_spawn_position = player.get_node_or_null("Head/RightHand/Bow")
 	if not projectile_spawn_position:
-		projectile_spawn_position = $"../../Head/FieldOfView/RightHand".global_position
+		#projectile_spawn_position = $"../../Head/FieldOfView/RightHand".global_position
+		projectile_spawn_position = $"../../Head/RightHand".global_position
 	else:
 		projectile_spawn_position = projectile_spawn_position.global_position
 	spawn_projectile.emit(proj_instance, projectile_spawn_position, shooting_direction, projectile_transform, true)

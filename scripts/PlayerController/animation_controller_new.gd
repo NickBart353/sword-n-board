@@ -27,7 +27,9 @@ const weapon_jump_blender: String = "parameters/WeaponJumpBlender/blend_amount"
 const airborne_blender: String = "parameters/Airborne/blend_amount"
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
+	anim_tree[walking] = input.direction
 	if movement.moving:
+		anim_tree[airborne_blender] = 0
 		anim_tree[walking] = input.direction
 	if movement.jumping:
 		anim_tree[airborne_blender] = 1
@@ -38,3 +40,18 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 	if movement.landed:
 		anim_tree[airborne_blender] = 1
 		jumping_state_machine.travel("landing")
+
+func equipped_two_hand_weapon(weapon):
+	anim_tree[weapon_movement_blender] = 0
+	anim_tree[weapon_state_machine_blender] = 0
+	anim_tree[weapon_jump_blender] = 0
+
+func equpped_mainhand_weapon(weapon):
+	anim_tree[weapon_movement_blender] = 1
+	anim_tree[weapon_state_machine_blender] = 1
+	anim_tree[weapon_jump_blender] = 1
+
+func equpped_offhand_weapon(weapon):#these are WIP
+	anim_tree[weapon_movement_blender] = 1
+	anim_tree[weapon_state_machine_blender] = 1
+	anim_tree[weapon_jump_blender] = 1
