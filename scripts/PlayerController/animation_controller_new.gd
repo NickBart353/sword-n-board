@@ -24,20 +24,20 @@ const action_speed: String = "parameters/ActionSpeed/blend_amount"
 const weapon_jump_blender: String = "parameters/WeaponJumpBlender/blend_amount"
 const airborne_blender: String = "parameters/Airborne/blend_amount"
 
-var two_handed: bool = false
+var twohanded: bool = false
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if movement.moving:
 		anim_tree[airborne_blender] = 0
 		anim_tree[walking] = input.direction
-		if two_handed:
+		if twohanded:
 			twohand_movement.travel("walking")
 		else:
 			mainhand_movement.travel("walking")
 			offhand_movement.travel("walking")
 	else:
 		anim_tree[walking] = input.direction
-		if two_handed:
+		if twohanded:
 			twohand_movement.travel("idle")
 		else:
 			mainhand_movement.travel("idle")
@@ -45,7 +45,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 	if movement.jumping:
 		anim_tree[airborne_blender] = 1
 		jumping_state_machine.travel("jump")
-		if two_handed:
+		if twohanded:
 			twohand_jumping_state_machine.travel("jump")
 		else:
 			mainhand_jumping_state_machine.travel("jump")
@@ -53,7 +53,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 	if movement.falling:
 		anim_tree[airborne_blender] = 1
 		jumping_state_machine.travel("falling")
-		if two_handed:
+		if twohanded:
 			twohand_jumping_state_machine.travel("falling")
 		else:
 			mainhand_jumping_state_machine.travel("falling")
@@ -61,7 +61,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 	if movement.landed:
 		anim_tree[airborne_blender] = 1
 		jumping_state_machine.travel("landing")
-		if two_handed:
+		if twohanded:
 			twohand_jumping_state_machine.travel("landing")
 		else:
 			mainhand_jumping_state_machine.travel("landing")
@@ -69,12 +69,30 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 
 func equipped_two_hand_weapon(weapon):
 	_set_movement_animations("Twohand", true, weapon)
+	var twohand = anim_tree.tree_root.get_node("TwohandStateMachine")
+	twohand.get_node("attack1")
+	twohand.get_node("attack2")
+	twohand.get_node("attack3")
+	twohand.get_node("attack4")
+	twohand.get_node("idle")
+	twohand.get_node("ability1")
+	twohand.get_node("ability2")
 
 func equpped_mainhand_weapon(weapon):
 	_set_movement_animations("Mainhand", false, weapon)
+	var mainhand = anim_tree.tree_root.get_node("MainhandStateMachine")
+	mainhand.get_node("attack1")
+	mainhand.get_node("attack2")
+	mainhand.get_node("attack3")
+	mainhand.get_node("idle")
+	mainhand.get_node("ability1")
 
 func equpped_offhand_weapon(weapon):
 	_set_movement_animations("Offhand", false, weapon)
+	var offhand = anim_tree.tree_root.get_node("OffhandStateMachine")
+	offhand.get_node("activate")
+	offhand.get_node("idle")
+	offhand.get_node("ability1")
 
 func _set_movement_animations(slot: String, twohanded: bool, _weapon):
 	var blend_value = 1 if twohanded else 0
