@@ -5,9 +5,12 @@ extends MeleeWeapon
 signal hit
 
 func _ready() -> void:
-	pass#data = preload("res://resources/items/iron_sword.tres")
+	pass
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		hit.emit(body, data.normal_damage)
 		sword_player.play()
+
+func get_weapon_markers() -> Marker3D:
+	return $HandMarkers/HandMarker

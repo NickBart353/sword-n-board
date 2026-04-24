@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_r2tqu"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -1326,7 +1327,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("../../../IKMarkers/Arms/HandRight")
+settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/HandMarker")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -1338,7 +1339,40 @@ settings/0/end_bone = 19
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1146749179]
+[node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
+
+[node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=671719962]
+setting_count = 1
+settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/FingerMarker")
+settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/FingerPoleMarker")
+settings/0/root_bone_name = "hand.r"
+settings/0/root_bone = 19
+settings/0/middle_bone_name = "finger.r"
+settings/0/middle_bone = 20
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "finger_end.r"
+settings/0/end_bone = 21
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
+active = false
+
+[node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1460002514]
+setting_count = 1
+settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/ThumbMarker")
+settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/ThumbPoleMarker")
+settings/0/root_bone_name = "thumb_one.r"
+settings/0/root_bone = 22
+settings/0/middle_bone_name = "thumb_two.r"
+settings/0/middle_bone = 23
+settings/0/pole_direction = 0
+settings/0/end_bone_name = "thumb_three.r"
+settings/0/end_bone = 24
+settings/0/use_virtual_end = false
+settings/0/extend_end_bone = false
+
+[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="9" unique_id=1146749179]
 angular_delta_limit = 3.141592653589793
 deterministic = true
 setting_count = 1
@@ -1358,11 +1392,21 @@ settings/0/joints/2/limitation = null
 settings/0/joints/3/rotation_axis = 3
 settings/0/joints/3/limitation = null
 
-[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=1364208870]
+[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="10" unique_id=1364208870]
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "hand.r"
+settings/0/apply_bone = 19
+settings/0/reference_type = 1
+settings/0/reference_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/HandMarker")
+settings/0/copy = 2
+settings/0/axes = 7
+settings/0/invert = 0
+settings/0/additive = false
 
-[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=77210507]
+[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="11" unique_id=77210507]
 
-[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1214134667]
+[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="12" unique_id=1214134667]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.r"
@@ -1374,7 +1418,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="9" unique_id=1048711463]
+[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="13" unique_id=1048711463]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.l"
@@ -1386,7 +1430,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="10" unique_id=521497604]
+[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="14" unique_id=521497604]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 active = false
 setting_count = 1
@@ -1400,7 +1444,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="11" unique_id=1579301299]
+[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="15" unique_id=1579301299]
 active = false
 setting_count = 1
 settings/0/amount = 1.0
@@ -1412,6 +1456,20 @@ settings/0/copy = 2
 settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
+
+[node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
+
+[node name="Twohand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=784648175]
+
+[node name="Mainhand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=1249801531]
+
+[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_r2tqu")]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.11699754, 1.1273024, -0.4574758)
+
+[node name="SwordMesh" parent="Player - Kopie/Weapons/Mainhand/Sword" index="1" unique_id=657047206]
+skeleton = NodePath("../../../../../..")
+
+[node name="Offhand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=1627018548]
 
 [node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
 
@@ -1664,3 +1722,4 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
+[editable path="Player - Kopie/Weapons/Mainhand/Sword"]

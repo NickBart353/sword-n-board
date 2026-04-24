@@ -28,6 +28,9 @@ signal spawn_projectile
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 @onready var timers: Node3D = $Timers
 
+@onready var right_hand_bone: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmRight"
+@onready var left_hand_bone: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmLeft"
+
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
 @export_range(0.0, 100.0) var stamina_regeneration_speed: float = 10.0

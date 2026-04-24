@@ -70,29 +70,29 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 func equipped_two_hand_weapon(weapon):
 	_set_movement_animations("Twohand", true, weapon)
 	var twohand = anim_tree.tree_root.get_node("TwohandStateMachine")
-	twohand.get_node("attack1")
-	twohand.get_node("attack2")
-	twohand.get_node("attack3")
-	twohand.get_node("attack4")
-	twohand.get_node("idle")
-	twohand.get_node("ability1")
-	twohand.get_node("ability2")
+	twohand.get_node("attack1").animation = "movement/left"
+	twohand.get_node("attack2").animation = "movement/left"
+	twohand.get_node("attack3").animation = "movement/left"
+	twohand.get_node("attack4").animation = "movement/left"
+	twohand.get_node("idle").animation = "movement/left"
+	twohand.get_node("ability1").animation = "movement/left"
+	twohand.get_node("ability2").animation = "movement/left"
 
 func equpped_mainhand_weapon(weapon):
 	_set_movement_animations("Mainhand", false, weapon)
 	var mainhand = anim_tree.tree_root.get_node("MainhandStateMachine")
-	mainhand.get_node("attack1")
-	mainhand.get_node("attack2")
-	mainhand.get_node("attack3")
-	mainhand.get_node("idle")
-	mainhand.get_node("ability1")
+	mainhand.get_node("attack1").animation = "movement/left"
+	mainhand.get_node("attack2").animation = "movement/left"
+	mainhand.get_node("attack3").animation = "movement/left"
+	mainhand.get_node("idle").animation = "movement/left"
+	mainhand.get_node("ability1").animation = "movement/left"
 
 func equpped_offhand_weapon(weapon):
 	_set_movement_animations("Offhand", false, weapon)
 	var offhand = anim_tree.tree_root.get_node("OffhandStateMachine")
-	offhand.get_node("activate")
-	offhand.get_node("idle")
-	offhand.get_node("ability1")
+	offhand.get_node("activate").animation = "movement/left"
+	offhand.get_node("idle").animation = "movement/left"
+	offhand.get_node("ability1").animation = "movement/left"
 
 func _set_movement_animations(slot: String, twohanded: bool, _weapon):
 	var blend_value = 1 if twohanded else 0
