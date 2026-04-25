@@ -28,8 +28,16 @@ signal spawn_projectile
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 @onready var timers: Node3D = $Timers
 
-@onready var right_hand_bone: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmRight"
-@onready var left_hand_bone: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmLeft"
+@onready var mainhand: Node3D = $"Player - Kopie/Weapons/Mainhand"
+@onready var offhand: Node3D = $"Player - Kopie/Weapons/Offhand"
+@onready var twohand: Node3D = $"Player - Kopie/Weapons/Twohand"
+
+@onready var arm_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmLeft"
+@onready var arm_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmRight"
+@onready var finger_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/FingerLeft"
+@onready var finger_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/FingerRight"
+@onready var thumb_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbLeft"
+@onready var thumb_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbRight"
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
@@ -226,8 +234,40 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 					right_hand.add_child(item_instance, true)
 	
 	else:
-		main_hand_item = _reequip_slot(main_hand_item, player_mainhand, right_hand)
-		off_hand_item = _reequip_slot(off_hand_item, player_offhand, left_hand)
+		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
+		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
+
+func _reequip_mainhand(old: Item, new: Item, slot):
+	if old != new:
+		old = new
+		_clear_equip_slot(slot)
+		if old:
+			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
+			item_instance.update_markers("R")
+			arm_right.set_target_node(0, item_instance.get_hand())
+			finger_right.set_target_node(0, item_instance.get_finger())
+			thumb_right.set_target_node(0, item_instance.get_thumb())
+			finger_right.set_pole_node(0, item_instance.get_finger_pole())
+			thumb_right.set_pole_node(0, item_instance.get_thumb_pole())
+			if item_instance:
+				slot.add_child(item_instance)
+	return old
+
+func _reequip_offhand(old: Item, new: Item, slot):
+	if old != new:
+		old = new
+		_clear_equip_slot(slot)
+		if old:
+			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
+			item_instance.update_markers("L")
+			arm_left.set_target_node(0, item_instance.get_hand())
+			finger_left.set_target_node(0, item_instance.get_finger())
+			thumb_left.set_target_node(0, item_instance.get_thumb())
+			finger_left.set_pole_node(0, item_instance.get_finger_pole())
+			thumb_left.set_pole_node(0, item_instance.get_thumb_pole())
+			if item_instance:
+				slot.add_child(item_instance)
+	return old
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)

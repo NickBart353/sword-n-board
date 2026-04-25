@@ -50,6 +50,21 @@ func _on_body_entered(body: Node3D) -> void:
 func get_weapon_markers() -> Node3D:
 	return hand_markers
 
+func get_hand() -> Marker3D:
+	return $HandMarkers/Hand
+
+func get_finger() -> Marker3D:
+	return $HandMarkers/Finger
+
+func get_thumb() -> Marker3D:
+	return $HandMarkers/Thumb
+
+func get_finger_pole() -> Marker3D:
+	return $HandMarkers/FingerPole
+
+func get_thumb_pole() -> Marker3D:
+	return $HandMarkers/ThumbPole
+
 func update_markers(hand: String) -> void:
 	for marker: Marker3D in hand_markers.get_children():
 		marker.position = marker_positions[marker]["{0}_Position".format(hand)]
