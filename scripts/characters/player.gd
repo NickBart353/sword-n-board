@@ -78,6 +78,7 @@ var consumable_item: Item
 var blocked_body: Node
 
 func _ready() -> void:
+	$AnimationTreeNew.active = true
 	#_load_preset_items()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH

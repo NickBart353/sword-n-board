@@ -114,5 +114,6 @@ func _set_movement_animations(slot: String, twohanded: bool, weapon_name: String
 	weapon_jumping_state_machine.get_node("falling").animation = "{0}_falling".format([anim_name])
 	weapon_jumping_state_machine.get_node("landing").animation = "{0}_landing".format([anim_name])
 	var weapon_movement_state_machine = anim_tree.tree_root.get_node("{0}Movement".format([slot]))
+	print("{0}_walking".format([anim_name]))
 	weapon_movement_state_machine.get_node("walking").animation = "{0}_walking".format([anim_name])
 	weapon_movement_state_machine.get_node("idle").animation = "{0}_idle".format([anim_name])
