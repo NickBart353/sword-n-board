@@ -67,42 +67,52 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_jumping_state_machine.travel("landing")
 			offhand_jumping_state_machine.travel("landing")
 
-func equipped_two_hand_weapon(weapon):
-	_set_movement_animations("Twohand", true, weapon)
+func equipped_two_hand_weapon(weapon_name: String):
+	_set_movement_animations("Twohand", true, weapon_name)
 	var twohand = anim_tree.tree_root.get_node("TwohandStateMachine")
-	twohand.get_node("attack1").animation = "movement/left"
-	twohand.get_node("attack2").animation = "movement/left"
-	twohand.get_node("attack3").animation = "movement/left"
-	twohand.get_node("attack4").animation = "movement/left"
-	twohand.get_node("idle").animation = "movement/left"
-	twohand.get_node("ability1").animation = "movement/left"
-	twohand.get_node("ability2").animation = "movement/left"
+	twohand.get_node("attack1").animation = "{0}/attack1".format([weapon_name])
+	twohand.get_node("attack2").animation = "{0}/attack2".format([weapon_name])
+	twohand.get_node("attack3").animation = "{0}/attack3".format([weapon_name])
+	twohand.get_node("attack4").animation = "{0}/attack4".format([weapon_name])
+	twohand.get_node("idle").animation = "{0}/idle".format([weapon_name])
+	twohand.get_node("ability1").animation = "{0}/ability1".format([weapon_name])
+	twohand.get_node("ability2").animation = "{0}/ability2".format([weapon_name])
 
-func equpped_mainhand_weapon(weapon):
-	_set_movement_animations("Mainhand", false, weapon)
+func equpped_mainhand_weapon(weapon_name: String):
+	_set_movement_animations("Mainhand", false, weapon_name)
+	var anim_name: String = "{0}/mainhand".format([weapon_name])
 	var mainhand = anim_tree.tree_root.get_node("MainhandStateMachine")
-	mainhand.get_node("attack1").animation = "movement/left"
-	mainhand.get_node("attack2").animation = "movement/left"
-	mainhand.get_node("attack3").animation = "movement/left"
-	mainhand.get_node("idle").animation = "movement/left"
-	mainhand.get_node("ability1").animation = "movement/left"
+	mainhand.get_node("attack1").animation = "{0}_attack1".format([anim_name])
+	mainhand.get_node("attack2").animation = "{0}_attack2".format([anim_name])
+	mainhand.get_node("attack3").animation = "{0}_attack3".format([anim_name])
+	mainhand.get_node("idle").animation = "{0}_idle".format([anim_name])
+	mainhand.get_node("ability1").animation = "{0}_ability1".format([anim_name])
 
-func equpped_offhand_weapon(weapon):
-	_set_movement_animations("Offhand", false, weapon)
+func equpped_offhand_weapon(weapon_name: String):
+	_set_movement_animations("Offhand", false, weapon_name)
+	var anim_name: String = "{0}/offhand".format([weapon_name])
 	var offhand = anim_tree.tree_root.get_node("OffhandStateMachine")
-	offhand.get_node("activate").animation = "movement/left"
-	offhand.get_node("idle").animation = "movement/left"
-	offhand.get_node("ability1").animation = "movement/left"
+	offhand.get_node("activate").animation = "{0}_activate".format([anim_name])
+	offhand.get_node("idle").animation = "{0}_idle".format([anim_name])
+	offhand.get_node("ability1").animation = "{0}_ability1".format([anim_name])
 
-func _set_movement_animations(slot: String, twohanded: bool, _weapon):
-	var blend_value = 1 if twohanded else 0
+func _set_movement_animations(slot: String, twohanded: bool, weapon_name: String):
+	var blend_value: int
+	var anim_name: String
+	if twohanded: 
+		blend_value = 1
+		anim_name = "{0}/".format([weapon_name])
+	else: 
+		blend_value = 1
+		anim_name = "{0}/{1}".format([weapon_name, slot.to_lower()])
+	
 	anim_tree[weapon_movement_blender] = blend_value
 	anim_tree[weapon_state_machine_blender] = blend_value
 	anim_tree[weapon_jump_blender] = blend_value
-	var weapon_jumping_state_machine = anim_tree.tree_root.get_node("{0}Jumping".format(slot))
-	weapon_jumping_state_machine.get_node("jump").animation = "movement/Left"
-	weapon_jumping_state_machine.get_node("falling").animation = "movement/Left"
-	weapon_jumping_state_machine.get_node("landing").animation = "movement/Left"
-	var weapon_movement_state_machine = anim_tree.tree_root.get_node("{0}Movement".format(slot))
-	weapon_movement_state_machine.get_node("walking").animation = "movement/left"
-	weapon_movement_state_machine.get_node("idle").animation = "movement/left"
+	var weapon_jumping_state_machine = anim_tree.tree_root.get_node("{0}Jumping".format([slot]))
+	weapon_jumping_state_machine.get_node("jump").animation = "{0}_jump".format([anim_name])
+	weapon_jumping_state_machine.get_node("falling").animation = "{0}_falling".format([anim_name])
+	weapon_jumping_state_machine.get_node("landing").animation = "{0}_landing".format([anim_name])
+	var weapon_movement_state_machine = anim_tree.tree_root.get_node("{0}Movement".format([slot]))
+	weapon_movement_state_machine.get_node("walking").animation = "{0}_walking".format([anim_name])
+	weapon_movement_state_machine.get_node("idle").animation = "{0}_idle".format([anim_name])
