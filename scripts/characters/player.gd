@@ -28,9 +28,9 @@ signal spawn_projectile
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 @onready var timers: Node3D = $Timers
 
-@onready var mainhand: Node3D = $"Player - Kopie/Weapons/Mainhand"
-@onready var offhand: Node3D = $"Player - Kopie/Weapons/Offhand"
-@onready var twohand: Node3D = $"Player - Kopie/Weapons/Twohand"
+@onready var mainhand: Marker3D = $"Player - Kopie/Weapons/Mainhand"
+@onready var offhand: Marker3D = $"Player - Kopie/Weapons/Offhand"
+@onready var twohand: Marker3D = $"Player - Kopie/Weapons/Twohand"
 
 @onready var arm_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmLeft"
 @onready var arm_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ArmRight"
@@ -243,15 +243,15 @@ func _reequip_mainhand(old: Item, new: Item, slot):
 		_clear_equip_slot(slot)
 		if old:
 			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
-			item_instance.update_markers("R")
-			var marker_dictionary: Dictionary = item_instance.get_markers()
-			arm_right.set_target_node(0, marker_dictionary.get("Hand"))
-			finger_right.set_target_node(0, marker_dictionary.get("Finger"))
-			thumb_right.set_target_node(0, marker_dictionary.get("Thumb"))
-			finger_right.set_pole_node(0, marker_dictionary.get("FingerPole"))
-			thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole"))
 			if item_instance:
 				slot.add_child(item_instance)
+				item_instance.update_markers("R")
+				var marker_dictionary: Dictionary = item_instance.get_markers()
+				arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
+				finger_right.set_target_node(0, marker_dictionary.get("Finger").get_path())
+				thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+				finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+				thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 	return old
 
 func _reequip_offhand(old: Item, new: Item, slot):
@@ -260,15 +260,15 @@ func _reequip_offhand(old: Item, new: Item, slot):
 		_clear_equip_slot(slot)
 		if old:
 			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
-			item_instance.update_markers("L")
-			var marker_dictionary: Dictionary = item_instance.get_markers()
-			arm_left.set_target_node(0, marker_dictionary.get("Hand"))
-			finger_left.set_target_node(0, marker_dictionary.get("Finger"))
-			thumb_left.set_target_node(0, marker_dictionary.get("Thumb"))
-			finger_left.set_pole_node(0, marker_dictionary.get("FingerPole"))
-			thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole"))
 			if item_instance:
 				slot.add_child(item_instance)
+				item_instance.update_markers("L")
+				var marker_dictionary: Dictionary = item_instance.get_markers()
+				arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
+				finger_left.set_target_node(0, marker_dictionary.get("Finger").get_path())
+				thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+				finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+				thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 	return old
 
 func _new_consumable(item: Item):

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dlu3yaqq5m0et" path="res://my_assets/models/weapons/Greatsword.blend" id="1_4s0vc"]
 [ext_resource type="Script" uid="uid://kwqunlyag8rp" path="res://scripts/item_entity/weapons/greatsword.gd" id="2_3lr8e"]
+[ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="3_tpuau"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lr8e"]
 vertex_color_use_as_albedo = true
@@ -23,10 +24,11 @@ metallic = 0.16
 [sub_resource type="BoxShape3D" id="BoxShape3D_2dncq"]
 size = Vector3(0.40631104, 1.8612671, 0.13470459)
 
-[node name="Greatsword" unique_id=1216685605 instance=ExtResource("1_4s0vc")]
+[node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_4s0vc")]
 collision_layer = 6
 collision_mask = 24
 script = ExtResource("2_3lr8e")
+hand_component = NodePath("TwohandComponent")
 
 [node name="Blade" parent="." index="0" unique_id=1721232006]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
@@ -47,5 +49,7 @@ material_override = SubResource("StandardMaterial3D_a61jr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=592149061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0080218315, 0.38034046, -0.012542725)
 shape = SubResource("BoxShape3D_2dncq")
+
+[node name="TwohandComponent" parent="." index="5" unique_id=1480913319 instance=ExtResource("3_tpuau")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

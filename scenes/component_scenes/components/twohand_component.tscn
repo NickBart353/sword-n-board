@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bj048l0we01lg"]
+
+[ext_resource type="Script" uid="uid://jmop6r5t5lot" path="res://scripts/components/twohand_component.gd" id="1_o0x4n"]
+
+[node name="TwohandComponent" type="Node3D" unique_id=1480913319]
+script = ExtResource("1_o0x4n")
+
+[node name="LeftHand" type="Node3D" parent="." unique_id=864344244]
+
+[node name="Hand" type="Marker3D" parent="LeftHand" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.035467185, 0.0017347016, 0.1504283)
+
+[node name="Finger" type="Marker3D" parent="LeftHand" unique_id=2061517379]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.044378478, 0, -0.030274097)
+
+[node name="Thumb" type="Marker3D" parent="LeftHand" unique_id=1174735853]
+transform = Transform3D(1, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999994, -0.023609022, 0.02436528, -0.00035968784)
+
+[node name="FingerPole" type="Marker3D" parent="LeftHand" unique_id=2008502423]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.97995347, 0, -1.2061495)
+
+[node name="ThumbPole" type="Marker3D" parent="LeftHand" unique_id=205447482]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.25123307, 0.20627137, 0.31646794)
+
+[node name="RightHand" type="Node3D" parent="." unique_id=654989024]
+
+[node name="Hand" type="Marker3D" parent="RightHand" unique_id=454043182]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.035467185, 0.0017347016, 0.1504283)
+
+[node name="Finger" type="Marker3D" parent="RightHand" unique_id=1420193819]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, -0.044378478, 0, -0.030274097)
+
+[node name="Thumb" type="Marker3D" parent="RightHand" unique_id=217824265]
+transform = Transform3D(1, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999994, -0.023609022, 0.02436528, -0.00035968784)
+
+[node name="FingerPole" type="Marker3D" parent="RightHand" unique_id=46455176]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.97995347, 0, -1.2061495)
+
+[node name="ThumbPole" type="Marker3D" parent="RightHand" unique_id=101137818]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.25123307, 0.20627137, 0.31646794)

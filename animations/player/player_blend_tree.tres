@@ -170,11 +170,11 @@ states/idle/position = Vector2(338, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_pqrji"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_nr025"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_7aqas"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_3rg2l"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_ii86f"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_bhxqi"), "idle", "ability1", SubResource("AnimationNodeStateMachineTransition_yfe3e"), "ability1", "idle", SubResource("AnimationNodeStateMachineTransition_rfxxq"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_iqry2")]
 graph_offset = Vector2(0, -71.42794)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n3d0x"]
-animation = &"Jump/descending"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njwbl"]
 animation = &"Jump/jump-start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n3d0x"]
+animation = &"Jump/descending"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_crdrl"]
 animation = &"Jump/landing"
@@ -198,13 +198,13 @@ xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mji0a"]
 states/End/position = Vector2(689, 100)
-states/Jump_descending/node = SubResource("AnimationNodeAnimation_n3d0x")
-states/Jump_descending/position = Vector2(200, -22)
-states/Jump_jump-start/node = SubResource("AnimationNodeAnimation_njwbl")
-states/Jump_jump-start/position = Vector2(465, -22)
-states/Jump_landing/node = SubResource("AnimationNodeAnimation_crdrl")
-states/Jump_landing/position = Vector2(465, 100)
-transitions = ["Start", "Jump_descending", SubResource("AnimationNodeStateMachineTransition_gj258"), "Jump_descending", "Jump_jump-start", SubResource("AnimationNodeStateMachineTransition_sbg5n"), "Jump_jump-start", "Jump_landing", SubResource("AnimationNodeStateMachineTransition_pwmg1"), "Jump_landing", "End", SubResource("AnimationNodeStateMachineTransition_keupx"), "Start", "Jump_jump-start", SubResource("AnimationNodeStateMachineTransition_5dg4h")]
+states/falling/node = SubResource("AnimationNodeAnimation_njwbl")
+states/falling/position = Vector2(465, -22)
+states/jump/node = SubResource("AnimationNodeAnimation_n3d0x")
+states/jump/position = Vector2(200, -22)
+states/landing/node = SubResource("AnimationNodeAnimation_crdrl")
+states/landing/position = Vector2(465, 100)
+transitions = ["Start", "jump", SubResource("AnimationNodeStateMachineTransition_gj258"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_sbg5n"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_pwmg1"), "landing", "End", SubResource("AnimationNodeStateMachineTransition_keupx"), "Start", "falling", SubResource("AnimationNodeStateMachineTransition_5dg4h")]
 graph_offset = Vector2(-184, -85)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_clv1e"]
@@ -481,7 +481,7 @@ filters = ["", ".", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", 
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-936.4121, 348.48212)
+graph_offset = Vector2(-798.44214, -325.12762)
 nodes/output/position = Vector2(860, 160)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-1060, 360)

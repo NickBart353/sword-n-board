@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bej3gd8d4bicj" path="res://scripts/components/onehand_component.gd" id="1_3tv8o"]
 
-[node name="OnehandComponent" type="Node3D" unique_id=1480913319]
+[node name="OnehandComponent" type="Node3D" unique_id=1480913319 node_paths=PackedStringArray("hand", "finger", "thumb", "finger_pole", "thumb_pole")]
 script = ExtResource("1_3tv8o")
+hand = NodePath("Hand")
+finger = NodePath("Finger")
+thumb = NodePath("Thumb")
+finger_pole = NodePath("FingerPole")
+thumb_pole = NodePath("ThumbPole")
 
 [node name="Hand" type="Marker3D" parent="." unique_id=412858856]
 transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.035467185, 0.0017347016, 0.1504283)

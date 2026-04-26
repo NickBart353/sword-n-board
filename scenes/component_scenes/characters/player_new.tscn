@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_r2tqu"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -38,6 +37,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
+[ext_resource type="AnimationLibrary" uid="uid://c7rbb85uabe6s" path="res://animations/player/shortsword/shortsword.res" id="38_84use"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0hxxe"]
 resource_name = "Player - Kopie_Cube_002"
@@ -1257,6 +1257,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Player - Kopie/Weapons/Mainhand:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.3264439, 1.1441026, -0.3358699)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
 _data = {
@@ -1327,7 +1339,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/HandMarker")
+settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -1459,17 +1471,12 @@ settings/0/additive = false
 
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
-[node name="Twohand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=784648175]
+[node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
 
-[node name="Mainhand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=1249801531]
+[node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
 
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_r2tqu")]
-transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.11699754, 1.1273024, -0.4574758)
-
-[node name="SwordMesh" parent="Player - Kopie/Weapons/Mainhand/Sword" index="1" unique_id=657047206]
-skeleton = NodePath("../../../../../..")
-
-[node name="Offhand" type="Node3D" parent="Player - Kopie/Weapons" unique_id=1627018548]
+[node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 
 [node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
 
@@ -1673,6 +1680,7 @@ root_node = NodePath("../AnimationTreeNew")
 libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
 libraries/movement = ExtResource("34_0hxxe")
+libraries/shortsword = ExtResource("38_84use")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
 root_node = NodePath(".")
@@ -1722,5 +1730,3 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword/OnehandComponent"]

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://q2dyv3pbflul"]
 
 [ext_resource type="Script" uid="uid://cf155i6dlppmm" path="res://scripts/item_entity/weapons/bow.gd" id="1_tknwm"]
+[ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="2_tknwm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3wm3"]
 resource_name = "Wood"
@@ -92,9 +93,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iufh3")
 
-[node name="Bow" type="Node3D" unique_id=987246814]
+[node name="Bow" type="Node3D" unique_id=987246814 node_paths=PackedStringArray("hand_component")]
 script = ExtResource("1_tknwm")
+hand_component = NodePath("TwohandComponent")
 
 [node name="BowMesh" type="MeshInstance3D" parent="." unique_id=1870474192]
 transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_6yq31")
+
+[node name="TwohandComponent" parent="." unique_id=1480913319 instance=ExtResource("2_tknwm")]
