@@ -228,7 +228,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 			off_hand_item = player_offhand
 			_clear_equip_slot(right_hand)
 			_clear_equip_slot(left_hand)
-			var item_instance = ItemGenerator.generate_item(main_hand_item.data)
+			var item_instance: Weapon = ItemGenerator.generate_item(main_hand_item.data)
 			if item_instance:
 				if item_instance is Node:
 					right_hand.add_child(item_instance, true)
@@ -244,11 +244,12 @@ func _reequip_mainhand(old: Item, new: Item, slot):
 		if old:
 			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
 			item_instance.update_markers("R")
-			arm_right.set_target_node(0, item_instance.get_hand())
-			finger_right.set_target_node(0, item_instance.get_finger())
-			thumb_right.set_target_node(0, item_instance.get_thumb())
-			finger_right.set_pole_node(0, item_instance.get_finger_pole())
-			thumb_right.set_pole_node(0, item_instance.get_thumb_pole())
+			var marker_dictionary: Dictionary = item_instance.get_markers()
+			arm_right.set_target_node(0, marker_dictionary.get("Hand"))
+			finger_right.set_target_node(0, marker_dictionary.get("Finger"))
+			thumb_right.set_target_node(0, marker_dictionary.get("Thumb"))
+			finger_right.set_pole_node(0, marker_dictionary.get("FingerPole"))
+			thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole"))
 			if item_instance:
 				slot.add_child(item_instance)
 	return old
@@ -260,11 +261,12 @@ func _reequip_offhand(old: Item, new: Item, slot):
 		if old:
 			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
 			item_instance.update_markers("L")
-			arm_left.set_target_node(0, item_instance.get_hand())
-			finger_left.set_target_node(0, item_instance.get_finger())
-			thumb_left.set_target_node(0, item_instance.get_thumb())
-			finger_left.set_pole_node(0, item_instance.get_finger_pole())
-			thumb_left.set_pole_node(0, item_instance.get_thumb_pole())
+			var marker_dictionary: Dictionary = item_instance.get_markers()
+			arm_left.set_target_node(0, marker_dictionary.get("Hand"))
+			finger_left.set_target_node(0, marker_dictionary.get("Finger"))
+			thumb_left.set_target_node(0, marker_dictionary.get("Thumb"))
+			finger_left.set_pole_node(0, marker_dictionary.get("FingerPole"))
+			thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole"))
 			if item_instance:
 				slot.add_child(item_instance)
 	return old

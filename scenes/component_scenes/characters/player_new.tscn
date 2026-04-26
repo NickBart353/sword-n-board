@@ -1723,3 +1723,4 @@ bus = &"SFX"
 
 [editable path="Player - Kopie"]
 [editable path="Player - Kopie/Weapons/Mainhand/Sword"]
+[editable path="Player - Kopie/Weapons/Mainhand/Sword/OnehandComponent"]

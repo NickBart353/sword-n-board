@@ -1,5 +1,11 @@
 @abstract class_name Weapon extends ItemEntity
 
-@abstract func get_weapon_markers()
+@export var hand_component: Node3D
 
-@abstract func update_markers(hand: String) -> void
+var marker_positions: Dictionary
+
+func get_markers() -> Dictionary:
+	return hand_component.get_markers()
+
+func update_markers(side: String) -> void:
+	hand_component.update_markers(side, marker_positions)
