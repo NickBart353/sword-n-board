@@ -27,7 +27,7 @@ const airborne_blender: String = "parameters/Airborne/blend_amount"
 var twohanded: bool = false
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
-	if movement.moving:
+	if movement.moving and not movement.jumping:
 		anim_tree[airborne_blender] = 0
 		anim_tree[walking] = input.direction
 		if twohanded:
@@ -35,7 +35,8 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 		else:
 			mainhand_movement.travel("walking")
 			offhand_movement.travel("walking")
-	else:
+	elif not movement.moving and not movement.jumping:
+		#anim_tree[airborne_blender] = 0
 		anim_tree[walking] = input.direction
 		if twohanded:
 			twohand_movement.travel("idle")
