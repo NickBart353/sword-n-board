@@ -35,8 +35,8 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 		else:
 			mainhand_movement.travel("walking")
 			offhand_movement.travel("walking")
-	elif not movement.moving and not movement.jumping:
-		#anim_tree[airborne_blender] = 0
+	elif not input.direction and not movement.jumping:
+		anim_tree[airborne_blender] = 0
 		anim_tree[walking] = input.direction
 		if twohanded:
 			twohand_movement.travel("idle")

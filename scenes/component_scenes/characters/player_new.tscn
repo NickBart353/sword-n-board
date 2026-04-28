@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
+[ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/unarmed.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
 [ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="8_r2tqu"]
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="9_84use"]
@@ -1340,10 +1341,10 @@ mana_regeneration_speed = 3.0
 
 [node name="Player - Kopie" parent="." unique_id=1362714860 instance=ExtResource("2_p0cqj")]
 
-[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="0" unique_id=476911244]
+[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="0" unique_id=250479289]
 mesh = SubResource("ArrayMesh_0hxxe")
 
-[node name="LegLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="1" unique_id=1163306929]
+[node name="LegLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="1" unique_id=1163306929]
 setting_count = 1
 settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootLeft")
 settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeLeft")
@@ -1357,7 +1358,7 @@ settings/0/end_bone = 28
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="LegRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="2" unique_id=1028330868]
+[node name="LegRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="2" unique_id=1028330868]
 setting_count = 1
 settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootRight")
 settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeRight")
@@ -1371,9 +1372,9 @@ settings/0/end_bone = 33
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="3" unique_id=2059326306]
+[node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("")
+settings/0/target_node = NodePath("../../../IKMarkers/Arms/HandLeft")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -1385,7 +1386,7 @@ settings/0/end_bone = 10
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="4" unique_id=2035196472]
+[node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
 settings/0/target_node = NodePath("../../../IKMarkers/Arms/HandRight")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
@@ -1399,7 +1400,7 @@ settings/0/end_bone = 19
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="5" unique_id=1498534026]
+[node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
 setting_count = 1
 settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("")
@@ -1413,7 +1414,7 @@ settings/0/end_bone = 12
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="6" unique_id=671719962]
+[node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=671719962]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/FingerMarker")
 settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/FingerPoleMarker")
@@ -1427,7 +1428,7 @@ settings/0/end_bone = 21
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="7" unique_id=135651650]
+[node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
 setting_count = 1
 settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("")
@@ -1441,7 +1442,7 @@ settings/0/end_bone = 15
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="8" unique_id=1460002514]
+[node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1460002514]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/ThumbMarker")
 settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/HandMarkers/ThumbPoleMarker")
@@ -1455,7 +1456,7 @@ settings/0/end_bone = 24
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="9" unique_id=1146749179]
+[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="9" unique_id=1146749179]
 angular_delta_limit = 3.141592653589793
 deterministic = true
 setting_count = 1
@@ -1475,7 +1476,7 @@ settings/0/joints/2/limitation = null
 settings/0/joints/3/rotation_axis = 3
 settings/0/joints/3/limitation = null
 
-[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="10" unique_id=1364208870]
+[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="10" unique_id=1364208870]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "hand.r"
@@ -1487,9 +1488,9 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="11" unique_id=77210507]
+[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="11" unique_id=77210507]
 
-[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="12" unique_id=1214134667]
+[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="12" unique_id=1214134667]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.r"
@@ -1501,7 +1502,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="13" unique_id=1048711463]
+[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="13" unique_id=1048711463]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.l"
@@ -1513,7 +1514,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="14" unique_id=521497604]
+[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="14" unique_id=521497604]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 active = false
 setting_count = 1
@@ -1527,7 +1528,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1901984010) index="15" unique_id=1579301299]
+[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="15" unique_id=1579301299]
 active = false
 setting_count = 1
 settings/0/amount = 1.0
@@ -1608,6 +1609,7 @@ libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
 libraries/movement = ExtResource("34_0hxxe")
 libraries/shortsword = ExtResource("38_84use")
+libraries/unarmed = ExtResource("7_84use")
 
 [node name="GroundRayCasts" type="Node3D" parent="." unique_id=755495095]
 transform = Transform3D(1, 0, -2.0861621e-07, 0, 1, 0, 2.0861621e-07, 0, 1, 0, 1.3378959, 0)
@@ -1755,6 +1757,7 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
+active = false
 root_node = NodePath(".")
 callback_mode_process = 0
 callback_mode_method = 1
@@ -1768,10 +1771,10 @@ parameters/Jumping/add_amount = 1.0
 "parameters/WeaponCombiner 3/add_amount" = 1.0
 parameters/WeaponMovment/blend_amount = 1.0
 "parameters/WeaponCombiner 2/add_amount" = 1.0
-parameters/Walking/blend_position = Vector2(0.006, -0.925)
+parameters/Walking/blend_position = Vector2(0, -0.925)
 parameters/WeaponState/blend_amount = 0.0
 parameters/WeaponCombiner/add_amount = 1.0
-parameters/WeaponStateMachineBlender/blend_amount = 0.0
+parameters/WeaponStateMachineBlender/blend_amount = 1.0
 parameters/WeaponJumpBlender/blend_amount = 0.0
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]

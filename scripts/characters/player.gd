@@ -243,7 +243,11 @@ func _reequip_mainhand(old: Item, new: Item, slot):
 		old = new
 		_clear_equip_slot(slot)
 		if old:
-			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
+			var item_instance: Weapon
+			if not old:
+				item_instance = ItemGenerator.generate_unarmed()
+			else:
+				item_instance = ItemGenerator.generate_item(old.data)
 			if item_instance:
 				slot.add_child(item_instance)
 				item_instance.update_markers("R")
@@ -261,7 +265,11 @@ func _reequip_offhand(old: Item, new: Item, slot):
 		old = new
 		_clear_equip_slot(slot)
 		if old:
-			var item_instance: Weapon = ItemGenerator.generate_item(old.data)
+			var item_instance: Weapon
+			if not old:
+				item_instance = ItemGenerator.generate_unarmed()
+			else:
+				item_instance = ItemGenerator.generate_item(old.data)
 			if item_instance:
 				slot.add_child(item_instance)
 				item_instance.update_markers("L")

@@ -17,6 +17,9 @@ const ITEM_TYPE_DICT: Dictionary = {
 	
 }
 
+const UNARMED: PackedScene = preload("res://scenes/component_scenes/item_entities/weapons/unarmed.tscn")
+const UNARMED_DATA = ""
+
 const MELEE_WEAPONS: Dictionary = {
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword
 	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),
@@ -47,6 +50,11 @@ const CONSUMABLES: Dictionary = {
 	"spider_blood": "",
 	"fire_grenade": "",
 }
+
+func generate_unarmed() -> Node3D:
+	var item_instance: Node3D = UNARMED.instantiate()
+	item_instance.set_data(UNARMED_DATA)
+	return item_instance
 
 func generate_item(data: ItemData) -> Node3D:
 	if not data:
