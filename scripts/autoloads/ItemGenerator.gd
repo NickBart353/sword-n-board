@@ -18,7 +18,7 @@ const ITEM_TYPE_DICT: Dictionary = {
 }
 
 const UNARMED: PackedScene = preload("res://scenes/component_scenes/item_entities/weapons/unarmed.tscn")
-const UNARMED_DATA = ""
+const UNARMED_DATA = preload("uid://b3qbpvnhs0ofq")
 
 const MELEE_WEAPONS: Dictionary = {
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword

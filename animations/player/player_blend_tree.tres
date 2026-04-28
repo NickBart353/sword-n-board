@@ -490,7 +490,6 @@ filters = ["", ".", "../Player - Kopie/Armature:position", "../Player - Kopie/IK
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-397.56506, -305.92868)
 nodes/output/position = Vector2(860, 160)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-1060, 360)

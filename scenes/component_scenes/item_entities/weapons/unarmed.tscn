@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://oupiqyuplr4k"]
 
 [ext_resource type="Script" uid="uid://bljgdtf1uhkfp" path="res://scripts/item_entity/weapons/unarmed.gd" id="1_p7vfp"]
-[ext_resource type="Script" uid="uid://bej3gd8d4bicj" path="res://scripts/components/onehand_component.gd" id="2_wsvkl"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_x2jks"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6007s"]
-radius = 0.3625532
+resource_local_to_scene = true
+radius = 0.111225866
 
 [node name="Unarmed" type="Area3D" unique_id=209339069 node_paths=PackedStringArray("hand_component")]
 collision_layer = 6
@@ -15,6 +15,6 @@ hand_component = NodePath("OnehandComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050139655]
 shape = SubResource("SphereShape3D_6007s")
-script = ExtResource("2_wsvkl")
+debug_color = Color(4.577984, 12.448532, 0.00019713964, 0.42)
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_x2jks")]

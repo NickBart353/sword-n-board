@@ -97,6 +97,7 @@ func _ready() -> void:
 	$AbilityController/Block.blocked.connect(_blocked_attack)
 	$AbilityController/Consume.consume_item.connect(_consume_item)
 	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
+	_check_unequipped_slots()
 
 func _process(delta: float) -> void:
 	if not stamina_regeneration_delay.time_left and not slow_stamina_regeneration_delay.time_left and not STAMINA == MAX_STAMINA:
@@ -239,48 +240,62 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
 
 func _reequip_mainhand(old: Item, new: Item, slot):
-	if old != new:
+	if old != new or (not new and not main_hand_item):
 		old = new
 		_clear_equip_slot(slot)
-		if old:
-			var item_instance: Weapon
+		var item_instance: Weapon
+		print(old)
+		if not old:
+			item_instance = ItemGenerator.generate_unarmed()
+		else:
+			item_instance = ItemGenerator.generate_item(old.data)
+		if item_instance:
+			slot.add_child(item_instance)
+			item_instance.update_markers("R")
+			var marker_dictionary: Dictionary = item_instance.get_markers()
+			arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
+			finger_right.set_target_node(0, marker_dictionary.get("Finger").get_path())
+			thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+			finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+			thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+			var anim_name: String
 			if not old:
-				item_instance = ItemGenerator.generate_unarmed()
+				anim_name = "fist"
 			else:
-				item_instance = ItemGenerator.generate_item(old.data)
-			if item_instance:
-				slot.add_child(item_instance)
-				item_instance.update_markers("R")
-				var marker_dictionary: Dictionary = item_instance.get_markers()
-				arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
-				finger_right.set_target_node(0, marker_dictionary.get("Finger").get_path())
-				thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
-				finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
-				thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-				new_animation.equpped_mainhand_weapon(item_instance.data.item_name.to_lower())
+				anim_name = item_instance.data.item_name.to_lower()
+			new_animation.equpped_mainhand_weapon(anim_name)
 	return old
 
 func _reequip_offhand(old: Item, new: Item, slot):
-	if old != new:
+	if old != new or (not old and not off_hand_item):
 		old = new
 		_clear_equip_slot(slot)
-		if old:
-			var item_instance: Weapon
+		var item_instance: Weapon
+		print(old)
+		if not old:
+			item_instance = ItemGenerator.generate_unarmed()
+		else:
+			item_instance = ItemGenerator.generate_item(old.data)
+		if item_instance:
+			slot.add_child(item_instance)
+			item_instance.update_markers("L")
+			var marker_dictionary: Dictionary = item_instance.get_markers()
+			arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
+			finger_left.set_target_node(0, marker_dictionary.get("Finger").get_path())
+			thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+			finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+			thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+			var anim_name: String
 			if not old:
-				item_instance = ItemGenerator.generate_unarmed()
+				anim_name = "fist"
 			else:
-				item_instance = ItemGenerator.generate_item(old.data)
-			if item_instance:
-				slot.add_child(item_instance)
-				item_instance.update_markers("L")
-				var marker_dictionary: Dictionary = item_instance.get_markers()
-				arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
-				finger_left.set_target_node(0, marker_dictionary.get("Finger").get_path())
-				thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
-				finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
-				thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-				new_animation.equpped_offhand_weapon(item_instance.data.item_name.to_lower())
+				anim_name = item_instance.data.item_name.to_lower()
+			new_animation.equpped_mainhand_weapon(anim_name)
 	return old
+
+func _check_unequipped_slots():
+	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)
+	off_hand_item = _reequip_offhand(off_hand_item, null, offhand)
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
