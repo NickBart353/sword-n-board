@@ -18,3 +18,20 @@ shape = SubResource("SphereShape3D_6007s")
 debug_color = Color(4.577984, 12.448532, 0.00019713964, 0.42)
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_x2jks")]
+
+[node name="Hand" parent="OnehandComponent" index="0" unique_id=412858856]
+transform = Transform3D(0.9238788, 3.3273293e-09, -0.38268283, 0.38268313, -1.6727604e-08, 0.9238781, -3.3273304e-09, -0.99999887, -1.6727597e-08, -0.035, 0.023, 0.111)
+
+[node name="Finger" parent="OnehandComponent" index="1" unique_id=2061517379]
+transform = Transform3D(0.9238795, 3.3273326e-09, -0.38268337, 0.38268343, -1.6727622e-08, 0.9238794, -3.327333e-09, -0.9999999, -1.6727622e-08, 0.029, -0.002, -0.043)
+
+[node name="Thumb" parent="OnehandComponent" index="2" unique_id=1174735853]
+transform = Transform3D(1, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999994, 0.038, 0.041, -0.032)
+
+[node name="FingerPole" parent="OnehandComponent" index="3" unique_id=2008502423]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.98, 0, -1.206)
+
+[node name="ThumbPole" parent="OnehandComponent" index="4" unique_id=205447482]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.251, 0.206, 0.316)
+
+[editable path="OnehandComponent"]

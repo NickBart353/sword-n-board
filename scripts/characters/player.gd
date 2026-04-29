@@ -12,7 +12,6 @@ signal spawn_projectile
 @onready var animation: Node = $AnimationController
 @onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
-@onready var ui: Node = $UIController
 @onready var head: Node3D = $Head
 @onready var ground_raycast = $GroundRayCasts
 @onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
@@ -244,11 +243,13 @@ func _reequip_mainhand(old: Item, new: Item, slot):
 		old = new
 		_clear_equip_slot(slot)
 		var item_instance: Weapon
-		print(old)
+		var anim_name: String
 		if not old:
 			item_instance = ItemGenerator.generate_unarmed()
+			anim_name = "fist"
 		else:
 			item_instance = ItemGenerator.generate_item(old.data)
+			anim_name = item_instance.data.item_name.to_lower()
 		if item_instance:
 			slot.add_child(item_instance)
 			item_instance.update_markers("R")
@@ -258,11 +259,7 @@ func _reequip_mainhand(old: Item, new: Item, slot):
 			thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
 			finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 			thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-			var anim_name: String
-			if not old:
-				anim_name = "fist"
-			else:
-				anim_name = item_instance.data.item_name.to_lower()
+			
 			new_animation.equpped_mainhand_weapon(anim_name)
 	return old
 
@@ -271,11 +268,13 @@ func _reequip_offhand(old: Item, new: Item, slot):
 		old = new
 		_clear_equip_slot(slot)
 		var item_instance: Weapon
-		print(old)
+		var anim_name: String
 		if not old:
 			item_instance = ItemGenerator.generate_unarmed()
+			anim_name = "fist"
 		else:
 			item_instance = ItemGenerator.generate_item(old.data)
+			anim_name = item_instance.data.item_name.to_lower()
 		if item_instance:
 			slot.add_child(item_instance)
 			item_instance.update_markers("L")
@@ -285,12 +284,8 @@ func _reequip_offhand(old: Item, new: Item, slot):
 			thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
 			finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 			thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-			var anim_name: String
-			if not old:
-				anim_name = "fist"
-			else:
-				anim_name = item_instance.data.item_name.to_lower()
-			new_animation.equpped_mainhand_weapon(anim_name)
+			
+			new_animation.equpped_offhand_weapon(anim_name)
 	return old
 
 func _check_unequipped_slots():

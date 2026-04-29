@@ -24,11 +24,15 @@ const action_speed: String = "parameters/ActionSpeed/blend_amount"
 const weapon_jump_blender: String = "parameters/WeaponJumpBlender/blend_amount"
 const airborne_blender: String = "parameters/Airborne/blend_amount"
 
+@export_range(1.0, 100.0) var transition_speed: float = 10.0
+
 var twohanded: bool = false
+var airborne_blend_value_target: int = 0
+var airborne_blend_value_current: float = 0.0
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if movement.moving and not movement.jumping:
-		anim_tree[airborne_blender] = 0
+		airborne_blend_value_target = 0
 		anim_tree[walking] = input.direction
 		if twohanded:
 			twohand_movement.travel("walking")
@@ -36,7 +40,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_movement.travel("walking")
 			offhand_movement.travel("walking")
 	elif not input.direction and not movement.jumping:
-		anim_tree[airborne_blender] = 0
+		airborne_blend_value_target = 0
 		anim_tree[walking] = input.direction
 		if twohanded:
 			twohand_movement.travel("idle")
@@ -44,7 +48,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_movement.travel("idle")
 			offhand_movement.travel("idle")
 	if movement.jumping:
-		anim_tree[airborne_blender] = 1
+		airborne_blend_value_target = 1
 		jumping_state_machine.travel("jump")
 		if twohanded:
 			twohand_jumping_state_machine.travel("jump")
@@ -52,7 +56,7 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_jumping_state_machine.travel("jump")
 			offhand_jumping_state_machine.travel("jump")
 	if movement.falling:
-		anim_tree[airborne_blender] = 1
+		airborne_blend_value_target = 1
 		jumping_state_machine.travel("falling")
 		if twohanded:
 			twohand_jumping_state_machine.travel("falling")
@@ -60,13 +64,20 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_jumping_state_machine.travel("falling")
 			offhand_jumping_state_machine.travel("falling")
 	if movement.landed:
-		anim_tree[airborne_blender] = 1
+		airborne_blend_value_target = 1
 		jumping_state_machine.travel("landing")
 		if twohanded:
 			twohand_jumping_state_machine.travel("landing")
 		else:
 			mainhand_jumping_state_machine.travel("landing")
 			offhand_jumping_state_machine.travel("landing")
+	
+	if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
+		airborne_blend_value_current -= delta * transition_speed
+		anim_tree[airborne_blender] = airborne_blend_value_current
+	elif airborne_blend_value_target == 1 and airborne_blend_value_current < airborne_blend_value_target:
+		airborne_blend_value_current += delta * transition_speed
+		anim_tree[airborne_blender] = airborne_blend_value_current
 
 func equipped_two_hand_weapon(weapon_name: String):
 	_set_movement_animations("Twohand", true, weapon_name)
