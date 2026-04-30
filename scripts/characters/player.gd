@@ -210,6 +210,7 @@ func _reequip_slot(old, new, slot):
 
 func _clear_equip_slot(slot: Node):
 	for child in slot.get_children():
+		slot.remove_child(child)
 		child.queue_free()
 
 func _reset_abilities():
@@ -311,7 +312,7 @@ func _set_weapons():
 
 func get_equipped_weapon_from_slot(slot: Marker3D):
 	var children: Array = slot.get_children()
-	if children and children.size() == 1:
+	if children and children.size() >= 1:
 		return children[0]
 	return null
 

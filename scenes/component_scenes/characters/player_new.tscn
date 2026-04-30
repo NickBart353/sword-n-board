@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ceowiqh7bh3dd" path="res://my_assets/models/Player/Player - Kopie.blend" id="2_p0cqj"]
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_84use"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
@@ -1386,7 +1385,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/Hand")
+settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -1400,7 +1399,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/Hand")
+settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -1414,8 +1413,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/Finger")
-settings/0/pole_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/FingerPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "hand.l"
 settings/0/root_bone = 10
 settings/0/middle_bone_name = "finger.l"
@@ -1428,8 +1427,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=671719962]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/Finger")
-settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/FingerPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "hand.r"
 settings/0/root_bone = 19
 settings/0/middle_bone_name = "finger.r"
@@ -1442,8 +1441,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/Thumb")
-settings/0/pole_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/ThumbPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "thumb_one.l"
 settings/0/root_bone = 13
 settings/0/middle_bone_name = "thumb_two.l"
@@ -1456,8 +1455,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1460002514]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/Thumb")
-settings/0/pole_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/ThumbPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "thumb_one.r"
 settings/0/root_bone = 22
 settings/0/middle_bone_name = "thumb_two.r"
@@ -1572,28 +1571,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_84use")]
-transform = Transform3D(1.0000002, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
-
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
-
-[node name="Sword" parent="Player - Kopie/Weapons/Offhand" unique_id=531549332 instance=ExtResource("4_84use")]
-
-[node name="Hand" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(531549332, 1480913319) index="0" unique_id=412858856]
-transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, -0.035, 0.002, 0.15)
-
-[node name="Finger" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(531549332, 1480913319) index="1" unique_id=2061517379]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.044, 0, -0.03)
-
-[node name="Thumb" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(531549332, 1480913319) index="2" unique_id=1174735853]
-transform = Transform3D(1, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999994, 0.024, 0.024, 0)
-
-[node name="FingerPole" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(531549332, 1480913319) index="3" unique_id=2008502423]
-transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.98, 0, -1.206)
-
-[node name="ThumbPole" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(531549332, 1480913319) index="4" unique_id=205447482]
-transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.251, 0.206, 0.316)
 
 [node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
 
@@ -1707,7 +1686,7 @@ debug_color = Color(0, 0.64502406, 0.2753417, 0.41960785)
 [node name="Timers" type="Node3D" parent="." unique_id=849654952]
 
 [node name="AttackTimer" type="Timer" parent="Timers" unique_id=742833205]
-wait_time = 0.5
+wait_time = 0.7
 one_shot = true
 
 [node name="StaminaRegenerationDelay" type="Timer" parent="Timers" unique_id=505252433]
@@ -1755,7 +1734,6 @@ player = NodePath("../..")
 
 [node name="Block" type="Node" parent="AbilityController" unique_id=1598384866 node_paths=PackedStringArray("player")]
 script = ExtResource("11_7xqws")
-base_block_cost = null
 player = NodePath("../..")
 
 [node name="Light" type="Node" parent="AbilityController" unique_id=1837859754 node_paths=PackedStringArray("player")]
@@ -1806,7 +1784,7 @@ callback_mode_method = 1
 tree_root = ExtResource("34_oij22")
 advance_expression_base_node = NodePath("../AnimationControllerNew")
 anim_player = NodePath("../AnimationPlayerNew")
-parameters/Airborne/blend_amount = 1.0
+parameters/Airborne/blend_amount = 0.0
 parameters/ActionSpeed/scale = 1.0
 parameters/Action/add_amount = 1.0
 parameters/Jumping/add_amount = 1.0
@@ -1814,7 +1792,7 @@ parameters/Jumping/add_amount = 1.0
 parameters/WeaponMovment/blend_amount = 1.0
 "parameters/WeaponCombiner 2/add_amount" = 1.0
 parameters/Walking/blend_position = Vector2(0, -0.925)
-parameters/WeaponState/blend_amount = 0.0
+parameters/WeaponState/blend_amount = 1.0
 parameters/WeaponCombiner/add_amount = 1.0
 parameters/WeaponStateMachineBlender/blend_amount = 1.0
 parameters/WeaponJumpBlender/blend_amount = 1.0
@@ -1843,7 +1821,3 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword/OnehandComponent"]
-[editable path="Player - Kopie/Weapons/Offhand/Sword"]
-[editable path="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent"]

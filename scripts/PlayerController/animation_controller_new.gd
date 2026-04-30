@@ -3,18 +3,18 @@ extends Node
 @onready var anim_player = $"../AnimationPlayerNew"
 @onready var anim_tree = $"../AnimationTreeNew"
 
-@onready var jumping_state_machine = anim_tree["parameters/JumpingStateMachine/playback"]
-@onready var twohand_jumping_state_machine = anim_tree["parameters/TwohandJumping/playback"]
-@onready var mainhand_jumping_state_machine = anim_tree["parameters/MainhandJumping/playback"]
-@onready var offhand_jumping_state_machine = anim_tree["parameters/OffhandJumping/playback"]
+@onready var jumping_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/JumpingStateMachine/playback"]
+@onready var twohand_jumping_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/TwohandJumping/playback"]
+@onready var mainhand_jumping_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/MainhandJumping/playback"]
+@onready var offhand_jumping_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/OffhandJumping/playback"]
 
-@onready var twohand_movement = anim_tree["parameters/TwohandMovement/playback"]
-@onready var mainhand_movement = anim_tree["parameters/MainhandMovement/playback"]
-@onready var offhand_movement = anim_tree["parameters/OffhandMovement/playback"]
+@onready var twohand_movement: AnimationNodeStateMachinePlayback = anim_tree["parameters/TwohandMovement/playback"]
+@onready var mainhand_movement: AnimationNodeStateMachinePlayback = anim_tree["parameters/MainhandMovement/playback"]
+@onready var offhand_movement: AnimationNodeStateMachinePlayback = anim_tree["parameters/OffhandMovement/playback"]
 
-@onready var twohand_action = anim_tree["parameters/TwohandStateMachine/playback"]
-@onready var mainhand_action = anim_tree["parameters/MainhandStateMachine/playback"]
-@onready var offhand_action = anim_tree["parameters/OffhandStateMachine/playback"]
+@onready var twohand_action: AnimationNodeStateMachinePlayback = anim_tree["parameters/TwohandStateMachine/playback"]
+@onready var mainhand_action: AnimationNodeStateMachinePlayback = anim_tree["parameters/MainhandStateMachine/playback"]
+@onready var offhand_action: AnimationNodeStateMachinePlayback = anim_tree["parameters/OffhandStateMachine/playback"]
 
 const weapon_movement_blender: String = "parameters/WeaponMovment/blend_amount"
 const weapon_state_machine_blender: String = "parameters/WeaponStateMachineBlender/blend_amount"
@@ -26,9 +26,14 @@ const airborne_blender: String = "parameters/Airborne/blend_amount"
 
 @export_range(1.0, 100.0) var transition_speed: float = 10.0
 
+var attack: Node
+
 var twohanded: bool = false
 var airborne_blend_value_target: int = 0
 var airborne_blend_value_current: float = 0.0
+
+var attack_blend_value_target: int = 0
+var attack_blend_value_current: float = 0.0
 
 func apply_animations(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if movement.moving and not movement.jumping:
@@ -72,12 +77,35 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			mainhand_jumping_state_machine.travel("landing")
 			offhand_jumping_state_machine.travel("landing")
 	
+	if not attack:
+		attack = ability.get_node("Attack")
+	print(attack.swing)
+	if attack.swing:
+		attack_blend_value_target = 1
+		if twohanded:
+			twohand_action.travel("attack{0}".format([attack.swing]))
+		else:
+			mainhand_action.travel("attack{0}".format([attack.swing]))
+	else:
+		attack_blend_value_target = 0
+		if twohanded:
+			twohand_action.travel("idle")
+		else:
+			mainhand_action.travel("idle")
+	
 	if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
 		airborne_blend_value_current -= delta / transition_speed
 		anim_tree[airborne_blender] = airborne_blend_value_current
 	elif airborne_blend_value_target == 1 and airborne_blend_value_current < airborne_blend_value_target:
 		airborne_blend_value_current += delta / transition_speed
 		anim_tree[airborne_blender] = airborne_blend_value_current
+	
+	if attack_blend_value_target == 0 and attack_blend_value_current > attack_blend_value_target:
+		attack_blend_value_current -= delta / transition_speed
+		anim_tree[weapon_state_machine_blender] = attack_blend_value_current
+	elif attack_blend_value_target == 1 and attack_blend_value_current < attack_blend_value_target:
+		attack_blend_value_current += delta / transition_speed
+		anim_tree[weapon_state_machine_blender] = attack_blend_value_current
 
 func equipped_two_hand_weapon(weapon_name: String):
 	_set_movement_animations("Twohand", true, weapon_name)
@@ -95,6 +123,7 @@ func equpped_mainhand_weapon(weapon_name: String):
 	var anim_name: String = "{0}/mainhand".format([weapon_name])
 	var mainhand = anim_tree.tree_root.get_node("MainhandStateMachine")
 	mainhand.get_node("attack1").animation = "{0}_attack1".format([anim_name])
+	print("{0}_attack1".format([anim_name]))
 	mainhand.get_node("attack2").animation = "{0}_attack2".format([anim_name])
 	mainhand.get_node("attack3").animation = "{0}_attack3".format([anim_name])
 	mainhand.get_node("idle").animation = "{0}_idle".format([anim_name])

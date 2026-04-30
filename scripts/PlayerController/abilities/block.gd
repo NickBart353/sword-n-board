@@ -7,15 +7,25 @@ extends Ability
 
 signal blocked
 
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.SHIELD]
+
+var weapon: Weapon
 var offhand: Node
 var blocking: bool = false
+var process: bool = true
+
+func set_item(item: Node) -> void:
+	if item is Weapon:
+		if item.data.item_type in allowed_weapons:
+			weapon = item
+			process = true
+			return
+	process = false
+	reset()
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	if not offhand == player.get_equipped_secondary() or not offhand:
-		offhand = player.get_equipped_secondary()
-	if not offhand is Shield: 
-		reset()
-		return
+	if not process: return
+	if not weapon: return
 	if not movement.dashing and not state_controller.is_player_busy():
 		if not offhand.blocked.is_connected(_blocked):
 			offhand.blocked.connect(_blocked)

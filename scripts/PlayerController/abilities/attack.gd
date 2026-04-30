@@ -18,6 +18,7 @@ var swing: int = 0
 var swinging: bool = false
 var swing_in_progress: bool = false
 var combo_count: int = 0
+var process: bool = true
 
 func set_item(item: Node) -> void:
 	if item is Weapon:
@@ -26,13 +27,16 @@ func set_item(item: Node) -> void:
 			combo_count = item.data.combo_size
 			if not weapon.hit.is_connected(_melee_attack):
 				weapon.hit.connect(_melee_attack)
-			set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
+			process = true
 			return
-	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	process = false
+	reset()
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:	
+	if not process: return
 	if not movement.dashing and not state_controller.is_player_busy():# and swing > 0) or swing == 0:
-		if input.attack and not swing_in_progress  and player.use_stamina(attack_cost):
+		#print(input.attack , not swing_in_progress  , player.use_stamina(attack_cost) )
+		if input.attack and not swing_in_progress and player.use_stamina(attack_cost):
 			bodies = []
 			swinging = true
 			swing_in_progress = true
@@ -54,12 +58,14 @@ func _on_attack_timer_timeout() -> void:
 func _attack_started() -> void:
 	weapon.monitoring = true
 	swinging = false
+	print("start attac")
 
 func _attack_ended() -> void:
 	bodies.clear()
 	weapon.monitoring = false
 	swing_in_progress = false
 	attack_timer.start()
+	print("end attac")
 
 func reset():
 	#weapon = null

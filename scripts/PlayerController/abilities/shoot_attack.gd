@@ -9,6 +9,8 @@ extends Ability
 
 signal spawn_projectile
 
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.BOW]
+
 var weapon: Node
 var shoot: int = 0
 var shooting: bool = false
@@ -17,13 +19,21 @@ var charging: bool = false
 var max_charge: bool = false
 var released: bool = true
 var enough_stamina: bool = false
+var combo_count: int
+var process: bool = true
+
+func set_item(item: Node) -> void:
+	reset()
+	if item is Weapon:
+		if item.data.item_type in allowed_weapons:
+			weapon = item
+			combo_count = item.data.combo_size
+			process = true
+			return
+	process = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	if not weapon == player.get_equipped_primary() or not weapon:
-		weapon = player.get_equipped_primary()
-	if not weapon is RangedWeapon: 
-		reset()
-		return
+	if not process: return
 	if charging:
 		enough_stamina = player.use_stamina(bow_cost * delta)
 	if max_charge and not released and not enough_stamina:
