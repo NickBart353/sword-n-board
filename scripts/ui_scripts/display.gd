@@ -126,10 +126,11 @@ func _populate_option_menus():
 	_update_resolution_selection()
 
 func _update_resolution_selection():
-	for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
-		resolution_picker.add_item("{0} x {1}".format([resolution["w"], resolution["h"]]))
-		if [resolution["w"], resolution["h"]] == current_resolution:
-			resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
+	if current_aspect_ratio:
+		for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
+			resolution_picker.add_item("{0} x {1}".format([resolution["w"], resolution["h"]]))
+			if [resolution["w"], resolution["h"]] == current_resolution:
+				resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
 
 func _update_screen():
 	DisplayServer.window_set_size(Vector2i(current_resolution[0], current_resolution[1]))

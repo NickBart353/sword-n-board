@@ -73,10 +73,10 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			offhand_jumping_state_machine.travel("landing")
 	
 	if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
-		airborne_blend_value_current -= delta * transition_speed
+		airborne_blend_value_current -= delta / transition_speed
 		anim_tree[airborne_blender] = airborne_blend_value_current
 	elif airborne_blend_value_target == 1 and airborne_blend_value_current < airborne_blend_value_target:
-		airborne_blend_value_current += delta * transition_speed
+		airborne_blend_value_current += delta / transition_speed
 		anim_tree[airborne_blender] = airborne_blend_value_current
 
 func equipped_two_hand_weapon(weapon_name: String):
@@ -122,10 +122,10 @@ func _set_movement_animations(slot: String, twohanded: bool, weapon_name: String
 	anim_tree[weapon_state_machine_blender] = blend_value
 	anim_tree[weapon_jump_blender] = blend_value
 	var weapon_jumping_state_machine = anim_tree.tree_root.get_node("{0}Jumping".format([slot]))
+	weapon_jumping_state_machine.get_node("idle").animation = "{0}_idle".format([anim_name])
 	weapon_jumping_state_machine.get_node("jump").animation = "{0}_jump".format([anim_name])
 	weapon_jumping_state_machine.get_node("falling").animation = "{0}_falling".format([anim_name])
 	weapon_jumping_state_machine.get_node("landing").animation = "{0}_landing".format([anim_name])
 	var weapon_movement_state_machine = anim_tree.tree_root.get_node("{0}Movement".format([slot]))
-	print("{0}_walking".format([anim_name]))
 	weapon_movement_state_machine.get_node("walking").animation = "{0}_walking".format([anim_name])
 	weapon_movement_state_machine.get_node("idle").animation = "{0}_idle".format([anim_name])

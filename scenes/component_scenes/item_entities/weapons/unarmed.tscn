@@ -13,6 +13,18 @@ collision_mask = 24
 script = ExtResource("1_p7vfp")
 hand_component = NodePath("OnehandComponent")
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=524021230]
+transform = Transform3D(-4.3711385e-08, 1, -4.3711385e-08, 0, -4.371139e-08, -0.99999994, -0.99999994, -4.371139e-08, 1.9106853e-15, 0, 0, -0.005861275)
+visible = false
+transparency = 0.78
+radius = 0.104003906
+height = 0.21472168
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCylinder3D" unique_id=261359720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.061843872, 0, 0)
+operation = 2
+size = Vector3(0.11972046, 1, 1)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2050139655]
 shape = SubResource("SphereShape3D_6007s")
 debug_color = Color(4.577984, 12.448532, 0.00019713964, 0.42)
