@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_d17os")
 normal_damage = 10.0
+combo_size = 2
 item_name = "Torch"
 item_id = "10002"
 tooltip = "It illuminates the dark!"

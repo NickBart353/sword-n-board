@@ -12,6 +12,8 @@ class_name WeaponData
 
 @export var critical_strike_chance: float = 0.05
 
+@export_range(1,4) var combo_size: int = 3
+
 @export var two_handed: bool = false
 @export var knockbackStrength_vertical: int = 0
 @export var knockbackStrength_horizontal: int = 0

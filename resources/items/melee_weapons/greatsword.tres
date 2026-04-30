@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_1ksjj")
 normal_damage = 50.0
+combo_size = 2
 two_handed = true
 item_name = "Greatsword"
 item_id = "10004"

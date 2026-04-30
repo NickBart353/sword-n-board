@@ -38,6 +38,9 @@ signal spawn_projectile
 @onready var thumb_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbLeft"
 @onready var thumb_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbRight"
 
+#@onready var hand_right: CopyTransformModifier3D = $"Player - Kopie/Armature/Skeleton3D/HandRight"
+#@onready var hand_left: CopyTransformModifier3D = $"Player - Kopie/Armature/Skeleton3D/HandLeft"
+
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
 @export_range(0.0, 100.0) var stamina_regeneration_speed: float = 10.0
@@ -237,6 +240,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 	else:
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
 		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
+	_set_weapons()
 
 func _reequip_mainhand(old: Item, new: Item, slot):
 	if old != new or (not new and not main_hand_item):
@@ -291,9 +295,25 @@ func _reequip_offhand(old: Item, new: Item, slot):
 func _check_unequipped_slots():
 	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)
 	off_hand_item = _reequip_offhand(off_hand_item, null, offhand)
+	_set_weapons()
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
+	_set_weapons()
+
+func _set_weapons():
+	$AbilityController/Attack.set_item(get_equipped_weapon_from_slot(mainhand))
+	$AbilityController/CastAttack.set_item(get_equipped_weapon_from_slot(mainhand))
+	$AbilityController/ShootAttack.set_item(get_equipped_weapon_from_slot(mainhand))
+	$AbilityController/Block.set_item(get_equipped_weapon_from_slot(offhand))
+	$AbilityController/Light.set_item(get_equipped_weapon_from_slot(offhand))
+	$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
+
+func get_equipped_weapon_from_slot(slot: Marker3D):
+	var children: Array = slot.get_children()
+	if children and children.size() == 1:
+		return children[0]
+	return null
 
 func _consume_item(consumable: Node) -> void:
 	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):

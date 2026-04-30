@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_nbd4v")
+combo_size = 2
 item_name = "Unarmed"
 item_id = "0"
 item_type = 9

@@ -185,7 +185,7 @@ states/attack3/position = Vector2(530, 261)
 states/idle/node = SubResource("AnimationNodeAnimation_lh4q7")
 states/idle/position = Vector2(338, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_pqrji"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_nr025"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_7aqas"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_3rg2l"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_ii86f"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_bhxqi"), "idle", "ability1", SubResource("AnimationNodeStateMachineTransition_yfe3e"), "ability1", "idle", SubResource("AnimationNodeStateMachineTransition_rfxxq"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_iqry2")]
-graph_offset = Vector2(0, -71.42794)
+graph_offset = Vector2(-36, -106.42794)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njwbl"]
 animation = &"Jump/jump-start"
@@ -524,7 +524,7 @@ filters = ["", ".", "../Player - Kopie/Armature:position", "../Player - Kopie/IK
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-567.9224, -259.25397)
+graph_offset = Vector2(-985.55505, 344.9958)
 nodes/output/position = Vector2(860, 160)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-1060, 360)

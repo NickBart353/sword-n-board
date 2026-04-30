@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_6but8")
 normal_damage = 15.0
+combo_size = 2
 two_handed = true
 item_name = "Magic Tome"
 item_id = "20001"
