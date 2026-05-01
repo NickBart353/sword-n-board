@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_o6vov")
 combo_size = 1
+dualwield_combo_size = 2
 item_name = "Wooden shield"
 item_id = "10003"
 tooltip = "It blocks hits!"

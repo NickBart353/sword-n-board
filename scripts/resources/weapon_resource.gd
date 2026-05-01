@@ -1,3 +1,4 @@
+@tool
 extends ItemData
 class_name WeaponData
 
@@ -14,7 +15,13 @@ class_name WeaponData
 
 @export_range(1,4) var combo_size: int = 3
 
-@export var two_handed: bool = false
+@export var two_handed: bool = false:
+	set(value):
+		two_handed = value
+		notify_property_list_changed()
+
+@export_range(1, 5) var dualwield_combo_size: int = 3
+
 @export var knockbackStrength_vertical: int = 0
 @export var knockbackStrength_horizontal: int = 0
 
@@ -22,3 +29,8 @@ var upgrade_level: int = 0
 var upgrade_type: UPGRADE_TYPE
 
 enum UPGRADE_TYPE {NORMAL, MAGIC, FIRE, LIGHTNING, COLD, NATURE, CHAOS}
+
+func _validate_property(property: Dictionary):
+	if property.name in ["dualwield_combo_size"]:
+		if two_handed:
+			property.usage &= ~PROPERTY_USAGE_EDITOR

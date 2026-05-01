@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ceowiqh7bh3dd" path="res://my_assets/models/Player/Player - Kopie.blend" id="2_p0cqj"]
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_84use"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
@@ -1571,6 +1572,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 
+[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_84use")]
+
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
 
@@ -1777,7 +1780,6 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
-active = false
 root_node = NodePath(".")
 callback_mode_process = 0
 callback_mode_method = 1
@@ -1787,15 +1789,16 @@ anim_player = NodePath("../AnimationPlayerNew")
 parameters/Airborne/blend_amount = 0.0
 parameters/ActionSpeed/scale = 1.0
 parameters/Action/add_amount = 1.0
-parameters/Jumping/add_amount = 1.0
+parameters/WeaponState/blend_amount = 0.0
 "parameters/WeaponCombiner 3/add_amount" = 1.0
 parameters/WeaponMovment/blend_amount = 1.0
 "parameters/WeaponCombiner 2/add_amount" = 1.0
 parameters/Walking/blend_position = Vector2(0, -0.925)
-parameters/WeaponState/blend_amount = 1.0
 parameters/WeaponCombiner/add_amount = 1.0
-parameters/WeaponStateMachineBlender/blend_amount = 1.0
+parameters/WeaponStateMachineBlender/blend_amount = 0.0
 parameters/WeaponJumpBlender/blend_amount = 1.0
+parameters/TwohandBlender/blend_amount = 1.0
+parameters/Combiner/add_amount = 1.0
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
 stream = SubResource("AudioStreamRandomizer_i5qjy")
