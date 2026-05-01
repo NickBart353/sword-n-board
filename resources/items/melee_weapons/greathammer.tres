@@ -5,6 +5,9 @@
 
 [resource]
 script = ExtResource("1_pkdrv")
+normal_damage = 70.0
+combo_size = 2
+two_handed = true
 item_name = "Greathammer"
 item_id = "10005"
 tooltip = "A giant hammer meant to crush skulls!"
