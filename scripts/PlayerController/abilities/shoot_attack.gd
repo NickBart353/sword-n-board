@@ -20,7 +20,7 @@ var max_charge: bool = false
 var released: bool = true
 var enough_stamina: bool = false
 var combo_count: int
-var process: bool = true
+var process: bool = false
 
 func set_item(item: Node) -> void:
 	reset()

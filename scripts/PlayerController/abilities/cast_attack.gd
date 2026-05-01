@@ -19,7 +19,7 @@ var casting: bool = false
 var cast_in_progress: bool = false
 var combo_count: int
 
-var process: bool = true
+var process: bool = false
 
 func set_item(item: Node) -> void:
 	reset()

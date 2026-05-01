@@ -18,7 +18,7 @@ var swing: int = 0
 var swinging: bool = false
 var swing_in_progress: bool = false
 var combo_count: int = 0
-var process: bool = true
+var process: bool = false
 
 func set_item(item: Node) -> void:
 	if item is Weapon:

@@ -7,7 +7,7 @@ const allowed_weapons: Array = [ItemData.ITEM_TYPE.TORCH]
 var weapon
 var offhand: Node
 var lighting: bool = false
-var process: bool = true
+var process: bool = false
 
 func set_item(item: Node) -> void:
 	reset()

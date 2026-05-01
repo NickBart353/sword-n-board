@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://ceowiqh7bh3dd" path="res://my_assets/models/Player/Player - Kopie.blend" id="2_p0cqj"]
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_84use"]
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
@@ -24,18 +23,19 @@
 [ext_resource type="Script" uid="uid://76adg1knc3xr" path="res://scripts/PlayerController/audio_controller.gd" id="17_ovcx5"]
 [ext_resource type="AudioStream" uid="uid://bas55kwetn8k6" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Dirt/Dirt Walk 1.ogg" id="18_xamg6"]
 [ext_resource type="AudioStream" uid="uid://7lsu6d2nnx2w" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Footsteps/Dirt/Dirt Jump.wav" id="19_qk665"]
+[ext_resource type="Script" uid="uid://b6q6co5ha0omh" path="res://scripts/PlayerController/abilities/parry.gd" id="20_7xqws"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="20_pjxg6"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="21_1qw3l"]
 [ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="22_mdiwo"]
 [ext_resource type="AudioStream" uid="uid://7c7ctdo8uedy" path="res://assets/Audio/pixabay/yodguard-casting-magic-3-382381.mp3" id="24_x0x1l"]
 [ext_resource type="AudioStream" uid="uid://crac5kx6axlcw" path="res://assets/Audio/freesound_org/bow-drawn.ogg" id="25_4fc0r"]
-[ext_resource type="Script" uid="uid://xe6xu82f6i3w" path="res://scripts/PlayerController/animation_controller_new.gd" id="25_ysvla"]
 [ext_resource type="AudioStream" uid="uid://bpo0x5f240exy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Attack 2 - only shot.wav" id="26_6nuet"]
 [ext_resource type="AudioStream" uid="uid://bqu7fvmwsaalo" path="res://assets/Audio/400 Sounds Pack/Other/whoosh_1.wav" id="27_34csg"]
 [ext_resource type="AudioStream" uid="uid://ciy4u4gpes020" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="28_pyeyx"]
 [ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="29_qqhsp"]
 [ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="30_ebfxs"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="31_tg14s"]
+[ext_resource type="Script" uid="uid://buc6uya8qp2cj" path="res://scripts/PlayerController/animation_controller_seperated.gd" id="32_7xqws"]
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
@@ -1173,8 +1173,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_84use")]
-
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
 
@@ -1283,6 +1281,10 @@ player = NodePath("../..")
 script = ExtResource("11_7xqws")
 player = NodePath("../..")
 
+[node name="Parry" type="Node" parent="AbilityController" unique_id=854018542 node_paths=PackedStringArray("player")]
+script = ExtResource("20_7xqws")
+player = NodePath("../..")
+
 [node name="Light" type="Node" parent="AbilityController" unique_id=1837859754 node_paths=PackedStringArray("player")]
 script = ExtResource("12_8aen8")
 player = NodePath("../..")
@@ -1306,8 +1308,8 @@ dash_sfx = SubResource("AudioStreamRandomizer_aeb6f")
 script = ExtResource("22_mdiwo")
 
 [node name="AnimationControllerNew" type="Node" parent="." unique_id=1618936012]
-script = ExtResource("25_ysvla")
-transition_speed = 1.2
+script = ExtResource("32_7xqws")
+transition_speed = 6.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
 active = false
@@ -1342,7 +1344,10 @@ parameters/WeaponCombiner/add_amount = 1.0
 parameters/WeaponStateMachineBlender/blend_amount = 0.0
 parameters/WeaponJumpBlender/blend_amount = 1.0
 parameters/TwohandBlender/blend_amount = 1.0
+parameters/Twohand/idle/blend_position = 0.0
 parameters/Combiner/add_amount = 1.0
+parameters/Mainhand/idle/blend_position = 1.0
+parameters/Offhand/idle/blend_position = 0.0008764242
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
 stream = SubResource("AudioStreamRandomizer_i5qjy")

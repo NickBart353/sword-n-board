@@ -15,7 +15,7 @@ signal finished_consuming
 var consumable: Node
 var consuming: bool = false
 var consumed: bool = false
-var process: bool = true
+var process: bool = false
 
 func set_item(item: Node) -> void:
 	reset()

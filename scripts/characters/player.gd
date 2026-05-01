@@ -308,6 +308,7 @@ func _set_weapons():
 	$AbilityController/CastAttack.set_item(get_equipped_weapon_from_slot(mainhand))
 	$AbilityController/ShootAttack.set_item(get_equipped_weapon_from_slot(mainhand))
 	$AbilityController/Block.set_item(get_equipped_weapon_from_slot(offhand))
+	$AbilityController/Parry.set_item(get_equipped_weapon_from_slot(offhand))
 	$AbilityController/Light.set_item(get_equipped_weapon_from_slot(offhand))
 	$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
 
