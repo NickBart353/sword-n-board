@@ -57,14 +57,12 @@ func _on_attack_timer_timeout() -> void:
 func _attack_started() -> void:
 	weapon.monitoring = true
 	swinging = false
-	print("start attac")
 
 func _attack_ended() -> void:
 	bodies.clear()
 	weapon.monitoring = false
 	swing_in_progress = false
 	attack_timer.start()
-	print("end attac")
 
 func reset():
 	#weapon = null
