@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://el32in3epdqt" path="res://my_assets/models/Player/Material.001.tres" id="3_oij22"]
 [ext_resource type="Script" uid="uid://70x4hy6idl1j" path="res://scripts/PlayerController/state_controller.gd" id="3_p0cqj"]
 [ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="4_84use"]
+[ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
@@ -314,89 +315,17 @@ stream_0/stream = ExtResource("21_1qw3l")
 [sub_resource type="Animation" id="Animation_ykwct"]
 resource_name = "Block1"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/LeftHand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.165, -0.455, -0.695), Vector3(-0.165, -0.455, -0.695)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/LeftHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.008726646, 0.08726646, 0), Vector3(0.008726646, 0.08726646, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_wbsrb"]
 resource_name = "Book1"
 length = 1.5
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/LeftHand:position")
+tracks/0/path = NodePath("AbilityController/CastAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.43, -0.67, -0.6), Vector3(-0.43, -0.67, -0.6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/LeftHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/RightHand:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4666667, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.5, -0.975, -0.75), Vector3(0.5, -0.975, -0.75)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/RightHand:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.76666665, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(-0.3525565, 0, 0), Vector3(-0.3525565, 0, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityController/CastAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.93333334, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -407,13 +336,13 @@ tracks/4/keys = {
 "method": &"_book_animation_ended"
 }]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.6333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -421,13 +350,13 @@ tracks/5/keys = {
 "method": &"_play_audio_fire_and_forget"
 }]
 }
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AbilityController/CastAttack")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AbilityController/CastAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0.76666665),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -439,61 +368,13 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_1e104"]
 resource_name = "Book2"
 length = 1.5
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/LeftHand:position")
+tracks/0/path = NodePath("AbilityController/CastAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.43333334, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.43, -0.67, -0.6), Vector3(-0.43, -0.67, -0.6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/LeftHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/RightHand:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6333333, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.845, -0.905, -0.665), Vector3(0.845, -0.905, -0.665)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/RightHand:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.6333333, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.23561946, -0.75049156, 0), Vector3(0.23561946, -0.75049156, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityController/CastAttack")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.6333333, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -504,13 +385,13 @@ tracks/4/keys = {
 "method": &"_book_animation_ended"
 }]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.6666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -518,13 +399,13 @@ tracks/5/keys = {
 "method": &"_play_audio_fire_and_forget"
 }]
 }
-tracks/6/type = "method"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AbilityController/CastAttack")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AbilityController/CastAttack")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -542,37 +423,13 @@ stream_0/stream = ExtResource("25_4fc0r")
 [sub_resource type="Animation" id="Animation_v1vyy"]
 resource_name = "Bow1"
 length = 1.5
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
+tracks/0/path = NodePath("AbilityController/ShootAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.53333336, 1.5, 2.1, 2.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.28, -0.2, -0.625), Vector3(0.28, -0.2, -0.54), Vector3(0.28, -0.2, -0.745), Vector3(0.28, -0.2, -0.745)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(-0.02617994, -0.27925268, -0.96865773)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/ShootAttack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -580,13 +437,13 @@ tracks/2/keys = {
 "method": &"charge_maxed"
 }]
 }
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AbilityPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AbilityPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -594,36 +451,12 @@ tracks/3/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/3/use_blend = true
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_aeb6f"]
 resource_name = "Bow2"
 length = 0.73333335
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.36666667, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.28, -0.2, -0.54), Vector3(0.24, -0.17, -0.54), Vector3(0.28, -0.2, -0.54)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.73333335),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.02617994, -0.27925268, -0.96865773), Vector3(-0.02617994, -0.27925268, -0.96865773)]
-}
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ocei"]
 playback_mode = 1
@@ -635,37 +468,13 @@ stream_0/stream = ExtResource("27_34csg")
 [sub_resource type="Animation" id="Animation_w8vq5"]
 resource_name = "Bow3"
 length = 0.2
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
+tracks/0/path = NodePath("AbilityController/ShootAttack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.28, -0.2, -0.745), Vector3(0.28, -0.2, -0.745)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.02617994, -0.27925268, -0.96865773)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/ShootAttack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -673,13 +482,13 @@ tracks/2/keys = {
 "method": &"_on_animation_player_animation_finished"
 }]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.16666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -687,13 +496,13 @@ tracks/3/keys = {
 "method": &"_play_audio_fire_and_forget"
 }]
 }
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AbilityPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.016226362,
@@ -701,7 +510,7 @@ tracks/4/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/4/use_blend = true
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_81e7k"]
 resource_name = "Consume1"
@@ -730,37 +539,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head/LeftHand:position")
+tracks/2/path = NodePath("AbilityController/Consume")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.687, -1, -0.011), Vector3(-0.402, -0.715, -0.701), Vector3(-0.177, -0.315, -0.796), Vector3(-0.022, -0.265, -0.656), Vector3(-0.022, -0.265, -0.656), Vector3(-0.177, -0.55, -0.796), Vector3(-0.402, -0.7, -0.701), Vector3(-0.687, -1, -0.011), Vector3(-0.5000001, -0.9, -0.59999996)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/LeftHand:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityController/Consume")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(1.7, 3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -771,13 +556,13 @@ tracks/4/keys = {
 "method": &"done_consuming"
 }]
 }
-tracks/5/type = "audio"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AbilityPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AbilityPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -785,14 +570,14 @@ tracks/5/keys = {
 }],
 "times": PackedFloat32Array(0.6333333)
 }
-tracks/5/use_blend = true
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AbilityPlayer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AbilityPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -800,7 +585,7 @@ tracks/6/keys = {
 }],
 "times": PackedFloat32Array(0.2)
 }
-tracks/6/use_blend = true
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_6ocei"]
 resource_name = "Consume2"
@@ -829,37 +614,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head/LeftHand:position")
+tracks/2/path = NodePath("AbilityController/Consume")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.687, -1, -0.011), Vector3(-0.402, -0.715, -0.701), Vector3(-0.177, -0.315, -0.796), Vector3(-0.022, -0.265, -0.656), Vector3(-0.022, -0.265, -0.656), Vector3(-0.177, -0.55, -0.796), Vector3(-0.402, -0.7, -0.701), Vector3(-0.687, -1, -0.011), Vector3(-0.5000001, -0.9, -0.59999996)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/LeftHand:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityController/Consume")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(1.7, 3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -870,13 +631,13 @@ tracks/4/keys = {
 "method": &"done_consuming"
 }]
 }
-tracks/5/type = "audio"
-tracks/5/imported = false
-tracks/5/enabled = false
-tracks/5/path = NodePath("AbilityPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("AbilityPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -884,14 +645,14 @@ tracks/5/keys = {
 }],
 "times": PackedFloat32Array(0.6333333)
 }
-tracks/5/use_blend = true
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = false
-tracks/6/path = NodePath("AbilityPlayer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath("AbilityPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -899,14 +660,14 @@ tracks/6/keys = {
 }],
 "times": PackedFloat32Array(0.2)
 }
-tracks/6/use_blend = true
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AbilityController/Consume")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/4/use_blend = true
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AbilityController/Consume")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0.2, 0.6333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -925,82 +686,22 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
+tracks/0/path = NodePath("Slots/Consumable:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0.59999996, 0), Vector3(0, 0.59999996, 0)]
+"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:position")
+tracks/1/path = NodePath("Slots/Consumable:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.49999988, -0.9, -0.6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/RightHand:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/LeftHand:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996), Vector3(-0.5000001, -0.9, -0.59999996)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/LeftHand:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Slots/Consumable:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Slots/Consumable:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -1010,112 +711,28 @@ tracks/6/keys = {
 [sub_resource type="Animation" id="Animation_4bg8r"]
 resource_name = "Light1"
 loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/LeftHand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.805, -0.475, -0.99), Vector3(-0.805, -0.475, -0.99)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/LeftHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.63529986, -0.34906584, 0), Vector3(-0.63529986, -0.34906584, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_m0y8q"]
 resource_name = "RESET"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
+tracks/0/path = NodePath("Slots/Consumable:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.59999996, 0)]
+"values": [Vector3(-0.6873604, -0.39954534, -0.010622079)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:position")
+tracks/1/path = NodePath("Slots/Consumable:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/RightHand:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/LeftHand:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.5000001, -0.9, -0.59999996)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/LeftHand:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Slots/Consumable:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Slots/Consumable:rotation")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1131,37 +748,13 @@ stream_0/stream = ExtResource("28_pyeyx")
 [sub_resource type="Animation" id="Animation_8gp4u"]
 resource_name = "Sword1"
 length = 0.4
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
+tracks/0/path = NodePath("AbilityController/Attack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.49999988, -0.9, -0.6), Vector3(0.82623136, -0.33495054, -0.44414088), Vector3(-0.589, -0.797, -0.829)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 0.36666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 2.0861626e-07, 0), Vector3(0.5903724, -0.39724508, -0.6458504), Vector3(-0.38048178, 3.0909781, -1.8395771)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/Attack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.33333334, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1172,13 +765,13 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0.06666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1197,37 +790,13 @@ stream_0/stream = ExtResource("29_qqhsp")
 [sub_resource type="Animation" id="Animation_bnsrg"]
 resource_name = "Sword2"
 length = 0.15
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
+tracks/0/path = NodePath("AbilityController/Attack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.659, -0.402, -0.899), Vector3(0.711, -0.582, -1.089)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.055850536, 4.373795, -1.0192723), Vector3(0.038397245, -0.4171337, -1.569051)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/Attack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1238,13 +807,13 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1262,37 +831,13 @@ stream_0/stream = ExtResource("30_ebfxs")
 [sub_resource type="Animation" id="Animation_i5qjy"]
 resource_name = "Sword3"
 length = 0.8
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/RightHand:position")
+tracks/0/path = NodePath("AbilityController/Attack")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.996, -0.557, -0.154), Vector3(0.62, -0.902, 0.54), Vector3(0.336, -0.497, -1.364)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/RightHand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.6615535, 1.4241886, -1.2548918), Vector3(-1.5369015, 1.2246284, -1.0746439), Vector3(-1.2897983, 0.8290314, -0.71733034)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/Attack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.2, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
@@ -1303,13 +848,13 @@ tracks/2/keys = {
 "method": &"_sword_animation_ended"
 }]
 }
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -1346,6 +891,7 @@ stream_2 = SubResource("AudioStreamRandomizer_ykwct")
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 2
 collision_mask = 15
+floor_snap_length = 0.2
 safe_margin = 0.1
 script = ExtResource("1_nqje2")
 stamina_regeneration_speed = 30.0
@@ -1564,19 +1110,6 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
-
-[node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
-
-[node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
-
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_84use")]
-
-[node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
-
 [node name="IKMarkers" type="Node3D" parent="Player - Kopie" unique_id=920471472]
 
 [node name="Feet" type="Node3D" parent="Player - Kopie/IKMarkers" unique_id=1426899377]
@@ -1618,12 +1151,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41359305, 1.3218328, 1.014
 [node name="Head" type="Marker3D" parent="Player - Kopie/IKMarkers/Torso" unique_id=1160109020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6806612, -0.08780861)
 
-[node name="FieldOfView" type="Camera3D" parent="Player - Kopie/IKMarkers/Torso/Head" unique_id=2099136400]
+[node name="CameraTracker" type="Marker3D" parent="Player - Kopie/IKMarkers/Torso/Head" unique_id=2023826422]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.023813725, -0.14590502)
+
+[node name="FieldOfView" type="Camera3D" parent="Player - Kopie/IKMarkers/Torso/Head" unique_id=2099136400 node_paths=PackedStringArray("camera_tracking_position")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7044749, -0.23371363)
+top_level = true
+fov = 85.0
+script = ExtResource("4_eqqxm")
+camera_tracking_position = NodePath("../CameraTracker")
 
 [node name="RayCast3D" type="RayCast3D" parent="Player - Kopie/IKMarkers/Torso/Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -3)
+
+[node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
+
+[node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
+
+[node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
+
+[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("4_84use")]
+
+[node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1654,15 +1207,6 @@ transform = Transform3D(2, 0, 0, 0, 1.9966164, 0.11628965, 0, -0.11628965, 1.996
 
 [node name="Front" type="RayCast3D" parent="GroundRayCasts" unique_id=721640769]
 transform = Transform3D(2, 0, 0, 0, 1.9966164, -0.11628965, 0, 0.11628965, 1.9966164, 0, -0.89767426, -0.039932325)
-
-[node name="Head" type="Node3D" parent="." unique_id=187604380]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59999996, 0)
-
-[node name="LeftHand" type="Marker3D" parent="Head" unique_id=882840607]
-transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, -0.5000001, -0.9, -0.59999996)
-
-[node name="RightHand" type="Marker3D" parent="Head" unique_id=1646763569]
-transform = Transform3D(0.9999999, 0, 2.0861621e-07, 0, 0.99999976, 0, -2.0861623e-07, 0, 0.9999998, 0.49999988, -0.9, -0.6)
 
 [node name="Slots" type="Node3D" parent="." unique_id=64799682]
 
@@ -1711,7 +1255,7 @@ script = ExtResource("4_oij22")
 player = NodePath("..")
 dash_speed = 40
 dash_distance = 5
-falling_time_threshold = 0.9
+falling_time_threshold = 0.456
 dash_cost = 18.0
 
 [node name="AbilityController" type="Node" parent="." unique_id=2010557984]

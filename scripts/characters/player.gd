@@ -12,12 +12,9 @@ signal spawn_projectile
 @onready var animation: Node = $AnimationController
 @onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
-@onready var head: Node3D = $Head
 @onready var ground_raycast = $GroundRayCasts
 @onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
 @onready var player_interactor = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/RayCast3D"
-@onready var left_hand = $Head/LeftHand
-@onready var right_hand = $Head/RightHand
 @onready var consumable_slot = $Slots/Consumable
 @onready var head_slot = $Slots/Head
 @onready var body_slot = $Slots/Body
@@ -26,6 +23,10 @@ signal spawn_projectile
 @onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 @onready var timers: Node3D = $Timers
+
+#@onready var mainhand: Marker3D = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/Weapons/Mainhand"
+#@onready var offhand: Marker3D = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/Weapons/Offhand"
+#@onready var twohand: Marker3D = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/Weapons/Twohand"
 
 @onready var mainhand: Marker3D = $"Player - Kopie/Weapons/Mainhand"
 @onready var offhand: Marker3D = $"Player - Kopie/Weapons/Offhand"
@@ -231,12 +232,12 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 		if main_hand_item != player_mainhand:
 			main_hand_item = player_mainhand
 			off_hand_item = player_offhand
-			_clear_equip_slot(right_hand)
-			_clear_equip_slot(left_hand)
+			#_clear_equip_slot(right_hand)
+			#_clear_equip_slot(left_hand)
 			var item_instance: Weapon = ItemGenerator.generate_item(main_hand_item.data)
-			if item_instance:
-				if item_instance is Node:
-					right_hand.add_child(item_instance, true)
+			#if item_instance:
+				#if item_instance is Node:
+					#right_hand.add_child(item_instance, true)
 	
 	else:
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
@@ -356,6 +357,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(look_rotation.y)
 		player_camera.transform.basis = Basis()
 		player_camera.rotate_x(look_rotation.x)
+		player_camera.rotate_y(look_rotation.y)
 
 func take_damage(damage, body: Node):
 	if body == blocked_body and blocked_body != null:

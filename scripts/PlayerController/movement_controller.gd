@@ -40,19 +40,18 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			player.velocity.z = move_toward(player.velocity.z, 0, movement_speed)
 		
 		if not player.is_on_floor():
+			air_time += delta
 			player.velocity += player.get_gravity() * delta
-			falling = true
+			if air_time > falling_time_threshold:
+				falling = true
+				air_time = 0
 		if jumping and player.is_on_floor():
 			jumping = false
 		if player.is_on_floor() and landed:
 			landed = false
-		if is_on_floor:
-			if air_time > falling_time_threshold:
-				landed = true
-			air_time = 0.0
-		else:
-			air_time += delta
-			is_on_floor = false
+		if player.is_on_floor() and falling:
+			falling = false
+			landed = true
 		if player.is_on_floor():
 			is_on_floor = true
 		else:

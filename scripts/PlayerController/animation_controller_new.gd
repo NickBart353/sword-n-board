@@ -69,7 +69,6 @@ func apply_animations(input: Node, state_controller: Node, movement: Node, abili
 			twohand_statemachine.travel("attack{0}".format([attack.swing]))
 		else:
 			mainhand_statemachine.travel("attack{0}".format([attack.swing]))
-
 	
 	if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
 		airborne_blend_value_current -= delta / transition_speed
