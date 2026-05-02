@@ -40,6 +40,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
 [ext_resource type="AnimationLibrary" uid="uid://c7rbb85uabe6s" path="res://animations/player/shortsword/shortsword.res" id="38_84use"]
+[ext_resource type="PackedScene" uid="uid://cq5niuf135ca6" path="res://scenes/component_scenes/item_entities/weapons/greathammer.tscn" id="42_xamg6"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0hxxe"]
 resource_name = "Player - Kopie_Cube_002"
@@ -1168,13 +1169,15 @@ target_position = Vector3(0, 0, -3)
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90621763, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45843524, -0.5923466, -0.3466276)
+
+[node name="greathammer" parent="Player - Kopie/Weapons/Twohand" unique_id=1450483177 instance=ExtResource("42_xamg6")]
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999976, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.9999993, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
+transform = Transform3D(0.99999905, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999992, -0.385, 1.09, -0.405)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
