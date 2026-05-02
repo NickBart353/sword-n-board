@@ -143,6 +143,8 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_inswj")
 
 [node name="dagger" unique_id=367181432 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_k0p64")]
+collision_layer = 6
+collision_mask = 24
 script = ExtResource("2_wixkm")
 hand_component = NodePath("OnehandComponent")
 
@@ -152,14 +154,14 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
-[node name="Blade" parent="." index="2" unique_id=2139558200]
+[node name="Blade" parent="." index="2" unique_id=1475738341]
 mesh = SubResource("ArrayMesh_3xkl4")
 
-[node name="guard" parent="." index="3" unique_id=1095186029]
+[node name="guard" parent="." index="3" unique_id=1321422732]
 mesh = SubResource("ArrayMesh_arvuq")
 
-[node name="hilt" parent="." index="4" unique_id=771830443]
+[node name="hilt" parent="." index="4" unique_id=1958136647]
 mesh = SubResource("ArrayMesh_b8aja")
 
-[node name="Torus_002" parent="." index="5" unique_id=1965664418]
+[node name="Torus_002" parent="." index="5" unique_id=1435189969]
 mesh = SubResource("ArrayMesh_7qn5q")
