@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
+[ext_resource type="AnimationLibrary" uid="uid://cis2tnf2uus34" path="res://animations/player/greathammer/greathammer.res" id="8_8aen8"]
 [ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="8_r2tqu"]
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="9_84use"]
 [ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_eqqxm"]
@@ -40,7 +41,6 @@
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
 [ext_resource type="AnimationLibrary" uid="uid://c7rbb85uabe6s" path="res://animations/player/shortsword/shortsword.res" id="38_84use"]
-[ext_resource type="PackedScene" uid="uid://cq5niuf135ca6" path="res://scenes/component_scenes/item_entities/weapons/greathammer.tscn" id="42_xamg6"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0hxxe"]
 resource_name = "Player - Kopie_Cube_002"
@@ -269,6 +269,30 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.41359305, 1.3218328, 1.0142287)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.9701936, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
@@ -1169,15 +1193,13 @@ target_position = Vector3(0, 0, -3)
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45843524, -0.5923466, -0.3466276)
-
-[node name="greathammer" parent="Player - Kopie/Weapons/Twohand" unique_id=1450483177 instance=ExtResource("42_xamg6")]
+transform = Transform3D(0.9999993, 0, 0, 0, 0.5651402, -0.8249953, 0, 0.82499564, 0.5651399, 0.15462682, 1.2360888, -0.48433757)
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.99999905, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999992, -0.385, 1.09, -0.405)
+transform = Transform3D(0.99999905, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1188,6 +1210,7 @@ root_node = NodePath("../AnimationTreeNew")
 libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
 libraries/fist = ExtResource("7_84use")
+libraries/greathammer = ExtResource("8_8aen8")
 libraries/movement = ExtResource("34_0hxxe")
 libraries/shortsword = ExtResource("38_84use")
 
@@ -1346,8 +1369,8 @@ parameters/Walking/blend_position = Vector2(0, -0.925)
 parameters/WeaponCombiner/add_amount = 1.0
 parameters/WeaponStateMachineBlender/blend_amount = 0.0
 parameters/WeaponJumpBlender/blend_amount = 1.0
-parameters/TwohandBlender/blend_amount = 1.0
-parameters/Twohand/idle/blend_position = 0.0
+parameters/TwohandBlender/blend_amount = 0.0
+parameters/Twohand/idle/blend_position = 0.9973684
 parameters/Combiner/add_amount = 1.0
 parameters/Mainhand/idle/blend_position = 1.0
 parameters/Offhand/idle/blend_position = 0.0008764242

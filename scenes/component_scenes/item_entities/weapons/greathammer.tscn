@@ -155,8 +155,8 @@ shadow_mesh = SubResource("ArrayMesh_7css0")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_orxha"]
 
 [node name="greathammer" unique_id=1464552802 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_5ettr")]
-collision_layer = 6
-collision_mask = 24
+collision_layer = 4
+collision_mask = 13
 script = ExtResource("2_orxha")
 hand_component = NodePath("TwohandComponent")
 
@@ -165,6 +165,7 @@ hand_component = NodePath("TwohandComponent")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=854868585]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069727898, 1.420232, 0.00076293945)
 shape = SubResource("BoxShape3D_2wvta")
+debug_color = Color(0.9956452, 0, 0.20966002, 0.41960785)
 
 [node name="MiddleMetal" parent="." index="2" unique_id=182792597]
 transform = Transform3D(-1.7484556e-08, 0.4, -1.7484556e-08, 0, -1.7484556e-08, -0.4, -0.4, -1.7484556e-08, 7.642742e-16, -0.17499846, 1.4194953, 0.0033650622)
@@ -173,3 +174,5 @@ mesh = SubResource("ArrayMesh_etsd2")
 [node name="dick" type="MeshInstance3D" parent="." index="3" unique_id=16245960]
 transform = Transform3D(1.1941757e-11, 2.004897e-08, -0.094742425, 0.078265525, -0.0016010344, 0, -0.00027319556, -0.458667, -4.141323e-09, 0.008222461, 1.4522989, -0.7666137)
 mesh = SubResource("CapsuleMesh_orxha")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -140,21 +140,24 @@ func _do_stuff(input: Node, _state_controller: Node, movement: Node, _ability: N
 
 func equipped_two_hand_weapon(weapon_name: String):
 	anim_tree[weapon_blender] = 0
+	twohanded = true
 	var twohand = anim_tree.tree_root.get_node("Twohand")
 	twohand.get_node("attack1").animation = "{0}/attack1".format([weapon_name])
 	twohand.get_node("attack2").animation = "{0}/attack2".format([weapon_name])
 	twohand.get_node("attack3").animation = "{0}/attack3".format([weapon_name])
 	twohand.get_node("attack4").animation = "{0}/attack4".format([weapon_name])
+	twohand.get_node("activate").animation = "{0}/activate".format([weapon_name])
 	twohand.get_node("ability1").animation = "{0}/ability1".format([weapon_name])
 	twohand.get_node("ability2").animation = "{0}/ability2".format([weapon_name])
 	twohand.get_node("idle").get_blend_point_node(0).animation = "{0}/idle".format([weapon_name])
-	twohand.get_node("walking").get_blend_point_node(1).animation = "{0}/walking".format([weapon_name])
+	twohand.get_node("idle").get_blend_point_node(1).animation = "{0}/walking".format([weapon_name])
 	twohand.get_node("jump").animation = "{0}/jump".format([weapon_name])
 	twohand.get_node("falling").animation = "{0}/falling".format([weapon_name])
 	twohand.get_node("landing").animation = "{0}/landing".format([weapon_name])
 
 func equpped_mainhand_weapon(weapon_name: String):
 	anim_tree[weapon_blender] = 1
+	twohanded = false
 	var anim_name: String = "{0}/mainhand".format([weapon_name])
 	var mainhand = anim_tree.tree_root.get_node("Mainhand")
 	mainhand.get_node("attack1").animation = "{0}_attack1".format([anim_name])
@@ -170,6 +173,7 @@ func equpped_mainhand_weapon(weapon_name: String):
 
 func equpped_offhand_weapon(weapon_name: String):
 	anim_tree[weapon_blender] = 1
+	twohanded = false
 	var anim_name: String = "{0}/offhand".format([weapon_name])
 	var offhand = anim_tree.tree_root.get_node("Offhand")
 	offhand.get_node("activate").animation = "{0}_activate".format([anim_name])

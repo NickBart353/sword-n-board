@@ -45,10 +45,10 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 				swing += 1
 
 func _melee_attack(body, damage):
-	if swing_in_progress:
-		if not body in bodies:
-			bodies.append(body)
-			body.take_damage(damage)
+	#if swing_in_progress:
+	if not body in bodies:
+		bodies.append(body)
+		body.take_damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if not swing_in_progress:

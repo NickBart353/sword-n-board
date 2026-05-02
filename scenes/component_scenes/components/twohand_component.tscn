@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://jmop6r5t5lot" path="res://scripts/components/twohand_component.gd" id="1_o0x4n"]
 
-[node name="TwohandComponent" type="Node3D" unique_id=1480913319]
+[node name="TwohandComponent" type="Node3D" unique_id=1480913319 node_paths=PackedStringArray("left_hand", "right_hand")]
 script = ExtResource("1_o0x4n")
+left_hand = NodePath("LeftHand")
+right_hand = NodePath("RightHand")
 
 [node name="LeftHand" type="Node3D" parent="." unique_id=864344244]
 

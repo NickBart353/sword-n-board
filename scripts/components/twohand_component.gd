@@ -1,7 +1,7 @@
 extends Node3D
 
-@onready var left_hand: Node3D = $LeftHand
-@onready var right_hand: Node3D = $RightHand
+@export var left_hand: Node3D
+@export var right_hand: Node3D
 
 @onready var l_hand: Marker3D = $LeftHand/Hand
 @onready var l_finger: Marker3D = $LeftHand/Finger
@@ -16,12 +16,12 @@ extends Node3D
 @onready var r_thumb_pole: Marker3D = $RightHand/ThumbPole
 
 func update_markers(_side: String, marker_dictionary: Dictionary):
-	for marker: Marker3D in left_hand.get_children():
-		marker.position = marker_dictionary[marker]["{0}_Position".format("L")]
-		marker.rotation = marker_dictionary[marker]["{0}_Rotation".format("L")]
-	for marker: Marker3D in right_hand.get_children():
-		marker.position = marker_dictionary[marker]["{0}_Position".format("R")]
-		marker.rotation = marker_dictionary[marker]["{0}_Rotation".format("R")]
+	for marker in left_hand.get_children():
+		marker.position = marker_dictionary.get(marker.name).get("L_Position")
+		marker.rotation = marker_dictionary.get(marker.name).get("L_Rotation")
+	for marker in right_hand.get_children():
+		marker.position = marker_dictionary.get(marker.name).get("R_Position")
+		marker.rotation = marker_dictionary.get(marker.name).get("R_Rotation")
 
 func get_markers() -> Dictionary:
 	return {

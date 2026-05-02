@@ -232,14 +232,29 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 		if main_hand_item != player_mainhand:
 			main_hand_item = player_mainhand
 			off_hand_item = player_offhand
-			#_clear_equip_slot(right_hand)
-			#_clear_equip_slot(left_hand)
+			_clear_equip_slot(mainhand)
+			_clear_equip_slot(offhand)
 			var item_instance: Weapon = ItemGenerator.generate_item(main_hand_item.data)
-			#if item_instance:
-				#if item_instance is Node:
-					#right_hand.add_child(item_instance, true)
+			if item_instance:
+				twohand.add_child(item_instance)
+				item_instance.update_markers("")
+				var marker_dictionary: Dictionary = item_instance.get_markers()
+				arm_right.set_target_node(0, marker_dictionary.get("R").get("Hand").get_path())
+				finger_right.set_target_node(0, marker_dictionary.get("R").get("Finger").get_path())
+				thumb_right.set_target_node(0, marker_dictionary.get("R").get("Thumb").get_path())
+				finger_right.set_pole_node(0, marker_dictionary.get("R").get("FingerPole").get_path())
+				thumb_right.set_pole_node(0, marker_dictionary.get("R").get("ThumbPole").get_path())
+				
+				arm_left.set_target_node(0, marker_dictionary.get("L").get("Hand").get_path())
+				finger_left.set_target_node(0, marker_dictionary.get("L").get("Finger").get_path())
+				thumb_left.set_target_node(0, marker_dictionary.get("L").get("Thumb").get_path())
+				finger_left.set_pole_node(0, marker_dictionary.get("L").get("FingerPole").get_path())
+				thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
+				
+				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
 	
 	else:
+		_clear_equip_slot(twohand)
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
 		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
 	_set_weapons()
@@ -304,12 +319,15 @@ func _new_consumable(item: Item):
 	_set_weapons()
 
 func _set_weapons():
-	$AbilityController/Attack.set_item(get_equipped_weapon_from_slot(mainhand))
-	$AbilityController/CastAttack.set_item(get_equipped_weapon_from_slot(mainhand))
-	$AbilityController/ShootAttack.set_item(get_equipped_weapon_from_slot(mainhand))
-	$AbilityController/Block.set_item(get_equipped_weapon_from_slot(offhand))
-	$AbilityController/Parry.set_item(get_equipped_weapon_from_slot(offhand))
-	$AbilityController/Light.set_item(get_equipped_weapon_from_slot(offhand))
+	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
+	var off_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(offhand)
+	
+	$AbilityController/Attack.set_item(main_slot)
+	$AbilityController/CastAttack.set_item(main_slot)
+	$AbilityController/ShootAttack.set_item(main_slot)
+	$AbilityController/Block.set_item(off_slot)
+	$AbilityController/Parry.set_item(off_slot)
+	$AbilityController/Light.set_item(off_slot)
 	$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
 
 func get_equipped_weapon_from_slot(slot: Marker3D):

@@ -2,15 +2,15 @@
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_yml72"]
 filter_enabled = true
-filters = ["", ".", "../AbilityController/Attack", "../AbilityController/Parry", "../Head/FieldOfView:position", "../Head/FieldOfView:rotation", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowLeft:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", "BoneMarkers/LeftFoot:rotation", "BoneMarkers/RightFoot:position", "BoneMarkers/RightFoot:rotation", "BoneMarkers:position", "BoneMarkers:rotation", "Head:position", "WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation", "rig/Skeleton3D/Spine:active", "rig/Skeleton3D/Spine:influence", "rig:position", "rig:rotation"]
+filters = ["", ".", "../AbilityController/Attack", "../AbilityController/Parry", "../Head/FieldOfView:position", "../Head/FieldOfView:rotation", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowLeft:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation", "../Player - Kopie/Weapons/Twohand:position", "../Player - Kopie/Weapons/Twohand:rotation", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", "BoneMarkers/LeftFoot:rotation", "BoneMarkers/RightFoot:position", "BoneMarkers/RightFoot:rotation", "BoneMarkers:position", "BoneMarkers:rotation", "Head:position", "WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation", "rig/Skeleton3D/Spine:active", "rig/Skeleton3D/Spine:influence", "rig:position", "rig:rotation"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6f6ns"]
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pmhlb"]
-filters = [".", "../Head/FieldOfView:position", "../Head/FieldOfView:rotation", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", "BoneMarkers/LeftFoot:rotation", "BoneMarkers/RightFoot:position", "BoneMarkers/RightFoot:rotation", "BoneMarkers:position", "BoneMarkers:rotation", "Head:position", "WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation", "rig/Skeleton3D/Spine:active", "rig/Skeleton3D/Spine:influence", "rig:position", "rig:rotation"]
+filters = ["", ".", "../AbilityController/Attack", "../AbilityController/Parry", "../Head/FieldOfView:position", "../Head/FieldOfView:rotation", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowLeft:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation", "../Player - Kopie/Weapons/Twohand:position", "../Player - Kopie/Weapons/Twohand:rotation", "AirborneMarker:position", "BoneMarkers/LeftFoot:position", "BoneMarkers/LeftFoot:rotation", "BoneMarkers/RightFoot:position", "BoneMarkers/RightFoot:rotation", "BoneMarkers:position", "BoneMarkers:rotation", "Head:position", "WeaponAnimationPoint:position", "WeaponAnimationPoint:rotation", "rig/Skeleton3D/Spine:active", "rig/Skeleton3D/Spine:influence", "rig:position", "rig:rotation"]
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_48n4i"]
-filters = ["", ".", "../AbilityController/Attack", "../AbilityController/Parry", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowLeft:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation"]
+filters = ["", ".", "../AbilityController/Attack", "../AbilityController/Parry", "../Player - Kopie/Armature:position", "../Player - Kopie/IKMarkers/Arms/ElbowLeft:position", "../Player - Kopie/IKMarkers/Arms/ElbowRight:position", "../Player - Kopie/IKMarkers/Arms/HandLeft:position", "../Player - Kopie/IKMarkers/Arms/HandRight:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:position", "../Player - Kopie/IKMarkers/Feet/FootLeft:rotation", "../Player - Kopie/IKMarkers/Feet/FootRight:position", "../Player - Kopie/IKMarkers/Feet/FootRight:rotation", "../Player - Kopie/IKMarkers/Feet/LegLeft:rotation", "../Player - Kopie/IKMarkers/Feet/LegRight:rotation", "../Player - Kopie/IKMarkers/Torso/Head:position", "../Player - Kopie/IKMarkers/Torso/Head:rotation", "../Player - Kopie/Weapons/Mainhand:position", "../Player - Kopie/Weapons/Mainhand:rotation", "../Player - Kopie/Weapons/Offhand:position", "../Player - Kopie/Weapons/Offhand:rotation", "../Player - Kopie/Weapons/Twohand:position", "../Player - Kopie/Weapons/Twohand:rotation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6f6ns"]
 animation = &"Jump/descending"
@@ -506,6 +506,9 @@ animation = &"shortsword/mainhand_ability1"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ybges"]
 animation = &"shortsword/mainhand_ability2"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j4km6"]
+animation = &"greathammer/activate"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji2ur"]
 animation = &"fist/mainhand_attack1"
 
@@ -522,10 +525,10 @@ animation = &"shortsword/mainhand_attack3"
 animation = &"shortsword/mainhand_falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmbs3"]
-animation = &"fist/mainhand_idle"
+animation = &"greathammer/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bsaok"]
-animation = &"fist/mainhand_walking"
+animation = &"greathammer/walking"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_j4km6"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_gmbs3")
@@ -608,6 +611,12 @@ xfade_time = 0.2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gwqmb"]
 xfade_time = 0.2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4kbj"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fmq0j"]
+xfade_time = 0.2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gsf3g"]
 states/End/position = Vector2(823, 100)
 states/Start/position = Vector2(209, 100)
@@ -615,6 +624,8 @@ states/ability1/node = SubResource("AnimationNodeAnimation_62fuf")
 states/ability1/position = Vector2(209, 215)
 states/ability2/node = SubResource("AnimationNodeAnimation_ybges")
 states/ability2/position = Vector2(391, 215)
+states/activate/node = SubResource("AnimationNodeAnimation_j4km6")
+states/activate/position = Vector2(681, 100)
 states/attack1/node = SubResource("AnimationNodeAnimation_ji2ur")
 states/attack1/position = Vector2(391, -8)
 states/attack2/node = SubResource("AnimationNodeAnimation_ivn2l")
@@ -635,8 +646,8 @@ states/landing/node = SubResource("AnimationNodeAnimation_nr025")
 states/landing/position = Vector2(823, 215)
 states/walking/node = SubResource("AnimationNodeAnimation_7aqas")
 states/walking/position = Vector2(209, -8)
-transitions = ["attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_3e73u"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_vxj2b"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_oyicc"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_mparb"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_ffghu"), "landing", "idle", SubResource("AnimationNodeStateMachineTransition_f3sgo"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_3qgti"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_pca4q"), "idle", "ability2", SubResource("AnimationNodeStateMachineTransition_53mrh"), "ability2", "idle", SubResource("AnimationNodeStateMachineTransition_i6wg0"), "idle", "ability1", SubResource("AnimationNodeStateMachineTransition_ssnox"), "ability1", "idle", SubResource("AnimationNodeStateMachineTransition_m3fhp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_m4n84"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_gmbs3"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_bsaok"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_j4km6"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_7q3ng"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_82kdk"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_568km"), "attack4", "idle", SubResource("AnimationNodeStateMachineTransition_gwqmb")]
-graph_offset = Vector2(-14, -19)
+transitions = ["attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_3e73u"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_vxj2b"), "attack3", "attack4", SubResource("AnimationNodeStateMachineTransition_oyicc"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_mparb"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_ffghu"), "landing", "idle", SubResource("AnimationNodeStateMachineTransition_f3sgo"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_3qgti"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_pca4q"), "idle", "ability2", SubResource("AnimationNodeStateMachineTransition_53mrh"), "ability2", "idle", SubResource("AnimationNodeStateMachineTransition_i6wg0"), "idle", "ability1", SubResource("AnimationNodeStateMachineTransition_ssnox"), "ability1", "idle", SubResource("AnimationNodeStateMachineTransition_m3fhp"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_m4n84"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_gmbs3"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_bsaok"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_j4km6"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_7q3ng"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_82kdk"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_568km"), "attack4", "idle", SubResource("AnimationNodeStateMachineTransition_gwqmb"), "idle", "activate", SubResource("AnimationNodeStateMachineTransition_b4kbj"), "activate", "idle", SubResource("AnimationNodeStateMachineTransition_fmq0j")]
+graph_offset = Vector2(-50, -43)
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_f7nme"]
 
@@ -865,7 +876,7 @@ filters = ["", ".", "../Player - Kopie/Armature:position", "../Player - Kopie/IK
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(499.99573, 71.78171)
+graph_offset = Vector2(898.057, -147.23735)
 nodes/output/position = Vector2(2240, -100)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-580, 0)
