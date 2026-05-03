@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://msts6rhfq7ta"]
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_ufcj0"]
+[ext_resource type="AudioStream" uid="uid://b0j64v4lhfale" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/dirt impact.wav" id="2_eurqq"]
 
 [sub_resource type="Curve" id="Curve_l3i8e"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -148,6 +149,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_eurqq")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_141dh"]
 _data = {
@@ -159,6 +175,7 @@ _data = {
 script = ExtResource("1_ufcj0")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "default"
+queue_free_on_finish = true
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Rocks" type="GPUParticles3D" parent="." unique_id=1836570082]
@@ -181,5 +198,9 @@ draw_pass_1 = SubResource("SphereMesh_j722j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1270602786]
 libraries/ = SubResource("AnimationLibrary_141dh")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1045129823]
+volume_db = -2.0
+bus = &"SFX"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

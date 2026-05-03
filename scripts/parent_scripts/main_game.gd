@@ -79,6 +79,7 @@ func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation 
 	instance.global_position = vfx_position
 	if new_global_rotation:
 		instance.rotation = new_global_rotation
+	instance.play()
 
 func _spawn_mobs():
 	for mob_spawn_group in $MobSpawns.get_children():

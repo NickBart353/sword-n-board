@@ -1352,6 +1352,7 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
+active = false
 root_node = NodePath(".")
 callback_mode_process = 0
 callback_mode_method = 1

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_4wod7"]
 [ext_resource type="Shader" uid="uid://cjqv0baqqj13d" path="res://shaders/charge_poison.tres" id="1_10ofg"]
 [ext_resource type="Texture2D" uid="uid://skl5nupyxwm" path="res://my_assets/b_n_w_textures/poopy_star.png" id="2_3bunm"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="3_pelvl"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_10ofg"]
 noise_type = 2
@@ -25,6 +26,7 @@ shader = ExtResource("1_10ofg")
 shader_parameter/ColorParameter = Color(0.29473877, 0.6107729, 0, 1)
 shader_parameter/TwistParameter = Vector2(2, 1)
 shader_parameter/BasicTexture = SubResource("NoiseTexture2D_3bunm")
+shader_parameter/tex_frg_15 = ExtResource("3_pelvl")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_w0wpd"]
 material = SubResource("ShaderMaterial_3bunm")

@@ -80,6 +80,8 @@ var consumable_item: Item
 
 var blocked_body: Node
 
+var rotation_modifier: float = 1
+
 func _ready() -> void:
 	$AnimationTreeNew.active = true
 	#_load_preset_items()
@@ -95,12 +97,16 @@ func _ready() -> void:
 	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = player_camera.rotation.x
+	movement.update_rotation_modifier.connect(_update_rotation_modifier)
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 	$AbilityController/Block.blocked.connect(_blocked_attack)
 	$AbilityController/Consume.consume_item.connect(_consume_item)
 	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
 	_check_unequipped_slots()
+
+func _update_rotation_modifier(new_rotation_modifier: float) -> void:
+	rotation_modifier = new_rotation_modifier
 
 func _process(delta: float) -> void:
 	if not stamina_regeneration_delay.time_left and not slow_stamina_regeneration_delay.time_left and not STAMINA == MAX_STAMINA:
@@ -371,7 +377,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_rotation.x -= event.relative.y * look_speed * PlayerControls.sensitivity
 		look_rotation.x = clamp(look_rotation.x, deg_to_rad(-85), deg_to_rad(85))
-		look_rotation.y -= event.relative.x * look_speed * PlayerControls.sensitivity
+		look_rotation.y -= event.relative.x * look_speed * PlayerControls.sensitivity * rotation_modifier
 		transform.basis = Basis()
 		rotate_y(look_rotation.y)
 		player_camera.transform.basis = Basis()

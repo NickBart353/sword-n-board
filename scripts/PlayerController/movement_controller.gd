@@ -1,5 +1,7 @@
 class_name PlayerMovementController extends Node
 
+signal update_rotation_modifier
+
 @export var player: CharacterBody3D
 @export var movement_speed: int = 5
 @export var jump_velocity: int = 5
@@ -25,8 +27,11 @@ var dashing_origin: Vector3
 var air_time: float = 0.0
 
 var calculated_movement_speed: float = 1
-var calculated_modifiers: float = 1
+var calculated_movement_modifiers: float = 1
 var movement_modifiers: Array[float] = []
+
+var calculated_rotation_modifiers: float = 1
+var rotation_modifiers: Array[float] = []
 
 func _ready() -> void:
 	calculated_movement_speed = movement_speed
@@ -121,15 +126,30 @@ func _check_raycast(direction: String, delta):
 
 func add_movement_modifier(value: float) -> void:
 	movement_modifiers.append(value)
-	calculated_modifiers = 1
+	calculated_movement_modifiers = 1
 	for modifier in movement_modifiers:
-		calculated_modifiers *= modifier
-	calculated_movement_speed = movement_speed * calculated_modifiers
+		calculated_movement_modifiers *= modifier
+	calculated_movement_speed = movement_speed * calculated_movement_modifiers
 
 func remove_movement_modifier(value: float) -> void:
 	if value in movement_modifiers:
 		movement_modifiers.erase(value)
-	calculated_modifiers = 1
+	calculated_movement_modifiers = 1
 	for modifier in movement_modifiers:
-		calculated_modifiers *= modifier
-	calculated_movement_speed = movement_speed * calculated_modifiers
+		calculated_movement_modifiers *= modifier
+	calculated_movement_speed = movement_speed * calculated_movement_modifiers
+
+func add_rotation_modifier(value: float) -> void:
+	rotation_modifiers.append(value)
+	calculated_rotation_modifiers = 1
+	for modifier in rotation_modifiers:
+		calculated_rotation_modifiers *= modifier
+	update_rotation_modifier.emit(calculated_rotation_modifiers)
+
+func remove_rotation_modifier(value: float) -> void:
+	if value in rotation_modifiers:
+		rotation_modifiers.erase(value)
+	calculated_rotation_modifiers = 1
+	for modifier in rotation_modifiers:
+		calculated_rotation_modifiers *= modifier
+	update_rotation_modifier.emit(calculated_rotation_modifiers)

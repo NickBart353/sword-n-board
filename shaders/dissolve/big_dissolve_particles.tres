@@ -1,14 +1,11 @@
 [gd_resource type="VisualShader" format=3 uid="uid://beken2i52fttm"]
 
-[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="1_1nxfq"]
-
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_16xbw"]
 expanded_output_ports = [0]
 input_name = "color"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_mf6h2"]
 expanded_output_ports = [0]
-texture = ExtResource("1_1nxfq")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_yxv8t"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]

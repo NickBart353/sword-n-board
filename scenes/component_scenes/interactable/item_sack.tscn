@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dx2bjm6p8bavm" path="res://shaders/item_sack/item_sack_particles.tres" id="3_dy6n1"]
 [ext_resource type="AudioStream" uid="uid://cs6ds6c6pqtr5" path="res://assets/Audio/pixabay/goldwind0401-plastic-bag-175994.wav" id="3_o83ng"]
 [ext_resource type="AudioStream" uid="uid://cvpxtuthbykuj" path="res://assets/Audio/pixabay/plastic-bag-short.wav" id="4_4iyba"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="7_k6dni"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5pxwh"]
 
@@ -39,6 +40,7 @@ scale_curve = SubResource("CurveTexture_dy6n1")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o83ng"]
 render_priority = 0
 shader = ExtResource("3_dy6n1")
+shader_parameter/tex_frg_2 = ExtResource("7_k6dni")
 shader_parameter/ColorParameter = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_k6dni"]

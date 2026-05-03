@@ -181,6 +181,5 @@ transparent_bg = true
 transform = Transform3D(0.94900817, -0.02862685, -0.31394914, 0, 0.99586874, -0.09080638, 0.31525153, 0.08617599, 0.94508743, -0.9018469, 1.6896456, 1.6895258)
 
 [node name="Campfire" parent="SubViewport" unique_id=1728524800 instance=ExtResource("3_8vkso")]
-transform = Transform3D(0.4342723, 0, 0.90078163, 0, 1, 0, -0.90078163, 0, 0.4342723, -0.04635799, 0, -1.5385494)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

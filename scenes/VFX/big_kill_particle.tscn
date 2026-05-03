@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_oxlw5"]
 [ext_resource type="Shader" uid="uid://beken2i52fttm" path="res://shaders/dissolve/big_dissolve_particles.tres" id="2_odfxf"]
 [ext_resource type="AudioStream" uid="uid://c8pgohtld5es" path="res://assets/Audio/pixabay/freesound_community-aspirin-in-water-16738.wav" id="3_16u6b"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="3_gvix7"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="4_gvix7"]
 
 [sub_resource type="Gradient" id="Gradient_j1g6m"]
@@ -53,6 +54,7 @@ color_ramp = SubResource("GradientTexture1D_16u6b")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gvix7"]
 render_priority = 0
 shader = ExtResource("2_odfxf")
+shader_parameter/tex_frg_3 = ExtResource("3_gvix7")
 shader_parameter/ColorParameter = Color(0.73489475, 0.90972954, 0.9054163, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_j7oq1"]

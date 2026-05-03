@@ -1,7 +1,5 @@
 [gd_resource type="VisualShader" format=3 uid="uid://cjqv0baqqj13d"]
 
-[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="1_kjsdn"]
-
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_2cwm6"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_kjsdn"]
@@ -13,7 +11,6 @@ operator = 2
 parameter_name = "TwistParameter"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7665m"]
-texture = ExtResource("1_kjsdn")
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_kjsdn"]
 parameter_name = "ColorParameter"

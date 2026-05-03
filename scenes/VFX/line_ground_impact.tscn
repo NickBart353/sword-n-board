@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_rgg5p"]
 [ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/ground_impact/line_ground_impact.tres" id="2_lma8k"]
+[ext_resource type="Texture2D" uid="uid://bt8h56503tscq" path="res://my_assets/b_n_w_textures/impact_edited.png" id="3_ujdwu"]
 
 [sub_resource type="Curve" id="Curve_lma8k"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -121,6 +122,7 @@ render_priority = 0
 shader = ExtResource("2_lma8k")
 shader_parameter/ImpactColor = Color(0.92239076, 0.8917161, 0.40330118, 1)
 shader_parameter/ImpactSpeed = Vector2(0, -0.5)
+shader_parameter/tex_frg_2 = ExtResource("3_ujdwu")
 shader_parameter/Gradient = SubResource("GradientTexture2D_ujdwu")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lma8k"]

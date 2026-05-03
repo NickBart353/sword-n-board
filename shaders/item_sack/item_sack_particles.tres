@@ -1,10 +1,7 @@
 [gd_resource type="VisualShader" format=3 uid="uid://dx2bjm6p8bavm"]
 
-[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="1_1hlwb"]
-
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_720e8"]
 expanded_output_ports = [0]
-texture = ExtResource("1_1hlwb")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_u5kc0"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
