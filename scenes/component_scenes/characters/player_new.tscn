@@ -8,10 +8,12 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
+[ext_resource type="PackedScene" uid="uid://djkqe144fuvf5" path="res://scenes/component_scenes/item_entities/weapons/greatsword.tscn" id="5_v4r5v"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
 [ext_resource type="AnimationLibrary" uid="uid://cis2tnf2uus34" path="res://animations/player/greathammer/greathammer.res" id="8_8aen8"]
+[ext_resource type="AnimationLibrary" uid="uid://b5ucxt60wsdjx" path="res://animations/player/greatsword/greatsword.res" id="8_pxpwq"]
 [ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="8_r2tqu"]
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="9_84use"]
 [ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_eqqxm"]
@@ -959,7 +961,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/LeftHand/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -973,7 +975,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/RightHand/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -987,8 +989,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/LeftHand/Finger")
+settings/0/pole_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/LeftHand/FingerPole")
 settings/0/root_bone_name = "hand.l"
 settings/0/root_bone = 10
 settings/0/middle_bone_name = "finger.l"
@@ -1001,8 +1003,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=671719962]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/RightHand/Finger")
+settings/0/pole_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/RightHand/FingerPole")
 settings/0/root_bone_name = "hand.r"
 settings/0/root_bone = 19
 settings/0/middle_bone_name = "finger.r"
@@ -1015,8 +1017,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/LeftHand/Thumb")
+settings/0/pole_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/LeftHand/ThumbPole")
 settings/0/root_bone_name = "thumb_one.l"
 settings/0/root_bone = 13
 settings/0/middle_bone_name = "thumb_two.l"
@@ -1029,8 +1031,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1460002514]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/RightHand/Thumb")
+settings/0/pole_node = NodePath("../../../Weapons/Twohand/Greatsword/TwohandComponent/RightHand/ThumbPole")
 settings/0/root_bone_name = "thumb_one.r"
 settings/0/root_bone = 22
 settings/0/middle_bone_name = "thumb_two.r"
@@ -1186,6 +1188,7 @@ visible = false
 [node name="FieldOfView" type="Camera3D" parent="Player - Kopie/IKMarkers/Torso/Head" unique_id=2099136400 node_paths=PackedStringArray("camera_tracking_position")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7044749, -0.23371363)
 top_level = true
+visible = false
 fov = 85.0
 script = ExtResource("4_eqqxm")
 camera_tracking_position = NodePath("../CameraTracker")
@@ -1197,13 +1200,46 @@ target_position = Vector3(0, 0, -3)
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(0.9999993, 0, 0, 0, 0.5651402, -0.8249951, 0, 0.82499564, 0.5651398, 0.15462682, 1.2360888, -0.48433757)
+transform = Transform3D(0.9999993, 0, 0, 0, 0.5651401, -0.82499504, 0, 0.8249956, 0.5651397, 0.15462682, 1.2360888, -0.48433757)
+
+[node name="Greatsword" parent="Player - Kopie/Weapons/Twohand" unique_id=1216685605 instance=ExtResource("5_v4r5v")]
+transform = Transform3D(1, 0, 0, 0, 0.88360214, -0.46823832, 0, 0.4682383, 0.88360214, 0, 0.9168223, 0.12841868)
+
+[node name="TwohandComponent" parent="Player - Kopie/Weapons/Twohand/Greatsword" index="5" unique_id=1480913319]
+visible = false
+
+[node name="Hand" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/LeftHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 864344244) index="0" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.38340837, 1.1920929e-07, -0.9235772, -2.9802322e-08, -0.99999887, -1.7881393e-07, -0.049077615, -1.0333631, 0.10014713)
+
+[node name="Finger" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/LeftHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 864344244) index="1" unique_id=2061517379]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -1.1920929e-07, 0, 3.874302e-07, 0.9999999, 0.021479055, -1.0034282, -0.052942753)
+
+[node name="Thumb" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/LeftHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 864344244) index="2" unique_id=1174735853]
+transform = Transform3D(1, 0, 0, 0, 0.9999993, -3.874302e-07, 0, 1.1920929e-07, 0.9999993, 0.04053694, -0.988824, 0.025411844)
+
+[node name="FingerPole" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/LeftHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 864344244) index="3" unique_id=2008502423]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, -1.1920929e-07, 0, 2.9802322e-08, 0.99999976, -0.060277276, -0.9710157, -0.17168903)
+
+[node name="ThumbPole" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/LeftHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 864344244) index="4" unique_id=205447482]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, -2.9802322e-08, 0, 2.0861626e-07, 0.9999998, 0.070738286, -0.91924405, 0.020932078)
+
+[node name="Hand" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/RightHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 654989024) index="0" unique_id=454043182]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.38340843, 2.9802322e-08, -0.9235772, 1.7881393e-07, -0.99999875, -8.940697e-08, 0.15463309, -0.8506005, 0.11710179)
+
+[node name="Finger" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/RightHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 654989024) index="1" unique_id=1420193819]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, -2.9802322e-08, 0, 2.9802322e-08, 0.99999994, -0.009208038, -0.8283573, -0.12848556)
+
+[node name="Thumb" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/RightHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 654989024) index="2" unique_id=217824265]
+transform = Transform3D(1, 0, 0, 0, 0.9999993, -3.874302e-07, 0, 1.1920929e-07, 0.9999993, -0.00051802397, -0.8138201, 0.055758715)
+
+[node name="FingerPole" parent="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent/RightHand" parent_id_path=PackedInt32Array(1216685605, 1480913319, 654989024) index="3" unique_id=46455176]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, -1.1920929e-07, 0, 2.9802322e-08, 0.99999976, -0.034020714, -0.95699656, -0.19131863)
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.9999995, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.99999875, 0, 0, 0, 0.99999887, 0, 0, 0, 0.99999946, -0.385, 1.09, -0.405)
+transform = Transform3D(0.99999875, 0, 0, 0, 0.99999887, 0, 0, 0, 0.9999995, -0.385, 1.09, -0.405)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1216,6 +1252,7 @@ libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
 libraries/fist = ExtResource("7_84use")
 libraries/greathammer = ExtResource("8_8aen8")
+libraries/greatsword = ExtResource("8_pxpwq")
 libraries/movement = ExtResource("34_0hxxe")
 libraries/shield = ExtResource("10_pxpwq")
 libraries/shortsword = ExtResource("38_84use")
@@ -1409,3 +1446,5 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
+[editable path="Player - Kopie/Weapons/Twohand/Greatsword"]
+[editable path="Player - Kopie/Weapons/Twohand/Greatsword/TwohandComponent"]
