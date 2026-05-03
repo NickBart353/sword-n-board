@@ -9,8 +9,8 @@ const ITEM_TYPE_DICT: Dictionary = {
 		SLOTS.OFF_HAND: preload("res://scenes/VFX/magic_ball.tscn")
 	},
 	ItemData.ITEM_TYPE.BOW: preload("res://scenes/component_scenes/item_entities/weapons/bow.tscn"),
-	ItemData.ITEM_TYPE.SHIELD: preload("res://scenes/component_scenes/item_entities/shield/shield.tscn"),
-	ItemData.ITEM_TYPE.TORCH: preload("res://scenes/component_scenes/item_entities/torch/torch.tscn"),
+	ItemData.ITEM_TYPE.SHIELD: preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),
+	ItemData.ITEM_TYPE.TORCH: preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),
 	ItemData.ITEM_TYPE.POTION: preload("res://scenes/component_scenes/item_entities/consumable/health_potion.tscn"),
 	#TEST ONLY -- REMOVE LATER
 	ItemData.ITEM_TYPE.MANA_POTION: preload("res://scenes/component_scenes/item_entities/consumable/mana_potion.tscn"),
@@ -22,14 +22,14 @@ const UNARMED_DATA = preload("uid://b3qbpvnhs0ofq")
 
 const MELEE_WEAPONS: Dictionary = {
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword
-	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),
+	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),#greatsword
 	"greataxe": "",
 	"hatchet": "",
 	"10005": preload("uid://cq5niuf135ca6"),#greathammer
 	"katana": "",
 	"spear": "",
-	"10002": preload("res://scenes/component_scenes/item_entities/torch/torch.tscn"),#torch
-	"10003": preload("res://scenes/component_scenes/item_entities/shield/shield.tscn"),#wooden_shield
+	"10002": preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),#torch
+	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),#wooden_shield
 	"dagger": "",
 }
 

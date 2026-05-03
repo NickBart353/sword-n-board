@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://wxv8kwgnyiwy" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_02.blend" id="5_wukam"]
 [ext_resource type="PackedScene" uid="uid://cvggdeekqh8o2" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_05.blend" id="6_x6xjm"]
 [ext_resource type="PackedScene" uid="uid://4kle7xyjxhw8" path="res://scenes/ui_scenes/main_menu_ui.tscn" id="7_enjcu"]
-[ext_resource type="PackedScene" uid="uid://d3wbiotwk5tyt" path="res://scenes/component_scenes/item_entities/shield/shield.tscn" id="7_kllu6"]
+[ext_resource type="PackedScene" uid="uid://d3wbiotwk5tyt" path="res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn" id="7_kllu6"]
 
 [sub_resource type="Gradient" id="Gradient_6r42y"]
 colors = PackedColorArray(0.32915837, 0.3291584, 0.3291584, 1, 1, 1, 1, 1)

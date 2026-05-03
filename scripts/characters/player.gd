@@ -83,8 +83,18 @@ var blocked_body: Node
 var rotation_modifier: float = 1
 
 func _ready() -> void:
+	###DEBUG
+	for child in mainhand.get_children():
+		child.queue_free()
+	for child in offhand.get_children():
+		child.queue_free()
+	for child in twohand.get_children():
+		child.queue_free()
+	for child in self.find_children("*"):
+		if child is Node3D:
+			child.show()
 	$AnimationTreeNew.active = true
-	#_load_preset_items()
+	###DEBUG END
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
 	STAMINA = MAX_STAMINA
@@ -94,7 +104,6 @@ func _ready() -> void:
 	UiController.update_manabar(MANA)
 	UiController.new_player_items.connect(new_player_items)
 	UiController.new_consumable.connect(_new_consumable)
-	#healthbar.value = HEALTH
 	look_rotation.y = rotation.y
 	look_rotation.x = player_camera.rotation.x
 	movement.update_rotation_modifier.connect(_update_rotation_modifier)

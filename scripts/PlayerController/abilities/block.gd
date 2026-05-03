@@ -27,14 +27,14 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	if not process: return
 	if not weapon: return
 	if not movement.dashing and not state_controller.is_player_busy():
-		if not offhand.blocked.is_connected(_blocked):
-			offhand.blocked.connect(_blocked)
+		#if not offhand.blocked.is_connected(_blocked):
+			#offhand.blocked.connect(_blocked)
 		if input.hold_secondary:
 			blocking = true
-			offhand.activate_areas()
+			#offhand.activate_areas()
 		else:
 			blocking = false
-			offhand.deactivate_areas()
+			#offhand.deactivate_areas()
 	elif movement.dashing and blocking:
 		blocking = false
 
