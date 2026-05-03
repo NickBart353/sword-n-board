@@ -9,6 +9,8 @@ extends Ability
 
 signal spawn_projectile
 
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.BOW]
+
 var weapon: Node
 var shoot: int = 0
 var shooting: bool = false
@@ -17,13 +19,21 @@ var charging: bool = false
 var max_charge: bool = false
 var released: bool = true
 var enough_stamina: bool = false
+var combo_count: int
+var process: bool = false
+
+func set_item(item: Node) -> void:
+	reset()
+	if item is Weapon:
+		if item.data.item_type in allowed_weapons:
+			weapon = item
+			combo_count = item.data.combo_size
+			process = true
+			return
+	process = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	if not weapon == player.get_equipped_primary() or not weapon:
-		weapon = player.get_equipped_primary()
-	if not weapon is RangedWeapon: 
-		reset()
-		return
+	if not process: return
 	if charging:
 		enough_stamina = player.use_stamina(bow_cost * delta)
 	if max_charge and not released and not enough_stamina:
@@ -36,16 +46,16 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 		return
 		
 	if not movement.dashing and not state_controller.is_player_busy():
-		if (input.attack and not shoot_in_progress and not charging and released):
+		if (input.hold_primary and not shoot_in_progress and not charging and released):
 			shoot = 1
 			charging = true
 			shooting = true
 			shoot_in_progress = true
 			released = false
-		if (charging and not input.attack and shoot == 1 and not released):
+		if (charging and not input.hold_primary and shoot == 1 and not released):
 			released = true
 			reset()
-		if max_charge and not input.attack and not released:
+		if max_charge and not input.hold_primary and not released:
 			released = true
 			shoot = 3
 			max_charge = false
@@ -61,9 +71,11 @@ func shoot_projectile():
 	var projectile_transform: Transform3D = player.get_camera_transform()
 	var proj_instance = arrow_projectile.instantiate()
 	proj_instance.damage = arrow_damage
-	var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/RightHand/Bow")
+	#var projectile_spawn_position = player.get_node_or_null("Head/FieldOfView/RightHand/Bow")
+	var projectile_spawn_position = player.get_node_or_null("Head/RightHand/Bow")
 	if not projectile_spawn_position:
-		projectile_spawn_position = $"../../Head/FieldOfView/RightHand".global_position
+		#projectile_spawn_position = $"../../Head/FieldOfView/RightHand".global_position
+		projectile_spawn_position = $"../../Head/RightHand".global_position
 	else:
 		projectile_spawn_position = projectile_spawn_position.global_position
 	spawn_projectile.emit(proj_instance, projectile_spawn_position, shooting_direction, projectile_transform, true)

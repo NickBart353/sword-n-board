@@ -2,28 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bwwuxjtfociga" path="res://scripts/item_entity/weapons/sword.gd" id="1_c5xvt"]
 [ext_resource type="AudioStream" uid="uid://cei6yivygsheh" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.wav" id="2_vbrxf"]
+[ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_xvlie"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aiw0"]
-size = Vector3(0.07220459, 1.3728409, 0.23364258)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7aiw0"]
-noise_type = 2
-frequency = 0.0117
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c5xvt"]
-width = 5
-height = 5
-noise = SubResource("FastNoiseLite_7aiw0")
-in_3d_space = true
-as_normal_map = true
+size = Vector3(0.03, 0.945, 0.09)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7aiw0"]
-albedo_color = Color(0.67481464, 0.67481464, 0.6748146, 1)
-metallic = 1.0
-metallic_specular = 1.0
-metallic_texture = SubResource("NoiseTexture2D_c5xvt")
-roughness = 0.0
+cull_mode = 2
+albedo_color = Color(0.90359825, 0.90359825, 0.9035982, 1)
+metallic = 0.9
+metallic_specular = 0.29
+roughness = 0.12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmyro"]
 resource_name = "Black_handle_hoplite"
@@ -118,28 +107,45 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("2_vbrxf")
 
-[node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player")]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vbrxf"]
+radius = 0.025
+height = 0.46
+
+[node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player", "hand_component")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 4
 collision_mask = 13
 script = ExtResource("1_c5xvt")
 sword_player = NodePath("SwordPlayer")
+hand_component = NodePath("OnehandComponent")
 
 [node name="HitBox" type="CollisionShape3D" parent="." unique_id=682500964]
-transform = Transform3D(-1, 0, -8.742277e-08, 0, 0.9999924, 0, 8.742192e-08, 0, -0.9999927, 0.123930536, 1.2161573, -0.011755332)
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 0.9999999, 0, 1.5099577e-07, 0, -0.9999999, -0.001, 0.65305763, -0.011277816)
 shape = SubResource("BoxShape3D_7aiw0")
 debug_color = Color(1.3086371, 0, 0.55059105, 0.42)
 
 [node name="SwordMesh" type="MeshInstance3D" parent="." unique_id=657047206]
-transform = Transform3D(9.929923e-09, 7.4505793e-09, 0.47322512, -3.4301735e-08, -0.14120583, 2.4969236e-08, 0.22717011, -2.1321489e-08, -2.0685327e-08, 0.14449963, 0.6539316, -0.011299208)
+transform = Transform3D(4.3711395e-09, 5.2763975e-09, 0.1, -1.5099578e-08, -0.099999994, 5.276398e-09, 0.099999994, -1.5099578e-08, -4.3711386e-09, -0.00042654565, 0.23298925, -0.011299204)
 mesh = SubResource("ArrayMesh_7aiw0")
 skeleton = NodePath("../../../..")
 
 [node name="SwordPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1478659989]
+transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12596354, 0)
 stream = SubResource("AudioStreamRandomizer_x11a1")
 volume_db = 5.78
 max_polyphony = 4
 bus = &"SFX"
 playback_type = 2
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1170018021]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.005, 0.53, -0.245)
+mesh = SubResource("CapsuleMesh_vbrxf")
+
+[node name="RotationMarker" type="Marker3D" parent="." unique_id=1151878626]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.025581345, -0.009988128)
+
+[node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_xvlie")]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="OnehandComponent"]

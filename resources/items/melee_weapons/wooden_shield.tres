@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://rtmv36ktptf1"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_o6vov"]
+[ext_resource type="Texture2D" uid="uid://cps1f0s1r6elj" path="res://my_assets/sprites/wooden_shield.png" id="2_o6vov"]
+
+[resource]
+script = ExtResource("1_o6vov")
+combo_size = 1
+dualwield_combo_size = 2
+item_name = "Wooden shield"
+item_id = "10003"
+tooltip = "It blocks hits!"
+sprite = ExtResource("2_o6vov")
+drop_chance = 1.0
+item_type = 10
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

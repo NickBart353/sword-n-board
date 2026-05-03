@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bcahgjv4glvrm"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_pkdrv"]
+[ext_resource type="Texture2D" uid="uid://3y8wcwurnu3r" path="res://my_assets/sprites/Greathammer.png" id="2_kyajw"]
+
+[resource]
+script = ExtResource("1_pkdrv")
+normal_damage = 70.0
+combo_size = 2
+two_handed = true
+item_name = "Greathammer"
+item_id = "10005"
+tooltip = "A giant hammer meant to crush skulls!"
+sprite = ExtResource("2_kyajw")
+item_type = 6
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

@@ -9,21 +9,30 @@ extends Ability
 
 signal spawn_magic_projectile
 
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.BOOK
+	]
+
 var weapon: Node
 var offhand: Node
 var cast: int = 0
 var casting: bool = false
 var cast_in_progress: bool = false
+var combo_count: int
+
+var process: bool = false
+
+func set_item(item: Node) -> void:
+	reset()
+	if item is Weapon:
+		if item.data.item_type in allowed_weapons:
+			weapon = item
+			combo_count = item.data.combo_size
+			process = true
+			return
+	process = false
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	if not weapon == player.get_equipped_primary() or not weapon:
-		weapon = player.get_equipped_primary()
-	if not offhand and not offhand == weapon:
-		offhand = player.get_equipped_secondary()
-	if not weapon is MagicWeapon: 
-		reset()
-		return
-	
+	if not process: return
 	if not movement.dashing and not state_controller.is_player_busy():
 		if input.attack and not cast_in_progress and player.use_mana(casting_cost):
 			casting = true

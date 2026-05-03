@@ -17,6 +17,6 @@ shape = SubResource("BoxShape3D_t7ln3")
 [node name="ItemContainer" parent="." unique_id=1427992213 node_paths=PackedStringArray("parent") instance=ExtResource("2_c4qdg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6183126, 0)
 parent = NodePath("..")
-hover_text = "Press E to open"
+hover_text = "Open"
 
 [editable path="chest_gold2"]

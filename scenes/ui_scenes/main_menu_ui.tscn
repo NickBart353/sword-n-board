@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://4kle7xyjxhw8"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_kosvu"]
+[ext_resource type="Script" uid="uid://bk0lmn12fxg3c" path="res://scripts/ui_scripts/main_menu_ui.gd" id="1_y3g6i"]
+[ext_resource type="Theme" uid="uid://qoj85swhoife" path="res://resources/ui/button/main_menu_buttons/main_menu_button_theme.tres" id="2_3kjxp"]
+[ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_kuvi5"]
+[ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_iuew7"]
+[ext_resource type="AudioStream" uid="uid://dsopasctc2egb" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Unsheath 1 - reverbed.wav" id="4_kuvi5"]
+[ext_resource type="PackedScene" uid="uid://cvbbwrylqrkdu" path="res://scenes/ui_scenes/start_menu_start_game_button.tscn" id="6_iuew7"]
+[ext_resource type="PackedScene" uid="uid://h7gcuxickvc3" path="res://scenes/ui_scenes/settings_menu.tscn" id="8_wygx0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3kjxp"]
+font_size = 100
+
+[node name="MainMenuUI" type="CanvasLayer" unique_id=833057206]
+script = ExtResource("1_y3g6i")
+main_game_scene = "uid://23kjgnpf3t1i"
+button_hover_sound = ExtResource("2_kuvi5")
+button_click_sound = ExtResource("3_iuew7")
+start_button_click_sound = ExtResource("4_kuvi5")
+
+[node name="MainMenuButtonContainer" type="PanelContainer" parent="." unique_id=462554003]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_kosvu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuButtonContainer" unique_id=2043017059]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MainMenuButtonContainer/VBoxContainer" unique_id=147847312]
+layout_mode = 2
+text = "Sword-n-Board"
+label_settings = SubResource("LabelSettings_3kjxp")
+horizontal_alignment = 1
+
+[node name="StartGame" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1069516293 instance=ExtResource("6_iuew7")]
+layout_mode = 2
+
+[node name="ResetGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]
+layout_mode = 2
+tooltip_text = "Resets all settings and save-files (Will be added soon)"
+theme = ExtResource("2_3kjxp")
+disabled = true
+text = "Reset Game"
+
+[node name="Settings" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=256631426]
+layout_mode = 2
+theme = ExtResource("2_3kjxp")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=286939544]
+layout_mode = 2
+tooltip_text = "(Will be added soon)"
+theme = ExtResource("2_3kjxp")
+disabled = true
+text = "Credits"
+
+[node name="ExitGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=678057820]
+layout_mode = 2
+theme = ExtResource("2_3kjxp")
+text = "Exit Game"
+
+[node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("8_wygx0")]
+
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/ResetGame" to="." method="_on_reset_game_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]
+[connection signal="close_settings" from="SettingsMenu" to="." method="_on_settings_menu_close_settings"]

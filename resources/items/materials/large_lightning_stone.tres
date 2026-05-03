@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d0kg5j8bdr7ix"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_0gek1"]
+[ext_resource type="Texture2D" uid="uid://bdjtvr07rkan4" path="res://my_assets/sprites/Lightning Stone Large.png" id="2_0gek1"]
+
+[resource]
+script = ExtResource("1_0gek1")
+item_name = "Large Lightning Stone"
+item_id = "50012"
+tooltip = "The essence of lightning, covered in stone, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_0gek1")
+item_category = 3
+item_sub_category = 5
+item_type = 24
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

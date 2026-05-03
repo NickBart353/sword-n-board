@@ -1,35 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://br7232wy73par"]
+[gd_scene format=3 uid="uid://br7232wy73par"]
 
 [ext_resource type="Script" uid="uid://dewwns4nyed7r" path="res://scripts/interactable/interactable.gd" id="1_sfcok"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_lxv33"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qfxxg"]
+font_size = 70
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_sfcok"]
 viewport_path = NodePath("Node3D/SubViewport")
 
-[node name="Interactable" type="Node3D"]
+[node name="Interactable" type="Node3D" unique_id=601589509]
 script = ExtResource("1_sfcok")
+hover_text = "Interact"
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="." unique_id=456269526]
 
-[node name="SubViewport" type="SubViewport" parent="Node3D"]
+[node name="SubViewport" type="SubViewport" parent="Node3D" unique_id=503614410]
 transparent_bg = true
 size = Vector2i(1000, 1000)
 
-[node name="Label" type="Label" parent="Node3D/SubViewport"]
+[node name="Label" type="Label" parent="Node3D/SubViewport" unique_id=741152840]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -63.0
-offset_top = -11.5
-offset_right = 63.0
-offset_bottom = 11.5
+offset_left = -142.0
+offset_top = -15.5
+offset_right = 142.0
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_lxv33")
+label_settings = SubResource("LabelSettings_qfxxg")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text" type="Sprite3D" parent="."]
+[node name="Text" type="Sprite3D" parent="." unique_id=1001294650]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 visible = false
 billboard = 1
 no_depth_test = true

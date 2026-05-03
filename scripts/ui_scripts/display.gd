@@ -1,5 +1,8 @@
 extends GridContainer
 
+signal saved_settings
+signal unsaved_settings
+
 @onready var window_mode_picker: OptionButton = $WindowModePicker
 @onready var aspect_ratio_picker: OptionButton = $AspectRatioPicker
 @onready var resolution_picker: OptionButton = $ResolutionPicker
@@ -102,6 +105,11 @@ func load_settings():
 		current_aspect_ratio = default_aspect_ratio
 		current_resolution = default_resolution
 		current_window_mode = default_window_mode
+		
+	saved_aspect_ratio = String(current_aspect_ratio)
+	saved_resolution = current_resolution.duplicate(true)
+	saved_window_mode = String(current_window_mode)
+	
 	_update_screen()
 	_populate_option_menus()
 
@@ -118,10 +126,11 @@ func _populate_option_menus():
 	_update_resolution_selection()
 
 func _update_resolution_selection():
-	for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
-		resolution_picker.add_item("{0} x {1}".format([resolution["w"], resolution["h"]]))
-		if [resolution["w"], resolution["h"]] == current_resolution:
-			resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
+	if current_aspect_ratio:
+		for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
+			resolution_picker.add_item("{0} x {1}".format([resolution["w"], resolution["h"]]))
+			if [resolution["w"], resolution["h"]] == current_resolution:
+				resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
 
 func _update_screen():
 	DisplayServer.window_set_size(Vector2i(current_resolution[0], current_resolution[1]))
@@ -137,6 +146,11 @@ func _on_save_button_pressed() -> void:
 	current_window_mode = window_mode_picker.get_item_text(window_mode_picker.selected)
 	current_aspect_ratio = aspect_ratio_picker.get_item_text(aspect_ratio_picker.selected)
 	current_resolution = [RESOLUTION_MAPPING[current_aspect_ratio][resolution_picker.selected]["w"], RESOLUTION_MAPPING[current_aspect_ratio][resolution_picker.selected]["h"]]
+	
+	saved_aspect_ratio = String(current_aspect_ratio)
+	saved_resolution = current_resolution.duplicate(true)
+	saved_window_mode = String(current_window_mode)
+	
 	_update_screen()
 	DataManager.save_screen_settings({
 		"window_mode": current_window_mode,
@@ -150,12 +164,30 @@ func _on_aspect_ratio_picker_item_selected(index: int) -> void:
 	_update_resolution_selection()
 
 func _on_reset_button_pressed() -> void:
-	current_window_mode = default_window_mode
-	current_aspect_ratio = default_aspect_ratio
-	current_resolution = default_resolution
+	current_window_mode = String(default_window_mode)
+	current_resolution = default_resolution.duplicate(true)
+	current_aspect_ratio = String(default_aspect_ratio)
+	
+	saved_aspect_ratio = String(current_aspect_ratio)
+	saved_resolution = current_resolution.duplicate(true)
+	saved_window_mode = String(current_window_mode)
+	
 	_update_screen()
 	DataManager.save_screen_settings({
 		"window_mode": current_window_mode,
 		"aspect_ratio": current_aspect_ratio,
 		"resolution": current_resolution,
 	})
+
+func _on_back_button_pressed() -> void:
+	if saved_aspect_ratio == current_aspect_ratio and saved_resolution == current_resolution and saved_window_mode == current_window_mode:
+		saved_settings.emit()
+	else:
+		unsaved_settings.emit(self)
+
+func reset_current_to_saved() -> void:
+	current_aspect_ratio = String(saved_aspect_ratio)
+	current_resolution = saved_resolution.duplicate(true)
+	current_window_mode = String(saved_window_mode)
+	_update_screen()
+	_populate_option_menus()

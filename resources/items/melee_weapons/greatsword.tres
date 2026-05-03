@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://qpdw7kpnlexp"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_1ksjj"]
+[ext_resource type="Texture2D" uid="uid://jqpxvd2cjl5h" path="res://my_assets/sprites/greatsword.png" id="2_1ksjj"]
+
+[resource]
+script = ExtResource("1_1ksjj")
+normal_damage = 50.0
+combo_size = 2
+two_handed = true
+item_name = "Greatsword"
+item_id = "10004"
+tooltip = "It's a big sword!"
+sprite = ExtResource("2_1ksjj")
+drop_chance = 1.0
+item_type = 1
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

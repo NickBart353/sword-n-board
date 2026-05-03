@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cfnt03x7m17w2" path="res://scenes/component_scenes/shader/vfx_fire.tscn" id="1_evctx"]
 [ext_resource type="Script" uid="uid://b7nxgd8p572hu" path="res://scripts/item_entity/off_hands/torch.gd" id="1_tn2iq"]
 [ext_resource type="AudioStream" uid="uid://1bollewef3ok" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Torch/Torch Loop.wav" id="3_2445i"]
+[ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="4_rraq4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_evctx"]
 radius = 0.2
@@ -18,8 +19,11 @@ top_radius = 0.1
 bottom_radius = 0.04
 height = 1.0
 
-[node name="Torch" type="Area3D" unique_id=1191162332]
+[node name="Torch" type="Area3D" unique_id=1191162332 node_paths=PackedStringArray("hand_component")]
+collision_layer = 6
+collision_mask = 56
 script = ExtResource("1_tn2iq")
+hand_component = NodePath("OnehandComponent")
 
 [node name="HitBox" type="CollisionShape3D" parent="." unique_id=1556747030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45624998, 0)
@@ -46,5 +50,7 @@ omni_range = 3.7
 stream = ExtResource("3_2445i")
 autoplay = true
 bus = &"Ambience"
+
+[node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("4_rraq4")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

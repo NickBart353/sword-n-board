@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://cvbbwrylqrkdu"]
+
+[ext_resource type="Theme" uid="uid://qoj85swhoife" path="res://resources/ui/button/main_menu_buttons/main_menu_button_theme.tres" id="1_uvnjm"]
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="2_17oo1"]
+[ext_resource type="Script" uid="uid://bou6vd8pbwwhq" path="res://scripts/ui_scripts/start_menu_start_game_button.gd" id="2_rx5q4"]
+[ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="4_rx5q4"]
+[ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="5_f7c6s"]
+[ext_resource type="AudioStream" uid="uid://bkl6d2bn41fkm" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.wav" id="5_gdfvf"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rx5q4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_gdfvf"]
+
+[sub_resource type="World3D" id="World3D_rx5q4"]
+environment = ExtResource("4_rx5q4")
+camera_attributes = SubResource("CameraAttributesPractical_gdfvf")
+
+[sub_resource type="Animation" id="Animation_f7c6s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.46, -3.02, -1.49)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.3228859, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gdfvf"]
+resource_name = "slash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.0333333, 1.2666667, 1.4666667, 1.5666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.46, -3.02, -1.49), Vector3(-0.745, -0.67, -1.49), Vector3(-0.745, -0.6700001, -1.49), Vector3(-0.785, -0.03, -1.71), Vector3(-0.785, -0.03, -1.71), Vector3(-0.66, 0.09, -0.855), Vector3(-1.52, 0.09, -0.855)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SubViewport/Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1.0666667, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.3228859, 0), Vector3(0.13962634, -0.15707964, 0.28797933), Vector3(0.13962634, -0.15707964, 0.28797933), Vector3(0.16580628, 2.9059732, -1.2217305), Vector3(0.16580628, 2.9059732, -1.2217305), Vector3(0.07853982, -1.701696, -1.579523)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FireAndForget")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.2666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [ExtResource("5_gdfvf"), 0.0, 0.0],
+"method": &"_play_menu_audio_fire_and_forget"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ft83d"]
+_data = {
+&"RESET": SubResource("Animation_f7c6s"),
+&"slash": SubResource("Animation_gdfvf")
+}
+
+[node name="Button" type="Button" unique_id=1069516293]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_uvnjm")
+text = "Start Game"
+script = ExtResource("2_rx5q4")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=848261220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_rx5q4")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=652590983]
+own_world_3d = true
+world_3d = SubResource("World3D_rx5q4")
+transparent_bg = true
+size = Vector2i(200, 200)
+size_2d_override_stretch = true
+
+[node name="Sword" parent="SubViewport" unique_id=1495302004 instance=ExtResource("2_17oo1")]
+transform = Transform3D(0.94832367, 0, -0.3173046, 0, 0.9999998, 0, 0.31730464, 0, 0.9483236, -1.46, -3.02, -1.49)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1166803521]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+keep_aspect = 0
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewport" unique_id=535964462]
+transform = Transform3D(-0.64278764, -4.3711392e-08, -0.76604444, -0.76604444, -4.3711392e-08, 0.64278764, -6.158201e-08, 1, -5.3877263e-09, -689.0862, 458.56366, -138.73752)
+light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
+light_energy = 1.6
+light_indirect_energy = 1.285
+light_volumetric_fog_energy = 1.622
+light_angular_distance = 6.64
+light_specular = 0.295
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.254
+directional_shadow_split_2 = 0.0
+directional_shadow_split_3 = 0.545
+directional_shadow_blend_splits = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1311561749]
+libraries/ = SubResource("AnimationLibrary_ft83d")
+
+[node name="FireAndForget" type="Node3D" parent="." unique_id=1195502540]
+script = ExtResource("5_f7c6s")
+metadata/_custom_type_script = "uid://glf7b81sjiep"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

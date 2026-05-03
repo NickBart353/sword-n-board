@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cln5hv1qcq4ll"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_bst6j"]
+[ext_resource type="Texture2D" uid="uid://oupkm5he78m" path="res://my_assets/sprites/Katana.png" id="2_7wvdu"]
+
+[resource]
+script = ExtResource("1_bst6j")
+normal_damage = 56.0
+combo_size = 2
+two_handed = true
+item_name = "Katana"
+item_id = "10007"
+tooltip = "Waifu magnet!"
+sprite = ExtResource("2_7wvdu")
+item_type = 7
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dujpy6nd74vtd"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_d17os"]
+[ext_resource type="Texture2D" uid="uid://bwtdh60s6a63w" path="res://my_assets/sprites/torch.png" id="2_d17os"]
+
+[resource]
+script = ExtResource("1_d17os")
+normal_damage = 10.0
+combo_size = 2
+dualwield_combo_size = 2
+item_name = "Torch"
+item_id = "10002"
+tooltip = "It illuminates the dark!"
+sprite = ExtResource("2_d17os")
+drop_chance = 1.0
+item_type = 9
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

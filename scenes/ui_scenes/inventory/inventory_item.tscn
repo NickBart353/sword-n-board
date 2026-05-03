@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dmc2y42r6de2g"]
+
+[ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="1_kwdn5"]
+[ext_resource type="Texture2D" uid="uid://dcgq320jghn3y" path="res://my_assets/sprites/short_sword.png" id="2_l452j"]
+[ext_resource type="Script" uid="uid://d1qghioas5oxp" path="res://scripts/ui_scripts/inventory/inventory_item.gd" id="4_r2s1f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l452j"]
+font_size = 25
+
+[node name="InventoryItem" type="Button" unique_id=550894679 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "count_label")]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_kwdn5")
+button_mask = 3
+text = "aaaaaaahhhh teeeeeeest reeeeeee"
+icon = ExtResource("2_l452j")
+text_overrun_behavior = 2
+autowrap_mode = 2
+autowrap_trim_flags = 192
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("4_r2s1f")
+consumable_marker = NodePath("ConsumableMarker")
+armor_equipped_marker = NodePath("ArmorEquipped")
+mainhand_equipped_marker = NodePath("MainhandEquipped")
+offhand_equipped_marker = NodePath("OffhandEquipped")
+count_label = NodePath("Label")
+
+[node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29449034, 0.84160805, 0, 1)
+
+[node name="ArmorEquipped" type="ColorRect" parent="." unique_id=1320539094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17741996, 0.4989286, 0.99999994, 1)
+
+[node name="MainhandEquipped" type="ColorRect" parent="." unique_id=406440320]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 168.0
+offset_top = 8.0
+offset_right = -19.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9999998, 0.020585136, 0.11474457, 1)
+
+[node name="OffhandEquipped" type="ColorRect" parent="." unique_id=1669770244]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 8.0
+offset_right = 194.0
+offset_bottom = 34.0
+color = Color(0.9295303, 0.0009943813, 0.9716049, 1)
+
+[node name="Label" type="Label" parent="." unique_id=782010721]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.05
+anchor_right = 0.31500003
+anchor_bottom = 0.05
+offset_right = 10.999996
+offset_bottom = 26.0
+text = "222"
+label_settings = SubResource("LabelSettings_l452j")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

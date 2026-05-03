@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d3ro71qa6lcdy"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_ieujm"]
+[ext_resource type="Texture2D" uid="uid://dlg1kthkq5wsg" path="res://my_assets/sprites/Upgrade Stone Large.png" id="2_ieujm"]
+
+[resource]
+script = ExtResource("1_ieujm")
+item_name = "Ancient moon"
+item_id = "50003"
+tooltip = "A mirrored crescent moon used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_ieujm")
+item_category = 3
+item_sub_category = 5
+item_type = 24
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

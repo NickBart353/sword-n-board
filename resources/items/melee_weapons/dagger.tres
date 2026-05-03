@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://d1inafjkmbrho"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_aeevv"]
+[ext_resource type="Texture2D" uid="uid://d3112attgrclr" path="res://my_assets/sprites/Dagger.png" id="2_7xrw6"]
+
+[resource]
+script = ExtResource("1_aeevv")
+normal_damage = 25.0
+critical_strike_chance = 0.2
+dualwield_combo_size = 2
+item_name = "10006"
+tooltip = "A deadly weapon in close combat."
+sprite = ExtResource("2_7xrw6")
+item_type = 4
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

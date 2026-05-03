@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://772uumedashc"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_i41dm"]
+[ext_resource type="Texture2D" uid="uid://c34jeh6t5qibr" path="res://my_assets/sprites/Freezing Stone Large.png" id="2_i41dm"]
+
+[resource]
+script = ExtResource("1_i41dm")
+item_name = "Large Freezing Stone"
+item_id = "50010"
+tooltip = "A small stone radiating a freezing chill, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_i41dm")
+item_category = 3
+item_sub_category = 5
+item_type = 24
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

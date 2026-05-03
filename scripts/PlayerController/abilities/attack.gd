@@ -6,60 +6,67 @@ extends Ability
 @export_group("StaminaCost")
 @export_range(0.0, 100.0) var attack_cost = 15.0
 
-var weapon: Node
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.SHORTSWORD, ItemData.ITEM_TYPE.GREATSWORD, 
+	ItemData.ITEM_TYPE.AXE, ItemData.ITEM_TYPE.DAGGER, ItemData.ITEM_TYPE.GREATHAMMER, 
+	ItemData.ITEM_TYPE.KATANA, ItemData.ITEM_TYPE.SPEAR, ItemData.ITEM_TYPE.TORCH, ItemData.ITEM_TYPE.SHIELD, 
+	ItemData.ITEM_TYPE.FIST
+	]
+
+var weapon: Weapon
 var bodies: Array = []
 var swing: int = 0
 var swinging: bool = false
 var swing_in_progress: bool = false
+var combo_count: int = 0
+var process: bool = false
 
-func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
-	#print(swing)
-	if not weapon == player.get_equipped_primary() or not weapon:
-		weapon = player.get_equipped_primary()
-	
-	if not weapon is MeleeWeapon: 
-		reset()
-		return
-	
-	if not weapon.hit.is_connected(_melee_attack):
-		weapon.hit.connect(_melee_attack)
-	
-	#if swing == 0 and not state_controller.is_player_busy():
-		#state_controller.reset_action_state()
-	
-	if not movement.dashing and not state_controller.is_player_busy():# and swing > 0) or swing == 0:
-		if input.attack and not swing_in_progress  and player.use_stamina(attack_cost):
-			#state_controller.update_action_state(StateController.ACTION_STATE.ATTACK)
+func set_item(item: Node) -> void:
+	if item is Weapon:
+		if item.data.item_type in allowed_weapons:
+			weapon = item
+			combo_count = item.data.combo_size
+			if not weapon.hit.is_connected(_melee_attack):
+				weapon.hit.connect(_melee_attack)
+			process = true
+			return
+	process = false
+	reset()
+
+func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:	
+	if not process: return
+	if not movement.dashing and not state_controller.is_player_busy():
+		if input.attack and not swing_in_progress and player.use_stamina(attack_cost):
+			ability_controller.busy = true
 			bodies = []
 			swinging = true
 			swing_in_progress = true
-			if swing == 0 or swing == 3:
+			if swing == 0 or swing == combo_count:
 				swing = 1
 			else:
 				swing += 1
 
 func _melee_attack(body, damage):
-	if swing_in_progress:
-		if not body in bodies:
-			bodies.append(body)
-			body.take_damage(damage)
+	#if swing_in_progress:
+	if not body in bodies:
+		bodies.append(body)
+		body.take_damage(damage)
 
 func _on_attack_timer_timeout() -> void:
 	if not swing_in_progress:
 		swing = 0
+		ability_controller.busy = false
 
-func _sword_animation_started(anim_name: StringName) -> void:
-	if anim_name == "Sword{0}".format([swing]):
-		swinging = false
+func _attack_started() -> void:
+	weapon.monitoring = true
+	swinging = false
 
-func _sword_animation_ended(anim_name: StringName) -> void:
-	if anim_name == "Sword{0}".format([swing]):
-		bodies.clear()
-		swing_in_progress = false
-		attack_timer.start()
-		if not weapon is MeleeWeapon: return
-		weapon.set_collision_mask_value(1, false)
-		weapon.set_collision_mask_value(1, true)
+func _attack_ended() -> void:
+	bodies.clear()
+	weapon.monitoring = false
+	swing_in_progress = false
+	attack_timer.start()
+	#if swing > combo_count:
+		#reset()
 
 func reset():
 	#weapon = null
@@ -67,3 +74,4 @@ func reset():
 	swing = 0
 	swinging = false
 	swing_in_progress = false
+	ability_controller.busy = false

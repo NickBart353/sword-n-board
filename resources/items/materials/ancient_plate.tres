@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://hi0sh3roww7k"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_sbwh5"]
+[ext_resource type="Texture2D" uid="uid://wjhq6ydwo8u3" path="res://my_assets/sprites/Upgrade Stone Max.png" id="2_2jhwk"]
+
+[resource]
+script = ExtResource("1_sbwh5")
+item_name = "Ancient plate"
+item_id = "50004"
+tooltip = "A large plate used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_2jhwk")
+item_category = 3
+item_sub_category = 5
+item_type = 24
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

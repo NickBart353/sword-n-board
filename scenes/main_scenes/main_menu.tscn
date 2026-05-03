@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://rq8vovc7ih5t"]
+
+[ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="1_kllu6"]
+[ext_resource type="Script" uid="uid://dsyieg0v5lfpd" path="res://scripts/ui_scripts/main_menu.gd" id="1_wukam"]
+[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="2_6r42y"]
+[ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="3_enjcu"]
+[ext_resource type="PackedScene" uid="uid://dhejqjiw10he8" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_03.blend" id="4_kllu6"]
+[ext_resource type="PackedScene" uid="uid://wxv8kwgnyiwy" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_02.blend" id="5_wukam"]
+[ext_resource type="PackedScene" uid="uid://cvggdeekqh8o2" path="res://assets/Visual/Environoment Pack V.1/BLEND/Rock_05.blend" id="6_x6xjm"]
+[ext_resource type="PackedScene" uid="uid://4kle7xyjxhw8" path="res://scenes/ui_scenes/main_menu_ui.tscn" id="7_enjcu"]
+[ext_resource type="PackedScene" uid="uid://d3wbiotwk5tyt" path="res://scenes/component_scenes/item_entities/shield/shield.tscn" id="7_kllu6"]
+
+[sub_resource type="Gradient" id="Gradient_6r42y"]
+colors = PackedColorArray(0.32915837, 0.3291584, 0.3291584, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_enjcu"]
+gradient = SubResource("Gradient_6r42y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kllu6"]
+albedo_color = Color(1, 0.8840381, 0.84918165, 1)
+albedo_texture = SubResource("GradientTexture1D_enjcu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wukam"]
+material = SubResource("StandardMaterial3D_kllu6")
+
+[node name="MainMenu" type="Node3D" unique_id=524630767]
+script = ExtResource("1_wukam")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=448911666]
+environment = ExtResource("1_kllu6")
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1861557497]
+transform = Transform3D(-0.64278764, -4.3711392e-08, -0.76604444, -0.76604444, -4.3711392e-08, 0.64278764, -6.158201e-08, 1, -5.3877263e-09, -689.0862, 458.56366, -138.73752)
+light_color = Color(0.95686275, 0.95686275, 0.69803923, 1)
+light_energy = 1.6
+light_indirect_energy = 1.285
+light_volumetric_fog_energy = 1.622
+light_angular_distance = 6.64
+light_specular = 0.295
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.254
+directional_shadow_split_2 = 0.0
+directional_shadow_split_3 = 0.545
+directional_shadow_blend_splits = true
+
+[node name="Sword" parent="." unique_id=1495302004 instance=ExtResource("2_6r42y")]
+transform = Transform3D(-0.5502458, 0.06124341, -0.83275366, -0.1912378, -0.98004127, 0.054285638, -0.81280875, 0.18912438, 0.55097544, -2.0810208, 2.4103801, -0.3320995)
+
+[node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("3_enjcu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5509467, 0.60178256, 1.5907551)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1336549247]
+transform = Transform3D(0.49151945, -0.1835014, 0.8513142, 0.0363049, 0.98101616, 0.19049756, -0.8701095, -0.062726386, 0.4888505, 0.905319, 2.2451146, 1.371701)
+
+[node name="Cave" type="Node3D" parent="." unique_id=2078147184]
+
+[node name="Rock_032" parent="Cave" unique_id=1203079041 instance=ExtResource("4_kllu6")]
+transform = Transform3D(9.563137, 0, 0, 0, 0.9936506, -0.92168075, 0, 0.11250955, 8.140008, -0.8124914, -0.07053757, -0.3765977)
+
+[node name="Rock_022" parent="Cave" unique_id=943997294 instance=ExtResource("5_wukam")]
+transform = Transform3D(0.912459, 1.064215, 2.7650023, -0.20567471, 5.430798, 5.9604645e-08, -0.353718, -0.41254678, 7.1326632, -4.741343, 0.16212346, 3.3151236)
+
+[node name="Rock_024" parent="Cave" unique_id=2084551107 instance=ExtResource("5_wukam")]
+transform = Transform3D(0.08291614, 1.064215, 7.4810214, -0.09163025, 5.430798, -1.40861, -0.99233496, -0.41254675, 0.75515723, -0.6336279, -0.43542588, 6.045299)
+
+[node name="Rock_025" parent="Cave" unique_id=1934998672 instance=ExtResource("5_wukam")]
+transform = Transform3D(-0.20147787, 1.064215, -7.3479586, 0.113387644, 5.430798, 1.3126855, 0.97290784, -0.41254663, -1.6746635, 0.03276503, -1.4133137, -5.1086583)
+
+[node name="Rock_026" parent="Cave" unique_id=1837006452 instance=ExtResource("5_wukam")]
+transform = Transform3D(-0.75490445, 1.064215, -4.7977614, 0.19548582, 5.430798, 0.48907313, 0.6260227, -0.41254658, -5.938217, 5.0263395, -2.0795646, -0.9976982)
+
+[node name="Rock_027" parent="Cave" unique_id=1044442176 instance=ExtResource("5_wukam")]
+transform = Transform3D(-0.95773494, 1.064215, 1.6401377, 0.17005299, 5.430798, -0.8850062, -0.23200329, -0.41254652, -7.419356, 4.4396544, -1.702601, 2.9556592)
+
+[node name="Rock_023" parent="Cave" unique_id=1330735127 instance=ExtResource("5_wukam")]
+transform = Transform3D(-0.834416, 1.501071, 3.6734006, 0.30836958, 5.2790003, 0, -0.4567914, 0.82174426, -6.7101603, -4.354202, 0.1621237, -3.351434)
+
+[node name="Rock_033" parent="Cave" unique_id=1724956562 instance=ExtResource("4_kllu6")]
+transform = Transform3D(-0.508488, 6.761443, -0.9094609, 1.6114852, 4.9624376, 0.84737134, 2.070306, -2.2019851, -0.88294977, -4.7288404, 0, -1.4522157)
+
+[node name="Rock_052" parent="Cave" unique_id=55896526 instance=ExtResource("6_x6xjm")]
+transform = Transform3D(8.70715, 0, 0, 0, 0.3901751, 0, 0, 0, 11.097998, -0.3182106, 4.3821034, 2.202512)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cave" unique_id=1932885010]
+transform = Transform3D(11.165788, 0, 0, 0, 1, 0, 0, 0, 8.251402, 0, 0, 3.582494)
+mesh = SubResource("BoxMesh_wukam")
+
+[node name="Shield" parent="Cave" unique_id=119600585 instance=ExtResource("7_kllu6")]
+transform = Transform3D(-0.77491266, -0.12713447, -0.6191504, 0.15655848, 0.91043115, -0.38288972, 0.6123723, -0.3936394, -0.6856006, -1.477309, 1.066883, -0.72120607)
+
+[node name="MainMenuUI" parent="." unique_id=833057206 instance=ExtResource("7_enjcu")]
+
+[connection signal="game_started" from="MainMenuUI" to="." method="_on_main_menu_ui_game_started"]

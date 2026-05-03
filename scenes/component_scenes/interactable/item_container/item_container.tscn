@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dcouhafyjha1f"]
 
 [ext_resource type="Script" uid="uid://ctolpc6ydk6j1" path="res://scripts/interactable/item_container/item_container.gd" id="1_7tnl2"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_jrc18"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_crq7b"]
+font_size = 140
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7tnl2"]
 viewport_path = NodePath("Node3D/SubViewport")
@@ -26,10 +30,13 @@ offset_right = 63.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_jrc18")
+label_settings = SubResource("LabelSettings_crq7b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Text" type="Sprite3D" parent="." unique_id=1844960033]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 visible = false
 billboard = 1
 no_depth_test = true

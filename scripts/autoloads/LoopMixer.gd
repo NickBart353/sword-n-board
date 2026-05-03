@@ -41,3 +41,14 @@ func transition_to_new_area(new_area: AREA):
 	if active_player.playing:
 		tween.tween_property(active_player, "volume_db", -80.0, 3.0).set_trans(Tween.TRANS_SINE)
 		tween.chain().step_finished.connect(func(_idx): active_player.stop())
+
+func stop_looping():
+	if player_one.playing:
+		var tween_one = create_tween().set_parallel(true)
+		tween_one.tween_property(player_one, "volume_db", -80.0, 3.0).set_trans(Tween.TRANS_SINE)
+		tween_one.chain().step_finished.connect(func(_idx): player_one.stop())
+	
+	if player_two.playing:
+		var tween_two = create_tween().set_parallel(true)
+		tween_two.tween_property(player_two, "volume_db", -80.0, 3.0).set_trans(Tween.TRANS_SINE)
+		tween_two.chain().step_finished.connect(func(_idx): player_two.stop())

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d1quidydrljqr"]
+
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="1_v425h"]
+[ext_resource type="Texture2D" uid="uid://c6hijy77k7q64" path="res://my_assets/sprites/Freezing Stone Small.png" id="2_mi0ul"]
+
+[resource]
+script = ExtResource("1_v425h")
+item_name = "Freezing Stone"
+item_id = "50009"
+tooltip = "A small stone covered in icicles, used to upgrade Weapons."
+stackable = true
+sprite = ExtResource("2_mi0ul")
+item_category = 3
+item_sub_category = 5
+item_type = 24
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

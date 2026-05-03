@@ -1,6 +1,7 @@
-class_name Shield extends OffHand
+class_name Shield extends MeleeWeapon
 
 signal blocked
+signal hit
 
 @onready var front_side: Area3D = $Sketchfab_model
 @onready var back_side: Area3D = $Backside
@@ -9,7 +10,15 @@ signal blocked
 var body_back_side_entered_first: bool = false
 var area_back_side_entered_first: bool = false
 
+func set_collision_mask_value(value: int, boolean: bool):
+	pass
+
+func _set_marker_values():
+	pass
+
 func _on_sketchfab_model_body_entered(body: Node3D) -> void:
+	if body is Enemy:
+		hit.emit(body, data.normal_damage)
 	if body is Terrain3D: return
 	if not body_back_side_entered_first:
 		blocked.emit(body)

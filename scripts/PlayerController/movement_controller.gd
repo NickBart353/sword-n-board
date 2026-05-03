@@ -1,4 +1,4 @@
-extends Node
+class_name PlayerMovementController extends Node
 
 @export var player: CharacterBody3D
 @export var movement_speed: int = 5
@@ -24,14 +24,21 @@ var dashing_origin: Vector3
 
 var air_time: float = 0.0
 
-func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
+var calculated_movement_speed: float = 1
+var calculated_modifiers: float = 1
+var movement_modifiers: Array[float] = []
+
+func _ready() -> void:
+	calculated_movement_speed = movement_speed
+
+func apply_movement(input: Node, state_controller: Node, ability_controller: Node, delta: float) -> void:
 	dash_started = false
 	if not input.dash and not dashing:
 		var move_dir := (player.transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()
 		if move_dir and not jumping and not falling:
 			moving = true
-			player.velocity.x = move_dir.x * movement_speed
-			player.velocity.z = move_dir.z * movement_speed
+			player.velocity.x = move_dir.x * calculated_movement_speed 
+			player.velocity.z = move_dir.z * calculated_movement_speed 
 			player.velocity.y = get_proper_vertical_velocity(input.direction, delta)
 			
 		elif not move_dir and not jumping:
@@ -40,50 +47,51 @@ func apply_movement(input: Node, state_controller: Node, delta: float) -> void:
 			player.velocity.z = move_toward(player.velocity.z, 0, movement_speed)
 		
 		if not player.is_on_floor():
+			air_time += delta
 			player.velocity += player.get_gravity() * delta
-			falling = true
+			if air_time > falling_time_threshold:
+				falling = true
+				air_time = 0
 		if jumping and player.is_on_floor():
 			jumping = false
 		if player.is_on_floor() and landed:
 			landed = false
-		if is_on_floor:
-			if air_time > falling_time_threshold:
-				landed = true
-			air_time = 0.0
-		else:
-			air_time += delta
-			is_on_floor = false
+		if player.is_on_floor() and falling:
+			falling = false
+			landed = true
 		if player.is_on_floor():
 			is_on_floor = true
 		else:
 			is_on_floor = false
-		if player.is_on_floor() and input.jump and player.use_stamina(jump_cost):
-			player.velocity.y = jump_velocity
-			jumping = true
-		if player.is_on_floor() and falling:
-			falling = false
+		if not ability_controller.busy:
+			if player.is_on_floor() and input.jump and player.use_stamina(jump_cost):
+				player.velocity.y = jump_velocity
+				jumping = true
+		#if player.is_on_floor() and falling:
+			#falling = false
 	else:
-		if not dashing and player.use_stamina(dash_cost):
-			dash_started = true
-			dashing = true
-			dashing_origin = player.global_position
-			if not input.direction:
-				dashing_direction = player.get_camera_transform().basis.z
-				dashing_direction.z *= -1
-				dashing_direction.x *= -1
-				dashing_direction.y = 0
-				dashing_direction = dashing_direction.normalized()
-			else:
-				dashing_direction = Vector3(player.input.direction.x, 0, player.input.direction.y)
-				dashing_direction = (player.transform.basis * Vector3(dashing_direction.x, 0, dashing_direction.z)).normalized()
-		player.velocity = dashing_direction * dash_speed
-		player.velocity += player.get_gravity()
-		if player.global_position.distance_to(dashing_origin) > dash_distance or player.is_on_wall():
-			dashing = false
-			player.velocity.x = 0
-			player.velocity.z = 0
-			if not player.is_on_floor():
-				falling = true
+		if not ability_controller.busy:
+			if not dashing and player.use_stamina(dash_cost):
+				dash_started = true
+				dashing = true
+				dashing_origin = player.global_position
+				if not input.direction:
+					dashing_direction = player.get_camera_transform().basis.z
+					dashing_direction.z *= -1
+					dashing_direction.x *= -1
+					dashing_direction.y = 0
+					dashing_direction = dashing_direction.normalized()
+				else:
+					dashing_direction = Vector3(player.input.direction.x, 0, player.input.direction.y)
+					dashing_direction = (player.transform.basis * Vector3(dashing_direction.x, 0, dashing_direction.z)).normalized()
+			player.velocity = dashing_direction * dash_speed
+			player.velocity += player.get_gravity()
+			if player.global_position.distance_to(dashing_origin) > dash_distance or player.is_on_wall():
+				dashing = false
+				player.velocity.x = 0
+				player.velocity.z = 0
+				if not player.is_on_floor():
+					falling = true
 
 func get_proper_vertical_velocity(move_direction: Vector2, delta: float) -> float:
 	if not move_direction.x and not move_direction.y:
@@ -110,3 +118,18 @@ func _check_raycast(direction: String, delta):
 		return -3 + player.get_gravity().y * delta
 	else:
 		return player.velocity.y
+
+func add_movement_modifier(value: float) -> void:
+	movement_modifiers.append(value)
+	calculated_modifiers = 1
+	for modifier in movement_modifiers:
+		calculated_modifiers *= modifier
+	calculated_movement_speed = movement_speed * calculated_modifiers
+
+func remove_movement_modifier(value: float) -> void:
+	if value in movement_modifiers:
+		movement_modifiers.erase(value)
+	calculated_modifiers = 1
+	for modifier in movement_modifiers:
+		calculated_modifiers *= modifier
+	calculated_movement_speed = movement_speed * calculated_modifiers

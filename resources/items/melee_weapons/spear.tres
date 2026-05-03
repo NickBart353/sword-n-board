@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bovbahtw7dtub"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_kadww"]
+[ext_resource type="Texture2D" uid="uid://pf5pogm6jiwn" path="res://my_assets/sprites/Spear.png" id="2_8ifdb"]
+
+[resource]
+script = ExtResource("1_kadww")
+normal_damage = 20.0
+combo_size = 1
+item_name = "Spear"
+item_id = "10008"
+tooltip = "An ideal weapon for space control with its excellent reach!"
+sprite = ExtResource("2_8ifdb")
+item_type = 8
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

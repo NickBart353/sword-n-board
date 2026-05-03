@@ -1,32 +1,34 @@
 extends CanvasLayer
 
-@onready var hud: Control = $Hud
-@onready var item_controller: Control = $ItemController
-@onready var escape_menu: Control = $EscapeMenu
-@onready var pause_menu: Control = $EscapeMenu/PauseMenu
-@onready var settings_menu: Control = $EscapeMenu/SettingsMenu
+signal return_to_main_menu
 
-@onready var audio: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Audio/Audio
-@onready var input: VBoxContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Input/ScrollContainer/Input
-@onready var display: GridContainer = $EscapeMenu/SettingsMenu/SettingsOrganizer/MarginContainer/SettingTabs/Display/Display
+@onready var hud: Control = $Hud
+
+@onready var inventory: PanelContainer = $Inventory
+@onready var pause_menu: Control = $PauseMenu
+@onready var settings_menu: Control = $SettingsMenu
+@onready var loot_container: LootContainer = $LootContainer
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
 
-var escape_menu_open: bool
-var block_input: bool
+var pause_menu_open: bool
+var inventory_open: bool
+var is_input_blocked: bool
 
 func load_data():
-	audio.load_settings()
-	input.load_settings()
-	display.load_settings()
+	settings_menu.load_settings()
 
 func _ready() -> void:
-	block_input = false
-	escape_menu_open = false
-	input.block_input.connect(_block_input)
-	input.unblock_input.connect(_unblock_input)
+	inventory.hide()
+	pause_menu.hide()
+	settings_menu.hide()
+	loot_container.hide()
+	
+	is_input_blocked = false
+	pause_menu_open = false
+	inventory_open = false
 	
 	for child in self.find_children("*", "Control", true, false):
 		if child is Button:
@@ -39,41 +41,71 @@ func _ready() -> void:
 	
 	UiController.inventory.connect(_inventory)
 	UiController.character_panel.connect(_character_panel)
-	UiController.lootbag.connect(_lootbag)
 	UiController.escape_menu_signal.connect(_escape_menu)
+	UiController.item_container_interacted.connect(_open_loot_container)
+	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
 	UiController._update_manabar.connect(_update_manabar)
 	UiController._update_hud.connect(_update_hud)
 
 func _process(_delta: float) -> void:
-	if not block_input:
+	if not is_input_blocked:
 		if Input.is_action_just_pressed("escape_menu"):
 			_escape_menu()
-		if Input.is_action_just_pressed("inventory"):
+		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
+		if Input.is_action_just_pressed("Scroll Consumable"):
+			_rotate_consumable()
 
 func _inventory():
-	pass
+	if not pause_menu_open:
+		if loot_container.is_visible():
+			_open_loot_container(null)
+		#inventory.get_player_items()
+		inventory.set_visible(not inventory.is_visible())
+		get_tree().paused = inventory.is_visible()
+		if inventory.is_visible():
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _character_panel():
 	pass
 
-func _lootbag():
-	pass
+func _open_loot_container(item_container: ItemContainer):
+	if loot_container.is_visible():
+		loot_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+	else:
+		loot_container.show()
+		loot_container.set_data(item_container)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		PlayerControls.block_input()
 
 func _escape_menu():
-	if not escape_menu_open:
-		escape_menu_open = true
-		escape_menu.show()
+	if loot_container.is_visible():
+		_open_loot_container(null)
+	if not pause_menu_open:
+		if inventory.is_visible():
+			_inventory()
+		pause_menu_open = true
 		pause_menu.show()
-	elif escape_menu_open:
-		escape_menu_open = false
+		get_tree().paused = pause_menu_open
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif pause_menu_open:
+		pause_menu_open = false
 		pause_menu.hide()
-		settings_menu.hide()
-		escape_menu.hide()
-		
-	get_tree().paused = escape_menu_open
+		if settings_menu.is_visible():
+			settings_menu.check_for_unsaved_settings()
+		else:
+			get_tree().paused = pause_menu_open
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _rotate_consumable():
+	if not get_tree().paused and not PlayerControls.scrolling_blocked():
+		hud.rotate_consumable()
 
 func _update_healthbar(health: float):
 	hud.update_health(health)
@@ -87,14 +119,7 @@ func _update_manabar(mana: float):
 func _update_hud():
 	pass
 
-func _on_continue_button_pressed() -> void:
-	_escape_menu()
-
-func _on_settings_button_pressed() -> void:
-	settings_menu.show()
-	pause_menu.hide()
-
-func _on_back_button_pressed() -> void:
+func close_settings() -> void:
 	pause_menu.show()
 	settings_menu.hide()
 
@@ -104,8 +129,32 @@ func _play_hover_sound():
 func _play_click_sound():
 	AudioManager.player_ui_sfx(button_click_sound)
 
-func _block_input():
-	block_input = true
+func block_input():
+	is_input_blocked = true
 
-func _unblock_input():
-	block_input = false
+func unblock_input():
+	is_input_blocked = false
+
+func _on_settings_menu_close_settings() -> void:
+	close_settings()
+
+func _on_pause_menu_continue_game() -> void:
+	_escape_menu()
+
+func _on_pause_menu_open_settings() -> void:
+	settings_menu.show()
+	pause_menu.hide()
+
+func _on_pause_menu_main_menu() -> void:
+	return_to_main_menu.emit()
+
+func _on_pause_menu_exit_game() -> void:
+	get_tree().quit()
+
+func _on_settings_menu_done_checking() -> void:
+	settings_menu.hide()
+	get_tree().paused = pause_menu_open
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _on_inventory_update_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+		UiController.update_player_items_from_inventory(player_helmet, player_body, player_boots, player_mainhand, player_offhand)

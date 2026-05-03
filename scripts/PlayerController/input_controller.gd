@@ -5,6 +5,7 @@ var jump: bool
 var dash: bool
 var freefly: bool
 var primary: bool
+var hold_primary: bool
 var secondary: bool
 var hold_secondary: bool
 var attack: bool
@@ -32,15 +33,27 @@ func get_input(_delta: float):
 		#ability_three = Input.is_action_just_pressed("ability_three")
 		#inventory = Input.is_action_just_pressed("inventory")
 		#interact = Input.is_action_just_pressed("interact")
+		interact = Input.is_action_just_pressed("Interact")
+		if PlayerControls.input_blocked():
+			direction = Vector2.ZERO
+			jump = false
+			dash = false
+			primary = false
+			hold_primary = false
+			attack = false
+			secondary = false
+			hold_secondary = false
+			consume = false
+			return
 		direction = Input.get_vector("Move Left", "Move Right", "Move Forward", "Move Backward")
 		jump = Input.is_action_just_pressed("Jump")
 		dash = Input.is_action_just_pressed("Dash")
 		primary = Input.is_action_just_pressed("Primary")
+		hold_primary = Input.is_action_pressed("Primary")
 		attack = Input.is_action_just_pressed("Primary")
 		secondary = Input.is_action_just_pressed("Secondary")
 		hold_secondary = Input.is_action_pressed("Secondary")
 		consume = Input.is_action_just_pressed("Consume")
-		interact = Input.is_action_just_pressed("Interact")
-		inventory = Input.is_action_just_pressed("Open Inventory")
+			#inventory = Input.is_action_just_pressed("Open Inventory")
 
 	#pause_menu = Input.is_action_just_pressed("pause")
