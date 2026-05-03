@@ -155,18 +155,6 @@ func interact_with_object():
 	#if input.inventory:
 		#open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
 
-func get_equipped_primary():
-	var weapon: Array = $Head/RightHand.get_children()
-	if weapon:
-		return weapon[0]
-	return null
-
-func get_equipped_secondary():
-	var offhand: Array = $Head/LeftHand.get_children()
-	if offhand:
-		return offhand[0]
-	return null
-
 func get_equipped_consumable():
 	var consumable: Array = $Slots/Consumable.get_children()
 	if consumable:

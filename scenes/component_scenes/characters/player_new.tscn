@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="9_84use"]
 [ext_resource type="PackedScene" uid="uid://d21w876t16ds4" path="res://scenes/component_scenes/attacks/arrow.tscn" id="10_eqqxm"]
 [ext_resource type="Script" uid="uid://djjedm2u4b7a0" path="res://scripts/PlayerController/abilities/block.gd" id="11_7xqws"]
+[ext_resource type="AnimationLibrary" uid="uid://bocej36ay1sy5" path="res://animations/player/torch/torch.res" id="11_y6i1k"]
 [ext_resource type="Script" uid="uid://csivj4fpb0ekx" path="res://scripts/PlayerController/abilities/light.gd" id="12_8aen8"]
 [ext_resource type="Script" uid="uid://bsapn6js1uc0u" path="res://scripts/PlayerController/abilities/consume.gd" id="13_y6i1k"]
 [ext_resource type="AudioStream" uid="uid://ctjwuw7mbviuk" path="res://assets/Audio/pixabay/freesound_community-eating-apple-6928.wav" id="14_pxpwq"]
@@ -1193,13 +1194,13 @@ target_position = Vector3(0, 0, -3)
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(0.9999993, 0, 0, 0, 0.5651402, -0.8249953, 0, 0.82499564, 0.5651399, 0.15462682, 1.2360888, -0.48433757)
+transform = Transform3D(0.9999993, 0, 0, 0, 0.5651402, -0.8249951, 0, 0.82499564, 0.5651398, 0.15462682, 1.2360888, -0.48433757)
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999995, 0, 0, 0, 0.9999994, 0, 0, 0, 0.9999999, 0.3264439, 1.1441026, -0.3358699)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.99999905, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999993, -0.385, 1.09, -0.405)
+transform = Transform3D(0.999999, 0, 0, 0, 0.99999905, 0, 0, 0, 0.9999994, -0.385, 1.09, -0.405)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1213,6 +1214,7 @@ libraries/fist = ExtResource("7_84use")
 libraries/greathammer = ExtResource("8_8aen8")
 libraries/movement = ExtResource("34_0hxxe")
 libraries/shortsword = ExtResource("38_84use")
+libraries/torch = ExtResource("11_y6i1k")
 
 [node name="GroundRayCasts" type="Node3D" parent="." unique_id=755495095]
 transform = Transform3D(1, 0, -2.0861621e-07, 0, 1, 0, 2.0861621e-07, 0, 1, 0, 1.3378959, 0)

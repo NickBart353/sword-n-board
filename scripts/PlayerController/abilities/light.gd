@@ -20,11 +20,6 @@ func set_item(item: Node) -> void:
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not process: return
-	if not offhand == player.get_equipped_secondary() or not offhand:
-		offhand = player.get_equipped_secondary()
-	if not offhand is Torch: 
-		reset()
-		return
 	if not movement.dashing and not state_controller.is_player_busy():
 		if input.hold_secondary:
 			lighting = true

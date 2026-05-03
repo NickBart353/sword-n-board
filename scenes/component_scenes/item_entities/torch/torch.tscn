@@ -15,9 +15,13 @@ albedo_color = Color(0.4966002, 0.3032189, 0.1383932, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_evctx"]
 material = SubResource("StandardMaterial3D_evctx")
-top_radius = 0.1
-bottom_radius = 0.04
+top_radius = 0.035
+bottom_radius = 0.014
 height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rraq4"]
+radius = 0.026
+height = 0.68
 
 [node name="Torch" type="Area3D" unique_id=1191162332 node_paths=PackedStringArray("hand_component")]
 collision_layer = 6
@@ -32,7 +36,7 @@ debug_color = Color(0.9910373, 0, 0.27664915, 0.41960785)
 
 [node name="vfx_fire" parent="." unique_id=274732113 instance=ExtResource("1_evctx")]
 process_priority = 5
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.29999995, 0)
+transform = Transform3D(0.23, 0, 0, 0, 0.23, 0, 0, 0, 0.23, 0, 0.38297176, 0)
 flame_color = Color(1.6733146, 0.6640268, 0, 1)
 smoke_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 particle_color = Color(1.5446181, 0.6160878, 0, 1)
@@ -53,4 +57,10 @@ bus = &"Ambience"
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("4_rraq4")]
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1336127866]
+transform = Transform3D(0.99970394, -0.024318505, -0.0006618642, -9.223427e-12, 0.027206346, -0.99962956, 0.024327517, 0.99933404, 0.027198302, -0.00032112002, 0.41549796, -0.30149198)
+mesh = SubResource("CapsuleMesh_rraq4")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+
+[editable path="OnehandComponent"]
