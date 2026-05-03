@@ -7,5 +7,5 @@ script = ExtResource("1_nbd4v")
 combo_size = 1
 item_name = "Unarmed"
 item_id = "0"
-item_type = 9
+item_type = 12
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

@@ -36,6 +36,7 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	if not process: return
 	if not movement.dashing and not state_controller.is_player_busy():
 		if input.attack and not swing_in_progress and player.use_stamina(attack_cost):
+			ability_controller.busy = true
 			bodies = []
 			swinging = true
 			swing_in_progress = true
@@ -53,6 +54,7 @@ func _melee_attack(body, damage):
 func _on_attack_timer_timeout() -> void:
 	if not swing_in_progress:
 		swing = 0
+		ability_controller.busy = false
 
 func _attack_started() -> void:
 	weapon.monitoring = true
@@ -63,6 +65,8 @@ func _attack_ended() -> void:
 	weapon.monitoring = false
 	swing_in_progress = false
 	attack_timer.start()
+	#if swing > combo_count:
+		#reset()
 
 func reset():
 	#weapon = null
@@ -70,3 +74,4 @@ func reset():
 	swing = 0
 	swinging = false
 	swing_in_progress = false
+	ability_controller.busy = false

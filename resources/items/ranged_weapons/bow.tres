@@ -13,5 +13,5 @@ tooltip = "An ideal ranged weapon!"
 sprite = ExtResource("2_nbp8g")
 drop_chance = 1.0
 item_sub_category = 1
-item_type = 11
+item_type = 17
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

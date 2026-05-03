@@ -11,5 +11,5 @@ dualwield_combo_size = 2
 item_name = "10006"
 tooltip = "A deadly weapon in close combat."
 sprite = ExtResource("2_7xrw6")
-item_type = 3
+item_type = 4
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

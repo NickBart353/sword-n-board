@@ -23,7 +23,7 @@ func apply_audio(state_controller: Node, movement: Node, ability_controller: Nod
 	#_apply_ability_audio(state_controller, ability_controller)
 
 func _apply_movement_audio(_state_controller: Node, movement: Node) -> void:
-	if movement.moving and movement.is_on_floor:
+	if movement.moving and movement.is_on_floor and clamp(movement.calculated_movement_speed, 0, 1):
 		if not movement_loop_player.playing:
 			movement_loop_player.stream = walk_sfx
 			movement_loop_player.play()

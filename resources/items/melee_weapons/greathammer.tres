@@ -12,5 +12,5 @@ item_name = "Greathammer"
 item_id = "10005"
 tooltip = "A giant hammer meant to crush skulls!"
 sprite = ExtResource("2_kyajw")
-item_type = 4
+item_type = 6
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

@@ -73,7 +73,7 @@ func apply_animations(input: Node, _state_controller: Node, movement: Node, abil
 func _apply_torso_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
 	if not movement.jumping:
 		airborne_blend_value_target = 0
-		anim_tree[walking] = input.direction
+		anim_tree[walking] = input.direction *  clamp(movement.calculated_movement_speed, 0, 1)
 	elif movement.jumping and not movement.falling and not movement.landed:
 		airborne_blend_value_target = 1
 		jumping_state_machine.travel("jump")
@@ -96,7 +96,7 @@ func _apply_twohand_animations(input: Node, _state_controller: Node, movement: N
 	if not movement.jumping and not attack.swing:
 		twohand_statemachine.travel("idle")
 		if input.direction:
-			weapon_walk_blend_value_target = 1
+			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
 	if attack.swing:
@@ -109,28 +109,29 @@ func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: 
 	if not movement.jumping and not attack.swing:
 		mainhand_statemachine.travel("idle")
 		if input.direction:
-			weapon_walk_blend_value_target = 1
+			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
 	if attack.swing:
 		mainhand_statemachine.travel("attack{0}".format([attack.swing]))
-	
+
 	_do_stuff(input, _state_controller, movement, _ability, delta, mainhand_statemachine)
 
-func _apply_offhand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
+func _apply_offhand_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if twohanded: return
 	if not movement.jumping and not parry.parry:
 		offhand_statemachine.travel("idle")
 		if input.direction:
-			weapon_walk_blend_value_target = 1
+			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
 	if parry.parry:
 		offhand_statemachine.travel("activate")
-	
-	_do_stuff(input, _state_controller, movement, _ability, delta, offhand_statemachine)
+		
+	_do_stuff(input, _state_controller, movement, ability, delta, offhand_statemachine)
 
-func _do_stuff(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float, statemachine: AnimationNodeStateMachinePlayback):
+func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float, statemachine: AnimationNodeStateMachinePlayback):
+	if ability.busy: return
 	if movement.jumping and not movement.falling and not movement.landed:
 		statemachine.travel("jump")
 	if movement.falling:

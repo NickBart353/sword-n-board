@@ -14,5 +14,5 @@ tooltip = "You're a wizard!"
 sprite = ExtResource("2_6but8")
 drop_chance = 1.0
 item_sub_category = 2
-item_type = 10
+item_type = 13
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

@@ -12,5 +12,5 @@ item_id = "10003"
 tooltip = "It blocks hits!"
 sprite = ExtResource("2_o6vov")
 drop_chance = 1.0
-item_type = 8
+item_type = 10
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

@@ -11,4 +11,5 @@ item_name = "Spear"
 item_id = "10008"
 tooltip = "An ideal weapon for space control with its excellent reach!"
 sprite = ExtResource("2_8ifdb")
+item_type = 8
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

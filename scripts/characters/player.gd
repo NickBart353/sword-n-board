@@ -116,7 +116,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	input.get_input(delta)
-	movement.apply_movement(input, state_controller, delta)
+	movement.apply_movement(input, state_controller, ability, delta)
 	ability.apply_abilities(input, state_controller, movement, delta)
 	#animation.apply_animations(input, state_controller, movement, ability, delta)
 	new_animation.apply_animations(input, state_controller, movement, ability, delta)

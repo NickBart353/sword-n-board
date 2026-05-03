@@ -13,5 +13,5 @@ item_id = "10002"
 tooltip = "It illuminates the dark!"
 sprite = ExtResource("2_d17os")
 drop_chance = 1.0
-item_type = 7
+item_type = 9
 metadata/_custom_type_script = "uid://dtd4itbfrtl8k"

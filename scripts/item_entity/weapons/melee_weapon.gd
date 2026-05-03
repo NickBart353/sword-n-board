@@ -2,4 +2,4 @@
 class_name MeleeWeapon extends Weapon
 
 func _ready() -> void:
-	print("Connect body entered signal!")
+	print("{0}: Connect body entered signal!".format([self.name]))

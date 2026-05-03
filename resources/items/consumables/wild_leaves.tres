@@ -19,5 +19,5 @@ stackable = true
 sprite = ExtResource("2_fc21k")
 item_category = 2
 item_sub_category = 3
-item_type = 14
+item_type = 21
 metadata/_custom_type_script = "uid://d3f12fo6m1a5b"

@@ -12,5 +12,5 @@ item_name = "Katana"
 item_id = "10007"
 tooltip = "Waifu magnet!"
 sprite = ExtResource("2_7wvdu")
-item_type = 5
+item_type = 7
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

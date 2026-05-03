@@ -12,5 +12,5 @@ item_name = "Greataxe"
 item_id = "10009"
 tooltip = "An axe for splitting skulls."
 sprite = ExtResource("2_qswke")
-item_type = 2
+item_type = 3
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
