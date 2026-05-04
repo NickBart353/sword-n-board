@@ -499,10 +499,10 @@ animation = &"shortsword/mainhand_ability2"
 animation = &"greathammer/activate"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ji2ur"]
-animation = &"fist/mainhand_attack1"
+animation = &"greatsword/attack1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ivn2l"]
-animation = &"fist/mainhand_attack2"
+animation = &"greatsword/attack2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpn6j"]
 animation = &"shortsword/mainhand_attack3"
@@ -514,10 +514,10 @@ animation = &"shortsword/mainhand_attack3"
 animation = &"shortsword/mainhand_falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmbs3"]
-animation = &"greathammer/idle"
+animation = &"greatsword/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bsaok"]
-animation = &"greathammer/walking"
+animation = &"greatsword/idle"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_j4km6"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_gmbs3")
@@ -857,7 +857,7 @@ filters = ["", ".", "../Player - Kopie/Armature:position", "../Player - Kopie/IK
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(196.85797, 67.52095)
+graph_offset = Vector2(323.0422, -222.99075)
 nodes/output/position = Vector2(2240, -100)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-580, 0)

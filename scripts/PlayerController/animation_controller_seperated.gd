@@ -155,6 +155,7 @@ func equipped_two_hand_weapon(weapon_name: String):
 	twohand.get_node("jump").animation = "{0}/jump".format([weapon_name])
 	twohand.get_node("falling").animation = "{0}/falling".format([weapon_name])
 	twohand.get_node("landing").animation = "{0}/landing".format([weapon_name])
+	print("{0}/idle".format([weapon_name]))
 
 func equpped_mainhand_weapon(weapon_name: String):
 	anim_tree[weapon_blender] = 1

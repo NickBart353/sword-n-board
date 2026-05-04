@@ -325,6 +325,7 @@ func _set_weapons():
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
 	var off_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(offhand)
 	
+	print(main_slot)
 	$AbilityController/Attack.set_item(main_slot)
 	$AbilityController/CastAttack.set_item(main_slot)
 	$AbilityController/ShootAttack.set_item(main_slot)
