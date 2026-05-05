@@ -18,7 +18,7 @@ const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 const MELEE_WEAPONS: Dictionary = {
 	"shortsword": preload("res://resources/items/melee_weapons/short_sword.tres"),
 	"greatsword": preload("uid://qpdw7kpnlexp"),
-	"greataxe": "",
+	"greataxe": preload("uid://dsjivk0hqdt2w"),
 	"hatchet": "",
 	"greathammer": preload("uid://bcahgjv4glvrm"),
 	"katana": "",

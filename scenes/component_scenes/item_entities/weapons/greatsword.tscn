@@ -22,34 +22,38 @@ albedo_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
 metallic = 0.16
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2dncq"]
-size = Vector3(0.40631104, 1.8612671, 0.13470459)
+size = Vector3(0.40631104, 2.0063171, 0.41307068)
 
-[node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_4s0vc")]
+[node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("impact_location", "hand_component") instance=ExtResource("1_4s0vc")]
 collision_layer = 6
-collision_mask = 24
+collision_mask = 29
 script = ExtResource("2_3lr8e")
+impact_location = NodePath("ImpactLocation")
 hand_component = NodePath("TwohandComponent")
 
 [node name="Blade" parent="." index="0" unique_id=1721232006]
-transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_3lr8e")
 
 [node name="Brick" parent="." index="1" unique_id=1151172184]
-transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_tpuau")
 
 [node name="Hilt" parent="." index="2" unique_id=1981990706]
-transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
 [node name="Tip" parent="." index="3" unique_id=1244220211]
-transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 0.35999998, 0)
+transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=592149061]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0080218315, 0.38034046, -0.012542725)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0080218315, 1.2336394, 0.00064849854)
 shape = SubResource("BoxShape3D_2dncq")
 
 [node name="TwohandComponent" parent="." index="5" unique_id=1480913319 instance=ExtResource("3_tpuau")]
+
+[node name="ImpactLocation" type="Marker3D" parent="." index="6" unique_id=381411359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9861655, -0.16820678)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -12,6 +12,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
 [ext_resource type="AnimationLibrary" uid="uid://cis2tnf2uus34" path="res://animations/player/greathammer/greathammer.res" id="8_8aen8"]
+[ext_resource type="AnimationLibrary" uid="uid://rltfkwas5t44" path="res://animations/greataxe/greataxe.res" id="8_ovcx5"]
 [ext_resource type="AnimationLibrary" uid="uid://b5ucxt60wsdjx" path="res://animations/player/greatsword/greatsword.res" id="8_pxpwq"]
 [ext_resource type="PackedScene" uid="uid://b14qrvjayeose" path="res://scenes/component_scenes/spells/magic_projectile.tscn" id="8_r2tqu"]
 [ext_resource type="Script" uid="uid://b8gvd2g08m74i" path="res://scripts/PlayerController/abilities/shoot_attack.gd" id="9_84use"]
@@ -276,26 +277,26 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
+tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
+"values": [Vector3(0.9701936, 0, 0)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
+tracks/18/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.9701936, 0, 0)]
+"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
@@ -1191,6 +1192,7 @@ visible = false
 fov = 85.0
 script = ExtResource("4_eqqxm")
 camera_tracking_position = NodePath("../CameraTracker")
+transition_speed = 100.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Player - Kopie/IKMarkers/Torso/Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
@@ -1199,7 +1201,7 @@ target_position = Vector3(0, 0, -3)
 [node name="Weapons" type="Node3D" parent="Player - Kopie" unique_id=1237956613]
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(0.9999993, 0, 0, 0, 0.56514025, -0.82499504, 0, 0.82499576, 0.5651397, 0.15462682, 1.2360888, -0.48433757)
+transform = Transform3D(0.99999934, 0, 0, 0, 0.5651403, -0.8249951, 0, 0.8249959, 0.5651398, 0.15462682, 1.2360888, -0.48433757)
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.9999995, 0, 0, 0, 0.99999964, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
@@ -1217,6 +1219,7 @@ root_node = NodePath("../AnimationTreeNew")
 libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
 libraries/fist = ExtResource("7_84use")
+libraries/greataxe = ExtResource("8_ovcx5")
 libraries/greathammer = ExtResource("8_8aen8")
 libraries/greatsword = ExtResource("8_pxpwq")
 libraries/movement = ExtResource("34_0hxxe")

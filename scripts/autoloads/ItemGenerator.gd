@@ -23,7 +23,7 @@ const UNARMED_DATA = preload("uid://b3qbpvnhs0ofq")
 const MELEE_WEAPONS: Dictionary = {
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword
 	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),#greatsword
-	"greataxe": "",
+	"10009": preload("res://scenes/component_scenes/item_entities/weapons/greataxe.tscn"),#greataxe
 	"hatchet": "",
 	"10005": preload("uid://cq5niuf135ca6"),#greathammer
 	"katana": "",

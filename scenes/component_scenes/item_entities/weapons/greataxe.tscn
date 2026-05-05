@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://hi5utcf023cf" path="res://scripts/item_entity/weapons/greataxe.gd" id="2_sa3gr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sa3gr"]
-size = Vector3(1.8464966, 1.407959, 0.25512695)
+size = Vector3(0.13355255, 0.49473572, 0.6720581)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3yh0m"]
 cull_mode = 2
@@ -130,17 +130,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_lxa0u")
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3yh0m"]
+radius = 0.045
+height = 0.835
+
 [node name="Greataxe" unique_id=398786294 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_qss71")]
 collision_layer = 6
-collision_mask = 24
+collision_mask = 25
 script = ExtResource("2_sa3gr")
 hand_component = NodePath("TwohandComponent")
 
 [node name="TwohandComponent" parent="." index="0" unique_id=1480913319 instance=ExtResource("2_3yh0m")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1069256246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0035095215, 1.7281494, 0.026489258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0074272156, 1.0900681, 0.0030822754)
 shape = SubResource("BoxShape3D_sa3gr")
 
 [node name="GreataxeMesh" parent="." index="2" unique_id=1578386838]
+transform = Transform3D(-1.5954656e-08, 0, -0.365, 0, 0.365, 0, 0.365, 0, -1.5954656e-08, 0, 0.46042502, 0)
 mesh = SubResource("ArrayMesh_6dy8j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1216875193]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.1194029, -0.53903097)
+mesh = SubResource("CapsuleMesh_3yh0m")
