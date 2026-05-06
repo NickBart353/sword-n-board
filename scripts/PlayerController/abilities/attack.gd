@@ -6,7 +6,7 @@ extends Ability
 @export_group("StaminaCost")
 @export_range(0.0, 100.0) var attack_cost = 15.0
 
-const allowed_weapons: Array = [ItemData.ITEM_TYPE.SHORTSWORD, ItemData.ITEM_TYPE.GREATSWORD, 
+const allowed_weapons: Array = [ItemData.ITEM_TYPE.SHORTSWORD, ItemData.ITEM_TYPE.GREATSWORD, ItemData.ITEM_TYPE.GREATAXE, 
 	ItemData.ITEM_TYPE.AXE, ItemData.ITEM_TYPE.DAGGER, ItemData.ITEM_TYPE.GREATHAMMER, 
 	ItemData.ITEM_TYPE.KATANA, ItemData.ITEM_TYPE.SPEAR, ItemData.ITEM_TYPE.TORCH, ItemData.ITEM_TYPE.SHIELD, 
 	ItemData.ITEM_TYPE.FIST
