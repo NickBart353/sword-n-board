@@ -91,6 +91,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_74ly1")
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7bw0v"]
+radius = 0.035
+height = 0.845
+
 [node name="spear" unique_id=322799300 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_083pc")]
 collision_layer = 6
 collision_mask = 24
@@ -103,5 +107,10 @@ hand_component = NodePath("OnehandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5014954, 0)
 shape = SubResource("CapsuleShape3D_3vaoy")
 
-[node name="SpearMesh" parent="." index="2" unique_id=1665311631]
+[node name="SpearMesh" parent="." index="2" unique_id=211327805]
+transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7bw0v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=115227763]
+transform = Transform3D(-0.0025481395, 0.9999968, 0, -0.9999968, -0.0025481395, 0, 0, 0, 1, -0.37519264, 0, 0)
+mesh = SubResource("CapsuleMesh_7bw0v")
