@@ -8,8 +8,8 @@
 [ext_resource type="Material" uid="uid://d3hijacxj5ntr" path="res://scenes/component_scenes/item_entities/weapons/spear/metalBottom.tres" id="6_u752f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vaoy"]
-radius = 0.25683594
-height = 1.1755981
+radius = 0.09326172
+height = 0.4433384
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_74ly1"]
 _surfaces = [{
@@ -97,20 +97,23 @@ height = 0.845
 
 [node name="spear" unique_id=322799300 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_083pc")]
 collision_layer = 6
-collision_mask = 24
+collision_mask = 25
 script = ExtResource("2_3vaoy")
 hand_component = NodePath("OnehandComponent")
 
 [node name="OnehandComponent" parent="." index="0" unique_id=1480913319 instance=ExtResource("3_06qr6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=2143541330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5014954, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.76458454, 0)
 shape = SubResource("CapsuleShape3D_3vaoy")
 
-[node name="SpearMesh" parent="." index="2" unique_id=211327805]
+[node name="SpearMesh" parent="." index="2" unique_id=1665311631]
 transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7bw0v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=115227763]
-transform = Transform3D(-0.0025481395, 0.9999968, 0, -0.9999968, -0.0025481395, 0, 0, 0, 1, -0.37519264, 0, 0)
+transform = Transform3D(0.034864586, -0.99939203, 0, 0.99939203, 0.034864586, 0, 0, 0, 1, -0.41655675, 0.27225465, -0.0057017803)
 mesh = SubResource("CapsuleMesh_7bw0v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

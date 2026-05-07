@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_kadww")
 normal_damage = 20.0
-combo_size = 1
+combo_size = 2
 item_name = "Spear"
 item_id = "10008"
 tooltip = "An ideal weapon for space control with its excellent reach!"

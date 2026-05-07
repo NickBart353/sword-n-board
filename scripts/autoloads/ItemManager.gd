@@ -22,7 +22,7 @@ const MELEE_WEAPONS: Dictionary = {
 	"hatchet": "",
 	"greathammer": preload("uid://bcahgjv4glvrm"),
 	"katana": "",
-	"spear": "",
+	"spear": preload("uid://bovbahtw7dtub"),
 	"torch": preload("res://resources/items/melee_weapons/torch.tres"),
 	"wooden_shield": preload("res://resources/items/melee_weapons/wooden_shield.tres"),
 	"dagger": "",

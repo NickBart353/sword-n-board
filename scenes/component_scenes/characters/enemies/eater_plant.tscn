@@ -216,7 +216,7 @@ _data = {
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ej3g5"]
 height = 7.375
-radius = 2.4
+radius = 3.28
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
 height = 3.9210145

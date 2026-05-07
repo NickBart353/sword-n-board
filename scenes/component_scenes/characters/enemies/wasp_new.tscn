@@ -408,7 +408,6 @@ animation = &"hitflash"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_awi1o"]
 resource_local_to_scene = true
-graph_offset = Vector2(-423.75748, 83.64128)
 nodes/output/position = Vector2(480, 200)
 nodes/Main/node = ExtResource("4_6eufi")
 nodes/Main/position = Vector2(-340, 80)
