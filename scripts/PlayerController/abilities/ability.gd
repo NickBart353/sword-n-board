@@ -8,4 +8,4 @@ var ability_controller: Node
 
 @abstract func reset() -> void
 
-@abstract func set_item(item: Node) -> void
+@abstract func set_item(mainhand: Node, offhand: Node) -> void

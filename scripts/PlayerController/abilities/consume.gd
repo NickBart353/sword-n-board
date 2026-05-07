@@ -17,13 +17,15 @@ var consuming: bool = false
 var consumed: bool = false
 var process: bool = false
 
-func set_item(item: Node) -> void:
-	reset()
-	if item is Consumable:
-		consumable = item
-		process = true
-		return
-	process = false
+#func set_item(item: Node) -> void:
+	#reset()
+	#if item is Consumable:
+		#consumable = item
+		#process = true
+		#return
+	#process = false
+func set_item(mainhand: Node, offhand: Node) -> void:
+	pass
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not process: return

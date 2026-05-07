@@ -325,15 +325,9 @@ func _set_weapons():
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
 	var off_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(offhand)
 	
-	print(main_slot)
-	#for ability in ability:
-	$AbilityController/Attack.set_item(main_slot)
-	$AbilityController/CastAttack.set_item(main_slot)
-	$AbilityController/ShootAttack.set_item(main_slot)
-	$AbilityController/Block.set_item(off_slot)
-	$AbilityController/Parry.set_item(off_slot)
-	$AbilityController/Light.set_item(off_slot)
-	$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
+	for _ability in ability.get_children():
+		_ability.set_item(main_slot, off_slot)
+	#$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
 
 func get_equipped_weapon_from_slot(slot: Marker3D):
 	var children: Array = slot.get_children()

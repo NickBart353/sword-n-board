@@ -21,15 +21,17 @@ var combo_count: int
 
 var process: bool = false
 
-func set_item(item: Node) -> void:
-	reset()
-	if item is Weapon:
-		if item.data.item_type in allowed_weapons:
-			weapon = item
-			combo_count = item.data.combo_size
-			process = true
-			return
-	process = false
+#func set_item(item: Node) -> void:
+	#reset()
+	#if item is Weapon:
+		#if item.data.item_type in allowed_weapons:
+			#weapon = item
+			#combo_count = item.data.combo_size
+			#process = true
+			#return
+	#process = false
+func set_item(mainhand: Node, offhand: Node) -> void:
+	pass
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not process: return

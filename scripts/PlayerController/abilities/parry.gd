@@ -13,16 +13,18 @@ var weapon: Weapon
 var parry: bool = false
 var process: bool = false
 
-func set_item(item: Node) -> void:
-	if item is Weapon:
-		if item.data.item_type in allowed_weapons:
-			#if not weapon.parry.is_connected(_parried):
-				#weapon.parry.connect(_parried)
-			weapon = item
-			process = true
-			return
-	process = false
-	reset()
+#func set_item(item: Node) -> void:
+	#if item is Weapon:
+		#if item.data.item_type in allowed_weapons:
+			##if not weapon.parry.is_connected(_parried):
+				##weapon.parry.connect(_parried)
+			#weapon = item
+			#process = true
+			#return
+	#process = false
+	#reset()
+func set_item(mainhand: Node, offhand: Node) -> void:
+	pass
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not process: return

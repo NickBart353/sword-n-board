@@ -93,27 +93,27 @@ func _apply_torso_animations(input: Node, _state_controller: Node, movement: Nod
 
 func _apply_twohand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
 	if not twohanded: return
-	if not movement.jumping and not attack.swing:
+	if not movement.jumping and not attack.mainhand_swing:
 		twohand_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
-	if attack.swing:
-		twohand_statemachine.travel("attack{0}".format([attack.swing]))
+	if attack.mainhand_swing:
+		twohand_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 		
 	_do_stuff(input, _state_controller, movement, _ability, delta, twohand_statemachine)
 
 func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
 	if twohanded: return
-	if not movement.jumping and not attack.swing:
+	if not movement.jumping and not attack.mainhand_swing:
 		mainhand_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
-	if attack.swing:
-		mainhand_statemachine.travel("attack{0}".format([attack.swing]))
+	if attack.mainhand_swing:
+		mainhand_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 
 	_do_stuff(input, _state_controller, movement, _ability, delta, mainhand_statemachine)
 
