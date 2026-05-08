@@ -119,7 +119,7 @@ func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: 
 
 func _apply_offhand_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if twohanded: return
-	if not movement.jumping and not parry.parry:
+	if not movement.jumping and not parry.parry and not attack.offhand_swing:
 		offhand_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
@@ -127,6 +127,8 @@ func _apply_offhand_animations(input: Node, _state_controller: Node, movement: N
 			weapon_walk_blend_value_target = 0
 	if parry.parry:
 		offhand_statemachine.travel("activate")
+	if attack.offhand_swing:
+		offhand_statemachine.travel("activate{0}".format([attack.offhand_swing]))
 		
 	_do_stuff(input, _state_controller, movement, ability, delta, offhand_statemachine)
 
@@ -155,7 +157,6 @@ func equipped_two_hand_weapon(weapon_name: String):
 	twohand.get_node("jump").animation = "{0}/jump".format([weapon_name])
 	twohand.get_node("falling").animation = "{0}/falling".format([weapon_name])
 	twohand.get_node("landing").animation = "{0}/landing".format([weapon_name])
-	print("{0}/idle".format([weapon_name]))
 
 func equpped_mainhand_weapon(weapon_name: String):
 	anim_tree[weapon_blender] = 1
@@ -178,7 +179,9 @@ func equpped_offhand_weapon(weapon_name: String):
 	twohanded = false
 	var anim_name: String = "{0}/offhand".format([weapon_name])
 	var offhand = anim_tree.tree_root.get_node("Offhand")
-	offhand.get_node("activate").animation = "{0}_activate".format([anim_name])
+	offhand.get_node("activate1").animation = "{0}_activate1".format([anim_name])
+	offhand.get_node("activate2").animation = "{0}_activate2".format([anim_name])
+	offhand.get_node("activate3").animation = "{0}_activate3".format([anim_name])
 	offhand.get_node("ability1").animation = "{0}_ability1".format([anim_name])
 	offhand.get_node("idle").get_blend_point_node(0).animation = "{0}_idle".format([anim_name])
 	offhand.get_node("idle").get_blend_point_node(1).animation = "{0}_walking".format([anim_name])

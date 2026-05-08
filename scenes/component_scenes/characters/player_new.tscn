@@ -1206,7 +1206,7 @@ target_position = Vector3(0, 0, -3)
 transform = Transform3D(0.99999934, 0, 0, 0, 0.5651403, -0.8249951, 0, 0.8249959, 0.5651398, 0.15462682, 1.2360888, -0.48433757)
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999934, 0, 0, 0, 0.99999917, 0, 0, 0, 0.99999964, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999993, 0, 0, 0, 0.99999917, 0, 0, 0, 0.99999964, 0.3264439, 1.1441026, -0.3358699)
 
 [node name="spear" parent="Player - Kopie/Weapons/Mainhand" unique_id=322799300 instance=ExtResource("5_mp4bu")]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999995, 0, 0, 0)

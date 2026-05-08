@@ -33,12 +33,19 @@ var offhand_combo_count: int = 0
 var process: bool = false
 
 func set_item(mainhand: Node, offhand: Node) -> void:
-	var weapons_valid = _validate_slot(offhand, "offhand") or _validate_slot(mainhand, "mainhand")
-	if not weapons_valid:
+	#mainhand_weapon = null
+	#offhand_weapon = null
+	reset()
+	#print("mh ", mainhand)
+	#print("oh ", offhand)
+	var offhand_valid: bool = _validate_slot(offhand, "offhand") 
+	var mainhand_valid = _validate_slot(mainhand, "mainhand")
+	if not (offhand_valid or mainhand_valid):
 		reset()
-	process = weapons_valid
+	process = (offhand_valid or mainhand_valid)
 
 func _validate_slot(slot: Node, slot_string: String) -> bool:
+	print(slot_string,": ", slot)
 	if slot is Weapon:
 		var testing_array: Array
 		match slot_string:
@@ -47,57 +54,70 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 				"mainhand":
 					testing_array = allowed_mainhands
 		if slot.data.item_type in testing_array:
-			var weapon_slot: Weapon
 			match slot_string:
 				"offhand":
-					weapon_slot = offhand_weapon
+					offhand_weapon = slot
 					offhand_combo_count = slot.data.combo_size
+					if not offhand_weapon.hit.is_connected(_melee_attack):
+						offhand_weapon.hit.connect(_melee_attack)
 				"mainhand":
-					weapon_slot = mainhand_weapon
+					mainhand_weapon = slot
 					mainhand_combo_count = slot.data.combo_size
-			weapon_slot = slot
-			if not weapon_slot.hit.is_connected(_melee_attack):
-				weapon_slot.hit.is_connected(_melee_attack)
-				return true
+					if not mainhand_weapon.hit.is_connected(_melee_attack):
+						mainhand_weapon.hit.connect(_melee_attack)
+			return true
+	else:
+		match slot_string:
+			"offhand":
+				offhand_weapon = null
+			"mainhand":
+				mainhand_weapon = null
 	return false
 
-func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:	
+func apply_ability(input: Node, state_controller: Node, movement: Node, _abilities: Node, _delta: float) -> void:
 	if not process: return
+	if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
+		reset()
 	if not movement.dashing and not state_controller.is_player_busy() and not ability_controller.busy:
-		print("mainhand ", mainhand_weapon)
-		print("offhand ", offhand_weapon)
-		if input.primary and not mainhand_swing_in_progress and player.use_stamina(attack_cost):
-			ability_controller.busy = true
-			bodies = []
-			mainhand_swinging = true
-			mainhand_swing_in_progress = true
-			if mainhand_swing == 0 or mainhand_swing == mainhand_combo_count or mainhand_swing == mainhand_combo_count:
-				mainhand_swing = 1
-			else:
-				mainhand_swing += 1
-		if input.secondary and not offhand_swing_in_progress and player.use_stamina(attack_cost):
-			ability_controller.busy = true
-			bodies = []
-			offhand_swinging = true
-			offhand_swing_in_progress = true
-			if offhand_swing == 0 or offhand_swing == offhand_combo_count or offhand_swing == offhand_combo_count:
-				offhand_swing = 1
-			else:
-				offhand_swing += 1
+		if input.primary:
+			print(not mainhand_swing_in_progress, " ", offhand_swing == 0, " ", mainhand_weapon)
+		if input.primary and not mainhand_swing_in_progress and offhand_swing == 0 and mainhand_weapon:
+			if player.use_stamina(attack_cost):
+				ability_controller.busy = true
+				bodies = []
+				mainhand_swinging = true
+				mainhand_swing_in_progress = true
+				if mainhand_swing == 0 or mainhand_swing == mainhand_combo_count:
+					mainhand_swing = 1
+				else:
+					mainhand_swing += 1
+		if input.secondary and not offhand_swing_in_progress and mainhand_swing == 0 and offhand_weapon:
+			if player.use_stamina(attack_cost):
+				ability_controller.busy = true
+				bodies = []
+				offhand_swinging = true
+				offhand_swing_in_progress = true
+				if offhand_swing == 0 or offhand_swing == offhand_combo_count:
+					offhand_swing = 1
+				else:
+					offhand_swing += 1
 
 func _melee_attack(body, damage):
-	#if swing_in_progress:
+	print("test")
 	if not body in bodies:
 		bodies.append(body)
 		body.take_damage(damage)
 
 func _on_attack_timer_timeout() -> void:
-	if not mainhand_swing_in_progress:
-		mainhand_swing = 0
-		ability_controller.busy = false
-	if not offhand_swing_in_progress:
-		offhand_swing = 0
-		ability_controller.busy = false
+	if not mainhand_swing_in_progress and not offhand_swing_in_progress:
+		reset()
+	#if not mainhand_swing_in_progress:
+		#mainhand_swing_in_progress = false
+		#mainhand_swing = 0
+	#if not offhand_swing_in_progress:
+		#offhand_swing_in_progress = false
+		#offhand_swing = 0
+	#ability_controller.busy = false
 
 func _attack_started() -> void:
 	if mainhand_swing_in_progress:
@@ -109,18 +129,30 @@ func _attack_started() -> void:
 
 func _attack_ended() -> void:
 	bodies.clear()
-	mainhand_weapon.monitoring = true
-	mainhand_swinging = false
-	offhand_weapon.monitoring = true
-	offhand_swinging = false
+	if mainhand_swing_in_progress:
+		mainhand_weapon.monitoring = false
+		mainhand_swinging = false
+		mainhand_swing_in_progress = false
+	if offhand_swing_in_progress:
+		offhand_weapon.monitoring = false
+		offhand_swinging = false
+		offhand_swing_in_progress = false
 	attack_timer.start()
 	ability_controller.busy = false
 
 func reset():
 	#weapon = null
 	bodies = []
+	mainhand_swing = 0
 	mainhand_swinging = false
-	mainhand_combo_count = 0
+	mainhand_swing_in_progress = false
+	if mainhand_weapon:
+		mainhand_weapon.monitoring = false
+	if offhand_weapon:
+		offhand_weapon.monitoring = false
+	#mainhand_combo_count = 0
+	offhand_swing = 0
 	offhand_swinging = false
-	offhand_combo_count = 0
+	offhand_swing_in_progress = false
+	#offhand_combo_count = 0
 	ability_controller.busy = false
