@@ -33,19 +33,14 @@ var offhand_combo_count: int = 0
 var process: bool = false
 
 func set_item(mainhand: Node, offhand: Node) -> void:
-	#mainhand_weapon = null
-	#offhand_weapon = null
 	reset()
-	#print("mh ", mainhand)
-	#print("oh ", offhand)
 	var offhand_valid: bool = _validate_slot(offhand, "offhand") 
-	var mainhand_valid = _validate_slot(mainhand, "mainhand")
+	var mainhand_valid: bool = _validate_slot(mainhand, "mainhand")
 	if not (offhand_valid or mainhand_valid):
 		reset()
 	process = (offhand_valid or mainhand_valid)
 
 func _validate_slot(slot: Node, slot_string: String) -> bool:
-	print(slot_string,": ", slot)
 	if slot is Weapon:
 		var testing_array: Array
 		match slot_string:
@@ -79,8 +74,6 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, _abiliti
 	if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
 		reset()
 	if not movement.dashing and not state_controller.is_player_busy() and not ability_controller.busy:
-		if input.primary:
-			print(not mainhand_swing_in_progress, " ", offhand_swing == 0, " ", mainhand_weapon)
 		if input.primary and not mainhand_swing_in_progress and offhand_swing == 0 and mainhand_weapon:
 			if player.use_stamina(attack_cost):
 				ability_controller.busy = true
@@ -103,7 +96,6 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, _abiliti
 					offhand_swing += 1
 
 func _melee_attack(body, damage):
-	print("test")
 	if not body in bodies:
 		bodies.append(body)
 		body.take_damage(damage)
