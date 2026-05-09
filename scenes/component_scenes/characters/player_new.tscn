@@ -963,7 +963,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/Hand")
+settings/0/target_node = NodePath("")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -991,8 +991,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/Finger")
-settings/0/pole_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/FingerPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "hand.l"
 settings/0/root_bone = 10
 settings/0/middle_bone_name = "finger.l"
@@ -1019,8 +1019,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/Thumb")
-settings/0/pole_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/ThumbPole")
+settings/0/target_node = NodePath("")
+settings/0/pole_node = NodePath("")
 settings/0/root_bone_name = "thumb_one.l"
 settings/0/root_bone = 13
 settings/0/middle_bone_name = "thumb_two.l"
@@ -1210,7 +1210,6 @@ transform = Transform3D(0.9999993, 0, 0, 0, 0.99999917, 0, 0, 0, 0.99999964, 0.3
 
 [node name="spear" parent="Player - Kopie/Weapons/Mainhand" unique_id=322799300 instance=ExtResource("5_mp4bu")]
 transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999995, 0, 0, 0)
-visible = false
 
 [node name="Hand" parent="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(322799300, 1480913319) index="0" unique_id=412858856]
 transform = Transform3D(-0.92357826, 3.8417056e-08, -0.38340858, 0.38340843, 0, -0.9235774, -4.4703484e-08, -0.99999905, -2.9802322e-08, 0.03180462, -0.050173275, 0.13260156)
@@ -1229,21 +1228,6 @@ transform = Transform3D(0.9999999, -9.313226e-10, 5.5879354e-09, -2.7939677e-09,
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999995, 0, 0, 0, 0.99999946, 0, 0, 0, 1, -0.385, 1.09, -0.405)
-
-[node name="spear" parent="Player - Kopie/Weapons/Offhand" unique_id=1771153598 instance=ExtResource("5_mp4bu")]
-transform = Transform3D(1.0000005, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Finger" parent="Player - Kopie/Weapons/Offhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(1771153598, 1480913319) index="1" unique_id=2061517379]
-transform = Transform3D(1, -1.4901161e-08, 3.7252903e-09, 1.4901161e-08, 0.99999994, 2.9802322e-08, -3.7252903e-09, 1.4901161e-08, 0.99999994, -0.033632517, 0.0019723177, -0.030844212)
-
-[node name="Thumb" parent="Player - Kopie/Weapons/Offhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(1771153598, 1480913319) index="2" unique_id=1174735853]
-transform = Transform3D(1, -2.9802322e-08, 1.1175871e-08, 2.9802322e-08, 0.99999946, 1.4901161e-08, -7.450581e-09, 0, 0.99999964, 0.032447696, 0.04281944, -0.005494654)
-
-[node name="FingerPole" parent="Player - Kopie/Weapons/Offhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(1771153598, 1480913319) index="3" unique_id=2008502423]
-transform = Transform3D(1.0000004, -4.4703484e-08, 1.4901161e-08, 1.4901161e-08, 1.0000001, 1.4901161e-08, -1.1175871e-08, 0, 1.0000001, -0.16259968, -0.0068609416, 0.08367026)
-
-[node name="ThumbPole" parent="Player - Kopie/Weapons/Offhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(1771153598, 1480913319) index="4" unique_id=205447482]
-transform = Transform3D(1, -1.937151e-07, 3.7252903e-08, 1.3411045e-07, 1.0000007, 7.4505806e-08, -2.9802322e-08, 1.4901161e-08, 1, 0.10529527, 0.06953432, 0.020641148)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1454,5 +1438,3 @@ bus = &"SFX"
 [editable path="Player - Kopie"]
 [editable path="Player - Kopie/Weapons/Mainhand/spear"]
 [editable path="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent"]
-[editable path="Player - Kopie/Weapons/Offhand/spear"]
-[editable path="Player - Kopie/Weapons/Offhand/spear/OnehandComponent"]

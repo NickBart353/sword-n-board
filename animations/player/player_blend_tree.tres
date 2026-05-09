@@ -121,6 +121,7 @@ switch_mode = 2
 xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_whbso"]
+xfade_time = 0.2
 switch_mode = 2
 advance_mode = 2
 
@@ -171,7 +172,7 @@ states/jump/position = Vector2(384, 228)
 states/landing/node = SubResource("AnimationNodeAnimation_vx52o")
 states/landing/position = Vector2(735, 228)
 transitions = ["attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_jh4wc"), "attack2", "attack3", SubResource("AnimationNodeStateMachineTransition_iynr0"), "jump", "falling", SubResource("AnimationNodeStateMachineTransition_xiaco"), "falling", "landing", SubResource("AnimationNodeStateMachineTransition_1jhuo"), "attack3", "idle", SubResource("AnimationNodeStateMachineTransition_qcxkl"), "attack2", "idle", SubResource("AnimationNodeStateMachineTransition_2qr8a"), "idle", "attack1", SubResource("AnimationNodeStateMachineTransition_3sly0"), "landing", "idle", SubResource("AnimationNodeStateMachineTransition_whbso"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_3vmq1"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_iw5ll"), "idle", "ability1", SubResource("AnimationNodeStateMachineTransition_id8qb"), "ability1", "idle", SubResource("AnimationNodeStateMachineTransition_rsbhw"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_f8vfq"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_48n4i"), "attack1", "idle", SubResource("AnimationNodeStateMachineTransition_eljox")]
-graph_offset = Vector2(-4, -131)
+graph_offset = Vector2(4, -31)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0rpqu"]
 animation = &"Jump/jump-start"
@@ -888,7 +889,7 @@ filters = ["", ".", "../Player - Kopie/Armature:position", "../Player - Kopie/IK
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(749.16907, 115.31287)
+graph_offset = Vector2(590.5103, 125.147995)
 nodes/output/position = Vector2(2240, -100)
 nodes/MainhandMovement/node = SubResource("AnimationNodeStateMachine_4o20e")
 nodes/MainhandMovement/position = Vector2(-580, 0)
