@@ -88,7 +88,7 @@ func _ready() -> void:
 		child.queue_free()
 	for child in offhand.get_children():
 		child.queue_free()
-	for child in twohand.get_children():
+	for child in $"Player - Kopie/Weapons/Twohand".get_children():
 		child.queue_free()
 	for child in self.find_children("*"):
 		if child is Node3D:

@@ -26,7 +26,7 @@ const MELEE_WEAPONS: Dictionary = {
 	"10009": preload("res://scenes/component_scenes/item_entities/weapons/greataxe.tscn"),#greataxe
 	"hatchet": "",
 	"10005": preload("uid://cq5niuf135ca6"),#greathammer
-	"katana": "",
+	"10007": preload("uid://bgdnrrkbfdkxx"),#katana
 	"10008": preload("uid://137agp1y62ln"),#spear
 	"10002": preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),#torch
 	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),#wooden_shield

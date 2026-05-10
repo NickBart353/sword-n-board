@@ -15,13 +15,13 @@ const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 	#"wooden_bow": preload("res://resources/items/bow.tres")
 #}
 
-const MELEE_WEAPONS: Dictionary = {
+const MELEE_WEAPONS: Dictionary = {#weapon resources
 	"shortsword": preload("res://resources/items/melee_weapons/short_sword.tres"),
 	"greatsword": preload("uid://qpdw7kpnlexp"),
 	"greataxe": preload("uid://dsjivk0hqdt2w"),
 	"hatchet": "",
 	"greathammer": preload("uid://bcahgjv4glvrm"),
-	"katana": "",
+	"katana": preload("uid://cln5hv1qcq4ll"),
 	"spear": preload("uid://bovbahtw7dtub"),
 	"torch": preload("res://resources/items/melee_weapons/torch.tres"),
 	"wooden_shield": preload("res://resources/items/melee_weapons/wooden_shield.tres"),
