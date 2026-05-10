@@ -7,10 +7,7 @@
 [ext_resource type="Material" uid="uid://dcs6ebmcj00rd" path="res://scenes/component_scenes/item_entities/weapons/hatchet/hilt.tres" id="5_do4hh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r21bu"]
-size = Vector3(0.53167725, 0.99009705, 0.21801758)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_i5ytb"]
-size = Vector3(0.934433, 0.57359123, 0.21801758)
+size = Vector3(0.036888123, 0.2118969, 0.305748)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_hnylc"]
 _surfaces = [{
@@ -95,12 +92,9 @@ hand_component = NodePath("OnehandComponent")
 [node name="OnehandComponent" parent="." index="0" unique_id=1480913319 instance=ExtResource("3_flxtr")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1670302084]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82202363, 1.244908, -0.019560814)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00067549944, 0.4381343, -0.06883526)
 shape = SubResource("BoxShape3D_r21bu")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="2" unique_id=1273448695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09905839, 1.3087533, -0.019560814)
-shape = SubResource("BoxShape3D_i5ytb")
-
-[node name="HatchetMesh" parent="." index="3" unique_id=1733529681]
+[node name="HatchetMesh" parent="." index="2" unique_id=1733529681]
+transform = Transform3D(-8.742278e-09, 0.2, 8.742278e-09, 0, -8.742278e-09, 0.2, 0.2, 8.742278e-09, 3.821371e-16, -0.015992612, 0.4502868, -0.08708435)
 mesh = SubResource("ArrayMesh_7gwkr")
