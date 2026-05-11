@@ -314,6 +314,18 @@ tracks/19/keys = {
 "update": 0,
 "values": [Quaternion(0, 0, 0, 1)]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Player - Kopie/Weapons/Mainhand:quaternion")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0, 0, 0, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
 _data = {
@@ -944,10 +956,10 @@ mana_regeneration_speed = 3.0
 
 [node name="Player - Kopie" parent="." unique_id=1362714860 instance=ExtResource("2_p0cqj")]
 
-[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="0" unique_id=250479289]
+[node name="Cube_001" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="0" unique_id=1235602141]
 mesh = SubResource("ArrayMesh_0hxxe")
 
-[node name="LegLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="1" unique_id=1163306929]
+[node name="LegLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="1" unique_id=1163306929]
 setting_count = 1
 settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootLeft")
 settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeLeft")
@@ -961,7 +973,7 @@ settings/0/end_bone = 28
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="LegRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="2" unique_id=1028330868]
+[node name="LegRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="2" unique_id=1028330868]
 setting_count = 1
 settings/0/target_node = NodePath("../../../IKMarkers/Feet/FootRight")
 settings/0/pole_node = NodePath("../../../IKMarkers/Feet/KneeRight")
@@ -975,7 +987,7 @@ settings/0/end_bone = 33
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
+[node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="3" unique_id=2059326306]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Offhand/hatchet/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
@@ -989,7 +1001,7 @@ settings/0/end_bone = 10
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
+[node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="4" unique_id=2035196472]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Mainhand/hatchet/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
@@ -1003,7 +1015,7 @@ settings/0/end_bone = 19
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="5" unique_id=1498534026]
+[node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="5" unique_id=1498534026]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Offhand/hatchet/OnehandComponent/Finger")
 settings/0/pole_node = NodePath("../../../Weapons/Offhand/hatchet/OnehandComponent/FingerPole")
@@ -1017,7 +1029,7 @@ settings/0/end_bone = 12
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="6" unique_id=671719962]
+[node name="FingerRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="6" unique_id=671719962]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Mainhand/hatchet/OnehandComponent/Finger")
 settings/0/pole_node = NodePath("../../../Weapons/Mainhand/hatchet/OnehandComponent/FingerPole")
@@ -1031,7 +1043,7 @@ settings/0/end_bone = 21
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="7" unique_id=135651650]
+[node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="7" unique_id=135651650]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Offhand/hatchet/OnehandComponent/Thumb")
 settings/0/pole_node = NodePath("../../../Weapons/Offhand/hatchet/OnehandComponent/ThumbPole")
@@ -1045,7 +1057,7 @@ settings/0/end_bone = 15
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="8" unique_id=1460002514]
+[node name="ThumbRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="8" unique_id=1460002514]
 setting_count = 1
 settings/0/target_node = NodePath("../../../Weapons/Mainhand/hatchet/OnehandComponent/Thumb")
 settings/0/pole_node = NodePath("../../../Weapons/Mainhand/hatchet/OnehandComponent/ThumbPole")
@@ -1059,7 +1071,7 @@ settings/0/end_bone = 24
 settings/0/use_virtual_end = false
 settings/0/extend_end_bone = false
 
-[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="9" unique_id=1146749179]
+[node name="Spine" type="FABRIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="9" unique_id=1146749179]
 angular_delta_limit = 3.141592653589793
 deterministic = true
 setting_count = 1
@@ -1079,7 +1091,7 @@ settings/0/joints/2/limitation = null
 settings/0/joints/3/rotation_axis = 3
 settings/0/joints/3/limitation = null
 
-[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="10" unique_id=1364208870]
+[node name="HandRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="10" unique_id=1364208870]
 active = false
 setting_count = 1
 settings/0/amount = 1.0
@@ -1092,7 +1104,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="11" unique_id=77210507]
+[node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="11" unique_id=77210507]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "hand.l"
@@ -1104,7 +1116,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="12" unique_id=1214134667]
+[node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="12" unique_id=1214134667]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.r"
@@ -1116,7 +1128,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="13" unique_id=1048711463]
+[node name="FootLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="13" unique_id=1048711463]
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.l"
@@ -1128,7 +1140,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="14" unique_id=521497604]
+[node name="RotationLegRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="14" unique_id=521497604]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 active = false
 setting_count = 1
@@ -1142,7 +1154,7 @@ settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
-[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="15" unique_id=1579301299]
+[node name="RotationLegLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 1748896700) index="15" unique_id=1579301299]
 active = false
 setting_count = 1
 settings/0/amount = 1.0
@@ -1222,7 +1234,8 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000018, 0, 0, 0, 0.9999999, 0.154
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.9999992, 0, 0, 0, 0.9999991, 0, 0, 0, 0.99999964, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999994, 0, 0, 0, 0.9999992, 0, 0, 0, 0.99999994, 0.3264439, 1.1441026, -0.3358699)
+rotation_edit_mode = 1
 
 [node name="hatchet" parent="Player - Kopie/Weapons/Mainhand" unique_id=137127868 instance=ExtResource("5_xamg6")]
 
