@@ -224,8 +224,11 @@ func _reset_abilities():
 func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
 	_reset_abilities()
 	var two_handed: bool = false
+	var dual_wield: bool = false
 	if player_mainhand:
 		two_handed = player_mainhand.data.two_handed
+	if player_mainhand == player_offhand:
+		dual_wield = true
 	
 	head_item = _reequip_slot(head_item, player_helmet, head_slot)
 	body_item = _reequip_slot(body_item, player_body, body_slot)
@@ -255,7 +258,8 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 				thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
 				
 				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
-	
+	#elif dual_wield:
+		#pass
 	else:
 		_clear_equip_slot(twohand)
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)

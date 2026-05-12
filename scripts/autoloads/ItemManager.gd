@@ -19,7 +19,7 @@ const MELEE_WEAPONS: Dictionary = {#weapon resources
 	"shortsword": preload("res://resources/items/melee_weapons/short_sword.tres"),
 	"greatsword": preload("uid://qpdw7kpnlexp"),
 	"greataxe": preload("uid://dsjivk0hqdt2w"),
-	"hatchet": "",
+	"hatchet": preload("uid://cxr6fc77pudua"),
 	"greathammer": preload("uid://bcahgjv4glvrm"),
 	"katana": preload("uid://cln5hv1qcq4ll"),
 	"spear": preload("uid://bovbahtw7dtub"),

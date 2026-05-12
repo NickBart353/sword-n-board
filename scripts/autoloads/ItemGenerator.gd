@@ -20,13 +20,13 @@ const ITEM_TYPE_DICT: Dictionary = {
 const UNARMED: PackedScene = preload("res://scenes/component_scenes/item_entities/weapons/unarmed.tscn")
 const UNARMED_DATA = preload("uid://b3qbpvnhs0ofq")
 
-const MELEE_WEAPONS: Dictionary = {
+const MELEE_WEAPONS: Dictionary = {#item scene
 	"10001": preload("res://scenes/component_scenes/item_entities/weapons/sword.tscn"),#shortsword
 	"10004": preload("res://scenes/component_scenes/item_entities/weapons/greatsword.tscn"),#greatsword
 	"10009": preload("res://scenes/component_scenes/item_entities/weapons/greataxe.tscn"),#greataxe
-	"hatchet": "",
+	"10007": preload("uid://c2wo77w8t2nuy"),#hatchet
 	"10005": preload("uid://cq5niuf135ca6"),#greathammer
-	"10007": preload("uid://bgdnrrkbfdkxx"),#katana
+	"10010": preload("uid://bgdnrrkbfdkxx"),#katana
 	"10008": preload("uid://137agp1y62ln"),#spear
 	"10002": preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),#torch
 	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),#wooden_shield
