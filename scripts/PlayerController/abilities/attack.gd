@@ -14,7 +14,8 @@ const allowed_mainhands: Array = [ItemData.ITEM_TYPE.SHORTSWORD, ItemData.ITEM_T
 
 const allowed_offhands: Array = [ItemData.ITEM_TYPE.SPEAR]
 
-var bodies: Array = []
+var mainhand_bodies: Array = []
+var offhand_bodies: Array = []
 
 var mainhand_swing: int = 0
 var mainhand_swinging: bool = false
@@ -30,9 +31,12 @@ var offhand_weapon: Weapon
 var mainhand_combo_count: int = 0
 var offhand_combo_count: int = 0
 
+var dualwielding: bool = false
+
 var process: bool = false
 
-func set_item(mainhand: Node, offhand: Node) -> void:
+func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
+	dualwielding = dualwield
 	reset()
 	var offhand_valid: bool = _validate_slot(offhand, "offhand") 
 	var mainhand_valid: bool = _validate_slot(mainhand, "mainhand")
@@ -48,18 +52,18 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 					testing_array = allowed_offhands
 				"mainhand":
 					testing_array = allowed_mainhands
-		if slot.data.item_type in testing_array:
+		if slot.data.item_type in testing_array or (dualwielding and slot.data.item_type in allowed_mainhands):
 			match slot_string:
 				"offhand":
 					offhand_weapon = slot
 					offhand_combo_count = slot.data.combo_size
-					if not offhand_weapon.hit.is_connected(_melee_attack):
-						offhand_weapon.hit.connect(_melee_attack)
+					if not offhand_weapon.hit.is_connected(_offhand_attack):
+						offhand_weapon.hit.connect(_offhand_attack)
 				"mainhand":
 					mainhand_weapon = slot
 					mainhand_combo_count = slot.data.combo_size
-					if not mainhand_weapon.hit.is_connected(_melee_attack):
-						mainhand_weapon.hit.connect(_melee_attack)
+					if not mainhand_weapon.hit.is_connected(_mainhand_attack):
+						mainhand_weapon.hit.connect(_mainhand_attack)
 			return true
 	else:
 		match slot_string:
@@ -77,17 +81,19 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, _abiliti
 		if input.primary and not mainhand_swing_in_progress and offhand_swing == 0 and mainhand_weapon:
 			if player.use_stamina(attack_cost):
 				ability_controller.busy = true
-				bodies = []
+				mainhand_bodies.clear()
+				offhand_bodies.clear()
 				mainhand_swinging = true
 				mainhand_swing_in_progress = true
 				if mainhand_swing == 0 or mainhand_swing == mainhand_combo_count:
 					mainhand_swing = 1
 				else:
 					mainhand_swing += 1
-		if input.secondary and not offhand_swing_in_progress and mainhand_swing == 0 and offhand_weapon:
+		if input.secondary and not offhand_swing_in_progress and mainhand_swing == 0 and offhand_weapon and not dualwielding:
 			if player.use_stamina(attack_cost):
 				ability_controller.busy = true
-				bodies = []
+				mainhand_bodies.clear()
+				offhand_bodies.clear()
 				offhand_swinging = true
 				offhand_swing_in_progress = true
 				if offhand_swing == 0 or offhand_swing == offhand_combo_count:
@@ -95,9 +101,14 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, _abiliti
 				else:
 					offhand_swing += 1
 
-func _melee_attack(body, damage):
-	if not body in bodies:
-		bodies.append(body)
+func _mainhand_attack(body, damage):
+	if not body in mainhand_bodies:
+		mainhand_bodies.append(body)
+		body.take_damage(damage)
+
+func _offhand_attack(body, damage):
+	if not body in offhand_bodies:
+		offhand_bodies.append(body)
 		body.take_damage(damage)
 
 func _on_attack_timer_timeout() -> void:
@@ -115,16 +126,21 @@ func _attack_started() -> void:
 	if mainhand_swing_in_progress:
 		mainhand_weapon.monitoring = true
 		mainhand_swinging = false
+		if dualwielding:
+			offhand_weapon.monitoring = true
 	if offhand_swing_in_progress:
 		offhand_weapon.monitoring = true
 		offhand_swinging = false
 
 func _attack_ended() -> void:
-	bodies.clear()
+	mainhand_bodies.clear()
+	offhand_bodies.clear()
 	if mainhand_swing_in_progress:
 		mainhand_weapon.monitoring = false
 		mainhand_swinging = false
 		mainhand_swing_in_progress = false
+		if dualwielding:
+			offhand_weapon.monitoring = false
 	if offhand_swing_in_progress:
 		offhand_weapon.monitoring = false
 		offhand_swinging = false
@@ -134,7 +150,8 @@ func _attack_ended() -> void:
 
 func reset():
 	#weapon = null
-	bodies = []
+	mainhand_bodies.clear()
+	offhand_bodies.clear()
 	mainhand_swing = 0
 	mainhand_swinging = false
 	mainhand_swing_in_progress = false

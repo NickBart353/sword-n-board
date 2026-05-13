@@ -222,9 +222,9 @@ func _reset_abilities():
 		ability_instance.reset()
 
 func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
-	print("mainhand: ",player_mainhand,"\noffhand: ", player_offhand)
 	_reset_abilities()
 	var two_handed: bool = false
+	var dualwield: bool = _is_dualwield(player_mainhand, player_offhand)
 	if player_mainhand:
 		two_handed = player_mainhand.data.two_handed
 	
@@ -256,14 +256,14 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 				thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
 				
 				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
-	elif _is_dualwield(player_mainhand, player_offhand):
+	elif dualwield:
 		_clear_equip_slot(twohand)
 		_equip_dualwield(player_mainhand, player_offhand)
 	else:
 		_clear_equip_slot(twohand)
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
 		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
-	_set_weapons()
+	_set_weapons(dualwield)
 
 func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
 	if not new_mainhand and not new_offhand: 
@@ -372,12 +372,12 @@ func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
 	_set_weapons()
 
-func _set_weapons():
+func _set_weapons(dualwield: bool = false) -> void:
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
 	var off_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(offhand)
 	
 	for _ability in ability.get_children():
-		_ability.set_item(main_slot, off_slot)
+		_ability.set_item(main_slot, off_slot, dualwield)
 	#$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
 
 func get_equipped_weapon_from_slot(slot: Marker3D):

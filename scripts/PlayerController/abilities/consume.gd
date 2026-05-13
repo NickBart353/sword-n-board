@@ -24,7 +24,7 @@ var process: bool = false
 		#process = true
 		#return
 	#process = false
-func set_item(mainhand: Node, offhand: Node) -> void:
+func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
 	pass
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
