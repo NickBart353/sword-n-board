@@ -222,13 +222,11 @@ func _reset_abilities():
 		ability_instance.reset()
 
 func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
+	print("mainhand: ",player_mainhand,"\noffhand: ", player_offhand)
 	_reset_abilities()
 	var two_handed: bool = false
-	var dual_wield: bool = false
 	if player_mainhand:
 		two_handed = player_mainhand.data.two_handed
-	if player_mainhand == player_offhand:
-		dual_wield = true
 	
 	head_item = _reequip_slot(head_item, player_helmet, head_slot)
 	body_item = _reequip_slot(body_item, player_body, body_slot)
@@ -258,13 +256,22 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 				thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
 				
 				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
-	#elif dual_wield:
-		#pass
+	elif _is_dualwield(player_mainhand, player_offhand):
+		_clear_equip_slot(twohand)
+		_equip_dualwield(player_mainhand, player_offhand)
 	else:
 		_clear_equip_slot(twohand)
 		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
 		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
 	_set_weapons()
+
+func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
+	if not new_mainhand and not new_offhand: 
+		return true
+	if new_mainhand and new_offhand:
+		if new_mainhand.data.item_id == new_offhand.data.item_id:
+			return true
+	return false
 
 func _reequip_mainhand(old: Item, new: Item, slot):
 	if old != new or (not new and not main_hand_item):
@@ -315,6 +322,46 @@ func _reequip_offhand(old: Item, new: Item, slot):
 			
 			new_animation.equpped_offhand_weapon(anim_name)
 	return old
+
+func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
+	_clear_equip_slot(mainhand)
+	_clear_equip_slot(offhand)
+	var mainhand_item_instance: Weapon
+	var offhand_item_instance: Weapon
+	var anim_name: String
+	if not new_mainhand:
+		mainhand_item_instance = ItemGenerator.generate_unarmed()
+		offhand_item_instance = ItemGenerator.generate_unarmed()
+		anim_name = "fist"
+	else:
+		mainhand_item_instance = ItemGenerator.generate_item(new_mainhand.data)
+		offhand_item_instance = ItemGenerator.generate_item(new_offhand.data)
+		anim_name = mainhand_item_instance.data.item_name.to_lower()
+	
+	mainhand.add_child(mainhand_item_instance)
+	offhand.add_child(offhand_item_instance)
+	
+	mainhand_item_instance.update_markers("R")
+	offhand_item_instance.update_markers("L")
+	
+	var mainhand_marker_dictionary: Dictionary = mainhand_item_instance.get_markers()
+	var offhand_marker_dictionary: Dictionary = offhand_item_instance.get_markers()
+	
+	if mainhand_marker_dictionary:
+		arm_right.set_target_node(0, mainhand_marker_dictionary.get("Hand").get_path())
+		finger_right.set_target_node(0, mainhand_marker_dictionary.get("Finger").get_path())
+		thumb_right.set_target_node(0, mainhand_marker_dictionary.get("Thumb").get_path())
+		finger_right.set_pole_node(0, mainhand_marker_dictionary.get("FingerPole").get_path())
+		thumb_right.set_pole_node(0, mainhand_marker_dictionary.get("ThumbPole").get_path())
+	
+	if offhand_marker_dictionary:
+		arm_left.set_target_node(0, offhand_marker_dictionary.get("Hand").get_path())
+		finger_left.set_target_node(0, offhand_marker_dictionary.get("Finger").get_path())
+		thumb_left.set_target_node(0, offhand_marker_dictionary.get("Thumb").get_path())
+		finger_left.set_pole_node(0, offhand_marker_dictionary.get("FingerPole").get_path())
+		thumb_left.set_pole_node(0, offhand_marker_dictionary.get("ThumbPole").get_path())
+	
+	new_animation.equipped_dualwield_weapon(anim_name)
 
 func _check_unequipped_slots():
 	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)
