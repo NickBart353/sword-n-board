@@ -1254,7 +1254,7 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000018, 0, 0, 0, 0.9999999, 0.154
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(1, 0, 0, 0, 0.99999905, 0, 0, 0, 1.0000007, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999991, 0, 0, 0, 1.0000005, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="Unarmed" parent="Player - Kopie/Weapons/Mainhand" unique_id=209339069 instance=ExtResource("5_qk665")]
