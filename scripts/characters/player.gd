@@ -232,6 +232,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 	body_item = _reequip_slot(body_item, player_body, body_slot)
 	boots_item = _reequip_slot(boots_item, player_boots, boots_slot)
 	
+	_reset_attack_modifiers()
 	if two_handed:
 		if main_hand_item != player_mainhand:
 			main_hand_item = player_mainhand
@@ -258,11 +259,15 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
 	elif dualwield:
 		_clear_equip_slot(twohand)
+		main_hand_item = player_mainhand
+		off_hand_item = player_offhand
 		_equip_dualwield(player_mainhand, player_offhand)
 	else:
 		_clear_equip_slot(twohand)
-		main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
-		off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
+		#main_hand_item = _reequip_mainhand(main_hand_item, player_mainhand, mainhand)
+		#off_hand_item = _reequip_offhand(off_hand_item, player_offhand, offhand)
+		_reequip_mainhand(main_hand_item, player_mainhand, mainhand)
+		_reequip_offhand(off_hand_item, player_offhand, offhand)
 	_set_weapons(dualwield)
 
 func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
@@ -273,55 +278,57 @@ func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
 			return true
 	return false
 
-func _reequip_mainhand(old: Item, new: Item, slot):
-	if old != new or (not new and not main_hand_item):
-		old = new
-		_clear_equip_slot(slot)
-		var item_instance: Weapon
-		var anim_name: String
-		if not old:
-			item_instance = ItemGenerator.generate_unarmed()
-			anim_name = "fist"
-		else:
-			item_instance = ItemGenerator.generate_item(old.data)
-			anim_name = item_instance.data.item_name.to_lower()
-		if item_instance:
-			slot.add_child(item_instance)
-			item_instance.update_markers("R")
-			var marker_dictionary: Dictionary = item_instance.get_markers()
-			arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
-			finger_right.set_target_node(0, marker_dictionary.get("Finger").get_path())
-			thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
-			finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
-			thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-			
-			new_animation.equpped_mainhand_weapon(anim_name)
-	return old
+func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
+	#if old != new or (not new and not main_hand_item):
+		#old = new
+	_clear_equip_slot(mainhand)
+	main_hand_item = new_mainhand
+	var item_instance: Weapon
+	var anim_name: String
+	if not new_mainhand:
+		item_instance = ItemGenerator.generate_unarmed()
+		anim_name = "fist"
+	else:
+		item_instance = ItemGenerator.generate_item(new_mainhand.data)
+		anim_name = item_instance.data.item_name.to_lower()
+	if item_instance:
+		mainhand.add_child(item_instance)
+		item_instance.update_markers("R")
+		var marker_dictionary: Dictionary = item_instance.get_markers()
+		arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
+		finger_right.set_target_node(0, marker_dictionary.get("Finger").get_path())
+		thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+		finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+		thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+		
+		new_animation.equpped_mainhand_weapon(anim_name)
+	#return old
 
-func _reequip_offhand(old: Item, new: Item, slot):
-	if old != new or (not old and not off_hand_item):
-		old = new
-		_clear_equip_slot(slot)
-		var item_instance: Weapon
-		var anim_name: String
-		if not old:
-			item_instance = ItemGenerator.generate_unarmed()
-			anim_name = "fist"
-		else:
-			item_instance = ItemGenerator.generate_item(old.data)
-			anim_name = item_instance.data.item_name.to_lower()
-		if item_instance:
-			slot.add_child(item_instance)
-			item_instance.update_markers("L")
-			var marker_dictionary: Dictionary = item_instance.get_markers()
-			arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
-			finger_left.set_target_node(0, marker_dictionary.get("Finger").get_path())
-			thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
-			finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
-			thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
-			
-			new_animation.equpped_offhand_weapon(anim_name)
-	return old
+func _reequip_offhand(old: Item, new_offhand: Item, slot):
+	#if old != new or (not old and not off_hand_item):
+		#old = new
+	_clear_equip_slot(offhand)
+	off_hand_item = new_offhand
+	var item_instance: Weapon
+	var anim_name: String
+	if not new_offhand:
+		item_instance = ItemGenerator.generate_unarmed()
+		anim_name = "fist"
+	else:
+		item_instance = ItemGenerator.generate_item(new_offhand.data)
+		anim_name = item_instance.data.item_name.to_lower()
+	if item_instance:
+		offhand.add_child(item_instance)
+		item_instance.update_markers("L")
+		var marker_dictionary: Dictionary = item_instance.get_markers()
+		arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
+		finger_left.set_target_node(0, marker_dictionary.get("Finger").get_path())
+		thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
+		finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
+		thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+		
+		new_animation.equpped_offhand_weapon(anim_name)
+	#return old
 
 func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	_clear_equip_slot(mainhand)
@@ -362,6 +369,9 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 		thumb_left.set_pole_node(0, offhand_marker_dictionary.get("ThumbPole").get_path())
 	
 	new_animation.equipped_dualwield_weapon(anim_name)
+
+func _reset_attack_modifiers() -> void:
+	movement.reset_attack_modifiers()
 
 func _check_unequipped_slots():
 	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)

@@ -13,6 +13,11 @@ signal update_rotation_modifier
 @export_range(0.0, 100.0) var jump_cost = 15.0
 @export_range(0.0, 100.0) var dash_cost = 25.0
 
+const MOVEMENT_MODIFIER_DICT_PRESET: Dictionary = {
+	"amount": 0.0,
+	"type": "",
+}
+
 var dashing: bool
 var dash_started: bool
 var jumping: bool
@@ -28,10 +33,10 @@ var air_time: float = 0.0
 
 var calculated_movement_speed: float = 1
 var calculated_movement_modifiers: float = 1
-var movement_modifiers: Array[float] = []
+var movement_modifiers: Array[Dictionary] = []
 
 var calculated_rotation_modifiers: float = 1
-var rotation_modifiers: Array[float] = []
+var rotation_modifiers: Array[Dictionary] = []
 
 func _ready() -> void:
 	calculated_movement_speed = movement_speed
@@ -124,32 +129,55 @@ func _check_raycast(direction: String, delta):
 	else:
 		return player.velocity.y
 
-func add_movement_modifier(value: float) -> void:
-	movement_modifiers.append(value)
+func add_movement_modifier(value: float, type: String = "attack") -> void:
+	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
+	new_modifier["amount"] = value
+	new_modifier["type"] = type
+	movement_modifiers.append(new_modifier)
+	_update_movement_speed()
+
+func remove_movement_modifier(value: float, type: String = "attack") -> void:
+	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
+	new_modifier["amount"] = value
+	new_modifier["type"] = type
+	if new_modifier in movement_modifiers:
+		movement_modifiers.erase(new_modifier)
+	_update_movement_speed()
+
+func add_rotation_modifier(value: float, type: String = "attack") -> void:
+	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
+	new_modifier["amount"] = value
+	new_modifier["type"] = type
+	rotation_modifiers.append(new_modifier)
+	_update_rotation_speed()
+
+func remove_rotation_modifier(value: float, type: String = "attack") -> void:
+	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
+	new_modifier["amount"] = value
+	new_modifier["type"] = type
+	if new_modifier in rotation_modifiers:
+		rotation_modifiers.erase(new_modifier)
+	_update_rotation_speed()
+
+func reset_attack_modifiers() -> void:
+	for modifier in movement_modifiers:
+		if modifier["type"] == "attack":
+			movement_modifiers.erase(modifier)
+	_update_movement_speed()
+	
+	for modifier in rotation_modifiers:
+		if modifier["type"] == "attack":
+			rotation_modifiers.erase(modifier)
+	_update_rotation_speed()
+
+func _update_movement_speed() -> void:
 	calculated_movement_modifiers = 1
 	for modifier in movement_modifiers:
-		calculated_movement_modifiers *= modifier
+		calculated_movement_modifiers *= modifier["amount"]
 	calculated_movement_speed = movement_speed * calculated_movement_modifiers
 
-func remove_movement_modifier(value: float) -> void:
-	if value in movement_modifiers:
-		movement_modifiers.erase(value)
-	calculated_movement_modifiers = 1
-	for modifier in movement_modifiers:
-		calculated_movement_modifiers *= modifier
-	calculated_movement_speed = movement_speed * calculated_movement_modifiers
-
-func add_rotation_modifier(value: float) -> void:
-	rotation_modifiers.append(value)
+func _update_rotation_speed() -> void:
 	calculated_rotation_modifiers = 1
 	for modifier in rotation_modifiers:
-		calculated_rotation_modifiers *= modifier
-	update_rotation_modifier.emit(calculated_rotation_modifiers)
-
-func remove_rotation_modifier(value: float) -> void:
-	if value in rotation_modifiers:
-		rotation_modifiers.erase(value)
-	calculated_rotation_modifiers = 1
-	for modifier in rotation_modifiers:
-		calculated_rotation_modifiers *= modifier
+		calculated_rotation_modifiers *= modifier["amount"]
 	update_rotation_modifier.emit(calculated_rotation_modifiers)

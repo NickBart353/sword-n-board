@@ -149,7 +149,6 @@ func _attack_ended() -> void:
 	ability_controller.busy = false
 
 func reset():
-	#weapon = null
 	mainhand_bodies.clear()
 	offhand_bodies.clear()
 	mainhand_swing = 0
