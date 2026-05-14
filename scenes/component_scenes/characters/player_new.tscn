@@ -1246,7 +1246,7 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000018, 0, 0, 0, 0.9999999, 0.154
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.9999998, 0, 0, 0, 0.9999995, 0, 0, 0, 1.0000002, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999996, 0, 0, 0, 1.0000004, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="Shield" parent="Player - Kopie/Weapons/Mainhand" unique_id=119600585 instance=ExtResource("5_qk665")]
@@ -1255,7 +1255,7 @@ rotation_edit_mode = 1
 transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.172, 0.162, 0.229)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.9999997, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000005, -0.385, 1.09, -0.405)
+transform = Transform3D(0.9999995, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000004, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
 [node name="Shield" parent="Player - Kopie/Weapons/Offhand" unique_id=1026915445 instance=ExtResource("5_qk665")]
