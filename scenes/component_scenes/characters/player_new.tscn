@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
-[ext_resource type="PackedScene" uid="uid://137agp1y62ln" path="res://scenes/component_scenes/item_entities/weapons/spear/spear.tscn" id="5_qk665"]
+[ext_resource type="PackedScene" uid="uid://dfhfebr25ho24" path="res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn" id="5_qk665"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -221,91 +221,91 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../Player - Kopie/Weapons/Mainhand:rotation")
+tracks/12/path = NodePath("../Player - Kopie/IKMarkers/Arms/ElbowRight:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(0.51984733, 1.2604917, 0.9327944)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../Player - Kopie/IKMarkers/Arms/ElbowRight:position")
+tracks/13/path = NodePath("../Player - Kopie/Weapons/Offhand:position")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.51984733, 1.2604917, 0.9327944)]
+"values": [Vector3(-0.385, 1.09, -0.405)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../Player - Kopie/Weapons/Offhand:position")
+tracks/14/path = NodePath("../Player - Kopie/Weapons/Offhand:rotation")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.385, 1.09, -0.405)]
+"values": [Vector3(0, 0, 0)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../Player - Kopie/Weapons/Offhand:rotation")
+tracks/15/path = NodePath("../Player - Kopie/IKMarkers/Arms/ElbowLeft:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.41359305, 1.3218328, 1.0142287)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("../Player - Kopie/IKMarkers/Arms/ElbowLeft:position")
+tracks/16/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.41359305, 1.3218328, 1.0142287)]
+"values": [Vector3(0.9701936, 0, 0)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
+tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.9701936, 0, 0)]
+"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
+tracks/18/path = NodePath("../Player - Kopie/Weapons/Twohand:quaternion")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
+"values": [Quaternion(0, 0, 0, 1)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("../Player - Kopie/Weapons/Twohand:quaternion")
+tracks/19/path = NodePath("../Player - Kopie/Weapons/Mainhand:quaternion")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
@@ -317,22 +317,10 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("../Player - Kopie/Weapons/Mainhand:quaternion")
+tracks/20/path = NodePath("../Player - Kopie/Weapons/Offhand:quaternion")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Quaternion(0, 0, 0, 1)]
-}
-tracks/21/type = "value"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("../Player - Kopie/Weapons/Offhand:quaternion")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1001,7 +989,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/Hand")
+settings/0/target_node = NodePath("../../../Weapons/Offhand/Torch/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -1015,7 +1003,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/spear/OnehandComponent/Hand")
+settings/0/target_node = NodePath("../../../Weapons/Mainhand/Torch/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -1246,19 +1234,22 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000018, 0, 0, 0, 0.9999999, 0.154
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999994, 0, 0, 0, 1.000001, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999996, 0, 0, 0, 1.0000008, 0, 0, 0, 0.99999976, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
-[node name="spear" parent="Player - Kopie/Weapons/Mainhand" unique_id=322799300 instance=ExtResource("5_qk665")]
+[node name="Torch" parent="Player - Kopie/Weapons/Mainhand" unique_id=1191162332 instance=ExtResource("5_qk665")]
 
-[node name="Hand" parent="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(322799300, 1480913319) index="0" unique_id=412858856]
-transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.032, -0.05, 0.133)
+[node name="Hand" parent="Player - Kopie/Weapons/Mainhand/Torch/OnehandComponent" parent_id_path=PackedInt32Array(1191162332, 1480913319) index="0" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.08, -0.247, 0.122)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999998, 0, 0, 0, 1.0000001, 0, 0, 0, 0.9999999, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
-[node name="spear" parent="Player - Kopie/Weapons/Offhand" unique_id=579117588 instance=ExtResource("5_qk665")]
+[node name="Torch" parent="Player - Kopie/Weapons/Offhand" unique_id=228008539 instance=ExtResource("5_qk665")]
+
+[node name="Hand" parent="Player - Kopie/Weapons/Offhand/Torch/OnehandComponent" parent_id_path=PackedInt32Array(228008539, 1480913319) index="0" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.036, -0.349, 0.175)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1464,7 +1455,7 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
-[editable path="Player - Kopie/Weapons/Mainhand/spear"]
-[editable path="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent"]
-[editable path="Player - Kopie/Weapons/Offhand/spear"]
-[editable path="Player - Kopie/Weapons/Offhand/spear/OnehandComponent"]
+[editable path="Player - Kopie/Weapons/Mainhand/Torch"]
+[editable path="Player - Kopie/Weapons/Mainhand/Torch/OnehandComponent"]
+[editable path="Player - Kopie/Weapons/Offhand/Torch"]
+[editable path="Player - Kopie/Weapons/Offhand/Torch/OnehandComponent"]
