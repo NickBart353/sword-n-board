@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="5_qk665"]
+[ext_resource type="PackedScene" uid="uid://137agp1y62ln" path="res://scenes/component_scenes/item_entities/weapons/spear/spear.tscn" id="5_qk665"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -1001,7 +1001,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Offhand/Sword/OnehandComponent/Hand")
+settings/0/target_node = NodePath("../../../Weapons/Offhand/spear/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -1015,7 +1015,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmRight" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="4" unique_id=2035196472]
 setting_count = 1
-settings/0/target_node = NodePath("../../../Weapons/Mainhand/Sword/OnehandComponent/Hand")
+settings/0/target_node = NodePath("../../../Weapons/Mainhand/spear/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowRight")
 settings/0/root_bone_name = "upper_arm.r"
 settings/0/root_bone = 17
@@ -1246,22 +1246,19 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000018, 0, 0, 0, 0.9999999, 0.154
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000004, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("5_qk665")]
+[node name="spear" parent="Player - Kopie/Weapons/Mainhand" unique_id=322799300 instance=ExtResource("5_qk665")]
 
-[node name="Hand" parent="Player - Kopie/Weapons/Mainhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(1495302004, 1480913319) index="0" unique_id=412858856]
-transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.035, 0, 0.15)
+[node name="Hand" parent="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent" parent_id_path=PackedInt32Array(322799300, 1480913319) index="0" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.032, -0.05, 0.133)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.9999994, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, -0.385, 1.09, -0.405)
+transform = Transform3D(0.9999995, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
-[node name="Sword" parent="Player - Kopie/Weapons/Offhand" unique_id=468253234 instance=ExtResource("5_qk665")]
-
-[node name="Hand" parent="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent" parent_id_path=PackedInt32Array(468253234, 1480913319) index="0" unique_id=412858856]
-transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, -0.035, 0, 0.15)
+[node name="spear" parent="Player - Kopie/Weapons/Offhand" unique_id=579117588 instance=ExtResource("5_qk665")]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -1467,7 +1464,7 @@ bus = &"SFX"
 [connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword"]
-[editable path="Player - Kopie/Weapons/Mainhand/Sword/OnehandComponent"]
-[editable path="Player - Kopie/Weapons/Offhand/Sword"]
-[editable path="Player - Kopie/Weapons/Offhand/Sword/OnehandComponent"]
+[editable path="Player - Kopie/Weapons/Mainhand/spear"]
+[editable path="Player - Kopie/Weapons/Mainhand/spear/OnehandComponent"]
+[editable path="Player - Kopie/Weapons/Offhand/spear"]
+[editable path="Player - Kopie/Weapons/Offhand/spear/OnehandComponent"]
