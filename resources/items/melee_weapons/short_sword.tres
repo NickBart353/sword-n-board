@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_wnj3e")
 normal_damage = 32.0
+combo_size = 2
 item_name = "Shortsword"
 item_id = "10001"
 tooltip = "It's a sword!"
