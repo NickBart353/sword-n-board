@@ -42,6 +42,9 @@ func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
 	var mainhand_valid: bool = _validate_slot(mainhand, "mainhand")
 	if not (offhand_valid or mainhand_valid):
 		reset()
+	else:
+		if mainhand.data.item_id == offhand.data.item_id:
+			mainhand_combo_count = mainhand.data.dualwield_combo_size
 	process = (offhand_valid or mainhand_valid)
 
 func _validate_slot(slot: Node, slot_string: String) -> bool:
