@@ -43,7 +43,7 @@ func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
 	if not (offhand_valid or mainhand_valid):
 		reset()
 	else:
-		if mainhand.data.item_id == offhand.data.item_id:
+		if dualwielding:
 			mainhand_combo_count = mainhand.data.dualwield_combo_size
 	process = (offhand_valid or mainhand_valid)
 
