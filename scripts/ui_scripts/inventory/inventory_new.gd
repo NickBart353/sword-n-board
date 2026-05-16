@@ -77,12 +77,17 @@ func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: Strin
 			pass
 
 func sort_player_items():
-	for i in range(player_items.size() - 1):
+	for i in range(player_items.size()):
 		for j in range(player_items.size() - 1):
-			if player_items[i].data.item_category > player_items[j+1].data.item_category:
+			if player_items[i].data.item_category < player_items[j+1].data.item_category:
 				var temp_item: Item = player_items[i]
 				player_items[i] = player_items[j+1]
 				player_items[j+1] = temp_item
+			elif player_items[i].data.item_category == player_items[j+1].data.item_category:
+				if player_items[i].data.item_name.left(1) < player_items[j+1].data.item_name.left(1):
+					var temp_item: Item = player_items[i]
+					player_items[i] = player_items[j+1]
+					player_items[j+1] = temp_item
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
 	currently_selected_tab = tab
