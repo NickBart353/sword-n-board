@@ -77,9 +77,9 @@ func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: Strin
 			pass
 
 func sort_player_items():
-	player_items.sort_custom(sortyy)
+	player_items.sort_custom(sort_by_cat_and_name)
 
-func sortyy(a, b) -> bool:
+func sort_by_cat_and_name(a, b) -> bool:
 	if a.data.item_category < b.data.item_category:
 		return true
 	elif a.data.item_category == b.data.item_category:

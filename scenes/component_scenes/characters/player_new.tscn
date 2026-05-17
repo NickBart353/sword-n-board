@@ -34,15 +34,6 @@
 [ext_resource type="Script" uid="uid://b6q6co5ha0omh" path="res://scripts/PlayerController/abilities/parry.gd" id="20_7xqws"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="20_pjxg6"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="21_1qw3l"]
-[ext_resource type="Script" uid="uid://bgokc27h8yerc" path="res://scripts/PlayerController/animation_controller.gd" id="22_mdiwo"]
-[ext_resource type="AudioStream" uid="uid://7c7ctdo8uedy" path="res://assets/Audio/pixabay/yodguard-casting-magic-3-382381.mp3" id="24_x0x1l"]
-[ext_resource type="AudioStream" uid="uid://crac5kx6axlcw" path="res://assets/Audio/freesound_org/bow-drawn.ogg" id="25_4fc0r"]
-[ext_resource type="AudioStream" uid="uid://bpo0x5f240exy" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Bow Attacks Hits and Blocks/Bow Attack 2 - only shot.wav" id="26_6nuet"]
-[ext_resource type="AudioStream" uid="uid://bqu7fvmwsaalo" path="res://assets/Audio/400 Sounds Pack/Other/whoosh_1.wav" id="27_34csg"]
-[ext_resource type="AudioStream" uid="uid://ciy4u4gpes020" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 1.ogg" id="28_pyeyx"]
-[ext_resource type="AudioStream" uid="uid://b48d805mqilan" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 3.wav" id="29_qqhsp"]
-[ext_resource type="AudioStream" uid="uid://bgt7b1xqin0ey" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Attack 2.ogg" id="30_ebfxs"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://c0thbh35ji8q0" path="res://animations/player/ability_state_machine.tres" id="31_tg14s"]
 [ext_resource type="Script" uid="uid://buc6uya8qp2cj" path="res://scripts/PlayerController/animation_controller_seperated.gd" id="32_7xqws"]
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
@@ -70,6 +61,43 @@ blend_shape_mode = 0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lu7gk"]
 radius = 0.1899414
 height = 1.8134766
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
+radius = 0.20019531
+height = 1.8495849
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
+playback_mode = 1
+streams_count = 1
+stream_0/stream = ExtResource("16_mp4bu")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i5qjy"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("18_xamg6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ykwct"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("19_qk665")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w8vq5"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("20_pjxg6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aeb6f"]
+playback_mode = 1
+random_pitch = 1.0116194
+random_volume_offset_db = 0.2
+streams_count = 1
+stream_0/stream = ExtResource("21_1qw3l")
 
 [sub_resource type="Animation" id="Animation_8rwn3"]
 length = 0.001
@@ -317,612 +345,6 @@ tracks/19/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
 _data = {
 &"RESET": SubResource("Animation_8rwn3")
-}
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oijqy"]
-radius = 0.20019531
-height = 1.8495849
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6arjy"]
-playback_mode = 1
-streams_count = 1
-stream_0/stream = ExtResource("16_mp4bu")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i5qjy"]
-playback_mode = 1
-random_pitch = 1.0116194
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("18_xamg6")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ykwct"]
-playback_mode = 1
-random_pitch = 1.0116194
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("19_qk665")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_w8vq5"]
-playback_mode = 1
-random_pitch = 1.0116194
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("20_pjxg6")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_aeb6f"]
-playback_mode = 1
-random_pitch = 1.0116194
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("21_1qw3l")
-
-[sub_resource type="Animation" id="Animation_ykwct"]
-resource_name = "Block1"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_wbsrb"]
-resource_name = "Book1"
-length = 1.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/CastAttack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.93333334, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Book1"],
-"method": &"_book_animation_started"
-}, {
-"args": [&"Book1"],
-"method": &"_book_animation_ended"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [ExtResource("24_x0x1l"), 3, 0.0],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/CastAttack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.76666665),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [1.4],
-"method": &"channel_book"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_1e104"]
-resource_name = "Book2"
-length = 1.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/CastAttack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.6333333, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Book2"],
-"method": &"_book_animation_started"
-}, {
-"args": [&"Book2"],
-"method": &"_book_animation_ended"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [ExtResource("24_x0x1l"), 3, 0.0],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/CastAttack")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.7),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [1.4],
-"method": &"channel_book"
-}]
-}
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6xk8q"]
-random_pitch = 1.0594631
-random_volume_offset_db = 1.0
-streams_count = 1
-stream_0/stream = ExtResource("25_4fc0r")
-
-[sub_resource type="Animation" id="Animation_v1vyy"]
-resource_name = "Bow1"
-length = 1.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/ShootAttack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"charge_maxed"
-}]
-}
-tracks/1/type = "audio"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AbilityPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": SubResource("AudioStreamRandomizer_6xk8q")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/1/use_blend = true
-
-[sub_resource type="Animation" id="Animation_aeb6f"]
-resource_name = "Bow2"
-length = 0.73333335
-loop_mode = 1
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ocei"]
-playback_mode = 1
-random_pitch = 1.0594631
-random_volume_offset_db = 1.0
-streams_count = 1
-stream_0/stream = ExtResource("27_34csg")
-
-[sub_resource type="Animation" id="Animation_w8vq5"]
-resource_name = "Bow3"
-length = 0.2
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/ShootAttack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Bow3"],
-"method": &"_on_animation_player_animation_finished"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.16666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [ExtResource("26_6nuet"), 3, 0.1],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-tracks/2/type = "audio"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityPlayer")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.016226362,
-"stream": SubResource("AudioStreamRandomizer_6ocei")
-}],
-"times": PackedFloat32Array(0)
-}
-tracks/2/use_blend = true
-
-[sub_resource type="Animation" id="Animation_81e7k"]
-resource_name = "Consume1"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slots/Consumable:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.402, -0.115, -0.701), Vector3(-0.177, 0.285, -0.796), Vector3(-0.022, 0.335, -0.656), Vector3(-0.022, 0.335, -0.656), Vector3(-0.177, 0.05, -0.796), Vector3(-0.402, -0.1, -0.701), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slots/Consumable:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/Consume")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.7, 3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_consumed"
-}, {
-"args": [],
-"method": &"done_consuming"
-}]
-}
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AbilityPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": SubResource("AudioStreamRandomizer_6arjy")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/3/use_blend = true
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AbilityPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("15_v4r5v")
-}],
-"times": PackedFloat32Array(0.2)
-}
-tracks/4/use_blend = true
-
-[sub_resource type="Animation" id="Animation_6ocei"]
-resource_name = "Consume2"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slots/Consumable:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4667, 0.6333, 0.8, 1.79, 2.1333, 2.52, 2.8767, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.402, -0.115, -0.701), Vector3(-0.177, 0.285, -0.796), Vector3(-0.022, 0.335, -0.656), Vector3(-0.022, 0.335, -0.656), Vector3(-0.177, 0.05, -0.796), Vector3(-0.402, -0.1, -0.701), Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slots/Consumable:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.43, 0.56, 0.88, 1.21, 1.79, 2.96, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.7452556, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(1.8186331, 0.11170107, -0.12915437), Vector3(1.8709929, 0.11170107, -0.12915437), Vector3(1.7575465, 0.11170107, -0.12915437), Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AbilityController/Consume")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.7, 3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_consumed"
-}, {
-"args": [],
-"method": &"done_consuming"
-}]
-}
-tracks/3/type = "audio"
-tracks/3/imported = false
-tracks/3/enabled = false
-tracks/3/path = NodePath("AbilityPlayer")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": SubResource("AudioStreamRandomizer_6arjy")
-}],
-"times": PackedFloat32Array(0.6333333)
-}
-tracks/3/use_blend = true
-tracks/4/type = "audio"
-tracks/4/imported = false
-tracks/4/enabled = false
-tracks/4/path = NodePath("AbilityPlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("15_v4r5v")
-}],
-"times": PackedFloat32Array(0.2)
-}
-tracks/4/use_blend = true
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AbilityController/Consume")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.2, 0.6333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"play_consume_sound_one"
-}, {
-"args": [],
-"method": &"play_consume_sound_two"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_du382"]
-resource_name = "Idle"
-length = 2.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slots/Consumable:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079), Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slots/Consumable:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.030511865, 0.112023234, -0.12869062), Vector3(0.030511865, 0.112023234, -0.12869062)]
-}
-
-[sub_resource type="Animation" id="Animation_4bg8r"]
-resource_name = "Light1"
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_m0y8q"]
-resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Slots/Consumable:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.6873604, -0.39954534, -0.010622079)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Slots/Consumable:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.030511865, 0.112023234, -0.12869062)]
-}
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2pv4g"]
-random_pitch = 1.3348398
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("28_pyeyx")
-
-[sub_resource type="Animation" id="Animation_8gp4u"]
-resource_name = "Sword1"
-length = 0.4
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/Attack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.33333334, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Sword1"],
-"method": &"_sword_animation_started"
-}, {
-"args": [&"Sword1"],
-"method": &"_sword_animation_ended"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [SubResource("AudioStreamRandomizer_2pv4g"), 3, 0.0],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cpava"]
-playback_mode = 1
-random_pitch = 1.0594631
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("29_qqhsp")
-
-[sub_resource type="Animation" id="Animation_bnsrg"]
-resource_name = "Sword2"
-length = 0.15
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/Attack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Sword2"],
-"method": &"_sword_animation_started"
-}, {
-"args": [&"Sword2"],
-"method": &"_sword_animation_ended"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [SubResource("AudioStreamRandomizer_cpava"), 3, 0.22],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0h55w"]
-random_pitch = 1.3348398
-random_volume_offset_db = 0.2
-streams_count = 1
-stream_0/stream = ExtResource("30_ebfxs")
-
-[sub_resource type="Animation" id="Animation_i5qjy"]
-resource_name = "Sword3"
-length = 0.8
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AbilityController/Attack")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"Sword3"],
-"method": &"_sword_animation_started"
-}, {
-"args": [&"Sword3"],
-"method": &"_sword_animation_ended"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [SubResource("AudioStreamRandomizer_0h55w"), 3, 0.0],
-"method": &"_play_audio_fire_and_forget"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbsrb"]
-_data = {
-&"Block1": SubResource("Animation_ykwct"),
-&"Book1": SubResource("Animation_wbsrb"),
-&"Book2": SubResource("Animation_1e104"),
-&"Bow1": SubResource("Animation_v1vyy"),
-&"Bow2": SubResource("Animation_aeb6f"),
-&"Bow3": SubResource("Animation_w8vq5"),
-&"Consume1": SubResource("Animation_81e7k"),
-&"Consume2": SubResource("Animation_6ocei"),
-&"Idle": SubResource("Animation_du382"),
-&"Light1": SubResource("Animation_4bg8r"),
-&"RESET": SubResource("Animation_m0y8q"),
-&"Sword1": SubResource("Animation_8gp4u"),
-&"Sword2": SubResource("Animation_bnsrg"),
-&"Sword3": SubResource("Animation_i5qjy")
 }
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_v1vyy"]
@@ -1233,22 +655,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
 visible = false
 shape = SubResource("CapsuleShape3D_lu7gk")
 
-[node name="AnimationPlayerNew" type="AnimationPlayer" parent="." unique_id=1558370106]
-root_node = NodePath("../AnimationTreeNew")
-libraries/ = SubResource("AnimationLibrary_ysvla")
-libraries/Jump = ExtResource("34_8rwn3")
-libraries/fist = ExtResource("7_84use")
-libraries/greataxe = ExtResource("8_ovcx5")
-libraries/greathammer = ExtResource("8_8aen8")
-libraries/greatsword = ExtResource("8_pxpwq")
-libraries/hatchet = ExtResource("11_qk665")
-libraries/katana = ExtResource("11_xamg6")
-libraries/movement = ExtResource("34_0hxxe")
-libraries/shield = ExtResource("10_pxpwq")
-libraries/shortsword = ExtResource("38_84use")
-libraries/spear = ExtResource("14_ovcx5")
-libraries/torch = ExtResource("11_y6i1k")
-
 [node name="GroundRayCasts" type="Node3D" parent="." unique_id=755495095]
 transform = Transform3D(1, 0, -2.0861621e-07, 0, 1, 0, 2.0861621e-07, 0, 1, 0, 1.3378959, 0)
 visible = false
@@ -1368,26 +774,25 @@ jump_sfx = SubResource("AudioStreamRandomizer_ykwct")
 land_sfx = SubResource("AudioStreamRandomizer_w8vq5")
 dash_sfx = SubResource("AudioStreamRandomizer_aeb6f")
 
-[node name="AnimationController" type="Node" parent="." unique_id=963017014]
-script = ExtResource("22_mdiwo")
-
 [node name="AnimationControllerNew" type="Node" parent="." unique_id=1618936012]
 script = ExtResource("32_7xqws")
 transition_speed = 6.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=481047927]
-active = false
-callback_mode_process = 0
-callback_mode_method = 1
-libraries/ = SubResource("AnimationLibrary_wbsrb")
-
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=68752560]
-active = false
-callback_mode_process = 0
-callback_mode_method = 1
-tree_root = ExtResource("31_tg14s")
-advance_expression_base_node = NodePath("..")
-anim_player = NodePath("../AnimationPlayer")
+[node name="AnimationPlayerNew" type="AnimationPlayer" parent="." unique_id=1558370106]
+root_node = NodePath("../AnimationTreeNew")
+libraries/ = SubResource("AnimationLibrary_ysvla")
+libraries/Jump = ExtResource("34_8rwn3")
+libraries/fist = ExtResource("7_84use")
+libraries/greataxe = ExtResource("8_ovcx5")
+libraries/greathammer = ExtResource("8_8aen8")
+libraries/greatsword = ExtResource("8_pxpwq")
+libraries/hatchet = ExtResource("11_qk665")
+libraries/katana = ExtResource("11_xamg6")
+libraries/movement = ExtResource("34_0hxxe")
+libraries/shield = ExtResource("10_pxpwq")
+libraries/shortsword = ExtResource("38_84use")
+libraries/spear = ExtResource("14_ovcx5")
+libraries/torch = ExtResource("11_y6i1k")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
 active = false
@@ -1396,15 +801,14 @@ tree_root = ExtResource("34_oij22")
 advance_expression_base_node = NodePath("../AnimationControllerNew")
 anim_player = NodePath("../AnimationPlayerNew")
 parameters/Weaponblender/blend_amount = 1.0
-parameters/Airborne/blend_amount = 1.0
+parameters/Add2/add_amount = 1.0
 parameters/Offhand/idle/blend_position = 0.0008764242
 parameters/ActionSpeed/scale = 1.0
-parameters/Action/add_amount = 1.0
-parameters/Walking/blend_position = Vector2(0, -0.925)
+parameters/StateMachine/idle/blend_position = Vector2(0, 0)
+parameters/Twohand/idle/blend_position = 0.9990575
+parameters/Mainhand/idle/blend_position = 1.0
 parameters/Combiner/add_amount = 1.0
 parameters/Dualwield/idle/blend_position = 0.99910396
-parameters/Mainhand/idle/blend_position = 1.0
-parameters/Twohand/idle/blend_position = 0.9990575
 
 [node name="MovementLoopPlayer" type="AudioStreamPlayer3D" parent="." unique_id=624729601]
 stream = SubResource("AudioStreamRandomizer_i5qjy")
@@ -1424,11 +828,7 @@ bus = &"Voices"
 max_polyphony = 4
 bus = &"SFX"
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=1234644636]
-
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/Attack" method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="Timers/AttackTimer" to="AbilityController/CastAttack" method="_on_attack_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_finished"]
-[connection signal="animation_started" from="AnimationPlayer" to="AbilityController/Attack" method="_on_animation_player_animation_started"]
 
 [editable path="Player - Kopie"]

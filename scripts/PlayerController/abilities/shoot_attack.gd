@@ -1,7 +1,5 @@
 extends Ability
 
-@onready var anim_player = $"../../AnimationPlayer"
-
 @export var arrow_projectile: PackedScene
 @export var arrow_damage: int = 15
 @export_group("StaminaCost")

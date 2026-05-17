@@ -9,7 +9,6 @@ signal spawn_projectile
 @onready var state_controller: Node = $StateController
 @onready var movement: Node = $MovementController
 @onready var ability: Node = $AbilityController
-@onready var animation: Node = $AnimationController
 @onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
 @onready var ground_raycast = $GroundRayCasts

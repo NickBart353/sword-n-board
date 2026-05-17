@@ -3,7 +3,7 @@ extends Node
 @onready var anim_player = $"../AnimationPlayerNew"
 @onready var anim_tree = $"../AnimationTreeNew"
 
-@onready var jumping_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/JumpingStateMachine/playback"]
+@onready var default_state_machine: AnimationNodeStateMachinePlayback = anim_tree["parameters/StateMachine/playback"]
 @onready var twohand_statemachine: AnimationNodeStateMachinePlayback = anim_tree["parameters/Twohand/playback"]
 @onready var dualwield_statemachine: AnimationNodeStateMachinePlayback = anim_tree["parameters/Dualwield/playback"]
 @onready var mainhand_statemachine: AnimationNodeStateMachinePlayback = anim_tree["parameters/Mainhand/playback"]
@@ -17,6 +17,7 @@ const twohand_walking_blender: String = "parameters/Twohand/idle/blend_position"
 const dualwield_walking_blender: String = "parameters/Dualwield/idle/blend_position"
 const mainhand_walking_blender: String = "parameters/Mainhand/idle/blend_position"
 const offhand_walking_blender: String = "parameters/Offhand/idle/blend_position"
+const idle_walking_blender: String = "parameters/StateMachine/idle/blend_position"
 
 @export_range(1.0, 100.0) var transition_speed: float = 10.0
 
@@ -78,24 +79,26 @@ func apply_animations(input: Node, _state_controller: Node, movement: Node, abil
 	
 func _apply_torso_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
 	if not movement.jumping:
-		airborne_blend_value_target = 0
-		anim_tree[walking] = input.direction *  clamp(movement.calculated_movement_speed, 0, 1)
+		#airborne_blend_value_target = 0
+		default_state_machine.travel("idle")
+		#anim_tree[walking] = input.direction *  clamp(movement.calculated_movement_speed, 0, 1)
+		anim_tree[idle_walking_blender] = input.direction *  clamp(movement.calculated_movement_speed, 0, 1)
 	elif movement.jumping and not movement.falling and not movement.landed:
-		airborne_blend_value_target = 1
-		jumping_state_machine.travel("jump")
+		#airborne_blend_value_target = 1
+		default_state_machine.travel("jump")
 	if movement.falling:
-		airborne_blend_value_target = 1
-		jumping_state_machine.travel("falling")
+		#airborne_blend_value_target = 1
+		default_state_machine.travel("falling")
 	if movement.landed:
-		airborne_blend_value_target = 1
-		jumping_state_machine.travel("landing")
+		#airborne_blend_value_target = 1
+		default_state_machine.travel("landing")
 	
-	if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
-		airborne_blend_value_current -= delta * transition_speed
-		anim_tree[airborne_blender] = airborne_blend_value_current
-	elif airborne_blend_value_target == 1 and airborne_blend_value_current < airborne_blend_value_target:
-		airborne_blend_value_current += delta * transition_speed
-		anim_tree[airborne_blender] = airborne_blend_value_current
+	#if airborne_blend_value_target == 0 and airborne_blend_value_current > airborne_blend_value_target:
+		#airborne_blend_value_current -= delta * transition_speed
+		#anim_tree[airborne_blender] = airborne_blend_value_current
+	#elif airborne_blend_value_target == 1 and airborne_blend_value_current < airborne_blend_value_target:
+		#airborne_blend_value_current += delta * transition_speed
+		#anim_tree[airborne_blender] = airborne_blend_value_current
 func _apply_twohand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
 	if not twohanded: return
 	if not movement.jumping and not attack.mainhand_swing:
@@ -119,7 +122,8 @@ func _apply_dualwield_animations(input: Node, _state_controller: Node, movement:
 			weapon_walk_blend_value_target = 0
 	if attack.mainhand_swing:
 		dualwield_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
-		
+	
+	_light(dualwield_statemachine)
 	_do_stuff(input, _state_controller, movement, _ability, delta, dualwield_statemachine)
 
 func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
@@ -144,21 +148,25 @@ func _apply_offhand_animations(input: Node, _state_controller: Node, movement: N
 		else:
 			weapon_walk_blend_value_target = 0
 	if parry.parry:
-		offhand_statemachine.travel("activate")
+		offhand_statemachine.travel("activate1")
 	if attack.offhand_swing:
 		offhand_statemachine.travel("activate{0}".format([attack.offhand_swing]))
-		
+	
+	_light(offhand_statemachine)
 	_do_stuff(input, _state_controller, movement, ability, delta, offhand_statemachine)
 
 func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float, statemachine: AnimationNodeStateMachinePlayback):
-	if ability.busy: return
-		
-	if movement.jumping and not movement.falling and not movement.landed:
-		statemachine.travel("jump")
-	if movement.falling:
-		statemachine.travel("falling")
-	if movement.landed:
-		statemachine.travel("landing")
+	if not ability.busy: 
+		if movement.jumping and not movement.falling and not movement.landed:
+			statemachine.travel("jump")
+		if movement.falling:
+			statemachine.travel("falling")
+		if movement.landed:
+			statemachine.travel("landing")
+
+func _light(statemachine: AnimationNodeStateMachinePlayback):
+	if light.lighting:
+		statemachine.travel("activate1")
 
 func equipped_two_hand_weapon(weapon_name: String):
 	twohand_statemachine.start("idle")
@@ -170,7 +178,7 @@ func equipped_two_hand_weapon(weapon_name: String):
 	twohand.get_node("attack2").animation = "{0}/attack2".format([weapon_name])
 	twohand.get_node("attack3").animation = "{0}/attack3".format([weapon_name])
 	twohand.get_node("attack4").animation = "{0}/attack4".format([weapon_name])
-	twohand.get_node("activate").animation = "{0}/activate".format([weapon_name])
+	twohand.get_node("activate1").animation = "{0}/activate1".format([weapon_name])
 	twohand.get_node("ability1").animation = "{0}/ability1".format([weapon_name])
 	twohand.get_node("ability2").animation = "{0}/ability2".format([weapon_name])
 	twohand.get_node("idle").get_blend_point_node(0).animation = "{0}/idle".format([weapon_name])
@@ -190,7 +198,7 @@ func equipped_dualwield_weapon(weapon_name: String):
 	dualwield_tree.get_node("attack2").animation = "{0}_attack2".format([anim_name])
 	dualwield_tree.get_node("attack3").animation = "{0}_attack3".format([anim_name])
 	dualwield_tree.get_node("attack4").animation = "{0}_attack4".format([anim_name])
-	dualwield_tree.get_node("activate").animation = "{0}_activate".format([anim_name])
+	dualwield_tree.get_node("activate1").animation = "{0}_activate1".format([anim_name])
 	dualwield_tree.get_node("ability1").animation = "{0}_ability1".format([anim_name])
 	dualwield_tree.get_node("ability2").animation = "{0}_ability2".format([anim_name])
 	dualwield_tree.get_node("idle").get_blend_point_node(0).animation = "{0}_idle".format([anim_name])

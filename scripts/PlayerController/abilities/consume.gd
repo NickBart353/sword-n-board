@@ -1,7 +1,5 @@
 extends Ability
 
-@onready var anim_player = $"../../AnimationPlayer"
-
 @export_group("Audio")
 @export var eating_sound_one: AudioStream
 @export var eating_sound_two: AudioStream
