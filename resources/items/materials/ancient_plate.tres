@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_sbwh5")
-item_name = "Ancient plate"
+item_name = "Ancient Plate"
 item_id = "50004"
 tooltip = "A large plate used to upgrade Weapons."
 stackable = true
