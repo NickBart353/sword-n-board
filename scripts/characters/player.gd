@@ -11,6 +11,9 @@ signal spawn_projectile
 @onready var ability: Node = $AbilityController
 @onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
+
+@onready var block: Node = $AbilityController/Block
+
 @onready var ground_raycast = $GroundRayCasts
 @onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
 @onready var player_interactor = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/RayCast3D"
@@ -53,6 +56,8 @@ const MIN_STAMINA: float = 0.0
 const MAX_MANA: float = 100.0
 const MIN_MANA: float = 0.0
 
+const blocked_body_preset_dict: Dictionary = {"body": "", "block_type": 1}
+
 var primary_equipped: String = "None"
 var secondary_equipped: String = "None"
 var look_rotation : Vector2
@@ -78,7 +83,7 @@ var off_hand_item: Item
 var consumable_item: Item
 
 var blocked_body: Node
-var blocked_bodies: Array = []
+var blocked_bodies: Array[Dictionary] = []
 
 var rotation_modifier: float = 1
 
@@ -160,47 +165,11 @@ func interact_with_object():
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
 
-#func _open_inventory():
-	#if input.inventory:
-		#open_inventory.emit(items, head_item, body_item, boots_item, main_hand_item, off_hand_item, consumable_item)
-
 func get_equipped_consumable():
 	var consumable: Array = $Slots/Consumable.get_children()
 	if consumable:
 		return consumable[0]
 	return null
-
-##func update_items(player_items, new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
-#func update_items(new_head_item: Item, new_body_item: Item, new_boots_item: Item, new_main_hand_item: Item, new_off_hand_item: Item, new_consumable_item: Item):
-	#_reset_abilities()
-	#var two_handed: bool = new_main_hand_item.data.two_handed
-	#
-	##items = player_items
-	#head_item = _reequip_slot(head_item, new_head_item, head_slot)
-	#body_item = _reequip_slot(body_item, new_body_item, body_slot)
-	#boots_item = _reequip_slot(boots_item, new_boots_item, boots_slot)
-	#consumable_item = _reequip_slot(consumable_item, new_consumable_item, consumable_slot)
-	#
-	#if two_handed:
-		#if main_hand_item != new_main_hand_item:
-			#main_hand_item = new_main_hand_item
-			#off_hand_item = new_off_hand_item
-			#_clear_equip_slot(right_hand)
-			#_clear_equip_slot(left_hand)
-			#var item_instance = ItemGenerator.generate_item(main_hand_item.data)
-			#if item_instance:
-				#if item_instance is Node:
-					#right_hand.add_child(item_instance, true)
-				#elif item_instance is Dictionary:
-					#for item_slot in item_instance:
-						#match item_slot:
-							#ItemGenerator.SLOTS.MAIN_HAND:
-								#right_hand.add_child(item_instance[item_slot], true)
-							#ItemGenerator.SLOTS.OFF_HAND:
-								#left_hand.add_child(item_instance[item_slot], true)
-	#else:
-		#main_hand_item = _reequip_slot(main_hand_item, new_main_hand_item, right_hand)
-		#off_hand_item = _reequip_slot(off_hand_item, new_off_hand_item, left_hand)
 
 func _reequip_slot(old, new, slot):
 	if old != new:
@@ -439,22 +408,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		player_camera.rotate_y(look_rotation.y)
 
 func take_damage(damage, body: Node):
-	if body in blocked_bodies:
-		blocked_bodies.erase(body)
-		if use_stamina($AbilityController/Block.base_block_cost * damage * 0.1):
-			damage *= 0.2
-		else:
-			use_stamina(STAMINA)
-			damage *= 3
+	for dict in blocked_bodies:
+		if dict["body"] == body:
+			blocked_bodies.erase(dict)
+			if use_stamina(block.get_block_cost(dict["block_type"])):
+				damage *= block.get_damage_reduction(dict["block_type"])
+			else:
+				use_stamina(STAMINA)
+				damage *= block.get_punishment_multiplier(dict["block_type"])
+			break
 	update_HEALTH(-damage)
-	#if body == blocked_body and blocked_body != null:
-		#blocked_body = null
-		#if use_stamina($AbilityController/Block.base_block_cost * damage * 0.1):
-			#damage *= 0.2
-		#else:
-			#use_stamina(STAMINA)
-			#damage *= 3
-	#update_HEALTH(-damage)
 
 func update_stamina_regeneration_speed(amount: float):
 	saved_stamina_regeneration_speed = stamina_regeneration_speed
@@ -503,9 +466,12 @@ func use_mana(mana_cost: float) -> bool:
 		UiController.update_manabar(MANA)
 		return true
 
-func _blocked_attack(body: Node):
-	blocked_body = body
-	blocked_bodies.append(body)
+func _blocked_attack(body: Node, blocking_type: BlockingComponent.BLOCKING_TYPE):
+	#blocked_body = body
+	var blocked_body_dict: Dictionary = blocked_body_preset_dict.duplicate()
+	blocked_body_dict["body"] = body
+	blocked_body_dict["block_type"] = blocking_type
+	blocked_bodies.append(blocked_body_dict)
 
 func get_looking_direction() -> Vector3:
 	#return $Head/FieldOfView.get_global_transform().basis.z

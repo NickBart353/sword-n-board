@@ -1,7 +1,17 @@
 extends Ability
 
 @export_group("StaminaCost")
-@export_range(0.0, 100.0) var base_block_cost = 15.0
+@export_range(0.0, 100.0) var light_block_cost = 27.0
+@export_range(0.0, 100.0) var medium_block_cost = 19.0
+@export_range(0.0, 100.0) var strong_block_cost = 13.0
+
+@export_range(0.0, 100.0) var light_block_damage_reduction = 27.0
+@export_range(0.0, 100.0) var medium_block_damage_reduction = 19.0
+@export_range(0.0, 100.0) var strong_block_damage_reduction = 13.0
+
+@export_range(0.0, 100.0) var light_stagger_punishment_multiplier = 3
+@export_range(0.0, 100.0) var medium_stagger_punishment_multiplier = 2.5
+@export_range(0.0, 100.0) var strong_stagger_punishment_multiplier = 2
 
 signal blocked
 
@@ -89,9 +99,45 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	elif movement.dashing and blocking:
 		blocking = false
 
-func _blocked(body):
+func _blocked(body, blocking_type: BlockingComponent.BLOCKING_TYPE):
 	if blocking:
-		blocked.emit(body)
+		blocked.emit(body, blocking_type)
+
+func get_block_cost(blocking_type: BlockingComponent.BLOCKING_TYPE) -> float:
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Light:
+			return light_block_cost
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Medium:
+			return medium_block_cost
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Strong:
+			return strong_block_cost
+	return 20 #backup value
+
+func get_damage_reduction(blocking_type: BlockingComponent.BLOCKING_TYPE) -> float:
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Light:
+			return light_block_damage_reduction
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Medium:
+			return medium_block_damage_reduction
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Strong:
+			return strong_block_damage_reduction
+	return 0.7 #backup value
+
+func get_punishment_multiplier(blocking_type: BlockingComponent.BLOCKING_TYPE) -> float:
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Light:
+			return light_stagger_punishment_multiplier
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Medium:
+			return medium_stagger_punishment_multiplier
+	match blocking_type:
+		BlockingComponent.BLOCKING_TYPE.Strong:
+			return strong_stagger_punishment_multiplier
+	return 3 #backup value
 
 func reset():
 	#offhand = null

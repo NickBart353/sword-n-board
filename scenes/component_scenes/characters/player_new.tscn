@@ -749,6 +749,9 @@ player = NodePath("../..")
 
 [node name="Block" type="Node" parent="AbilityController" unique_id=1598384866 node_paths=PackedStringArray("player")]
 script = ExtResource("11_7xqws")
+light_block_damage_reduction = 0.8
+medium_block_damage_reduction = 0.6
+strong_block_damage_reduction = 0.4
 player = NodePath("../..")
 
 [node name="Parry" type="Node" parent="AbilityController" unique_id=854018542 node_paths=PackedStringArray("player")]
