@@ -109,7 +109,8 @@ func _apply_twohand_animations(input: Node, _state_controller: Node, movement: N
 			weapon_walk_blend_value_target = 0
 	if attack.mainhand_swing:
 		twohand_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
-		
+	
+	_block(twohand_statemachine)
 	_do_stuff(input, _state_controller, movement, _ability, delta, twohand_statemachine)
 
 func _apply_dualwield_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
@@ -124,6 +125,7 @@ func _apply_dualwield_animations(input: Node, _state_controller: Node, movement:
 		dualwield_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 	
 	_light(dualwield_statemachine)
+	_block(dualwield_statemachine)
 	_do_stuff(input, _state_controller, movement, _ability, delta, dualwield_statemachine)
 
 func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
@@ -153,10 +155,12 @@ func _apply_offhand_animations(input: Node, _state_controller: Node, movement: N
 		offhand_statemachine.travel("activate{0}".format([attack.offhand_swing]))
 	
 	_light(offhand_statemachine)
+	_block(offhand_statemachine)
 	_do_stuff(input, _state_controller, movement, ability, delta, offhand_statemachine)
 
 func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float, statemachine: AnimationNodeStateMachinePlayback):
 	if not ability.busy: 
+		movement.reset_weapon_modifiers()
 		if movement.jumping and not movement.falling and not movement.landed:
 			statemachine.travel("jump")
 		if movement.falling:
@@ -166,6 +170,10 @@ func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: N
 
 func _light(statemachine: AnimationNodeStateMachinePlayback):
 	if light.lighting:
+		statemachine.travel("activate1")
+
+func _block(statemachine: AnimationNodeStateMachinePlayback):
+	if block.blocking:
 		statemachine.travel("activate1")
 
 func equipped_two_hand_weapon(weapon_name: String):

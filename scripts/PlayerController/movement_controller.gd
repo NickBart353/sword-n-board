@@ -129,14 +129,14 @@ func _check_raycast(direction: String, delta):
 	else:
 		return player.velocity.y
 
-func add_movement_modifier(value: float, type: String = "attack") -> void:
+func add_movement_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
 	movement_modifiers.append(new_modifier)
 	_update_movement_speed()
 
-func remove_movement_modifier(value: float, type: String = "attack") -> void:
+func remove_movement_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
@@ -144,14 +144,14 @@ func remove_movement_modifier(value: float, type: String = "attack") -> void:
 		movement_modifiers.erase(new_modifier)
 	_update_movement_speed()
 
-func add_rotation_modifier(value: float, type: String = "attack") -> void:
+func add_rotation_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
 	rotation_modifiers.append(new_modifier)
 	_update_rotation_speed()
 
-func remove_rotation_modifier(value: float, type: String = "attack") -> void:
+func remove_rotation_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
@@ -159,14 +159,14 @@ func remove_rotation_modifier(value: float, type: String = "attack") -> void:
 		rotation_modifiers.erase(new_modifier)
 	_update_rotation_speed()
 
-func reset_attack_modifiers() -> void:
+func reset_weapon_modifiers() -> void:
 	for modifier in movement_modifiers:
-		if modifier["type"] == "attack":
+		if modifier["type"] == "weapon":
 			movement_modifiers.erase(modifier)
 	_update_movement_speed()
 	
 	for modifier in rotation_modifiers:
-		if modifier["type"] == "attack":
+		if modifier["type"] == "weapon":
 			rotation_modifiers.erase(modifier)
 	_update_rotation_speed()
 

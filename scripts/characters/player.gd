@@ -78,6 +78,7 @@ var off_hand_item: Item
 var consumable_item: Item
 
 var blocked_body: Node
+var blocked_bodies: Array = []
 
 var rotation_modifier: float = 1
 
@@ -231,7 +232,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 	body_item = _reequip_slot(body_item, player_body, body_slot)
 	boots_item = _reequip_slot(boots_item, player_boots, boots_slot)
 	
-	_reset_attack_modifiers()
+	_reset_weapon_modifiers()
 	if two_handed:
 		if main_hand_item != player_mainhand:
 			main_hand_item = player_mainhand
@@ -369,8 +370,8 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	
 	new_animation.equipped_dualwield_weapon(anim_name)
 
-func _reset_attack_modifiers() -> void:
-	movement.reset_attack_modifiers()
+func _reset_weapon_modifiers() -> void:
+	movement.reset_weapon_modifiers()
 
 func _check_unequipped_slots():
 	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)
@@ -438,14 +439,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		player_camera.rotate_y(look_rotation.y)
 
 func take_damage(damage, body: Node):
-	if body == blocked_body and blocked_body != null:
-		blocked_body = null
+	if body in blocked_bodies:
+		blocked_bodies.erase(body)
 		if use_stamina($AbilityController/Block.base_block_cost * damage * 0.1):
 			damage *= 0.2
 		else:
 			use_stamina(STAMINA)
 			damage *= 3
 	update_HEALTH(-damage)
+	#if body == blocked_body and blocked_body != null:
+		#blocked_body = null
+		#if use_stamina($AbilityController/Block.base_block_cost * damage * 0.1):
+			#damage *= 0.2
+		#else:
+			#use_stamina(STAMINA)
+			#damage *= 3
+	#update_HEALTH(-damage)
 
 func update_stamina_regeneration_speed(amount: float):
 	saved_stamina_regeneration_speed = stamina_regeneration_speed
@@ -496,6 +505,7 @@ func use_mana(mana_cost: float) -> bool:
 
 func _blocked_attack(body: Node):
 	blocked_body = body
+	blocked_bodies.append(body)
 
 func get_looking_direction() -> Vector3:
 	#return $Head/FieldOfView.get_global_transform().basis.z

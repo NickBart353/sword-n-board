@@ -59,11 +59,13 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 				"offhand":
 					offhand_weapon = slot
 					offhand_combo_count = slot.data.combo_size
+					offhand_weapon.monitoring = false
 					if not offhand_weapon.hit.is_connected(_offhand_attack):
 						offhand_weapon.hit.connect(_offhand_attack)
 				"mainhand":
 					mainhand_weapon = slot
 					mainhand_combo_count = slot.data.combo_size
+					mainhand_weapon.monitoring = false
 					if not mainhand_weapon.hit.is_connected(_mainhand_attack):
 						mainhand_weapon.hit.connect(_mainhand_attack)
 			return true

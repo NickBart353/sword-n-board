@@ -48,12 +48,10 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	if not movement.dashing and not ability_controller.busy:
 		if input.hold_secondary:
 			lighting = true
-			print("test")
 		else:
 			lighting = false
 	elif movement.dashing and lighting:
 		lighting = false
 
 func reset():
-	#offhand = null
 	lighting = false

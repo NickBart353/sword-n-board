@@ -43,8 +43,10 @@ func Physics_Update(delta: float) -> void:
 
 func _on_damage_box_area_entered(area: Area3D) -> void:
 	if state_active:
-		if area.is_in_group("Shield") and not player_hit:
+		if area is BlockingComponent and not player_hit:
 			charge_interrupted = true
+			return
+		#if area.is_in_group("Shield") and not player_hit:
 		elif area.is_in_group("PlayerHurtBox") and not player_hit and not charge_interrupted:
 			player.take_damage(dash_damage, enemy)
 			AudioManager.play_audio_from_resource(stab_audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
@@ -54,3 +56,7 @@ func _on_damage_box_body_entered(body: Node3D) -> void:
 	if state_active:
 		if body.is_in_group("Tree"):
 			charge_interrupted = true
+			return
+		if body is Terrain3D:
+			charge_interrupted = true
+			return
