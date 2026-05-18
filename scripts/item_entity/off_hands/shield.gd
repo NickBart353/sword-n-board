@@ -56,19 +56,21 @@ func _set_marker_values():
 func _on_sketchfab_model_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		hit.emit(body, data.normal_damage)
-	if body is Terrain3D: return
-	if not body_back_side_entered_first:
-		blocked.emit(body)
-		#block_player.play()
-	body_back_side_entered_first = false
+	#if body is Terrain3D: return
+	#if not body_back_side_entered_first:
+		#blocked.emit(body)
+		##block_player.play()
+	#body_back_side_entered_first = false
 
 func _on_backside_body_entered(_body: Node3D) -> void:
-	if _body is Terrain3D: return
-	body_back_side_entered_first = true
+	pass
+	#if _body is Terrain3D: return
+	#body_back_side_entered_first = true
 
 func _on_sketchfab_model_area_entered(area: Area3D) -> void:
+	pass
 	#if not area_back_side_entered_first:
-	blocked.emit(area)
+	#blocked.emit(area)
 	#block_player.play()
 	#area_back_side_entered_first = false
 

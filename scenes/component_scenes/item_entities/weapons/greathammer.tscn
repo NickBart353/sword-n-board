@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://0hif1mi57onw" path="res://scripts/item_entity/weapons/greathammer.gd" id="2_orxha"]
 [ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="3_orxha"]
 [ext_resource type="AudioStream" uid="uid://cei6yivygsheh" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.wav" id="4_2wvta"]
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="5_4dwc1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wvta"]
 size = Vector3(0.46940327, 0.6130638, 1.0787964)
@@ -162,6 +163,12 @@ random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("4_2wvta")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_etsd2"]
+size = Vector3(0.28570557, 1.4660645, 0.34332275)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xqidl"]
+size = Vector3(0.499588, 0.7030487, 1.1893463)
+
 [node name="greathammer" unique_id=1464552802 node_paths=PackedStringArray("audio_player", "impact_location", "hand_component") instance=ExtResource("1_5ettr")]
 collision_layer = 4
 collision_mask = 13
@@ -177,7 +184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069727898, 1.420232, 0.000
 shape = SubResource("BoxShape3D_2wvta")
 debug_color = Color(0.9956452, 0, 0.20966002, 0.41960785)
 
-[node name="MiddleMetal" parent="." index="2" unique_id=182792597]
+[node name="MiddleMetal" parent="." index="2" unique_id=137882812]
 transform = Transform3D(-1.7484556e-08, 0.4, -1.7484556e-08, 0, -1.7484556e-08, -0.4, -0.4, -1.7484556e-08, 7.642742e-16, -0.17499846, 1.4194953, 0.0033650622)
 mesh = SubResource("ArrayMesh_etsd2")
 
@@ -191,5 +198,21 @@ mesh = SubResource("CapsuleMesh_orxha")
 [node name="GreathammerPlayer" type="AudioStreamPlayer3D" parent="." index="4" unique_id=791035762]
 stream = SubResource("AudioStreamRandomizer_4dwc1")
 bus = &"SFX"
+
+[node name="BlockingComponent" type="Area3D" parent="." index="5" unique_id=1454529262]
+collision_layer = 6
+collision_mask = 24
+script = ExtResource("5_4dwc1")
+metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" index="0" unique_id=1414879562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0069274902, 0.48449707, 0.007171631)
+shape = SubResource("BoxShape3D_etsd2")
+debug_color = Color(0.99904376, 0, 0.13815239, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BlockingComponent" index="1" unique_id=1534058744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010734558, 1.4255295, 0.0051651)
+shape = SubResource("BoxShape3D_xqidl")
+debug_color = Color(0.99904376, 0, 0.13815239, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
