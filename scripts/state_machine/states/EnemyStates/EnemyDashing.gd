@@ -10,8 +10,9 @@ extends EnemyState
 var dash_direction: Vector3
 var dash_start_position: Vector3
 var last_frame_position: Vector3 
-var charge_interrupted = false
-var player_hit = false
+var charge_interrupted: bool = false
+var player_hit: bool = false
+var ground_hit: bool = false
 
 func Enter():
 	super()
@@ -23,6 +24,7 @@ func Exit():
 	super()
 	player_hit = false
 	charge_interrupted = false
+	ground_hit = false
 	cutting_wind.set_visible(false)
 	last_frame_position = Vector3.ZERO
 	#TODO: 
@@ -36,7 +38,7 @@ func Physics_Update(delta: float) -> void:
 		Transitioned.emit(self, "Recovering")
 		return
 	
-	if (enemy.global_position.distance_to(dash_start_position) > dash_range) or last_frame_position == enemy.global_position or player_hit:
+	if (enemy.global_position.distance_to(dash_start_position) > dash_range) or last_frame_position == enemy.global_position or player_hit or ground_hit:
 		Transitioned.emit(self, "Resetting")
 		return
 	last_frame_position = enemy.global_position
@@ -58,5 +60,5 @@ func _on_damage_box_body_entered(body: Node3D) -> void:
 			charge_interrupted = true
 			return
 		if body is Terrain3D:
-			charge_interrupted = true
+			ground_hit = true
 			return
