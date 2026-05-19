@@ -13,6 +13,7 @@ signal spawn_projectile
 @onready var audio: Node = $AudioController
 
 @onready var block: Node = $AbilityController/Block
+@onready var parry: Node = $AbilityController/Parry
 
 @onready var ground_raycast = $GroundRayCasts
 @onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
@@ -84,6 +85,8 @@ var consumable_item: Item
 
 var blocked_body: Node
 var blocked_bodies: Array[Dictionary] = []
+var parried_body: Node
+var parried_bodies: Array[Dictionary] = []
 
 var rotation_modifier: float = 1
 
@@ -407,15 +410,30 @@ func _unhandled_input(event: InputEvent) -> void:
 		player_camera.rotate_x(look_rotation.x)
 		player_camera.rotate_y(look_rotation.y)
 
-func take_damage(damage, body: Node):
+func take_damage(damage, body: Node, blockable: bool = true, parryable: bool = true):
 	for dict in blocked_bodies:
 		if dict["body"] == body:
 			blocked_bodies.erase(dict)
-			if use_stamina(block.get_block_cost(dict["block_type"])):
+			if not blockable:
+				use_stamina(STAMINA)
+				damage *= block.get_punishment_multiplier(dict["block_type"])
+			elif use_stamina(block.get_block_cost(dict["block_type"])):
 				damage *= block.get_damage_reduction(dict["block_type"])
 			else:
 				use_stamina(STAMINA)
 				damage *= block.get_punishment_multiplier(dict["block_type"])
+			break
+	for dict in parried_bodies:
+		if dict["body"] == body:
+			parried_bodies.erase(dict)
+			if not parryable:
+				use_stamina(STAMINA)
+				damage *= parry.get_punishment_multiplier(dict["block_type"])
+			elif use_stamina(parry.get_block_cost(dict["block_type"])):
+				damage *= parry.get_damage_reduction(dict["block_type"])
+			else:
+				use_stamina(STAMINA)
+				damage *= parry.get_punishment_multiplier(dict["block_type"])
 			break
 	update_HEALTH(-damage)
 
