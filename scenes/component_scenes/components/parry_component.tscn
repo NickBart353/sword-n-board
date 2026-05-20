@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dq4iq35gj3jyp"]
+
+[ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="1_ua3q8"]
+
+[node name="ParryComponent" type="Area3D" unique_id=1733264034]
+script = ExtResource("1_ua3q8")
