@@ -79,8 +79,8 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, _abilities: Node, _delta: float) -> void:
 	if not process: return
-	if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
-		reset()
+	#if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
+		#reset()
 	if not movement.dashing and not state_controller.is_player_busy() and not ability_controller.busy:
 		if input.primary and not mainhand_swing_in_progress and offhand_swing == 0 and mainhand_weapon:
 			if player.use_stamina(attack_cost):
@@ -118,13 +118,6 @@ func _offhand_attack(body, damage):
 func _on_attack_timer_timeout() -> void:
 	if not mainhand_swing_in_progress and not offhand_swing_in_progress:
 		reset()
-	#if not mainhand_swing_in_progress:
-		#mainhand_swing_in_progress = false
-		#mainhand_swing = 0
-	#if not offhand_swing_in_progress:
-		#offhand_swing_in_progress = false
-		#offhand_swing = 0
-	#ability_controller.busy = false
 
 func _attack_started() -> void:
 	if mainhand_swing_in_progress:

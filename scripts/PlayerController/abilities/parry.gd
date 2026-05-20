@@ -19,6 +19,8 @@ var dualwielding: bool = false
 var parry: bool = false
 var process: bool = false
 
+var bodies: Array = []
+
 func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
 	dualwielding = dualwield
 	reset()
@@ -67,16 +69,21 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
 	if not process: return
-	if not movement.dashing and not state_controller.is_player_busy():
+	if not movement.dashing and not ability_controller.busy:
 		if input.secondary:
-			parry = true
+			print("test")
+			if player.use_stamina(base_parry_cost):
+				ability_controller.busy = true
+				parry = true
 			
 	elif movement.dashing and parry:
 		parry = false
 
 func _parried(body):
-	if parry:
+	if parry and not body in bodies:
+		bodies.append(body)
 		parried.emit(body)
+		print("KLINK")
 
 func __parry_window_start():#gets called in animation
 	if mainhand_parry_component:
@@ -91,6 +98,8 @@ func __parry_window_end():#gets called in animation
 	if offhand_parry_component:
 		offhand_parry_component.disable_monitoring()
 	parry = false
+	ability_controller.busy = false
+	bodies.clear()
 
 func reset():
 	parry = false
