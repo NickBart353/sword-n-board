@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
-[ext_resource type="PackedScene" uid="uid://ca8m14i25pu7y" path="res://scenes/component_scenes/item_entities/weapons/sword.tscn" id="5_eqqxm"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -641,20 +640,16 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045001864, 0, 0.12097049)
 
 [node name="Twohand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=740816903]
-transform = Transform3D(1.0000008, 0, 0, 0, 1.0000008, 0, 0, 0, 0.99999875, 0.15462682, 1.2360888, -0.48433757)
+transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15462682, 1.2360888, -0.48433757)
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
 transform = Transform3D(0.99999964, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
-[node name="Sword" parent="Player - Kopie/Weapons/Mainhand" unique_id=1495302004 instance=ExtResource("5_eqqxm")]
-
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999997, 0, 0, 0, 1.0000008, 0, 0, 0, 1.0000004, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
-
-[node name="Sword" parent="Player - Kopie/Weapons/Offhand" unique_id=588871786 instance=ExtResource("5_eqqxm")]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)

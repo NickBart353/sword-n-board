@@ -110,6 +110,7 @@ func _apply_twohand_animations(input: Node, _state_controller: Node, movement: N
 	if attack.mainhand_swing:
 		twohand_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 	
+	_parry(twohand_statemachine)
 	_block(twohand_statemachine)
 	_do_stuff(input, _state_controller, movement, _ability, delta, twohand_statemachine)
 
