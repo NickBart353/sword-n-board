@@ -29,8 +29,8 @@ size = Vector3(0.40631104, 2.0063171, 0.41307068)
 size = Vector3(0.16772461, 2.5896301, 0.5429077)
 
 [node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("impact_location", "hand_component") instance=ExtResource("1_4s0vc")]
-collision_layer = 6
-collision_mask = 29
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_3lr8e")
 impact_location = NodePath("ImpactLocation")
 hand_component = NodePath("TwohandComponent")
@@ -61,8 +61,8 @@ shape = SubResource("BoxShape3D_2dncq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9861655, -0.16820678)
 
 [node name="BlockingComponent" type="Area3D" parent="." index="7" unique_id=119625997]
-collision_layer = 6
-collision_mask = 24
+collision_layer = 8
+collision_mask = 192
 script = ExtResource("4_a61jr")
 metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 

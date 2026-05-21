@@ -139,8 +139,8 @@ height = 0.835
 size = Vector3(0.24853516, 1.8285522, 0.63027954)
 
 [node name="Greataxe" unique_id=398786294 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_qss71")]
-collision_layer = 6
-collision_mask = 25
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_sa3gr")
 hand_component = NodePath("TwohandComponent")
 
@@ -150,7 +150,7 @@ hand_component = NodePath("TwohandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0074272156, 1.0900681, 0.0030822754)
 shape = SubResource("BoxShape3D_sa3gr")
 
-[node name="GreataxeMesh" parent="." index="2" unique_id=1434141234]
+[node name="GreataxeMesh" parent="." index="2" unique_id=1578386838]
 transform = Transform3D(-1.5954656e-08, 0, -0.365, 0, 0.365, 0, 0.365, 0, -1.5954656e-08, 0, 0.46042502, 0)
 mesh = SubResource("ArrayMesh_6dy8j")
 
@@ -159,8 +159,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1
 mesh = SubResource("CapsuleMesh_3yh0m")
 
 [node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=338942821]
-collision_layer = 6
-collision_mask = 24
+collision_layer = 8
+collision_mask = 192
 script = ExtResource("4_sa3gr")
 metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 

@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://c6kkpgbl3x6p0" path="res://scenes/component_scenes/item_entities/weapons/dagger/guard.tres" id="5_njja8"]
 [ext_resource type="Material" uid="uid://k2kb3g48blc8" path="res://scenes/component_scenes/item_entities/weapons/dagger/hilt.tres" id="6_gucgr"]
 [ext_resource type="Material" uid="uid://d3pw0c5vyq0bw" path="res://scenes/component_scenes/item_entities/weapons/dagger/circle.tres" id="7_ua7as"]
+[ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="8_njja8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wixkm"]
 radius = 0.35986328
@@ -116,9 +117,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_68yxq")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gucgr"]
+size = Vector3(1.4904785, 6.477417, 0.42211914)
+
 [node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_k0p64")]
-collision_layer = 6
-collision_mask = 24
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_wixkm")
 hand_component = NodePath("OnehandComponent")
 
@@ -128,5 +132,16 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
-[node name="DaggerMesh" parent="." index="2" unique_id=77981911]
+[node name="DaggerMesh" parent="." index="2" unique_id=1419587683]
 mesh = SubResource("ArrayMesh_t5mmq")
+
+[node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("8_njja8")
+metadata/_custom_type_script = "uid://ckyck7wjay34t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryComponent" index="0" unique_id=845701295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0072021484, 0.034851074, -0.05505371)
+shape = SubResource("BoxShape3D_gucgr")
+debug_color = Color(0.98537606, 0.120839916, 0, 0.41960785)

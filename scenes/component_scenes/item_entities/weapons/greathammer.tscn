@@ -170,8 +170,8 @@ size = Vector3(0.28570557, 1.4660645, 0.34332275)
 size = Vector3(0.499588, 0.7030487, 1.1893463)
 
 [node name="greathammer" unique_id=1464552802 node_paths=PackedStringArray("audio_player", "impact_location", "hand_component") instance=ExtResource("1_5ettr")]
-collision_layer = 4
-collision_mask = 13
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_orxha")
 audio_player = NodePath("GreathammerPlayer")
 impact_location = NodePath("MiddleMetal/Marker3D")
@@ -184,7 +184,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069727898, 1.420232, 0.000
 shape = SubResource("BoxShape3D_2wvta")
 debug_color = Color(0.9956452, 0, 0.20966002, 0.41960785)
 
-[node name="MiddleMetal" parent="." index="2" unique_id=137882812]
+[node name="MiddleMetal" parent="." index="2" unique_id=182792597]
 transform = Transform3D(-1.7484556e-08, 0.4, -1.7484556e-08, 0, -1.7484556e-08, -0.4, -0.4, -1.7484556e-08, 7.642742e-16, -0.17499846, 1.4194953, 0.0033650622)
 mesh = SubResource("ArrayMesh_etsd2")
 
@@ -200,8 +200,8 @@ stream = SubResource("AudioStreamRandomizer_4dwc1")
 bus = &"SFX"
 
 [node name="BlockingComponent" type="Area3D" parent="." index="5" unique_id=1454529262]
-collision_layer = 6
-collision_mask = 24
+collision_layer = 8
+collision_mask = 192
 script = ExtResource("5_4dwc1")
 metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 

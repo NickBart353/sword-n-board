@@ -31,10 +31,10 @@ radius = 0.7680664
 script = ExtResource("2_8ynvp")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=628870523 groups=["Shield"]]
+[node name="Sketchfab_model" parent="." index="0" unique_id=1879834473 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
-collision_layer = 4
-collision_mask = 24
+collision_layer = 8
+collision_mask = 33
 monitoring = false
 monitorable = false
 
@@ -66,6 +66,8 @@ bus = &"SFX"
 [node name="OnehandComponent" parent="." index="3" unique_id=1480913319 instance=ExtResource("4_iee0v")]
 
 [node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=272429070]
+collision_layer = 8
+collision_mask = 192
 script = ExtResource("5_8iuph")
 blocking_type = 1
 metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
