@@ -71,7 +71,6 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, abilitie
 	if not process: return
 	if not movement.dashing and not ability_controller.busy:
 		if input.secondary:
-			print("test")
 			if player.use_stamina(base_parry_cost):
 				ability_controller.busy = true
 				parry = true

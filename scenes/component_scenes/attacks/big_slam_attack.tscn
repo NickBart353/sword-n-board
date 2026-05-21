@@ -573,7 +573,7 @@ _data = {
 
 [node name="BigSlamAttack" type="Area3D" unique_id=627972784]
 collision_layer = 128
-collision_mask = 4
+collision_mask = 12
 script = ExtResource("1_awo4j")
 
 [node name="SlamBox" type="CollisionShape3D" parent="." unique_id=359466453]

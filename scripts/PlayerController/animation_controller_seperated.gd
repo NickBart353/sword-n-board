@@ -113,9 +113,9 @@ func _apply_twohand_animations(input: Node, _state_controller: Node, movement: N
 	_block(twohand_statemachine)
 	_do_stuff(input, _state_controller, movement, _ability, delta, twohand_statemachine)
 
-func _apply_dualwield_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
+func _apply_dualwield_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if not dualwield: return
-	if not movement.jumping and not attack.mainhand_swing:
+	if not movement.jumping and not ability.busy:
 		dualwield_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
@@ -124,13 +124,14 @@ func _apply_dualwield_animations(input: Node, _state_controller: Node, movement:
 	if attack.mainhand_swing:
 		dualwield_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 	
+	_parry(dualwield_statemachine)
 	_light(dualwield_statemachine)
 	_block(dualwield_statemachine)
-	_do_stuff(input, _state_controller, movement, _ability, delta, dualwield_statemachine)
+	_do_stuff(input, _state_controller, movement, ability, delta, dualwield_statemachine)
 
-func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
+func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if twohanded or dualwield: return
-	if not movement.jumping and not attack.mainhand_swing:
+	if not movement.jumping and not ability.busy:
 		mainhand_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
@@ -139,23 +140,22 @@ func _apply_mainhand_animations(input: Node, _state_controller: Node, movement: 
 	if attack.mainhand_swing:
 		mainhand_statemachine.travel("attack{0}".format([attack.mainhand_swing]))
 
-	_do_stuff(input, _state_controller, movement, _ability, delta, mainhand_statemachine)
+	_do_stuff(input, _state_controller, movement, ability, delta, mainhand_statemachine)
 
 func _apply_offhand_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
 	if twohanded or dualwield: return
-	if not movement.jumping and not parry.parry and not attack.offhand_swing:
+	if not movement.jumping and not ability.busy:
 		offhand_statemachine.travel("idle")
 		if input.direction:
 			weapon_walk_blend_value_target = clamp(movement.calculated_movement_speed, 0, 1)
 		else:
 			weapon_walk_blend_value_target = 0
-	if parry.parry:
-		offhand_statemachine.travel("activate1")
 	if attack.offhand_swing:
 		offhand_statemachine.travel("activate{0}".format([attack.offhand_swing]))
 	
 	_light(offhand_statemachine)
 	_block(offhand_statemachine)
+	_parry(offhand_statemachine)
 	_do_stuff(input, _state_controller, movement, ability, delta, offhand_statemachine)
 
 func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float, statemachine: AnimationNodeStateMachinePlayback):
@@ -167,6 +167,10 @@ func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: N
 			statemachine.travel("falling")
 		if movement.landed:
 			statemachine.travel("landing")
+
+func _parry(statemachine: AnimationNodeStateMachinePlayback):
+	if parry.parry:
+		statemachine.travel("activate1")
 
 func _light(statemachine: AnimationNodeStateMachinePlayback):
 	if light.lighting:
