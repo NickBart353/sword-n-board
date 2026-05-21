@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx3i3kfx4v8ua"]
+[gd_scene format=3 uid="uid://dx3i3kfx4v8ua"]
 
-[ext_resource type="PackedScene" uid="uid://dgncms6golaqy" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/keg_decorated.glb" id="1_tpls8"]
+[ext_resource type="PackedScene" uid="uid://dgncms6golaqy" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/keg_decorated.glb" id="1_tpls8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tgkpg"]
 size = Vector3(3.3, 1.7, 1.8000001)
 
-[node name="keg_decorated" type="StaticBody3D"]
+[node name="keg_decorated" type="StaticBody3D" unique_id=353932545]
+collision_layer = 2
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=798139427]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.050000012, 1.0912502, -0.099999934)
 shape = SubResource("BoxShape3D_tgkpg")
 
-[node name="keg_decorated2" parent="." instance=ExtResource("1_tpls8")]
+[node name="keg_decorated2" parent="." unique_id=102578090 instance=ExtResource("1_tpls8")]

@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfrcciav1upjg"]
+[gd_scene format=3 uid="uid://cfrcciav1upjg"]
 
-[ext_resource type="PackedScene" uid="uid://b2e34u4qxjaeq" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/table_small.glb" id="1_uan2j"]
+[ext_resource type="PackedScene" uid="uid://b2e34u4qxjaeq" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/table_small.glb" id="1_uan2j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2byid"]
 size = Vector3(1, 0.95, 1)
 
-[node name="table_small" type="StaticBody3D"]
+[node name="table_small" type="StaticBody3D" unique_id=585846442]
+collision_layer = 2
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=458954776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.195639e-08, 0.50125015, 2.9802322e-08)
 shape = SubResource("BoxShape3D_2byid")
 
-[node name="table_small2" parent="." instance=ExtResource("1_uan2j")]
+[node name="table_small2" parent="." unique_id=1626738499 instance=ExtResource("1_uan2j")]

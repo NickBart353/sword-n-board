@@ -1,16 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxs03v1j5ou5l"]
+[gd_scene format=3 uid="uid://cxs03v1j5ou5l"]
 
-[ext_resource type="PackedScene" uid="uid://bmv4fvvmpqks1" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/keyring.glb" id="1_un6pl"]
+[ext_resource type="PackedScene" uid="uid://bmv4fvvmpqks1" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/keyring.glb" id="1_un6pl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_40n1p"]
 size = Vector3(0.98999995, 0.13, 1.2)
 
-[node name="keyring" type="RigidBody3D"]
+[node name="keyring" type="RigidBody3D" unique_id=1839139407]
+collision_layer = 2
+collision_mask = 3
 mass = 0.001
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=326201296]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.08499981, 0.1062501, 0.10000001)
 shape = SubResource("BoxShape3D_40n1p")
 
-[node name="keyring2" parent="." instance=ExtResource("1_un6pl")]
+[node name="keyring2" parent="." unique_id=788947843 instance=ExtResource("1_un6pl")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)

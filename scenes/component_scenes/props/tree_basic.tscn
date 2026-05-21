@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://4ciu7ermgxv4"]
 
-[ext_resource type="Material" uid="uid://hljf3fp8n7tf" path="res://assets/Environoment Pack V.1/FBX/materials/Trunk_01.tres" id="1_66dew"]
-[ext_resource type="Material" uid="uid://c6iu3d33pv015" path="res://assets/Environoment Pack V.1/FBX/materials/Leaf_WizardTree.tres" id="2_66dew"]
+[ext_resource type="Material" uid="uid://hljf3fp8n7tf" path="res://assets/Visual/Environoment Pack V.1/FBX/materials/Trunk_01.tres" id="1_66dew"]
+[ext_resource type="Material" uid="uid://c6iu3d33pv015" path="res://assets/Visual/Environoment Pack V.1/FBX/materials/Leaf_WizardTree.tres" id="2_66dew"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tm7dl"]
 _surfaces = [{
@@ -61,6 +61,8 @@ height = 6.955164
 radius = 0.90000004
 
 [node name="BasicTree" type="StaticBody3D" unique_id=946809108]
+collision_layer = 2
+collision_mask = 3
 
 [node name="TreeGreen01" type="MeshInstance3D" parent="." unique_id=912380646]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
