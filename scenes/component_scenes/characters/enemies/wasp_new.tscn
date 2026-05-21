@@ -422,8 +422,8 @@ nodes/Dissolve/position = Vector2(300, 220)
 node_connections = [&"output", 0, &"Dissolve", &"Hitflash", 0, &"Main", &"Hitflash", 1, &"hitflash", &"Dissolve", 0, &"Hitflash", &"Dissolve", 1, &"dissolve"]
 
 [node name="Wasp" unique_id=1562813281 node_paths=PackedStringArray("anim_tree", "healthbar", "state_machine") groups=["Enemy"] instance=ExtResource("1_8403y")]
-collision_layer = 8
-collision_mask = 7
+collision_layer = 32
+collision_mask = 39
 safe_margin = 0.05
 script = ExtResource("2_nsq2h")
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
@@ -434,22 +434,23 @@ state_machine = NodePath("StateMachine")
 
 [node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(502241600) index="0" unique_id=1148020218]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
-bones/1/rotation = Quaternion(-8.49802e-09, 0.99364495, 0.11255969, 7.501811e-08)
-bones/2/rotation = Quaternion(-0.3502855, -0.13698727, -0.34566388, 0.85968083)
-bones/3/rotation = Quaternion(0.34910738, -0.05701357, 0.01905806, 0.9351526)
-bones/4/rotation = Quaternion(-0.4446286, 0.1665538, 0.33343408, 0.8144858)
-bones/5/rotation = Quaternion(0.34910735, 0.05701358, -0.019058058, 0.9351526)
-bones/6/rotation = Quaternion(-0.4067817, 0.36737743, 0.78751457, 0.28175044)
-bones/7/rotation = Quaternion(-0.5766625, -0.08740078, 0.3978765, 0.7081778)
+bones/1/rotation = Quaternion(-5.54101e-09, 0.9973031, 0.07339291, 7.5294295e-08)
+bones/2/rotation = Quaternion(-0.6075772, -0.22380377, -0.16648716, 0.7436693)
+bones/3/rotation = Quaternion(0.24586326, -0.14864898, 0.049689114, 0.9565489)
+bones/4/rotation = Quaternion(-0.44303435, 0.091674276, 0.36008498, 0.81587696)
+bones/5/rotation = Quaternion(0.24586326, 0.14864898, -0.049689114, 0.9565489)
+bones/6/rotation = Quaternion(-0.40678176, 0.3673774, 0.78751457, 0.2817504)
+bones/7/rotation = Quaternion(-0.60736924, -0.08657795, 0.36006096, 0.7028251)
 bones/8/rotation = Quaternion(0.04511352, 0.6671274, -0.055009425, 0.7415388)
-bones/10/rotation = Quaternion(-0.5766624, 0.08740072, -0.39787644, 0.70817786)
+bones/9/rotation = Quaternion(0.40678164, 0.36737758, 0.78751457, -0.28175038)
+bones/10/rotation = Quaternion(-0.6073692, 0.08657786, -0.36006108, 0.7028251)
 bones/11/rotation = Quaternion(0.04511352, -0.6671274, 0.055009395, 0.7415388)
-bones/12/rotation = Quaternion(-0.7554303, 0.21825589, 0.1636591, 0.59573936)
+bones/12/rotation = Quaternion(-0.82581174, 0.2587983, 0.09349912, 0.49225643)
 bones/13/rotation = Quaternion(0.04849822, -0.01423301, -0.07879992, 0.9956083)
-bones/14/rotation = Quaternion(-0.7553673, -0.21823148, -0.16370094, 0.5958166)
+bones/14/rotation = Quaternion(-0.8258108, -0.25879118, -0.09350741, 0.49226025)
 bones/15/rotation = Quaternion(0.048498213, 0.014233052, 0.07879998, 0.9956083)
-bones/17/rotation = Quaternion(-0.24736713, 3.4680758e-07, -8.778735e-08, 0.96892184)
-bones/18/rotation = Quaternion(0.068233825, 2.6948547e-07, 6.6846084e-08, 0.9976694)
+bones/17/rotation = Quaternion(-0.32028425, 3.4250036e-07, -9.984234e-08, 0.94732153)
+bones/18/rotation = Quaternion(0.1262966, 2.6320544e-07, 1.2463997e-07, 0.99199253)
 
 [node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=2138545314]
 material_override = SubResource("ShaderMaterial_qot2e")
@@ -460,8 +461,8 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -
 shape = SubResource("CapsuleShape3D_8403y")
 
 [node name="DamageBox" type="Area3D" parent="." index="2" unique_id=462358425 groups=["Enemy_Part"]]
-collision_layer = 16
-collision_mask = 7
+collision_layer = 128
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DamageBox" index="0" unique_id=590011115]
 transform = Transform3D(1, 0, 0, 0, 0.23061591, 0.9730449, 0, -0.9730449, 0.23061591, -0.09999999, -3.2563505, 1.9706225)
@@ -469,8 +470,8 @@ shape = SubResource("CapsuleShape3D_nsq2h")
 debug_color = Color(0.95755154, 2.5990605e-06, 0.5345746, 0.41960785)
 
 [node name="HurtBox" type="Area3D" parent="." index="3" unique_id=709734342 groups=["Enemy_Part"]]
-collision_layer = 8
-collision_mask = 8
+collision_layer = 32
+collision_mask = 0
 monitoring = false
 monitorable = false
 
