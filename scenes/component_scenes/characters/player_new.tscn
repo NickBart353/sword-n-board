@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://b6q6co5ha0omh" path="res://scripts/PlayerController/abilities/parry.gd" id="20_7xqws"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="20_pjxg6"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="21_1qw3l"]
+[ext_resource type="PackedScene" uid="uid://c8nji2cctahl6" path="res://scenes/component_scenes/item_entities/weapons/hammer/hammer.tscn" id="21_eqqxm"]
 [ext_resource type="Script" uid="uid://buc6uya8qp2cj" path="res://scripts/PlayerController/animation_controller_seperated.gd" id="32_7xqws"]
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
@@ -644,7 +645,7 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999964, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999995, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
@@ -776,6 +777,9 @@ drinking_sound_one = ExtResource("15_v4r5v")
 drinking_sound_two = SubResource("AudioStreamRandomizer_6arjy")
 ability_player = NodePath("../../AbilityPlayer")
 player = NodePath("../..")
+
+[node name="hammer" parent="AbilityController" unique_id=87077578 instance=ExtResource("21_eqqxm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87486845, 0.7004732, -0.077891886)
 
 [node name="AudioController" type="Node" parent="." unique_id=1377078437]
 script = ExtResource("17_ovcx5")
