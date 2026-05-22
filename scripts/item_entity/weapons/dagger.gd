@@ -11,7 +11,8 @@ const weapon_data: Dictionary = {
 	"R_COLLISION_POSITION": Vector3(-0.217, 0.202, -0.079),
 	"R_COLLISION_ROTATION": Vector3(-22.0, 74.8, 11.7),
 	"L_POSITION": Vector3(0.022, -0.148, -0.15),
-	"L_ROTATION": Vector3(-66.3, 72.8, -15.0),
+	#"L_ROTATION": Vector3(-66.3, 72.8, -15.0),
+	"L_ROTATION": Vector3(166.3, 172.8, -150.0),
 	"L_PARRY_POSITION": Vector3(0.126, 0.1, -0.116),
 	"L_PARRY_ROTATION": Vector3(3.5, 150.2, 23.2),
 	"L_COLLISION_POSITION": Vector3(0.172, 0.197, -0.101),
@@ -23,6 +24,13 @@ func _on_body_entered(body: Node3D) -> void:
 		hit.emit(body, data.normal_damage)
 
 func set_weapon_position(hand: String) -> void:
+	$DaggerMesh.position = Vector3.ZERO
+	$DaggerMesh.rotation = Vector3.ZERO
+	$CollisionShape3D.position = Vector3.ZERO
+	$CollisionShape3D.rotation = Vector3.ZERO
+	$ParryComponent/CollisionShape3D.position = Vector3.ZERO
+	$ParryComponent/CollisionShape3D.rotation = Vector3.ZERO
+	
 	$DaggerMesh.position = weapon_data["{0}_POSITION".format([hand])]
 	$DaggerMesh.rotation = weapon_data["{0}_ROTATION".format([hand])]
 	$CollisionShape3D.position = weapon_data["{0}_PARRY_POSITION".format([hand])]

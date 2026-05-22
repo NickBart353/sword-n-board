@@ -286,31 +286,31 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../Player - Kopie/Weapons/Twohand:rotation")
+tracks/15/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.9701936, 0, 0)]
+"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("../Player - Kopie/Weapons/Twohand:position")
+tracks/16/path = NodePath("../Player - Kopie/Weapons/Twohand:quaternion")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.15462682, 1.2360888, -0.48433757)]
+"values": [Quaternion(0, 0, 0, 1)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../Player - Kopie/Weapons/Twohand:quaternion")
+tracks/17/path = NodePath("../Player - Kopie/Weapons/Mainhand:quaternion")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -322,22 +322,10 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../Player - Kopie/Weapons/Mainhand:quaternion")
+tracks/18/path = NodePath("../Player - Kopie/Weapons/Offhand:quaternion")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Quaternion(0, 0, 0, 1)]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("../Player - Kopie/Weapons/Offhand:quaternion")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -655,7 +643,7 @@ rotation_edit_mode = 1
 transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0, 0, 0)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.99999964, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000006, -0.385, 1.09, -0.405)
+transform = Transform3D(0.9999997, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000006, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
 [node name="dagger" parent="Player - Kopie/Weapons/Offhand" unique_id=1112058033 instance=ExtResource("41_7xqws")]
