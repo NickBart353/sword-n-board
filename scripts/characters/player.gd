@@ -265,6 +265,10 @@ func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
 		anim_name = item_instance.data.item_name.to_lower()
 	if item_instance:
 		mainhand.add_child(item_instance)
+		
+		if item_instance is Dagger:
+			item_instance.set_weapon_position("R")
+		
 		item_instance.update_markers("R")
 		var marker_dictionary: Dictionary = item_instance.get_markers()
 		arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
@@ -291,6 +295,10 @@ func _reequip_offhand(old: Item, new_offhand: Item, slot):
 		anim_name = item_instance.data.item_name.to_lower()
 	if item_instance:
 		offhand.add_child(item_instance)
+		
+		if item_instance is Dagger:
+			item_instance.set_weapon_position("L")
+		
 		item_instance.update_markers("L")
 		var marker_dictionary: Dictionary = item_instance.get_markers()
 		arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
@@ -319,6 +327,12 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	
 	mainhand.add_child(mainhand_item_instance)
 	offhand.add_child(offhand_item_instance)
+	
+	if mainhand_item_instance is Dagger:
+		mainhand_item_instance.set_weapon_position("R")
+	
+	if offhand_item_instance is Dagger:
+		offhand_item_instance.set_weapon_position("L")
 	
 	mainhand_item_instance.update_markers("R")
 	offhand_item_instance.update_markers("L")

@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://b6q6co5ha0omh" path="res://scripts/PlayerController/abilities/parry.gd" id="20_7xqws"]
 [ext_resource type="AudioStream" uid="uid://ok3ag0owov5v" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Land.ogg" id="20_pjxg6"]
 [ext_resource type="AudioStream" uid="uid://da73dxrnpf2we" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Footsteps/Stone/Stone Jump.ogg" id="21_1qw3l"]
+[ext_resource type="AnimationLibrary" uid="uid://bk405s5vnx4ql" path="res://animations/player/dagger/dagger.res" id="29_7xqws"]
 [ext_resource type="Script" uid="uid://buc6uya8qp2cj" path="res://scripts/PlayerController/animation_controller_seperated.gd" id="32_7xqws"]
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
@@ -645,7 +646,7 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.9999995, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="dagger" parent="Player - Kopie/Weapons/Mainhand" unique_id=1356170886 instance=ExtResource("41_7xqws")]
@@ -673,6 +674,24 @@ transform = Transform3D(0.9999997, 0, 0, 0, 1.0000008, 0, 0, 0, 1.0000004, -0.38
 rotation_edit_mode = 1
 
 [node name="dagger" parent="Player - Kopie/Weapons/Offhand" unique_id=1112058033 instance=ExtResource("41_7xqws")]
+
+[node name="Hand" parent="Player - Kopie/Weapons/Offhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1112058033, 1480913319) index="0" unique_id=412858856]
+transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0, 0, 0)
+
+[node name="Finger" parent="Player - Kopie/Weapons/Offhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1112058033, 1480913319) index="1" unique_id=2061517379]
+transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0.08915551, -0.032978058, -0.16291437)
+
+[node name="Thumb" parent="Player - Kopie/Weapons/Offhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1112058033, 1480913319) index="2" unique_id=1174735853]
+transform = Transform3D(1, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999994, 0.12170841, -0.061964154, -0.1829097)
+
+[node name="FingerPole" parent="Player - Kopie/Weapons/Offhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1112058033, 1480913319) index="3" unique_id=2008502423]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.038050026, -1.1920929e-07, -0.25411597)
+
+[node name="ThumbPole" parent="Player - Kopie/Weapons/Offhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1112058033, 1480913319) index="4" unique_id=205447482]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.20830312, 0.0040317774, -0.038048238)
+
+[node name="DaggerMesh" parent="Player - Kopie/Weapons/Offhand/dagger" index="2" unique_id=1419587683]
+transform = Transform3D(0.04616782, -0.06912921, 0.034491807, -0.0093731675, 0.034872435, 0.0824382, -0.07668556, -0.045880996, 0.010689162, 0.021804621, -0.14814027, -0.14977951)
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -815,6 +834,7 @@ transition_speed = 6.0
 root_node = NodePath("../AnimationTreeNew")
 libraries/ = SubResource("AnimationLibrary_ysvla")
 libraries/Jump = ExtResource("34_8rwn3")
+libraries/dagger = ExtResource("29_7xqws")
 libraries/fist = ExtResource("7_84use")
 libraries/greataxe = ExtResource("8_ovcx5")
 libraries/greathammer = ExtResource("8_8aen8")

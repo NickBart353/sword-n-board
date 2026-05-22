@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="8_njja8"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wixkm"]
-radius = 0.35986328
-height = 4.369629
+radius = 0.0390625
+height = 0.41497803
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_68yxq"]
 _surfaces = [{
@@ -118,7 +118,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_68yxq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gucgr"]
-size = Vector3(1.4904785, 6.477417, 0.42211914)
+size = Vector3(0.035858154, 0.58654976, 0.15997314)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_njja8"]
 radius = 0.01
@@ -126,31 +126,28 @@ height = 0.275
 
 [node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_k0p64")]
 collision_layer = 8
-collision_mask = 33
+collision_mask = 35
 script = ExtResource("2_wixkm")
 hand_component = NodePath("OnehandComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=891408647]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0593262, 0)
-visible = false
+transform = Transform3D(-0.77077425, 0.38790274, -0.50540906, 0.24804495, 0.9134013, 0.32275662, 0.5868395, 0.12340822, -0.8002434, 0.17215915, 0.19683412, -0.1010845)
 shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
-visible = false
 
 [node name="DaggerMesh" parent="." index="2" unique_id=1419587683]
-transform = Transform3D(-3.934025e-09, -0.09, -3.934025e-09, 0, -3.934025e-09, 0.09, -0.09, 3.934025e-09, 1.719617e-16, 0, -0.13354301, 0)
+transform = Transform3D(0.046082187, -0.06915355, 0.034557488, -0.009362858, 0.03494266, 0.082409635, -0.07673832, -0.045790814, 0.0106973285, 0.022, -0.148, -0.15)
 mesh = SubResource("ArrayMesh_t5mmq")
 
 [node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
-visible = false
 collision_layer = 8
 collision_mask = 192
 script = ExtResource("8_njja8")
 metadata/_custom_type_script = "uid://ckyck7wjay34t"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryComponent" index="0" unique_id=845701295]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0072021484, 0.034851074, -0.05505371)
+transform = Transform3D(-0.78559256, 0.37011424, 0.49584278, 0.393815, 0.9171848, -0.060674626, -0.47723612, 0.14760473, -0.86629, 0.12581728, 0.100010365, -0.11624248)
 shape = SubResource("BoxShape3D_gucgr")
 debug_color = Color(0.98537606, 0.120839916, 0, 0.41960785)
 
