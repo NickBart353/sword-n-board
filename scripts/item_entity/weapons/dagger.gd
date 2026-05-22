@@ -4,7 +4,8 @@ signal hit
 
 const weapon_data: Dictionary = {
 	"R_POSITION": Vector3(-0.073, -0.133, -0.109),
-	"R_ROTATION": Vector3(-66.7, -77.0, -143.8),
+	#"R_ROTATION": Vector3(-66.7, -77.0, -143.8),
+	"R_ROTATION": Vector3(66.7, 77.0, -143.8),
 	"R_PARRY_POSITION": Vector3(-0.183, 0.122, -0.084),
 	"R_PARRY_ROTATION": Vector3(-13.6, 46.8, 19.9),
 	"R_COLLISION_POSITION": Vector3(-0.217, 0.202, -0.079),
@@ -22,18 +23,12 @@ func _on_body_entered(body: Node3D) -> void:
 		hit.emit(body, data.normal_damage)
 
 func set_weapon_position(hand: String) -> void:
-	$DaggerMesh.position = weapon_data["{0}_POSITION".format(hand)]
-	$DaggerMesh.rotation = weapon_data["{0}_ROTATION".format(hand)]
-	$CollisionShape3D.position = weapon_data["{0}_PARRY_POSITION".format(hand)]
-	$CollisionShape3D.rotation = weapon_data["{0}_PARRY_ROTATION".format(hand)]
-	$ParryComponent/CollisionShape3D.position = weapon_data["{0}_COLLISION_POSITION".format(hand)]
-	$ParryComponent/CollisionShape3D.rotation = weapon_data["{0}_COLLISION_ROTATION".format(hand)]
-
-func get_weapon_position(hand: String) -> Vector3:
-	return weapon_data["{0}_POSITION".format(hand)]
-
-func get_weapon_rotation(hand: String) -> Vector3:
-	return weapon_data["{0}_ROTATION".format(hand)]
+	$DaggerMesh.position = weapon_data["{0}_POSITION".format([hand])]
+	$DaggerMesh.rotation = weapon_data["{0}_ROTATION".format([hand])]
+	$CollisionShape3D.position = weapon_data["{0}_PARRY_POSITION".format([hand])]
+	$CollisionShape3D.rotation = weapon_data["{0}_PARRY_ROTATION".format([hand])]
+	$ParryComponent/CollisionShape3D.position = weapon_data["{0}_COLLISION_POSITION".format([hand])]
+	$ParryComponent/CollisionShape3D.rotation = weapon_data["{0}_COLLISION_ROTATION".format([hand])]
 
 func _set_marker_values():
 	marker_positions = {

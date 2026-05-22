@@ -7,6 +7,7 @@
 script = ExtResource("1_aeevv")
 normal_damage = 25.0
 critical_strike_chance = 0.2
+combo_size = 2
 dualwield_combo_size = 2
 item_name = "Dagger"
 item_id = "10006"

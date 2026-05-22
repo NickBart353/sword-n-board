@@ -131,13 +131,13 @@ script = ExtResource("2_wixkm")
 hand_component = NodePath("OnehandComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=891408647]
-transform = Transform3D(-0.77077425, 0.38790274, -0.50540906, 0.24804495, 0.9134013, 0.32275662, 0.5868395, 0.12340822, -0.8002434, 0.17215915, 0.19683412, -0.1010845)
+transform = Transform3D(0.18343376, -0.4071592, 0.89474756, 0.1880211, 0.9079196, 0.37460655, -0.96488345, 0.099515945, 0.24309759, -0.217, 0.202, -0.079)
 shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
 [node name="DaggerMesh" parent="." index="2" unique_id=1419587683]
-transform = Transform3D(0.046082187, -0.06915355, 0.034557488, -0.009362858, 0.03494266, 0.082409635, -0.07673832, -0.045790814, 0.0106973285, 0.022, -0.148, -0.15)
+transform = Transform3D(-0.063905716, -0.053036716, -0.034686692, -0.021025026, -0.028727058, 0.082660176, -0.05978301, 0.066797175, 0.0080080535, -0.073, -0.133, -0.109)
 mesh = SubResource("ArrayMesh_t5mmq")
 
 [node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
@@ -147,7 +147,7 @@ script = ExtResource("8_njja8")
 metadata/_custom_type_script = "uid://ckyck7wjay34t"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ParryComponent" index="0" unique_id=845701295]
-transform = Transform3D(-0.78559256, 0.37011424, 0.49584278, 0.393815, 0.9171848, -0.060674626, -0.47723612, 0.14760473, -0.86629, 0.12581728, 0.100010365, -0.11624248)
+transform = Transform3D(0.5853267, -0.39418173, 0.708529, 0.3308357, 0.9139232, 0.2351421, -0.7402301, 0.09677173, 0.66535306, -0.183, 0.122, -0.084)
 shape = SubResource("BoxShape3D_gucgr")
 debug_color = Color(0.98537606, 0.120839916, 0, 0.41960785)
 

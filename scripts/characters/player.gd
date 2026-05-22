@@ -266,9 +266,6 @@ func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
 	if item_instance:
 		mainhand.add_child(item_instance)
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("R")
-		
 		item_instance.update_markers("R")
 		var marker_dictionary: Dictionary = item_instance.get_markers()
 		arm_right.set_target_node(0, marker_dictionary.get("Hand").get_path())
@@ -276,6 +273,9 @@ func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
 		thumb_right.set_target_node(0, marker_dictionary.get("Thumb").get_path())
 		finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+		
+		if item_instance is Dagger:
+			item_instance.set_weapon_position("R")
 		
 		new_animation.equpped_mainhand_weapon(anim_name)
 	#return old
@@ -296,9 +296,6 @@ func _reequip_offhand(old: Item, new_offhand: Item, slot):
 	if item_instance:
 		offhand.add_child(item_instance)
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("L")
-		
 		item_instance.update_markers("L")
 		var marker_dictionary: Dictionary = item_instance.get_markers()
 		arm_left.set_target_node(0, marker_dictionary.get("Hand").get_path())
@@ -306,6 +303,9 @@ func _reequip_offhand(old: Item, new_offhand: Item, slot):
 		thumb_left.set_target_node(0, marker_dictionary.get("Thumb").get_path())
 		finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
+		
+		if item_instance is Dagger:
+			item_instance.set_weapon_position("L")
 		
 		new_animation.equpped_offhand_weapon(anim_name)
 	#return old
@@ -328,14 +328,14 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	mainhand.add_child(mainhand_item_instance)
 	offhand.add_child(offhand_item_instance)
 	
+	mainhand_item_instance.update_markers("R")
+	offhand_item_instance.update_markers("L")
+	
 	if mainhand_item_instance is Dagger:
 		mainhand_item_instance.set_weapon_position("R")
 	
 	if offhand_item_instance is Dagger:
 		offhand_item_instance.set_weapon_position("L")
-	
-	mainhand_item_instance.update_markers("R")
-	offhand_item_instance.update_markers("L")
 	
 	var mainhand_marker_dictionary: Dictionary = mainhand_item_instance.get_markers()
 	var offhand_marker_dictionary: Dictionary = offhand_item_instance.get_markers()
