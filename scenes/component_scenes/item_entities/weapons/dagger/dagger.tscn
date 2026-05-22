@@ -120,6 +120,10 @@ shadow_mesh = SubResource("ArrayMesh_68yxq")
 [sub_resource type="BoxShape3D" id="BoxShape3D_gucgr"]
 size = Vector3(1.4904785, 6.477417, 0.42211914)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_njja8"]
+radius = 0.01
+height = 0.275
+
 [node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_k0p64")]
 collision_layer = 8
 collision_mask = 33
@@ -128,14 +132,18 @@ hand_component = NodePath("OnehandComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=891408647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0593262, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
+visible = false
 
 [node name="DaggerMesh" parent="." index="2" unique_id=1419587683]
+transform = Transform3D(-3.934025e-09, -0.09, -3.934025e-09, 0, -3.934025e-09, 0.09, -0.09, 3.934025e-09, 1.719617e-16, 0, -0.13354301, 0)
 mesh = SubResource("ArrayMesh_t5mmq")
 
 [node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
+visible = false
 collision_layer = 8
 collision_mask = 192
 script = ExtResource("8_njja8")
@@ -145,3 +153,7 @@ metadata/_custom_type_script = "uid://ckyck7wjay34t"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0072021484, 0.034851074, -0.05505371)
 shape = SubResource("BoxShape3D_gucgr")
 debug_color = Color(0.98537606, 0.120839916, 0, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4" unique_id=385775809]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.34409004, -0.13754185)
+mesh = SubResource("CapsuleMesh_njja8")
