@@ -51,10 +51,12 @@ size = Vector3(0.26782227, 0.265213, 0.47224462)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jspw"]
 size = Vector3(0.25909424, 0.7230911, 0.44378662)
 
-[node name="hammer" unique_id=87077578 instance=ExtResource("1_qoys6")]
+[node name="hammer" unique_id=87077578 node_paths=PackedStringArray("hammer_player", "hand_component") instance=ExtResource("1_qoys6")]
 collision_layer = 8
 collision_mask = 35
 script = ExtResource("2_p7gb8")
+hammer_player = NodePath("HammerPlayer")
+hand_component = NodePath("OnehandComponent")
 
 [node name="Plane" parent="." index="0" unique_id=1037589919]
 transform = Transform3D(-4.371139e-09, 0.1, -4.371139e-09, 0, -4.371139e-09, -0.1, -0.1, -4.371139e-09, 1.9106854e-16, -2.6294304e-08, 0.47779524, 1.1493605e-15)
@@ -74,6 +76,8 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0039367676, 0.27495956, 0.006500244)
 shape = SubResource("BoxShape3D_8jspw")
 debug_color = Color(0.9985035, 0, 0.1519121, 0.41960785)
+
+[node name="HammerPlayer" type="AudioStreamPlayer3D" parent="." index="4" unique_id=2017890895]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

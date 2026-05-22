@@ -4,15 +4,19 @@ signal hit
 
 const weapon_data: Dictionary = {
 	"R_POSITION": Vector3(-0.073, -0.133, -0.109),
-	#"R_ROTATION": Vector3(-66.7, -77.0, -143.8),
-	"R_ROTATION": Vector3(66.7, 77.0, -143.8),
+	"R_ROTATION": Vector3(-66.7, -77.0, -143.8),
+	#"R_ROTATION": Vector3(66.7, 77.0, -143.8),
 	"R_PARRY_POSITION": Vector3(-0.183, 0.122, -0.084),
 	"R_PARRY_ROTATION": Vector3(-13.6, 46.8, 19.9),
 	"R_COLLISION_POSITION": Vector3(-0.217, 0.202, -0.079),
 	"R_COLLISION_ROTATION": Vector3(-22.0, 74.8, 11.7),
 	"L_POSITION": Vector3(0.022, -0.148, -0.15),
+	#"L_POSITION": Vector3(0.022, 2.148, -0.15),
+	
 	#"L_ROTATION": Vector3(-66.3, 72.8, -15.0),
-	"L_ROTATION": Vector3(166.3, 172.8, -150.0),
+	#"L_ROTATION": Vector3(166.3, 0, -150.0),
+	"L_ROTATION": Vector3(-24.3, 72.8, -15.0),
+	
 	"L_PARRY_POSITION": Vector3(0.126, 0.1, -0.116),
 	"L_PARRY_ROTATION": Vector3(3.5, 150.2, 23.2),
 	"L_COLLISION_POSITION": Vector3(0.172, 0.197, -0.101),

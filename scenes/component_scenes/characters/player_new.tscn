@@ -634,13 +634,16 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.9999994, 0, 0, 0, 0.9999996, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.99999934, 0, 0, 0, 0.9999996, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="dagger" parent="Player - Kopie/Weapons/Mainhand" unique_id=1356170886 instance=ExtResource("41_7xqws")]
 
 [node name="Hand" parent="Player - Kopie/Weapons/Mainhand/dagger/OnehandComponent" parent_id_path=PackedInt32Array(1356170886, 1480913319) index="0" unique_id=412858856]
 transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0, 0, 0)
+
+[node name="DaggerMesh" parent="Player - Kopie/Weapons/Mainhand/dagger" index="2" unique_id=1419587683]
+transform = Transform3D(-0.063905716, -0.053036712, -0.034686692, -0.021025026, -0.028727055, 0.082660176, -0.05978301, 0.066797175, 0.0080080535, -0.073, -0.133, -0.109)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(0.9999997, 0, 0, 0, 1.0000004, 0, 0, 0, 1.0000006, -0.385, 1.09, -0.405)
