@@ -20,12 +20,8 @@ func _set_marker_values():
 		"Finger": {
 			"L_Position": Vector3(0.044, 0, -0.03),
 			"R_Position": Vector3(-0.044, 0, -0.03),
-			#"L_Position": Vector3(0.044, 0.002, 0.15),
-			#"R_Position": Vector3(-0.044, 0.002, 0.15),
 			"L_Rotation": Vector3(-67.5, -90.0, 90.0),
 			"R_Rotation": Vector3(67.5, -90.0, 90.0),
-			#"L_Rotation": Vector3.ZERO,
-			#"R_Rotation": Vector3.ZERO,
 			},
 		"Thumb": {
 			"L_Position": Vector3(0.024, 0.024, 0),
