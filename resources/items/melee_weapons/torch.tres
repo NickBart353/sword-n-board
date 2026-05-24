@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_d17os")
-normal_damage = 10.0
+normal_damage = 15.0
 combo_size = 2
 dualwield_combo_size = 2
 item_name = "Torch"
