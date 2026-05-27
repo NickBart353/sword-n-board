@@ -140,7 +140,11 @@ func remove_movement_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
-	if new_modifier in movement_modifiers:
+	if type == "weapon":
+		for modifier in movement_modifiers:
+			if modifier["type"] == "weapon":
+				movement_modifiers.erase(modifier)
+	elif new_modifier in movement_modifiers:
 		movement_modifiers.erase(new_modifier)
 	_update_movement_speed()
 
@@ -155,7 +159,11 @@ func remove_rotation_modifier(value: float, type: String = "weapon") -> void:
 	var new_modifier: Dictionary = MOVEMENT_MODIFIER_DICT_PRESET.duplicate()
 	new_modifier["amount"] = value
 	new_modifier["type"] = type
-	if new_modifier in rotation_modifiers:
+	if type == "weapon":
+		for modifier in rotation_modifiers:
+			if modifier["type"] == "weapon":
+				rotation_modifiers.erase(modifier)
+	elif new_modifier in rotation_modifiers:
 		rotation_modifiers.erase(new_modifier)
 	_update_rotation_speed()
 
