@@ -38,6 +38,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bk405s5vnx4ql" path="res://animations/player/dagger/dagger.res" id="29_7xqws"]
 [ext_resource type="Script" uid="uid://buc6uya8qp2cj" path="res://scripts/PlayerController/animation_controller_seperated.gd" id="32_7xqws"]
 [ext_resource type="AnimationLibrary" uid="uid://dqjm0oaqksnno" path="res://animations/player/movement_new/movement.res" id="34_0hxxe"]
+[ext_resource type="AnimationLibrary" uid="uid://t3sxlok1oula" path="res://animations/player/hammer/hammer.res" id="34_8aen8"]
 [ext_resource type="AnimationLibrary" uid="uid://c3ihqv482glb1" path="res://animations/player/jump/Jump.res" id="34_8rwn3"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://d1nwihg78uvqt" path="res://animations/player/player_blend_tree.tres" id="34_oij22"]
 [ext_resource type="AnimationLibrary" uid="uid://c7rbb85uabe6s" path="res://animations/player/shortsword/shortsword.res" id="38_84use"]
@@ -634,7 +635,7 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.9999999, 0, 0, 0, 1.0000002, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="hammer" parent="Player - Kopie/Weapons/Mainhand" unique_id=87077578 instance=ExtResource("5_7xqws")]
@@ -656,7 +657,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0.19222689,
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, -0.16384433, 0.18525064, 0.04381439)
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(0.9999996, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000004, -0.385, 1.09, -0.405)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.9999997, 0, 0, 0, 1, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
 [node name="hammer" parent="Player - Kopie/Weapons/Offhand" unique_id=797818829 instance=ExtResource("5_7xqws")]
@@ -822,6 +823,7 @@ libraries/fist = ExtResource("7_84use")
 libraries/greataxe = ExtResource("8_ovcx5")
 libraries/greathammer = ExtResource("8_8aen8")
 libraries/greatsword = ExtResource("8_pxpwq")
+libraries/hammer = ExtResource("34_8aen8")
 libraries/hatchet = ExtResource("11_qk665")
 libraries/katana = ExtResource("11_xamg6")
 libraries/movement = ExtResource("34_0hxxe")
