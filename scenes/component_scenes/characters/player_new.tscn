@@ -351,8 +351,6 @@ collision_mask = 35
 floor_snap_length = 0.2
 safe_margin = 0.1
 script = ExtResource("1_nqje2")
-movement_speed = null
-look_speed = null
 stamina_regeneration_speed = 30.0
 mana_regeneration_speed = 3.0
 

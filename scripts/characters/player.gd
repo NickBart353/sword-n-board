@@ -386,7 +386,7 @@ func get_equipped_weapon_from_slot(slot: Marker3D):
 	return null
 
 func _consume_item(consumable: Item) -> void:
-	new_animation.set_consumable_animation(consumable.)
+	new_animation.set_consumable_animation(consumable.data.item_type)
 	
 	for weapon in mainhand.get_children():
 		weapon.hide()

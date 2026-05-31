@@ -26,7 +26,7 @@ enum ITEM_TYPE {SHORTSWORD, GREATSWORD, AXE, GREATAXE, DAGGER, HAMMER, GREATHAMM
 				UPGRADE_SHARD, TRANSFORM_SHARD,
 				}
 
-func get_item_category_value(value: ITEM_CATEGORY) -> String:
+static func get_item_category_value(value: ITEM_CATEGORY) -> String:
 	match value:
 		ITEM_CATEGORY.WEAPON:
 			return "Weapon"
@@ -36,9 +36,9 @@ func get_item_category_value(value: ITEM_CATEGORY) -> String:
 			return "Consumable"
 		ITEM_CATEGORY.MATERIAL:
 			return "Material"
-	return ""
+	return "Wrong category or forgot adding name to item_resource.gd"
 
-func get_item_sub_category_value(value: ITEM_SUB_CATEGORY) -> String:
+static func get_item_sub_category_value(value: ITEM_SUB_CATEGORY) -> String:
 	match value:
 		ITEM_SUB_CATEGORY.MELEE_WEAPON:
 			return "Melee Weapon"
@@ -52,9 +52,9 @@ func get_item_sub_category_value(value: ITEM_SUB_CATEGORY) -> String:
 			return "Throwable"
 		ITEM_SUB_CATEGORY.MATERIAL:
 			return "Material"
-	return ""
+	return "Wrong sub-category or forgot adding name to item_resource.gd"
 
-func get_item_type_value(value: ITEM_TYPE) -> String:
+static func get_item_type_value(value: ITEM_TYPE) -> String:
 	match value:
 		ITEM_TYPE.SHORTSWORD:
 			return "Shortsword"
@@ -84,4 +84,4 @@ func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Torch"
 		ITEM_TYPE.SHIELD:
 			return "Shield"
-	return ""
+	return "Wrong type or forgot adding name to item_resource.gd"

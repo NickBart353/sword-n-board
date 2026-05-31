@@ -181,6 +181,16 @@ func _block(statemachine: AnimationNodeStateMachinePlayback):
 	if block.blocking:
 		statemachine.travel("activate1")
 
+func set_consumable_animation(consumable_type: ItemData.ITEM_TYPE) -> void:
+	var consume_animation = anim_tree.tree_root.get_node("Consume")
+	var animation_name: String = ""
+	match consumable_type:
+		ItemData.ITEM_TYPE.POTION:
+			animation_name = "dring"
+		ItemData.ITEM_TYPE.CONSUMABLE:
+			animation_name = "eat"
+	consume_animation.animation = "consumable/{0}".format([animation_name])
+
 func equipped_two_hand_weapon(weapon_name: String):
 	twohand_statemachine.start("idle")
 	anim_tree[weapon_blender] = -1
