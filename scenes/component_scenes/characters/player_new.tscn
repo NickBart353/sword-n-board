@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
+[ext_resource type="PackedScene" uid="uid://bovpwrju5f1h" path="res://assets/Visual/RPG_ITEMS_V.1/RPG_ITENS_V.1/BLEND/BLEND/BigPotion_Mana.blend" id="5_y6i1k"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -332,6 +333,30 @@ tracks/18/keys = {
 "update": 0,
 "values": [Quaternion(0, 0, 0, 1)]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("../Slots/Consumable:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.29027706, 1.0870128, -0.10800558)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("../Slots/Consumable:rotation")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ysvla"]
 _data = {
@@ -498,25 +523,27 @@ settings/0/amount = 1.0
 settings/0/apply_bone_name = "hand.r"
 settings/0/apply_bone = 19
 settings/0/reference_type = 1
-settings/0/reference_node = NodePath("")
+settings/0/reference_node = NodePath("../../../IKMarkers/Arms/HandRight")
 settings/0/copy = 2
 settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
 [node name="HandLeft" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="11" unique_id=77210507]
+active = false
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "hand.l"
 settings/0/apply_bone = 10
 settings/0/reference_type = 1
-settings/0/reference_node = NodePath("")
+settings/0/reference_node = NodePath("../../../IKMarkers/Arms/HandLeft")
 settings/0/copy = 2
 settings/0/axes = 7
 settings/0/invert = 0
 settings/0/additive = false
 
 [node name="FootRight" type="CopyTransformModifier3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 846615013) index="12" unique_id=1214134667]
+active = false
 setting_count = 1
 settings/0/amount = 1.0
 settings/0/apply_bone_name = "ankle.r"
@@ -596,7 +623,7 @@ transform = Transform3D(4.371139e-08, -3.821371e-15, -1, -8.742278e-08, -1, 0, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26520532, 0.8455571, 0.0014194101)
 
 [node name="HandLeft" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1440092663]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27714828, 0.85065806, -0.06536512)
+transform = Transform3D(1, 0, 0, 0, 1.0000004, 0, 0, 0, 1, -0.27714828, 0.85065806, -0.06536512)
 
 [node name="ElbowRight" type="Marker3D" parent="Player - Kopie/IKMarkers/Arms" unique_id=1205254174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.51984733, 1.2604917, 0.9327944)
@@ -672,7 +699,6 @@ transform = Transform3D(2, 0, 0, 0, 1.9966164, -0.11628965, 0, 0.11628965, 1.996
 collision_mask = 3
 
 [node name="Slots" type="Node3D" parent="." unique_id=64799682]
-visible = false
 
 [node name="Head" type="Marker3D" parent="Slots" unique_id=1552716664]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
@@ -683,7 +709,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.77399564, 0)
 
 [node name="Consumable" type="Marker3D" parent="Slots" unique_id=1692377005]
-transform = Transform3D(0.98507684, 0.13091344, 0.11173704, -0.12827595, 0.9912692, -0.03050713, -0.114755265, 0.015718693, 0.99326944, -0.6873604, -0.39954534, -0.010622079)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -0.29027706, 1.0870128, -0.10800558)
+
+[node name="BigPotion_Mana2" parent="Slots/Consumable" unique_id=1883137692 instance=ExtResource("5_y6i1k")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=848838605 groups=["PlayerHurtBox"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.366194, 0)
