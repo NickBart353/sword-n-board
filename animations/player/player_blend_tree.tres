@@ -6,6 +6,10 @@
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_48n4i"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_48n4i"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_eljox"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4n84"]
 animation = &"hatchet/dualwield_attack1"
 
@@ -568,7 +572,8 @@ graph_offset = Vector2(-50, -43)
 
 [resource]
 resource_local_to_scene = true
-nodes/output/position = Vector2(2240, -100)
+graph_offset = Vector2(1326.8462, -94.69716)
+nodes/output/position = Vector2(2480, -120)
 nodes/Weaponblender/node = SubResource("AnimationNodeBlend3_0rpqu")
 nodes/Weaponblender/position = Vector2(1620, 20)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_eljox")
@@ -576,7 +581,7 @@ nodes/Add2/position = Vector2(1840, -100)
 nodes/Offhand/node = SubResource("AnimationNodeStateMachine_nw0it")
 nodes/Offhand/position = Vector2(960, 360)
 nodes/ActionSpeed/node = SubResource("AnimationNodeTimeScale_6f6ns")
-nodes/ActionSpeed/position = Vector2(2040, -100)
+nodes/ActionSpeed/position = Vector2(2060, -140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_7wllh")
 nodes/StateMachine/position = Vector2(1280, -280)
 nodes/Twohand/node = SubResource("AnimationNodeStateMachine_gsf3g")
@@ -587,4 +592,8 @@ nodes/Combiner/node = SubResource("AnimationNodeAdd2_48n4i")
 nodes/Combiner/position = Vector2(1380, 180)
 nodes/Dualwield/node = SubResource("AnimationNodeStateMachine_f7nme")
 nodes/Dualwield/position = Vector2(1320, 460)
-node_connections = [&"output", 0, &"ActionSpeed", &"Weaponblender", 0, &"Twohand", &"Weaponblender", 1, &"Combiner", &"Weaponblender", 2, &"Dualwield", &"Add2", 0, &"StateMachine", &"Add2", 1, &"Weaponblender", &"ActionSpeed", 0, &"Add2", &"Combiner", 0, &"Mainhand", &"Combiner", 1, &"Offhand"]
+nodes/ConsumeShot/node = SubResource("AnimationNodeOneShot_eljox")
+nodes/ConsumeShot/position = Vector2(2261.431, -35.966877)
+nodes/Consume/node = SubResource("AnimationNodeAnimation_48n4i")
+nodes/Consume/position = Vector2(2080, 100)
+node_connections = [&"output", 0, &"ConsumeShot", &"Weaponblender", 0, &"Twohand", &"Weaponblender", 1, &"Combiner", &"Weaponblender", 2, &"Dualwield", &"Add2", 0, &"StateMachine", &"Add2", 1, &"Weaponblender", &"ActionSpeed", 0, &"Add2", &"Combiner", 0, &"Mainhand", &"Combiner", 1, &"Offhand", &"ConsumeShot", 0, &"ActionSpeed", &"ConsumeShot", 1, &"Consume"]

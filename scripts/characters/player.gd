@@ -11,6 +11,7 @@ signal spawn_projectile
 @onready var ability: Node = $AbilityController
 @onready var new_animation: Node = $AnimationControllerNew
 @onready var audio: Node = $AudioController
+@onready var consume: Node = $Consume
 
 @onready var block: Node = $AbilityController/Block
 @onready var parry: Node = $AbilityController/Parry
@@ -118,8 +119,8 @@ func _ready() -> void:
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 	$AbilityController/Block.blocked.connect(_blocked_attack)
-	$AbilityController/Consume.consume_item.connect(_consume_item)
-	$AbilityController/Consume.finished_consuming.connect(_remove_consumable)
+	consume.consume_item.connect(_consume_item)
+	consume.finished_consuming.connect(_remove_consumable)
 	_check_unequipped_slots()
 
 func _update_rotation_modifier(new_rotation_modifier: float) -> void:
@@ -144,6 +145,7 @@ func _physics_process(delta: float) -> void:
 	#animation.apply_animations(input, state_controller, movement, ability, delta)
 	new_animation.apply_animations(input, state_controller, movement, ability, delta)
 	audio.apply_audio(state_controller, movement, ability)
+	consume.apply_consumable(input, state_controller, movement, ability, delta)
 	
 	if not state_controller.is_player_busy():
 		interact_with_object()
@@ -362,6 +364,7 @@ func _reset_weapon_modifiers() -> void:
 func _check_unequipped_slots():
 	main_hand_item = _reequip_mainhand(main_hand_item, null, mainhand)
 	off_hand_item = _reequip_offhand(off_hand_item, null, offhand)
+	consume.set_consumable(consumable_item)
 	_set_weapons()
 
 func _new_consumable(item: Item):
@@ -382,7 +385,21 @@ func get_equipped_weapon_from_slot(slot: Marker3D):
 		return children[0]
 	return null
 
-func _consume_item(consumable: Node) -> void:
+func _consume_item(consumable: Item) -> void:
+	new_animation.set_consumable_animation(consumable.)
+	
+	for weapon in mainhand.get_children():
+		weapon.hide()
+	
+	for weapon in offhand.get_children():
+		weapon.hide()
+	
+	for weapon in twohand.get_children():
+		weapon.hide()
+	
+	_free_hand_slots()
+	_equip_basic_hand_slots()
+	
 	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):
 	if consumable.property in self:
 		match consumable.property_type:
@@ -410,6 +427,23 @@ func _consume_item(consumable: Node) -> void:
 
 func _remove_consumable():
 	UiController.consumed(consumable_item)
+
+func _free_hand_slots() -> void:
+	arm_right.set_target_node(0, "")
+	finger_right.set_target_node(0, "")
+	thumb_right.set_target_node(0, "")
+	finger_right.set_pole_node(0, "")
+	thumb_right.set_pole_node(0, "")
+	
+	arm_left.set_target_node(0, "")
+	finger_left.set_target_node(0, "")
+	thumb_left.set_target_node(0, "")
+	finger_left.set_pole_node(0, "")
+	thumb_left.set_pole_node(0, "")
+
+func _equip_basic_hand_slots() -> void:
+	arm_right.set_target_node(0, ^"Player - Kopie/IKMarkers/Arms/HandRight")
+	arm_left.set_target_node(0, ^"Player - Kopie/IKMarkers/Arms/HandLeft")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if PlayerControls.input_blocked():

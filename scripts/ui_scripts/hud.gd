@@ -116,3 +116,10 @@ func _new_offhand(item: Item, two_handed_duplicate: bool):
 		display_instance.name = item.data.item_name
 		if two_handed_duplicate:
 			display_instance.modulate = Color(1, 1, 1, 0.3)
+
+#mh
+# 0.067 0.743 0.135 0.746
+# 0 0 0 128
+
+#oh
+# 0.22 0.743 0.285 0.746 

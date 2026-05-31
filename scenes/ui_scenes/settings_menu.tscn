@@ -84,6 +84,7 @@ layout_mode = 2
 theme = ExtResource("1_7gtp0")
 current_tab = 0
 switch_on_drag_hover = false
+tab_1/disabled = true
 
 [node name="Audio" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=546489574]
 layout_mode = 2
