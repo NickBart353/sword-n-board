@@ -635,11 +635,10 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1.0000007, 0, 0, 0, 0.99999857, 0.15
 rotation_edit_mode = 1
 
 [node name="Mainhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=1025347093]
-transform = Transform3D(0.9999999, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0.3264439, 1.1441026, -0.3358699)
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
 [node name="hammer" parent="Player - Kopie/Weapons/Mainhand" unique_id=87077578 instance=ExtResource("5_7xqws")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06280172, -0.2814998)
 
 [node name="Hand" parent="Player - Kopie/Weapons/Mainhand/hammer/OnehandComponent" parent_id_path=PackedInt32Array(87077578, 1480913319) index="0" unique_id=412858856]
 transform = Transform3D(-0.9235781, 5.71302e-08, -0.38340858, 0.3834084, 2.3611543e-08, -0.9235772, -4.3711328e-08, -0.99999887, -4.3711317e-08, 0.05259937, 0.11535561, 0.1253404)
