@@ -7,6 +7,7 @@
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_48n4i"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_48n4i"]
+animation = &"consumable/drink"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_eljox"]
 
@@ -595,5 +596,5 @@ nodes/Dualwield/position = Vector2(1320, 460)
 nodes/ConsumeShot/node = SubResource("AnimationNodeOneShot_eljox")
 nodes/ConsumeShot/position = Vector2(2261.431, -35.966877)
 nodes/Consume/node = SubResource("AnimationNodeAnimation_48n4i")
-nodes/Consume/position = Vector2(2080, 100)
+nodes/Consume/position = Vector2(2000, 100)
 node_connections = [&"output", 0, &"ConsumeShot", &"Weaponblender", 0, &"Twohand", &"Weaponblender", 1, &"Combiner", &"Weaponblender", 2, &"Dualwield", &"Add2", 0, &"StateMachine", &"Add2", 1, &"Weaponblender", &"ActionSpeed", 0, &"Add2", &"Combiner", 0, &"Mainhand", &"Combiner", 1, &"Offhand", &"ConsumeShot", 0, &"ActionSpeed", &"ConsumeShot", 1, &"Consume"]

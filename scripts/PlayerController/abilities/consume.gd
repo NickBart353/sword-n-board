@@ -7,6 +7,7 @@ extends Node
 @export var drinking_sound_two: AudioStream
 @export var ability_player: AudioStreamPlayer3D
 
+signal start_consuming
 signal consume_item
 signal finished_consuming
 
@@ -16,6 +17,11 @@ var consumed: bool = false
 var process: bool = false
 
 func set_consumable(new_consumable: Item) -> void:
+	print(new_consumable)
+	if new_consumable:
+		print(new_consumable.get_class())
+		print(new_consumable.data.item_name)
+		print(new_consumable is Item)
 	if new_consumable is Item:
 		consumable = new_consumable
 		process = true
@@ -26,6 +32,8 @@ func apply_consumable(input: Node, state_controller: Node, movement: Node, abili
 	if not process: return
 	if not movement.dashing:
 		if input.consume and not consuming and not ability.busy:
+			print("test")
+			start_consuming.emit(consumable)
 			ability.busy = true
 			consuming = true
 			PlayerControls.block_scrolling()

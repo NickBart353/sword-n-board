@@ -120,7 +120,8 @@ func _ready() -> void:
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
 	$AbilityController/Block.blocked.connect(_blocked_attack)
 	consume.consume_item.connect(_consume_item)
-	consume.finished_consuming.connect(_remove_consumable)
+	consume.finished_consuming.connect(_finished_consuming)
+	consume.start_consuming.connect(_start_consuming)
 	_check_unequipped_slots()
 
 func _update_rotation_modifier(new_rotation_modifier: float) -> void:
@@ -143,7 +144,7 @@ func _physics_process(delta: float) -> void:
 	movement.apply_movement(input, state_controller, ability, delta)
 	ability.apply_abilities(input, state_controller, movement, delta)
 	#animation.apply_animations(input, state_controller, movement, ability, delta)
-	new_animation.apply_animations(input, state_controller, movement, ability, delta)
+	new_animation.apply_animations(input, state_controller, movement, ability, consume, delta)
 	audio.apply_audio(state_controller, movement, ability)
 	consume.apply_consumable(input, state_controller, movement, ability, delta)
 	
@@ -369,7 +370,7 @@ func _check_unequipped_slots():
 
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
-	_set_weapons()
+	consume.set_consumable(item)
 
 func _set_weapons(dualwield: bool = false) -> void:
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
@@ -377,7 +378,6 @@ func _set_weapons(dualwield: bool = false) -> void:
 	
 	for _ability in ability.get_children():
 		_ability.set_item(main_slot, off_slot, dualwield)
-	#$AbilityController/Consume.set_item(get_equipped_weapon_from_slot(consumable_slot))
 
 func get_equipped_weapon_from_slot(slot: Marker3D):
 	var children: Array = slot.get_children()
@@ -386,20 +386,6 @@ func get_equipped_weapon_from_slot(slot: Marker3D):
 	return null
 
 func _consume_item(consumable: Item) -> void:
-	new_animation.set_consumable_animation(consumable.data.item_type)
-	
-	for weapon in mainhand.get_children():
-		weapon.hide()
-	
-	for weapon in offhand.get_children():
-		weapon.hide()
-	
-	for weapon in twohand.get_children():
-		weapon.hide()
-	
-	_free_hand_slots()
-	_equip_basic_hand_slots()
-	
 	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):
 	if consumable.property in self:
 		match consumable.property_type:
@@ -425,8 +411,55 @@ func _consume_item(consumable: Item) -> void:
 			_:
 				print("not implemented yet...")
 
-func _remove_consumable():
+func _finished_consuming():
+	_free_hand_slots()
+	_reequip_weapon_poles()
 	UiController.consumed(consumable_item)
+
+func _start_consuming(consumable: Item) -> void:
+	new_animation.set_consumable_animation(consumable.data.item_type)
+	
+	for weapon in mainhand.get_children():
+		weapon.hide()
+	
+	for weapon in offhand.get_children():
+		weapon.hide()
+	
+	for weapon in twohand.get_children():
+		weapon.hide()
+	
+	_free_hand_slots()
+	_equip_basic_hand_slots()
+
+func _reequip_weapon_poles() -> void:
+	if twohand.get_children().size() > 0:
+		var marker_dictionary: Dictionary = twohand.get_children()[0].get_markers()
+		arm_right.set_target_node(0, marker_dictionary.get("R").get("Hand").get_path())
+		finger_right.set_target_node(0, marker_dictionary.get("R").get("Finger").get_path())
+		thumb_right.set_target_node(0, marker_dictionary.get("R").get("Thumb").get_path())
+		finger_right.set_pole_node(0, marker_dictionary.get("R").get("FingerPole").get_path())
+		thumb_right.set_pole_node(0, marker_dictionary.get("R").get("ThumbPole").get_path())
+		
+		arm_left.set_target_node(0, marker_dictionary.get("L").get("Hand").get_path())
+		finger_left.set_target_node(0, marker_dictionary.get("L").get("Finger").get_path())
+		thumb_left.set_target_node(0, marker_dictionary.get("L").get("Thumb").get_path())
+		finger_left.set_pole_node(0, marker_dictionary.get("L").get("FingerPole").get_path())
+		thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
+	else:
+		var mainhand_marker_dictionary: Dictionary = mainhand.child(0).get_markers()
+		var offhand_marker_dictionary: Dictionary = offhand.child(0).get_markers()
+		
+		arm_right.set_target_node(0, mainhand_marker_dictionary.get("Hand").get_path())
+		finger_right.set_target_node(0, mainhand_marker_dictionary.get("Finger").get_path())
+		thumb_right.set_target_node(0, mainhand_marker_dictionary.get("Thumb").get_path())
+		finger_right.set_pole_node(0, mainhand_marker_dictionary.get("FingerPole").get_path())
+		thumb_right.set_pole_node(0, mainhand_marker_dictionary.get("ThumbPole").get_path())
+	
+		arm_left.set_target_node(0, offhand_marker_dictionary.get("Hand").get_path())
+		finger_left.set_target_node(0, offhand_marker_dictionary.get("Finger").get_path())
+		thumb_left.set_target_node(0, offhand_marker_dictionary.get("Thumb").get_path())
+		finger_left.set_pole_node(0, offhand_marker_dictionary.get("FingerPole").get_path())
+		thumb_left.set_pole_node(0, offhand_marker_dictionary.get("ThumbPole").get_path())
 
 func _free_hand_slots() -> void:
 	arm_right.set_target_node(0, "")
