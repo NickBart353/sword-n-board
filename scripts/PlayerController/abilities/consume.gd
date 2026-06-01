@@ -15,6 +15,7 @@ var consumable: Item
 var consuming: bool = false
 var consumed: bool = false
 var process: bool = false
+var fire_consuming: bool = false
 
 func set_consumable(new_consumable: Item) -> void:
 	print(new_consumable)
@@ -32,10 +33,10 @@ func apply_consumable(input: Node, state_controller: Node, movement: Node, abili
 	if not process: return
 	if not movement.dashing:
 		if input.consume and not consuming and not ability.busy:
-			print("test")
 			start_consuming.emit(consumable)
 			ability.busy = true
 			consuming = true
+			fire_consuming = true
 			PlayerControls.block_scrolling()
 		elif consumed and ability.busy:
 			ability.busy = false

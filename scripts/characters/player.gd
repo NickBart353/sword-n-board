@@ -371,6 +371,8 @@ func _check_unequipped_slots():
 func _new_consumable(item: Item):
 	consumable_item = _reequip_slot(consumable_item, item, consumable_slot)
 	consume.set_consumable(item)
+	if item:
+		new_animation.set_consumable_animation(item.data.item_type)
 
 func _set_weapons(dualwield: bool = false) -> void:
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
@@ -387,17 +389,25 @@ func get_equipped_weapon_from_slot(slot: Marker3D):
 
 func _consume_item(consumable: Item) -> void:
 	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):
-	if consumable.property in self:
-		match consumable.property_type:
+	if not consumable.data is ConsumableData:
+		print("item is no consumable: ", consumable.data.item_name)
+		return
+	
+	#player_property
+	#property_type
+	#amount
+	
+	if consumable.data.player_property in self:
+		match consumable.data.property_type:
 			ConsumableData.PROPERTY_TYPE.INCREASE:
-				if self.has_method("update_{0}".format([consumable.property])):
-					call("update_{0}".format([consumable.property]), consumable.amount)
+				if self.has_method("update_{0}".format([consumable.data.player_property])):
+					call("update_{0}".format([consumable.data.player_property]), consumable.data.amount)
 					if consumable.data.temporary:
 						var timer_instance = Timer.new()
 						timers.add_child(timer_instance)
 						timer_instance.one_shot = true
 						timer_instance.start(consumable.data.duration_seconds)
-						var method_name = "reset_{0}".format([consumable.property])
+						var method_name = "reset_{0}".format([consumable.data.player_property])
 						timer_instance.timeout.connect(Callable(self, method_name))
 						timer_instance.timeout.connect(_on_buff_timeout.bind(timer_instance))
 					
@@ -406,8 +416,8 @@ func _consume_item(consumable: Item) -> void:
 					add_child(consume_vfx)
 					consume_vfx.play()
 			ConsumableData.PROPERTY_TYPE.DECREASE:
-				if self.has_method("update_{0}".format([consumable.property])):
-					call("update_{0}".format([consumable.property]), -consumable.amount)
+				if self.has_method("update_{0}".format([consumable.data.player_property])):
+					call("update_{0}".format([consumable.data.player_property]), -consumable.data.amount)
 			_:
 				print("not implemented yet...")
 
@@ -416,9 +426,7 @@ func _finished_consuming():
 	_reequip_weapon_poles()
 	UiController.consumed(consumable_item)
 
-func _start_consuming(consumable: Item) -> void:
-	new_animation.set_consumable_animation(consumable.data.item_type)
-	
+func _start_consuming(_consumable: Item) -> void:
 	for weapon in mainhand.get_children():
 		weapon.hide()
 	
@@ -475,8 +483,8 @@ func _free_hand_slots() -> void:
 	thumb_left.set_pole_node(0, "")
 
 func _equip_basic_hand_slots() -> void:
-	arm_right.set_target_node(0, ^"Player - Kopie/IKMarkers/Arms/HandRight")
-	arm_left.set_target_node(0, ^"Player - Kopie/IKMarkers/Arms/HandLeft")
+	arm_right.set_target_node(0, $"Player - Kopie/IKMarkers/Arms/HandRight".get_path())
+	arm_left.set_target_node(0, $"Player - Kopie/IKMarkers/Arms/HandLeft".get_path())
 
 func _unhandled_input(event: InputEvent) -> void:
 	if PlayerControls.input_blocked():

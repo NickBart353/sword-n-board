@@ -573,7 +573,7 @@ graph_offset = Vector2(-50, -43)
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(1326.8462, -94.69716)
+graph_offset = Vector2(1624.0249, 24.282501)
 nodes/output/position = Vector2(2480, -120)
 nodes/Weaponblender/node = SubResource("AnimationNodeBlend3_0rpqu")
 nodes/Weaponblender/position = Vector2(1620, 20)

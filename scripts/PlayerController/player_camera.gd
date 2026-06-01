@@ -6,6 +6,7 @@ extends Camera3D
 func _ready() -> void:
 	top_level = true
 	global_position = camera_tracking_position.global_position
+	clear_current()
 
 func _physics_process(delta: float) -> void:
 	global_position.x = camera_tracking_position.global_position.x

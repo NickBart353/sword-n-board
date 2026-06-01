@@ -158,6 +158,9 @@ func _apply_offhand_animations(input: Node, _state_controller: Node, movement: N
 	_do_stuff(input, _state_controller, movement, ability, consume, delta, offhand_statemachine)
 
 func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: Node, consume: Node, _delta: float, statemachine: AnimationNodeStateMachinePlayback):
+	if consume.fire_consuming:
+		anim_tree.set(consuming_oneshot, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		consume.fire_consuming = false
 	if not ability.busy: 
 		movement.reset_weapon_modifiers()
 		if movement.jumping and not movement.falling and not movement.landed:
@@ -166,8 +169,6 @@ func _do_stuff(_input: Node, _state_controller: Node, movement: Node, ability: N
 			statemachine.travel("falling")
 		if movement.landed:
 			statemachine.travel("landing")
-		if consume.consuming:
-			anim_tree.set(consuming_oneshot, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func _parry(statemachine: AnimationNodeStateMachinePlayback):
 	if parry.parry:
@@ -186,10 +187,11 @@ func set_consumable_animation(consumable_type: ItemData.ITEM_TYPE) -> void:
 	var animation_name: String = ""
 	match consumable_type:
 		ItemData.ITEM_TYPE.POTION:
-			animation_name = "dring"
+			animation_name = "drink"
 		ItemData.ITEM_TYPE.CONSUMABLE:
 			animation_name = "eat"
-	consume_animation.animation = "consumable/{0}".format([animation_name])
+	#consume_animation.animation = "consumable/{0}".format([animation_name])
+	consume_animation.animation = "consumable/drink"
 
 func equipped_two_hand_weapon(weapon_name: String):
 	twohand_statemachine.start("idle")
