@@ -46,7 +46,7 @@ func set_data(new_item: Item, new_slot: String = "") -> void:
 
 	set_slot(new_slot)
 	if item.data.equipped == false:
-		consumable_marker.hide()
+		#consumable_marker.hide()
 		armor_equipped_marker.hide()
 		mainhand_equipped_marker.hide()
 		offhand_equipped_marker.hide()

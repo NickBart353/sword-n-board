@@ -456,6 +456,7 @@ func _reequip_weapon_poles() -> void:
 		thumb_left.set_target_node(0, marker_dictionary.get("L").get("Thumb").get_path())
 		finger_left.set_pole_node(0, marker_dictionary.get("L").get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
+		twohand.get_child(0).show()
 	else:
 		var mainhand_marker_dictionary: Dictionary = mainhand.get_child(0).get_markers()
 		var offhand_marker_dictionary: Dictionary = offhand.get_child(0).get_markers()
@@ -471,6 +472,8 @@ func _reequip_weapon_poles() -> void:
 		thumb_left.set_target_node(0, offhand_marker_dictionary.get("Thumb").get_path())
 		finger_left.set_pole_node(0, offhand_marker_dictionary.get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, offhand_marker_dictionary.get("ThumbPole").get_path())
+		mainhand.get_child(0).show()
+		offhand.get_child(0).show()
 
 func _free_hand_slots() -> void:
 	arm_right.set_target_node(0, "")
