@@ -70,6 +70,7 @@ metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=943525645]
 cast_shadow = 0
+visibility_range_end = 25.0
 amount = 16
 lifetime = 0.6
 fixed_fps = 24

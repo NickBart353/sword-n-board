@@ -133,6 +133,7 @@ metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="PoisonDrops" type="GPUParticles3D" parent="." unique_id=448411478]
 cast_shadow = 0
+visibility_range_end = 10.0
 emitting = false
 amount = 15
 one_shot = true
@@ -144,6 +145,7 @@ draw_pass_1 = SubResource("SphereMesh_7de20")
 [node name="EmittingGoo" type="GPUParticles3D" parent="." unique_id=1148054714]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
 cast_shadow = 0
+visibility_range_end = 10.0
 amount = 5
 process_material = SubResource("ParticleProcessMaterial_lqe3v")
 draw_pass_1 = SubResource("SphereMesh_v6xhl")

@@ -373,6 +373,7 @@ func _new_consumable(item: Item):
 	consume.set_consumable(item)
 	if item:
 		new_animation.set_consumable_animation(item.data.item_type)
+		consumable_slot.get_child(0).hide()
 
 func _set_weapons(dualwield: bool = false) -> void:
 	var main_slot: Node = get_equipped_weapon_from_slot(twohand) if get_equipped_weapon_from_slot(twohand) else get_equipped_weapon_from_slot(mainhand)
@@ -427,6 +428,8 @@ func _finished_consuming():
 	UiController.consumed(consumable_item)
 
 func _start_consuming(_consumable: Item) -> void:
+	consumable_slot.get_child(0).show()
+	
 	for weapon in mainhand.get_children():
 		weapon.hide()
 	
@@ -454,8 +457,8 @@ func _reequip_weapon_poles() -> void:
 		finger_left.set_pole_node(0, marker_dictionary.get("L").get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
 	else:
-		var mainhand_marker_dictionary: Dictionary = mainhand.child(0).get_markers()
-		var offhand_marker_dictionary: Dictionary = offhand.child(0).get_markers()
+		var mainhand_marker_dictionary: Dictionary = mainhand.get_child(0).get_markers()
+		var offhand_marker_dictionary: Dictionary = offhand.get_child(0).get_markers()
 		
 		arm_right.set_target_node(0, mainhand_marker_dictionary.get("Hand").get_path())
 		finger_right.set_target_node(0, mainhand_marker_dictionary.get("Finger").get_path())

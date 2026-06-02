@@ -18,11 +18,6 @@ var process: bool = false
 var fire_consuming: bool = false
 
 func set_consumable(new_consumable: Item) -> void:
-	print(new_consumable)
-	if new_consumable:
-		print(new_consumable.get_class())
-		print(new_consumable.data.item_name)
-		print(new_consumable is Item)
 	if new_consumable is Item:
 		consumable = new_consumable
 		process = true
@@ -52,7 +47,6 @@ func done_consuming():
 	consumed = true
 
 func reset():
-	#consumable = null
 	consuming = false
 	PlayerControls.unblock_scrolling()
 

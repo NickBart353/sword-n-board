@@ -82,7 +82,6 @@ func _parried(body):
 	if parry and not body in bodies:
 		bodies.append(body)
 		parried.emit(body)
-		print("KLINK")
 
 func __parry_window_start():#gets called in animation
 	if mainhand_parry_component:

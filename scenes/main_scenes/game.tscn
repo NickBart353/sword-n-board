@@ -243,7 +243,4 @@ transform = Transform3D(-0.3420202, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, -0.342
 [node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("9_rbptj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.3159, 74.22158, -409.73868)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1280078074]
-transform = Transform3D(-1, 0, 8.742278e-08, 4.371139e-08, 0.8660254, 0.5, -7.5710346e-08, 0.5, -0.8660254, -419, 79, -420)
-
 [connection signal="return_to_main_menu" from="GameMenus" to="." method="_on_game_menus_return_to_main_menu"]
