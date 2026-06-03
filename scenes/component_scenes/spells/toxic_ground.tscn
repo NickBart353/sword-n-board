@@ -36,6 +36,7 @@ height = 0.5
 script = ExtResource("1_5n8qt")
 dot_damage = 1.0
 dot_effect_name = "toxic_ground"
+dot_duration = 3.0
 decal = NodePath("Decal")
 particle_effect = NodePath("EmittingGoo")
 duration_timer = NodePath("Duration")

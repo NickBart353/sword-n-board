@@ -40,7 +40,8 @@ func activate():
 		particle_effect.restart()
 
 func _process(_delta: float) -> void:
-	if not timer.time_left:
+	if timer.time_left <= 0.0:
+		overlapping_areas.clear()
 		for area in get_overlapping_areas():
 			if area is DOT and area.dot_effect_name == dot_effect_name:
 				overlapping_areas.append(area)

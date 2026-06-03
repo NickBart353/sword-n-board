@@ -83,7 +83,7 @@ shape = SubResource("SphereShape3D_ua5d0")
 debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=997911242]
-collision_mask = 7
+collision_mask = 15
 
 [node name="Goo" type="GPUParticles3D" parent="." unique_id=1781928835]
 visibility_range_end = 15.0

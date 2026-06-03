@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 
 func _on_body_entered(body: Node3D) -> void:
+	#print("test ", body in hit_by_explosion_list, " : ", body.get_class())
 	if hit or body in hit_by_explosion_list: return
 	if (body is Player or body is Enemy) and not target_hit:
 		was_object_hit_first(body, projectile_area.get_children()[0].shape.radius)
@@ -69,6 +70,7 @@ func _on_area_entered(_area: Area3D) -> void:
 	if _area.is_in_group("Shield"):
 		target_hit = true
 	_hit_object()
+	_first_explosion()
 
 func _on_explosion_body_entered(body: Node3D) -> void:
 	if body in hit_by_explosion_list: return
@@ -102,13 +104,13 @@ func _hit_object():
 	tween.finished.connect(_explode)
 	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.1)
 
-func _explode():
-	if await_custom_explode:
+func _explode(custom_explode_finished: bool = false):
+	if await_custom_explode and not custom_explode_finished:
 		return
 	for node in get_children():
 		if node is GPUParticles3D:
 			node.emitting = false
-			node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+			#node.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 		if not node is Basic_VFX:
 			node.hide()
 	
