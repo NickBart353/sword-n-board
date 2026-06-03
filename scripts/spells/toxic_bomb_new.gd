@@ -8,7 +8,8 @@ func _ready() -> void:
 	super()
 	instantiated_toxic_ground = toxic_ground.instantiate()
 	add_child(instantiated_toxic_ground)
-	instantiated_toxic_ground.dot_finished.connect(_reset_dot)
+	if not instantiated_toxic_ground.dot_finished.is_connected(_reset_dot):
+		instantiated_toxic_ground.dot_finished.connect(_reset_dot)
 	instantiated_toxic_ground.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func _first_explosion():
@@ -18,3 +19,4 @@ func _first_explosion():
 
 func _reset_dot():
 	toxic_ground.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	_explode()

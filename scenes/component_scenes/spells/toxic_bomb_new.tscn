@@ -59,6 +59,7 @@ spread = 10.0
 explosion_animation = 9
 damage = 15
 explosion_target_raycast = NodePath("RayCast3D")
+await_custom_explode = true
 audio_resource = ExtResource("2_nndl5")
 audio_max_range = 15.0
 

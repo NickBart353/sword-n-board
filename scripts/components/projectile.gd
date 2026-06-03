@@ -11,6 +11,7 @@ class_name Projectile
 @export var explosion_animation: VfxManager.VFX
 @export var damage: int = 10
 @export var explosion_target_raycast: RayCast3D
+@export var await_custom_explode: bool = false
 
 @export_group("Audio")
 @export var audio_resource: AudioStream
@@ -102,6 +103,8 @@ func _hit_object():
 	tween.tween_property(explosion_area.get_children()[0].shape, "radius", explosion_radius, 0.1)
 
 func _explode():
+	if await_custom_explode:
+		return
 	for node in get_children():
 		if node is GPUParticles3D:
 			node.emitting = false
