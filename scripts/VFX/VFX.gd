@@ -7,15 +7,26 @@ signal vfx_finished
 @export var enable_gravity: bool = false
 @export var queue_free_on_finish: bool = false
 @export var hide_if_missed_by_player: bool = true
+@export_range(0.0, 1000.0) var distance_needed_to_not_play: float = 50.0
 
+var player: CharacterBody3D 
 var gravity: Vector3 = Vector3(0.0, -1.0, 0)
 
 func _ready() -> void:
 	hide()
+	player = get_tree().get_first_node_in_group("Player")
 	if not animation_player.animation_finished.is_connected(_on_animation_player_animation_finished):
 		animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 func play() -> void:
+	if hide_if_missed_by_player:
+		if global_position.distance_to(player.global_position) > distance_needed_to_not_play:
+			if queue_free_on_finish:
+				queue_free()
+			else:
+				hide()
+			vfx_finished.emit()
+			return
 	show()
 	#TODO FIX ANIMATION
 	animation_player.play(animation_name)

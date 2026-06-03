@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://4fwojmdcec7c"]
+
+[ext_resource type="Script" uid="uid://55ty4sp8i27w" path="res://scripts/components/dot.gd" id="1_5n8qt"]
+[ext_resource type="Texture2D" uid="uid://b6y5dr4qcmajo" path="res://my_assets/textures/toxic_decal.png" id="2_gfqi0"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lqe3v"]
+height = 1.2895019
+radius = 0.7
+
+[sub_resource type="Curve" id="Curve_lqe3v"]
+_data = [Vector2(0, 0.23595512), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4h6tc"]
+curve = SubResource("Curve_lqe3v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lqe3v"]
+emission_shape_scale = Vector3(1.055, 0, 1.15)
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_4h6tc")
+color = Color(1.432062, 0.48106685, 1.9754877, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4h6tc"]
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6xhl"]
+material = SubResource("StandardMaterial3D_4h6tc")
+radius = 0.25
+height = 0.5
+
+[node name="ToxicGround" type="Area3D" unique_id=1087070712 node_paths=PackedStringArray("decal", "particle_effect", "duration_timer")]
+script = ExtResource("1_5n8qt")
+dot_damage = 1.0
+dot_effect_name = "toxic_ground"
+decal = NodePath("Decal")
+particle_effect = NodePath("EmittingGoo")
+duration_timer = NodePath("Duration")
+metadata/_custom_type_script = "uid://55ty4sp8i27w"
+
+[node name="DotHitBox" type="CollisionShape3D" parent="." unique_id=1997705086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.038403273, 0)
+shape = SubResource("CylinderShape3D_lqe3v")
+debug_color = Color(0.99202555, 0, 0.2639284, 0.41960785)
+
+[node name="EmittingGoo" type="GPUParticles3D" parent="." unique_id=1148054714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+cast_shadow = 0
+visibility_range_end = 10.0
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_lqe3v")
+draw_pass_1 = SubResource("SphereMesh_v6xhl")
+
+[node name="Decal" type="Decal" parent="." unique_id=1307540004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+texture_albedo = ExtResource("2_gfqi0")
+modulate = Color(1.6906852, 0.90900683, 1.5996158, 1)
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+
+[node name="Duration" type="Timer" parent="." unique_id=802833952]
+one_shot = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

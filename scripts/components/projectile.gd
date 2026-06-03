@@ -61,6 +61,7 @@ func _on_body_entered(body: Node3D) -> void:
 	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	#VfxManager.create_vfx_from_enum(explosion_animation, global_position)
 	vfx_instance.play()
+	_first_explosion()
 
 func _on_area_entered(_area: Area3D) -> void:
 	if hit: return
@@ -74,6 +75,7 @@ func _on_explosion_body_entered(body: Node3D) -> void:
 		was_object_hit_first(body, explosion_radius)
 		target_hit = true
 	hit_by_explosion_list.append(body)
+	_second_explosion()
 
 func _on_explosion_area_entered(_area: Area3D) -> void:
 	pass#if explosion_hit: return
@@ -144,3 +146,9 @@ func fire(my_position: Vector3, target_location: Vector3, proj_transform: Transf
 		fire_direction = target_location
 		velocity = fire_direction * proj_speed
 		ready_to_fly = true
+
+func _first_explosion():
+	pass
+
+func _second_explosion():
+	pass
