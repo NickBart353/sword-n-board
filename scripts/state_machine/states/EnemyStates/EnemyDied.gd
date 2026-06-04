@@ -8,7 +8,6 @@ var particle_dissolve: Basic_VFX
 
 func _ready() -> void:
 	particle_dissolve = VfxManager.create_vfx_from_enum(VfxManager.VFX.BIG_KILL_PARTICLE, enemy.global_position, true).instantiate()
-	print("test")
 	add_child.call_deferred(particle_dissolve)
 
 func Enter():

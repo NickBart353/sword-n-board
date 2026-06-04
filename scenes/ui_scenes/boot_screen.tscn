@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://d1ym6iqfmktqn"]
+
+[ext_resource type="PackedScene" uid="uid://cpd3gt8lw2lif" path="res://scenes/ui_scenes/shader_cache_loading_screen.tscn" id="1_46pk6"]
+[ext_resource type="Script" uid="uid://d0ynhjga6duwo" path="res://scripts/ui_scripts/boot_screen.gd" id="1_jn3a8"]
+[ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_q4nfl"]
+[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="4_c4vn0"]
+[ext_resource type="Texture2D" uid="uid://ba87o71mehwid" path="res://my_assets/sprites/Frozen Greatsword.png" id="5_xcjwe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dy7m"]
+content_margin_left = 20.0
+content_margin_top = 248.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4vn0"]
+content_margin_left = 50.0
+content_margin_top = 174.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.12941177, 0.14901961, 0.19215687, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q4nfl"]
+font = ExtResource("4_c4vn0")
+font_size = 90
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcjwe"]
+content_margin_left = 50.0
+content_margin_top = 84.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.16078432, 0.14901961, 0.14509805, 1)
+
+[sub_resource type="Animation" id="Animation_xcjwe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodotScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CompanyScreen:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShaderCacheLoadingScreen:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0dy7m"]
+_data = {
+&"RESET": SubResource("Animation_xcjwe")
+}
+
+[sub_resource type="Animation" id="Animation_4dd7h"]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CompanyScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5jwki"]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodotScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_x1oyp"]
+resource_name = "shadercache_fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShaderCacheLoadingScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0dy7m"]
+resource_name = "shadercache_fadeout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShaderCacheLoadingScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhw2m"]
+_data = {
+&"company": SubResource("Animation_4dd7h"),
+&"godot": SubResource("Animation_5jwki"),
+&"shadercache_fadein": SubResource("Animation_x1oyp"),
+&"shadercache_fadeout": SubResource("Animation_0dy7m")
+}
+
+[node name="BootScreen" type="Panel" unique_id=118721969]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dy7m")
+script = ExtResource("1_jn3a8")
+
+[node name="ShaderCacheLoadingScreen" parent="." unique_id=422215181 instance=ExtResource("1_46pk6")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+
+[node name="GodotScreen" type="PanelContainer" parent="." unique_id=368651133]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c4vn0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GodotScreen" unique_id=1065020991]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="GodotScreen/VBoxContainer" unique_id=1538953402]
+layout_mode = 2
+texture = ExtResource("3_q4nfl")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="GodotScreen/VBoxContainer" unique_id=934771975]
+layout_mode = 2
+text = "Godot Engine"
+label_settings = SubResource("LabelSettings_q4nfl")
+horizontal_alignment = 1
+
+[node name="CompanyScreen" type="PanelContainer" parent="." unique_id=1558043139]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xcjwe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CompanyScreen" unique_id=738825664]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CompanyScreen/VBoxContainer" unique_id=2099027372]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_xcjwe")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CompanyScreen/VBoxContainer" unique_id=55131487]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Placeholder Company Name"
+label_settings = SubResource("LabelSettings_q4nfl")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=484676228]
+libraries/ = SubResource("AnimationLibrary_0dy7m")
+libraries/bootscreen = SubResource("AnimationLibrary_yhw2m")
+
+[connection signal="cache_loaded" from="ShaderCacheLoadingScreen" to="." method="_on_shader_cache_loading_screen_cache_loaded"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

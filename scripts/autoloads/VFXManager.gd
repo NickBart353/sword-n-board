@@ -55,14 +55,16 @@ func get_vfx_list() -> Array:
 	var vfx_list: Array = []
 	for key in VFX_DICT:
 		var vfx = VFX_DICT.get(key).instantiate()
-		vfx_list.append(vfx)
+		if vfx is Basic_VFX:
+			vfx_list.append(vfx)
 	return vfx_list
 
 func get_attack_vfx_list() -> Array:
 	var vfx_list: Array = []
 	for key in ATTACK_VFX_DICT:
 		var vfx = ATTACK_VFX_DICT.get(key).instantiate()
-		vfx_list.append(vfx)
+		if vfx is Attack:
+			vfx_list.append(vfx)
 	return vfx_list
 
 func create_vfx_from_enum(vfx_name: VFX, position: Vector3, local: bool = false, new_global_rotation = null):

@@ -11,6 +11,9 @@ content_margin_right = 20.0
 content_margin_bottom = 20.0
 bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ba8cp"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="LabelSettings" id="LabelSettings_qtu10"]
 font = ExtResource("2_7j4hi")
 font_size = 80
@@ -61,6 +64,12 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
 script = ExtResource("1_ba8cp")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=35012871]
+modulate = Color(1, 1, 1, 0.003921569)
+layout_mode = 2
+texture = SubResource("ViewportTexture_ba8cp")
+expand_mode = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1966950986]
 layout_mode = 2
 
@@ -90,7 +99,9 @@ stretch_mode = 3
 libraries/ = SubResource("AnimationLibrary_kbped")
 autoplay = &"spin"
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=841227436]
-transform = Transform3D(1, 0, 0, 0, 0.8001455, 0.5998059, 0, -0.5998059, 0.8001455, 0, 0.8965125, 0.82986563)
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1640297210]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=841227436]
+transform = Transform3D(1, 0, 0, 0, 0.8001455, 0.5998059, 0, -0.5998059, 0.8001455, 0, 1.7052151, 2.4621751)
 
 [node name="VFXPosition" type="Marker3D" parent="." unique_id=794874607]

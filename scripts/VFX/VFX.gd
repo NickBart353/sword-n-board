@@ -20,13 +20,14 @@ func _ready() -> void:
 
 func play() -> void:
 	if hide_if_missed_by_player:
-		if global_position.distance_to(player.global_position) > distance_needed_to_not_play:
-			if queue_free_on_finish:
-				queue_free()
-			else:
-				hide()
-			vfx_finished.emit()
-			return
+		if player:
+			if global_position.distance_to(player.global_position) > distance_needed_to_not_play:
+				if queue_free_on_finish:
+					queue_free()
+				else:
+					hide()
+				vfx_finished.emit()
+				return
 	show()
 	animation_player.play(animation_name)
 
