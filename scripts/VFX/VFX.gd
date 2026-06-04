@@ -28,16 +28,15 @@ func play() -> void:
 			vfx_finished.emit()
 			return
 	show()
-	#TODO FIX ANIMATION
 	animation_player.play(animation_name)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == animation_name:
 		hide()
-		if queue_free_on_finish:
-			queue_free()
 		vfx_finished.emit()
 		animation_player.play("RESET")
+		if queue_free_on_finish:
+			queue_free()
 
 func _physics_process(delta: float) -> void:
 	if enable_gravity:

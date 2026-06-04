@@ -4,7 +4,7 @@ extends EnemyState
 @export var slam_position: Node
 @export var damage: int = 25
 
-var slam_instance: Area3D
+var slam_instance: Attack
 var vfx_instance: Basic_VFX
 
 func _ready() -> void:
@@ -13,8 +13,8 @@ func _ready() -> void:
 	
 	slam_instance = slam_Scene.instantiate()
 	enemy.add_child.call_deferred(slam_instance)
-	if not slam_instance.slam_finished.is_connected(_slam_finished):
-		slam_instance.slam_finished.connect(_slam_finished)
+	if not slam_instance.finished.is_connected(_slam_finished):
+		slam_instance.finished.connect(_slam_finished)
 
 func Enter():
 	super()
@@ -25,8 +25,8 @@ func Enter():
 
 func slam():
 	if slam_instance:
-		slam_instance.play_slam(damage)
-		slam_instance.global_position = slam_position.global_position
+		slam_instance.attack(slam_position.global_transform, damage)
+		#slam_instance.global_position = slam_position.global_position
 		AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 
 func _slam_finished(_slam: Area3D):
