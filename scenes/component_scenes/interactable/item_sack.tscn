@@ -124,4 +124,9 @@ draw_pass_1 = SubResource("PlaneMesh_k6dni")
 libraries/ = SubResource("AnimationLibrary_87i4b")
 autoplay = &"glow"
 
+[node name="Timer" type="Timer" parent="." unique_id=1919572835]
+wait_time = 600.0
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_remove_me"]

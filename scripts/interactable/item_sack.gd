@@ -7,12 +7,19 @@ extends RigidBody3D
 @export_range(-100.0, 100.0) var audio_volume: float = 0.0
 @export_range(-100.0, 100.0) var audio_max_range: float = 0.0 
 
+@onready var timer: Timer = $Timer
+
 func _ready() -> void:
 	$ItemContainer.items_empty.connect(_remove_me)
 	$ItemContainer.parent = self
 
 func _remove_me():
-	EventBus.remove_me.emit(self)
+	#EventBus.remove_me.emit(self)
+	timer.stop()
+	ObjectPooler.reset_item_sack(self)
+
+func activate_timer() -> void:
+	timer.start()
 
 func _on_body_entered(body: Node) -> void:
 	if body is Terrain3D:

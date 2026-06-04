@@ -38,6 +38,7 @@ DataManager="*uid://cccrtb8kflebj"
 PlayerControls="*uid://chvg8cb3p5tn4"
 SceneLoader="*uid://5hkcsy0bqxpo"
 SceneManager="*uid://dc8dlqc3a2otc"
+ObjectPooler="*uid://clt0gkjpe4fwu"
 
 [display]
 

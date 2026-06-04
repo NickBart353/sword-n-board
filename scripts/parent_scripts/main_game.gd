@@ -27,10 +27,13 @@ func _enemy_died(enemy: Node3D):
 func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	var items_to_generate: Array = ItemManager.generate_loot(enemy_level)
 	if not items_to_generate: return
-	var item_sack_instance = ITEM_SACK.instantiate()
+	
+	var item_sack_instance = ObjectPooler.get_free_item_sack()
 	item_sack_instance.get_node("ItemContainer").items = items_to_generate
-	$Loot.add_child(item_sack_instance, true)
+	#$Loot.add_child(item_sack_instance, true)
 	item_sack_instance.global_position = Vector3(loot_position.x, loot_position.y + 1.0, loot_position.z)
+	#item_sack_instance._remove_me()
+	
 	var vfx_instance = VfxManager.create_vfx_from_enum(VfxManager.VFX.LOOT_PUFF, loot_position, true).instantiate()
 	add_child(vfx_instance)
 	vfx_instance.global_position = loot_position
