@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://oupiqyuplr4k"]
 
 [ext_resource type="Script" uid="uid://bljgdtf1uhkfp" path="res://scripts/item_entity/weapons/unarmed.gd" id="1_p7vfp"]
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="3_wsvkl"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_x2jks"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6007s"]
 resource_local_to_scene = true
 radius = 0.111225866
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x2jks"]
+radius = 0.11816406
+height = 1.0
+
 [node name="Unarmed" type="Area3D" unique_id=209339069 node_paths=PackedStringArray("hand_component")]
-collision_layer = 6
-collision_mask = 25
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("1_p7vfp")
 hand_component = NodePath("OnehandComponent")
 
@@ -45,6 +50,17 @@ transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.98, 0, -
 
 [node name="ThumbPole" parent="OnehandComponent" index="4" unique_id=205447482]
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.251, 0.206, 0.316)
+
+[node name="BlockingComponent" type="Area3D" parent="." unique_id=452261615]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("3_wsvkl")
+metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" unique_id=1028747114]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.38263142, 2.1855694e-08, 0)
+shape = SubResource("CapsuleShape3D_x2jks")
+debug_color = Color(1, 0, 0.10686197, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

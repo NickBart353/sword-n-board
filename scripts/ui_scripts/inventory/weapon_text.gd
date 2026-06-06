@@ -17,7 +17,7 @@ func _ready() -> void:
 func set_text(item: Item):
 	item_name.text = item.data.item_name
 	flavor_text.text = item.data.tooltip
-	type.text = item.data.get_item_type_value(item.data.item_type)
+	type.text = ItemData.get_item_type_value(item.data.item_type)
 	normal_value.text = "{0}".format([item.data.normal_damage])
 	magic_value.text = "{0}".format([item.data.magic_damage])
 	fire_value.text = "{0}".format([item.data.fire_damage])

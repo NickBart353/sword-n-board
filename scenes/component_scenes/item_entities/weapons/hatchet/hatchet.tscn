@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_flxtr"]
 [ext_resource type="Material" uid="uid://di67nvtp4dh1d" path="res://scenes/component_scenes/item_entities/weapons/hatchet/blade.tres" id="4_460dc"]
 [ext_resource type="Material" uid="uid://dcs6ebmcj00rd" path="res://scenes/component_scenes/item_entities/weapons/hatchet/hilt.tres" id="5_do4hh"]
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="6_tpm24"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r21bu"]
 size = Vector3(0.036888123, 0.2118969, 0.305748)
@@ -83,9 +84,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cjkx5")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_flxtr"]
+size = Vector3(0.080322266, 0.80114746, 0.3244629)
+
 [node name="hatchet" unique_id=137127868 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_7gwkr")]
-collision_layer = 6
-collision_mask = 25
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_tpm24")
 hand_component = NodePath("OnehandComponent")
 
@@ -98,5 +102,17 @@ shape = SubResource("BoxShape3D_r21bu")
 [node name="HatchetMesh" parent="." index="2" unique_id=1733529681]
 transform = Transform3D(-8.742278e-09, 0.2, 8.742278e-09, 0, -8.742278e-09, 0.2, 0.2, 8.742278e-09, 3.821371e-16, -0.015992612, 0.4502868, -0.08708435)
 mesh = SubResource("ArrayMesh_7gwkr")
+
+[node name="BlockingComponent" type="Area3D" parent="." index="3" unique_id=1400457580]
+collision_layer = 8
+collision_mask = 192
+monitoring = false
+script = ExtResource("6_tpm24")
+metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" index="0" unique_id=1143351387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006225586, 0.14569092, -0.076293945)
+shape = SubResource("BoxShape3D_flxtr")
+debug_color = Color(0.9940564, 0, 0.23524871, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

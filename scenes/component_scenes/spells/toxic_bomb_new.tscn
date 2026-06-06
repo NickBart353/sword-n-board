@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cxcgkqusf1e5l"]
+
+[ext_resource type="Script" uid="uid://dlgl4irhdctsx" path="res://scripts/spells/toxic_bomb_new.gd" id="1_yjgf3"]
+[ext_resource type="AudioStream" uid="uid://b0jml7ygehdfv" path="res://assets/Audio/pixabay/freesound_community-bubbles-03-91268.wav" id="2_nndl5"]
+[ext_resource type="PackedScene" uid="uid://4fwojmdcec7c" path="res://scenes/component_scenes/spells/toxic_ground.tscn" id="2_ua5d0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073vx"]
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_color = Color(2.351395, 0.0874644, 4.6780148, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_yjgf3"]
+material = SubResource("StandardMaterial3D_073vx")
+radial_segments = 10
+rings = 4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nndl5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ua5d0"]
+resource_local_to_scene = true
+radius = 2.3
+
+[sub_resource type="Curve" id="Curve_r4x4m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uayre"]
+curve = SubResource("Curve_r4x4m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ienu"]
+lifetime_randomness = 0.13
+emission_shape = 1
+emission_sphere_radius = 0.5
+gravity = Vector3(0, 2, 0)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_uayre")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uayre"]
+shading_mode = 0
+albedo_color = Color(4.0717306, 0.34431335, 5.402755, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7i40e"]
+material = SubResource("StandardMaterial3D_uayre")
+
+[node name="ToxicBombNew" type="Node3D" unique_id=1874242038 node_paths=PackedStringArray("projectile_area", "explosion_area", "explosion_target_raycast")]
+script = ExtResource("1_yjgf3")
+toxic_ground = ExtResource("2_ua5d0")
+projectile_area = NodePath("ProjectileArea")
+explosion_area = NodePath("ExplosionArea")
+explosion_radius = 2.5
+proj_speed = 25
+proj_distance = 10000
+gravity_strength = 20.0
+spread = 10.0
+explosion_animation = 9
+damage = 15
+explosion_target_raycast = NodePath("RayCast3D")
+await_custom_explode = true
+audio_resource = ExtResource("2_nndl5")
+audio_max_range = 15.0
+
+[node name="BombMesh" type="MeshInstance3D" parent="." unique_id=62962626]
+mesh = SubResource("SphereMesh_yjgf3")
+
+[node name="ProjectileArea" type="Area3D" parent="." unique_id=778931]
+collision_layer = 128
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=1799426464]
+shape = SubResource("SphereShape3D_nndl5")
+debug_color = Color(0.71408594, 0.6977547, 1, 0.41960785)
+
+[node name="ExplosionArea" type="Area3D" parent="." unique_id=573996794]
+collision_layer = 128
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=1759606335]
+shape = SubResource("SphereShape3D_ua5d0")
+debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
+
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=997911242]
+collision_mask = 15
+
+[node name="Goo" type="GPUParticles3D" parent="." unique_id=1781928835]
+visibility_range_end = 15.0
+amount = 9
+lifetime = 1.18
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_2ienu")
+draw_pass_1 = SubResource("SphereMesh_7i40e")

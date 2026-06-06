@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://762j0kou2ych" path="res://scenes/component_scenes/item_entities/weapons/katana/blade.tres" id="5_op0fl"]
 [ext_resource type="Material" uid="uid://cvjpwkgpkgtf4" path="res://scenes/component_scenes/item_entities/weapons/katana/hilt.tres" id="6_7huce"]
 [ext_resource type="Material" uid="uid://l2cocix33ius" path="res://scenes/component_scenes/item_entities/weapons/katana/wrappings.tres" id="7_n35rt"]
+[ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="9_n35rt"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mnbuo"]
 _surfaces = [{
@@ -149,9 +150,12 @@ size = Vector3(0.04248047, 0.5677948, 0.03930664)
 [sub_resource type="BoxShape3D" id="BoxShape3D_n35rt"]
 size = Vector3(0.053588867, 0.7124634, 0.06323242)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qj7hc"]
+size = Vector3(0.089782715, 1.7445679, 0.19393921)
+
 [node name="katana" unique_id=690274581 node_paths=PackedStringArray("impact_location", "hand_component") instance=ExtResource("1_2qush")]
-collision_layer = 6
-collision_mask = 25
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_xj8b8")
 impact_location = NodePath("Impact")
 hand_component = NodePath("TwohandComponent")
@@ -177,5 +181,16 @@ shape = SubResource("BoxShape3D_n35rt")
 
 [node name="Impact" type="Marker3D" parent="." index="5" unique_id=1421383592]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2455033, 0.15004191)
+
+[node name="ParryComponent" type="Area3D" parent="." index="6" unique_id=1539330566]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("9_n35rt")
+metadata/_custom_type_script = "uid://ckyck7wjay34t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryComponent" index="0" unique_id=2044424098]
+transform = Transform3D(1, 0, 0, 0, 0.99127775, -0.13178927, 0, 0.13178927, 0.99127775, 0.017486572, 0.5778926, 0.070129)
+shape = SubResource("BoxShape3D_qj7hc")
+debug_color = Color(0.9842182, 0.12584761, 0, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

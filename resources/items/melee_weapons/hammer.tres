@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bbn7q72ym8sio"]
+
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_773rm"]
+[ext_resource type="Texture2D" uid="uid://w3tbyfpw0as8" path="res://assets/Visual/marius/hammernogg.png" id="2_s6ky6"]
+
+[resource]
+script = ExtResource("1_773rm")
+normal_damage = 25.0
+combo_size = 2
+dualwield_combo_size = 2
+item_name = "Hammer"
+item_id = "10011"
+tooltip = "Ideal for crushing skulls!"
+sprite = ExtResource("2_s6ky6")
+item_type = 5
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"

@@ -66,16 +66,16 @@ metadata/_custom_type_script = "uid://snywren3rqx0"
 mesh = SubResource("SphereMesh_no0bl")
 
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=572506448]
-collision_layer = 16
-collision_mask = 7
+collision_layer = 128
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=306225378]
 shape = SubResource("SphereShape3D_uwupy")
 debug_color = Color(0.71408594, 0.6977547, 1, 0.41960785)
 
 [node name="ExplosionArea" type="Area3D" parent="." unique_id=866413567]
-collision_layer = 16
-collision_mask = 6
+collision_layer = 128
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=327894388]
 shape = SubResource("SphereShape3D_4h1qo")
@@ -85,6 +85,7 @@ debug_color = Color(0.9690922, 0.1469706, 0.25858924, 0.41960785)
 collision_mask = 7
 
 [node name="Goo" type="GPUParticles3D" parent="." unique_id=2127526811]
+visibility_range_end = 15.0
 amount = 9
 lifetime = 1.18
 fixed_fps = 24

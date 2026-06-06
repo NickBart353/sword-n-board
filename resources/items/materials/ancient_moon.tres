@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ieujm")
-item_name = "Ancient moon"
+item_name = "Ancient Moon"
 item_id = "50003"
 tooltip = "A mirrored crescent moon used to upgrade Weapons."
 stackable = true

@@ -142,9 +142,9 @@ layout_mode = 2
 [node name="MainhandPanel" type="PanelContainer" parent="Hud" unique_id=1656855291]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.067
+anchor_left = 0.22
 anchor_top = 0.743
-anchor_right = 0.135
+anchor_right = 0.285
 anchor_bottom = 0.746
 offset_bottom = 128.0
 theme = ExtResource("12_25rgj")
@@ -162,9 +162,9 @@ layout_mode = 2
 [node name="OffhandPanel" type="PanelContainer" parent="Hud" unique_id=1348186050]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.22
+anchor_left = 0.067
 anchor_top = 0.743
-anchor_right = 0.285
+anchor_right = 0.135
 anchor_bottom = 0.746
 offset_bottom = 128.0
 theme = ExtResource("12_25rgj")

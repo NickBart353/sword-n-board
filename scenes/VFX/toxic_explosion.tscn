@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bhrla53y6vlys"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_ti7v3"]
+
+[sub_resource type="Curve" id="Curve_ti7v3"]
+_limits = [0.0, 0.3, 0.0, 1.0]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, -0.09101136, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_lqe3v"]
+curve = SubResource("Curve_ti7v3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xh3uw"]
+emission_shape_scale = Vector3(0.38, 0.35, 0.545)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+radial_velocity_min = 4.9999776
+radial_velocity_max = 4.9999776
+scale_curve = SubResource("CurveTexture_lqe3v")
+color = Color(0.95754737, 0.50825846, 1.5565991, 1)
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6xhl"]
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_vmp5l"]
+material = SubResource("StandardMaterial3D_v6xhl")
+
+[sub_resource type="Animation" id="Animation_ti7v3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PoisonDrops:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xh3uw"]
+resource_name = "default"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PoisonDrops:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vmp5l"]
+_data = {
+&"RESET": SubResource("Animation_ti7v3"),
+&"default": SubResource("Animation_xh3uw")
+}
+
+[node name="ToxicExplosion" type="Node3D" unique_id=1153907220 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_ti7v3")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "default"
+distance_needed_to_not_play = 25.0
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="PoisonDrops" type="GPUParticles3D" parent="." unique_id=1277748442]
+cast_shadow = 0
+visibility_range_end = 10.0
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 0.94
+fixed_fps = 45
+process_material = SubResource("ParticleProcessMaterial_xh3uw")
+draw_pass_1 = SubResource("SphereMesh_vmp5l")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=261268542]
+libraries/ = SubResource("AnimationLibrary_vmp5l")

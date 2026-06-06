@@ -1,6 +1,5 @@
 extends Ability
 
-@onready var anim_player = $"../../AnimationPlayer"
 @onready var attack_timer = $"../../Timers/AttackTimer"
 
 @export var magic_projectile: PackedScene

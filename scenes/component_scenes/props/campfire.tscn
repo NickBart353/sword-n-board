@@ -221,6 +221,8 @@ _data = {
 }
 
 [node name="Campfire" type="StaticBody3D" unique_id=1728524800]
+collision_layer = 2
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=214149542]
 transform = Transform3D(0.80884594, -0.45520306, -0.3722344, 0.58634394, 0.5765965, 0.56897867, -0.044371933, -0.6784735, 0.7332835, -0.0030067414, 0.16838694, 0.026810847)

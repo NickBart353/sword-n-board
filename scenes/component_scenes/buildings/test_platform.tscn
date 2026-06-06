@@ -1,389 +1,517 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0gtkn4swpe3"]
+[gd_scene format=3 uid="uid://c0gtkn4swpe3"]
 
 [ext_resource type="PackedScene" uid="uid://cwbd0vgb0kdev" path="res://scenes/component_scenes/building_parts/floor_stone.tscn" id="1_w5ff5"]
 
-[node name="TestPlatform" type="Node3D"]
+[node name="TestPlatform" type="Node3D" unique_id=2084153203]
 
-[node name="floor_stone" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone" parent="." unique_id=237602803 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.400001, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone2" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone2" parent="." unique_id=1560405165 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4000006, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone3" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone3" parent="." unique_id=940744843 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.400001, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone4" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone4" parent="." unique_id=986748455 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4000006, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone5" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone5" parent="." unique_id=1342852320 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone6" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone6" parent="." unique_id=1139467196 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.400001, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone7" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone7" parent="." unique_id=1309397260 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone8" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone8" parent="." unique_id=513397336 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.400001, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone9" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone9" parent="." unique_id=1458025646 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.400001, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone10" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone10" parent="." unique_id=2097853432 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4000006, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone11" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone11" parent="." unique_id=1148760225 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.400001, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone12" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone12" parent="." unique_id=742670441 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4000006, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone13" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone13" parent="." unique_id=1883207512 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone14" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone14" parent="." unique_id=165281046 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.400001, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone15" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone15" parent="." unique_id=2004028902 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone16" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone16" parent="." unique_id=459477343 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.400001, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone17" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone17" parent="." unique_id=1232047002 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone18" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone18" parent="." unique_id=1548473410 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone19" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone19" parent="." unique_id=2114152726 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone20" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone20" parent="." unique_id=2033460605 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone21" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone21" parent="." unique_id=1353181627 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone22" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone22" parent="." unique_id=869779957 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone23" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone23" parent="." unique_id=1094655780 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone24" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone24" parent="." unique_id=706573347 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone25" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone25" parent="." unique_id=1792955130 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone26" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone26" parent="." unique_id=1868596773 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone27" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone27" parent="." unique_id=292573416 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone28" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone28" parent="." unique_id=1895097416 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone29" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone29" parent="." unique_id=2069085040 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone30" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone30" parent="." unique_id=1029499441 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone31" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone31" parent="." unique_id=429454520 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone32" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone32" parent="." unique_id=1522649988 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone33" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone33" parent="." unique_id=611401178 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone34" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone34" parent="." unique_id=761046096 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone35" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone35" parent="." unique_id=1388976305 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone36" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone36" parent="." unique_id=1955271645 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone37" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone37" parent="." unique_id=1570072204 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone38" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone38" parent="." unique_id=1639037819 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone39" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone39" parent="." unique_id=1470870823 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone40" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone40" parent="." unique_id=684513581 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone41" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone41" parent="." unique_id=360322577 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone42" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone42" parent="." unique_id=250059822 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone43" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone43" parent="." unique_id=1201187446 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone44" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone44" parent="." unique_id=1058360294 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone45" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone45" parent="." unique_id=1769434084 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone46" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone46" parent="." unique_id=1324982305 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone47" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone47" parent="." unique_id=2122991598 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone48" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone48" parent="." unique_id=254389266 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone49" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone49" parent="." unique_id=1558075194 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone50" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone50" parent="." unique_id=1216206054 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3999996, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone51" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone51" parent="." unique_id=1319643598 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone52" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone52" parent="." unique_id=650127589 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3999996, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone53" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone53" parent="." unique_id=547083502 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone54" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone54" parent="." unique_id=945258345 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.399999, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone55" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone55" parent="." unique_id=706241280 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone56" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone56" parent="." unique_id=716235281 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.399999, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone57" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone57" parent="." unique_id=115678780 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone58" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone58" parent="." unique_id=680082282 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3999996, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone59" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone59" parent="." unique_id=726749923 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone60" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone60" parent="." unique_id=1952116788 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3999996, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone61" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone61" parent="." unique_id=498325672 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone62" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone62" parent="." unique_id=160420776 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.399999, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone63" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone63" parent="." unique_id=1433051918 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone64" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone64" parent="." unique_id=900889711 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.399999, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone65" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone65" parent="." unique_id=761323951 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone66" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone66" parent="." unique_id=1923570030 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone67" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone67" parent="." unique_id=1560136181 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone68" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone68" parent="." unique_id=1833171030 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone69" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone69" parent="." unique_id=528983737 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone70" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone70" parent="." unique_id=636375513 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone71" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone71" parent="." unique_id=65250494 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone72" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone72" parent="." unique_id=1323152341 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone73" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone73" parent="." unique_id=1596950648 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone74" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone74" parent="." unique_id=1864405743 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone75" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone75" parent="." unique_id=1952531566 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone76" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone76" parent="." unique_id=904144331 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone77" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone77" parent="." unique_id=1574172817 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone78" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone78" parent="." unique_id=943277298 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone79" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone79" parent="." unique_id=918040481 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone80" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone80" parent="." unique_id=1169811072 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone81" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone81" parent="." unique_id=996528332 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone82" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone82" parent="." unique_id=895443610 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone83" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone83" parent="." unique_id=663341886 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone84" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone84" parent="." unique_id=230160319 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone85" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone85" parent="." unique_id=1955656195 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone86" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone86" parent="." unique_id=1417428764 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, 0.8)
+collision_mask = 3
 
-[node name="floor_stone87" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone87" parent="." unique_id=133565119 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone88" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone88" parent="." unique_id=1458211175 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, 4.8)
+collision_mask = 3
 
-[node name="floor_stone89" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone89" parent="." unique_id=1420408879 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone90" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone90" parent="." unique_id=1331254407 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone91" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone91" parent="." unique_id=1746018603 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone92" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone92" parent="." unique_id=176979959 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone93" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone93" parent="." unique_id=1949795352 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone94" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone94" parent="." unique_id=1077341475 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, 8.8)
+collision_mask = 3
 
-[node name="floor_stone95" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone95" parent="." unique_id=191781906 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone96" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone96" parent="." unique_id=263980215 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, 12.8)
+collision_mask = 3
 
-[node name="floor_stone97" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone97" parent="." unique_id=2103368756 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone98" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone98" parent="." unique_id=847094352 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone99" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone99" parent="." unique_id=1386546307 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone100" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone100" parent="." unique_id=434291398 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone101" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone101" parent="." unique_id=1055075430 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone102" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone102" parent="." unique_id=185645944 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone103" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone103" parent="." unique_id=2006534151 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone104" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone104" parent="." unique_id=1460153936 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone105" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone105" parent="." unique_id=745949840 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone106" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone106" parent="." unique_id=1124115926 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone107" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone107" parent="." unique_id=964616475 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone108" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone108" parent="." unique_id=1946227864 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone109" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone109" parent="." unique_id=490632790 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone110" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone110" parent="." unique_id=1471238490 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone111" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone111" parent="." unique_id=1782107332 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.4, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone112" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone112" parent="." unique_id=1623478359 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone113" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone113" parent="." unique_id=1241744434 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone114" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone114" parent="." unique_id=1540778263 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone115" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone115" parent="." unique_id=1401992749 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone116" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone116" parent="." unique_id=352933920 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone117" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone117" parent="." unique_id=950631138 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone118" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone118" parent="." unique_id=1499274621 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.399998, 0, -15.2)
+collision_mask = 3
 
-[node name="floor_stone119" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone119" parent="." unique_id=1151086668 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone120" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone120" parent="." unique_id=914497165 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.399998, 0, -11.2)
+collision_mask = 3
 
-[node name="floor_stone121" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone121" parent="." unique_id=1071436975 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone122" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone122" parent="." unique_id=599490675 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone123" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone123" parent="." unique_id=1152433466 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone124" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone124" parent="." unique_id=1658391177 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone125" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone125" parent="." unique_id=1916271928 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone126" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone126" parent="." unique_id=475522221 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.399998, 0, -7.2)
+collision_mask = 3
 
-[node name="floor_stone127" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone127" parent="." unique_id=249388386 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.399998, 0, -3.1999998)
+collision_mask = 3
 
-[node name="floor_stone128" parent="." instance=ExtResource("1_w5ff5")]
+[node name="floor_stone128" parent="." unique_id=136887249 instance=ExtResource("1_w5ff5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.399998, 0, -3.1999998)
+collision_mask = 3

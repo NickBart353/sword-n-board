@@ -1,13 +1,12 @@
 extends Ability
 
-@onready var anim_player = $"../../AnimationPlayer"
 @onready var attack_timer = $"../../Timers/AttackTimer"
 
 @export_group("StaminaCost")
 @export_range(0.0, 100.0) var attack_cost = 15.0
 
 const allowed_mainhands: Array = [ItemData.ITEM_TYPE.SHORTSWORD, ItemData.ITEM_TYPE.GREATSWORD, ItemData.ITEM_TYPE.GREATAXE, 
-	ItemData.ITEM_TYPE.AXE, ItemData.ITEM_TYPE.DAGGER, ItemData.ITEM_TYPE.GREATHAMMER, 
+	ItemData.ITEM_TYPE.AXE, ItemData.ITEM_TYPE.DAGGER, ItemData.ITEM_TYPE.GREATHAMMER, ItemData.ITEM_TYPE.HAMMER,
 	ItemData.ITEM_TYPE.KATANA, ItemData.ITEM_TYPE.SPEAR, ItemData.ITEM_TYPE.TORCH, ItemData.ITEM_TYPE.SHIELD, 
 	ItemData.ITEM_TYPE.FIST
 	]
@@ -42,6 +41,9 @@ func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
 	var mainhand_valid: bool = _validate_slot(mainhand, "mainhand")
 	if not (offhand_valid or mainhand_valid):
 		reset()
+	else:
+		if dualwielding:
+			mainhand_combo_count = mainhand.data.dualwield_combo_size
 	process = (offhand_valid or mainhand_valid)
 
 func _validate_slot(slot: Node, slot_string: String) -> bool:
@@ -57,11 +59,13 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 				"offhand":
 					offhand_weapon = slot
 					offhand_combo_count = slot.data.combo_size
+					offhand_weapon.monitoring = false
 					if not offhand_weapon.hit.is_connected(_offhand_attack):
 						offhand_weapon.hit.connect(_offhand_attack)
 				"mainhand":
 					mainhand_weapon = slot
 					mainhand_combo_count = slot.data.combo_size
+					mainhand_weapon.monitoring = false
 					if not mainhand_weapon.hit.is_connected(_mainhand_attack):
 						mainhand_weapon.hit.connect(_mainhand_attack)
 			return true
@@ -75,8 +79,8 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 
 func apply_ability(input: Node, state_controller: Node, movement: Node, _abilities: Node, _delta: float) -> void:
 	if not process: return
-	if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
-		reset()
+	#if ability_controller.busy and (not mainhand_swing_in_progress and not offhand_swing_in_progress) and not attack_timer.time_left:
+		#reset()
 	if not movement.dashing and not state_controller.is_player_busy() and not ability_controller.busy:
 		if input.primary and not mainhand_swing_in_progress and offhand_swing == 0 and mainhand_weapon:
 			if player.use_stamina(attack_cost):
@@ -114,13 +118,6 @@ func _offhand_attack(body, damage):
 func _on_attack_timer_timeout() -> void:
 	if not mainhand_swing_in_progress and not offhand_swing_in_progress:
 		reset()
-	#if not mainhand_swing_in_progress:
-		#mainhand_swing_in_progress = false
-		#mainhand_swing = 0
-	#if not offhand_swing_in_progress:
-		#offhand_swing_in_progress = false
-		#offhand_swing = 0
-	#ability_controller.busy = false
 
 func _attack_started() -> void:
 	if mainhand_swing_in_progress:

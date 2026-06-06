@@ -30,7 +30,8 @@ const MELEE_WEAPONS: Dictionary = {#item scene
 	"10008": preload("uid://137agp1y62ln"),#spear
 	"10002": preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),#torch
 	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),#wooden_shield
-	"dagger": "",
+	"10011": preload("uid://c8nji2cctahl6"),#hammer
+	"10006": preload("uid://0gqvbdb35ik0"),#dagger
 }
 
 const RANGED_WEAPONS: Dictionary = {

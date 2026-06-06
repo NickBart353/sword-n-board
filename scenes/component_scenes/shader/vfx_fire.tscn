@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cfnt03x7m17w2"]
 
 [ext_resource type="Script" uid="uid://candwkwkehn46" path="res://scripts/VFX/vfx_fire.gd" id="1_e52rn"]
-[ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/GAP_Fire_Textures/Voronoi01.png" id="2_8qqbu"]
+[ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/Visual/GAP_Fire_Textures/Voronoi01.png" id="2_8qqbu"]
 [ext_resource type="Shader" uid="uid://0xe5nwu4aq6" path="res://shaders/fire/vfx_fire_depth_test_ENABLED.tres" id="2_e52rn"]
-[ext_resource type="Texture2D" uid="uid://wiuy6o6d84u5" path="res://assets/GAP_Fire_Textures/Flame01.png" id="2_hl4l8"]
-[ext_resource type="Texture2D" uid="uid://b68vs5ojnscs2" path="res://assets/GAP_Fire_Textures/Flame02.png" id="4_yy0nm"]
+[ext_resource type="Texture2D" uid="uid://wiuy6o6d84u5" path="res://assets/Visual/GAP_Fire_Textures/Flame01.png" id="2_hl4l8"]
+[ext_resource type="Texture2D" uid="uid://b68vs5ojnscs2" path="res://assets/Visual/GAP_Fire_Textures/Flame02.png" id="4_yy0nm"]
 [ext_resource type="Shader" uid="uid://cniftg1yhdrrm" path="res://shaders/SimpleParticleShader.tres" id="5_3btdx"]
-[ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/GAP_Fire_Textures/Flare00.PNG" id="6_sltny"]
+[ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/Visual/GAP_Fire_Textures/Flare00.PNG" id="6_sltny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hl4l8"]
 render_priority = 0
@@ -130,7 +130,6 @@ sorting_offset = 1.0
 material_override = SubResource("ShaderMaterial_sltny")
 amount = 50
 lifetime = 2.0
-local_coords = true
 draw_order = 3
 process_material = SubResource("ParticleProcessMaterial_e52rn")
 draw_pass_1 = SubResource("QuadMesh_yhxws")

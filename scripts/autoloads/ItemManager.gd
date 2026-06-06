@@ -25,7 +25,8 @@ const MELEE_WEAPONS: Dictionary = {#weapon resources
 	"spear": preload("uid://bovbahtw7dtub"),
 	"torch": preload("res://resources/items/melee_weapons/torch.tres"),
 	"wooden_shield": preload("res://resources/items/melee_weapons/wooden_shield.tres"),
-	"dagger": "",
+	"dagger": preload("uid://d1inafjkmbrho"),
+	"hammer": preload("uid://bbn7q72ym8sio"),
 }
 
 const RANGED_WEAPONS: Dictionary = {

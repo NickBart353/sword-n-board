@@ -23,12 +23,15 @@ func set_data(item_container: ItemContainer):
 		item_grid.add_child(inventory_item)
 
 func sort_items():
-	for i in range(loot_items.size() - 1):
-		for j in range(loot_items.size() - 1):
-			if loot_items[i].data.item_category > loot_items[j+1].data.item_category:
-				var temp_item: Item = loot_items[i]#.data.item_category
-				loot_items[i] = loot_items[j+1]#.data.item_category
-				loot_items[j+1] = temp_item
+	loot_items.sort_custom(sort_by_cat_and_name)
+
+func sort_by_cat_and_name(a: Item, b: Item) -> bool:
+	if a.data.item_category < b.data.item_category:
+		return true
+	elif a.data.item_category == b.data.item_category:
+		if a.data.item_name < b.data.item_name:
+			return true
+	return false
 
 func update_item_display(item: Item) -> void:
 	stat_container.set_text(item)

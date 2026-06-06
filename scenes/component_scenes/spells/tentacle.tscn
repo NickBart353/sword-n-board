@@ -25,8 +25,8 @@ rings = 1
 
 [node name="Tentacle" type="Area3D" unique_id=907101825]
 top_level = true
-collision_layer = 48
-collision_mask = 6
+collision_layer = 128
+collision_mask = 15
 script = ExtResource("1_q82sh")
 eruption_speed = 45.515
 max_distance = 11.0

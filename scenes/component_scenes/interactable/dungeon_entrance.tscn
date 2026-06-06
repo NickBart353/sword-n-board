@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnnts6n8clyi3"]
+[gd_scene format=3 uid="uid://bnnts6n8clyi3"]
 
 [ext_resource type="Script" uid="uid://cjf58kfai013u" path="res://scripts/building_parts/dungeon_entrance.gd" id="1_ujdf5"]
 [ext_resource type="Material" uid="uid://cecesk6pu73gy" path="res://material/simple_outline.tres" id="2_cvvaf"]
@@ -18,22 +18,24 @@ size = Vector3(4, 0.15, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_vfdh6"]
 size = Vector3(4, 0.15, 4)
 
-[node name="DungeonEntrance" type="StaticBody3D"]
+[node name="DungeonEntrance" type="StaticBody3D" unique_id=263740989]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ujdf5")
 
-[node name="Interactable" parent="." instance=ExtResource("3_ujdf5")]
+[node name="Interactable" parent="." unique_id=1146689413 instance=ExtResource("3_ujdf5")]
 hover_text = "Press E to Enter"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=554057664]
 shape = SubResource("BoxShape3D_vfdh6")
 
-[node name="BlackSquare" type="MeshInstance3D" parent="."]
+[node name="BlackSquare" type="MeshInstance3D" parent="." unique_id=1523143345]
 sorting_offset = -1.0
 material_override = SubResource("StandardMaterial3D_vxps4")
 mesh = SubResource("BoxMesh_fi6an")
 skeleton = NodePath("Outline")
 
-[node name="Outline" type="MeshInstance3D" parent="BlackSquare"]
+[node name="Outline" type="MeshInstance3D" parent="BlackSquare" unique_id=347397405]
 process_priority = 5
 process_physics_priority = 5
 visible = false

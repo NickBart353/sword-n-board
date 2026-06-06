@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://7niebdhiadw6" path="res://scripts/item_entity/off_hands/shield.gd" id="2_8ynvp"]
 [ext_resource type="AudioStream" uid="uid://icwfuhxr0nc6" path="res://assets/Audio/400 Sounds Pack/Other/subtle_knock.wav" id="3_0vplc"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="4_iee0v"]
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="5_8iuph"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ffst0"]
 height = 0.14999999
@@ -22,14 +23,19 @@ random_volume_offset_db = 0.2
 streams_count = 1
 stream_0/stream = ExtResource("3_0vplc")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ntn1b"]
+height = 0.3317871
+radius = 0.7680664
+
 [node name="Shield" unique_id=119600585 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_vuocu")]
 script = ExtResource("2_8ynvp")
 hand_component = NodePath("OnehandComponent")
 
 [node name="Sketchfab_model" parent="." index="0" unique_id=1879834473 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
-collision_layer = 4
-collision_mask = 24
+collision_layer = 8
+collision_mask = 33
+monitoring = false
 monitorable = false
 
 [node name="Fronside" type="CollisionShape3D" parent="Sketchfab_model" index="1" unique_id=160939050]
@@ -58,6 +64,18 @@ stream = SubResource("AudioStreamRandomizer_8ynvp")
 bus = &"SFX"
 
 [node name="OnehandComponent" parent="." index="3" unique_id=1480913319 instance=ExtResource("4_iee0v")]
+
+[node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=272429070]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("5_8iuph")
+blocking_type = 1
+metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" index="0" unique_id=912148362]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.2966144e-09, 0.029663086)
+shape = SubResource("CylinderShape3D_ntn1b")
+debug_color = Color(0.34968925, 0.61989766, 0, 0.41960785)
 
 [connection signal="area_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_area_entered"]
 [connection signal="body_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_body_entered"]

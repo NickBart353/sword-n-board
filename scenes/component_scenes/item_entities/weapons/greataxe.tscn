@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c8q0cm3mrdhjt" path="res://my_assets/models/weapons/Greataxe.blend" id="1_qss71"]
 [ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="2_3yh0m"]
 [ext_resource type="Script" uid="uid://hi5utcf023cf" path="res://scripts/item_entity/weapons/greataxe.gd" id="2_sa3gr"]
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="4_sa3gr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sa3gr"]
 size = Vector3(0.13355255, 0.49473572, 0.6720581)
@@ -134,9 +135,12 @@ shadow_mesh = SubResource("ArrayMesh_lxa0u")
 radius = 0.045
 height = 0.835
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_gg3u2"]
+size = Vector3(0.24853516, 1.8285522, 0.63027954)
+
 [node name="Greataxe" unique_id=398786294 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_qss71")]
-collision_layer = 6
-collision_mask = 25
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("2_sa3gr")
 hand_component = NodePath("TwohandComponent")
 
@@ -146,12 +150,23 @@ hand_component = NodePath("TwohandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0074272156, 1.0900681, 0.0030822754)
 shape = SubResource("BoxShape3D_sa3gr")
 
-[node name="GreataxeMesh" parent="." index="2" unique_id=1434141234]
+[node name="GreataxeMesh" parent="." index="2" unique_id=1578386838]
 transform = Transform3D(-1.5954656e-08, 0, -0.365, 0, 0.365, 0, 0.365, 0, -1.5954656e-08, 0, 0.46042502, 0)
 mesh = SubResource("ArrayMesh_6dy8j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1216875193]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.1194029, -0.53903097)
 mesh = SubResource("CapsuleMesh_3yh0m")
+
+[node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=338942821]
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("4_sa3gr")
+metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" index="0" unique_id=407136548]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.018798828, 0.41427612, -0.008041382)
+shape = SubResource("BoxShape3D_gg3u2")
+debug_color = Color(0.98679894, 0, 0.3246901, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

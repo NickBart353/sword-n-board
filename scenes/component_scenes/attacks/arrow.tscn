@@ -36,7 +36,7 @@ mesh = ExtResource("2_o5xq5")
 [node name="ProjectileArea" type="Area3D" parent="." unique_id=1874975528]
 transform = Transform3D(-4.3711385e-08, 4.3711392e-08, 1, 1, -8.742278e-08, 4.3711385e-08, 8.742278e-08, 1, -4.3711385e-08, 0, 0, 0)
 collision_layer = 0
-collision_mask = 9
+collision_mask = 35
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileArea" unique_id=1168519938]
@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape3D_qpkol")
 transform = Transform3D(4.371139e-08, 4.371139e-08, 1, 1, -1.1920929e-07, -4.371138e-08, 1.1920929e-07, 1, -4.371138e-08, 0, 0, 0)
 top_level = true
 collision_layer = 0
-collision_mask = 9
+collision_mask = 33
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionArea" unique_id=350698479]

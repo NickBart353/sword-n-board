@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwwuxjtfociga" path="res://scripts/item_entity/weapons/sword.gd" id="1_c5xvt"]
 [ext_resource type="AudioStream" uid="uid://cei6yivygsheh" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.wav" id="2_vbrxf"]
+[ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="3_cyrm7"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_xvlie"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aiw0"]
@@ -111,10 +112,13 @@ stream_0/stream = ExtResource("2_vbrxf")
 radius = 0.025
 height = 0.46
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8jew"]
+size = Vector3(0.04147339, 1.0488281, 0.17744446)
+
 [node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player", "hand_component")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
-collision_layer = 4
-collision_mask = 13
+collision_layer = 8
+collision_mask = 33
 script = ExtResource("1_c5xvt")
 sword_player = NodePath("SwordPlayer")
 hand_component = NodePath("OnehandComponent")
@@ -143,6 +147,17 @@ mesh = SubResource("CapsuleMesh_vbrxf")
 
 [node name="RotationMarker" type="Marker3D" parent="." unique_id=1151878626]
 transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.025581345, -0.009988128)
+
+[node name="ParryComponent" type="Area3D" parent="." unique_id=577947458]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8
+collision_mask = 192
+script = ExtResource("3_cyrm7")
+metadata/_custom_type_script = "uid://ckyck7wjay34t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ParryComponent" unique_id=143191934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005233766, 0.61320806, -0.0053024315)
+shape = SubResource("BoxShape3D_o8jew")
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_xvlie")]
 

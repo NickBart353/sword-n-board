@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dh06ehim8m2nd"]
 
-[ext_resource type="Script" uid="uid://oi17yy0gne68" path="res://scripts/attacks/slam.gd" id="1_mmmc7"]
+[ext_resource type="Script" uid="uid://boinaqwsxhwtm" path="res://scripts/attacks/Attack.gd" id="1_kd2u2"]
 [ext_resource type="Shader" uid="uid://ch05mbh3o7tri" path="res://shaders/ground_impact/line_ground_impact.tres" id="2_ilirm"]
+[ext_resource type="Texture2D" uid="uid://bt8h56503tscq" path="res://my_assets/b_n_w_textures/impact_edited.png" id="3_kd2u2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ilirm"]
 height = 1.275
@@ -58,6 +59,7 @@ render_priority = 0
 shader = ExtResource("2_ilirm")
 shader_parameter/ImpactColor = Color(2.9579966, 2.930239, 2.036927, 1)
 shader_parameter/ImpactSpeed = Vector2(0, 0.7)
+shader_parameter/tex_frg_2 = ExtResource("3_kd2u2")
 shader_parameter/Gradient = SubResource("GradientTexture2D_43ycy")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7wo7f"]
@@ -154,24 +156,13 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/7/type = "method"
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath(".")
+tracks/7/path = NodePath("ImpactTexture:emitting")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("ImpactTexture:emitting")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -253,27 +244,22 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector3(-0.6981317, 2.0943952, 0), Vector3(-0.6981317, 2.0943952, 0)]
 }
-tracks/6/type = "method"
+tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath(".")
+tracks/6/path = NodePath("DustParticles:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.1, 0.16666667),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"activate_slam"
-}, {
-"args": [],
-"method": &"deactivate_slam"
-}]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("DustParticles:emitting")
+tracks/7/path = NodePath("ImpactTexture:emitting")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -282,17 +268,22 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/8/type = "value"
+tracks/8/type = "method"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("ImpactTexture:emitting")
+tracks/8/path = NodePath(".")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"times": PackedFloat32Array(0.1, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"activate_monitoring"
+}, {
+"args": [],
+"method": &"disable_monitoring"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7wo7f"]
@@ -301,10 +292,13 @@ _data = {
 &"slam": SubResource("Animation_ob1mv")
 }
 
-[node name="Slam" type="Area3D" unique_id=1179566306]
-collision_layer = 48
-collision_mask = 6
-script = ExtResource("1_mmmc7")
+[node name="Slam" type="Area3D" unique_id=349237200 node_paths=PackedStringArray("anim_player")]
+collision_layer = 128
+collision_mask = 12
+script = ExtResource("1_kd2u2")
+anim_player = NodePath("AnimationPlayer")
+animation_name = "slam"
+metadata/_custom_type_script = "uid://boinaqwsxhwtm"
 
 [node name="SlamBox" type="CollisionShape3D" parent="." unique_id=2070751682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36249998, 0)

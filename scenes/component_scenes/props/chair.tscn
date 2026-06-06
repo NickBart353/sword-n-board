@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://beo1tt08afd15"]
+[gd_scene format=3 uid="uid://beo1tt08afd15"]
 
-[ext_resource type="PackedScene" uid="uid://do2bjqe03xy08" path="res://assets/brackeys_3d_game_assets/dungeon_assets/props/chair.glb" id="1_yfjwq"]
+[ext_resource type="PackedScene" uid="uid://do2bjqe03xy08" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/chair.glb" id="1_yfjwq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1kdfh"]
 size = Vector3(0.76, 0.47, 0.71)
@@ -8,14 +8,16 @@ size = Vector3(0.76, 0.47, 0.71)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0u81g"]
 size = Vector3(0.25, 0.74, 0.71)
 
-[node name="chair" type="StaticBody3D"]
+[node name="chair" type="StaticBody3D" unique_id=690761223]
+collision_layer = 2
+collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1394194313]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.019999951, 0.27625012, -0.0049999356)
 shape = SubResource("BoxShape3D_1kdfh")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=530643415]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27499995, 0.84125006, -0.0049999356)
 shape = SubResource("BoxShape3D_0u81g")
 
-[node name="chair" parent="." instance=ExtResource("1_yfjwq")]
+[node name="chair" parent="." unique_id=1060041139 instance=ExtResource("1_yfjwq")]

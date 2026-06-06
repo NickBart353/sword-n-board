@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://hcwurgrhqcb0"]
+
+[ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="1_131vj"]
+
+[node name="BlockComponent" type="Area3D" unique_id=1317983584]
+script = ExtResource("1_131vj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
