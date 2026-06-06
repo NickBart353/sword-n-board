@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d0ynhjga6duwo" path="res://scripts/ui_scripts/boot_screen.gd" id="1_jn3a8"]
 [ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_q4nfl"]
 [ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="4_c4vn0"]
-[ext_resource type="Texture2D" uid="uid://ba87o71mehwid" path="res://my_assets/sprites/Frozen Greatsword.png" id="5_xcjwe"]
+[ext_resource type="Texture2D" uid="uid://b2fvtshtjtpqh" path="res://my_assets/sprites/Flaming Double Axe.png" id="5_xcjwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dy7m"]
 content_margin_left = 20.0
