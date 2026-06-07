@@ -11,7 +11,7 @@ var need_to_load_shaders: bool
 
 func _ready() -> void:
 	#DEBUG: somefunc
-	need_to_load_shaders = true
+	need_to_load_shaders = _check_shader_cache()
 	#DEBUG END
 	if need_to_load_shaders:
 		shader_cache_loading_screen.start()
@@ -20,7 +20,24 @@ func _ready() -> void:
 		shader_cache_loading_screen.hide()
 		animation_player.play("bootscreen/godot")
 
+func _check_shader_cache() -> bool:
+	var last_shader_load_date: String = DataManager.load_shader_cache_date()
+	
+	if not last_shader_load_date:
+		return true
+	
+	var unix_last_shader_load_date = Time.get_unix_time_from_datetime_string(last_shader_load_date)
+	
+	if _was_shader_loaded_today(unix_last_shader_load_date):
+		return false
+	
+	return true
+
+func _was_shader_loaded_today(unix_date: int) -> bool:
+	return (unix_date - Time.get_unix_time_from_datetime_string(Time.get_datetime_string_from_system(false))) < 86400
+
 func _on_shader_cache_loading_screen_cache_loaded() -> void:
+	DataManager.save_shader_cache_date()
 	animation_player.play("bootscreen/shadercache_fadeout")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
