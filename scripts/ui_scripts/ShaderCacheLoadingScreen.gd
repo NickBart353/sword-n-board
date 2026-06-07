@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal cache_loaded
 
-@onready var vfx_position: Marker3D = $VFXPosition
+@onready var positions: Node3D = $Positions
 
 var vfx: Array = []
 var attack_vfx: Array = []
@@ -35,13 +35,17 @@ func attack_vfx_finished(attack: Attack) -> void:
 		cache_loaded.emit()
 
 func _play_vfx() -> void:
-	var _vfx: Basic_VFX = vfx.pop_back()
-	_vfx.hide_if_missed_by_player = false
-	_vfx.queue_free_on_finish = true
-	vfx_position.add_child(_vfx)
-	_vfx.play()
+	for vfx_position in positions.get_children():
+		if vfx_position.get_child_count() == 0 and vfx.size() > 0:
+			var _vfx: Basic_VFX = vfx.pop_back()
+			_vfx.hide_if_missed_by_player = false
+			_vfx.queue_free_on_finish = true
+			vfx_position.add_child(_vfx)
+			_vfx.play()
 
 func _play_attack_vfx() -> void:
-	var _attack_vfx: Attack = attack_vfx.pop_back()
-	vfx_position.add_child(_attack_vfx)
-	_attack_vfx.attack(vfx_position.global_transform, 0)
+	for vfx_position in positions.get_children():
+		if vfx_position.get_child_count() == 0 and attack_vfx.size() > 0:
+			var _attack_vfx: Attack = attack_vfx.pop_back()
+			vfx_position.add_child(_attack_vfx)
+			_attack_vfx.attack(vfx_position.global_transform, 0)

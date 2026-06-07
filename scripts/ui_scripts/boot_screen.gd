@@ -10,8 +10,9 @@ var main_menu_path: String = "res://scenes/main_scenes/main_menu.tscn"
 var need_to_load_shaders: bool
 
 func _ready() -> void:
-	#somefunc
-	need_to_load_shaders = false
+	#DEBUG: somefunc
+	need_to_load_shaders = true
+	#DEBUG END
 	if need_to_load_shaders:
 		shader_cache_loading_screen.start()
 		animation_player.play("bootscreen/shadercache_fadein")
