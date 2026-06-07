@@ -15,7 +15,30 @@
 [ext_resource type="StyleBox" uid="uid://c6v5i8we77r6o" path="res://resources/ui/resource_bars/manabar_fill_stylebox.tres" id="10_25rgj"]
 [ext_resource type="PackedScene" uid="uid://bub18fmie3reu" path="res://scenes/ui_scenes/inventory_new.tscn" id="11_h2ykw"]
 [ext_resource type="Theme" uid="uid://dhredoyg6oik8" path="res://resources/ui/hud/hud_theme.tres" id="12_25rgj"]
+[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="13_evact"]
 [ext_resource type="PackedScene" uid="uid://bt7gpwk7b4gi0" path="res://scenes/ui_scenes/loot_container/loot_container.tscn" id="14_u26ox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evact"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.81960785, 0, 0.08627451, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8627451, 0.8627451, 0.8627451, 0.5529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shs7f"]
+bg_color = Color(1.3957917e-06, 0.52251524, 0.27252874, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8646751, 0.86467516, 0.8646751, 0.5529412)
+
+[sub_resource type="LabelSettings" id="LabelSettings_shs7f"]
+font = ExtResource("13_evact")
+font_size = 40
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513 groups=["BlockInput"]]
 process_mode = 3
@@ -178,6 +201,46 @@ theme_override_constants/margin_bottom = 5
 
 [node name="OffhandDisplay" type="GridContainer" parent="Hud/OffhandPanel/OffhandMargin" unique_id=180798788]
 layout_mode = 2
+
+[node name="EnemyHealthbarContainer" type="VBoxContainer" parent="Hud" unique_id=1627749352]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.2
+offset_top = 61.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="_healthbar" type="MarginContainer" parent="Hud/EnemyHealthbarContainer" unique_id=135495032]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 0
+
+[node name="EnemyHealthbar" type="ProgressBar" parent="Hud/EnemyHealthbarContainer/_healthbar" unique_id=717102660]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_evact")
+theme_override_styles/fill = SubResource("StyleBoxFlat_shs7f")
+value = 98.46
+show_percentage = false
+
+[node name="_label" type="MarginContainer" parent="Hud/EnemyHealthbarContainer" unique_id=289365705]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 0
+
+[node name="EnemyName" type="Label" parent="Hud/EnemyHealthbarContainer/_label" unique_id=315236337]
+layout_mode = 2
+text = "Killer Wasp"
+label_settings = SubResource("LabelSettings_shs7f")
+horizontal_alignment = 1
 
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
 visible = false

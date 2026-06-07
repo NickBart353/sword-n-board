@@ -21,6 +21,7 @@ signal _update_healthbar
 signal _update_staminabar
 signal _update_manabar
 signal _update_hud
+signal updated_hud_healthbar
 
 var ui_open: bool
 var inventory_open: bool
@@ -83,3 +84,6 @@ func add_item_to_inventory(item: Item):
 
 func is_ui_open() -> bool:
 	return ui_open
+
+func update_hud_healthbar(enemy: Enemy) -> void:
+	updated_hud_healthbar.emit(enemy)

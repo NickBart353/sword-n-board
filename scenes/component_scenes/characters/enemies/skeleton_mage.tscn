@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://doh76cvllte4m"]
 
 [ext_resource type="Script" uid="uid://bpu4q570sg727" path="res://scripts/characters/enemies/skeleton_mage.gd" id="1_1kw4o"]
-[ext_resource type="PackedScene" uid="uid://drfr0g6h30ft5" path="res://assets/brackeys_3d_game_assets/skeleton/skeleton_mage.glb" id="1_bxj1e"]
+[ext_resource type="PackedScene" uid="uid://drfr0g6h30ft5" path="res://assets/Visual/brackeys_3d_game_assets/skeleton/skeleton_mage.glb" id="1_bxj1e"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="3_nftgf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nftgf"]
@@ -266,11 +266,12 @@ radius = 0.7
 [node name="SkeletonMage" type="CharacterBody3D" unique_id=1909878696]
 script = ExtResource("1_1kw4o")
 movement_speed = 2
+display_name = "Skeleton Mage"
 
 [node name="skeleton_mage" parent="." unique_id=882678723 instance=ExtResource("1_bxj1e")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Skeleton3D" parent="skeleton_mage/Rig" index="0"]
+[node name="Skeleton3D" parent="skeleton_mage/Rig" parent_id_path=PackedInt32Array(882678723, 925097582) index="0" unique_id=1188717486]
 bones/1/position = Vector3(7.1671886e-09, 0.3052199, -0.030061372)
 bones/1/rotation = Quaternion(2.255949e-10, 0.17319314, 2.5649072e-09, 0.9848879)
 bones/2/rotation = Quaternion(0.11676573, -0.12958969, 0.025773186, 0.98433125)
@@ -357,34 +358,34 @@ bones/40/position = Vector3(-0.5442452, 0.74524903, -0.04110357)
 bones/40/rotation = Quaternion(-0.8932758, 0.026557952, 0.43408212, 0.113692485)
 bones/40/scale = Vector3(1, 1.0000001, 1)
 
-[node name="head" parent="skeleton_mage/Rig/Skeleton3D" index="0"]
+[node name="head" parent="skeleton_mage/Rig/Skeleton3D" index="0" unique_id=861356595]
 transform = Transform3D(0.99981403, -0.014102131, -0.013155997, 0.010184139, 0.9653388, -0.26080087, 0.016377866, 0.26061824, 0.965303, -5.751493e-09, 1.0435922, 0.25666142)
 
-[node name="Skeleton_Mage_Hat" parent="skeleton_mage/Rig/Skeleton3D/head" index="0"]
+[node name="Skeleton_Mage_Hat" parent="skeleton_mage/Rig/Skeleton3D/head" index="0" unique_id=1385922649]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_ArmLeft" parent="skeleton_mage/Rig/Skeleton3D" index="1"]
+[node name="Skeleton_Mage_ArmLeft" parent="skeleton_mage/Rig/Skeleton3D" index="1" unique_id=487215459]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_ArmRight" parent="skeleton_mage/Rig/Skeleton3D" index="2"]
+[node name="Skeleton_Mage_ArmRight" parent="skeleton_mage/Rig/Skeleton3D" index="2" unique_id=492963519]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_Body" parent="skeleton_mage/Rig/Skeleton3D" index="3"]
+[node name="Skeleton_Mage_Body" parent="skeleton_mage/Rig/Skeleton3D" index="3" unique_id=795566775]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_Eyes" parent="skeleton_mage/Rig/Skeleton3D" index="4"]
+[node name="Skeleton_Mage_Eyes" parent="skeleton_mage/Rig/Skeleton3D" index="4" unique_id=1865136709]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_Jaw" parent="skeleton_mage/Rig/Skeleton3D" index="5"]
+[node name="Skeleton_Mage_Jaw" parent="skeleton_mage/Rig/Skeleton3D" index="5" unique_id=1749126048]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_LegLeft" parent="skeleton_mage/Rig/Skeleton3D" index="6"]
+[node name="Skeleton_Mage_LegLeft" parent="skeleton_mage/Rig/Skeleton3D" index="6" unique_id=1485863092]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_LegRight" parent="skeleton_mage/Rig/Skeleton3D" index="7"]
+[node name="Skeleton_Mage_LegRight" parent="skeleton_mage/Rig/Skeleton3D" index="7" unique_id=1237592305]
 material_overlay = SubResource("ShaderMaterial_nftgf")
 
-[node name="Skeleton_Mage_Skull" parent="skeleton_mage/Rig/Skeleton3D" index="8"]
+[node name="Skeleton_Mage_Skull" parent="skeleton_mage/Rig/Skeleton3D" index="8" unique_id=3197820]
 material_overlay = SubResource("ShaderMaterial_8o1bm")
 
 [node name="IFrame" type="Timer" parent="." unique_id=1010770522]

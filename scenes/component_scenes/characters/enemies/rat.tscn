@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b7fxq3y5qsjyc" path="res://assets/Visual/MonstersPack_Ps1/FBX/Rat.fbx" id="1_0u8od"]
 [ext_resource type="Script" uid="uid://ctnhr86dan0pn" path="res://scripts/characters/enemies/rat/rat.gd" id="2_aafi7"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="2_juueg"]
-[ext_resource type="PackedScene" uid="uid://c411m8it3slm1" path="res://scenes/component_scenes/components/health_bar.tscn" id="3_aafi7"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="3_ijteo"]
 [ext_resource type="Animation" uid="uid://ep881riurojv" path="res://animations/rat/Rat_Armature_AtackRat.res" id="4_er0us"]
 [ext_resource type="Texture2D" uid="uid://c5xi5epir0cb" path="res://assets/Visual/MonstersPack_Ps1/Textures/Rat01Pixelated.png" id="4_p737n"]
@@ -37,29 +36,29 @@
 [ext_resource type="AudioStream" uid="uid://bfm2hytbmcy60" path="res://assets/Audio/Monster Roar/Goblin Roar 05.wav" id="32_buci7"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="33_oeobn"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lmxkh"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_vx5t5"]
 parameter_name = "MainTexture"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_x5lcn"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_lmxkh"]
 source = 5
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_snx0w"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_x5lcn"]
 parameter_name = "Metallic"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_8cx1i"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_snx0w"]
 parameter_name = "Roughness"
 hint = 1
 
-[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_cjha4"]
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_8cx1i"]
 constant = Color(0.003921569, 0.003921569, 0, 1)
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_yfrfu"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_cjha4"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_k1k5h"]
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_yfrfu"]
 parameter_name = "Color"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
@@ -71,56 +70,56 @@ noise = SubResource("FastNoiseLite_wvk24")
 seamless = true
 seamless_blend_skirt = 0.488
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_hv8us"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_k1k5h"]
 texture = SubResource("NoiseTexture2D_drxrv")
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_q4erw"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_hv8us"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_sky5t"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_q4erw"]
 parameter_name = "DissolveStrength"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_a5hc5"]
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_sky5t"]
 function = 31
 
-[sub_resource type="VisualShader" id="VisualShader_vq1cf"]
+[sub_resource type="VisualShader" id="VisualShader_a5hc5"]
 resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_hv8us")
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_k1k5h")
 nodes/fragment/3/position = Vector2(-980, -140)
-nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_q4erw")
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_hv8us")
 nodes/fragment/4/position = Vector2(-140, 720)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_sky5t")
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_q4erw")
 nodes/fragment/8/position = Vector2(-460, 720)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_a5hc5")
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_sky5t")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_lmxkh")
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_vx5t5")
 nodes/fragment/10/position = Vector2(-540, -380)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_x5lcn")
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_lmxkh")
 nodes/fragment/11/position = Vector2(-480, -560)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_snx0w")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_x5lcn")
 nodes/fragment/12/position = Vector2(-520, 100)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_8cx1i")
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_snx0w")
 nodes/fragment/13/position = Vector2(-160, 220)
-nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_cjha4")
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_8cx1i")
 nodes/fragment/14/position = Vector2(140, 340)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_yfrfu")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_cjha4")
 nodes/fragment/15/position = Vector2(-80, -560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_k1k5h")
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_yfrfu")
 nodes/fragment/16/position = Vector2(-400, -760)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_18ja3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vq1cf"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_vq1cf")
+shader = SubResource("VisualShader_a5hc5")
 shader_parameter/MainTexture = ExtResource("4_p737n")
 shader_parameter/Color = Color(0.65012825, 0.6501283, 0.6501282, 1)
 shader_parameter/Metallic = 0.0
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_76dw5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_18ja3"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_ijteo")
@@ -738,36 +737,37 @@ _data = {
 &"rat_slam_2": SubResource("Animation_j6d1h")
 }
 
-[node name="Rat" unique_id=1685937082 node_paths=PackedStringArray("anim_tree", "healthbar", "state_machine") instance=ExtResource("1_0u8od")]
+[node name="Rat" unique_id=1685937082 node_paths=PackedStringArray("anim_tree", "state_machine") instance=ExtResource("1_0u8od")]
 collision_layer = 32
 collision_mask = 39
 wall_min_slide_angle = 0.5235988
 floor_constant_speed = true
+floor_max_angle = 1.3962634
 script = ExtResource("2_aafi7")
+display_name = "Giant Rat"
 MAX_HEALTH = 65
 anim_tree = NodePath("AnimationTree")
-healthbar = NodePath("HealthBar")
 state_machine = NodePath("StateMachine")
 
-[node name="Rat_Armature" parent="." index="0" unique_id=939121433]
+[node name="Rat_Armature" parent="." index="0" unique_id=894730393]
 transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=2000930738]
+[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=454415615]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
 bones/1/rotation = Quaternion(-4.497857e-17, -8.82744e-11, -0.07285598, 0.9973426)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
 bones/2/rotation = Quaternion(0.033134498, -2.0783765e-10, 1.4300622e-09, 0.999451)
 bones/3/position = Vector3(2.7943134e-17, 0.035011638, 5.0474513e-10)
-bones/3/rotation = Quaternion(-0.032742683, 0.005080462, 0.15324433, 0.9876327)
+bones/3/rotation = Quaternion(-0.032953262, 0.003460767, 0.104388714, 0.99398446)
 bones/3/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/4/position = Vector3(-6.691533e-17, 0.036299333, -2.7045108e-10)
-bones/4/rotation = Quaternion(0.11899951, 0.03903699, 0.32614487, 0.9369871)
+bones/4/rotation = Quaternion(0.11824301, 0.016497836, 0.13719782, 0.98332256)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/position = Vector3(0.011307207, 0.0059834784, -0.0077325143)
-bones/5/rotation = Quaternion(0.785376, 0.31590155, 0.17933643, -0.50122774)
+bones/5/rotation = Quaternion(0.8185288, 0.2327621, 0.1890663, -0.4899862)
 bones/5/scale = Vector3(1, 1, 0.99999994)
 bones/7/position = Vector3(-0.011307205, 0.0059834784, -0.007732516)
-bones/7/rotation = Quaternion(0.785376, -0.31590155, -0.17933641, -0.50122786)
+bones/7/rotation = Quaternion(0.81852883, -0.23276217, -0.1890663, -0.48998606)
 bones/7/scale = Vector3(1, 0.99999994, 1.0000002)
 bones/9/position = Vector3(0.02200493, 0.022545217, 0.009580314)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
@@ -786,7 +786,7 @@ bones/15/position = Vector3(-6.938894e-18, 0.014769028, -4.8572257e-17)
 bones/15/rotation = Quaternion(-1.7886627e-08, 6.535729e-08, 0.6782688, 0.73481387)
 bones/15/scale = Vector3(1, 1, 1)
 bones/17/position = Vector3(0.025667883, 0.031279262, 0.0063315374)
-bones/17/rotation = Quaternion(0.34202498, 0.6188851, 0.61888534, 0.34202498)
+bones/17/rotation = Quaternion(0.38819546, 0.5910197, 0.59101975, 0.38819548)
 bones/17/scale = Vector3(0.99999994, 0.9999998, 0.9999998)
 bones/18/position = Vector3(4.2915282e-10, 0.019717814, 6.6039924e-10)
 bones/18/rotation = Quaternion(1.674626e-08, 1.1175873e-08, -3.022882e-08, 1)
@@ -795,7 +795,7 @@ bones/19/position = Vector3(9.367507e-17, 0.016380727, 5.2041704e-17)
 bones/19/rotation = Quaternion(-2.3336575e-08, -8.921103e-08, -0.626472, 0.779444)
 bones/19/scale = Vector3(1, 1, 1)
 bones/21/position = Vector3(-0.025667883, 0.031279262, 0.006331533)
-bones/21/rotation = Quaternion(-0.6420892, 0.2961781, 0.29617807, -0.6420892)
+bones/21/rotation = Quaternion(-0.6054172, 0.3653355, 0.36533546, -0.6054172)
 bones/21/scale = Vector3(0.99999994, 0.99999976, 0.9999998)
 bones/22/position = Vector3(-4.2915302e-10, 0.019717816, 2.3913589e-09)
 bones/22/rotation = Quaternion(-1.674626e-08, -1.4901163e-08, 3.0228826e-08, 1)
@@ -803,28 +803,25 @@ bones/22/scale = Vector3(1, 1, 1)
 bones/23/position = Vector3(-2.4286129e-17, 0.01638073, -1.3877788e-17)
 bones/23/rotation = Quaternion(-2.4635192e-08, 8.816729e-08, 0.626472, 0.7794439)
 bones/23/scale = Vector3(1.0000001, 1.0000001, 1)
-bones/25/rotation = Quaternion(0.12104533, 0, 0, 0.99264705)
+bones/25/rotation = Quaternion(-0.035705302, 0, 0, 0.9993624)
 bones/26/position = Vector3(0, 0.038294263, 3.469447e-18)
-bones/26/rotation = Quaternion(-0.009691253, 0, 0, 0.9999531)
+bones/26/rotation = Quaternion(0.08194766, 0, 0, 0.9966366)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 
-[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1356767653]
-material_override = SubResource("ShaderMaterial_18ja3")
-material_overlay = SubResource("ShaderMaterial_76dw5")
+[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1667731238]
+material_override = SubResource("ShaderMaterial_vq1cf")
+material_overlay = SubResource("ShaderMaterial_18ja3")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=363759929]
 transform = Transform3D(1.0000001, 0, 0, 0, -4.3711378e-08, 1.0000001, 0, -1.0000001, -4.3711378e-08, 0, 0.34999982, 0.4390631)
 shape = SubResource("CapsuleShape3D_0u8od")
 
-[node name="HealthBar" parent="." index="2" unique_id=1652061932 instance=ExtResource("3_aafi7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3999999, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3" unique_id=1285545981]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1285545981]
 libraries/ = SubResource("AnimationLibrary_p737n")
 libraries/monster_basics = ExtResource("7_p737n")
 "libraries/rat animations" = SubResource("AnimationLibrary_ijteo")
 
-[node name="AnimationTree" type="AnimationTree" parent="." index="4" unique_id=591692422]
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=591692422]
 tree_root = ExtResource("4_ripon")
 advance_expression_base_node = NodePath("../StateMachine")
 anim_player = NodePath("../AnimationPlayer")
@@ -835,7 +832,7 @@ parameters/Dissolve/active = false
 parameters/Dissolve/internal_active = false
 parameters/Dissolve/request = 0
 
-[node name="Timers" type="Node3D" parent="." index="5" unique_id=218584737]
+[node name="Timers" type="Node3D" parent="." index="4" unique_id=218584737]
 
 [node name="DeathTimer" type="Timer" parent="Timers" index="0" unique_id=1236845956]
 wait_time = 3.0
@@ -861,7 +858,7 @@ one_shot = true
 wait_time = 1.5
 one_shot = true
 
-[node name="StateMachine" type="Node" parent="." index="6" unique_id=845983060 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." index="5" unique_id=845983060 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_juueg")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://cfxyba70xd7yl"
@@ -966,23 +963,23 @@ anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../RatPlayer")
 audio_resource = ExtResource("32_buci7")
 
-[node name="YellPosition" type="Marker3D" parent="." index="7" unique_id=1682746987]
+[node name="YellPosition" type="Marker3D" parent="." index="6" unique_id=1682746987]
 transform = Transform3D(0.9999999, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 0.9999999, -5.960465e-09, 0, 4.2999997)
 
-[node name="BitePosition" type="Marker3D" parent="." index="8" unique_id=877628208]
+[node name="BitePosition" type="Marker3D" parent="." index="7" unique_id=877628208]
 transform = Transform3D(-0.9999999, 0, -1.0232393e-07, 0, 1, 0, 1.0232393e-07, 0, -0.9999999, 3.9684167e-10, 0, 5.9)
 
-[node name="ClawPosition" type="Marker3D" parent="." index="9" unique_id=1310235801]
+[node name="ClawPosition" type="Marker3D" parent="." index="8" unique_id=1310235801]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 5.5)
 
-[node name="SlamPosition" type="Marker3D" parent="." index="10" unique_id=1272495878]
+[node name="SlamPosition" type="Marker3D" parent="." index="9" unique_id=1272495878]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 3.4999998)
 
-[node name="RatPlayer" type="AudioStreamPlayer3D" parent="." index="11" unique_id=1528253678]
+[node name="RatPlayer" type="AudioStreamPlayer3D" parent="." index="10" unique_id=1528253678]
 max_polyphony = 4
 bus = &"SFX"
 
-[node name="FireAndForget" type="Node3D" parent="." index="12" unique_id=330988906 node_paths=PackedStringArray("_audio_position")]
+[node name="FireAndForget" type="Node3D" parent="." index="11" unique_id=330988906 node_paths=PackedStringArray("_audio_position")]
 script = ExtResource("33_oeobn")
 _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"

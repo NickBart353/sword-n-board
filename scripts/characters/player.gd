@@ -18,12 +18,13 @@ signal spawn_projectile
 
 @onready var ground_raycast = $GroundRayCasts
 @onready var player_camera = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
-@onready var player_interactor = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/RayCast3D"
+@onready var player_interactor = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/InteractingRaycast"
+@onready var enemy_detecting_raycast: RayCast3D = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView/EnemyDetectingRaycast"
 @onready var consumable_slot = $Slots/Consumable
 @onready var head_slot = $Slots/Head
 @onready var body_slot = $Slots/Body
 @onready var boots_slot = $Slots/Boots
-#@onready var healthbar = $CanvasLayer/Control/RedBar/HealthBar
+
 @onready var stamina_regeneration_delay: Timer = $Timers/StaminaRegenerationDelay
 @onready var slow_stamina_regeneration_delay: Timer = $Timers/SlowStaminaRegenerationDelay
 @onready var timers: Node3D = $Timers
@@ -90,6 +91,7 @@ var parried_body: Node
 var parried_bodies: Array[Dictionary] = []
 
 var rotation_modifier: float = 1
+var detected_enemy: Enemy
 
 func _ready() -> void:
 	###DEBUG
@@ -149,9 +151,12 @@ func _physics_process(delta: float) -> void:
 	audio.apply_audio(state_controller, movement, ability)
 	consume.apply_consumable(input, state_controller, movement, ability, delta)
 	
-	if not state_controller.is_player_busy():
+	if not state_controller.is_player_busy() or not ability.busy:
 		interact_with_object()
+		#_detect_enemy_healthbar()
+		UiController.update_hud_healthbar(enemy_detecting_raycast.get_collider())
 		#_open_inventory()
+	
 	move_and_slide()
 
 func interact_with_object():
@@ -171,6 +176,12 @@ func interact_with_object():
 		interacting_object.get_node(node_name).hover()
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
+
+func _detect_enemy_healthbar() -> void:
+	pass
+	#detected_enemy = enemy_detecting_raycast.get_collider()
+	#if detected_enemy is Enemy:
+		#UiController.update_hud_healthbar(detected_enemy)
 
 func get_equipped_consumable():
 	var consumable: Array = $Slots/Consumable.get_children()

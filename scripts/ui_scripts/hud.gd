@@ -8,6 +8,10 @@ extends Control
 @onready var mainhand_display: GridContainer = $MainhandPanel/MainhandMargin/MainhandDisplay
 @onready var offhand_display: GridContainer = $OffhandPanel/OffhandMargin/OffhandDisplay
 
+@onready var enemy_healthbar_container: VBoxContainer = $EnemyHealthbarContainer
+@onready var enemy_healthbar: ProgressBar = $EnemyHealthbarContainer/_healthbar/EnemyHealthbar
+@onready var enemy_name_label: Label = $EnemyHealthbarContainer/_label/EnemyName
+
 @export var display_item: PackedScene
 
 var player_consumables: Array = []
@@ -19,6 +23,9 @@ func _ready() -> void:
 	UiController.player_consumed_item.connect(_remove_player_consumable)
 	UiController.new_mainhand.connect(_new_mainhand)
 	UiController.new_offhand.connect(_new_offhand)
+	UiController.updated_hud_healthbar.connect(_updated_hud_enemy_healthbar)
+	
+	enemy_healthbar_container.hide()
 
 func update_health(health: float):
 	health_bar.value = health
@@ -117,9 +124,11 @@ func _new_offhand(item: Item, two_handed_duplicate: bool):
 		if two_handed_duplicate:
 			display_instance.modulate = Color(1, 1, 1, 0.3)
 
-#mh
-# 0.067 0.743 0.135 0.746
-# 0 0 0 128
-
-#oh
-# 0.22 0.743 0.285 0.746 
+func _updated_hud_enemy_healthbar(enemy: Enemy) -> void:
+	if enemy:
+		enemy_healthbar.value = enemy.health
+		enemy_healthbar.max_value = enemy.MAX_HEALTH
+		enemy_name_label.text = enemy.display_name
+		enemy_healthbar_container.show()
+	else:
+		enemy_healthbar_container.hide()
