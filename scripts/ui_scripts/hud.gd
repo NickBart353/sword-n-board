@@ -11,12 +11,15 @@ extends Control
 @onready var enemy_healthbar_container: VBoxContainer = $EnemyHealthbarContainer
 @onready var enemy_healthbar: ProgressBar = $EnemyHealthbarContainer/_healthbar/EnemyHealthbar
 @onready var enemy_name_label: Label = $EnemyHealthbarContainer/_label/EnemyName
+@onready var enemy_healthbar_timer: Timer = $EnemyHealthbarContainer/EnemyHealthbarTimer
 
 @export var display_item: PackedScene
 
 var player_consumables: Array = []
 var current_consumable_index: int
 var current_consumable: Item
+var current_enemy: Enemy
+var last_enemy: Enemy
 
 func _ready() -> void:
 	UiController.set_player_consumables.connect(_set_player_consumables)
@@ -125,10 +128,17 @@ func _new_offhand(item: Item, two_handed_duplicate: bool):
 			display_instance.modulate = Color(1, 1, 1, 0.3)
 
 func _updated_hud_enemy_healthbar(enemy: Enemy) -> void:
-	if enemy:
-		enemy_healthbar.value = enemy.health
-		enemy_healthbar.max_value = enemy.MAX_HEALTH
-		enemy_name_label.text = enemy.display_name
+	current_enemy = enemy
+	if current_enemy:
+		enemy_healthbar.value = current_enemy.health
+		enemy_healthbar.max_value = current_enemy.MAX_HEALTH
+		enemy_name_label.text = current_enemy.display_name
 		enemy_healthbar_container.show()
 	else:
+		last_enemy = enemy
+		enemy_healthbar_timer.start()
+		#enemy_healthbar_container.hide()
+
+func _on_enemy_healthbar_timer_timeout() -> void:
+	if last_enemy == current_enemy:
 		enemy_healthbar_container.hide()

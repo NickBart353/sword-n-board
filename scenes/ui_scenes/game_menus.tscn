@@ -242,6 +242,10 @@ text = "Killer Wasp"
 label_settings = SubResource("LabelSettings_shs7f")
 horizontal_alignment = 1
 
+[node name="EnemyHealthbarTimer" type="Timer" parent="Hud/EnemyHealthbarContainer" unique_id=1586258866]
+wait_time = 3.0
+one_shot = true
+
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
 visible = false
 
@@ -254,6 +258,7 @@ visible = false
 [node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("6_l4c86")]
 visible = false
 
+[connection signal="timeout" from="Hud/EnemyHealthbarContainer/EnemyHealthbarTimer" to="Hud" method="_on_enemy_healthbar_timer_timeout"]
 [connection signal="update_player_items" from="Inventory" to="." method="_on_inventory_update_player_items"]
 [connection signal="continue_game" from="PauseMenu" to="." method="_on_pause_menu_continue_game"]
 [connection signal="exit_game" from="PauseMenu" to="." method="_on_pause_menu_exit_game"]
