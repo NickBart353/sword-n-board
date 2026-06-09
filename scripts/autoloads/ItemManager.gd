@@ -219,22 +219,22 @@ func load_debug_items() -> Array:
 			var new_item: Item = get_item(item_key, 1, 5)
 			if new_item:
 				items.append(new_item)
-		for item_key in RANGED_WEAPONS:
-			var new_item: Item = get_item(item_key, 1, 5)
-			if new_item:
-				items.append(new_item)
-		for item_key in MAGIC_WEAPONS:
-			var new_item: Item = get_item(item_key, 1, 5)
-			if new_item:
-				items.append(new_item)
+		#for item_key in RANGED_WEAPONS:
+			#var new_item: Item = get_item(item_key, 1, 5)
+			#if new_item:
+				#items.append(new_item)
+		#for item_key in MAGIC_WEAPONS:
+			#var new_item: Item = get_item(item_key, 1, 5)
+			#if new_item:
+				#items.append(new_item)
 	for item_key in CONSUMABLES:
 		var new_item: Item = get_item(item_key, 1, 5)
 		if new_item:
 			items.append(new_item)
-	for item_key in MATERIAL:
-		var new_item: Item = get_item(item_key, 1, 5)
-		if new_item:
-			items.append(new_item)
+	#for item_key in MATERIAL:
+		#var new_item: Item = get_item(item_key, 1, 5)
+		#if new_item:
+			#items.append(new_item)
 	return items
 
 #func generate_loot(_level):

@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal cache_loaded
 
-@onready var positions: Node3D = $Positions
+@onready var positions: Node3D = $SubViewport/Positions
 
 var vfx: Array = []
 var attack_vfx: Array = []
