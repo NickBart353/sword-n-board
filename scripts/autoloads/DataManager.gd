@@ -7,6 +7,8 @@ const input_data_file: String = "input_settings.json"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
 
+const basic_player_data_path: String = "player/basic_player_data.res"
+
 func _ready() -> void:
 	print(OS.get_data_dir())
 
@@ -127,3 +129,23 @@ func load_shader_cache_date() -> String:
 		return shader_cache_date
 	else:
 		return ""
+
+func save_basic_player_data(basic_player_data: BasicPlayerData):
+	var path: String = "{0}{1}".format([save_path,basic_player_data_path])
+	_save_resource(basic_player_data, path)
+
+func load_basic_player_data() -> BasicPlayerData:
+	var path: String = "{0}{1}".format([save_path,basic_player_data_path])
+	return _load_resource(path)
+
+func _save_resource(resource: Resource, filepath: String):
+	var error: Error = ResourceSaver.save(resource, filepath,ResourceSaver.FLAG_COMPRESS)
+	if not error == Error.OK:
+		push_error("Error while saving resource: ", resource.resource_name)
+
+func _load_resource(filepath: String) -> Resource:
+	if ResourceLoader.exists(filepath):
+		return ResourceLoader.load(filepath)
+	else:
+		push_warning("No Basic Player Data found")
+		return null

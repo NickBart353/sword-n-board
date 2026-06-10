@@ -5,12 +5,82 @@
 [ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="3_70w0i"]
 [ext_resource type="Script" uid="uid://n2n8go70u23" path="res://scripts/ui_scripts/display.gd" id="4_2dy3u"]
 [ext_resource type="Script" uid="uid://o6latw3qhdw2" path="res://scripts/ui_scripts/input.gd" id="5_simsl"]
+[ext_resource type="StyleBox" uid="uid://d3c2hwmbctu56" path="res://resources/ui/button/button_disabled_stylbox.res" id="6_ix44y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wn7vt"]
 font_size = 90
 
 [sub_resource type="LabelSettings" id="LabelSettings_ry5bu"]
 font_size = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gtp0"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.54901963, 0.6627451, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70w0i"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.76569766, 0.9202194, 2.695322e-06, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix44y"]
+content_margin_left = 20.0
+content_margin_top = 5.0
+content_margin_right = 20.0
+content_margin_bottom = 5.0
+bg_color = Color(0.6497566, 0.782449, 3.85046e-07, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 20.0
+expand_margin_top = 5.0
+expand_margin_right = 20.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
+shadow_offset = Vector2(2, 2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xi2f"]
 bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.99215686)
@@ -321,6 +391,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("1_7gtp0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7gtp0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70w0i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ix44y")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_70w0i")
+theme_override_styles/disabled = ExtResource("6_ix44y")
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="SettingsOrganizer/BottomButtons" unique_id=1250464443 groups=["FreezeButtons"]]

@@ -8,14 +8,14 @@ signal died
 @export_multiline var flavour_text: String
 
 @export_group("Stats")
-@export var MIN_HEALTH = 0
-@export var MAX_HEALTH = 1000
+@export var MIN_HEALTH: float = 0.0
+@export var MAX_HEALTH: float = 1000.0
 @export var anim_tree: AnimationTree
 @export var state_machine: Node
 
 var level: int = 1
 var origin_position: Vector3
-var health
+var health: float
 
 const RESET_POSITION: Vector3 = Vector3(-100000, -100000, -100000)
 

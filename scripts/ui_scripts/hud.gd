@@ -39,6 +39,10 @@ func update_stamina(stamina: float):
 func update_mana(mana: float):
 	mana_bar.value = mana
 
+func _process(_delta: float) -> void:
+	if not current_enemy and last_enemy:
+		enemy_healthbar.value = last_enemy.health
+
 func rotate_consumable():
 	if player_consumables.size() > 0:
 		current_consumable_index += 1
@@ -135,10 +139,12 @@ func _updated_hud_enemy_healthbar(enemy: Enemy) -> void:
 		enemy_name_label.text = current_enemy.display_name
 		enemy_healthbar_container.show()
 	else:
-		last_enemy = enemy
-		enemy_healthbar_timer.start()
-		#enemy_healthbar_container.hide()
+		if not enemy_healthbar_timer.time_left:
+			last_enemy = enemy
+			enemy_healthbar_timer.start()
 
 func _on_enemy_healthbar_timer_timeout() -> void:
 	if last_enemy == current_enemy:
 		enemy_healthbar_container.hide()
+		last_enemy = null
+		current_enemy = null

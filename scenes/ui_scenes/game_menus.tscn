@@ -243,7 +243,7 @@ label_settings = SubResource("LabelSettings_shs7f")
 horizontal_alignment = 1
 
 [node name="EnemyHealthbarTimer" type="Timer" parent="Hud/EnemyHealthbarContainer" unique_id=1586258866]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="Inventory" parent="." unique_id=2082482980 instance=ExtResource("11_h2ykw")]
