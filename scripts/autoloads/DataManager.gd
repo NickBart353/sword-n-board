@@ -1,6 +1,6 @@
 extends Node
 
-const save_path: String = "user://sword-n-board/data/"
+const base_path: String = "user://sword-n-board/data/"
 const audio_file: String = "audio_settings.json"
 const screen_data_file: String = "screen_settings.json"
 const input_data_file: String = "input_settings.json"
@@ -8,23 +8,22 @@ const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
 
 const player_dir: String = "player/"
-const basic_player_data_temp: String = "basic_player_data_temp.tres"
-const basic_player_data_save: String = "basic_player_data_save.tres"
-const basic_player_data_backup: String = "basic_player_data_backup.tres"
+const basic_player_data: String = "basic_player_data.res"
+const advanced_player_data: String = "advanced_player_data.res"
 
 func _ready() -> void:
 	print(OS.get_data_dir())
 
 func _check_base_dir(additional_path: String = "") -> void:
-	var path: String = "{0}{1}".format([save_path, additional_path])
+	var path: String = "{0}{1}".format([base_path, additional_path])
 	if not DirAccess.dir_exists_absolute(path):
 		var error = DirAccess.make_dir_recursive_absolute(path)
 		if error:
-			print("Error while creating base directory at: ", save_path, "; Error: ", error)
+			print("Error while creating base directory at: ", base_path, "; Error: ", error)
 
 func save_volume(volume_dict: Dictionary) -> bool:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, audio_file])
+	var full_path: String = "{0}{1}".format([base_path, audio_file])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
 	if file:
 		var json_string = JSON.stringify(volume_dict)
@@ -36,7 +35,7 @@ func save_volume(volume_dict: Dictionary) -> bool:
 
 func load_volume() -> Dictionary:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, audio_file])
+	var full_path: String = "{0}{1}".format([base_path, audio_file])
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	if file:
 		var volume_data: Dictionary = JSON.parse_string(file.get_as_text())
@@ -46,7 +45,7 @@ func load_volume() -> Dictionary:
 
 func save_screen_settings(screen_dict: Dictionary) -> bool:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, screen_data_file])
+	var full_path: String = "{0}{1}".format([base_path, screen_data_file])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
 	if file:
 		var json_string = JSON.stringify(screen_dict)
@@ -58,7 +57,7 @@ func save_screen_settings(screen_dict: Dictionary) -> bool:
 
 func load_screen_settings() -> Dictionary:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, screen_data_file])
+	var full_path: String = "{0}{1}".format([base_path, screen_data_file])
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	if file:
 		var screen_data: Dictionary = JSON.parse_string(file.get_as_text())
@@ -68,7 +67,7 @@ func load_screen_settings() -> Dictionary:
 
 func save_input_settings(input_dict: Dictionary) -> bool:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, input_data_file])
+	var full_path: String = "{0}{1}".format([base_path, input_data_file])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
 	if file:
 		var json_string = JSON.stringify(input_dict)
@@ -80,7 +79,7 @@ func save_input_settings(input_dict: Dictionary) -> bool:
 
 func load_input_settings() -> Dictionary:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, input_data_file])
+	var full_path: String = "{0}{1}".format([base_path, input_data_file])
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	if file:
 		var input_data: Dictionary = JSON.parse_string(file.get_as_text())
@@ -90,7 +89,7 @@ func load_input_settings() -> Dictionary:
 
 func save_sensitivity(sensitivity: float):
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, sensitivity_data_file])
+	var full_path: String = "{0}{1}".format([base_path, sensitivity_data_file])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
 	if file:
 		file.store_float(sensitivity)
@@ -101,7 +100,7 @@ func save_sensitivity(sensitivity: float):
 
 func load_sensitivity() -> float:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, sensitivity_data_file])
+	var full_path: String = "{0}{1}".format([base_path, sensitivity_data_file])
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	var sensitivity : float
 	if file:
@@ -114,7 +113,7 @@ func load_sensitivity() -> float:
 
 func save_shader_cache_date() -> bool:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, shader_cache_information])
+	var full_path: String = "{0}{1}".format([base_path, shader_cache_information])
 	var file = FileAccess.open(full_path, FileAccess.WRITE)
 	var shader_cache_date: String = Time.get_datetime_string_from_system()
 	if file:
@@ -126,7 +125,7 @@ func save_shader_cache_date() -> bool:
 
 func load_shader_cache_date() -> String:
 	_check_base_dir()
-	var full_path: String = "{0}{1}".format([save_path, shader_cache_information])
+	var full_path: String = "{0}{1}".format([base_path, shader_cache_information])
 	var file = FileAccess.open(full_path, FileAccess.READ)
 	if file:
 		var shader_cache_date: String = file.get_as_text()
@@ -134,16 +133,20 @@ func load_shader_cache_date() -> String:
 	else:
 		return ""
 
-func save_basic_player_data(basic_player_data_resource: BasicPlayerData):
-	var callable: Callable = Callable(self, "_atomic_player_save").bind(basic_player_data_resource)
+func save_basic_player_data(resource: BasicPlayerData):
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, basic_player_data, player_dir)
 	WorkerThreadPool.add_task(callable)
 
-func _atomic_player_save(basic_player_data_resource: BasicPlayerData):
-	_check_base_dir(player_dir)
-	var path: String = "{0}{1}{2}".format([save_path, player_dir, basic_player_data_temp])
-	if _save_resource(basic_player_data_resource, path) == Error.OK:
-		var player_path: String = "{0}{1}".format([save_path, player_dir])
-		_rename_resource(basic_player_data_temp, basic_player_data_save, basic_player_data_backup, player_path)
+func save_advanced_player_data(resource: AdvancedPlayerData):
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, advanced_player_data, player_dir)
+	WorkerThreadPool.add_task(callable)
+
+func _atomic_resource_save(resource: Resource, resource_name: String, additional_dir: String):
+	_check_base_dir(additional_dir)
+	var temp_resource_path: String = "{0}{1}temp_{2}".format([base_path, additional_dir, resource_name])
+	if _save_resource(resource, temp_resource_path) == Error.OK:
+		var directory_path: String = "{0}{1}".format([base_path, additional_dir])
+		_rename_resource(resource_name, directory_path)
 
 func _save_resource(resource: Resource, filepath: String):
 	var error: Error = ResourceSaver.save(resource, filepath)
@@ -151,17 +154,19 @@ func _save_resource(resource: Resource, filepath: String):
 		push_error("Error while saving resource: ", resource.resource_name)
 	return error
 
-func _rename_resource(temp_res: String, save_res: String, backup_res: String, directory: String):
-	var dir: DirAccess = DirAccess.open(directory)
-	print("directory: ",directory)
-	if ResourceLoader.exists("{0}{1}".format([directory, save_res])):
-		dir.rename(save_res, backup_res)
-	if ResourceLoader.exists("{0}{1}".format([directory, temp_res])):
-		dir.rename(temp_res, save_res)
+func _rename_resource(resource_name: String, directory_path: String):
+	var dir: DirAccess = DirAccess.open(directory_path)
+	var temp_resource_name: String = "temp_{0}".format([resource_name])
+	var save_resource_name: String = "save_{0}".format([resource_name])
+	var backup_resource_name: String = "backup_{0}".format([resource_name])
+	if ResourceLoader.exists("{0}{1}".format([directory_path, save_resource_name])):
+		dir.rename(save_resource_name, backup_resource_name)
+	if ResourceLoader.exists("{0}{1}".format([directory_path, temp_resource_name])):
+		dir.rename(temp_resource_name, save_resource_name)
 
 func load_basic_player_data() -> BasicPlayerData:
 	_check_base_dir(player_dir)
-	var path: String = "{0}{1}{2}".format([save_path, player_dir, basic_player_data_save])
+	var path: String = "{0}{1}save_{2}".format([base_path, player_dir, basic_player_data])
 	return _load_resource(path)
 
 func _load_resource(filepath: String) -> Resource:
