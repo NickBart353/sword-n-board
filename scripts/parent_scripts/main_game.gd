@@ -20,6 +20,7 @@ func _ready() -> void:
 	_spawn_mobs()
 	
 	main_ui.update_items.connect(update_items)
+	GameStateSaver.start()
 
 func _enemy_died(enemy: Node3D):
 	_generate_loot_on_enemy_death(enemy.global_position, enemy.level)
@@ -97,7 +98,17 @@ func _spawn_mobs():
 
 func _spawn_player():
 	player = player_scene.instantiate()
+	var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
 	add_child(player)
-	player.global_position = $PlayerSpawn.global_position
+	if basic_player_resource:
+		print("loaded res: ", basic_player_resource.position)
+		player.HEALTH = basic_player_resource.health
+		player.STAMINA = basic_player_resource.stamina
+		player.MANA = basic_player_resource.mana
+		player.global_position = basic_player_resource.position
+		player.global_rotation = basic_player_resource.rotation
+		#player.spirit = basic_player_resource.spirit
+	else:
+		player.global_position = $PlayerSpawn.global_position
 	player.open_inventory.connect(open_inventory)
 	player.spawn_projectile.connect(_spawn_projectile)

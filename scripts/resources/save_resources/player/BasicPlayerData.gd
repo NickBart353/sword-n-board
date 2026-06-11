@@ -1,8 +1,8 @@
 class_name BasicPlayerData extends Resource
 
-var health: float
-var stamina: float
-var mana: float
-var position: Vector3
-var rotation: Vector3
-var spirit: int
+@export var health: float
+@export var stamina: float
+@export var mana: float
+@export var position: Vector3
+@export var rotation: Vector3
+@export var spirit: int
