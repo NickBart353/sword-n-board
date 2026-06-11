@@ -7,14 +7,18 @@ const input_data_file: String = "input_settings.json"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
 
-const basic_player_data_path: String = "player/basic_player_data.res"
+const player_dir: String = "player/"
+const basic_player_data_temp: String = "basic_player_data_temp.res"
+const basic_player_data_save: String = "basic_player_data_save.res"
+const basic_player_data_backup: String = "basic_player_data_backup.res"
 
 func _ready() -> void:
 	print(OS.get_data_dir())
 
-func _check_base_dir() -> void:
-	if not DirAccess.dir_exists_absolute(save_path):
-		var error = DirAccess.make_dir_recursive_absolute(save_path)
+func _check_base_dir(additional_path: String = "") -> void:
+	var path: String = "{0}{1}".format([save_path, additional_path])
+	if not DirAccess.dir_exists_absolute(path):
+		var error = DirAccess.make_dir_recursive_absolute(path)
 		if error:
 			print("Error while creating base directory at: ", save_path, "; Error: ", error)
 
@@ -130,18 +134,34 @@ func load_shader_cache_date() -> String:
 	else:
 		return ""
 
-func save_basic_player_data(basic_player_data: BasicPlayerData):
-	var path: String = "{0}{1}".format([save_path,basic_player_data_path])
-	_save_resource(basic_player_data, path)
+func save_basic_player_data(basic_player_data_resource: BasicPlayerData):
+	var callable: Callable = Callable(self, "_atomic_save").bind(basic_player_data_resource)
+	WorkerThreadPool.add_task(callable)
 
-func load_basic_player_data() -> BasicPlayerData:
-	var path: String = "{0}{1}".format([save_path,basic_player_data_path])
-	return _load_resource(path)
+func _atomic_save(basic_player_data_resource: BasicPlayerData):
+	_check_base_dir(player_dir)
+	var path: String = "{0}{1}{2}".format([save_path, player_dir, basic_player_data_temp])
+	if _save_resource(basic_player_data_resource, path) == Error.OK:
+		_rename_resource(basic_player_data_temp, basic_player_data_save, basic_player_data_backup)
 
 func _save_resource(resource: Resource, filepath: String):
 	var error: Error = ResourceSaver.save(resource, filepath,ResourceSaver.FLAG_COMPRESS)
 	if not error == Error.OK:
 		push_error("Error while saving resource: ", resource.resource_name)
+	return error
+
+func _rename_resource(temp_res: String, save_res: String, backup_res: String):
+	var dir_path: String = "{0}{1}".format([save_path, player_dir])
+	var dir: DirAccess = DirAccess.open(dir_path)
+	if ResourceLoader.exists("{0}{1}".format([dir_path, save_res])):
+		dir.rename(save_res, backup_res)
+	if ResourceLoader.exists("{0}{1}".format([dir_path, temp_res])):
+		dir.rename(temp_res, save_res)
+
+func load_basic_player_data() -> BasicPlayerData:
+	_check_base_dir(player_dir)
+	var path: String = "{0}{1}".format([save_path, basic_player_data_save])
+	return _load_resource(path)
 
 func _load_resource(filepath: String) -> Resource:
 	if ResourceLoader.exists(filepath):
