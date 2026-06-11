@@ -12,6 +12,7 @@ var open = false
 @export_range(-100.0, 100.0) var audio_volume: float = 0.0
 @export_range(-100.0, 100.0) var audio_max_range: float = 0.0 
 
+signal updated
 signal items_empty
 
 func _ready() -> void:
@@ -52,6 +53,7 @@ func un_hover():
 func update_items(new_items, sack_name):
 	if sack_name == parent.name:
 		items = new_items
+		updated.emit()
 		if items.is_empty():
 			#EventBus.close_container.emit(self)
 			items_empty.emit()

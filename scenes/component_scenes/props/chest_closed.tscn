@@ -103,10 +103,11 @@ _data = {
 &"open_chest": SubResource("Animation_20vup")
 }
 
-[node name="chest_closed" type="StaticBody3D" unique_id=31513469]
+[node name="chest_closed" type="StaticBody3D" unique_id=31513469 node_paths=PackedStringArray("item_container") groups=["Chest"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_20vup")
+item_container = NodePath("ItemContainer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=914956362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.195639e-08, 0.69125015, 0.099999934)

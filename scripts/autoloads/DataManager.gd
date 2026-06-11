@@ -1,11 +1,16 @@
 extends Node
 
 const base_path: String = "user://sword-n-board/data/"
-const audio_file: String = "audio_settings.json"
-const screen_data_file: String = "screen_settings.json"
-const input_data_file: String = "input_settings.json"
+const audio_file: String = "audio_settings.txt"
+const screen_data_file: String = "screen_settings.txt"
+const input_data_file: String = "input_settings.txt"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
+
+const chest_dir: String = "chests/"
+
+const item_dir: String = "items/"
+const equipment_data: String = "equipment.txt"
 
 const player_dir: String = "player/"
 const basic_player_data: String = "basic_player_data.res"
@@ -133,6 +138,28 @@ func load_shader_cache_date() -> String:
 	else:
 		return ""
 
+func save_player_equipment(dictionary: Dictionary) -> int:
+	var callable: Callable = Callable(self, "save_dictionary").bind(dictionary, equipment_data, item_dir)
+	return WorkerThreadPool.add_task(callable)
+
+func save_dictionary(item_dict: Dictionary, target_file_name: String, additional_dir: String = "") -> void:
+	_check_base_dir(additional_dir)
+	var full_path: String = "{0}{1}{2}".format([base_path, additional_dir, target_file_name])
+	var file: FileAccess = FileAccess.open(full_path, FileAccess.WRITE)
+	if file:
+		file.store_var(item_dict)
+	if FileAccess.get_open_error():
+		push_error("Error while saving items: ", item_dict)
+
+func load_dictionary(file_path: String, additional_dir: String = "") -> Dictionary:
+	_check_base_dir(additional_dir)
+	var full_path: String = "{0}{1}{2}".format([base_path, additional_dir, file_path])
+	var file: FileAccess = FileAccess.open(full_path, FileAccess.READ)
+	var item_dict: Dictionary
+	if file:
+		item_dict = file.get_var()
+	return item_dict
+
 func save_basic_player_data(resource: BasicPlayerData):
 	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, basic_player_data, player_dir)
 	WorkerThreadPool.add_task(callable)
@@ -171,8 +198,30 @@ func load_basic_player_data() -> BasicPlayerData:
 
 func _load_resource(filepath: String) -> Resource:
 	if ResourceLoader.exists(filepath):
-		print("filepath: ", filepath)
 		return ResourceLoader.load(filepath)
 	else:
 		push_warning("No Basic Player Data found")
 		return null
+
+func update_chests(chest_dict: Dictionary) -> int:
+	var callable: Callable = Callable(self, "update_chests_multi_threaded").bind(chest_dict)
+	return WorkerThreadPool.add_task(callable)
+
+func update_chests_multi_threaded(chest_dict: Dictionary):
+	_check_base_dir(chest_dir)
+	var chest_directory: String = "{0}{1}".format([base_path, chest_dir])
+	for chest_id in chest_dict:
+		var chest_file: FileAccess = FileAccess.open("{0}{1}.txt".format([chest_directory, chest_id]), FileAccess.WRITE) 
+		chest_file.store_var(chest_dict[chest_id])
+
+func load_chests() -> Dictionary:
+	_check_base_dir(chest_dir)
+	var chest_directory: DirAccess = DirAccess.open("{0}{1}".format([base_path, chest_dir]))
+	var chest_filenames: PackedStringArray = chest_directory.get_files()
+	if chest_filenames.is_empty():
+		return {}
+	var chest_dictionary: Dictionary = {}
+	for filename: String in chest_filenames:
+		var chest_file: FileAccess = FileAccess.open("{0}{1}{2}".format([base_path, chest_dir, filename]), FileAccess.READ)
+		chest_dictionary[filename.left(-4)] = chest_file.get_var()
+	return chest_dictionary

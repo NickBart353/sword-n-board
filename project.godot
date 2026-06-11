@@ -40,6 +40,7 @@ SceneLoader="*uid://5hkcsy0bqxpo"
 SceneManager="*uid://dc8dlqc3a2otc"
 ObjectPooler="*uid://clt0gkjpe4fwu"
 GameStateSaver="*uid://dftf640qysy2t"
+UuidGenerator="*uid://bokh3cfxtffys"
 
 [display]
 
@@ -58,6 +59,7 @@ enabled=PackedStringArray()
 interactable=""
 Player=""
 Shield=""
+Chest="A group for chests with permanent storage"
 
 [gui]
 

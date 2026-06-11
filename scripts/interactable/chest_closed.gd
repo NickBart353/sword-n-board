@@ -1,10 +1,10 @@
-class_name Chest
-extends StaticBody3D
+class_name ClosedChest extends Chest
 
 var open: bool = false
 var in_motion = false
 
 func _ready() -> void:
+	super()
 	$ItemContainer.parent = self
 	$ItemContainer._interact.connect(interact)
 

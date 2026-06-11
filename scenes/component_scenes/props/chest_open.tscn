@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bmrbfxj64qgxd"]
 
+[ext_resource type="Script" uid="uid://c11rnwbyj3aru" path="res://scripts/components/chest.gd" id="1_75hcd"]
 [ext_resource type="PackedScene" uid="uid://bl5osoac4ha5q" path="res://assets/Visual/brackeys_3d_game_assets/dungeon_assets/props/chest_gold.glb" id="1_o33qj"]
 [ext_resource type="PackedScene" uid="uid://dcouhafyjha1f" path="res://scenes/component_scenes/interactable/item_container/item_container.tscn" id="2_n5hii"]
 [ext_resource type="AudioStream" uid="uid://bai0x2tc65nbw" path="res://assets/Audio/400 Sounds Pack/Items/coins_gather_quick.wav" id="3_s5aga"]
@@ -11,9 +12,12 @@ size = Vector3(1.6, 1.2, 1.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_n5hii"]
 size = Vector3(1.6, 1.2, 0.90000004)
 
-[node name="chest_open" type="StaticBody3D" unique_id=450496187]
+[node name="chest_open" type="StaticBody3D" unique_id=1795660031 node_paths=PackedStringArray("item_container") groups=["Chest"]]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_75hcd")
+item_container = NodePath("ItemContainer")
+metadata/_custom_type_script = "uid://c11rnwbyj3aru"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=611962994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1175871e-07, 0.40625012, -0.099999994)
@@ -25,7 +29,7 @@ shape = SubResource("BoxShape3D_n5hii")
 
 [node name="chest_gold2" parent="." unique_id=2004012028 instance=ExtResource("1_o33qj")]
 
-[node name="chest_gold_lid" parent="chest_gold2/chest_gold" parent_id_path=PackedInt32Array(2004012028, 1008932597) index="0" unique_id=966650337]
+[node name="chest_gold_lid" parent="chest_gold2/chest_gold" parent_id_path=PackedInt32Array(2004012028, 1046660548) index="0" unique_id=1265291711]
 transform = Transform3D(1, 0, 0, 0, -0.76604444, 0.64278764, 0, -0.64278764, -0.76604444, 0, 0.5, -0.56488323)
 
 [node name="ItemContainer" parent="." unique_id=1427992213 node_paths=PackedStringArray("parent") instance=ExtResource("2_n5hii")]

@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://dtto35nhu1mix"]
 
+[ext_resource type="Script" uid="uid://c11rnwbyj3aru" path="res://scripts/components/chest.gd" id="1_4bhp3"]
 [ext_resource type="PackedScene" uid="uid://cfjgt61jd4c3m" path="res://assets/Visual/brackeys_3d_game_assets/import_examples/chest_gold/chest_gold.glb" id="1_p4det"]
 [ext_resource type="PackedScene" uid="uid://dcouhafyjha1f" path="res://scenes/component_scenes/interactable/item_container/item_container.tscn" id="2_c4qdg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t7ln3"]
 size = Vector3(1.6, 1.1, 1)
 
-[node name="Chest" type="StaticBody3D" unique_id=989560639]
+[node name="Chest" type="StaticBody3D" unique_id=1644467285 node_paths=PackedStringArray("item_container") groups=["Chest"]]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_4bhp3")
+item_container = NodePath("ItemContainer")
+metadata/_custom_type_script = "uid://c11rnwbyj3aru"
 
 [node name="chest_gold2" parent="." unique_id=1744294208 instance=ExtResource("1_p4det")]
 
