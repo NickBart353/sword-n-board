@@ -41,7 +41,7 @@ func _play_oneshot(sfx: AudioStream, offset: float = 0.0):
 	movement_one_shot_player.stream = sfx
 	movement_one_shot_player.play(offset)
 
-func _apply_voice_audio(state_controller: Node, movement: Node, ability_controller: Node) -> void:
+func _apply_voice_audio(_state_controller: Node, _movement: Node, _ability_controller: Node) -> void:
 	pass
 
 #func _apply_ability_audio(state_controller: Node, ability_controller: Node) -> void:

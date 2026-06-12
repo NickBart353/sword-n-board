@@ -1,8 +1,8 @@
 class_name Player
 extends CharacterBody3D
 
-signal open_inventory
-signal open_pause_menu
+#signal open_inventory
+#signal open_pause_menu
 signal spawn_projectile
 
 @onready var input: Node = $InputController
@@ -266,7 +266,7 @@ func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
 			return true
 	return false
 
-func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
+func _reequip_mainhand(_old: Item, new_mainhand: Item, _slot):
 	#if old != new or (not new and not main_hand_item):
 		#old = new
 	_clear_equip_slot(mainhand)
@@ -296,7 +296,7 @@ func _reequip_mainhand(old: Item, new_mainhand: Item, slot):
 		new_animation.equpped_mainhand_weapon(anim_name)
 	#return old
 
-func _reequip_offhand(old: Item, new_offhand: Item, slot):
+func _reequip_offhand(_old: Item, new_offhand: Item, _slot):
 	#if old != new or (not old and not off_hand_item):
 		#old = new
 	_clear_equip_slot(offhand)

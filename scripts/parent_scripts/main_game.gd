@@ -110,5 +110,5 @@ func _spawn_player():
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = $PlayerSpawn.global_position
-	player.open_inventory.connect(open_inventory)
+	#player.open_inventory.connect(open_inventory)
 	player.spawn_projectile.connect(_spawn_projectile)

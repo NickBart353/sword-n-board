@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func Enter():
 	super()
+	print("test")
 	vfx_instance.play()
 
 func slam(): #gets called in slam animation

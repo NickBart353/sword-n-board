@@ -37,7 +37,7 @@ signal update_items
 func _ready() -> void:
 	connect_mouse_hover_signals(self)
 
-func connect_mouse_hover_signals(ui_node: Control):
+func connect_mouse_hover_signals(_ui_node: Control):
 	for child in self.find_children("*", "Control", true, false):
 		if child is Control:
 			if not child.mouse_entered.is_connected(_play_hover_sound):
@@ -294,7 +294,7 @@ func take_item_from_list(index: int, list: Array):
 	else:
 		print("Inventory full!")
 
-func take_item_from_slot(index: int, slot: Item):
+func take_item_from_slot(_index: int, slot: Item):
 	if player_items.size() < 9:
 		player_items.append(slot)
 		slot = null

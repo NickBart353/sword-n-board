@@ -29,10 +29,10 @@ var process: bool = false
 			#process = true
 			#return
 	#process = false
-func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
+func set_item(_mainhand: Node, _offhand: Node, _dualwield: bool) -> void:
 	pass
 
-func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
+func apply_ability(input: Node, state_controller: Node, movement: Node, _abilities: Node, delta: float) -> void:
 	if not process: return
 	if charging:
 		enough_stamina = player.use_stamina(bow_cost * delta)

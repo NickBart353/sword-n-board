@@ -12,7 +12,7 @@ func _ready() -> void:
 	#transition_tween.tween_property($Panel, "modulate", Color.RED, 1.0)
 	#await anim_player.animation_finished
 
-func _on_progress_changed(new_value: float) -> void:
+func _on_progress_changed(_new_value: float) -> void:
 	pass
 
 func _on_load_finished() -> void:

@@ -16,35 +16,35 @@ const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 #}
 
 const MELEE_WEAPONS: Dictionary = {#weapon resources
-	"shortsword": preload("res://resources/items/melee_weapons/short_sword.tres"),
-	"greatsword": preload("uid://qpdw7kpnlexp"),
-	"greataxe": preload("uid://dsjivk0hqdt2w"),
-	"hatchet": preload("uid://cxr6fc77pudua"),
-	"greathammer": preload("uid://bcahgjv4glvrm"),
-	"katana": preload("uid://cln5hv1qcq4ll"),
-	"spear": preload("uid://bovbahtw7dtub"),
-	"torch": preload("res://resources/items/melee_weapons/torch.tres"),
-	"wooden_shield": preload("res://resources/items/melee_weapons/wooden_shield.tres"),
-	"dagger": preload("uid://d1inafjkmbrho"),
-	"hammer": preload("uid://bbn7q72ym8sio"),
+	"10001" : preload("res://resources/items/melee_weapons/short_sword.tres"), #shortsword
+	"10004" : preload("uid://qpdw7kpnlexp"), #greatsword
+	"10009" : preload("uid://dsjivk0hqdt2w"), #greataxe
+	"10007" : preload("uid://cxr6fc77pudua"), #hatchet
+	"10005" : preload("uid://bcahgjv4glvrm"), #greathammer
+	"10010" : preload("uid://cln5hv1qcq4ll"), #katana
+	"10008" : preload("uid://bovbahtw7dtub"), #spear
+	"10002" : preload("res://resources/items/melee_weapons/torch.tres"), #torch
+	"10003" : preload("res://resources/items/melee_weapons/wooden_shield.tres"), #wooden_shield
+	"10011" : preload("uid://bbn7q72ym8sio"), #hammer
+	"10006" : preload("uid://d1inafjkmbrho"), #dagger
 }
 
 const RANGED_WEAPONS: Dictionary = {
-	"shortbow": preload("res://resources/items/ranged_weapons/bow.tres")
+	"30001" : preload("res://resources/items/ranged_weapons/bow.tres") #shortbow
 }
 
 const MAGIC_WEAPONS: Dictionary = {
-	"magic_tome": preload("res://resources/items/magic_weapons/magic_tome.tres"),
+	"20001" : preload("res://resources/items/magic_weapons/magic_tome.tres"), #magic_tome
 }
 
 const CONSUMABLES: Dictionary = {
-	"minor_health_potion": preload("res://resources/items/consumables/minor_health_potion.tres"),
-	"minor_mana_potion": preload("res://resources/items/consumables/minor_mana_potion.tres"),
-	"health_potion": preload("res://resources/items/consumables/health_potion.tres"),
-	"mana_potion": preload("res://resources/items/consumables/mana_potion.tres"),
-	"major_health_potion": preload("res://resources/items/consumables/major_health_potion.tres"),
-	"major_mana_potion": preload("res://resources/items/consumables/major_mana_potion.tres"),
-	"green_leaf": preload("uid://c6rg8eaeuxc5w"),
+	"40001": preload("res://resources/items/consumables/minor_health_potion.tres"), #minor_health_potion
+	"40004": preload("res://resources/items/consumables/minor_mana_potion.tres"), #minor_mana_potion
+	"40002": preload("res://resources/items/consumables/health_potion.tres"), #health_potion
+	"40005": preload("res://resources/items/consumables/mana_potion.tres"), #mana_potion
+	"40003": preload("res://resources/items/consumables/major_health_potion.tres"), #major_health_potion
+	"40006": preload("res://resources/items/consumables/major_mana_potion.tres"), #major_mana_potion
+	"40007": preload("uid://c6rg8eaeuxc5w"), #green_leaf
 	"rat_tooth": "",
 	"bat_wing": "",
 	"spider_blood": "",
@@ -156,41 +156,59 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 	},
 }
 
-func generate_loot(level: int, additional_drop_keys: Dictionary = {}):
-	var dict_to_take_from: Dictionary
-	if level < 15:
-		dict_to_take_from = BASE_DROPTABLE
-	elif level < 30:
-		dict_to_take_from = MID_LEVEL_DROPTABLE
-	else:
-		dict_to_take_from = HIGH_LEVEL_DROPTABLE
-	
+func get_item_from_id(item_id: String) -> Item:
+	var item_instance: Item = ui_item_scene.instantiate()
+	var item_data: ItemData
+	if MELEE_WEAPONS[item_id]:
+		item_data = MELEE_WEAPONS[item_id]
+	if CONSUMABLES[item_id]:
+		item_data = CONSUMABLES[item_id]
+	if RANGED_WEAPONS[item_id]:
+		item_data = RANGED_WEAPONS[item_id]
+	if MAGIC_WEAPONS[item_id]:
+		item_data = MAGIC_WEAPONS[item_id]
+	if MATERIAL[item_id]:
+		item_data = MATERIAL[item_id]
+	item_data.duplicate(true)
+	item_instance.data = item_data
+	return item_instance
+
+func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
+	#var dict_to_take_from: Dictionary
+	#if level < 15:
+		#dict_to_take_from = BASE_DROPTABLE
+	#elif level < 30:
+		#dict_to_take_from = MID_LEVEL_DROPTABLE
+	#else:
+		#dict_to_take_from = HIGH_LEVEL_DROPTABLE
+	#
 	var items: Array = []
-	for item_key in dict_to_take_from.keys():
-		if item_key is Dictionary:
-			var multiplier: float = 1.0
-			match dict_to_take_from[item_key]:
-				"DOUBLE":
-					multiplier = 2.0
-			for sub_item_key in item_key:
-				var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"] * multiplier, dict_to_take_from[item_key]["max_amount"])
-				if new_item:
-					items.append(new_item)
-		elif item_key is String:
-			var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
-			if new_item:
-				items.append(new_item)
-	for item_key in additional_drop_keys:
-		var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
-		if new_item:
-			items.append(new_item)
+	var _item_instance: Item = ui_item_scene.instantiate()
+	#for item_key in dict_to_take_from.keys():
+		#if item_key is Dictionary:
+			#var multiplier: float = 1.0
+			#match dict_to_take_from[item_key]:
+				#"DOUBLE":
+					#multiplier = 2.0
+			#for sub_item_key in item_key:
+				#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"] * multiplier, dict_to_take_from[item_key]["max_amount"])
+				#if new_item:
+					#items.append(new_item)
+		#elif item_key is String:
+			#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
+			#if new_item:
+				#items.append(new_item)
+	#for item_key in additional_drop_keys:
+		#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
+		#if new_item:
+			#items.append(new_item)
 	return items
 
-func get_item(key: String, drop_chance: float, stack_amount: int) -> Control:
+func get_item(key: String, drop_chance: float, stack_amount: int) -> Item:
 	if randf_range(0.0,1.0) <= drop_chance or debug:
 		var stacksize: int = randi_range(1, stack_amount)
 		var item_data: ItemData
-		var item_instance: Control = ui_item_scene.instantiate()
+		var item_instance: Item = ui_item_scene.instantiate()
 		if MELEE_WEAPONS.get(key):
 			item_data = MELEE_WEAPONS[key]
 		elif RANGED_WEAPONS.get(key):

@@ -41,7 +41,7 @@ var rotation_modifiers: Array[Dictionary] = []
 func _ready() -> void:
 	calculated_movement_speed = movement_speed
 
-func apply_movement(input: Node, state_controller: Node, ability_controller: Node, delta: float) -> void:
+func apply_movement(input: Node, _state_controller: Node, ability_controller: Node, delta: float) -> void:
 	dash_started = false
 	if not input.dash and not dashing:
 		var move_dir := (player.transform.basis * Vector3(input.direction.x, 0, input.direction.y)).normalized()

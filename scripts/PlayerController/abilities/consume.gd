@@ -24,7 +24,7 @@ func set_consumable(new_consumable: Item) -> void:
 	else:
 		process = false
 
-func apply_consumable(input: Node, state_controller: Node, movement: Node, ability: Node, delta: float) -> void:
+func apply_consumable(input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float) -> void:
 	if not process: return
 	if not movement.dashing:
 		if input.consume and not consuming and not ability.busy:

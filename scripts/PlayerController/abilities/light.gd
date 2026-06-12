@@ -5,7 +5,7 @@ const allowed_offhands: Array = [ItemData.ITEM_TYPE.TORCH]
 
 var mainhand_weapon: Weapon
 var offhand_weapon: Weapon
-var offhand: Node
+#var offhand: Node
 var lighting: bool = false
 var process: bool = false
 
@@ -43,7 +43,7 @@ func _validate_slot(slot: Node, slot_string: String) -> bool:
 				mainhand_weapon = null
 	return false
 
-func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
+func apply_ability(input: Node, _state_controller: Node, movement: Node, _abilities: Node, _delta: float) -> void:
 	if not process: return
 	if not movement.dashing and not ability_controller.busy:
 		if input.hold_secondary:

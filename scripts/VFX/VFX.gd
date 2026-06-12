@@ -19,6 +19,7 @@ func _ready() -> void:
 		animation_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 func play() -> void:
+	hide_if_missed_by_player = false
 	if hide_if_missed_by_player:
 		if player:
 			if global_position.distance_to(player.global_position) > distance_needed_to_not_play:

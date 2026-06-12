@@ -43,7 +43,7 @@ func _ready() -> void:
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
-	UiController.player_spawned_signal(_load_player_items)
+	UiController.player_spawned_signal.connect(_load_player_items)
 
 func _refresh_items():
 	sort_player_items()
@@ -275,15 +275,20 @@ func _emit_update_player_items():
 	)
 
 func _load_player_items():
-	var player_item_dict: Dictionary = DataManager.load_player_items()
-	player_item_dict["head"]
-	player_item_dict["body"]
-	player_item_dict["boots"]
-	player_item_dict["mainhand"]
-	player_item_dict["offhand"]
-	player_item_dict["equipped_consumable_list"]
-	player_item_dict["equipped_consumable"]
-	player_item_dict["inventory"]
+	var item_rows: Array = DataManager.load_player_items()
+	# "id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"
+	for item_row in item_rows:
+		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
+		match item_row["equipped"]:
+			0: player_items.append(item)
+			1: player_helmet = item
+			2: player_body = item
+			3: player_boots = item
+			4: player_mainhand = item
+			5: player_offhand = item
+			6: current_consumable = item
+			7: player_consumables.append(item)
+	_refresh_items()
 
 func _set_new_consumable(item: Item):
 	current_consumable = item

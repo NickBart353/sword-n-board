@@ -75,7 +75,7 @@ func apply_animations(input: Node, _state_controller: Node, movement: Node, abil
 		anim_tree[mainhand_walking_blender] = weapon_walk_blend_value_current
 		anim_tree[offhand_walking_blender] = weapon_walk_blend_value_current
 	
-func _apply_torso_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, delta: float) -> void:
+func _apply_torso_animations(input: Node, _state_controller: Node, movement: Node, _ability: Node, _delta: float) -> void:
 	if not movement.jumping:
 		#airborne_blend_value_target = 0
 		default_state_machine.travel("idle")
@@ -190,7 +190,7 @@ func set_consumable_animation(consumable_type: ItemData.ITEM_TYPE) -> void:
 			animation_name = "drink"
 		ItemData.ITEM_TYPE.CONSUMABLE:
 			animation_name = "eat"
-	#consume_animation.animation = "consumable/{0}".format([animation_name])
+	consume_animation.animation = "consumable/{0}".format([animation_name])
 	consume_animation.animation = "consumable/drink"
 
 func equipped_two_hand_weapon(weapon_name: String):

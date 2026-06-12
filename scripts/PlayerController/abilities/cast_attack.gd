@@ -12,7 +12,7 @@ const allowed_weapons: Array = [ItemData.ITEM_TYPE.BOOK
 	]
 
 var weapon: Node
-var offhand: Node
+#var offhand: Node
 var cast: int = 0
 var casting: bool = false
 var cast_in_progress: bool = false
@@ -29,10 +29,10 @@ var process: bool = false
 			#process = true
 			#return
 	#process = false
-func set_item(mainhand: Node, offhand: Node, dualwield: bool) -> void:
+func set_item(_mainhand: Node, _offhand: Node, _dualwield: bool) -> void:
 	pass
 
-func apply_ability(input: Node, state_controller: Node, movement: Node, abilities: Node, delta: float) -> void:
+func apply_ability(input: Node, state_controller: Node, movement: Node, _abilities: Node, _delta: float) -> void:
 	if not process: return
 	if not movement.dashing and not state_controller.is_player_busy():
 		if input.attack and not cast_in_progress and player.use_mana(casting_cost):
@@ -77,6 +77,7 @@ func _on_attack_timer_timeout() -> void:
 	if not cast_in_progress:
 		cast = 0
 
-func channel_book(channel_time: float):
-	if offhand:
-		offhand.play_charge_animation(channel_time)
+func channel_book(_channel_time: float):
+	pass
+	#if offhand:
+		#offhand.play_charge_animation(channel_time)
