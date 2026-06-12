@@ -125,7 +125,8 @@ func _ready() -> void:
 	consume.finished_consuming.connect(_finished_consuming)
 	consume.start_consuming.connect(_start_consuming)
 	#_check_unequipped_slots()
-	new_player_items(null, null, null, null, null)
+	#new_player_items(null, null, null, null, null)
+	UiController.player_spawned()
 
 func _update_rotation_modifier(new_rotation_modifier: float) -> void:
 	rotation_modifier = new_rotation_modifier

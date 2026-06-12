@@ -16,6 +16,7 @@ signal player_consumed_item
 signal remove_consumable
 
 signal item_container_interacted
+signal player_spawned_signal
 
 signal _update_healthbar
 signal _update_staminabar
@@ -87,3 +88,6 @@ func is_ui_open() -> bool:
 
 func update_hud_healthbar(enemy: Enemy) -> void:
 	updated_hud_healthbar.emit(enemy)
+
+func player_spawned():
+	player_spawned_signal.emit()

@@ -11,6 +11,7 @@ const chest_dir: String = "chests/"
 
 const item_dir: String = "items/"
 const equipment_data: String = "equipment.txt"
+const player_item_data: String = "player_items.txt"
 
 const player_dir: String = "player/"
 const basic_player_data: String = "basic_player_data.res"
@@ -203,9 +204,18 @@ func _load_resource(filepath: String) -> Resource:
 		push_warning("No Basic Player Data found")
 		return null
 
-func update_chests(chest_dict: Dictionary) -> int:
-	var callable: Callable = Callable(self, "update_chests_multi_threaded").bind(chest_dict)
-	return WorkerThreadPool.add_task(callable)
+func load_player_items():
+	_check_base_dir(player_dir)
+	#var path: String = "{0}{1}save_{2}".format([base_path, player_dir, player_item_data])
+	return load_dictionary(player_item_data, player_dir)
+
+#func update_chests(chest_dict: Dictionary) -> int:
+	#var callable: Callable = Callable(self, "update_chests_multi_threaded").bind(chest_dict)
+	#return WorkerThreadPool.add_task(callable)
+
+func _update_chest_and_items_multithreaded(player_dict: Dictionary, chest_dict: Dictionary) -> void:
+	save_dictionary(player_dict, player_item_data, player_dir)
+	update_chests_multi_threaded(chest_dict)
 
 func update_chests_multi_threaded(chest_dict: Dictionary):
 	_check_base_dir(chest_dir)
@@ -214,14 +224,18 @@ func update_chests_multi_threaded(chest_dict: Dictionary):
 		var chest_file: FileAccess = FileAccess.open("{0}{1}.txt".format([chest_directory, chest_id]), FileAccess.WRITE) 
 		chest_file.store_var(chest_dict[chest_id])
 
-func load_chests() -> Dictionary:
-	_check_base_dir(chest_dir)
-	var chest_directory: DirAccess = DirAccess.open("{0}{1}".format([base_path, chest_dir]))
-	var chest_filenames: PackedStringArray = chest_directory.get_files()
-	if chest_filenames.is_empty():
-		return {}
-	var chest_dictionary: Dictionary = {}
-	for filename: String in chest_filenames:
-		var chest_file: FileAccess = FileAccess.open("{0}{1}{2}".format([base_path, chest_dir, filename]), FileAccess.READ)
-		chest_dictionary[filename.left(-4)] = chest_file.get_var()
-	return chest_dictionary
+#func load_chests() -> Dictionary:
+	#_check_base_dir(chest_dir)
+	#var chest_directory: DirAccess = DirAccess.open("{0}{1}".format([base_path, chest_dir]))
+	#var chest_filenames: PackedStringArray = chest_directory.get_files()
+	#if chest_filenames.is_empty():
+		#return {}
+	#var chest_dictionary: Dictionary = {}
+	#for filename: String in chest_filenames:
+		#var chest_file: FileAccess = FileAccess.open("{0}{1}{2}".format([base_path, chest_dir, filename]), FileAccess.READ)
+		#chest_dictionary[filename.left(-4)] = chest_file.get_var()
+	#return chest_dictionary
+
+func update_chest_and_items(player_dict: Dictionary, chest_dict: Dictionary) -> int:
+	var callable: Callable = Callable(self, "_update_chest_and_items_multithreaded").bind(player_dict.duplicate(true), chest_dict.duplicate(true))
+	return WorkerThreadPool.add_task(callable)

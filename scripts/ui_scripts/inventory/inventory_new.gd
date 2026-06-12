@@ -18,6 +18,7 @@ var player_body: Item
 var player_boots: Item
 var player_mainhand: Item
 var player_offhand: Item
+var current_consumable: Item
 
 var currently_selected_tab: int
 
@@ -37,10 +38,12 @@ var currently_selected_tab: int
 
 func _ready() -> void:
 	hide()
-	player_items = ItemManager.load_debug_items()
+	#player_items = ItemManager.load_debug_items()
 	_refresh_items()
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
+	UiController.new_consumable.connect(_set_new_consumable)
+	UiController.player_spawned_signal(_load_player_items)
 
 func _refresh_items():
 	sort_player_items()
@@ -61,6 +64,7 @@ func _refresh_items():
 				break
 	_on_tab_bar_tab_changed(currently_selected_tab)
 	_emit_update_player_items()
+	_inventory_updated()
 
 func update_item_display(item: Item):
 	stat_container.set_text(item)
@@ -269,3 +273,20 @@ func _emit_update_player_items():
 		player_mainhand,
 		player_offhand,
 	)
+
+func _load_player_items():
+	var player_item_dict: Dictionary = DataManager.load_player_items()
+	player_item_dict["head"]
+	player_item_dict["body"]
+	player_item_dict["boots"]
+	player_item_dict["mainhand"]
+	player_item_dict["offhand"]
+	player_item_dict["equipped_consumable_list"]
+	player_item_dict["equipped_consumable"]
+	player_item_dict["inventory"]
+
+func _set_new_consumable(item: Item):
+	current_consumable = item
+
+func _inventory_updated():
+	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
