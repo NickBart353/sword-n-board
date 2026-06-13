@@ -7,4 +7,5 @@ demo/
 addons/*
 *.zip
 *.tmp
+/db/*
 {}
