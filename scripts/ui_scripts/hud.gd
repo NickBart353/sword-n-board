@@ -62,6 +62,7 @@ func _set_player_consumables(consumables: Array, new_current_consumable: Item = 
 	if not current_consumable in consumables:
 		current_consumable = null
 		_update_player_consumable()
+		#print("inside not if hud")
 	player_consumables = consumables
 	for child in consumable_display.get_children():
 		child.queue_free()
@@ -79,6 +80,7 @@ func _set_player_consumables(consumables: Array, new_current_consumable: Item = 
 			else:
 				current_consumable = item
 				_update_player_consumable()
+				#print("inside late player cons hud")
 			consumable_counter += 1
 
 func _remove_player_consumable(item: Item):
@@ -96,6 +98,7 @@ func _remove_player_consumable(item: Item):
 	else:
 		_remove(item)
 	_update_player_consumable()
+	#print("after remove")
 
 func _remove(item : Item):
 	UiController.remove_consumable_from_inventory(item, false)
@@ -111,6 +114,7 @@ func _remove(item : Item):
 	rotate_consumable()
 
 func _update_player_consumable():
+	#print("update player cons in hud: ", current_consumable)
 	UiController.give_player_new_consumable(current_consumable)
 
 func _new_mainhand(item: Item):

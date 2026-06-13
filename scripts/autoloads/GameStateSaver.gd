@@ -62,6 +62,7 @@ func _save_basic_player_data():
 
 func start_inventory_timer(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array):
 	inventory_data_timer.start()
+	print("consumable start: ", consumable)
 
 	player_item_dict["head"] = head
 	player_item_dict["body"] = body
@@ -94,9 +95,10 @@ func inventory_updated():
 	if player_item_dict.get("offhand"):
 		append_offhand(player_item_dict["offhand"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["offhand"])
-	if player_item_dict.get("equipped_consumable"):	
+	if player_item_dict.get("equipped_consumable"):
 		append_main_consumable(player_item_dict["equipped_consumable"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["equipped_consumable"])
+		player_item_dict["equipped_consumable_list"].erase(player_item_dict["equipped_consumable"])
 	
 	for consumable in player_item_dict["equipped_consumable_list"]:
 		append_consumable(consumable, prepared_item_list)
@@ -160,9 +162,11 @@ func append_offhand(item, array: Array):
 	array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 5, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
 
 func append_main_consumable(item, array: Array):
+	print("lol")
 	array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 6})
 
 func append_consumable(item, array: Array):
+	print("toll")
 	array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 7})
 
 func append_other(item, array: Array, chest_id: String = ""):
@@ -170,6 +174,7 @@ func append_other(item, array: Array, chest_id: String = ""):
 		array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0, "storage_id": chest_id})
 	else:
 		array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0})
+	print("natoll")
 
 func append_other_weapon(item, array: Array, chest_id: String = ""):
 	if chest_id:

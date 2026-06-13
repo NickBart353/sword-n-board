@@ -72,7 +72,7 @@ func update_item_display(item: Item):
 	stat_container.set_text(item)
 
 func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
-	_inventory_updated()
+	#_inventory_updated()
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
 			equip_weapon(item, mousebutton, inventory_item, _slot)
@@ -290,8 +290,10 @@ func _add_item_to_inventory(item: Item):
 	_refresh_items()
 
 func _emit_update_player_items():
-	UiController.update_player_consumables(player_consumables, current_consumable)
-	current_consumable = null
+	if current_consumable:
+		UiController.update_player_consumables(player_consumables, current_consumable.duplicate(true) as Item)
+	else:
+		UiController.update_player_consumables(player_consumables)
 	update_player_items.emit(player_helmet,
 		player_body,
 		player_boots,
@@ -304,7 +306,6 @@ func _load_player_items():
 	for item_row in item_rows:
 		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
 		match item_row["equipped"]:
-			0: player_items.append(item)
 			1: player_helmet = item
 			2: player_body = item
 			3: player_boots = item
@@ -312,12 +313,24 @@ func _load_player_items():
 			5: player_offhand = item
 			6: current_consumable = item
 			7: player_consumables.append(item)
-		if not item_row["equipped"] == 0 and not item_row["equipped"] == 6:
-			player_items.append(item)
+		#if not item_row["equipped"] == 6:
+			#player_items.append(item)
+	player_consumables.erase(current_consumable)
+	#print("player items: ", player_items)
+	#print("player_mainhand: ", player_mainhand)
+	#print("current_consumable: ", current_consumable)
+	#print("player_consumables: ", player_consumables)
+	
 	_refresh_items()
 
 func _set_new_consumable(item: Item):
+	print("lollllll")
+	if item:
+		print(item.data.item_name)
 	current_consumable = item
+	_inventory_updated()
 
 func _inventory_updated():
+	print("_inventory_updated")
+	#print("corruent_consumable: ", current_consumable)
 	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)

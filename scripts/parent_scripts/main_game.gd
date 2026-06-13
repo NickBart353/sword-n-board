@@ -105,7 +105,7 @@ func _spawn_player():
 		player.HEALTH = basic_player_resource.health
 		player.STAMINA = basic_player_resource.stamina
 		player.MANA = basic_player_resource.mana
-		player.global_position = basic_player_resource.position
+		player.global_position = basic_player_resource.position + Vector3(0.0 , 1.0, 0.0)
 		player.global_rotation = basic_player_resource.rotation
 		#player.spirit = basic_player_resource.spirit
 	else:
