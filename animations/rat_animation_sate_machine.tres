@@ -12,30 +12,15 @@ filters = ["EaterPlant_Armature/Skeleton3D/EaterPlant:material_overlay:shader_pa
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_td2g7"]
 animation = &"rat animations/Rat_Armature_AtackRat"
-use_custom_timeline = true
-timeline_length = 0.8
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n5s47"]
 animation = &"rat animations/Rat_Armature_AtackRat"
-use_custom_timeline = true
-timeline_length = 0.8
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0w81"]
 animation = &"rat animations/Rat_Armature_DeathRat"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8uvdi"]
 animation = &"rat animations/Rat_Armature_AtackRat"
-use_custom_timeline = true
-timeline_length = 3.0
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jlswy"]
 animation = &"rat animations/Rat_Armature_RunRat"
@@ -185,7 +170,7 @@ states/SlamTwo/node = SubResource("AnimationNodeAnimation_76u85")
 states/SlamTwo/position = Vector2(439, -366.08875)
 states/Start/position = Vector2(119, 23.911224)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_l0w81"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_8uvdi"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_jlswy"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_a5jwa"), "Follow", "Bite", SubResource("AnimationNodeStateMachineTransition_td2g7"), "Bite", "Follow", SubResource("AnimationNodeStateMachineTransition_n5s47"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_n4k7g"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_76u85"), "Follow", "Claw", SubResource("AnimationNodeStateMachineTransition_t1bm7"), "Claw", "Follow", SubResource("AnimationNodeStateMachineTransition_kasvi"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_noxf2"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_sjb6w"), "Claw", "Dead", SubResource("AnimationNodeStateMachineTransition_f5o0i"), "Bite", "Dead", SubResource("AnimationNodeStateMachineTransition_iawyn"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_h03at"), "Follow", "SlamOne", SubResource("AnimationNodeStateMachineTransition_uat2k"), "SlamOne", "Dead", SubResource("AnimationNodeStateMachineTransition_mat0y"), "SlamOne", "SlamTwo", SubResource("AnimationNodeStateMachineTransition_e4xl5"), "SlamTwo", "Recover", SubResource("AnimationNodeStateMachineTransition_symok"), "Recover", "Dead", SubResource("AnimationNodeStateMachineTransition_fubtv"), "SlamTwo", "Dead", SubResource("AnimationNodeStateMachineTransition_vus8j"), "Recover", "Resetting", SubResource("AnimationNodeStateMachineTransition_xbeql"), "Resetting", "Follow", SubResource("AnimationNodeStateMachineTransition_1ampv"), "Resetting", "Dead", SubResource("AnimationNodeStateMachineTransition_qohht")]
-graph_offset = Vector2(37, -439.08875)
+graph_offset = Vector2(81, -441.08875)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v47t"]
 animation = &"monster_basics/dissolve"
@@ -195,7 +180,7 @@ animation = &"monster_basics/hitflash"
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-369.3272, 29.06041)
+graph_offset = Vector2(-327.0313, -22.178421)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)

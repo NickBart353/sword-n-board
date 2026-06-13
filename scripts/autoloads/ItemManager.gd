@@ -158,19 +158,23 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 
 func get_item_from_id(item_id: String) -> Item:
 	var item_instance: Item = ui_item_scene.instantiate()
+	print("id: ", item_id)
+	if MELEE_WEAPONS.get(item_id) != null:
+		return _get_item_data(MELEE_WEAPONS[item_id], item_instance)
+	if CONSUMABLES.get(item_id) != null:
+		return _get_item_data(CONSUMABLES[item_id], item_instance)
+	if RANGED_WEAPONS.get(item_id) != null:
+		return _get_item_data(RANGED_WEAPONS[item_id], item_instance)
+	if MAGIC_WEAPONS.get(item_id) != null:
+		return _get_item_data(MAGIC_WEAPONS[item_id], item_instance)
+	if MATERIAL.get(item_id) != null:
+		return _get_item_data(MATERIAL[item_id], item_instance)
+	return null
+
+func _get_item_data(resource: Resource, item_instance: Item) -> Item:
 	var item_data: ItemData
-	if MELEE_WEAPONS[item_id]:
-		item_data = MELEE_WEAPONS[item_id]
-	if CONSUMABLES[item_id]:
-		item_data = CONSUMABLES[item_id]
-	if RANGED_WEAPONS[item_id]:
-		item_data = RANGED_WEAPONS[item_id]
-	if MAGIC_WEAPONS[item_id]:
-		item_data = MAGIC_WEAPONS[item_id]
-	if MATERIAL[item_id]:
-		item_data = MATERIAL[item_id]
-	item_data.duplicate(true)
-	item_instance.data = item_data
+	item_data = resource
+	item_instance.data = item_data.duplicate(true)
 	return item_instance
 
 func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
@@ -184,6 +188,30 @@ func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	#
 	var items: Array = []
 	var _item_instance: Item = ui_item_scene.instantiate()
+	
+	var randi: int = randi_range(0, MELEE_WEAPONS.size() - 1)
+	var counter: int = 0
+	for key in MELEE_WEAPONS:
+		if counter == randi:
+			items.append(get_item_from_id(key))
+			break
+		counter += 1
+	
+	randi = randi_range(0, CONSUMABLES.size() - 1)
+	counter = 0
+	for key in CONSUMABLES:
+		if counter == randi:
+			items.append(get_item_from_id(key))
+			break
+		counter += 1
+	
+	randi = randi_range(0, MATERIAL.size() - 1)
+	counter = 0
+	for key in MATERIAL:
+		if counter == randi:
+			items.append(get_item_from_id(key))
+			break
+		counter += 1
 	#for item_key in dict_to_take_from.keys():
 		#if item_key is Dictionary:
 			#var multiplier: float = 1.0
