@@ -23,7 +23,7 @@ func set_data(item_container: ItemContainer):
 		item_grid.add_child(inventory_item)
 
 func sort_items():
-	pass#loot_items.sort_custom(sort_by_cat_and_name)
+	loot_items.sort_custom(sort_by_cat_and_name)
 
 func sort_by_cat_and_name(a: Item, b: Item) -> bool:
 	if a.data.item_category < b.data.item_category:

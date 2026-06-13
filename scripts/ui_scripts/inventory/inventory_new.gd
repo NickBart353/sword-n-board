@@ -70,6 +70,7 @@ func update_item_display(item: Item):
 	stat_container.set_text(item)
 
 func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
+	_inventory_updated()
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
 			equip_weapon(item, mousebutton, inventory_item, _slot)
@@ -263,7 +264,7 @@ func _add_item_to_inventory(item: Item):
 		player_items.append(item)
 	else:
 		player_items[find_index].data.stack_size += item.data.stack_size
-		_refresh_items()
+	_refresh_items()
 
 func _emit_update_player_items():
 	UiController.update_player_consumables(player_consumables)
@@ -277,8 +278,10 @@ func _emit_update_player_items():
 func _load_player_items():
 	var item_rows: Array = DataManager.load_player_items()
 	# "id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"
+	print("loading items__")
 	for item_row in item_rows:
 		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
+		print(item.data.item_id)
 		match item_row["equipped"]:
 			0: player_items.append(item)
 			1: player_helmet = item

@@ -230,7 +230,7 @@ func _load_resource(filepath: String) -> Resource:
 
 func load_player_items() -> Array:
 	#Arrayselect_rows(table_name: String, conditions: String, columns: Array)
-	return item_db.select_rows(item_table_name, "storage_id = ''", ["id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"])
+	return item_db.select_rows(item_table_name, "storage_id is NULL", ["id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"])
 	#_check_base_dir(player_dir)
 	#return load_dictionary(player_item_data, player_dir)
 
@@ -262,10 +262,11 @@ func update_chests_multi_threaded(chest_dict: Dictionary):
 	#return chest_dictionary
 
 func update_chest_and_items(prepared_item_list: Array) -> int:
-	var callable: Callable = Callable(self, "_update_chest_and_items_multithreaded").bind(prepared_item_list.duplicate(true))
+	var callable: Callable = Callable(self, "_save_items_to_db").bind(prepared_item_list.duplicate(true))
 	return WorkerThreadPool.add_task(callable)
 
 func _save_items_to_db(prepared_item_list: Array):
 	item_db.backup_to("{0}{1}{2}".format([base_tree_path, item_dir, item_db_path_backup]))
 	item_db.query("DELETE FROM {0};".format([item_table_name]))
+	print("saving...\n", prepared_item_list)
 	item_db.insert_rows(item_table_name, prepared_item_list)

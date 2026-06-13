@@ -45,28 +45,28 @@ const CONSUMABLES: Dictionary = {
 	"40003": preload("res://resources/items/consumables/major_health_potion.tres"), #major_health_potion
 	"40006": preload("res://resources/items/consumables/major_mana_potion.tres"), #major_mana_potion
 	"40007": preload("uid://c6rg8eaeuxc5w"), #green_leaf
-	"rat_tooth": "",
-	"bat_wing": "",
-	"spider_blood": "",
-	"fire_grenade": "",
+	#"rat_tooth": "",
+	#"bat_wing": "",
+	#"spider_blood": "",
+	#"fire_grenade": "",
 }
 
 const MATERIAL: Dictionary = {
-	"small_upgrade_fragment": preload("uid://cu14hpnk5pru"),
-	"medium_upgrade_fragment": preload("uid://bburj521tlqiy"),
-	"large_upgrade_fragment": preload("uid://d3ro71qa6lcdy"),
-	"massive_upgrade_fragment": preload("uid://hi0sh3roww7k"),
+	"50001": preload("uid://cu14hpnk5pru"), #small_upgrade_fragment
+	"50002": preload("uid://bburj521tlqiy"), #medium_upgrade_fragment
+	"50003": preload("uid://d3ro71qa6lcdy"), #large_upgrade_fragment
+	"50004": preload("uid://hi0sh3roww7k"), #massive_upgrade_fragment
 	
-	"small_fire": preload("uid://jlv2epo5gglj"),
-	"small_lightning": preload("uid://ckmfb1xefgy6u"),
-	"small_cold": preload("uid://d1quidydrljqr"),
-	"small_nature": preload("uid://iak0iw4x0cdp"),
-	"small_chaos": preload("uid://dcnixd1d4orvf"),
-	"large_fire": preload("uid://dhf6iqjep7ffq"),
-	"large_lightning": preload("uid://d0kg5j8bdr7ix"),
-	"large_cold": preload("uid://772uumedashc"),
-	"large_nature": preload("uid://boypt4wyawuij"),
-	"large_chaos": preload("uid://dxo3kkiumamju"),
+	"50007": preload("uid://jlv2epo5gglj"), #small_fire
+	"50011": preload("uid://ckmfb1xefgy6u"), #small_lightning
+	"50009": preload("uid://d1quidydrljqr"), #small_cold
+	"50005": preload("uid://iak0iw4x0cdp"), #small_nature
+	"50013": preload("uid://dcnixd1d4orvf"), #small_chaos
+	"50008": preload("uid://dhf6iqjep7ffq"), #large_fire
+	"50012": preload("uid://d0kg5j8bdr7ix"), #large_lightning
+	"50010": preload("uid://772uumedashc"), #large_cold
+	"50006": preload("uid://boypt4wyawuij"), #large_nature
+	"50014": preload("uid://dxo3kkiumamju"), #large_chaos
 }
 
 const BASE_DROPTABLE: Dictionary = {

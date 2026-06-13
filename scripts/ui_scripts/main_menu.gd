@@ -12,6 +12,6 @@ func _ready() -> void:
 func _on_main_menu_ui_game_started() -> void:
 	game_started = true
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if game_started:
 		get_viewport().set_input_as_handled()
