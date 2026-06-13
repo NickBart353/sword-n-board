@@ -80,27 +80,21 @@ func inventory_updated():
 	_dirty_chest_check()
 	var prepared_item_list: Array = []
 	if player_item_dict.get("head"):
-		print("item_class: ", player_item_dict.get("head").get_class())
 		append_head(player_item_dict["head"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["head"])
 	if player_item_dict.get("body"):
-		print("item_class: ", player_item_dict.get("body").get_class())
 		append_body(player_item_dict["body"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["body"])
 	if player_item_dict.get("boots"):
-		print("item_class: ", player_item_dict.get("boots").get_class())
 		append_boots(player_item_dict["boots"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["boots"])
 	if player_item_dict.get("mainhand"):
-		print("item_class: ", player_item_dict.get("mainhand").get_class())
 		append_mainhand(player_item_dict["mainhand"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["mainhand"])
 	if player_item_dict.get("offhand"):
-		print("item_class: ", player_item_dict.get("offhand").get_class())
 		append_offhand(player_item_dict["offhand"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["offhand"])
-	if player_item_dict.get("equipped_consumable"):
-		print("item_class: ", player_item_dict.get("equipped_consumable").get_class())
+	if player_item_dict.get("equipped_consumable"):	
 		append_main_consumable(player_item_dict["equipped_consumable"], prepared_item_list)
 		player_item_dict["inventory"].erase(player_item_dict["equipped_consumable"])
 	

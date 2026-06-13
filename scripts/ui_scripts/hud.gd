@@ -56,7 +56,9 @@ func rotate_consumable():
 				child.hide()
 		_update_player_consumable()
 
-func _set_player_consumables(consumables: Array):
+func _set_player_consumables(consumables: Array, new_current_consumable: Item = null):
+	if new_current_consumable:
+		current_consumable = new_current_consumable
 	if not current_consumable in consumables:
 		current_consumable = null
 		_update_player_consumable()

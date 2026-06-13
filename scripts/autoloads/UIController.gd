@@ -59,8 +59,8 @@ func escape_menu():
 func update_player_items_from_inventory(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
 	new_player_items.emit(player_helmet, player_body, player_boots, player_mainhand, player_offhand)
 
-func update_player_consumables(player_consumables: Array):
-	set_player_consumables.emit(player_consumables)
+func update_player_consumables(player_consumables: Array, current_consumable: Item = null):
+	set_player_consumables.emit(player_consumables, current_consumable)
 
 func give_player_new_consumable(item: Item):
 	new_consumable.emit(item)

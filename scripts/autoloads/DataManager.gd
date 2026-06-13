@@ -1,7 +1,7 @@
 extends Node
 
 const base_path: String = "user://sword-n-board/data/"
-const base_tree_path: String = "res://db/"
+const base_tree_path: String = "res://"
 const audio_file: String = "audio_settings.txt"
 const screen_data_file: String = "screen_settings.txt"
 const input_data_file: String = "input_settings.txt"
@@ -36,7 +36,7 @@ var item_db: SQLite = SQLite.new()
 func _ready() -> void:
 	print(OS.get_data_dir())
 	
-	item_db.path = "{0}{1}{2}".format([base_tree_path, item_dir, item_db_path])
+	item_db.path = "{0}{1}".format([base_tree_path, item_db_path])
 	item_db.verbosity_level = SQLite.QUIET
 	item_db.open_db()
 	
@@ -266,7 +266,6 @@ func update_chest_and_items(prepared_item_list: Array) -> int:
 	return WorkerThreadPool.add_task(callable)
 
 func _save_items_to_db(prepared_item_list: Array):
-	item_db.backup_to("{0}{1}{2}".format([base_tree_path, item_dir, item_db_path_backup]))
+	item_db.backup_to("{0}{1}".format([base_tree_path, item_db_path_backup]))
 	item_db.query("DELETE FROM {0};".format([item_table_name]))
-	print("saving...\n", prepared_item_list)
 	item_db.insert_rows(item_table_name, prepared_item_list)

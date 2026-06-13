@@ -13,6 +13,17 @@ func _ready() -> void:
 	mainhand_equipped_marker.hide()
 	offhand_equipped_marker.hide()
 
+func set_equipped_value(equipped_value: int):
+	match equipped_value:
+		0: return
+		1: return
+		2: return
+		3: return
+		4: mainhand_equipped_marker.show()
+		5: offhand_equipped_marker.show()
+		6: consumable_marker.show()
+		7: consumable_marker.show()
+
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:

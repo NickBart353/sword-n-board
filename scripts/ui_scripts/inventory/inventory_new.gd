@@ -56,6 +56,8 @@ func _refresh_items():
 		inventory_item.item_pressed.connect(activate_item)
 		inventory_item.set_data(item)
 		item_grid.add_child(inventory_item)
+		#inventory_item.set_equipped_value(_is_inventory_item_equipped(inventory_item))
+		_is_inventory_item_equipped(inventory_item)
 	
 	for consumable in player_consumables:
 		for item in player_items:
@@ -91,6 +93,27 @@ func sort_by_cat_and_name(a, b) -> bool:
 		if a.data.item_name < b.data.item_name:
 			return true
 	return false
+
+func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
+	if inventory_item.item == player_helmet:
+		return 1
+	if inventory_item.item == player_body:
+		return 2
+	if inventory_item.item == player_boots:
+		return 3
+	if inventory_item.item == player_mainhand:
+		equip_weapon(inventory_item.item, LEFT, inventory_item)
+		return 4
+	if inventory_item.item == player_offhand:
+		equip_weapon(inventory_item.item, RIGHT, inventory_item)
+		return 5
+	if inventory_item.item == current_consumable:
+		equip_consumable(inventory_item, inventory_item.item)
+		return 6
+	if inventory_item.item in player_consumables:
+		equip_consumable(inventory_item, inventory_item.item)
+		return 7
+	return 0
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
 	currently_selected_tab = tab
@@ -267,7 +290,8 @@ func _add_item_to_inventory(item: Item):
 	_refresh_items()
 
 func _emit_update_player_items():
-	UiController.update_player_consumables(player_consumables)
+	UiController.update_player_consumables(player_consumables, current_consumable)
+	current_consumable = null
 	update_player_items.emit(player_helmet,
 		player_body,
 		player_boots,
@@ -277,11 +301,8 @@ func _emit_update_player_items():
 
 func _load_player_items():
 	var item_rows: Array = DataManager.load_player_items()
-	# "id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"
-	print("loading items__")
 	for item_row in item_rows:
 		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
-		print(item.data.item_id)
 		match item_row["equipped"]:
 			0: player_items.append(item)
 			1: player_helmet = item
@@ -291,6 +312,8 @@ func _load_player_items():
 			5: player_offhand = item
 			6: current_consumable = item
 			7: player_consumables.append(item)
+		if not item_row["equipped"] == 0 and not item_row["equipped"] == 6:
+			player_items.append(item)
 	_refresh_items()
 
 func _set_new_consumable(item: Item):
