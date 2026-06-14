@@ -2,23 +2,21 @@
 
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_kosvu"]
 [ext_resource type="Script" uid="uid://bk0lmn12fxg3c" path="res://scripts/ui_scripts/main_menu_ui.gd" id="1_y3g6i"]
-[ext_resource type="Theme" uid="uid://qoj85swhoife" path="res://resources/ui/button/main_menu_buttons/main_menu_button_theme.tres" id="2_3kjxp"]
 [ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_kuvi5"]
 [ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_iuew7"]
 [ext_resource type="AudioStream" uid="uid://dsopasctc2egb" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Unsheath 1 - reverbed.wav" id="4_kuvi5"]
 [ext_resource type="PackedScene" uid="uid://cvbbwrylqrkdu" path="res://scenes/ui_scenes/start_menu_start_game_button.tscn" id="6_iuew7"]
-[ext_resource type="PackedScene" uid="uid://bplsbvjd8ymix" path="res://scenes/ui_scenes/save_file.tscn" id="8_hrysg"]
+[ext_resource type="PackedScene" uid="uid://cocmvblldu3nc" path="res://scenes/ui_scenes/save_file_screen.tscn" id="8_hrysg"]
 [ext_resource type="PackedScene" uid="uid://h7gcuxickvc3" path="res://scenes/ui_scenes/settings_menu.tscn" id="8_wygx0"]
+[ext_resource type="PackedScene" uid="uid://j1u6ucpvwi0e" path="res://scenes/ui_scenes/new_game_screen.tscn" id="9_hrysg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wygx0"]
+content_margin_top = 10.0
+content_margin_bottom = 50.0
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3kjxp"]
 font_size = 100
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evpsf"]
-bg_color = Color(0.20784314, 0.20784314, 0.20784314, 0.39607844)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
 
 [node name="MainMenuUI" type="CanvasLayer" unique_id=833057206]
 script = ExtResource("1_y3g6i")
@@ -28,15 +26,15 @@ button_click_sound = ExtResource("3_iuew7")
 start_button_click_sound = ExtResource("4_kuvi5")
 
 [node name="MainMenuButtonContainer" type="PanelContainer" parent="." unique_id=462554003]
-visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.2
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kosvu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_wygx0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuButtonContainer" unique_id=2043017059]
 layout_mode = 2
@@ -51,90 +49,64 @@ horizontal_alignment = 1
 
 [node name="StartGame" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1069516293 instance=ExtResource("6_iuew7")]
 layout_mode = 2
+theme = ExtResource("1_kosvu")
+text = "Continue Game"
 
-[node name="ResetGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]
+[node name="NewGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1621236908]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]
 layout_mode = 2
 tooltip_text = "Resets all settings and save-files (Will be added soon)"
-theme = ExtResource("2_3kjxp")
-disabled = true
-text = "Reset Game"
+theme = ExtResource("1_kosvu")
+text = "Load Game"
 
 [node name="Settings" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=256631426]
 layout_mode = 2
-theme = ExtResource("2_3kjxp")
+theme = ExtResource("1_kosvu")
 text = "Settings"
 
 [node name="Credits" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=286939544]
 layout_mode = 2
 tooltip_text = "(Will be added soon)"
-theme = ExtResource("2_3kjxp")
+theme = ExtResource("1_kosvu")
 disabled = true
 text = "Credits"
 
 [node name="ExitGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=678057820]
 layout_mode = 2
-theme = ExtResource("2_3kjxp")
+theme = ExtResource("1_kosvu")
 text = "Exit Game"
-
-[node name="SaveFileScreen" type="VBoxContainer" parent="." unique_id=1360971710]
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.2
-anchor_right = 0.9
-anchor_bottom = 0.8
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="PanelContainer" type="PanelContainer" parent="SaveFileScreen" unique_id=232228311]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_evpsf")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="SaveFileScreen/PanelContainer" unique_id=1262525402]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("1_kosvu")
-scroll_horizontal_by_default = true
-
-[node name="SaveFileContainer" type="HBoxContainer" parent="SaveFileScreen/PanelContainer/ScrollContainer" unique_id=1449140792]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 20
-
-[node name="SaveFile" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=1575991815 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile2" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=1825229676 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile3" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=1143095474 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile4" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=2116103053 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile5" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=2017426067 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile6" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=368106897 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="SaveFile7" parent="SaveFileScreen/PanelContainer/ScrollContainer/SaveFileContainer" unique_id=1465866096 instance=ExtResource("8_hrysg")]
-layout_mode = 2
-
-[node name="BackButton" type="Button" parent="SaveFileScreen" unique_id=1862815089]
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("1_kosvu")
-text = "Back"
 
 [node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("8_wygx0")]
 visible = false
 
+[node name="SaveFileScreen" parent="." unique_id=1558532921 instance=ExtResource("8_hrysg")]
+visible = false
+
+[node name="NewGameScreen" parent="." unique_id=745317068 instance=ExtResource("9_hrysg")]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -232.0
+offset_top = -114.5
+offset_right = 232.0
+offset_bottom = 114.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/ResetGame" to="." method="_on_reset_game_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]
 [connection signal="close_settings" from="SettingsMenu" to="." method="_on_settings_menu_close_settings"]
+[connection signal="savefile_deleted" from="SaveFileScreen" to="." method="_on_save_file_screen_savefile_deleted"]
+[connection signal="savefile_screen_closed" from="SaveFileScreen" to="." method="_on_save_file_screen_savefile_screen_closed"]
+[connection signal="savefile_selected" from="SaveFileScreen" to="." method="_on_save_file_screen_savefile_selected"]
+[connection signal="create_new_game" from="NewGameScreen" to="." method="_on_new_game_screen_create_new_game"]
+[connection signal="new_game_screen_closed" from="NewGameScreen" to="." method="_on_new_game_screen_new_game_screen_closed"]

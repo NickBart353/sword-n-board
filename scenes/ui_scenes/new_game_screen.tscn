@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://j1u6ucpvwi0e"]
+
+[ext_resource type="Script" uid="uid://v2h5crddpy71" path="res://scripts/ui_scripts/new_game_screen.gd" id="1_q7ano"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_heo4f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrysg"]
+content_margin_top = 10.0
+content_margin_bottom = 50.0
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_evpsf"]
+font_size = 45
+
+[node name="NewGameScreen" type="PanelContainer" unique_id=745317068]
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+offset_bottom = 91.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrysg")
+script = ExtResource("1_q7ano")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=368642958]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_heo4f")
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1870635121]
+layout_mode = 2
+theme = ExtResource("2_heo4f")
+text = "Enter Character name"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="TextEdit" type="LineEdit" parent="VBoxContainer" unique_id=284015784]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("2_heo4f")
+placeholder_text = "Name..."
+max_length = 25
+context_menu_enabled = false
+emoji_menu_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=400115794]
+layout_mode = 2
+theme = ExtResource("2_heo4f")
+
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=974940810]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_heo4f")
+text = "Back"
+
+[node name="Submit" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1488444268]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_heo4f")
+disabled = true
+text = "Ok"
+
+[connection signal="text_changed" from="VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Submit" to="." method="_on_submit_pressed"]

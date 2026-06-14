@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cocmvblldu3nc"]
+
+[ext_resource type="Script" uid="uid://bw8pxsqtjadng" path="res://scripts/ui_scripts/save_file_screen.gd" id="1_q1144"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_d0rw8"]
+[ext_resource type="PackedScene" uid="uid://bplsbvjd8ymix" path="res://scenes/ui_scenes/save_file.tscn" id="2_q1144"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evpsf"]
+bg_color = Color(0.20784314, 0.20784314, 0.20784314, 0.39607844)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="SaveFileScreen" type="VBoxContainer" unique_id=1558532921]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+script = ExtResource("1_q1144")
+save_file_scene = ExtResource("2_q1144")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=114854345]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_evpsf")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer" unique_id=1197648857]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_d0rw8")
+scroll_horizontal_by_default = true
+
+[node name="SaveFileContainer" type="HBoxContainer" parent="PanelContainer/ScrollContainer" unique_id=371849022]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="Button" parent="." unique_id=2129991220]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_d0rw8")
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

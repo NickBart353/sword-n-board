@@ -68,6 +68,8 @@ func _inventory_timer_timeout():
 func _save_basic_player_data():
 	if not player:
 		player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		return
 	basic_player_data.health = player.HEALTH
 	basic_player_data.stamina = player.STAMINA
 	basic_player_data.mana = player.MANA
@@ -150,8 +152,7 @@ func items_received():
 
 func _save_dead_enemies():
 	var mobspawn_dict: Dictionary[String, bool] = {}
-	if not mobspawns:
-		mobspawns = get_tree().get_nodes_in_group("MobSpawn")
+	mobspawns = get_tree().get_nodes_in_group("MobSpawn")
 	for spawn in mobspawns:
 		if spawn.is_my_mob_dead:
 			mobspawn_dict[spawn.spawn_id] = true

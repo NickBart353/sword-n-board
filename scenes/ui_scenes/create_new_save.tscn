@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bs2j5wcakwod6"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_6fn8e"]
+[ext_resource type="Script" uid="uid://bxwo34l1hm1hj" path="res://scripts/ui_scripts/create_new_save.gd" id="2_6fn8e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrysg"]
+bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.9098039)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ugyk"]
+font_size = 34
+
+[node name="CreateNewSave" type="PanelContainer" unique_id=1575991815]
+custom_minimum_size = Vector2(400, 0)
+offset_right = 200.0
+offset_bottom = 51.0
+size_flags_vertical = 3
+theme = ExtResource("1_6fn8e")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrysg")
+script = ExtResource("2_6fn8e")
+
+[node name="NewSaveLabel" type="Label" parent="." unique_id=957283807]
+custom_maximum_size = Vector2(190, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_6fn8e")
+text = "New Save"
+label_settings = SubResource("LabelSettings_8ugyk")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="NewSaveButton" type="Button" parent="." unique_id=1418270780]
+layout_mode = 2
+flat = true
+
+[connection signal="pressed" from="NewSaveButton" to="." method="_on_new_save_button_pressed"]

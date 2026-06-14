@@ -1,12 +1,16 @@
 extends Node
 
-const base_path: String = "user://sword-n-board/data/"
+const base_path: String = "user://data/"
 const base_tree_path: String = "res://"
+
 const audio_file: String = "audio_settings.txt"
 const screen_data_file: String = "screen_settings.txt"
 const input_data_file: String = "input_settings.txt"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
+
+const save_file_path: String = "savefiles/"
+const save_file_metada: String = "{0}.res"
 
 const mobspawn_dir: String = "mobspawns/"
 const mobspawn_data: String = "mobspawns.tres"
@@ -16,6 +20,8 @@ const chest_dir: String = "chests/"
 const item_dir: String = "items/"
 const equipment_data: String = "equipment.txt"
 const player_item_data: String = "player_items.txt"
+
+const db_path: String = "db/"
 const item_db_path: String = "item_db.db"
 const item_db_path_backup: String = "item_db_backup.db"
 
@@ -36,16 +42,26 @@ const item_table_dict: Dictionary = {
 
 var item_db: SQLite = SQLite.new()
 
+var current_save_file_id: String
+
+var current_mob_path_dir: String
+var current_player_path_dir: String
+var current_item_path_dir: String
+var current_chest_path_dir: String
+
 func _ready() -> void:
 	print(OS.get_data_dir())
-	
-	item_db.path = "{0}{1}".format([base_tree_path, item_db_path])
+
+func connect_db() -> void:
+	item_db = SQLite.new()
+	item_db.path = "{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path])
 	item_db.verbosity_level = SQLite.QUIET
 	item_db.open_db()
 	
 	item_db.query_with_bindings("SELECT * FROM sqlite_master WHERE type='table' AND name=?;", [item_table_name])
 	if item_db.query_result.is_empty():
 		item_db.create_table(item_table_name, item_table_dict)
+
 
 func _check_base_dir(additional_path: String = "") -> void:
 	var path: String = "{0}{1}".format([base_path, additional_path])
@@ -167,7 +183,7 @@ func load_shader_cache_date() -> String:
 		return ""
 
 func save_player_equipment(dictionary: Dictionary) -> int:
-	var callable: Callable = Callable(self, "save_dictionary").bind(dictionary, equipment_data, item_dir)
+	var callable: Callable = Callable(self, "save_dictionary").bind(dictionary, equipment_data, current_item_path_dir)
 	return WorkerThreadPool.add_task(callable)
 
 func save_dictionary(item_dict: Dictionary, target_file_name: String, additional_dir: String = "") -> void:
@@ -189,15 +205,15 @@ func load_dictionary(file_path: String, additional_dir: String = "") -> Dictiona
 	return item_dict
 
 func save_basic_player_data(resource: BasicPlayerData):
-	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, basic_player_data, player_dir)
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, basic_player_data, current_player_path_dir)
 	WorkerThreadPool.add_task(callable)
 
 func save_advanced_player_data(resource: AdvancedPlayerData):
-	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, advanced_player_data, player_dir)
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, advanced_player_data, current_player_path_dir)
 	WorkerThreadPool.add_task(callable)
 
 func save_mobspawns(resource: MobSpawnResource):
-	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, mobspawn_data, mobspawn_dir)
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, mobspawn_data, current_mob_path_dir)
 	WorkerThreadPool.add_task(callable)
 
 func _atomic_resource_save(resource: Resource, resource_name: String, additional_dir: String):
@@ -224,13 +240,13 @@ func _rename_resource(resource_name: String, directory_path: String):
 		dir.rename(temp_resource_name, save_resource_name)
 
 func load_basic_player_data() -> BasicPlayerData:
-	_check_base_dir(player_dir)
-	var path: String = "{0}{1}save_{2}".format([base_path, player_dir, basic_player_data])
+	_check_base_dir(current_player_path_dir)
+	var path: String = "{0}{1}save_{2}".format([base_path, current_player_path_dir, basic_player_data])
 	return _load_resource(path)
 
 func load_mobspawn_data() -> MobSpawnResource:
-	_check_base_dir(mobspawn_dir)
-	var path: String = "{0}{1}save_{2}".format([base_path, mobspawn_dir, mobspawn_data])
+	_check_base_dir(current_mob_path_dir)
+	var path: String = "{0}{1}save_{2}".format([base_path, current_mob_path_dir, mobspawn_data])
 	return _load_resource(path)
 
 func _load_resource(filepath: String) -> Resource:
@@ -251,12 +267,12 @@ func load_player_items() -> Array:
 	#return WorkerThreadPool.add_task(callable)
 
 func _update_chest_and_items_multithreaded(player_dict: Dictionary, chest_dict: Dictionary) -> void:
-	save_dictionary(player_dict, player_item_data, player_dir)
+	save_dictionary(player_dict, player_item_data, current_player_path_dir)
 	update_chests_multi_threaded(chest_dict)
 
 func update_chests_multi_threaded(chest_dict: Dictionary):
-	_check_base_dir(chest_dir)
-	var chest_directory: String = "{0}{1}".format([base_path, chest_dir])
+	_check_base_dir(current_chest_path_dir)
+	var chest_directory: String = "{0}{1}".format([base_path, current_chest_path_dir])
 	for chest_id in chest_dict:
 		var chest_file: FileAccess = FileAccess.open("{0}{1}.txt".format([chest_directory, chest_id]), FileAccess.WRITE) 
 		chest_file.store_var(chest_dict[chest_id])
@@ -278,6 +294,45 @@ func update_chest_and_items(prepared_item_list: Array) -> int:
 	return WorkerThreadPool.add_task(callable)
 
 func _save_items_to_db(prepared_item_list: Array):
-	item_db.backup_to("{0}{1}".format([base_tree_path, item_db_path_backup]))
+	item_db.backup_to("{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path_backup]))
 	item_db.query("DELETE FROM {0};".format([item_table_name]))
 	item_db.insert_rows(item_table_name, prepared_item_list)
+
+func create_new_savefile(savefile_metadata: SaveFileMetadata):
+	var filepath: String = "{0}{1}/".format([save_file_path, savefile_metadata.savefile_id])
+	_check_base_dir(filepath)
+	var save_path: String = "{0}{1}/{2}.res".format([base_path, filepath, savefile_metadata.savefile_id])
+	ResourceSaver.save(savefile_metadata, save_path)
+	#_atomic_resource_save(savefile_metadata, filepath, save_file_metada.format([savefile_metadata.savefile_id]))
+	current_save_file_id = savefile_metadata.savefile_id
+	
+	current_mob_path_dir = "{0}{1}".format([filepath, mobspawn_dir])
+	current_player_path_dir = "{0}{1}".format([filepath, player_dir])
+	current_item_path_dir = "{0}{1}".format([filepath, item_dir])
+	current_chest_path_dir = "{0}{1}".format([filepath, chest_dir])
+	
+	print(current_mob_path_dir)
+	print(current_player_path_dir)
+	print(current_item_path_dir)
+	print(current_chest_path_dir)
+
+func load_savefiles() -> Array:
+	_check_base_dir(save_file_path)
+	var resource_array: Array = []
+	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([base_path, save_file_path]))
+	for savefile in savefile_dir.get_directories():
+		resource_array.append(_load_resource("{0}{1}{2}/{3}.res".format([base_path, save_file_path, savefile, savefile])))
+	
+	return resource_array
+
+func delete_savefile(id: String) -> bool:
+	_check_base_dir(save_file_path)
+	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([base_path, save_file_path]))
+	for savefile in savefile_dir.get_directories():
+		if savefile == id:
+			savefile_dir.remove(id)
+			return true
+	return false
+
+func set_savefile_id(id: String):
+	current_save_file_id = id

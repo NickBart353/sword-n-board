@@ -8,6 +8,7 @@ const player_scene: PackedScene = preload("res://scenes/component_scenes/charact
 var player: CharacterBody3D
 
 func _ready() -> void:
+	DataManager.connect_db()
 	_spawn_player()
 	
 	EventBus.close_container.connect(_close_container)

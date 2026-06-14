@@ -11,14 +11,14 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4deqw"]
-bg_color = Color(0.37230912, 0.36903253, 0.3080628, 1)
+bg_color = Color(0.5529412, 0.5529412, 0.5529412, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn17g"]
-bg_color = Color(0.5529558, 0.5529555, 0.5529556, 1)
+bg_color = Color(0.6830772, 0.6830774, 0.6830771, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -93,4 +93,5 @@ TabBar/styles/button_pressed = SubResource("StyleBoxFlat_5kk60")
 TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_4g7dp")
 TabBar/styles/tab_selected = SubResource("StyleBoxFlat_lvrj6")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_ehoeq")
+TabContainer/fonts/font = ExtResource("1_ehoeq")
 TabContainer/styles/panel = null
