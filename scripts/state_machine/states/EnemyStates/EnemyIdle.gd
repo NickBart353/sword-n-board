@@ -18,6 +18,7 @@ func randomize_wander():
 
 func Enter():
 	super()
+	#print("in combat: ", CombatManager.is_in_combat(), "; count: ", CombatManager.combat_units, "; state: ", name)
 	randomize_wander()
 	called = false
 	reset_health.emit()

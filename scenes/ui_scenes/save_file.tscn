@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bplsbvjd8ymix"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_88ip2"]
+[ext_resource type="Script" uid="uid://bm4ui5vxkbjq3" path="res://scripts/ui_scripts/save_file.gd" id="2_s7qg4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrysg"]
+bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.9098039)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bjin"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ugyk"]
+font_size = 34
+
+[sub_resource type="LabelSettings" id="LabelSettings_evpsf"]
+font_size = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1ji0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evpsf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p825b"]
+bg_color = Color(0.8, 0.14509805, 0.23529412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5x0b"]
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="SaveFile" type="PanelContainer" unique_id=1575991815]
+custom_minimum_size = Vector2(400, 0)
+offset_right = 200.0
+offset_bottom = 51.0
+size_flags_vertical = 3
+theme = ExtResource("1_88ip2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hrysg")
+script = ExtResource("2_s7qg4")
+
+[node name="PanelContainer" type="VBoxContainer" parent="." unique_id=1666284754]
+layout_mode = 2
+
+[node name="VBoxContainer" type="PanelContainer" parent="PanelContainer" unique_id=1042917651]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bjin")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=719416210]
+layout_mode = 2
+
+[node name="SaveFileName" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=957283807]
+custom_maximum_size = Vector2(190, -1)
+layout_mode = 2
+theme = ExtResource("1_88ip2")
+text = "erektor"
+label_settings = SubResource("LabelSettings_8ugyk")
+autowrap_mode = 3
+
+[node name="DataContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/VBoxContainer" unique_id=1559673463]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer/VBoxContainer/DataContainer" unique_id=69280604]
+layout_mode = 2
+columns = 2
+
+[node name="LevelLabel" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer" unique_id=1579382202]
+visible = false
+layout_mode = 2
+text = "Level:"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="LevelValueLabel" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer" unique_id=838103367]
+visible = false
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="AgeLabel" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer" unique_id=1926789685]
+layout_mode = 2
+text = "Created:"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="AgeValueLabel" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer" unique_id=1349188125]
+layout_mode = 2
+text = "5.2.26 - 13:35"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="SelectSaveFileButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=728215106]
+layout_mode = 2
+flat = true
+
+[node name="Container" type="PanelContainer" parent="PanelContainer" unique_id=737986220]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1ji0")
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/Container" unique_id=2032192056]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_evpsf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p825b")
+show_percentage = false
+
+[node name="DeleteHoverButton" type="Button" parent="PanelContainer/Container" unique_id=1951948194]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_88ip2")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_l5x0b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l5x0b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l5x0b")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l5x0b")
+theme_override_styles/focus = SubResource("StyleBoxFlat_l5x0b")
+text = "Delete"
+
+[connection signal="button_down" from="PanelContainer/VBoxContainer/SelectSaveFileButton" to="." method="_on_select_save_file_button_button_down"]
+[connection signal="button_down" from="PanelContainer/Container/DeleteHoverButton" to="." method="_on_delete_hover_button_button_down"]
+[connection signal="mouse_entered" from="PanelContainer/Container/DeleteHoverButton" to="." method="_on_delete_hover_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Container/DeleteHoverButton" to="." method="_on_delete_hover_button_mouse_exited"]

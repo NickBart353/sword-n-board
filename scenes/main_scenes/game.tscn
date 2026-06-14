@@ -84,16 +84,19 @@ metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
 
 [node name="MobSpawn" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=165014573]
 script = ExtResource("7_cfqos")
+spawn_id = "d982dadc-a09a-4bf8-9ccc-79e36e21a65f"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn3" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1279450927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.50464, -5.5786095, 105.79138)
 script = ExtResource("7_cfqos")
+spawn_id = "9307f220-5660-4e02-85ba-4451bece1d3a"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn2" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1644069768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -142.5, 18.5, 28.5)
 script = ExtResource("7_cfqos")
+spawn_id = "cdd17fc9-a406-4e0d-b99f-b333402f00ec"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="Wasp" type="Node3D" parent="MobSpawns" unique_id=1031240649]
@@ -104,81 +107,97 @@ metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
 [node name="MobSpawn" type="Marker3D" parent="MobSpawns/Wasp" unique_id=62605432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.900001, 0, -54.7)
 script = ExtResource("7_cfqos")
+spawn_id = "0ccdd719-bc88-44b0-8538-24dad5351033"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn6" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1102900679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.72479, -2.7109375, -84.29428)
 script = ExtResource("7_cfqos")
+spawn_id = "cc075f1e-3705-4a1a-b116-d3dd7d069eaa"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn7" type="Marker3D" parent="MobSpawns/Wasp" unique_id=393938253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.72479, -2.7109375, -71.58127)
 script = ExtResource("7_cfqos")
+spawn_id = "d2c3cf4f-2955-4894-ba5a-7cf58e547908"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn8" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1712464251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -134.66534, -6.8225746, -61.546295)
 script = ExtResource("7_cfqos")
+spawn_id = "aef62404-fbcb-43ce-8e83-f3c029f6fa47"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn2" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1503059975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.000004, 0, -26.5)
 script = ExtResource("7_cfqos")
+spawn_id = "2e23115c-b1f4-445c-b048-fcbd712e7c76"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn9" type="Marker3D" parent="MobSpawns/Wasp" unique_id=2104424037]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.38617, -4.3583603, 114.61105)
 script = ExtResource("7_cfqos")
+spawn_id = "6280681a-6401-4609-9548-7fb63f04c908"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn10" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1134922241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.085205, -4.3583603, 115.60663)
 script = ExtResource("7_cfqos")
+spawn_id = "5416e824-9e58-4d95-9cfd-1e7563874e81"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn11" type="Marker3D" parent="MobSpawns/Wasp" unique_id=2011762599]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.01944, -4.3583603, 103.3074)
 script = ExtResource("7_cfqos")
+spawn_id = "d59b42cd-8288-4ad1-ac47-176ab2f5fd28"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn12" type="Marker3D" parent="MobSpawns/Wasp" unique_id=521168071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.417725, -13.22842, 194.28566)
 script = ExtResource("7_cfqos")
+spawn_id = "8614ebce-6332-4418-8acd-96cac07f2eb1"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn13" type="Marker3D" parent="MobSpawns/Wasp" unique_id=807533480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.73126, -21.038143, 203.47147)
 script = ExtResource("7_cfqos")
+spawn_id = "e9337e6c-ef38-4db9-8189-49de047486d2"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn14" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1501033203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.944244, -28.482796, 216.14545)
 script = ExtResource("7_cfqos")
+spawn_id = "5af81996-579a-4bf3-aff2-bf0b46eee8f4"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn15" type="Marker3D" parent="MobSpawns/Wasp" unique_id=798635429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 116.08374, -28.482796, 230.26)
 script = ExtResource("7_cfqos")
+spawn_id = "063e470d-ae3d-48c9-9a24-26b55c332ffd"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn16" type="Marker3D" parent="MobSpawns/Wasp" unique_id=404519487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.496704, -25.19777, 205.87798)
 script = ExtResource("7_cfqos")
+spawn_id = "40fb47b4-c2fc-484e-bce2-28ba1f5333d7"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn17" type="Marker3D" parent="MobSpawns/Wasp" unique_id=747896033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 134.14662, -19.989063, 182.65198)
 script = ExtResource("7_cfqos")
+spawn_id = "8813ef22-9033-4810-a58d-641796e42898"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn4" type="Marker3D" parent="MobSpawns/Wasp" unique_id=1946653072]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.5, 19.4, 64.6)
 script = ExtResource("7_cfqos")
+spawn_id = "66379228-b421-45ac-a958-bccb6a77546e"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn5" type="Marker3D" parent="MobSpawns/Wasp" unique_id=326106179]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.5, 19.4, 76.6)
 script = ExtResource("7_cfqos")
+spawn_id = "bbf711ef-dd66-4339-8b85-4817b1137b80"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="Rat" type="Node3D" parent="MobSpawns" unique_id=98056911]
@@ -190,51 +209,61 @@ metadata/_custom_type_script = "uid://b51bvm5vdtb0w"
 [node name="MobSpawn" type="Marker3D" parent="MobSpawns/Rat" unique_id=286955216]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28833, -11.242447, 58.23123)
 script = ExtResource("7_cfqos")
+spawn_id = "1e5742cb-df4d-4a4c-849e-a5e559972741"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn2" type="Marker3D" parent="MobSpawns/Rat" unique_id=654050695]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.499176, -17.542469, 71.35489)
 script = ExtResource("7_cfqos")
+spawn_id = "8b07a01a-febb-436b-b463-0ed617f25954"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn3" type="Marker3D" parent="MobSpawns/Rat" unique_id=2146527640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.430878, -17.542469, 26.349152)
 script = ExtResource("7_cfqos")
+spawn_id = "08c2f499-72a0-499b-b23f-51d029ea4a1b"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn4" type="Marker3D" parent="MobSpawns/Rat" unique_id=1771329164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.163757, -17.542469, -13.573425)
 script = ExtResource("7_cfqos")
+spawn_id = "b7f44672-6b0c-4229-9991-ed4390719791"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn5" type="Marker3D" parent="MobSpawns/Rat" unique_id=1035644558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.397064, -18.479939, -73.966675)
 script = ExtResource("7_cfqos")
+spawn_id = "d61b7bde-c609-4fab-a89f-a87ad5350f38"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn6" type="Marker3D" parent="MobSpawns/Rat" unique_id=461753827]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.51767, -18.479939, -81.25995)
 script = ExtResource("7_cfqos")
+spawn_id = "f921f879-7dd9-4a41-825e-086170570aa9"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn7" type="Marker3D" parent="MobSpawns/Rat" unique_id=2058972359]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.78772, -23.813614, -91.62897)
 script = ExtResource("7_cfqos")
+spawn_id = "2aeb480b-931b-499c-99a8-2aea2bfb5ca5"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn10" type="Marker3D" parent="MobSpawns/Rat" unique_id=1819852719]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.212402, -72.45973, -80.36514)
 script = ExtResource("7_cfqos")
+spawn_id = "7631326b-aef5-4036-b6a7-2f6fa794655f"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn8" type="Marker3D" parent="MobSpawns/Rat" unique_id=1736719573]
 transform = Transform3D(0.3396245, 0, -0.9405611, 0, 1, 0, 0.9405611, 0, 0.3396245, -101.05133, -25.303818, -96.98117)
 script = ExtResource("7_cfqos")
+spawn_id = "6cd900c9-6951-40ca-93a9-9d36f844fc23"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn9" type="Marker3D" parent="MobSpawns/Rat" unique_id=158449232]
 transform = Transform3D(0.3396245, 0, -0.9405611, 0, 1, 0, 0.9405611, 0, 0.3396245, -84.63864, -25.661861, -10.89212)
 script = ExtResource("7_cfqos")
+spawn_id = "23e6944d-d80e-4a2d-917c-336a0c337a06"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="Building" parent="." unique_id=308638420 instance=ExtResource("7_leqql")]

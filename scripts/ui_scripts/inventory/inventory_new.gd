@@ -41,11 +41,14 @@ var currently_selected_tab: int
 func _ready() -> void:
 	hide()
 	#player_items = ItemManager.load_debug_items()
-	_refresh_items()
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
+	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
+	if player_items.is_empty():
+		player_items.append(ItemManager.get_item_from_id("10010"))
+	_refresh_items()
 
 func _refresh_items():
 	sort_player_items()
@@ -343,3 +346,6 @@ func _set_new_consumable(item: Item):
 
 func _inventory_updated():
 	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+
+func _give_items_to_gamestatesaver():
+	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables, true)

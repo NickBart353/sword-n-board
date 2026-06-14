@@ -85,11 +85,20 @@ func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation 
 		instance.rotation = new_global_rotation
 	instance.play()
 
-func _spawn_mobs():
+func _spawn_mobs(reset_mobs: bool = false):
+	var mobspawn_resource: MobSpawnResource
+	if not reset_mobs:
+		mobspawn_resource = DataManager.load_mobspawn_data()
+	
 	for mob_spawn_group in $MobSpawns.get_children():
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
+					print("spawn_name: ", mob_spawn.spawn_id)
+					if not reset_mobs and mobspawn_resource:
+						if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) != null:
+							if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) == true:
+								continue
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
 						mob_spawn.add_child(mob_instance)

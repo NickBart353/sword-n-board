@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://dhredoyg6oik8"]
 
+[ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="1_ealia"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yskql"]
 bg_color = Color(0.24840015, 0.24840018, 0.24840012, 0.5686275)
 border_width_left = 2
@@ -8,4 +10,5 @@ border_width_right = 2
 border_width_bottom = 2
 
 [resource]
+Button/fonts/font = ExtResource("1_ealia")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_yskql")

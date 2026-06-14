@@ -10,5 +10,5 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	global_position.x = camera_tracking_position.global_position.x
 	global_position.z = camera_tracking_position.global_position.z
-	global_position.y = lerpf(global_position.y, camera_tracking_position.global_position.y, delta * 10)
+	global_position.y = lerpf(global_position.y, camera_tracking_position.global_position.y, 0.7)
 	

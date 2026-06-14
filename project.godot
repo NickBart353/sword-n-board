@@ -41,18 +41,19 @@ SceneManager="*uid://dc8dlqc3a2otc"
 ObjectPooler="*uid://clt0gkjpe4fwu"
 GameStateSaver="*uid://dftf640qysy2t"
 UuidGenerator="*uid://bokh3cfxtffys"
+CombatManager="*uid://p4p5pa1twqyx"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 
@@ -60,6 +61,7 @@ interactable=""
 Player=""
 Shield=""
 Chest="A group for chests with permanent storage"
+MobSpawn=""
 
 [gui]
 

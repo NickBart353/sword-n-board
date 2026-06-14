@@ -12,6 +12,8 @@ func _ready() -> void:
 
 func Enter():
 	super()
+	CombatManager.remove_unit()
+	#print("in combat: ", CombatManager.is_in_combat(), "; count: ", CombatManager.combat_units, "; state: ", name)
 	AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	death_timer.start()
 	if not death_timer.timeout.is_connected(_on_death_remove_timer_timeout):

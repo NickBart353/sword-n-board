@@ -144,6 +144,7 @@ func _process(delta: float) -> void:
 		UiController.update_manabar(MANA)
 
 func _physics_process(delta: float) -> void:
+	#print("in combat: ", CombatManager.is_in_combat(), "; count: ", CombatManager.combat_units)
 	input.get_input(delta)
 	movement.apply_movement(input, state_controller, ability, delta)
 	ability.apply_abilities(input, state_controller, movement, delta)

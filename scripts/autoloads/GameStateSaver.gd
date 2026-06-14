@@ -1,6 +1,7 @@
 extends Node
 
 #signal has_equipment_changed
+signal get_items_from_inventory
 
 var basic_data_timer: Timer
 var inventory_data_timer: Timer
@@ -14,14 +15,21 @@ var advanced_player_data: AdvancedPlayerData
 var player_item_dict: Dictionary = {}
 var chest_dict: Dictionary = {}
 
+var mobspawns: Array 
+var mobspawn_resource: MobSpawnResource
+
 #thread ids
 var current_player_item_thread_task_id: int
 var current_chest_thread_task_id: int
 var current_item_task_id: int
 
 func _ready() -> void:
+	CombatManager.left_combat.connect(_save_everything)
+	
 	player = get_tree().get_first_node_in_group("Player")
+	mobspawns = get_tree().get_nodes_in_group("MobSpawn")
 	basic_player_data = BasicPlayerData.new()
+	mobspawn_resource = MobSpawnResource.new()
 	
 	basic_data_timer = Timer.new()
 	basic_data_timer.autostart = false
@@ -39,10 +47,18 @@ func _ready() -> void:
 		inventory_data_timer.timeout.connect(_inventory_timer_timeout)
 	add_child(inventory_data_timer)
 
+func _save_everything():
+	_save_basic_player_data()
+	_get_latest_items()
+	_save_dead_enemies()
+
 func start():
 	basic_data_timer.start()
 
 func _basic_timer_timeout() -> void:
+	if CombatManager.is_in_combat():
+		return
+	
 	_save_basic_player_data()
 
 func _inventory_timer_timeout():
@@ -60,9 +76,10 @@ func _save_basic_player_data():
 	basic_player_data.spirit = 0
 	DataManager.save_basic_player_data(basic_player_data)
 
-func start_inventory_timer(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array):
-	inventory_data_timer.start()
+func _get_latest_items():
+	get_items_from_inventory.emit()
 
+func start_inventory_timer(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array, bypass_timer: bool = false):
 	player_item_dict["head"] = head
 	player_item_dict["body"] = body
 	player_item_dict["boots"] = boots
@@ -71,6 +88,14 @@ func start_inventory_timer(inventory: Array, head: Item, body: Item, boots: Item
 	player_item_dict["equipped_consumable_list"] = consumable_list
 	player_item_dict["equipped_consumable"] = consumable
 	player_item_dict["inventory"] = inventory
+	
+	if CombatManager.is_in_combat():
+		return
+	
+	if bypass_timer:
+		_inventory_timer_timeout()
+	else:
+		inventory_data_timer.start()
 
 # open inventory and change equipment - loot items from chest / lootbags - consume items - upgraded items from blacksmith / bought items from vendor
 func inventory_updated():
@@ -122,6 +147,16 @@ func inventory_updated():
 # worldloot / bossdrop
 func items_received():
 	pass
+
+func _save_dead_enemies():
+	var mobspawn_dict: Dictionary[String, bool] = {}
+	if not mobspawns:
+		mobspawns = get_tree().get_nodes_in_group("MobSpawn")
+	for spawn in mobspawns:
+		if spawn.is_my_mob_dead:
+			mobspawn_dict[spawn.spawn_id] = true
+	mobspawn_resource.mob_spawns = mobspawn_dict
+	DataManager.save_mobspawns(mobspawn_resource)
 
 func _get_proper_id(item: Item) -> String:
 	if not item:

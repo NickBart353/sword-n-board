@@ -8,6 +8,9 @@ const input_data_file: String = "input_settings.txt"
 const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
 
+const mobspawn_dir: String = "mobspawns/"
+const mobspawn_data: String = "mobspawns.tres"
+
 const chest_dir: String = "chests/"
 
 const item_dir: String = "items/"
@@ -193,6 +196,10 @@ func save_advanced_player_data(resource: AdvancedPlayerData):
 	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, advanced_player_data, player_dir)
 	WorkerThreadPool.add_task(callable)
 
+func save_mobspawns(resource: MobSpawnResource):
+	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, mobspawn_data, mobspawn_dir)
+	WorkerThreadPool.add_task(callable)
+
 func _atomic_resource_save(resource: Resource, resource_name: String, additional_dir: String):
 	_check_base_dir(additional_dir)
 	var temp_resource_path: String = "{0}{1}temp_{2}".format([base_path, additional_dir, resource_name])
@@ -219,6 +226,11 @@ func _rename_resource(resource_name: String, directory_path: String):
 func load_basic_player_data() -> BasicPlayerData:
 	_check_base_dir(player_dir)
 	var path: String = "{0}{1}save_{2}".format([base_path, player_dir, basic_player_data])
+	return _load_resource(path)
+
+func load_mobspawn_data() -> MobSpawnResource:
+	_check_base_dir(mobspawn_dir)
+	var path: String = "{0}{1}save_{2}".format([base_path, mobspawn_dir, mobspawn_data])
 	return _load_resource(path)
 
 func _load_resource(filepath: String) -> Resource:

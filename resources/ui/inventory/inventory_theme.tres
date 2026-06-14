@@ -1,5 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://dmk7hqj020c1"]
 
+[ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="1_ehoeq"]
 [ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="1_lvrj6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhsk0"]
@@ -72,7 +73,7 @@ Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/constants/h_separation = 4
 Button/constants/icon_max_width = 130
 Button/font_sizes/font_size = 30
-Button/fonts/font = ExtResource("1_lvrj6")
+Button/fonts/font = ExtResource("1_ehoeq")
 Button/styles/disabled = SubResource("StyleBoxFlat_xhsk0")
 Button/styles/hover = SubResource("StyleBoxFlat_4deqw")
 Button/styles/normal = SubResource("StyleBoxFlat_xhsk0")

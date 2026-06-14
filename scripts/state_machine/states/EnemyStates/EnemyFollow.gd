@@ -26,6 +26,7 @@ func Physics_Update(delta: float) -> void:
 	enemy.velocity = enemy.global_position.direction_to(player.global_position) * follow_speed
 	
 	if distance.length() > follow_range:
+		CombatManager.remove_unit()
 		Transitioned.emit(self, "Idle")
 		return
 	for ability in ability_states:

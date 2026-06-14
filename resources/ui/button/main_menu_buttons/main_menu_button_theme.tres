@@ -1,5 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://qoj85swhoife"]
 
+[ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="1_ag1p7"]
 [ext_resource type="StyleBox" uid="uid://d3c2hwmbctu56" path="res://resources/ui/button/button_disabled_stylbox.res" id="1_cpf31"]
 [ext_resource type="StyleBox" uid="uid://co08yvmrki05c" path="res://resources/ui/button/button_pressed_stylbox.res" id="2_ag1p7"]
 [ext_resource type="StyleBox" uid="uid://cmn71oae1qlgn" path="res://resources/ui/button/button_hover_stylbox.res" id="3_ec50j"]
@@ -29,6 +30,7 @@ Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
 Button/font_sizes/font_size = 45
+Button/fonts/font = ExtResource("1_ag1p7")
 Button/styles/disabled = ExtResource("1_cpf31")
 Button/styles/focus = ExtResource("2_ag1p7")
 Button/styles/hover = ExtResource("3_ec50j")
