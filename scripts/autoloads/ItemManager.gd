@@ -158,7 +158,6 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 
 func get_item_from_id(item_id: String) -> Item:
 	var item_instance: Item = ui_item_scene.instantiate()
-	print("id: ", item_id)
 	if MELEE_WEAPONS.get(item_id) != null:
 		return _get_item_data(MELEE_WEAPONS[item_id], item_instance)
 	if CONSUMABLES.get(item_id) != null:

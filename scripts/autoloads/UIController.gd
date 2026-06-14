@@ -14,6 +14,7 @@ signal added_item_to_inventory
 signal new_consumable
 signal player_consumed_item
 signal remove_consumable
+signal loaded_consumable_set
 
 signal item_container_interacted
 signal player_spawned_signal
@@ -91,3 +92,6 @@ func update_hud_healthbar(enemy: Enemy) -> void:
 
 func player_spawned():
 	player_spawned_signal.emit()
+
+func set_loaded_consumable(loaded_consumable: Item):
+	loaded_consumable_set.emit(loaded_consumable)

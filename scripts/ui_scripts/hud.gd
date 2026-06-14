@@ -27,6 +27,7 @@ func _ready() -> void:
 	UiController.new_mainhand.connect(_new_mainhand)
 	UiController.new_offhand.connect(_new_offhand)
 	UiController.updated_hud_healthbar.connect(_updated_hud_enemy_healthbar)
+	UiController.loaded_consumable_set.connect(_loaded_consumable_set)
 	
 	enemy_healthbar_container.hide()
 
@@ -62,7 +63,6 @@ func _set_player_consumables(consumables: Array, new_current_consumable: Item = 
 	if not current_consumable in consumables:
 		current_consumable = null
 		_update_player_consumable()
-		#print("inside not if hud")
 	player_consumables = consumables
 	for child in consumable_display.get_children():
 		child.queue_free()
@@ -80,7 +80,6 @@ func _set_player_consumables(consumables: Array, new_current_consumable: Item = 
 			else:
 				current_consumable = item
 				_update_player_consumable()
-				#print("inside late player cons hud")
 			consumable_counter += 1
 
 func _remove_player_consumable(item: Item):
@@ -98,7 +97,6 @@ func _remove_player_consumable(item: Item):
 	else:
 		_remove(item)
 	_update_player_consumable()
-	#print("after remove")
 
 func _remove(item : Item):
 	UiController.remove_consumable_from_inventory(item, false)
@@ -114,7 +112,6 @@ func _remove(item : Item):
 	rotate_consumable()
 
 func _update_player_consumable():
-	#print("update player cons in hud: ", current_consumable)
 	UiController.give_player_new_consumable(current_consumable)
 
 func _new_mainhand(item: Item):
@@ -154,3 +151,18 @@ func _on_enemy_healthbar_timer_timeout() -> void:
 		enemy_healthbar_container.hide()
 		last_enemy = null
 		current_enemy = null
+
+func _loaded_consumable_set(loaded_consumable: Item):
+	current_consumable_index = 0
+	for item in player_consumables:
+		if item.data.item_id == loaded_consumable.data.item_id:
+			break
+		current_consumable_index += 1
+	for child in consumable_display.get_children():
+		if child.item.data.item_id == loaded_consumable.data.item_id:
+			child.show()
+			current_consumable = loaded_consumable
+			break
+		else:
+			child.hide()
+	_update_player_consumable()

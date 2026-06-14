@@ -20,6 +20,8 @@ var player_mainhand: Item
 var player_offhand: Item
 var current_consumable: Item
 
+var loaded_consumable: Item
+
 var currently_selected_tab: int
 
 @onready var tab_bar: TabBar = $MarginContainer/Inventory/ItemContainer/MarginContainer/TabBar
@@ -109,8 +111,10 @@ func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
 		return 5
 	if inventory_item.item == current_consumable:
 		equip_consumable(inventory_item, inventory_item.item)
+		equip_consumable(inventory_item, inventory_item.item)
 		return 6
 	if inventory_item.item in player_consumables:
+		equip_consumable(inventory_item, inventory_item.item)
 		equip_consumable(inventory_item, inventory_item.item)
 		return 7
 	return 0
@@ -311,26 +315,31 @@ func _load_player_items():
 			3: player_boots = item
 			4: player_mainhand = item
 			5: player_offhand = item
-			6: current_consumable = item
+			6: 
+				current_consumable = item
+				loaded_consumable = item
 			7: player_consumables.append(item)
-		#if not item_row["equipped"] == 6:
-			#player_items.append(item)
-	player_consumables.erase(current_consumable)
-	#print("player items: ", player_items)
-	#print("player_mainhand: ", player_mainhand)
-	#print("current_consumable: ", current_consumable)
-	#print("player_consumables: ", player_consumables)
+		player_items.append(item)
 	
 	_refresh_items()
+	if loaded_consumable:
+		equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
+	UiController.set_loaded_consumable(loaded_consumable)
+	loaded_consumable = null
+
+func get_inventory_item_from_item_id(item_id: String) -> InventoryItem:
+	for inventory_item in item_grid.get_children():
+		if inventory_item.item.data.item_id == item_id:
+			return inventory_item
+	return null
 
 func _set_new_consumable(item: Item):
-	print("lollllll")
-	if item:
-		print(item.data.item_name)
 	current_consumable = item
+	#if current_consumable:
+		#print("set new: ", current_consumable.data.item_name)
+	#else:
+		#print("set new")
 	_inventory_updated()
 
 func _inventory_updated():
-	print("_inventory_updated")
-	#print("corruent_consumable: ", current_consumable)
 	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
