@@ -10,7 +10,7 @@ const sensitivity_data_file: String = "sensitivity_settings.txt"
 const shader_cache_information: String = "shader_cache_information.txt"
 
 const save_file_path: String = "savefiles/"
-const save_file_metada: String = "{0}.res"
+const save_file_metada: String = "{0}.tres"
 
 const mobspawn_dir: String = "mobspawns/"
 const mobspawn_data: String = "mobspawns.tres"
@@ -26,8 +26,8 @@ const item_db_path: String = "item_db.db"
 const item_db_path_backup: String = "item_db_backup.db"
 
 const player_dir: String = "player/"
-const basic_player_data: String = "basic_player_data.res"
-const advanced_player_data: String = "advanced_player_data.res"
+const basic_player_data: String = "basic_player_data.tres"
+const advanced_player_data: String = "advanced_player_data.tres"
 
 const item_table_name: String = "items"
 const item_table_dict: Dictionary = {
@@ -253,7 +253,7 @@ func _load_resource(filepath: String) -> Resource:
 	if ResourceLoader.exists(filepath):
 		return ResourceLoader.load(filepath)
 	else:
-		push_warning("No Basic Player Data found")
+		push_warning("No Data found in: ", filepath)
 		return null
 
 func load_player_items() -> Array:
@@ -301,7 +301,7 @@ func _save_items_to_db(prepared_item_list: Array):
 func create_new_savefile(savefile_metadata: SaveFileMetadata):
 	var filepath: String = "{0}{1}/".format([save_file_path, savefile_metadata.savefile_id])
 	_check_base_dir(filepath)
-	var save_path: String = "{0}{1}/{2}.res".format([base_path, filepath, savefile_metadata.savefile_id])
+	var save_path: String = "{0}{1}/{2}.tres".format([base_path, filepath, savefile_metadata.savefile_id])
 	ResourceSaver.save(savefile_metadata, save_path)
 	#_atomic_resource_save(savefile_metadata, filepath, save_file_metada.format([savefile_metadata.savefile_id]))
 	current_save_file_id = savefile_metadata.savefile_id
@@ -321,7 +321,7 @@ func load_savefiles() -> Array:
 	var resource_array: Array = []
 	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([base_path, save_file_path]))
 	for savefile in savefile_dir.get_directories():
-		resource_array.append(_load_resource("{0}{1}{2}/{3}.res".format([base_path, save_file_path, savefile, savefile])))
+		resource_array.append(_load_resource("{0}{1}{2}/{3}.tres".format([base_path, save_file_path, savefile, savefile])))
 	
 	return resource_array
 
@@ -330,9 +330,18 @@ func delete_savefile(id: String) -> bool:
 	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([base_path, save_file_path]))
 	for savefile in savefile_dir.get_directories():
 		if savefile == id:
+			_delete_folder_resursive("{0}{1}{2}/".format([base_path, save_file_path,savefile]))
 			savefile_dir.remove(id)
 			return true
 	return false
+
+func _delete_folder_resursive(path: String):
+	var savefile_dir: DirAccess = DirAccess.open(path)
+	for file in savefile_dir.get_files():
+		savefile_dir.remove(file)
+	for folder in savefile_dir.get_directories():
+		_delete_folder_resursive("{0}{1}".format([path,folder]))
+	savefile_dir.remove(path)
 
 func set_savefile_id(id: String):
 	current_save_file_id = id

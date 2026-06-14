@@ -10,6 +10,8 @@ signal savefile_deleted
 
 func set_savefiles(resource_array: Array):
 	for savefile_metadata in resource_array:
+		if savefile_metadata == null:
+			continue
 		var save_file: SaveFile = save_file_scene.instantiate()
 		save_file_container.add_child(save_file)
 		save_file.age_value_label.text = savefile_metadata.creation_date
