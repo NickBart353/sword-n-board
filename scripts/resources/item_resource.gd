@@ -13,7 +13,7 @@ extends Resource
 @export var item_sub_category: ITEM_SUB_CATEGORY
 @export var item_type: ITEM_TYPE
 
-var stack_size: int = 1
+@export var stack_size: int = 1
 var equipped: bool = false
 
 var unique_id: String
