@@ -58,7 +58,22 @@ func _save() -> void:
 	if current_save_task_id:
 		if not WorkerThreadPool.is_task_completed(current_save_task_id):
 			return
-	current_save_task_id = SaveFileManager.save_game(save_file_resource)
+	if CombatManager.is_in_combat():
+		return
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	if not player:
+		player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		return
+	save_file_resource.health = player.health
+	save_file_resource.stamina = player.stamina
+	save_file_resource.mana = player.mana
+	save_file_resource.position = player.global_position
+	save_file_resource.rotation = player.global_rotation
+	save_file_resource.spirit = player.spirit
+	
+	current_save_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
 
 func _save_everything():
 	_save()
@@ -67,6 +82,8 @@ func _save_everything():
 	#_save_dead_enemies()
 
 func start():
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
 	basic_data_timer.start()
 
 func _basic_timer_timeout() -> void:

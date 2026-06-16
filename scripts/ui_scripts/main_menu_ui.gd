@@ -11,8 +11,8 @@ signal game_started
 
 @onready var main_menu_button_container: PanelContainer = $MainMenuButtonContainer
 @onready var settings_menu: PanelContainer = $SettingsMenu
-@onready var save_file_screen: VBoxContainer = $SaveFileScreen
-@onready var new_game_screen: PanelContainer = $NewGameScreen
+@onready var save_file_screen: SaveFileScreen = $SaveFileScreen
+@onready var new_game_screen: NewGameScreen = $NewGameScreen
 
 func load_data():
 	settings_menu.load_settings()
@@ -28,15 +28,24 @@ func _ready() -> void:
 				child.pressed.connect(_play_click_sound)
 	if not $MainMenuButtonContainer/VBoxContainer/StartGame.pressed.is_connected(_pressed_start_button):
 		$MainMenuButtonContainer/VBoxContainer/StartGame.pressed.connect(_pressed_start_button)
+	
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 
 func _load_savefiles():
+	var last_file_id: String = SaveFileManager.load_last_savefile_id()
+	
 	var savefiles: Array = SaveFileManager.load_all_savefiles() #DataManager.load_savefiles()
 	if savefiles.is_empty():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
 	else:
-		$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.show()
+		if last_file_id != "":
+			$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
+	
 	save_file_screen.reset_savefiles()
 	save_file_screen.set_savefiles(savefiles)
 
@@ -93,7 +102,10 @@ func _on_save_file_screen_savefile_screen_closed() -> void:
 	save_file_screen.hide()
 
 func _on_save_file_screen_savefile_selected(id: String) -> void:
-	DataManager.set_savefile_id(id)
+	#DataManager.set_savefile_id(id)
+	var new_last_savefile: LastSaveFile = LastSaveFile.new()
+	new_last_savefile.last_savefile_id = id
+	SaveFileManager.set_savefile_id(new_last_savefile)
 	SceneLoader.load_scene(main_game_scene)
 
 func _on_save_file_screen_savefile_deleted(id: String) -> void:

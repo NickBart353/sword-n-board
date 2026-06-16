@@ -1,4 +1,4 @@
-extends VBoxContainer
+class_name SaveFileScreen extends VBoxContainer
 
 signal savefile_screen_closed
 signal savefile_selected

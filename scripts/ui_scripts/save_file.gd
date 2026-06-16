@@ -38,3 +38,11 @@ func _on_delete_hover_button_pressed() -> void:
 
 func _on_select_save_file_button_pressed() -> void:
 	selected.emit(savefile_id)
+
+
+func _on_select_save_file_button_mouse_entered() -> void:
+	pass#$PanelContainer/VBoxContainer/SelectSaveFileButton
+
+
+func _on_select_save_file_button_mouse_exited() -> void:
+	pass # Replace with function body.

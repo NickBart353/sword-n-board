@@ -1,6 +1,6 @@
 class_name SaveFile extends Resource
 
-@export var save_id: String
+@export var savefile_id: String
 @export var character_name: String
 @export var creation_date: String
 
