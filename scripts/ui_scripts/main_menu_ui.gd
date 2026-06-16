@@ -30,7 +30,7 @@ func _ready() -> void:
 		$MainMenuButtonContainer/VBoxContainer/StartGame.pressed.connect(_pressed_start_button)
 
 func _load_savefiles():
-	var savefiles: Array = DataManager.load_savefiles()
+	var savefiles: Array = SaveFileManager.load_all_savefiles() #DataManager.load_savefiles()
 	if savefiles.is_empty():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.hide()

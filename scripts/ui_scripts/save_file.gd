@@ -1,4 +1,4 @@
-class_name SaveFile extends PanelContainer
+class_name SaveFileSelector extends PanelContainer
 
 signal selected
 signal delete_savefile

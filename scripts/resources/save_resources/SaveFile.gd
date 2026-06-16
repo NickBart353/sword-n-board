@@ -24,3 +24,5 @@ class_name SaveFile extends Resource
 @export var dead_mobs: Dictionary[String, bool]
 
 @export var chest_items: Dictionary[String, Array]
+
+@export var world_events: Dictionary[String, bool]
