@@ -19,7 +19,6 @@ class_name SaveFile extends Resource
 @export var offhand: ItemData
 @export var consumable: ItemData
 @export var consumable_list: Array[ItemData]
-@export var equipped_consumable_list: Array[ItemData]
 
 @export var dead_mobs: Dictionary[String, bool]
 

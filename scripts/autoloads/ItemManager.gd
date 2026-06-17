@@ -170,6 +170,13 @@ func get_item_from_id(item_id: String) -> Item:
 		return _get_item_data(MATERIAL[item_id], item_instance)
 	return null
 
+func get_item_from_itemdata(itemdata: ItemData) -> Item:
+	if not itemdata:
+		return null
+	var item_instance: Item = get_item_from_id(itemdata.item_id)
+	item_instance.data = itemdata
+	return item_instance
+
 func _get_item_data(resource: Resource, item_instance: Item) -> Item:
 	var item_data: ItemData
 	item_data = resource

@@ -45,7 +45,7 @@ func _ready() -> void:
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
-	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
+	#GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
 	if player_items.is_empty():
 		player_items.append(ItemManager.get_item_from_id("10010"))
 	_refresh_items()
@@ -309,21 +309,30 @@ func _emit_update_player_items():
 	)
 
 func _load_player_items():
-	var item_rows: Array = DataManager.load_player_items()
-	for item_row in item_rows:
-		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
-		match item_row["equipped"]:
-			1: player_helmet = item
-			2: player_body = item
-			3: player_boots = item
-			4: player_mainhand = item
-			5: player_offhand = item
-			6: 
-				current_consumable = item
-				loaded_consumable = item
-			7: player_consumables.append(item)
-		player_items.append(item)
-	
+	#var item_rows: Array = DataManager.load_player_items()
+	#for item_row in item_rows:
+		#var item: Item = ItemManager.get_item_from_id(item_row.item_id)
+		#match item_row["equipped"]:
+			#1: player_helmet = item
+			#2: player_body = item
+			#3: player_boots = item
+			#4: player_mainhand = item
+			#5: player_offhand = item
+			#6: 
+				#current_consumable = item
+				#loaded_consumable = item
+			#7: player_consumables.append(item)
+		#player_items.append(item)
+	var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
+	player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
+	player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
+	player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
+	player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
+	player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
+	player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
+	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
+	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
+
 	_refresh_items()
 	if loaded_consumable:
 		equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
@@ -345,7 +354,11 @@ func _set_new_consumable(item: Item):
 	_inventory_updated()
 
 func _inventory_updated():
-	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
-
+	#GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+	_update_savefile_items()
 func _give_items_to_gamestatesaver():
-	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables, true)
+	#GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables, true)
+	_update_savefile_items()
+
+func _update_savefile_items():
+	GameStateSaver.update_savefile_items(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)

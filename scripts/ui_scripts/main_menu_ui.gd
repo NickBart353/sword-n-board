@@ -18,6 +18,11 @@ func load_data():
 	settings_menu.load_settings()
 
 func _ready() -> void:
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+	
 	_load_savefiles()
 	
 	for child in self.find_children("*", "Control", true, false):
@@ -28,23 +33,20 @@ func _ready() -> void:
 				child.pressed.connect(_play_click_sound)
 	if not $MainMenuButtonContainer/VBoxContainer/StartGame.pressed.is_connected(_pressed_start_button):
 		$MainMenuButtonContainer/VBoxContainer/StartGame.pressed.connect(_pressed_start_button)
-	
-	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 
 func _load_savefiles():
 	var last_file_id: String = SaveFileManager.load_last_savefile_id()
 	
 	var savefiles: Array = SaveFileManager.load_all_savefiles() #DataManager.load_savefiles()
+	print(savefiles)
+	print(savefiles.is_empty())
 	if savefiles.is_empty():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
 	else:
-		$MainMenuButtonContainer/VBoxContainer/StartGame.show()
+		$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
 		if last_file_id != "":
-			$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
+			$MainMenuButtonContainer/VBoxContainer/StartGame.show()
 	
 	save_file_screen.reset_savefiles()
 	save_file_screen.set_savefiles(savefiles)
@@ -85,12 +87,17 @@ func _on_new_game_pressed() -> void:
 	main_menu_button_container.hide()
 
 func _on_new_game_screen_create_new_game(character_name: String) -> void:
-	var savefile_metadata: SaveFileMetadata = SaveFileMetadata.new()
-	savefile_metadata.savefile_id = UuidGenerator.uuid4()
-	savefile_metadata.character_name = character_name
-	savefile_metadata.creation_date = Time.get_date_string_from_system()
-	
-	DataManager.create_new_savefile(savefile_metadata)
+	#var savefile_metadata: SaveFileMetadata = SaveFileMetadata.new()
+	#savefile_metadata.savefile_id = UuidGenerator.uuid4()
+	#savefile_metadata.character_name = character_name
+	#savefile_metadata.creation_date = Time.get_date_string_from_system()
+	var new_savefile: SaveFile = SaveFile.new()
+	new_savefile.savefile_id = UuidGenerator.uuid4()
+	new_savefile.character_name = character_name
+	new_savefile.creation_date = Time.get_date_string_from_system()
+	#DataManager.create_new_savefile(savefile_metadata)
+	SaveFileManager.create_savefile(new_savefile)
+	SaveFileManager.set_savefile_id(new_savefile.savefile_id)
 	SceneLoader.load_scene(main_game_scene)
 
 func _on_new_game_screen_new_game_screen_closed() -> void:
@@ -103,9 +110,7 @@ func _on_save_file_screen_savefile_screen_closed() -> void:
 
 func _on_save_file_screen_savefile_selected(id: String) -> void:
 	#DataManager.set_savefile_id(id)
-	var new_last_savefile: LastSaveFile = LastSaveFile.new()
-	new_last_savefile.last_savefile_id = id
-	SaveFileManager.set_savefile_id(new_last_savefile)
+	SaveFileManager.set_savefile_id(id)
 	SceneLoader.load_scene(main_game_scene)
 
 func _on_save_file_screen_savefile_deleted(id: String) -> void:

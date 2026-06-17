@@ -95,7 +95,7 @@ func _spawn_mobs(reset_mobs: bool = false):
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
-					print("spawn_name: ", mob_spawn.spawn_id)
+					#print("spawn_name: ", mob_spawn.spawn_id)
 					if not reset_mobs and mobspawn_resource:
 						if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) != null:
 							if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) == true:

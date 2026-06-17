@@ -34,7 +34,10 @@ func load_last_savefile_id() -> String:
 	
 	return ""
 
-func set_savefile_id(new_savefile_last_savefile: LastSaveFile):
+func set_savefile_id(new_savefile_last_savefile_id: String):
+	var new_savefile_last_savefile: LastSaveFile = LastSaveFile.new()
+	new_savefile_last_savefile.last_savefile_id = new_savefile_last_savefile_id
+	
 	var error: Error = ResourceSaver.save(new_savefile_last_savefile, last_savefile_path)
 	current_savefile_id = new_savefile_last_savefile.last_savefile_id
 	if not error == Error.OK:
@@ -60,17 +63,19 @@ func load_all_savefiles() -> Array:
 	var savefile_folder_dir: DirAccess = DirAccess.open(savefile_folder_path)
 	
 	for directory in savefile_folder_dir.get_directories():
+		print(directory)
 		resource_array.append(get_savefile_from_id(directory))
 	
 	return resource_array
 
 func get_savefile_from_id(resource_id: String) -> SaveFile:
-	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([savefile_path, resource_id]))
+	var savefile_dir: DirAccess = DirAccess.open("{0}{1}".format([savefile_folder_path, resource_id]))
 	if savefile_dir.file_exists(save_resource_name):
-		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, savefile_name])
+		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, save_resource_name])
+		push_warning("filepath: ", filepath)
 		return ResourceLoader.load(filepath)
 	if savefile_dir.file_exists(backup_resource_name):
-		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, savefile_name])
+		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, backup_resource_name])
 		push_error("did not find save resource: ", resource_id, " had to load backup instead")
 		return ResourceLoader.load(filepath)
 	push_error("did not find resource: ", resource_id)

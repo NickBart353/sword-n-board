@@ -26,6 +26,16 @@ var player: Player
 ### NEW ###
 var save_file_resource: SaveFile
 var current_save_task_id: int
+var current_savemanager_task_id: int
+
+var temp_inventory: Array[ItemData]
+var temp_head: ItemData
+var temp_body: ItemData
+var temp_boots: ItemData
+var temp_mainhand: ItemData
+var temp_offhand: ItemData
+var temp_consumable: ItemData
+var temp_consumable_list: Array[ItemData]
 
 func _ready() -> void:
 	CombatManager.left_combat.connect(_save_everything)
@@ -55,25 +65,62 @@ func load_save() -> void:
 	save_file_resource = SaveFileManager.load_savefile("")
 
 func _save() -> void:
-	if current_save_task_id:
-		if not WorkerThreadPool.is_task_completed(current_save_task_id):
+	_save_multithreaded()
+	#if current_save_task_id:
+		#if not WorkerThreadPool.is_task_completed(current_save_task_id):
+			#return
+	#if CombatManager.is_in_combat():
+		#return
+	#var callable: Callable = Callable(self, "_save_multithreaded")
+	#WorkerThreadPool.add_task(callable)
+
+func _save_multithreaded():
+	if current_savemanager_task_id:
+		if not WorkerThreadPool.is_task_completed(current_savemanager_task_id):
 			return
-	if CombatManager.is_in_combat():
-		return
 	if not save_file_resource:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	if not save_file_resource:
+		push_error("Savefile Resource not found while saving")
+		return
 	if not player:
 		player = get_tree().get_first_node_in_group("Player")
 	if not player:
+		push_error("Player not found while saving")
 		return
-	save_file_resource.health = player.health
-	save_file_resource.stamina = player.stamina
-	save_file_resource.mana = player.mana
+	save_file_resource.health = player.HEALTH
+	save_file_resource.stamina = player.STAMINA
+	save_file_resource.mana = player.MANA
 	save_file_resource.position = player.global_position
 	save_file_resource.rotation = player.global_rotation
-	save_file_resource.spirit = player.spirit
 	
-	current_save_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
+	save_file_resource.player_items = temp_inventory
+	save_file_resource.head = temp_head
+	save_file_resource.body = temp_body
+	save_file_resource.boots = temp_boots
+	save_file_resource.mainhand = temp_mainhand
+	save_file_resource.offhand = temp_offhand
+	save_file_resource.consumable = temp_consumable
+	save_file_resource.consumable_list = temp_consumable_list
+	#save_file_resource.spirit = player.spirit
+	
+	current_savemanager_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
+
+func update_savefile_items(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array):
+	temp_inventory.assign(inventory.map(get_itemdata))
+	temp_head = get_itemdata(head)
+	temp_body = get_itemdata(body)
+	temp_boots = get_itemdata(boots)
+	temp_mainhand = get_itemdata(mainhand)
+	temp_offhand = get_itemdata(offhand)
+	temp_consumable = get_itemdata(consumable)
+	temp_consumable_list.assign(consumable_list.map(get_itemdata))
+	_save()
+
+func get_itemdata(item: Item) -> ItemData:
+	if item:
+		return item.data
+	return null
 
 func _save_everything():
 	_save()
@@ -91,6 +138,21 @@ func _basic_timer_timeout() -> void:
 		return
 	
 	_save()
+
+func get_current_playeritems() -> Dictionary:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	return {
+		"inventory": save_file_resource.player_items,
+		"head": save_file_resource.head,
+		"body": save_file_resource.body,
+		"boots": save_file_resource.boots,
+		"mainhand": save_file_resource.mainhand,
+		"offhand": save_file_resource.offhand,
+		"consumable": save_file_resource.consumable,
+		"consumable_list": save_file_resource.consumable_list,
+	}
+
 
 #func _inventory_timer_timeout():
 	#player_item_dict = player_item_dict.duplicate(true)
@@ -181,13 +243,13 @@ func _basic_timer_timeout() -> void:
 func items_received():
 	pass
 
-#func _save_dead_enemies():
-	#var mobspawn_dict: Dictionary[String, bool] = {}
-	#mobspawns = get_tree().get_nodes_in_group("MobSpawn")
-	#for spawn in mobspawns:
-		#if spawn.is_my_mob_dead:
-			#mobspawn_dict[spawn.spawn_id] = true
-	#mobspawn_resource.mob_spawns = mobspawn_dict
+func _save_dead_enemies():
+	var mobspawn_dict: Dictionary[String, bool] = {}
+	var mobspawns: Array = get_tree().get_nodes_in_group("MobSpawn")
+	for spawn in mobspawns:
+		if spawn.is_my_mob_dead:
+			mobspawn_dict[spawn.spawn_id] = true
+	save_file_resource.dead_mobs = mobspawn_dict#.duplicate(true)
 	#DataManager.save_mobspawns(mobspawn_resource)
 
 #func _get_proper_id(item: Item) -> String:
