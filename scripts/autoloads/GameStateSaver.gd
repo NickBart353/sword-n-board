@@ -93,6 +93,7 @@ func _save_multithreaded():
 	save_file_resource.mana = player.MANA
 	save_file_resource.position = player.global_position
 	save_file_resource.rotation = player.global_rotation
+	#save_file_resource.spirit = player.spirit
 	
 	save_file_resource.player_items = temp_inventory
 	save_file_resource.head = temp_head
@@ -102,7 +103,6 @@ func _save_multithreaded():
 	save_file_resource.offhand = temp_offhand
 	save_file_resource.consumable = temp_consumable
 	save_file_resource.consumable_list = temp_consumable_list
-	#save_file_resource.spirit = player.spirit
 	
 	current_savemanager_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
 
@@ -139,6 +139,18 @@ func _basic_timer_timeout() -> void:
 	
 	_save()
 
+func get_player_data() -> Dictionary:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	return {
+		"HEALTH": save_file_resource.health,
+		"STAMINA": save_file_resource.stamina,
+		"MANA": save_file_resource.mana,
+		"global_position": save_file_resource.position,
+		"global_rotation": save_file_resource.rotation,
+	#save_file_resource.spirit = player.spirit
+	}
+
 func get_current_playeritems() -> Dictionary:
 	if not save_file_resource:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
@@ -152,7 +164,6 @@ func get_current_playeritems() -> Dictionary:
 		"consumable": save_file_resource.consumable,
 		"consumable_list": save_file_resource.consumable_list,
 	}
-
 
 #func _inventory_timer_timeout():
 	#player_item_dict = player_item_dict.duplicate(true)

@@ -332,6 +332,7 @@ func _load_player_items():
 	player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
 	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
 	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
+	print("inv: ", player_items)
 
 	_refresh_items()
 	if loaded_consumable:

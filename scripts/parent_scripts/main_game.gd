@@ -5,10 +5,10 @@ const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactab
 const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player_new.tscn")
 
 @onready var main_ui = $CanvasLayer/MainUI
-var player: CharacterBody3D
+var player: Player
 
 func _ready() -> void:
-	DataManager.connect_db()
+	#DataManager.connect_db()
 	_spawn_player()
 	
 	EventBus.close_container.connect(_close_container)
@@ -87,18 +87,20 @@ func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation 
 	instance.play()
 
 func _spawn_mobs(reset_mobs: bool = false):
-	var mobspawn_resource: MobSpawnResource
+	#var mobspawn_resource: MobSpawnResource
+	var mobspawn_data: Dictionary
 	if not reset_mobs:
-		mobspawn_resource = DataManager.load_mobspawn_data()
+		#mobspawn_resource = DataManager.load_mobspawn_data()
+		mobspawn_data = GameStateSaver.load_mobspawn_data()
 	
 	for mob_spawn_group in $MobSpawns.get_children():
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
 					#print("spawn_name: ", mob_spawn.spawn_id)
-					if not reset_mobs and mobspawn_resource:
-						if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) != null:
-							if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) == true:
+					if not reset_mobs and mobspawn_data:
+						if mobspawn_data.get(mob_spawn.spawn_id) != null:
+							if mobspawn_data.get(mob_spawn.spawn_id) == true:
 								continue
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
@@ -108,15 +110,15 @@ func _spawn_mobs(reset_mobs: bool = false):
 
 func _spawn_player():
 	player = player_scene.instantiate()
-	var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
+	#var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
+	var player_data: Dictionary = GameStateSaver.get_player_data()
 	add_child(player)
-	if basic_player_resource:
-		print("loaded res: ", basic_player_resource.position)
-		player.HEALTH = basic_player_resource.health
-		player.STAMINA = basic_player_resource.stamina
-		player.MANA = basic_player_resource.mana
-		player.global_position = basic_player_resource.position + Vector3(0.0 , 1.0, 0.0)
-		player.global_rotation = basic_player_resource.rotation
+	if player_data:
+		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
+		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
+		player.MANA = player_data.get("MANA") if player_data.get("MANA") else player.MAX_MANA
+		player.global_position = player_data.get("global_position") + Vector3(0.0 , 1.0, 0.0) if player_data.get("global_position") else $PlayerSpawn.global_position
+		player.global_rotation = player_data.get("global_rotation") if player_data.get("global_rotation") else Vector3.ZERO
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = $PlayerSpawn.global_position

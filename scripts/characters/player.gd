@@ -94,6 +94,7 @@ var rotation_modifier: float = 1
 var detected_enemy: Enemy
 
 func _ready() -> void:
+	print("player ready")
 	###DEBUG
 	for child in mainhand.get_children():
 		child.queue_free()

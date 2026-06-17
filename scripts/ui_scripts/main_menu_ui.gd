@@ -114,5 +114,5 @@ func _on_save_file_screen_savefile_selected(id: String) -> void:
 	SceneLoader.load_scene(main_game_scene)
 
 func _on_save_file_screen_savefile_deleted(id: String) -> void:
-	print("delete: ", DataManager.delete_savefile(id))
+	#print("delete: ", DataManager.delete_savefile(id))
 	_load_savefiles()
