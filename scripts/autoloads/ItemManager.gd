@@ -180,6 +180,7 @@ func get_item_from_itemdata(itemdata: ItemData) -> Item:
 func _get_item_data(resource: Resource, item_instance: Item) -> Item:
 	var item_data: ItemData
 	item_data = resource
+	item_data.unique_id = UuidGenerator.uuid4()
 	item_instance.data = item_data.duplicate(true)
 	return item_instance
 

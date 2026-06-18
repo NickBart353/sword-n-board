@@ -101,26 +101,34 @@ func sort_by_cat_and_name(a, b) -> bool:
 	return false
 
 func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
-	if inventory_item.item == player_helmet:
-		return 1
-	if inventory_item.item == player_body:
-		return 2
-	if inventory_item.item == player_boots:
-		return 3
-	if inventory_item.item == player_mainhand:
-		equip_weapon(inventory_item.item, LEFT, inventory_item)
-		return 4
-	if inventory_item.item == player_offhand:
-		equip_weapon(inventory_item.item, RIGHT, inventory_item)
-		return 5
-	if inventory_item.item == current_consumable:
-		equip_consumable(inventory_item, inventory_item.item)
-		equip_consumable(inventory_item, inventory_item.item)
-		return 6
-	if inventory_item.item in player_consumables:
-		equip_consumable(inventory_item, inventory_item.item)
-		equip_consumable(inventory_item, inventory_item.item)
-		return 7
+	if player_helmet:
+		if inventory_item.item.data.unique_id == player_helmet.data.unique_id:
+			return 1
+	if player_body:
+		if inventory_item.item.data.unique_id == player_body.data.unique_id:
+			return 2
+	if player_boots:
+		if inventory_item.item.data.unique_id == player_boots.data.unique_id:
+			return 3
+	if player_mainhand:
+		if inventory_item.item.data.unique_id == player_mainhand.data.unique_id:
+			equip_weapon(inventory_item.item, LEFT, inventory_item)
+			return 4
+	if player_offhand:
+		if inventory_item.item.data.unique_id == player_offhand.data.unique_id:
+			equip_weapon(inventory_item.item, RIGHT, inventory_item)
+			return 5
+	if current_consumable:
+		if inventory_item.item.data.unique_id == current_consumable.data.unique_id:
+			equip_consumable(inventory_item, inventory_item.item)
+			equip_consumable(inventory_item, inventory_item.item)
+			return 6
+	if player_consumables:
+		for item in player_consumables:
+			if inventory_item.item.data.unique_id == item.data.unique_id:
+				equip_consumable(inventory_item, inventory_item.item)
+				#equip_consumable(inventory_item, inventory_item.item)
+				return 7
 	return 0
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
@@ -320,12 +328,12 @@ func _load_player_items():
 	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
 	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
 	#print("inv: ", player_items)
-	loaded_consumable = current_consumable
 	_refresh_items()
-	if loaded_consumable:
-		equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
-	UiController.set_loaded_consumable(loaded_consumable)
-	loaded_consumable = null
+	#loaded_consumable = current_consumable
+	#if loaded_consumable:
+		#equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
+	#UiController.set_loaded_consumable(loaded_consumable)
+	#loaded_consumable = null
 
 func get_inventory_item_from_item_id(item_id: String) -> InventoryItem:
 	for inventory_item in item_grid.get_children():
