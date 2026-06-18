@@ -9,6 +9,7 @@ var player: Player
 
 func _ready() -> void:
 	#DataManager.connect_db()
+	_spawn_mobs()
 	_spawn_player()
 	
 	EventBus.close_container.connect(_close_container)
@@ -18,7 +19,6 @@ func _ready() -> void:
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	
-	_spawn_mobs()
 	
 	main_ui.update_items.connect(update_items)
 	GameStateSaver.start()
@@ -102,6 +102,7 @@ func _spawn_mobs(reset_mobs: bool = false):
 						if mobspawn_data.get(mob_spawn.spawn_id) != null:
 							if mobspawn_data.get(mob_spawn.spawn_id) == true:
 								continue
+								mob_spawn.is_my_mob_dead = true
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
 						mob_spawn.add_child(mob_instance)
@@ -112,7 +113,9 @@ func _spawn_player():
 	player = player_scene.instantiate()
 	#var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
 	var player_data: Dictionary = GameStateSaver.get_player_data()
+	print(SaveFileManager.current_savefile_id)
 	add_child(player)
+	print("spaning player")
 	if player_data:
 		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
 		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA

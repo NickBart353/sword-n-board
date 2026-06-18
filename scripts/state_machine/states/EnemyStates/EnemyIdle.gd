@@ -41,8 +41,8 @@ func Physics_Update(delta: float) -> void:
 		enemy.look_at(enemy.global_position + wander_direction, Vector3.UP, true)
 	
 	enemy.velocity = wander_direction * wander_speed
-	
 	distance = player.global_position - enemy.global_position
+	
 	if enemy.global_position.distance_to(enemy.origin_position) > allowed_distance_to_origin:
 		Transitioned.emit(self, "Return")
 		return

@@ -1,5 +1,7 @@
 extends Node
 
+signal new_savefile_loaded
+
 const user_path: String = "user://"
 
 const savefile_path: String = "savefiles/"
@@ -31,6 +33,7 @@ func load_last_savefile_id() -> String:
 	if ResourceLoader.exists(last_savefile_path):
 		savefile = ResourceLoader.load(last_savefile_path) as LastSaveFile
 		current_savefile_id = savefile.last_savefile_id
+		return current_savefile_id
 	
 	return ""
 
@@ -40,6 +43,7 @@ func set_savefile_id(new_savefile_last_savefile_id: String):
 	
 	var error: Error = ResourceSaver.save(new_savefile_last_savefile, last_savefile_path)
 	current_savefile_id = new_savefile_last_savefile.last_savefile_id
+	new_savefile_loaded.emit(current_savefile_id)
 	if not error == Error.OK:
 		push_error("Error while saving last filepath resource")
 	return error
@@ -52,6 +56,7 @@ func create_savefile(resource: SaveFile):
 	_atomic_resource_save(resource, path_to_savefile, savefile_name)
 
 func load_savefile(savefile_id: String) -> SaveFile:
+	print("loading: ", current_savefile_id)
 	var user_dir: DirAccess = DirAccess.open(savefile_folder_path)
 	if user_dir.get_directories().has(savefile_id):
 		path_to_savefile = "{0}{1}/".format([savefile_folder_path, savefile_id])
@@ -63,7 +68,6 @@ func load_all_savefiles() -> Array:
 	var savefile_folder_dir: DirAccess = DirAccess.open(savefile_folder_path)
 	
 	for directory in savefile_folder_dir.get_directories():
-		print(directory)
 		resource_array.append(get_savefile_from_id(directory))
 	
 	return resource_array
@@ -81,7 +85,8 @@ func get_savefile_from_id(resource_id: String) -> SaveFile:
 	push_error("did not find resource: ", resource_id)
 	return null
 
-func delete_savefile():
+func delete_savefile_from_id(savefile_id: String) -> void:
+	print("deleting: ", savefile_id)
 	pass
 
 func save_game(resource: SaveFile):

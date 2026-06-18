@@ -32,3 +32,9 @@ func Update(_delta: float) -> void:
 	super(_delta)
 	if enemy.health <= enemy.MIN_HEALTH and name != "Dead":
 		Transitioned.emit(self, "Dead")
+
+func Physics_Update(_delta: float) -> void:
+	super(_delta)
+	if not player:
+		player = get_tree().get_first_node_in_group("Player")
+		return

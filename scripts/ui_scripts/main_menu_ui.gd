@@ -38,8 +38,7 @@ func _load_savefiles():
 	var last_file_id: String = SaveFileManager.load_last_savefile_id()
 	
 	var savefiles: Array = SaveFileManager.load_all_savefiles() #DataManager.load_savefiles()
-	print(savefiles)
-	print(savefiles.is_empty())
+	#print(savefiles)
 	if savefiles.is_empty():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
@@ -47,6 +46,8 @@ func _load_savefiles():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
 		if last_file_id != "":
 			$MainMenuButtonContainer/VBoxContainer/StartGame.show()
+		else:
+			$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
 	
 	save_file_screen.reset_savefiles()
 	save_file_screen.set_savefiles(savefiles)
@@ -62,6 +63,7 @@ func _pressed_start_button():
 	game_started.emit()
 
 func _on_start_game_pressed() -> void:
+	SaveFileManager.set_savefile_id(SaveFileManager.current_savefile_id)
 	SceneLoader.load_scene(main_game_scene)
 
 func _on_settings_pressed() -> void:
@@ -115,4 +117,5 @@ func _on_save_file_screen_savefile_selected(id: String) -> void:
 
 func _on_save_file_screen_savefile_deleted(id: String) -> void:
 	#print("delete: ", DataManager.delete_savefile(id))
+	SaveFileManager.delete_savefile_from_id(id)
 	_load_savefiles()
