@@ -23,6 +23,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_kwdn5")
+theme_override_font_sizes/font_size = 20
 button_mask = 3
 text = "aaaaaaahhhh teeeeeeest reeeeeee"
 icon = ExtResource("2_l452j")
@@ -40,7 +41,6 @@ offhand_equipped_marker = NodePath("OffhandEquipped")
 count_label = NodePath("Label")
 
 [node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -51,7 +51,7 @@ func _ready() -> void:
 		#player_items.append(ItemManager.get_item_from_id("10010"))
 	_refresh_items()
 
-func _refresh_items():
+func _refresh_items(initial_reload: bool = false):
 	sort_player_items()
 	for inventory_item in item_grid.get_children():
 		inventory_item.queue_free()
@@ -63,13 +63,14 @@ func _refresh_items():
 		inventory_item.set_data(item)
 		item_grid.add_child(inventory_item)
 		#inventory_item.set_equipped_value(_is_inventory_item_equipped(inventory_item))
+		#if initial_reload:
 		_is_inventory_item_equipped(inventory_item)
 	
-	for consumable in player_consumables:
-		for item in player_items:
-			if consumable.data.item_id == item.data.item_id:
-				consumable.data.stack_size = item.data.stack_size
-				break
+	#for consumeable in player_consumables:
+		#for item in player_items:
+			#if consumable.data.item_id == item.data.item_id:
+				#consumable.data.stack_size = item.data.stack_size
+				#break
 	_on_tab_bar_tab_changed(currently_selected_tab)
 	_emit_update_player_items()
 	_inventory_updated()
@@ -103,30 +104,41 @@ func sort_by_cat_and_name(a, b) -> bool:
 func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
 	if player_helmet:
 		if inventory_item.item.data.unique_id == player_helmet.data.unique_id:
+			player_helmet = inventory_item.item
 			return 1
 	if player_body:
 		if inventory_item.item.data.unique_id == player_body.data.unique_id:
+			player_body = inventory_item.item
 			return 2
 	if player_boots:
 		if inventory_item.item.data.unique_id == player_boots.data.unique_id:
+			player_boots = inventory_item.item
 			return 3
 	if player_mainhand:
 		if inventory_item.item.data.unique_id == player_mainhand.data.unique_id:
+			player_mainhand = inventory_item.item
 			equip_weapon(inventory_item.item, LEFT, inventory_item)
 			return 4
 	if player_offhand:
 		if inventory_item.item.data.unique_id == player_offhand.data.unique_id:
+			player_offhand = inventory_item.item
 			equip_weapon(inventory_item.item, RIGHT, inventory_item)
 			return 5
 	if current_consumable:
 		if inventory_item.item.data.unique_id == current_consumable.data.unique_id:
+			current_consumable = inventory_item.item
+			inventory_item.mark_consumable()
+			_emit_update_player_items()
 			equip_consumable(inventory_item, inventory_item.item)
-			equip_consumable(inventory_item, inventory_item.item)
+			#equip_consumable(inventory_item, inventory_item.item)
 			return 6
 	if player_consumables:
 		for item in player_consumables:
 			if inventory_item.item.data.unique_id == item.data.unique_id:
-				equip_consumable(inventory_item, inventory_item.item)
+				item = inventory_item.item
+				inventory_item.mark_consumable()
+				_emit_update_player_items()
+				#equip_consumable(inventory_item, inventory_item.item)
 				#equip_consumable(inventory_item, inventory_item.item)
 				return 7
 	return 0
@@ -306,10 +318,10 @@ func _add_item_to_inventory(item: Item):
 	_refresh_items()
 
 func _emit_update_player_items():
-	if current_consumable:
-		UiController.update_player_consumables(player_consumables, current_consumable.duplicate(true) as Item)
-	else:
-		UiController.update_player_consumables(player_consumables)
+	#if current_consumable:
+		#UiController.update_player_consumables(player_consumables, current_consumable.duplicate(true) as Item)
+	#else:
+	UiController.update_player_consumables(player_consumables)
 	update_player_items.emit(player_helmet,
 		player_body,
 		player_boots,
@@ -328,7 +340,7 @@ func _load_player_items():
 	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
 	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
 	#print("inv: ", player_items)
-	_refresh_items()
+	_refresh_items(true)
 	#loaded_consumable = current_consumable
 	#if loaded_consumable:
 		#equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
@@ -342,7 +354,7 @@ func get_inventory_item_from_item_id(item_id: String) -> InventoryItem:
 	return null
 
 func _set_new_consumable(item: Item):
-	current_consumable = item
+	#current_consumable = item
 	#if current_consumable:
 		#print("set new: ", current_consumable.data.item_name)
 	#else:

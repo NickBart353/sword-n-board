@@ -5,11 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bplsbvjd8ymix" path="res://scenes/ui_scenes/save_file_selector.tscn" id="2_q1144"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evpsf"]
-bg_color = Color(0.20784314, 0.20784314, 0.20784314, 0.39607844)
+bg_color = Color(0.20784314, 0.20784314, 0.20784314, 0)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="SaveFileScreen" type="VBoxContainer" unique_id=1558532921]
 anchors_preset = -1

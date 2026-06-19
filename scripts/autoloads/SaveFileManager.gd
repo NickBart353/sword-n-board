@@ -85,9 +85,24 @@ func get_savefile_from_id(resource_id: String) -> SaveFile:
 	push_error("did not find resource: ", resource_id)
 	return null
 
-func delete_savefile_from_id(savefile_id: String) -> void:
-	print("deleting: ", savefile_id)
-	pass
+func delete_savefile_from_id(savefile_id: String) -> bool:
+	var savefile_dir: DirAccess = DirAccess.open(savefile_folder_path)
+	if savefile_dir.dir_exists(savefile_id):
+		var savefolder_dir: DirAccess = DirAccess.open("{0}{1}".format([savefile_folder_path, savefile_id]))
+		print(savefile_dir.get_open_error())
+		for file in savefolder_dir.get_files():
+			savefolder_dir.remove(file)
+		savefile_dir.remove(savefile_id)
+		_remove_last_file(savefile_id)
+		return true
+	return false
+
+func _remove_last_file(savefile_id: String = ""):
+	var savefile_dir: DirAccess = DirAccess.open(savefile_folder_path)
+	if savefile_dir.file_exists(last_savefile_name):
+		var resource: LastSaveFile = ResourceLoader.load("{0}{1}".format([savefile_folder_path, last_savefile_name]))
+		if resource.last_savefile_id == savefile_id:
+			savefile_dir.remove(last_savefile_name)
 
 func save_game(resource: SaveFile):
 	var callable: Callable = Callable(self, "_atomic_resource_save").bind(resource, path_to_savefile, savefile_name)
