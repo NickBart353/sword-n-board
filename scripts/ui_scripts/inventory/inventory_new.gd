@@ -46,7 +46,6 @@ func _ready() -> void:
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
 	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
-	#GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
 	#if player_items.is_empty():
 		#player_items.append(ItemManager.get_item_from_id("10010"))
 	_refresh_items()
