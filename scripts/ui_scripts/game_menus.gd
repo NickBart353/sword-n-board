@@ -55,8 +55,10 @@ func _process(_delta: float) -> void:
 			_escape_menu()
 		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
+			GameStateSaver.save_game()
 		if Input.is_action_just_pressed("Scroll Consumable"):
 			_rotate_consumable()
+			GameStateSaver.save_game()
 
 func _inventory():
 	if not pause_menu_open:

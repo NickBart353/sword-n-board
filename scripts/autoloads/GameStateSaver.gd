@@ -149,6 +149,9 @@ func _basic_timer_timeout() -> void:
 	
 	_save()
 
+func save_game() -> void:
+	_save()
+
 func get_player_data() -> Dictionary:
 	if not save_file_resource:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)

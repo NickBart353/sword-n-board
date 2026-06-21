@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://dbrata4hx5nls"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_1ei8s"]
+[ext_resource type="Script" uid="uid://b14l8ajdcbsge" path="res://scripts/ui_scripts/credits.gd" id="1_fgiw0"]
+[ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_mbud6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ei8s"]
+font_size = 90
+
+[node name="Credits" type="PanelContainer" unique_id=2053925314]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+script = ExtResource("1_fgiw0")
+scroll_speed = 1.0
+
+[node name="Scrollcontainer" type="ScrollContainer" parent="." unique_id=1387806093]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+
+[node name="MainContainer" type="VBoxContainer" parent="Scrollcontainer" unique_id=788568672]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Scrollcontainer/MainContainer" unique_id=1196996861]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sword-n-Board"
+label_settings = SubResource("LabelSettings_1ei8s")
+horizontal_alignment = 1
+
+[node name="Table" type="HBoxContainer" parent="Scrollcontainer/MainContainer" unique_id=755854705]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+
+[node name="JobLabel" type="VBoxContainer" parent="Scrollcontainer/MainContainer/Table" unique_id=1685020575]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+
+[node name="ArtLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=212769730]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Art:"
+
+[node name="SoundLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=259538379]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Sound:"
+
+[node name="GameSystemsDeveloperLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=461418004]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Game Systems:"
+
+[node name="InsiprationsLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=1007113524]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Inspiration:"
+
+[node name="QALabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=1878645777]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Quality Assurance:"
+
+[node name="LeadDesignerLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=1648486583]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Lead Designer:"
+
+[node name="CEOLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/JobLabel" unique_id=1376140966]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Chief Executive Officer:"
+
+[node name="ContributorLabel" type="VBoxContainer" parent="Scrollcontainer/MainContainer/Table" unique_id=1930266670]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+
+[node name="ArtLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=1497935742]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Marius Jung, Nicholas Bartlett, @Zsky_01 https://www.patreon.com/Zsky, KayKit: https://kaylousberg.itch.io/kaykit, Kenney: https://kenney.nl/assets/animated-characters-1, Poly Haven: https://polyhaven.com/a/autumn_field_puresky, Sketchfab, "
+autowrap_mode = 2
+
+[node name="SoundLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=234011402]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Sound:"
+
+[node name="GameSystemsDeveloperLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=788817195]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Game Systems:"
+
+[node name="InsiprationsLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=1028147926]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Inspiration:"
+
+[node name="QALabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=1694685435]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Quality Assurance:"
+
+[node name="LeadDesignerLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=212213870]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Lead Designer:"
+
+[node name="CEOLabel" type="Label" parent="Scrollcontainer/MainContainer/Table/ContributorLabel" unique_id=915872344]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+text = "Chief Executive Officer:"
+
+[node name="Godot" type="Label" parent="Scrollcontainer/MainContainer" unique_id=1003234080]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Godot Game Engine - MIT License"
+label_settings = SubResource("LabelSettings_1ei8s")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Scrollcontainer/MainContainer" unique_id=2116681358]
+layout_mode = 2
+texture = ExtResource("3_mbud6")
+expand_mode = 4

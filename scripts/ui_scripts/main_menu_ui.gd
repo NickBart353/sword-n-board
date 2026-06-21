@@ -13,6 +13,7 @@ signal game_started
 @onready var settings_menu: PanelContainer = $SettingsMenu
 @onready var save_file_screen: SaveFileScreen = $SaveFileScreen
 @onready var new_game_screen: NewGameScreen = $NewGameScreen
+@onready var credits: CreditScreen = $Credits
 
 func load_data():
 	settings_menu.load_settings()
@@ -71,7 +72,9 @@ func _on_settings_pressed() -> void:
 	settings_menu.show()
 
 func _on_credits_pressed() -> void:
-	pass # Show all credits
+	main_menu_button_container.hide()
+	credits.show()
+	credits.start_scrolling()
 
 func _on_exit_game_pressed() -> void:
 	get_tree().quit()
@@ -119,3 +122,7 @@ func _on_save_file_screen_savefile_deleted(id: String) -> void:
 	#print("delete: ", DataManager.delete_savefile(id))
 	SaveFileManager.delete_savefile_from_id(id)
 	_load_savefiles()
+
+func _on_credits_leave_credits() -> void:
+	main_menu_button_container.show()
+	credits.hide()
