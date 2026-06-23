@@ -17,6 +17,7 @@
 [ext_resource type="Theme" uid="uid://dhredoyg6oik8" path="res://resources/ui/hud/hud_theme.tres" id="12_25rgj"]
 [ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="13_evact"]
 [ext_resource type="PackedScene" uid="uid://bt7gpwk7b4gi0" path="res://scenes/ui_scenes/loot_container/loot_container.tscn" id="14_u26ox"]
+[ext_resource type="PackedScene" uid="uid://duiwbm8tqdkrc" path="res://scenes/ui_scenes/chest_item_container.tscn" id="18_shs7f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evact"]
 content_margin_top = 10.0
@@ -256,6 +257,9 @@ visible = false
 visible = false
 
 [node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("6_l4c86")]
+visible = false
+
+[node name="ChestItemContainer" parent="." unique_id=834840540 instance=ExtResource("18_shs7f")]
 visible = false
 
 [connection signal="timeout" from="Hud/EnemyHealthbarContainer/EnemyHealthbarTimer" to="Hud" method="_on_enemy_healthbar_timer_timeout"]

@@ -10,6 +10,7 @@ signal set_player_consumables
 signal new_mainhand
 signal new_offhand
 signal added_item_to_inventory
+signal removed_item_from_inventory
 
 signal new_consumable
 signal player_consumed_item
@@ -83,6 +84,9 @@ func interact_with_loot_container(item_container: ItemContainer):
 
 func add_item_to_inventory(item: Item):
 	added_item_to_inventory.emit(item)
+
+func remove_item_from_inventory(item: Item):
+	removed_item_from_inventory.emit(item)
 
 func is_ui_open() -> bool:
 	return ui_open

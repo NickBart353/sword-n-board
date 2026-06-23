@@ -1,4 +1,4 @@
-class_name ChestItemContainer extends HBoxContainer
+class_name ChestItemContainer extends VBoxContainer
 
 @onready var chest_items: GridContainer = $ChestItems/ChestItems/PanelContainer/ScrollContainer/GridContainer
 @onready var player_item_container: GridContainer = $PlayerItems/PlayerItems/PanelContainer/ScrollContainer/GridContainer
@@ -10,10 +10,14 @@ var connected_container: ItemContainer
 
 func set_data(item_container: ItemContainer):
 	connected_container = item_container
+	loot_items = item_container.items
+	_refresh_chest_items()
+
+
+func _refresh_chest_items() -> void:
 	for inventory_item in chest_items.get_children():
 		inventory_item.queue_free()
 	
-	loot_items = item_container.items
 	sort_items(loot_items)
 	
 	for item in loot_items:
@@ -68,5 +72,7 @@ func activate_player_item(inventory_item: InventoryItem, item: Item, _mousebutto
 	if player_items.size() == success_checker_count:
 		print("Error while looting item: {0}".format(item.data.item_id))
 	inventory_item.queue_free()
-	#UiController.add_item_to_inventory(item)
-	#REMOVE ITEM FROM INVENTORY
+	loot_items.append(item)
+	connected_container.update_my_items(loot_items)
+	UiController.remove_item_from_inventory(item)
+	_refresh_chest_items()

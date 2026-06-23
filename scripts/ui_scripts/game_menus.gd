@@ -8,6 +8,7 @@ signal return_to_main_menu
 @onready var pause_menu: Control = $PauseMenu
 @onready var settings_menu: Control = $SettingsMenu
 @onready var loot_container: LootContainer = $LootContainer
+@onready var chest_item_container: ChestItemContainer = $ChestItemContainer
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -25,6 +26,7 @@ func _ready() -> void:
 	pause_menu.hide()
 	settings_menu.hide()
 	loot_container.hide()
+	chest_item_container.hide()
 	
 	is_input_blocked = false
 	pause_menu_open = false
@@ -43,6 +45,7 @@ func _ready() -> void:
 	UiController.character_panel.connect(_character_panel)
 	UiController.escape_menu_signal.connect(_escape_menu)
 	UiController.item_container_interacted.connect(_open_loot_container)
+	UiController #CONNECT OPEN CHEST
 	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)

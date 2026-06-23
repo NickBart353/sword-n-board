@@ -43,6 +43,7 @@ func _ready() -> void:
 	#player_items = ItemManager.load_debug_items()
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
+	UiController.removed_item_from_inventory.connect(_remove_item_from_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
 	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
@@ -314,6 +315,18 @@ func _add_item_to_inventory(item: Item):
 		player_items.append(item)
 	else:
 		player_items[find_index].data.stack_size += item.data.stack_size
+	_refresh_items()
+
+func _remove_item_from_inventory(item: Item):
+	var find_index: int = -1
+	for i in range(player_items.size()):
+		if player_items[i].data.unique_id == item.data.unique_id:
+			find_index = i
+			break
+	if find_index == -1:
+		push_error("couldnt remove item {0} from inventory".format([item.data.item_name]))
+	else:
+		player_items.remove_at(find_index)
 	_refresh_items()
 
 func _emit_update_player_items():
