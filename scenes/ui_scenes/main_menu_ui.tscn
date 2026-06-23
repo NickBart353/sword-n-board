@@ -40,10 +40,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wygx0")
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuButtonContainer" unique_id=2043017059]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_kosvu")
 theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="MainMenuButtonContainer/VBoxContainer" unique_id=147847312]
 layout_mode = 2
+theme = ExtResource("1_kosvu")
 text = "Sword-n-Board"
 label_settings = SubResource("LabelSettings_3kjxp")
 horizontal_alignment = 1
@@ -55,6 +57,7 @@ text = "Continue Game"
 
 [node name="NewGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1621236908]
 layout_mode = 2
+theme = ExtResource("1_kosvu")
 text = "New Game"
 
 [node name="LoadGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]

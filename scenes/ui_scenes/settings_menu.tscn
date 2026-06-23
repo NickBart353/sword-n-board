@@ -133,6 +133,7 @@ script = ExtResource("2_ix44y")
 
 [node name="SettingsOrganizer" type="VBoxContainer" parent="." unique_id=291318526]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 
 [node name="Settings" type="Label" parent="SettingsOrganizer" unique_id=2054322000]
 layout_mode = 2
@@ -144,6 +145,7 @@ horizontal_alignment = 1
 [node name="SettingsContainer" type="MarginContainer" parent="SettingsOrganizer" unique_id=1414671071]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_7gtp0")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -158,6 +160,7 @@ tab_1/disabled = true
 
 [node name="Audio" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=546489574]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -166,6 +169,7 @@ metadata/_tab_index = 0
 
 [node name="Audio" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio" unique_id=1875880836]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
@@ -307,6 +311,7 @@ alignment = 1
 [node name="Input" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=553164817]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -315,6 +320,7 @@ metadata/_tab_index = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input" unique_id=1020122838]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 
 [node name="Input" type="VBoxContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer" unique_id=2089125721]
 layout_mode = 2
@@ -332,6 +338,7 @@ horizontal_alignment = 1
 
 [node name="MouseInput" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=228871117]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
@@ -352,6 +359,7 @@ value = 1.0
 
 [node name="Seperator" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=946805782]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/margin_top = 30
 theme_override_constants/margin_bottom = 30
 
@@ -366,6 +374,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme = ExtResource("1_7gtp0")
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
@@ -376,6 +385,7 @@ one_shot = true
 
 [node name="BottomButtons" type="HBoxContainer" parent="SettingsOrganizer" unique_id=1685498841]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 theme_override_constants/separation = 50
 alignment = 1
 
@@ -414,10 +424,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1xi2f")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_7gtp0")
 theme_override_constants/separation = 20
 
 [node name="UnchangedSettingsLabel" type="Label" parent="UnsavedSettingsPopup/_" unique_id=244928206]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "There are still unsaved changes.
 Save?"
 label_settings = SubResource("LabelSettings_1xi2f")
@@ -433,10 +445,12 @@ theme_override_constants/separation = 100
 
 [node name="SaveUnchangedButton" type="Button" parent="UnsavedSettingsPopup/_/_" unique_id=1358042538]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Save"
 
 [node name="CancelUnchangedButton" type="Button" parent="UnsavedSettingsPopup/_/_" unique_id=1984622401]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Cancel"
 
 [node name="KeybindPopup" type="PanelContainer" parent="." unique_id=1181971108]
@@ -448,10 +462,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hkf0r")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_7gtp0")
 theme_override_constants/separation = 20
 
 [node name="PressAnyButtonLabel" type="Label" parent="KeybindPopup/_" unique_id=133459980]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Press any button"
 label_settings = SubResource("LabelSettings_1xi2f")
 horizontal_alignment = 1
@@ -459,6 +475,7 @@ vertical_alignment = 1
 
 [node name="KeybindLabel" type="Label" parent="KeybindPopup/_" unique_id=2050089251]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "..."
 label_settings = SubResource("LabelSettings_1xi2f")
 horizontal_alignment = 1
@@ -466,6 +483,7 @@ vertical_alignment = 1
 
 [node name="CancelLabel" type="Label" parent="KeybindPopup/_" unique_id=2070058739]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Press Escape to cancel"
 label_settings = SubResource("LabelSettings_1xi2f")
 horizontal_alignment = 1
@@ -480,10 +498,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1xi2f")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("1_7gtp0")
 theme_override_constants/separation = 20
 
 [node name="AlreadyBoundLabel" type="Label" parent="AlreadyBoundKeyPopup/_" unique_id=1438217224]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Q Already bound to: Primary
 Keep new binding and unbind: Primary?"
 label_settings = SubResource("LabelSettings_1xi2f")
@@ -499,10 +519,12 @@ theme_override_constants/separation = 100
 
 [node name="KeepNewBindButton" type="Button" parent="AlreadyBoundKeyPopup/_/_" unique_id=1581498523]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Keep new bind"
 
 [node name="CancelButton" type="Button" parent="AlreadyBoundKeyPopup/_/_" unique_id=2085441153]
 layout_mode = 2
+theme = ExtResource("1_7gtp0")
 text = "Cancel"
 
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/MasterSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_master_slider_value_changed"]
