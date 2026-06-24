@@ -46,6 +46,7 @@ func _ready() -> void:
 	UiController.removed_item_from_inventory.connect(_remove_item_from_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
+	UiController.request_player_items.connect(_give_player_items)
 	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
 	#if player_items.is_empty():
 		#player_items.append(ItemManager.get_item_from_id("10010"))
@@ -327,6 +328,11 @@ func _remove_item_from_inventory(item: Item):
 		push_error("couldnt remove item {0} from inventory".format([item.data.item_name]))
 	else:
 		player_items.remove_at(find_index)
+	
+	var _inventory_item: InventoryItem = get_inventory_item_from_unique_id(item.data.unique_id)
+	if find_index != -1 and _is_inventory_item_equipped(_inventory_item) != 0:
+		unequip_item(_inventory_item, item, "", "")
+	
 	_refresh_items()
 
 func _emit_update_player_items():
@@ -359,9 +365,9 @@ func _load_player_items():
 	#UiController.set_loaded_consumable(loaded_consumable)
 	#loaded_consumable = null
 
-func get_inventory_item_from_item_id(item_id: String) -> InventoryItem:
+func get_inventory_item_from_unique_id(unique_id: String) -> InventoryItem:
 	for inventory_item in item_grid.get_children():
-		if inventory_item.item.data.item_id == item_id:
+		if inventory_item.item.data.unique_id == unique_id:
 			return inventory_item
 	return null
 
@@ -384,3 +390,8 @@ func _give_items_to_gamestatesaver():
 
 func _update_savefile_items():
 	GameStateSaver.update_savefile_items(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+
+func _give_player_items() -> void:
+	var typed_arr: Array[Item] = []
+	typed_arr.assign(player_items)
+	UiController.give_player_items(typed_arr)

@@ -10,6 +10,7 @@ var player: Player
 func _ready() -> void:
 	#DataManager.connect_db()
 	_spawn_mobs()
+	_load_chests()
 	_spawn_player()
 	
 	EventBus.close_container.connect(_close_container)
@@ -85,6 +86,13 @@ func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation 
 	if new_global_rotation:
 		instance.rotation = new_global_rotation
 	instance.play()
+
+func _load_chests() -> void:
+	var chest_data: Dictionary = GameStateSaver.load_chest_data()
+	var chests: Array = get_tree().get_nodes_in_group("Chest")
+	for chest in chests:
+		if chest_data.get(chest.chest_id) != null:
+			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_itemdata)
 
 func _spawn_mobs(reset_mobs: bool = false):
 	#var mobspawn_resource: MobSpawnResource

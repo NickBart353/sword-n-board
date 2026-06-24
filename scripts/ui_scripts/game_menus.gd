@@ -45,7 +45,7 @@ func _ready() -> void:
 	UiController.character_panel.connect(_character_panel)
 	UiController.escape_menu_signal.connect(_escape_menu)
 	UiController.item_container_interacted.connect(_open_loot_container)
-	UiController #CONNECT OPEN CHEST
+	UiController.chest_interacted.connect(_open_chest)
 	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
@@ -67,6 +67,8 @@ func _inventory():
 	if not pause_menu_open:
 		if loot_container.is_visible():
 			_open_loot_container(null)
+		if chest_item_container.is_visible():
+			_open_chest(null)
 		#inventory.get_player_items()
 		inventory.set_visible(not inventory.is_visible())
 		get_tree().paused = inventory.is_visible()
@@ -86,6 +88,17 @@ func _open_loot_container(item_container: ItemContainer):
 	else:
 		loot_container.show()
 		loot_container.set_data(item_container)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		PlayerControls.block_input()
+
+func _open_chest(item_container: ItemContainer):
+	if chest_item_container.is_visible():
+		chest_item_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+	else:
+		chest_item_container.show()
+		chest_item_container.set_data(item_container)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		PlayerControls.block_input()
 

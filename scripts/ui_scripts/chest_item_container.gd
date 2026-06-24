@@ -1,18 +1,24 @@
 class_name ChestItemContainer extends VBoxContainer
 
-@onready var chest_items: GridContainer = $ChestItems/ChestItems/PanelContainer/ScrollContainer/GridContainer
-@onready var player_item_container: GridContainer = $PlayerItems/PlayerItems/PanelContainer/ScrollContainer/GridContainer
+@onready var chest_items: GridContainer = $HBoxContainer/ChestItems/ChestItems/PanelContainer/ScrollContainer/ChestItems
+@onready var player_item_container: GridContainer = $HBoxContainer/PlayerItems/PlayerItems/PanelContainer/ScrollContainer/PlayItems
+
 @onready var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
 
 var loot_items: Array = []
 var player_items: Array[Item] = []
 var connected_container: ItemContainer
 
+func _ready() -> void:
+	UiController.returned_player_items.connect(_update_player_items)
+
+func _update_player_items(new_player_items: Array[Item]) -> void:
+	player_items = new_player_items as Array[Item]
+
 func set_data(item_container: ItemContainer):
 	connected_container = item_container
 	loot_items = item_container.items
 	_refresh_chest_items()
-
 
 func _refresh_chest_items() -> void:
 	for inventory_item in chest_items.get_children():
@@ -53,13 +59,14 @@ func activate_item(inventory_item: InventoryItem, item: Item, _mousebutton: Stri
 	UiController.add_item_to_inventory(item)
 
 func _set_inventory_items() -> void:
-	var new_player_items: Array[Item] = UiController.get_inventory_items() as Array[Item]
-	for player_item in player_item_container:
+	UiController.get_inventory_items()
+	
+	for player_item in player_item_container.get_children():
 		player_item.queue_free()
 	
-	sort_items(new_player_items)
+	sort_items(player_items)
 	
-	for item in new_player_items:
+	for item in player_items:
 		var inventory_item = inventory_item_scene.instantiate()
 		inventory_item.item_hovered.connect(update_item_display)
 		inventory_item.item_pressed.connect(activate_player_item)

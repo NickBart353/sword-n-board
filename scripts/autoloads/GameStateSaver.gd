@@ -1,29 +1,11 @@
 extends Node
 
-#signal has_equipment_changed
 signal get_items_from_inventory
 
 var basic_data_timer: Timer
-#var inventory_data_timer: Timer
-#
-#var objects_to_persist: Array
-#var object_data: Dictionary = {}
-#
-var player: Player
-#var basic_player_data: BasicPlayerData
-#var advanced_player_data: AdvancedPlayerData
-#var player_item_dict: Dictionary = {}
-#var chest_dict: Dictionary = {}
-#
-#var mobspawns: Array 
-#var mobspawn_resource: MobSpawnResource
-#
-##thread ids
-#var current_player_item_thread_task_id: int
-#var current_chest_thread_task_id: int
-#var current_item_task_id: int
 
-### NEW ###
+var player: Player
+
 var save_file_resource: SaveFile
 var current_save_task_id: int
 var current_savemanager_task_id: int
@@ -42,25 +24,14 @@ func _ready() -> void:
 	SaveFileManager.new_savefile_loaded.connect(_update_savefile)
 	
 	player = get_tree().get_first_node_in_group("Player")
-	#mobspawns = get_tree().get_nodes_in_group("MobSpawn")
-	#basic_player_data = BasicPlayerData.new()
-	#mobspawn_resource = MobSpawnResource.new()
 	
 	basic_data_timer = Timer.new()
 	basic_data_timer.autostart = false
 	basic_data_timer.wait_time = 10
-
-	#inventory_data_timer = Timer.new()
-	#inventory_data_timer.autostart = false
-	#inventory_data_timer.wait_time = 3
-	#inventory_data_timer.one_shot = true
 	
 	if not basic_data_timer.timeout.is_connected(_basic_timer_timeout):
 		basic_data_timer.timeout.connect(_basic_timer_timeout)
 	add_child(basic_data_timer)
-	#if not inventory_data_timer.timeout.is_connected(_inventory_timer_timeout):
-		#inventory_data_timer.timeout.connect(_inventory_timer_timeout)
-	#add_child(inventory_data_timer)
 
 func _update_savefile(new_savefile_id: String) -> void:
 	save_file_resource = SaveFileManager.load_savefile(new_savefile_id)
@@ -70,13 +41,6 @@ func load_save() -> void:
 
 func _save() -> void:
 	_save_multithreaded()
-	#if current_save_task_id:
-		#if not WorkerThreadPool.is_task_completed(current_save_task_id):
-			#return
-	#if CombatManager.is_in_combat():
-		#return
-	#var callable: Callable = Callable(self, "_save_multithreaded")
-	#WorkerThreadPool.add_task(callable)
 
 func _save_multithreaded():
 	if current_savemanager_task_id:
@@ -100,6 +64,7 @@ func _save_multithreaded():
 	#save_file_resource.spirit = player.spirit
 	
 	_save_dead_enemies()
+	_save_chests()
 	get_items_from_inventory.emit()
 	
 	save_file_resource.player_items = temp_inventory
@@ -131,9 +96,6 @@ func get_itemdata(item: Item) -> ItemData:
 
 func _save_everything():
 	_save()
-	#_save_basic_player_data()
-	#_get_latest_items()
-	#_save_dead_enemies()
 
 func start():
 	if not save_file_resource:
@@ -181,93 +143,12 @@ func get_current_playeritems() -> Dictionary:
 func load_mobspawn_data() -> Dictionary:
 	if not save_file_resource:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
-	print(save_file_resource.dead_mobs)
 	return save_file_resource.dead_mobs
 
-#func _inventory_timer_timeout():
-	#player_item_dict = player_item_dict.duplicate(true)
-	#inventory_updated()
-
-#func _save_basic_player_data():
-	#if not player:
-		#player = get_tree().get_first_node_in_group("Player")
-	#if not player:
-		#return
-	#basic_player_data.health = player.HEALTH
-	#basic_player_data.stamina = player.STAMINA
-	#basic_player_data.mana = player.MANA
-	#basic_player_data.position = player.global_position
-	#basic_player_data.rotation = player.global_rotation
-	#basic_player_data.spirit = 0
-	#DataManager.save_basic_player_data(basic_player_data)
-
-#func _get_latest_items():
-	#get_items_from_inventory.emit()
-
-#func start_inventory_timer(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array, bypass_timer: bool = false):
-	#player_item_dict["head"] = head
-	#player_item_dict["body"] = body
-	#player_item_dict["boots"] = boots
-	#player_item_dict["mainhand"] = mainhand
-	#player_item_dict["offhand"] = offhand
-	#player_item_dict["equipped_consumable_list"] = consumable_list
-	#player_item_dict["equipped_consumable"] = consumable
-	#player_item_dict["inventory"] = inventory
-	#
-	#if CombatManager.is_in_combat():
-		#return
-	#
-	#if bypass_timer:
-		#_inventory_timer_timeout()
-	#else:
-		#inventory_data_timer.start()
-
-# open inventory and change equipment - loot items from chest / lootbags - consume items - upgraded items from blacksmith / bought items from vendor
-#func inventory_updated():
-	#if current_item_task_id:
-		#if not WorkerThreadPool.is_task_completed(current_item_task_id): 
-			#return
-	#_dirty_chest_check()
-	#var prepared_item_list: Array = []
-	#if player_item_dict.get("head"):
-		#append_head(player_item_dict["head"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["head"])
-	#if player_item_dict.get("body"):
-		#append_body(player_item_dict["body"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["body"])
-	#if player_item_dict.get("boots"):
-		#append_boots(player_item_dict["boots"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["boots"])
-	#if player_item_dict.get("mainhand"):
-		#append_mainhand(player_item_dict["mainhand"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["mainhand"])
-	#if player_item_dict.get("offhand"):
-		#append_offhand(player_item_dict["offhand"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["offhand"])
-	#if player_item_dict.get("equipped_consumable"):
-		#append_main_consumable(player_item_dict["equipped_consumable"], prepared_item_list)
-		#player_item_dict["inventory"].erase(player_item_dict["equipped_consumable"])
-		#player_item_dict["equipped_consumable_list"].erase(player_item_dict["equipped_consumable"])
-	#
-	#for consumable in player_item_dict["equipped_consumable_list"]:
-		#append_consumable(consumable, prepared_item_list)
-		#player_item_dict["inventory"].erase(consumable)
-	#
-	#for item in player_item_dict["inventory"]:
-		#if item:
-			#if item.data is WeaponData:
-				#append_other_weapon(item, prepared_item_list)
-			#else:
-				#append_other(item, prepared_item_list)
-	#
-	#for chest_id in chest_dict:
-		#for item in chest_dict[chest_id]:
-			#if item.data is WeaponData:
-				#append_other_weapon(item, prepared_item_list)
-			#else:
-				#append_other(item, prepared_item_list)
-	#
-	#current_item_task_id = DataManager.update_chest_and_items(prepared_item_list)
+func load_chest_data() -> Dictionary:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	return save_file_resource.chest_items
 
 # worldloot / bossdrop
 func items_received():
@@ -280,61 +161,13 @@ func _save_dead_enemies():
 		if spawn.is_my_mob_dead:
 			print(spawn.spawn_id)
 			mobspawn_dict[spawn.spawn_id] = true
-	save_file_resource.dead_mobs = mobspawn_dict#.duplicate(true)
-	#DataManager.save_mobspawns(mobspawn_resource)
+	save_file_resource.dead_mobs = mobspawn_dict
 
-#func _get_proper_id(item: Item) -> String:
-	#if not item:
-		#return ""
-	#return item.data.unique_id if item.data.unique_id else item.data.item_id
-
-#func _dirty_chest_check():
-	#if current_chest_thread_task_id:
-		#if not WorkerThreadPool.is_task_completed(current_chest_thread_task_id): 
-			#return
-	#
-	#var chests: Array = get_tree().get_nodes_in_group("Chest")
-	#var dirty_chests: Array = []
-	#for chest in chests:
-		#if chest.is_dirty:
-			#dirty_chests.append(chest)
-	#if dirty_chests.is_empty():
-		#return
-	#
-	#for chest in dirty_chests:
-		##chest_dict[chest.chest_id] = chest.item_container.items.map(func(item): return item.data.item_id)
-		#chest_dict[chest.chest_id] = chest.item_container.items
-	
-#func append_head(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 1, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-#
-#func append_body(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 2, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-#
-#func append_boots(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 3, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-#
-#func append_mainhand(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 4, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-#
-#func append_offhand(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 5, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-#
-#func append_main_consumable(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 6})
-#
-#func append_consumable(item, array: Array):
-	#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 7})
-#
-#func append_other(item, array: Array, chest_id: String = ""):
-	#if chest_id:
-		#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0, "storage_id": chest_id})
-	#else:
-		#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0})
-#
-#func append_other_weapon(item, array: Array, chest_id: String = ""):
-	#if chest_id:
-		#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type, "storage_id": chest_id})
-	#else:
-		#array.append({"item_id": item.data.item_id, "quantity": item.data.stack_size, "equipped": 0, "upgrade_level": item.data.upgrade_level, "upgrade_type": item.data.upgrade_type})
-	
+func _save_chests():
+	var chest_dict: Dictionary[String, Array] = {}
+	var chests: Array = get_tree().get_nodes_in_group("Chest")
+	for chest in chests:
+		if chest.item_container.items.is_empty():
+			continue
+		chest_dict[chest.chest_id] = chest.item_container.items.map(get_itemdata)
+	save_file_resource.chest_items = chest_dict
