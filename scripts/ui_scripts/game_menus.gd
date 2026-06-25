@@ -51,6 +51,8 @@ func _ready() -> void:
 	UiController._update_staminabar.connect(_update_staminabar)
 	UiController._update_manabar.connect(_update_manabar)
 	UiController._update_hud.connect(_update_hud)
+	
+	PlayerControls.close_menus.connect(_close_interact_menus)
 
 func _process(_delta: float) -> void:
 	if not is_input_blocked:
@@ -85,7 +87,9 @@ func _open_loot_container(item_container: ItemContainer):
 		loot_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		PlayerControls.unblock_input()
+		get_tree().paused = false
 	else:
+		get_tree().paused = true
 		loot_container.show()
 		loot_container.set_data(item_container)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -96,21 +100,44 @@ func _open_chest(item_container: ItemContainer):
 		chest_item_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		PlayerControls.unblock_input()
+		get_tree().paused = false
 	else:
+		get_tree().paused = true
 		chest_item_container.show()
 		chest_item_container.set_data(item_container)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		PlayerControls.block_input()
 
+func _close_interact_menus() -> void:
+	#call_deferred("_close_menus")
+	_close_menus()
+
+func _close_menus() -> void:
+	if chest_item_container.is_visible():
+		chest_item_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+		get_tree().paused = false
+	if loot_container.is_visible():
+		loot_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+		get_tree().paused = false
+
 func _escape_menu():
 	if loot_container.is_visible():
 		_open_loot_container(null)
+		return
+	if inventory.is_visible():
+		_inventory()
+		return
+	if chest_item_container.is_visible():
+		_open_chest(null)
+		return
 	if not pause_menu_open:
-		if inventory.is_visible():
-			_inventory()
 		pause_menu_open = true
 		pause_menu.show()
-		get_tree().paused = pause_menu_open
+		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif pause_menu_open:
 		pause_menu_open = false
@@ -118,7 +145,7 @@ func _escape_menu():
 		if settings_menu.is_visible():
 			settings_menu.check_for_unsaved_settings()
 		else:
-			get_tree().paused = pause_menu_open
+			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _rotate_consumable():

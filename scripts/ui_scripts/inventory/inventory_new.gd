@@ -264,6 +264,8 @@ func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slo
 				_remove_offhand()
 		ItemData.ITEM_CATEGORY.ARMOR:
 			pass
+		ItemData.ITEM_CATEGORY.CONSUMABLE:
+			equip_consumable(_inventory_item, item)
 	_emit_update_player_items()
 
 func _remove_mainhand():
@@ -283,7 +285,7 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 		player_consumables.append(item)
 		inventory_item.mark_consumable()
 	else:
-		player_consumables.remove_at(player_consumables.find(item))
+		player_consumables.erase(item)
 		inventory_item.unmark_consumable()
 	_emit_update_player_items()
 

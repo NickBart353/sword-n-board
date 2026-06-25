@@ -88,3 +88,6 @@ func mark_consumable():
 
 func unmark_consumable():
 	consumable_marker.hide()
+
+func _on_mouse_exited() -> void:
+	item_unhovered.emit()

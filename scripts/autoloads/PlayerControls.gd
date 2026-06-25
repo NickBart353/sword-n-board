@@ -1,6 +1,7 @@
 extends Node
 
 signal interact_key_updated
+signal close_menus
 
 var sensitivity: float = 1.0
 var player_input_dictionary: Dictionary = {}
@@ -29,3 +30,6 @@ func block_scrolling() -> void:
 
 func unblock_scrolling() -> void:
 	_block_scrolling = false
+
+func close_open_menus() -> void:
+	close_menus.emit()
