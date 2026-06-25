@@ -88,4 +88,8 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Torch"
 		ITEM_TYPE.SHIELD:
 			return "Shield"
+		ITEM_TYPE.UPGRADE_SHARD:
+			return "Upgrade shard"
+		ITEM_TYPE.TRANSFORM_SHARD:
+			return "Transform shard"
 	return "Wrong type or forgot adding name to item_resource.gd"

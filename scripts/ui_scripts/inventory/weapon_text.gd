@@ -1,15 +1,15 @@
 extends InventoryItemText
 
-@onready var item_name: Label = $WeaponStats/ItemName
-@onready var flavor_text: Label = $WeaponStats/FlavorText
-@onready var type: Label = $WeaponStats/ItemType/Type
-@onready var normal_value: Label = $WeaponStats/Normal/NormalValue
-@onready var magic_value: Label = $WeaponStats/Magic/MagicValue
-@onready var fire_value: Label = $WeaponStats/Fire/FireValue
-@onready var lightning_value: Label = $WeaponStats/Lightning/LightningValue
-@onready var cold_value: Label = $WeaponStats/Cold/ColdValue
-@onready var nature_value: Label = $WeaponStats/Nature/NatureValue
-@onready var chaos_value: Label = $WeaponStats/Chaos/ChaosValue
+@export var item_name: Label
+@export var flavor_text: Label
+@export var type: Label
+@export var normal_value: Label
+@export var magic_value: Label
+@export var fire_value: Label
+@export var lightning_value: Label
+@export var cold_value: Label
+@export var nature_value: Label
+@export var chaos_value: Label
 
 func _ready() -> void:
 	hide()

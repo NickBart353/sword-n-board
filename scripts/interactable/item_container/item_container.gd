@@ -61,8 +61,8 @@ func update_items(new_items, sack_name):
 func update_my_items(new_items: Array):
 	items = new_items
 	if items.is_empty():
-		UiController.interact_with_loot_container(self, parent)
 		if not parent is Chest:
+			UiController.interact_with_loot_container(self, parent)
 			items_empty.emit()
 
 func close_me():

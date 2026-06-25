@@ -7,6 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="4_lwak6"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="5_oxuco"]
 [ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="6_ctatf"]
+[ext_resource type="Script" uid="uid://6qjrhkl8jfgp" path="res://scripts/ui_scripts/inventory/material_text.gd" id="8_ky1r3"]
 
 [node name="StatContainer" type="HBoxContainer" unique_id=1833489514]
 size_flags_vertical = 3
@@ -28,11 +29,20 @@ theme = ExtResource("1_wyno4")
 layout_mode = 2
 theme = ExtResource("1_wyno4")
 
-[node name="WeaponScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1702234503]
-visible = false
+[node name="WeaponScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1702234503 node_paths=PackedStringArray("item_name", "flavor_text", "type", "normal_value", "magic_value", "fire_value", "lightning_value", "cold_value", "nature_value", "chaos_value")]
 layout_mode = 2
 theme = ExtResource("1_wyno4")
 script = ExtResource("2_ky1r3")
+item_name = NodePath("WeaponStats/ItemName")
+flavor_text = NodePath("WeaponStats/FlavorText")
+type = NodePath("WeaponStats/ItemType/Type")
+normal_value = NodePath("WeaponStats/Normal/NormalValue")
+magic_value = NodePath("WeaponStats/Magic/MagicValue")
+fire_value = NodePath("WeaponStats/Fire/FireValue")
+lightning_value = NodePath("WeaponStats/Lightning/LightningValue")
+cold_value = NodePath("WeaponStats/Cold/ColdValue")
+nature_value = NodePath("WeaponStats/Nature/NatureValue")
+chaos_value = NodePath("WeaponStats/Chaos/ChaosValue")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller" unique_id=723555800]
 layout_mode = 2
@@ -50,12 +60,14 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="FlavorText" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=896254630]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("4_lwak6")
 vertical_alignment = 1
+autowrap_mode = 2
 clip_text = true
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1368604227]
@@ -429,11 +441,14 @@ theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
-[node name="ConsumableScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1157084228]
+[node name="ConsumableScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1157084228 node_paths=PackedStringArray("label", "info_text_label", "type")]
 visible = false
 layout_mode = 2
 theme = ExtResource("1_wyno4")
 script = ExtResource("6_ctatf")
+label = NodePath("WeaponStats/Label")
+info_text_label = NodePath("WeaponStats/InfoTextLabel")
+type = NodePath("WeaponStats/ItemType/Type")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller" unique_id=1628339676]
 layout_mode = 2
@@ -451,7 +466,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1527932046]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("1_wyno4")
 label_settings = ExtResource("4_lwak6")
@@ -477,10 +492,14 @@ theme = ExtResource("1_wyno4")
 text = "Sword"
 label_settings = ExtResource("5_oxuco")
 
-[node name="MaterialScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=2067026511]
+[node name="MaterialScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=2067026511 node_paths=PackedStringArray("name_label", "info_text_label", "type_label")]
 visible = false
 layout_mode = 2
 theme = ExtResource("1_wyno4")
+script = ExtResource("8_ky1r3")
+name_label = NodePath("WeaponStats/Label")
+info_text_label = NodePath("WeaponStats/InfoTextLabel")
+type_label = NodePath("WeaponStats/ItemType/Type")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller" unique_id=1047532680]
 layout_mode = 2
@@ -498,7 +517,7 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller/WeaponStats" unique_id=255317397]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme = ExtResource("1_wyno4")
 label_settings = ExtResource("4_lwak6")

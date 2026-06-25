@@ -1,9 +1,9 @@
 extends HBoxContainer
 
-@onready var weapon_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
+@onready var weapon_scroller: InventoryItemText = $ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats
 @onready var armor_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller
-@onready var consumable_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller
-@onready var material_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller
+@onready var consumable_scroller: InventoryItemText = $ItemStatMargin/ItemPanel/_InsideMargin/Consumable
+@onready var material_scroller: InventoryItemText = $ItemStatMargin/ItemPanel/_InsideMargin/Material
 
 #@onready var display_viewport: TextureRect = $ItemDisplayMargin/DisplayPanel/_InsideMargin/DisplayViewport
 
@@ -25,5 +25,5 @@ func set_text(item: Item) -> void:
 			consumable_scroller.set_text(item)
 			consumable_scroller.show()
 		ItemData.ITEM_CATEGORY.MATERIAL:
-			#TODO: MATERIAL TEXT
+			material_scroller.set_text(item)
 			material_scroller.show()
