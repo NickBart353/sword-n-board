@@ -35,8 +35,10 @@ var currently_selected_tab: int
 @onready var mainhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand/MainHand
 @onready var offhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand/OffHand
 
-@export var inventory_item_scene: PackedScene
+#@export var inventory_item_scene: PackedScene
 @export var equipped_item_scene: PackedScene
+
+var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
 
 func _ready() -> void:
 	hide()
@@ -79,7 +81,7 @@ func _refresh_items(initial_reload: bool = false):
 func update_item_display(item: Item):
 	stat_container.set_text(item)
 
-func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
+func activate_item(inventory_item, item: Item, mousebutton: String, _slot: String):
 	#_inventory_updated()
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
@@ -102,7 +104,7 @@ func sort_by_cat_and_name(a, b) -> bool:
 			return true
 	return false
 
-func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
+func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
 	if player_helmet:
 		if inventory_item.item.data.unique_id == player_helmet.data.unique_id:
 			player_helmet = inventory_item.item

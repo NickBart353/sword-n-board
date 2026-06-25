@@ -4,7 +4,6 @@
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_gwmof"]
 [ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
-[ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
 [ext_resource type="PackedScene" uid="uid://rcj82iq4a6fk" path="res://scenes/ui_scenes/inventory/equipped_item.tscn" id="4_3732a"]
 [ext_resource type="PackedScene" uid="uid://ctpi1vp12n7hf" path="res://scenes/ui_scenes/inventory/stat_container.tscn" id="12_mgch1"]
 
@@ -19,7 +18,6 @@ offset_bottom = 40.0
 pivot_offset = Vector2(-59, 707)
 theme = ExtResource("1_suhgw")
 script = ExtResource("2_hn110")
-inventory_item_scene = ExtResource("3_mkjgx")
 equipped_item_scene = ExtResource("4_3732a")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=950240407]

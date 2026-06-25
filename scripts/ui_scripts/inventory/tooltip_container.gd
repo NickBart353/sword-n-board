@@ -1,4 +1,4 @@
-class_name StatContainer extends HBoxContainer
+extends HBoxContainer
 
 @onready var weapon_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller
 @onready var armor_scroller: ScrollContainer = $ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller

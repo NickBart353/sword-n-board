@@ -4,11 +4,12 @@ class_name ChestItemContainer extends VBoxContainer
 @onready var player_item_container: GridContainer = $InventorySplitter/PlayerContainer/PlayerSplitter/ScrollContainer/PlayerItems
 
 @onready var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
-@onready var stat_container: HBoxContainer = $Tooltip/StatContainer
+@onready var stat_container = $Tooltip/TooltipContainer
 
 var loot_items: Array = []
 var player_items: Array[Item] = []
 var connected_container: ItemContainer
+var mouse_inside_tooltip: bool = false
 
 func _ready() -> void:
 	UiController.returned_player_items.connect(_update_player_items)
@@ -71,7 +72,8 @@ func get_position_of_item(item: Item, inventory_type: String) -> Vector2:
 	return Vector2.ZERO
 
 func clear_item_display() -> void:
-	stat_container.hide()
+	if not mouse_inside_tooltip:
+		stat_container.hide()
 
 func activate_item(inventory_item: InventoryItem, item: Item, _mousebutton: String, _slot: String) -> void:
 	var success_checker_count: int = loot_items.size()
@@ -81,6 +83,7 @@ func activate_item(inventory_item: InventoryItem, item: Item, _mousebutton: Stri
 	inventory_item.queue_free()
 	connected_container.update_my_items(loot_items)
 	UiController.add_item_to_inventory(item)
+	_set_inventory_items()
 
 func _set_inventory_items() -> void:
 	UiController.get_inventory_items()
@@ -108,3 +111,9 @@ func activate_player_item(inventory_item: InventoryItem, item: Item, _mousebutto
 	connected_container.update_my_items(loot_items)
 	UiController.remove_item_from_inventory(item)
 	_refresh_chest_items()
+
+func _on_tooltip_container_mouse_entered() -> void:
+	mouse_inside_tooltip = true
+
+func _on_tooltip_container_mouse_exited() -> void:
+	mouse_inside_tooltip = false

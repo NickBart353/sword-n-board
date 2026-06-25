@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://bp0dq5qj0gqjg"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_1l2m8"]
+[ext_resource type="Texture2D" uid="uid://b38jv8rdj86c" path="res://my_assets/sprites/Chaos Greatsword.png" id="2_8wc63"]
+[ext_resource type="Script" uid="uid://b45rg1ealo8l2" path="res://scripts/ui_scripts/inventory/inventory_item_new.gd" id="2_dfrev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfrev"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.21716931, 0.23338231, 0.24402404, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_p825b"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_evpsf"]
+
+[node name="InventoryItemNew" type="PanelContainer" unique_id=673232389 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "text_label", "sprite", "count_label")]
+custom_minimum_size = Vector2(150, 150)
+custom_maximum_size = Vector2(200, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 700.0
+offset_top = 326.0
+offset_right = -747.0
+offset_bottom = -422.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_1l2m8")
+theme_override_styles/panel = SubResource("StyleBoxFlat_dfrev")
+script = ExtResource("2_dfrev")
+consumable_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/ConsumableMarker")
+armor_equipped_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/ArmorEquipped")
+mainhand_equipped_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/WeaponContainer/MainhandEquipped")
+offhand_equipped_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/WeaponContainer/OffhandEquipped")
+text_label = NodePath("VBoxContainer/Label")
+sprite = NodePath("VBoxContainer/Sprite")
+count_label = NodePath("VBoxContainer/TopContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=455975877]
+layout_mode = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1335039816]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/TopContainer" unique_id=228181743]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+text = "2"
+label_settings = SubResource("LabelSettings_p825b")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TopContainer" unique_id=590437433]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[node name="WeaponContainer" type="HBoxContainer" parent="VBoxContainer/TopContainer/HBoxContainer2" unique_id=1442247200]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="MainhandEquipped" type="ColorRect" parent="VBoxContainer/TopContainer/HBoxContainer2/WeaponContainer" unique_id=51521734]
+visible = false
+custom_minimum_size = Vector2(10, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+color = Color(0.9999998, 0.020585136, 0.11474457, 1)
+
+[node name="OffhandEquipped" type="ColorRect" parent="VBoxContainer/TopContainer/HBoxContainer2/WeaponContainer" unique_id=118002281]
+visible = false
+custom_minimum_size = Vector2(10, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+color = Color(0.9295303, 0.0009943813, 0.9716049, 1)
+
+[node name="ConsumableMarker" type="ColorRect" parent="VBoxContainer/TopContainer/HBoxContainer2" unique_id=842452876]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+color = Color(0.29449034, 0.84160805, 0, 1)
+
+[node name="ArmorEquipped" type="ColorRect" parent="VBoxContainer/TopContainer/HBoxContainer2" unique_id=357768192]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+color = Color(0.17741996, 0.4989286, 0.99999994, 1)
+
+[node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=916374444]
+custom_minimum_size = Vector2(96, 96)
+custom_maximum_size = Vector2(196, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("2_8wc63")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=706848274]
+custom_minimum_size = Vector2(96, -1)
+custom_maximum_size = Vector2(196, -1)
+layout_mode = 2
+text = "chaos greatsword"
+label_settings = SubResource("LabelSettings_evpsf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

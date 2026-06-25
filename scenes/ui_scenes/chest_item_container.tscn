@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_ebj7o"]
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_6mlel"]
 [ext_resource type="Script" uid="uid://ckpwb8xvc01ah" path="res://scripts/ui_scripts/chest_item_container.gd" id="2_qcyd8"]
-[ext_resource type="PackedScene" uid="uid://ctpi1vp12n7hf" path="res://scenes/ui_scenes/inventory/stat_container.tscn" id="4_qcyd8"]
+[ext_resource type="PackedScene" uid="uid://bifrdanxyq648" path="res://scenes/ui_scenes/inventory/tooltip_container.tscn" id="4_qcyd8"]
 
 [node name="ChestItemContainer" type="VBoxContainer" unique_id=834840540]
 anchors_preset = -1
@@ -90,12 +90,10 @@ columns = 3
 [node name="Tooltip" type="Control" parent="." unique_id=1612376332]
 layout_mode = 2
 
-[node name="StatContainer" parent="Tooltip" unique_id=1833489514 instance=ExtResource("4_qcyd8")]
+[node name="TooltipContainer" parent="Tooltip" unique_id=1833489514 instance=ExtResource("4_qcyd8")]
 visible = false
 custom_minimum_size = Vector2(300, 200)
-custom_maximum_size = Vector2(300, 200)
 layout_mode = 0
-mouse_filter = 2
 
 [node name="InfoLabel" type="Label" parent="." unique_id=711510720]
 layout_mode = 2
@@ -103,3 +101,6 @@ size_flags_vertical = 1
 text = "Click to move items"
 label_settings = ExtResource("2_6mlel")
 horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Tooltip/TooltipContainer" to="." method="_on_tooltip_container_mouse_entered"]
+[connection signal="mouse_exited" from="Tooltip/TooltipContainer" to="." method="_on_tooltip_container_mouse_exited"]
