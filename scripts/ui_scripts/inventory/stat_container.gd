@@ -25,5 +25,5 @@ func set_text(item: Item) -> void:
 			consumable_scroller.set_text(item)
 			consumable_scroller.show()
 		ItemData.ITEM_CATEGORY.MATERIAL:
-			#TODO: MATERIAL TEXT
+			material_scroller.set_text(item)
 			material_scroller.show()
