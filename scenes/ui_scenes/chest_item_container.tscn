@@ -47,8 +47,6 @@ size_flags_vertical = 3
 
 [node name="ChestItems" type="GridContainer" parent="InventorySplitter/ChestContainer/ChestSplitter/ScrollContainer" unique_id=1304321474]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 3
@@ -89,17 +87,17 @@ columns = 3
 
 [node name="Tooltip" type="Control" parent="." unique_id=1612376332]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
 [node name="TooltipContainer" parent="Tooltip" unique_id=1833489514 instance=ExtResource("4_qcyd8")]
 visible = false
 custom_minimum_size = Vector2(300, -1)
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 121.0
 mouse_filter = 2
+mouse_behavior_recursive = 1
 
 [node name="InfoLabel" type="Label" parent="." unique_id=711510720]
 layout_mode = 2
