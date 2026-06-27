@@ -43,6 +43,7 @@ GameStateSaver="*uid://dftf640qysy2t"
 UuidGenerator="*uid://bokh3cfxtffys"
 CombatManager="*uid://p4p5pa1twqyx"
 SaveFileManager="*uid://s2lnv6eo1vou"
+TimeFormatter="*uid://c1n6yqa0e641p"
 
 [display]
 

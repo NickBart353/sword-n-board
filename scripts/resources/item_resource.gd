@@ -64,6 +64,8 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Greatsword"
 		ITEM_TYPE.AXE:
 			return "Axe"
+		ITEM_TYPE.GREATAXE:
+			return "Greataxe"
 		ITEM_TYPE.DAGGER:
 			return "Dagger"
 		ITEM_TYPE.GREATHAMMER:

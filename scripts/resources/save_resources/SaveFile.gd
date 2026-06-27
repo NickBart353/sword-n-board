@@ -3,6 +3,7 @@ class_name SaveFile extends Resource
 @export var savefile_id: String
 @export var character_name: String
 @export var creation_date: String
+@export var last_played_date: String
 
 @export var health: float
 @export var stamina: float

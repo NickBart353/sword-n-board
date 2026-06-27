@@ -8,6 +8,7 @@ var player_input_dictionary: Dictionary = {}
 var interact_keybind_text: String = "E"
 var _block_input: bool = false
 var _block_scrolling: bool = false
+var current_player_name: String
 
 func updated_interact_keybind(keybind: String) -> void:
 	interact_keybind_text = keybind

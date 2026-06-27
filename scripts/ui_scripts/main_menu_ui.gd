@@ -19,10 +19,7 @@ func load_data():
 	settings_menu.load_settings()
 
 func _ready() -> void:
-	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
-	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+	_hide_all_buttons()
 	
 	_load_savefiles()
 	
@@ -35,6 +32,12 @@ func _ready() -> void:
 	if not $MainMenuButtonContainer/VBoxContainer/StartGame.pressed.is_connected(_pressed_start_button):
 		$MainMenuButtonContainer/VBoxContainer/StartGame.pressed.connect(_pressed_start_button)
 
+func _hide_all_buttons() -> void:
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
+
 func _load_savefiles():
 	var last_file_id: String = SaveFileManager.load_last_savefile_id()
 	
@@ -43,6 +46,8 @@ func _load_savefiles():
 	if savefiles.is_empty():
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
 		$MainMenuButtonContainer/VBoxContainer/StartGame.hide()
+		save_file_screen.hide()
+		main_menu_button_container.show()
 	else:
 		$MainMenuButtonContainer/VBoxContainer/LoadGame.show()
 		if last_file_id != "":
@@ -64,8 +69,7 @@ func _pressed_start_button():
 	game_started.emit()
 
 func _on_start_game_pressed() -> void:
-	SaveFileManager.set_savefile_id(SaveFileManager.current_savefile_id)
-	SceneLoader.load_scene(main_game_scene)
+	_load_game(SaveFileManager.current_savefile_id)
 
 func _on_settings_pressed() -> void:
 	main_menu_button_container.hide()
@@ -99,11 +103,11 @@ func _on_new_game_screen_create_new_game(character_name: String) -> void:
 	var new_savefile: SaveFile = SaveFile.new()
 	new_savefile.savefile_id = UuidGenerator.uuid4()
 	new_savefile.character_name = character_name
-	new_savefile.creation_date = Time.get_date_string_from_system()
+	new_savefile.creation_date = Time.get_datetime_string_from_system(false, true)
+	new_savefile.last_played_date = Time.get_datetime_string_from_system(false, true)
 	#DataManager.create_new_savefile(savefile_metadata)
 	SaveFileManager.create_savefile(new_savefile)
-	SaveFileManager.set_savefile_id(new_savefile.savefile_id)
-	SceneLoader.load_scene(main_game_scene)
+	_load_game(new_savefile.savefile_id)
 
 func _on_new_game_screen_new_game_screen_closed() -> void:
 	main_menu_button_container.show()
@@ -115,8 +119,7 @@ func _on_save_file_screen_savefile_screen_closed() -> void:
 
 func _on_save_file_screen_savefile_selected(id: String) -> void:
 	#DataManager.set_savefile_id(id)
-	SaveFileManager.set_savefile_id(id)
-	SceneLoader.load_scene(main_game_scene)
+	_load_game(id)
 
 func _on_save_file_screen_savefile_deleted(id: String) -> void:
 	#print("delete: ", DataManager.delete_savefile(id))
@@ -126,3 +129,7 @@ func _on_save_file_screen_savefile_deleted(id: String) -> void:
 func _on_credits_leave_credits() -> void:
 	main_menu_button_container.show()
 	credits.hide()
+
+func _load_game(savefile_id: String) -> void:
+	SaveFileManager.set_savefile_id(savefile_id)
+	SceneLoader.load_scene(main_game_scene)

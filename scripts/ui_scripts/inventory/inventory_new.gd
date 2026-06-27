@@ -52,9 +52,9 @@ func _ready() -> void:
 	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
 	#if player_items.is_empty():
 		#player_items.append(ItemManager.get_item_from_id("10010"))
-	_refresh_items()
+	#_refresh_items()
 
-func _refresh_items(initial_reload: bool = false):
+func _refresh_items(_initial_reload: bool = false):
 	sort_player_items()
 	for inventory_item in item_grid.get_children():
 		inventory_item.queue_free()
@@ -131,7 +131,7 @@ func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
 		if inventory_item.item.data.unique_id == current_consumable.data.unique_id:
 			current_consumable = inventory_item.item
 			inventory_item.mark_consumable()
-			_emit_update_player_items()
+			#_emit_update_player_items()
 			equip_consumable(inventory_item, inventory_item.item)
 			#equip_consumable(inventory_item, inventory_item.item)
 			return 6
@@ -140,7 +140,7 @@ func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
 			if inventory_item.item.data.unique_id == item.data.unique_id:
 				item = inventory_item.item
 				inventory_item.mark_consumable()
-				_emit_update_player_items()
+				#_emit_update_player_items()
 				#equip_consumable(inventory_item, inventory_item.item)
 				#equip_consumable(inventory_item, inventory_item.item)
 				return 7

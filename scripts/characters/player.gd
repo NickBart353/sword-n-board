@@ -215,7 +215,8 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 	var two_handed: bool = false
 	var dualwield: bool = _is_dualwield(player_mainhand, player_offhand)
 	if player_mainhand:
-		two_handed = player_mainhand.data.two_handed
+		if player_mainhand.data is WeaponData:
+			two_handed = player_mainhand.data.two_handed
 	
 	head_item = _reequip_slot(head_item, player_helmet, head_slot)
 	body_item = _reequip_slot(body_item, player_body, body_slot)

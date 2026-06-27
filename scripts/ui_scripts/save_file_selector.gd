@@ -6,17 +6,19 @@ signal delete_savefile
 var delete_focused: bool = false
 var savefile_id: String
 
-@onready var save_file_name: Label = $PanelContainer/VBoxContainer/VBoxContainer/SaveFileName
-@onready var level_value_label: Label = $PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer/LevelValueLabel
-@onready var age_value_label: Label = $PanelContainer/VBoxContainer/VBoxContainer/DataContainer/GridContainer/AgeValueLabel
+@onready var save_file_name: Label = $PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/SaveFileName
+@onready var level_value_label: Label = $PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/DataContainer/GridContainer/LevelValueLabel
+@onready var age_value_label: Label = $PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/DataContainer/GridContainer/AgeValueLabel
 @onready var progress_bar: ProgressBar = $PanelContainer/Container/ProgressBar
+@onready var last_played_value: Label = $PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/DataContainer/GridContainer/LastPlayedValue
 
 @export_range(0.0, 1000.0) var fill_speed: float = 50.0
 
-func set_data(character_name: String, level: String, created_date: String, id: String):
+func set_data(character_name: String, level: String, created_date: String, last_played_date: String, id: String):
 	save_file_name.text = character_name
 	level_value_label.text = level
 	age_value_label.text = created_date
+	last_played_value.text = last_played_date
 	savefile_id = id
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -76,6 +76,8 @@ func _save_multithreaded():
 	save_file_resource.consumable = temp_consumable
 	save_file_resource.consumable_list = temp_consumable_list
 	
+	save_file_resource.last_played_date = Time.get_datetime_string_from_system(false, true)
+	
 	current_savemanager_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
 
 func update_savefile_items(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array):
