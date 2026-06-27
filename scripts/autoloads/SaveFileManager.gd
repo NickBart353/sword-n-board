@@ -56,7 +56,6 @@ func create_savefile(resource: SaveFile):
 	_atomic_resource_save(resource, path_to_savefile, savefile_name)
 
 func load_savefile(savefile_id: String) -> SaveFile:
-	print("loading: ", current_savefile_id)
 	var user_dir: DirAccess = DirAccess.open(savefile_folder_path)
 	if user_dir.get_directories().has(savefile_id):
 		path_to_savefile = "{0}{1}/".format([savefile_folder_path, savefile_id])
@@ -89,7 +88,6 @@ func delete_savefile_from_id(savefile_id: String) -> bool:
 	var savefile_dir: DirAccess = DirAccess.open(savefile_folder_path)
 	if savefile_dir.dir_exists(savefile_id):
 		var savefolder_dir: DirAccess = DirAccess.open("{0}{1}".format([savefile_folder_path, savefile_id]))
-		print(savefile_dir.get_open_error())
 		for file in savefolder_dir.get_files():
 			savefolder_dir.remove(file)
 		savefile_dir.remove(savefile_id)

@@ -159,7 +159,7 @@ func _save_dead_enemies():
 	var mobspawns: Array = get_tree().get_nodes_in_group("MobSpawn")
 	for spawn in mobspawns:
 		if spawn.is_my_mob_dead:
-			print(spawn.spawn_id)
+			#print(spawn.spawn_id)
 			mobspawn_dict[spawn.spawn_id] = true
 	save_file_resource.dead_mobs = mobspawn_dict
 
@@ -170,4 +170,4 @@ func _save_chests():
 		if chest.item_container.items.is_empty():
 			continue
 		chest_dict[chest.chest_id] = chest.item_container.items.map(get_itemdata)
-	save_file_resource.chest_items = chest_dict
+	save_file_resource.chest_items = chest_dict 

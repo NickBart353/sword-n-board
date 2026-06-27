@@ -4,7 +4,7 @@ extends Node3D
 const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactable/item_sack.tscn")
 const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player_new.tscn")
 
-@onready var main_ui = $CanvasLayer/MainUI
+#@onready var main_ui = $CanvasLayer/MainUI
 var player: Player
 
 func _ready() -> void:
@@ -13,15 +13,15 @@ func _ready() -> void:
 	_load_chests()
 	_spawn_player()
 	
-	EventBus.close_container.connect(_close_container)
-	EventBus.open_container.connect(_open_container)
+	#EventBus.close_container.connect(_close_container)
+	#EventBus.open_container.connect(_open_container)
 	EventBus.remove_me.connect(remove_object)
 	EventBus.spawn_loot.connect(_enemy_died)
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	
 	
-	main_ui.update_items.connect(update_items)
+	#main_ui.update_items.connect(update_items)
 	GameStateSaver.start()
 
 func _enemy_died(enemy: Node3D):
@@ -42,22 +42,22 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	vfx_instance.global_position = loot_position
 	vfx_instance.play()
 
-func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
-	var show_ui = not main_ui.get_ui()
-	_change_ui_state(show_ui)
-	
-	main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
-	main_ui.open_inventory()
+#func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
+	#var show_ui = not main_ui.get_ui()
+	#_change_ui_state(show_ui)
+	#
+	#main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
+	#main_ui.open_inventory()
 
-func _open_container(container: Node):
-	_change_ui_state(true)
-	main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
-	main_ui.fill_loot(container.items)
-	main_ui.open_sack(container)
+#func _open_container(container: Node):
+	#_change_ui_state(true)
+	#main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
+	#main_ui.fill_loot(container.items)
+	#main_ui.open_sack(container)
 
-func _close_container(_container):
-	_change_ui_state(false)
-	main_ui.close_sack(_container)
+#func _close_container(_container):
+	#_change_ui_state(false)
+	#main_ui.close_sack(_container)
 
 func _change_ui_state(show_ui: bool):
 	$CanvasLayer.set_visible(show_ui)
@@ -109,8 +109,8 @@ func _spawn_mobs(reset_mobs: bool = false):
 					if not reset_mobs and mobspawn_data:
 						if mobspawn_data.get(mob_spawn.spawn_id) != null:
 							if mobspawn_data.get(mob_spawn.spawn_id) == true:
-								continue
 								mob_spawn.is_my_mob_dead = true
+								continue
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
 						mob_spawn.add_child(mob_instance)
@@ -119,11 +119,8 @@ func _spawn_mobs(reset_mobs: bool = false):
 
 func _spawn_player():
 	player = player_scene.instantiate()
-	#var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
 	var player_data: Dictionary = GameStateSaver.get_player_data()
-	print(SaveFileManager.current_savefile_id)
 	add_child(player)
-	print("spaning player")
 	if player_data:
 		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
 		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
@@ -133,5 +130,4 @@ func _spawn_player():
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = $PlayerSpawn.global_position
-	#player.open_inventory.connect(open_inventory)
 	player.spawn_projectile.connect(_spawn_projectile)

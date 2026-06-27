@@ -195,7 +195,7 @@ func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: Inven
 			player_offhand = null
 			mainhand.add_child(inventory_item)
 			var duplicate_item = inventory_item.duplicate()
-			duplicate_item.disabled = true
+			#duplicate_item.disabled = true
 			offhand.add_child(duplicate_item)
 			UiController.update_hud_mainhand(player_mainhand)
 			UiController.update_hud_offhand(player_mainhand, true)
