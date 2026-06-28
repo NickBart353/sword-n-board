@@ -107,29 +107,29 @@ func sort_by_cat_and_name(a, b) -> bool:
 func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
 	if player_helmet:
 		if inventory_item.item.data.unique_id == player_helmet.data.unique_id:
-			player_helmet = inventory_item.item
+			inventory_item.item = player_helmet
 			return 1
 	if player_body:
 		if inventory_item.item.data.unique_id == player_body.data.unique_id:
-			player_body = inventory_item.item
+			inventory_item.item = player_body
 			return 2
 	if player_boots:
 		if inventory_item.item.data.unique_id == player_boots.data.unique_id:
-			player_boots = inventory_item.item
+			inventory_item.item = player_boots
 			return 3
 	if player_mainhand:
 		if inventory_item.item.data.unique_id == player_mainhand.data.unique_id:
-			player_mainhand = inventory_item.item
+			inventory_item.item = player_mainhand
 			equip_weapon(inventory_item.item, LEFT, inventory_item)
 			return 4
 	if player_offhand:
 		if inventory_item.item.data.unique_id == player_offhand.data.unique_id:
-			player_offhand = inventory_item.item
+			inventory_item.item = player_offhand
 			equip_weapon(inventory_item.item, RIGHT, inventory_item)
 			return 5
 	if current_consumable:
 		if inventory_item.item.data.unique_id == current_consumable.data.unique_id:
-			current_consumable = inventory_item.item
+			inventory_item.item = current_consumable
 			inventory_item.mark_consumable()
 			#_emit_update_player_items()
 			equip_consumable(inventory_item, inventory_item.item)
@@ -138,7 +138,7 @@ func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
 	if player_consumables:
 		for item in player_consumables:
 			if inventory_item.item.data.unique_id == item.data.unique_id:
-				item = inventory_item.item
+				inventory_item.item = item
 				inventory_item.mark_consumable()
 				#_emit_update_player_items()
 				#equip_consumable(inventory_item, inventory_item.item)
@@ -292,6 +292,7 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 	_emit_update_player_items()
 
 func _remove_consumable(item: Item, remove_stack: bool):
+	prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
 	if remove_stack:
 		for inventory_item in item_grid.get_children():
 			if inventory_item.item.data.item_id == item.data.item_id:
@@ -340,9 +341,6 @@ func _remove_item_from_inventory(item: Item):
 	_refresh_items()
 
 func _emit_update_player_items():
-	#if current_consumable:
-		#UiController.update_player_consumables(player_consumables, current_consumable.duplicate(true) as Item)
-	#else:
 	UiController.update_player_consumables(player_consumables)
 	update_player_items.emit(player_helmet,
 		player_body,

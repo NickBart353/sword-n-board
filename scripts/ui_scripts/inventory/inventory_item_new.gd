@@ -28,7 +28,6 @@ func set_equipped_value(equipped_value: int):
 
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
-		print("test")
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
 				item_pressed.emit(self, item, "LEFT", slot)
@@ -36,7 +35,7 @@ func _gui_input(event):
 				item_pressed.emit(self, item, "RIGHT", slot)
 
 func _on_mouse_entered() -> void:
-	modulate = Color(1,1,1,0.7)
+	modulate = Color(1.164, 1.164, 1.164, 1.0)
 	item_hovered.emit(item)
 
 #func _on_pressed() -> void:
