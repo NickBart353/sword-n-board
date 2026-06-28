@@ -25,14 +25,15 @@ func _ready() -> void:
 	GameStateSaver.start()
 
 func _enemy_died(enemy: Node3D):
-	_generate_loot_on_enemy_death(enemy.global_position, enemy.level)
+	_generate_loot_on_enemy_death(enemy.global_position, enemy)
 
-func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
-	var items_to_generate: Array = ItemManager.generate_loot(enemy_level)
+func _generate_loot_on_enemy_death(loot_position: Vector3, enemy: Enemy):
+	var items_to_generate: Array = ItemManager.generate_loot(enemy.level)
 	if not items_to_generate: return
 	
 	var item_sack_instance = ObjectPooler.get_free_item_sack()
 	item_sack_instance.get_node("ItemContainer").items = items_to_generate
+	item_sack_instance.enemy_name = enemy.display_name
 	#$Loot.add_child(item_sack_instance, true)
 	item_sack_instance.global_position = Vector3(loot_position.x, loot_position.y + 1.0, loot_position.z)
 	#item_sack_instance._remove_me()

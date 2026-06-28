@@ -82,7 +82,7 @@ func _inventory():
 func _character_panel():
 	pass
 
-func _open_loot_container(item_container: ItemContainer):
+func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""):
 	if loot_container.is_visible():
 		loot_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -91,7 +91,7 @@ func _open_loot_container(item_container: ItemContainer):
 	else:
 		get_tree().paused = true
 		loot_container.show()
-		loot_container.set_data(item_container)
+		loot_container.set_data(item_container, enemy_name)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		PlayerControls.block_input()
 

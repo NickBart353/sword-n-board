@@ -3,11 +3,15 @@ class_name LootContainer extends PanelContainer
 @onready var item_grid: GridContainer = $MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/ItemGrid
 @onready var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
 @onready var stat_container: HBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer/StatContainer
+@onready var enemy_name_label: Label = $MarginContainer/VBoxContainer/EnemyName
 
 var loot_items: Array = []
 var connected_container: ItemContainer
 
-func set_data(item_container: ItemContainer):
+const loot_text: String = "{0} corpse"
+
+func set_data(item_container: ItemContainer, enemy_name: String):
+	enemy_name_label.text = loot_text.format([enemy_name])
 	connected_container = item_container
 	for inventory_item in item_grid.get_children():
 		inventory_item.queue_free()

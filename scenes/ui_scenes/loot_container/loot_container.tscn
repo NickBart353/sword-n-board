@@ -25,7 +25,7 @@ theme = ExtResource("1_21rxi")
 layout_mode = 2
 theme = ExtResource("1_21rxi")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1008375711]
+[node name="EnemyName" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1008375711]
 layout_mode = 2
 theme = ExtResource("1_21rxi")
 text = "Rat Loot"
