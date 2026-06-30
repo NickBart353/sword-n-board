@@ -21,8 +21,8 @@ func _ready() -> void:
 	duration_timer.wait_time = dot_duration
 	if not duration_timer.timeout.is_connected(_on_duration_timeout):
 		duration_timer.timeout.connect(_on_duration_timeout)
-	monitoring = false
-	monitorable = false
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 	if decal:
 		decal.albedo_mix = 0
 	if particle_effect:
@@ -40,18 +40,19 @@ func activate():
 		particle_effect.restart()
 
 func _process(_delta: float) -> void:
-	if timer.time_left <= 0.0:
-		overlapping_areas.clear()
-		for area in get_overlapping_areas():
-			if area is DOT and area.dot_effect_name == dot_effect_name:
-				overlapping_areas.append(area)
-		for body in get_overlapping_bodies():
-			if (body is Player or body is Enemy):
-				for dot in overlapping_areas:
-					if dot:
-						dot.start_timer_from_overlap()
-				timer.start(tick_speed)
-				body.take_damage(dot_damage, self)
+	if monitoring:
+		if timer.time_left <= 0.0:
+			overlapping_areas.clear()
+			for area in get_overlapping_areas():
+				if area is DOT and area.dot_effect_name == dot_effect_name:
+					overlapping_areas.append(area)
+			for body in get_overlapping_bodies():
+				if (body is Player or body is Enemy):
+					for dot in overlapping_areas:
+						if dot:
+							dot.start_timer_from_overlap()
+					timer.start(tick_speed)
+					body.take_damage(dot_damage, self)
 
 func start_timer_from_overlap():
 	if not timer.time_left:
