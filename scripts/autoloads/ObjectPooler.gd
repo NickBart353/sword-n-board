@@ -7,7 +7,7 @@ var min_amount_item_sack: int = 10
 var item_sack_container: Node3D
 var available_sacks: Array[ItemSack] = []
 
-var min_amount_toxic_ground: int = 200
+var min_amount_toxic_ground: int = 300
 var toxic_ground_container: Node3D
 var available_toxic_grounds: Array[DOT] = []
 

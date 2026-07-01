@@ -31,7 +31,7 @@ var all_dots_gone: bool = false
 
 var projectile_speed: float = 25
 var gravity_strength: float = 20
-var spread: float = 15.0
+var spread: float = 12.0
 
 var shape_rid: RID
 var space_rid: RID
@@ -100,14 +100,16 @@ func Physics_Update(delta: float) -> void:
 	if not all_fired:
 		_move_bombs(delta)
 
-func _physics_process(delta: float) -> void:
-	if first_exploded and not all_dots_gone:
-		player_time_accumulator += delta
-		if player_time_accumulator > player_check_rate:
-			player_time_accumulator = 0
-			_check_player_position()
+#func _physics_process(delta: float) -> void:
+	#if first_exploded and not all_dots_gone:
+		#player_time_accumulator += delta
+		#if player_time_accumulator > player_check_rate:
+			#player_time_accumulator = 0
+			#_check_player_position()
 
 func _check_player_position():
+	if active_toxic_ground_counter < 150:
+		return
 	impact_locations.sort_custom(sort_by_distance_to_player)
 	var needed_locations: Array[Vector3] = impact_locations.slice(0, active_toxic_grounds.size())
 	
@@ -180,22 +182,23 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	var bomb_id: int = rid_bomb_map.get(area_rid)
 	
 	var nody: Node = instance_from_id(object_id)
+	print("classy: ", nody.get_class())
 	if nody is Player:
 		nody.take_damage(poison_burst_damage, enemy, true, false)
 	else:
-		var impact_location: Vector3 = (enemy.bomb_multi_mesh.global_position + bomb_velocity[bomb_id]) + Vector3(0,1,0)
-		impact_locations.append(impact_location)
-		if active_toxic_ground_counter < 100:
-			active_toxic_ground_counter += 1
-			var toxic_ground_scene: DOT = ObjectPooler.get_free_toxic_ground()
-			toxic_ground_scene.duration_timer.wait_time = 10
-			toxic_ground_scene.activate()
-			toxic_ground_scene.global_position = impact_location
-			
-			var toxic_ground_finished_callable: Callable = Callable(self, "_reset_ground").bind(toxic_ground_scene)
-			if not toxic_ground_scene.dot_finished.is_connected(toxic_ground_finished_callable):
-				toxic_ground_scene.dot_finished.connect(toxic_ground_finished_callable)
-			active_toxic_grounds.append(toxic_ground_scene)
+		pass
+	var impact_location: Vector3 = (enemy.bomb_multi_mesh.global_position + bomb_velocity[bomb_id]) + Vector3(0,1,0)
+	impact_locations.append(impact_location)
+	active_toxic_ground_counter += 1
+	var toxic_ground_scene: DOT = ObjectPooler.get_free_toxic_ground()
+	toxic_ground_scene.duration_timer.wait_time = 10
+	toxic_ground_scene.activate()
+	toxic_ground_scene.global_position = impact_location
+	
+	var toxic_ground_finished_callable: Callable = Callable(self, "_reset_ground").bind(toxic_ground_scene)
+	if not toxic_ground_scene.dot_finished.is_connected(toxic_ground_finished_callable):
+		toxic_ground_scene.dot_finished.connect(toxic_ground_finished_callable)
+	active_toxic_grounds.append(toxic_ground_scene)
 	
 	enemy.bomb_multi_mesh.multimesh.set_instance_transform(bomb_id, Transform3D(Basis(), enemy.RESET_POSITION))
 	bomb_positions.erase(bomb_id)
