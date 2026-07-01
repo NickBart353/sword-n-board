@@ -1,6 +1,9 @@
 class_name DOT extends Area3D
 
 signal dot_finished
+signal faded
+
+@onready var emitting_goo: GPUParticles3D = $EmittingGoo
 
 @export_range(0.0, 10.0) var tick_speed: float = 1.0
 @export var dot_damage: float = 5
@@ -68,3 +71,14 @@ func _on_duration_timeout() -> void:
 		if particle_effect:
 			particle_effect.emitting = false
 		dot_finished.emit()
+
+func fade_out() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(decal, "modulate", Color(1.691, 0.912, 1.6, 0.0), 0.3)
+	tween.tween_property(emitting_goo, "transparency", 0.0, 0.3)
+	faded.emit()
+
+func fade_in() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(decal, "modulate", Color(1.691, 0.909, 1.6), 0.3)
+	tween.tween_property(emitting_goo, "transparency", 1, 0.3)

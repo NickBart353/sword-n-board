@@ -18,7 +18,7 @@ func _ready() -> void:
 func _remove_me():
 	#EventBus.remove_me.emit(self)
 	timer.stop()
-	ObjectPooler.reset_item_sack(self)
+	ObjectPooler.reset_object(self)
 
 func activate_timer() -> void:
 	timer.start()
