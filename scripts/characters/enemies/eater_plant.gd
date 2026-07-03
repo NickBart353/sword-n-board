@@ -22,6 +22,10 @@ class_name EaterPlant extends Enemy
 @export_range(0.0, 100.0) var tentacle_attack_min_radius: float = 3
 @export_range(0.0, 100.0) var tentacle_attack_max_radius: float = 15
 
+@export_group("Tentacle Spikes - NEW")
+@export var tentacle_spike_mesh: MultiMeshInstance3D
+@export_range(0.0, 1000.0) var tentacle_spike_range: float = 100
+
 @export_group("Tentacle Spikes")
 @export var tentacle_root: PackedScene
 @export_range(0.0, 100.0) var tentacle_damage: int = 15
@@ -29,6 +33,7 @@ class_name EaterPlant extends Enemy
 @export_range(0.0, 100.0) var tentacle_slam_damage: int = 30
 
 var num_tentacles_erupted: int = 0
+var spike_positions: Array[Vector3] = []
 
 func _ready() -> void:
 	super()
@@ -36,6 +41,7 @@ func _ready() -> void:
 	create_tentacles()
 	create_tentacle_roots()
 	bomb_multi_mesh.multimesh.instance_count = poison_blast_bullet_amount_new
+	tentacle_spike_mesh.multimesh.instance_count = tentacle_root_amount
 
 func _physics_process(_delta: float) -> void:
 	velocity += get_gravity()

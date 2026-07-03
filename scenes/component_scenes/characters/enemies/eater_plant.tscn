@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://brlq485so3kyn" path="res://assets/Audio/pixabay/freesound_community-052256_cracking-earthquake-cracking-soil-cracking-stone-86770.wav" id="25_cyi11"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
 [ext_resource type="AudioStream" uid="uid://ch1iaqrgut08l" path="res://assets/Audio/Monster Roar/Ogre Roar 05.wav" id="26_ayg1h"]
+[ext_resource type="Script" uid="uid://d3d8ph7uxtbkf" path="res://scripts/state_machine/states/EnemyStates/eater_plant/channeling_tentacle_eruption_new.gd" id="26_dbm22"]
 [ext_resource type="AudioStream" uid="uid://6me0coy3qlki" path="res://assets/Audio/pixabay/freesound_community-plant-95044.mp3" id="27_tvx8g"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="28_31cd0"]
 [ext_resource type="Script" uid="uid://bem8vnr0h43d2" path="res://scripts/state_machine/states/EnemyStates/eater_plant/poison_burst_new.gd" id="29_dbm22"]
@@ -240,6 +241,22 @@ instance_count = 7
 mesh = SubResource("SphereMesh_ycrx7")
 buffer = PackedFloat32Array(1, 0.75, 115.38652, 78.86094, 1, 1, 1, 0, 115.443245, 78.52743, 1, 1, 1, 0.75, 115.50505, 78.83386, 1, 1, 1, 0, 115.58179, 78.50316, 1, 1, 1, 0.75, 115.6279, 78.81234, 1, 1, 1, 0, 115.72494, 78.485504, 1, 1, 1, 0.75, 115.75544, 78.79661, 1, 1, 1, 0, 115.8729, 78.474724, 1, 1, 1, 0.75, 115.88799, 78.78695, 1, 1, 1, 0, 116.02888, 78.471, 1, 1, 1, 0.75, 116.03632, 78.78341, 1, 1, 1, 0, 116.02888, 78.471, 1, 1, 1, 0.75, 116.34873, 78.77596, 1, 1, 1, 0, 116.341286, 78.463554, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwa40"]
+cull_mode = 2
+albedo_color = Color(0.27058825, 0.49411765, 0.23137255, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dbm22"]
+material = SubResource("StandardMaterial3D_lwa40")
+top_radius = 0.0
+bottom_radius = 0.89
+height = 10.355
+radial_segments = 4
+rings = 1
+
+[sub_resource type="MultiMesh" id="MultiMesh_dbm22"]
+transform_format = 1
+mesh = SubResource("CylinderMesh_dbm22")
+
 [node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location_new", "bomb_start_location", "tentacle_container", "anim_tree", "state_machine") instance=ExtResource("1_ff3iu")]
 collision_layer = 32
 collision_mask = 39
@@ -444,13 +461,24 @@ channeling_vfx_position = NodePath("../../../Tentacles")
 follow_up_state = NodePath("../../TentacleEruption")
 look_at_target = false
 cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
+disable_me = true
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
 play_audio = true
 audio_resource = ExtResource("25_cyi11")
 
-[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
+[node name="ChannelingTentacleEruptionNew" type="Node" parent="StateMachine/Follow" index="2" unique_id=428272173 node_paths=PackedStringArray("charge_timer", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+script = ExtResource("26_dbm22")
+charge_timer = NodePath("../../../Timers/EruptionTimer")
+follow_up_state = NodePath("../../TentacleEruptionNew")
+look_at_target = false
+cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
+enemy = NodePath("../../..")
+anim_tree = NodePath("../../../AnimationTree")
+audio_player = NodePath("../../../PlantPlayer")
+
+[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="3" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
 enemy = NodePath("../../..")
@@ -478,7 +506,16 @@ audio_player = NodePath("../../PlantPlayer")
 audio_resource = ExtResource("31_dbm22")
 offset_audio = 0.4899999999999949
 
-[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
+[node name="TentacleEruptionNew" type="Node" parent="StateMachine" index="6" unique_id=38873464 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree", "audio_player")]
+script = ExtResource("10_ep3x6")
+eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
+enemy = NodePath("../..")
+anim_tree = NodePath("../../AnimationTree")
+audio_player = NodePath("../../PlantPlayer")
+audio_resource = ExtResource("31_dbm22")
+offset_audio = 0.4899999999999949
+
+[node name="Dead" type="Node" parent="StateMachine" index="7" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("25_mom4r")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
@@ -491,25 +528,29 @@ audio_resource = ExtResource("26_ayg1h")
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 multimesh = SubResource("MultiMesh_6rmpw")
 
-[node name="Bombs" type="Node3D" parent="." index="13" unique_id=717428469]
+[node name="TentacleSpikeMultimesh" type="MultiMeshInstance3D" parent="." index="13" unique_id=1341278201]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+multimesh = SubResource("MultiMesh_dbm22")
+
+[node name="Bombs" type="Node3D" parent="." index="14" unique_id=717428469]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)
 
-[node name="Tentacles" type="Node3D" parent="." index="14" unique_id=1837343989]
+[node name="Tentacles" type="Node3D" parent="." index="15" unique_id=1837343989]
 
-[node name="TentacleRoots" type="Node3D" parent="." index="15" unique_id=110300014]
+[node name="TentacleRoots" type="Node3D" parent="." index="16" unique_id=110300014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.79999995, 0)
 
-[node name="MouthTop" type="Marker3D" parent="." index="16" unique_id=82055805]
+[node name="MouthTop" type="Marker3D" parent="." index="17" unique_id=82055805]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6.9000006, 6.556708e-08)
 
-[node name="MouthSide" type="Marker3D" parent="." index="17" unique_id=1010728377]
+[node name="MouthSide" type="Marker3D" parent="." index="18" unique_id=1010728377]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.3, 5.5)
 
-[node name="PlantPlayer" type="AudioStreamPlayer3D" parent="." index="18" unique_id=2008908463]
+[node name="PlantPlayer" type="AudioStreamPlayer3D" parent="." index="19" unique_id=2008908463]
 max_polyphony = 10
 bus = &"SFX"
 
-[node name="FireAndForget" type="Node3D" parent="." index="19" unique_id=1781275387 node_paths=PackedStringArray("_audio_position")]
+[node name="FireAndForget" type="Node3D" parent="." index="20" unique_id=1781275387 node_paths=PackedStringArray("_audio_position")]
 script = ExtResource("28_31cd0")
 _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"
