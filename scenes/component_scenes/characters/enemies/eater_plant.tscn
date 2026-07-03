@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://fa3htuacg1ih" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleSlam.gd" id="8_deve0"]
 [ext_resource type="AudioStream" uid="uid://efuhgxtublu1" path="res://assets/Audio/Monster Roar/Ogre Roar 13.wav" id="8_ljboj"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c0utx4rvx0jfo" path="res://animations/eater_plant_animation_sate_machine.tres" id="8_qmp0i"]
-[ext_resource type="Script" uid="uid://cnqlbquajpeqs" path="res://scripts/state_machine/states/EnemyStates/eater_plant/PoisonBurst.gd" id="9_d6sg8"]
 [ext_resource type="Script" uid="uid://hthc22nmtdd4" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleEruption.gd" id="10_ep3x6"]
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="14_6gcyd"]
@@ -30,7 +29,6 @@
 [ext_resource type="AudioStream" uid="uid://brlq485so3kyn" path="res://assets/Audio/pixabay/freesound_community-052256_cracking-earthquake-cracking-soil-cracking-stone-86770.wav" id="25_cyi11"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
 [ext_resource type="AudioStream" uid="uid://ch1iaqrgut08l" path="res://assets/Audio/Monster Roar/Ogre Roar 05.wav" id="26_ayg1h"]
-[ext_resource type="AudioStream" uid="uid://b6bo32fn2agjj" path="res://assets/Audio/pixabay/freesound_community-spit-36265.mp3" id="27_fk03l"]
 [ext_resource type="AudioStream" uid="uid://6me0coy3qlki" path="res://assets/Audio/pixabay/freesound_community-plant-95044.mp3" id="27_tvx8g"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="28_31cd0"]
 [ext_resource type="Script" uid="uid://bem8vnr0h43d2" path="res://scripts/state_machine/states/EnemyStates/eater_plant/poison_burst_new.gd" id="29_dbm22"]
@@ -460,18 +458,7 @@ anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
 audio_resource = ExtResource("27_tvx8g")
 
-[node name="PoisonBurst" type="Node" parent="StateMachine" index="4" unique_id=231634432 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
-script = ExtResource("9_d6sg8")
-bullet_position = NodePath("../../Bombs")
-cooldown_timer = NodePath("../../Timers/PoisonCooldown")
-fire_rate = 0.005
-enemy = NodePath("../..")
-anim_tree = NodePath("../../AnimationTree")
-audio_player = NodePath("../../PlantPlayer")
-audio_resource = ExtResource("27_fk03l")
-audio_volume = 5.0
-
-[node name="PoisonBurstNew" type="Node" parent="StateMachine" index="5" unique_id=1001298325 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
+[node name="PoisonBurstNew" type="Node" parent="StateMachine" index="4" unique_id=1001298325 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("29_dbm22")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
@@ -482,7 +469,7 @@ audio_player = NodePath("../../PlantPlayer")
 play_audio = true
 audio_volume = 5.0
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="6" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree", "audio_player")]
+[node name="TentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 enemy = NodePath("../..")
@@ -491,7 +478,7 @@ audio_player = NodePath("../../PlantPlayer")
 audio_resource = ExtResource("31_dbm22")
 offset_audio = 0.4899999999999949
 
-[node name="Dead" type="Node" parent="StateMachine" index="7" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
+[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("25_mom4r")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")

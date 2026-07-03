@@ -4,6 +4,7 @@ signal dot_finished
 signal faded
 
 @onready var emitting_goo: GPUParticles3D = $EmittingGoo
+@onready var explosion: GPUParticles3D = $GPUParticles3D
 
 @export_range(0.0, 10.0) var tick_speed: float = 1.0
 @export var dot_damage: float = 5
@@ -32,7 +33,7 @@ func _ready() -> void:
 		particle_effect.emitting = false
 	hide()
 
-func activate():
+func activate(activate_explosion:bool = false):
 	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
 	duration_timer.start()
@@ -41,6 +42,10 @@ func activate():
 		decal.albedo_mix = 1
 	if particle_effect:
 		particle_effect.restart()
+	if activate_explosion:
+		explosion.restart()
+	Camera3D
+
 
 func _process(_delta: float) -> void:
 	if monitoring:

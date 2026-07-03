@@ -44,6 +44,8 @@ signal spawn_projectile
 @onready var thumb_left: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbLeft"
 @onready var thumb_right: TwoBoneIK3D = $"Player - Kopie/Armature/Skeleton3D/ThumbRight"
 
+@onready var field_of_view: Camera3D = $"Player - Kopie/IKMarkers/Torso/Head/FieldOfView"
+
 #@onready var hand_right: CopyTransformModifier3D = $"Player - Kopie/Armature/Skeleton3D/HandRight"
 #@onready var hand_left: CopyTransformModifier3D = $"Player - Kopie/Armature/Skeleton3D/HandLeft"
 
@@ -106,6 +108,7 @@ func _ready() -> void:
 			child.show()
 	$AnimationTreeNew.active = true
 	###DEBUG END
+	PlayerControls.set_player_camera(field_of_view)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	HEALTH = MAX_HEALTH
 	STAMINA = MAX_STAMINA

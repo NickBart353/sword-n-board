@@ -185,14 +185,19 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	print("classy: ", nody.get_class())
 	if nody is Player:
 		nody.take_damage(poison_burst_damage, enemy, true, false)
+		return
 	else:
 		pass
-	var impact_location: Vector3 = (enemy.bomb_multi_mesh.global_position + bomb_velocity[bomb_id]) + Vector3(0,1,0)
+	var impact_location: Vector3 = (enemy.bomb_multi_mesh.global_transform * bomb_velocity[bomb_id]) + Vector3(0,1,0)
 	impact_locations.append(impact_location)
 	active_toxic_ground_counter += 1
 	var toxic_ground_scene: DOT = ObjectPooler.get_free_toxic_ground()
 	toxic_ground_scene.duration_timer.wait_time = 10
-	toxic_ground_scene.activate()
+	
+	if impact_location.distance_squared_to(player.global_position) < 15 and PlayerControls.is_position_in_frustrum(impact_location):
+		toxic_ground_scene.activate(true)
+	else:
+		toxic_ground_scene.activate()
 	toxic_ground_scene.global_position = impact_location
 	
 	var toxic_ground_finished_callable: Callable = Callable(self, "_reset_ground").bind(toxic_ground_scene)
