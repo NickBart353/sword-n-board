@@ -43,6 +43,8 @@ func _save() -> void:
 	_save_multithreaded()
 
 func _save_multithreaded():
+	if CombatManager.is_in_combat():
+		return
 	if current_savemanager_task_id:
 		if not WorkerThreadPool.is_task_completed(current_savemanager_task_id):
 			return

@@ -371,7 +371,7 @@ stream_2 = SubResource("AudioStreamRandomizer_ykwct")
 
 [node name="Player" type="CharacterBody3D" unique_id=73090851 groups=["Player"]]
 collision_layer = 4
-collision_mask = 35
+collision_mask = 163
 floor_snap_length = 0.2
 safe_margin = 0.1
 script = ExtResource("1_nqje2")

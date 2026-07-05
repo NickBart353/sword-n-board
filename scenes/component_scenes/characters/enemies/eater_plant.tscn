@@ -19,14 +19,12 @@
 [ext_resource type="Script" uid="uid://hthc22nmtdd4" path="res://scripts/state_machine/states/EnemyStates/eater_plant/TentacleEruption.gd" id="10_ep3x6"]
 [ext_resource type="Script" uid="uid://ctmttarymhu4c" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingPoisonBurst.gd" id="13_od7bd"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="14_6gcyd"]
-[ext_resource type="Script" uid="uid://h7ih74k0stb6" path="res://scripts/state_machine/states/EnemyStates/eater_plant/ChannelingTentacleEruption.gd" id="14_piwai"]
 [ext_resource type="AudioStream" uid="uid://847c2bfisw2m" path="res://assets/Audio/Monster Roar/Ogre Roar 03 - edited.wav" id="17_mom4r"]
 [ext_resource type="Script" uid="uid://c7e2a1x3h4f0k" path="res://scripts/state_machine/states/EnemyStates/EnemyFollow.gd" id="18_6gcyd"]
 [ext_resource type="AudioStream" uid="uid://dj4dbhe4j844c" path="res://assets/Audio/pixabay/freesound_community-moving-plant-75923.mp3" id="21_bm5oj"]
 [ext_resource type="PackedScene" uid="uid://b3golxe3jp3df" path="res://scenes/component_scenes/spells/tentacle.tscn" id="22_mcukf"]
 [ext_resource type="AudioStream" uid="uid://ctijoqgx8uboe" path="res://assets/Audio/pixabay/freesound_community-power-charge-6798 - edited.wav" id="23_fk03l"]
 [ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
-[ext_resource type="AudioStream" uid="uid://brlq485so3kyn" path="res://assets/Audio/pixabay/freesound_community-052256_cracking-earthquake-cracking-soil-cracking-stone-86770.wav" id="25_cyi11"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
 [ext_resource type="AudioStream" uid="uid://ch1iaqrgut08l" path="res://assets/Audio/Monster Roar/Ogre Roar 05.wav" id="26_ayg1h"]
 [ext_resource type="Script" uid="uid://d3d8ph7uxtbkf" path="res://scripts/state_machine/states/EnemyStates/eater_plant/channeling_tentacle_eruption_new.gd" id="26_dbm22"]
@@ -36,29 +34,29 @@
 [ext_resource type="AudioStream" uid="uid://b1r3nkokje0wp" path="res://assets/Audio/pixabay/lordsonny_two-debris-break-253779.mp3" id="31_dbm22"]
 [ext_resource type="Script" uid="uid://jdsmyt0dvhoj" path="res://scripts/attacks/tentacle_spike_eruption.gd" id="34_ycrx7"]
 
-[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_alvsb"]
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_ycrx7"]
 parameter_name = "MainTexture"
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ewj3n"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_alvsb"]
 source = 5
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mm7l5"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ewj3n"]
 parameter_name = "Metallic"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_y618k"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mm7l5"]
 parameter_name = "Roughness"
 hint = 1
 
-[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_u5p4s"]
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_y618k"]
 constant = Color(0.003921569, 0.003921569, 0, 1)
 
-[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_jaf0n"]
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_u5p4s"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
 operator = 2
 
-[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_r6f7t"]
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_jaf0n"]
 parameter_name = "Color"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvk24"]
@@ -70,56 +68,56 @@ noise = SubResource("FastNoiseLite_wvk24")
 seamless = true
 seamless_blend_skirt = 0.488
 
-[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_ranc3"]
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_r6f7t"]
 texture = SubResource("NoiseTexture2D_drxrv")
 
-[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_prqts"]
+[sub_resource type="VisualShaderNodeRemap" id="VisualShaderNodeRemap_ranc3"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_o05q6"]
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_prqts"]
 parameter_name = "DissolveStrength"
 hint = 1
 
-[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_rlcnt"]
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_o05q6"]
 function = 31
 
-[sub_resource type="VisualShader" id="VisualShader_j13dt"]
+[sub_resource type="VisualShader" id="VisualShader_rlcnt"]
 resource_local_to_scene = true
 nodes/fragment/0/position = Vector2(420, 100)
-nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_ranc3")
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_r6f7t")
 nodes/fragment/3/position = Vector2(-980, -140)
-nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_prqts")
+nodes/fragment/4/node = SubResource("VisualShaderNodeRemap_ranc3")
 nodes/fragment/4/position = Vector2(-140, 720)
-nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_o05q6")
+nodes/fragment/8/node = SubResource("VisualShaderNodeFloatParameter_prqts")
 nodes/fragment/8/position = Vector2(-460, 720)
-nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_rlcnt")
+nodes/fragment/9/node = SubResource("VisualShaderNodeFloatFunc_o05q6")
 nodes/fragment/9/position = Vector2(140, 800)
-nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_alvsb")
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture2DParameter_ycrx7")
 nodes/fragment/10/position = Vector2(-540, -380)
-nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_ewj3n")
+nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_alvsb")
 nodes/fragment/11/position = Vector2(-480, -560)
-nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_mm7l5")
+nodes/fragment/12/node = SubResource("VisualShaderNodeFloatParameter_ewj3n")
 nodes/fragment/12/position = Vector2(-520, 100)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_y618k")
+nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_mm7l5")
 nodes/fragment/13/position = Vector2(-160, 220)
-nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_u5p4s")
+nodes/fragment/14/node = SubResource("VisualShaderNodeColorConstant_y618k")
 nodes/fragment/14/position = Vector2(140, 340)
-nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_jaf0n")
+nodes/fragment/15/node = SubResource("VisualShaderNodeVectorOp_u5p4s")
 nodes/fragment/15/position = Vector2(-80, -560)
-nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_r6f7t")
+nodes/fragment/16/node = SubResource("VisualShaderNodeColorParameter_jaf0n")
 nodes/fragment/16/position = Vector2(-400, -760)
 nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 8, 0, 4, 0, 4, 0, 9, 0, 9, 0, 0, 19, 10, 0, 11, 2, 12, 0, 0, 2, 13, 0, 0, 3, 14, 0, 0, 5, 11, 0, 15, 0, 15, 0, 0, 0, 16, 0, 15, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8y30"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j13dt"]
 resource_local_to_scene = true
 render_priority = 0
-shader = SubResource("VisualShader_j13dt")
+shader = SubResource("VisualShader_rlcnt")
 shader_parameter/MainTexture = ExtResource("7_mom4r")
 shader_parameter/Color = Color(1.1203622, 0.87526274, 0.66617197, 1)
 shader_parameter/Metallic = 0.4490000213275
 shader_parameter/Roughness = 1.0
 shader_parameter/DissolveStrength = 0.958000045505
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk40v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y8y30"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_ej3g5")
@@ -258,7 +256,7 @@ rings = 1
 transform_format = 1
 mesh = SubResource("CylinderMesh_dbm22")
 
-[node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location_new", "bomb_start_location", "tentacle_container", "anim_tree", "state_machine") instance=ExtResource("1_ff3iu")]
+[node name="EaterPlant" unique_id=1553646205 node_paths=PackedStringArray("bomb_start_location_new", "bomb_start_location", "tentacle_spike_mesh", "tentacle_container", "anim_tree", "state_machine") instance=ExtResource("1_ff3iu")]
 collision_layer = 32
 collision_mask = 39
 safe_margin = 0.02
@@ -269,6 +267,8 @@ bomb_start_location_new = NodePath("MouthTop")
 POISON_BOMB_SCENE = ExtResource("3_dbm22")
 poison_blast_bullet_amount = 200
 bomb_start_location = NodePath("MouthTop")
+tentacle_spike_mesh = NodePath("TentacleSpikeMultimesh")
+tentacle_spike_range = 30.0
 tentacle_scene = ExtResource("22_mcukf")
 tentacle_container = NodePath("Tentacles")
 tentacle_amount = 500
@@ -320,8 +320,8 @@ bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
 [node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1465217177]
-material_override = SubResource("ShaderMaterial_y8y30")
-material_overlay = SubResource("ShaderMaterial_dk40v")
+material_override = SubResource("ShaderMaterial_j13dt")
+material_overlay = SubResource("ShaderMaterial_y8y30")
 
 [node name="MyPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1926355120]
 libraries/ = SubResource("AnimationLibrary_mom4r")
@@ -387,7 +387,7 @@ wait_time = 15.0
 one_shot = true
 
 [node name="EruptionCooldown" type="Timer" parent="Timers" index="4" unique_id=977227141]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 
 [node name="DeathRemoveTimer" type="Timer" parent="Timers" index="5" unique_id=469566667]
@@ -433,7 +433,7 @@ audio_player = NodePath("../../PlantPlayer")
 [node name="Follow" type="Node" parent="StateMachine" index="3" unique_id=1377346068 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("18_6gcyd")
 follow_speed = 0.0
-attack_range = 50.0
+attack_range = 49.0
 look_at_player = false
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
@@ -449,27 +449,14 @@ channeling_vfx = 7
 follow_up_state = NodePath("../../PoisonBurstNew")
 look_at_target = false
 cool_down_timer = NodePath("../../../Timers/PoisonCooldown")
+disable_me = true
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
 play_audio = true
 audio_resource = ExtResource("23_fk03l")
 
-[node name="ChannelingTentacleEruption" type="Node" parent="StateMachine/Follow" index="1" unique_id=478439059 node_paths=PackedStringArray("charge_timer", "channeling_vfx_position", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
-script = ExtResource("14_piwai")
-charge_timer = NodePath("../../../Timers/EruptionTimer")
-channeling_vfx_position = NodePath("../../../Tentacles")
-follow_up_state = NodePath("../../TentacleEruption")
-look_at_target = false
-cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
-disable_me = true
-enemy = NodePath("../../..")
-anim_tree = NodePath("../../../AnimationTree")
-audio_player = NodePath("../../../PlantPlayer")
-play_audio = true
-audio_resource = ExtResource("25_cyi11")
-
-[node name="ChannelingTentacleEruptionNew" type="Node" parent="StateMachine/Follow" index="2" unique_id=428272173 node_paths=PackedStringArray("tentacle_multimesh", "charge_timer", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+[node name="ChannelingTentacleEruptionNew" type="Node" parent="StateMachine/Follow" index="1" unique_id=428272173 node_paths=PackedStringArray("tentacle_multimesh", "charge_timer", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("26_dbm22")
 tentacle_multimesh = NodePath("../../../TentacleSpikeMultimesh")
 charge_timer = NodePath("../../../Timers/EruptionTimer")
@@ -480,9 +467,10 @@ enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
 
-[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="3" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
+[node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
+disable_me = true
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
@@ -499,16 +487,7 @@ audio_player = NodePath("../../PlantPlayer")
 play_audio = true
 audio_volume = 5.0
 
-[node name="TentacleEruption" type="Node" parent="StateMachine" index="5" unique_id=642341359 node_paths=PackedStringArray("eruption_cooldown", "enemy", "anim_tree", "audio_player")]
-script = ExtResource("10_ep3x6")
-eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
-enemy = NodePath("../..")
-anim_tree = NodePath("../../AnimationTree")
-audio_player = NodePath("../../PlantPlayer")
-audio_resource = ExtResource("31_dbm22")
-offset_audio = 0.4899999999999949
-
-[node name="TentacleEruptionNew" type="Node" parent="StateMachine" index="6" unique_id=38873464 node_paths=PackedStringArray("eruption_cooldown", "tentacle_multimesh", "enemy", "anim_tree", "audio_player")]
+[node name="TentacleEruptionNew" type="Node" parent="StateMachine" index="5" unique_id=38873464 node_paths=PackedStringArray("eruption_cooldown", "tentacle_multimesh", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("10_ep3x6")
 eruption_cooldown = NodePath("../../Timers/EruptionCooldown")
 tentacle_multimesh = NodePath("../../TentacleSpikeMultimesh")
@@ -518,7 +497,7 @@ audio_player = NodePath("../../PlantPlayer")
 audio_resource = ExtResource("31_dbm22")
 offset_audio = 0.4899999999999949
 
-[node name="Dead" type="Node" parent="StateMachine" index="7" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
+[node name="Dead" type="Node" parent="StateMachine" index="6" unique_id=471823908 node_paths=PackedStringArray("death_timer", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("25_mom4r")
 death_timer = NodePath("../../Timers/DeathRemoveTimer")
 enemy = NodePath("../..")
@@ -532,10 +511,15 @@ transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 multimesh = SubResource("MultiMesh_6rmpw")
 
 [node name="TentacleSpikeMultimesh" type="MultiMeshInstance3D" parent="." index="13" unique_id=1341278201 node_paths=PackedStringArray("enemy")]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 multimesh = SubResource("MultiMesh_dbm22")
 script = ExtResource("34_ycrx7")
 enemy = NodePath("..")
+eruption_speed = 50.0
+max_distance = 15.0
+
+[node name="Timer" type="Timer" parent="TentacleSpikeMultimesh" index="0" unique_id=51407768]
+wait_time = 10.0
+one_shot = true
 
 [node name="Bombs" type="Node3D" parent="." index="14" unique_id=717428469]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)
@@ -561,3 +545,4 @@ _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"
 
 [connection signal="timeout" from="Timers/BombDelay" to="." method="_on_bomb_delay_timeout"]
+[connection signal="timeout" from="TentacleSpikeMultimesh/Timer" to="TentacleSpikeMultimesh" method="_on_timer_timeout"]
