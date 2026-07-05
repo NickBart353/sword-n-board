@@ -33,7 +33,6 @@ class_name EaterPlant extends Enemy
 @export_range(0.0, 100.0) var tentacle_slam_damage: int = 30
 
 var num_tentacles_erupted: int = 0
-var spike_positions: Array[Vector3] = []
 
 func _ready() -> void:
 	super()
@@ -41,7 +40,7 @@ func _ready() -> void:
 	create_tentacles()
 	create_tentacle_roots()
 	bomb_multi_mesh.multimesh.instance_count = poison_blast_bullet_amount_new
-	tentacle_spike_mesh.multimesh.instance_count = tentacle_root_amount
+	tentacle_spike_mesh.set_data(tentacle_root_amount, tentacle_damage)
 
 func _physics_process(_delta: float) -> void:
 	velocity += get_gravity()
