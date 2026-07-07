@@ -9,6 +9,8 @@ extends RigidBody3D
 
 @onready var timer: Timer = $Timer
 
+var enemy_name: String
+
 func _ready() -> void:
 	$ItemContainer.items_empty.connect(_remove_me)
 	$ItemContainer.parent = self
@@ -16,7 +18,7 @@ func _ready() -> void:
 func _remove_me():
 	#EventBus.remove_me.emit(self)
 	timer.stop()
-	ObjectPooler.reset_item_sack(self)
+	ObjectPooler.reset_object(self)
 
 func activate_timer() -> void:
 	timer.start()

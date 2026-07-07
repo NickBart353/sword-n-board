@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cpd3gt8lw2lif"]
 
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_7j4hi"]
 [ext_resource type="Script" uid="uid://bo3ckcyr1k3by" path="res://scripts/ui_scripts/ShaderCacheLoadingScreen.gd" id="1_ba8cp"]
-[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="2_7j4hi"]
 [ext_resource type="Texture2D" uid="uid://btljbj4c1bar6" path="res://my_assets/sprites/cog_wheel.png" id="3_6ytit"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62e2m"]
@@ -15,7 +15,6 @@ bg_color = Color(0.11119685, 0.11119685, 0.11119678, 1)
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_qtu10"]
-font = ExtResource("2_7j4hi")
 font_size = 80
 
 [sub_resource type="Animation" id="Animation_qtu10"]
@@ -133,21 +132,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7j4hi")
 theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
 script = ExtResource("1_ba8cp")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=35012871]
 modulate = Color(1, 1, 1, 0.003921569)
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 texture = SubResource("ViewportTexture_ba8cp")
 expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1966950986]
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=694940660]
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 text = "Loading Shaders..."
 label_settings = SubResource("LabelSettings_qtu10")
 horizontal_alignment = 1
@@ -155,6 +158,7 @@ horizontal_alignment = 1
 [node name="Label2" type="Label" parent="VBoxContainer" unique_id=1513961500]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 text = "Loading Shaders.."
 label_settings = SubResource("LabelSettings_qtu10")
 horizontal_alignment = 1
@@ -162,6 +166,7 @@ horizontal_alignment = 1
 [node name="Label3" type="Label" parent="VBoxContainer" unique_id=145900288]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 text = "Loading Shaders."
 label_settings = SubResource("LabelSettings_qtu10")
 horizontal_alignment = 1
@@ -169,6 +174,7 @@ horizontal_alignment = 1
 [node name="Control" type="Control" parent="VBoxContainer" unique_id=1886335095]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_7j4hi")
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/Control" unique_id=1816111478]
 layout_mode = 1
@@ -182,6 +188,7 @@ offset_right = 181.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(269.805, 37.35)
+theme = ExtResource("1_7j4hi")
 texture = ExtResource("3_6ytit")
 expand_mode = 2
 stretch_mode = 3

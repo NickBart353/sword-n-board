@@ -183,8 +183,8 @@ advance_expression = "current_state.name == \"TentacleSlam\""
 resource_local_to_scene = true
 states/ChannelingPoisonBurst/node = SubResource("AnimationNodeAnimation_od7bd")
 states/ChannelingPoisonBurst/position = Vector2(54, -205)
-states/ChannelingTentacleEruption/node = SubResource("AnimationNodeAnimation_ms5eb")
-states/ChannelingTentacleEruption/position = Vector2(655, -205)
+states/ChannelingTentacleEruptionNew/node = SubResource("AnimationNodeAnimation_ms5eb")
+states/ChannelingTentacleEruptionNew/position = Vector2(655, -205)
 states/ChannelingTentacleSlam/node = SubResource("AnimationNodeAnimation_8ah2v")
 states/ChannelingTentacleSlam/position = Vector2(54, -352)
 states/Dead/node = SubResource("AnimationNodeAnimation_piwai")
@@ -196,17 +196,17 @@ states/Follow/node = SubResource("AnimationNodeAnimation_qmp0i")
 states/Follow/position = Vector2(462, 66)
 states/Idle/node = SubResource("AnimationNodeAnimation_ej3g5")
 states/Idle/position = Vector2(242, 219)
-states/PoisonBurst/node = SubResource("AnimationNodeAnimation_eym1i")
-states/PoisonBurst/position = Vector2(54, -51)
+states/PoisonBurstNew/node = SubResource("AnimationNodeAnimation_eym1i")
+states/PoisonBurstNew/position = Vector2(54, -51)
 states/Return/node = SubResource("AnimationNodeAnimation_p4mo3")
 states/Return/position = Vector2(462, 347)
 states/Start/position = Vector2(78, 219)
-states/TentacleEruption/node = SubResource("AnimationNodeAnimation_uevtb")
-states/TentacleEruption/position = Vector2(863, -114)
+states/TentacleEruptionNew/node = SubResource("AnimationNodeAnimation_uevtb")
+states/TentacleEruptionNew/position = Vector2(863, -114)
 states/TentacleSlam/node = SubResource("AnimationNodeAnimation_smapb")
 states/TentacleSlam/position = Vector2(462, -352)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_mcukf"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_xpdqg"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_6gcyd"), "Follow", "ChannelingPoisonBurst", SubResource("AnimationNodeStateMachineTransition_mom4r"), "ChannelingPoisonBurst", "PoisonBurst", SubResource("AnimationNodeStateMachineTransition_ayg1h"), "PoisonBurst", "Follow", SubResource("AnimationNodeStateMachineTransition_wdb2s"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_ljboj"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_31cd0"), "ChannelingPoisonBurst", "Dead", SubResource("AnimationNodeStateMachineTransition_bm5oj"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_fk03l"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_cyi11"), "PoisonBurst", "Dead", SubResource("AnimationNodeStateMachineTransition_tvx8g"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_k6do6"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_ms5eb"), "Follow", "ChannelingTentacleEruption", SubResource("AnimationNodeStateMachineTransition_p4mo3"), "ChannelingTentacleEruption", "TentacleEruption", SubResource("AnimationNodeStateMachineTransition_uevtb"), "TentacleEruption", "Follow", SubResource("AnimationNodeStateMachineTransition_smapb"), "ChannelingTentacleEruption", "Dead", SubResource("AnimationNodeStateMachineTransition_8ah2v"), "TentacleEruption", "Dead", SubResource("AnimationNodeStateMachineTransition_5v47t"), "TentacleSlam", "Follow", SubResource("AnimationNodeStateMachineTransition_ul6dr"), "TentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_b8dyg"), "ChannelingTentacleSlam", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_0irrl"), "Follow", "ChannelingTentacleSlam", SubResource("AnimationNodeStateMachineTransition_di4vd"), "ChannelingTentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_8qkeg"), "Follow", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_mbkgr")]
-graph_offset = Vector2(-194, -413.08878)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_mcukf"), "Idle", "Engage", SubResource("AnimationNodeStateMachineTransition_xpdqg"), "Engage", "Follow", SubResource("AnimationNodeStateMachineTransition_6gcyd"), "Follow", "ChannelingPoisonBurst", SubResource("AnimationNodeStateMachineTransition_mom4r"), "ChannelingPoisonBurst", "PoisonBurstNew", SubResource("AnimationNodeStateMachineTransition_ayg1h"), "PoisonBurstNew", "Follow", SubResource("AnimationNodeStateMachineTransition_wdb2s"), "Follow", "Idle", SubResource("AnimationNodeStateMachineTransition_ljboj"), "Follow", "Dead", SubResource("AnimationNodeStateMachineTransition_31cd0"), "ChannelingPoisonBurst", "Dead", SubResource("AnimationNodeStateMachineTransition_bm5oj"), "Engage", "Dead", SubResource("AnimationNodeStateMachineTransition_fk03l"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_cyi11"), "PoisonBurstNew", "Dead", SubResource("AnimationNodeStateMachineTransition_tvx8g"), "Idle", "Return", SubResource("AnimationNodeStateMachineTransition_k6do6"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_ms5eb"), "Follow", "ChannelingTentacleEruptionNew", SubResource("AnimationNodeStateMachineTransition_p4mo3"), "ChannelingTentacleEruptionNew", "TentacleEruptionNew", SubResource("AnimationNodeStateMachineTransition_uevtb"), "TentacleEruptionNew", "Follow", SubResource("AnimationNodeStateMachineTransition_smapb"), "ChannelingTentacleEruptionNew", "Dead", SubResource("AnimationNodeStateMachineTransition_8ah2v"), "TentacleEruptionNew", "Dead", SubResource("AnimationNodeStateMachineTransition_5v47t"), "TentacleSlam", "Follow", SubResource("AnimationNodeStateMachineTransition_ul6dr"), "TentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_b8dyg"), "ChannelingTentacleSlam", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_0irrl"), "Follow", "ChannelingTentacleSlam", SubResource("AnimationNodeStateMachineTransition_di4vd"), "ChannelingTentacleSlam", "Dead", SubResource("AnimationNodeStateMachineTransition_8qkeg"), "Follow", "TentacleSlam", SubResource("AnimationNodeStateMachineTransition_mbkgr")]
+graph_offset = Vector2(-139, -453.29712)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5v47t"]
 animation = &"Dissolve"
@@ -216,7 +216,7 @@ animation = &"hitflash"
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-145.11876, -46.322525)
+graph_offset = Vector2(-156.84688, -184.05498)
 nodes/output/position = Vector2(740, 340)
 nodes/Main/node = SubResource("AnimationNodeStateMachine_d6sg8")
 nodes/Main/position = Vector2(-140, 60)

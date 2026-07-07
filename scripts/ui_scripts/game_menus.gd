@@ -8,6 +8,7 @@ signal return_to_main_menu
 @onready var pause_menu: Control = $PauseMenu
 @onready var settings_menu: Control = $SettingsMenu
 @onready var loot_container: LootContainer = $LootContainer
+@onready var chest_item_container: ChestItemContainer = $ChestItemContainer
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -25,6 +26,7 @@ func _ready() -> void:
 	pause_menu.hide()
 	settings_menu.hide()
 	loot_container.hide()
+	chest_item_container.hide()
 	
 	is_input_blocked = false
 	pause_menu_open = false
@@ -43,11 +45,14 @@ func _ready() -> void:
 	UiController.character_panel.connect(_character_panel)
 	UiController.escape_menu_signal.connect(_escape_menu)
 	UiController.item_container_interacted.connect(_open_loot_container)
+	UiController.chest_interacted.connect(_open_chest)
 	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
 	UiController._update_manabar.connect(_update_manabar)
 	UiController._update_hud.connect(_update_hud)
+	
+	PlayerControls.close_menus.connect(_close_interact_menus)
 
 func _process(_delta: float) -> void:
 	if not is_input_blocked:
@@ -55,13 +60,17 @@ func _process(_delta: float) -> void:
 			_escape_menu()
 		if Input.is_action_just_pressed("Open Inventory"):
 			_inventory()
+			GameStateSaver.save_game()
 		if Input.is_action_just_pressed("Scroll Consumable"):
 			_rotate_consumable()
+			GameStateSaver.save_game()
 
 func _inventory():
 	if not pause_menu_open:
 		if loot_container.is_visible():
 			_open_loot_container(null)
+		if chest_item_container.is_visible():
+			_open_chest(null)
 		#inventory.get_player_items()
 		inventory.set_visible(not inventory.is_visible())
 		get_tree().paused = inventory.is_visible()
@@ -73,26 +82,62 @@ func _inventory():
 func _character_panel():
 	pass
 
-func _open_loot_container(item_container: ItemContainer):
+func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""):
 	if loot_container.is_visible():
 		loot_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		PlayerControls.unblock_input()
+		get_tree().paused = false
 	else:
+		get_tree().paused = true
 		loot_container.show()
-		loot_container.set_data(item_container)
+		loot_container.set_data(item_container, enemy_name)
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		PlayerControls.block_input()
+
+func _open_chest(item_container: ItemContainer):
+	if chest_item_container.is_visible():
+		chest_item_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+		get_tree().paused = false
+	else:
+		get_tree().paused = true
+		chest_item_container.show()
+		chest_item_container.set_data(item_container)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		PlayerControls.block_input()
+
+func _close_interact_menus() -> void:
+	#call_deferred("_close_menus")
+	_close_menus()
+
+func _close_menus() -> void:
+	if chest_item_container.is_visible():
+		chest_item_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+		get_tree().paused = false
+	if loot_container.is_visible():
+		loot_container.hide()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		PlayerControls.unblock_input()
+		get_tree().paused = false
 
 func _escape_menu():
 	if loot_container.is_visible():
 		_open_loot_container(null)
+		return
+	if inventory.is_visible():
+		_inventory()
+		return
+	if chest_item_container.is_visible():
+		_open_chest(null)
+		return
 	if not pause_menu_open:
-		if inventory.is_visible():
-			_inventory()
 		pause_menu_open = true
 		pause_menu.show()
-		get_tree().paused = pause_menu_open
+		get_tree().paused = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif pause_menu_open:
 		pause_menu_open = false
@@ -100,7 +145,7 @@ func _escape_menu():
 		if settings_menu.is_visible():
 			settings_menu.check_for_unsaved_settings()
 		else:
-			get_tree().paused = pause_menu_open
+			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _rotate_consumable():

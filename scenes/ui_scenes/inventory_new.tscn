@@ -1,27 +1,11 @@
 [gd_scene format=3 uid="uid://bub18fmie3reu"]
 
-[ext_resource type="Theme" uid="uid://dmk7hqj020c1" path="res://resources/ui/inventory/inventory_theme.tres" id="1_gwmof"]
-[ext_resource type="StyleBox" uid="uid://b7n70qrk2wbjp" path="res://resources/ui/inventory/inventory_background_panel_stylebox.tres" id="2_0o35j"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_suhgw"]
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_gwmof"]
 [ext_resource type="Script" uid="uid://b1xof4he4fm67" path="res://scripts/ui_scripts/inventory/inventory_new.gd" id="2_hn110"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="3_ev5oe"]
-[ext_resource type="PackedScene" uid="uid://dmc2y42r6de2g" path="res://scenes/ui_scenes/inventory/inventory_item.tscn" id="3_mkjgx"]
 [ext_resource type="PackedScene" uid="uid://rcj82iq4a6fk" path="res://scenes/ui_scenes/inventory/equipped_item.tscn" id="4_3732a"]
 [ext_resource type="PackedScene" uid="uid://ctpi1vp12n7hf" path="res://scenes/ui_scenes/inventory/stat_container.tscn" id="12_mgch1"]
-
-[sub_resource type="Theme" id="Theme_h7awd"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwmof"]
-bg_color = Color(0.16078432, 0.19215687, 0.16862746, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev5oe"]
-bg_color = Color(0.16124701, 0.19223273, 0.16935626, 1)
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
 
 [node name="InventoryBackground" type="PanelContainer" unique_id=2082482980]
 anchors_preset = -1
@@ -32,14 +16,13 @@ anchor_bottom = 0.9
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(-59, 707)
-theme = ExtResource("1_gwmof")
-theme_override_styles/panel = ExtResource("2_0o35j")
+theme = ExtResource("1_suhgw")
 script = ExtResource("2_hn110")
-inventory_item_scene = ExtResource("3_mkjgx")
 equipped_item_scene = ExtResource("4_3732a")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=950240407]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -47,21 +30,22 @@ theme_override_constants/margin_bottom = 10
 
 [node name="Inventory" type="HBoxContainer" parent="MarginContainer" unique_id=1009717299]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="ItemContainer" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=281748038]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/separation = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=1315602240]
 layout_mode = 2
-theme_override_constants/margin_left = 11
-theme_override_constants/margin_right = 10
+theme = ExtResource("1_suhgw")
 
 [node name="TabBar" type="TabBar" parent="MarginContainer/Inventory/ItemContainer/MarginContainer" unique_id=12589894]
 layout_mode = 2
 size_flags_vertical = 0
-theme = ExtResource("1_gwmof")
+theme = ExtResource("1_suhgw")
 current_tab = 0
 tab_count = 5
 tab_0/title = "All"
@@ -73,14 +57,17 @@ tab_4/title = "Material"
 [node name="ItemPanel" type="PanelContainer" parent="MarginContainer/Inventory/ItemContainer" unique_id=874376443]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel" unique_id=1026092022]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 horizontal_scroll_mode = 0
 
 [node name="ItemGrid" type="GridContainer" parent="MarginContainer/Inventory/ItemContainer/ItemPanel/ScrollContainer" unique_id=1153937680]
 layout_mode = 2
 size_flags_vertical = 2
+theme = ExtResource("1_suhgw")
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 4
@@ -88,6 +75,7 @@ columns = 4
 [node name="Right" type="VBoxContainer" parent="MarginContainer/Inventory" unique_id=828670135]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/separation = 0
 
 [node name="StatContainer" parent="MarginContainer/Inventory/Right" unique_id=1833489514 instance=ExtResource("12_mgch1")]
@@ -96,49 +84,48 @@ layout_mode = 2
 [node name="Player" type="HBoxContainer" parent="MarginContainer/Inventory/Right" unique_id=162598311]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/separation = 0
 
 [node name="EquippedItemsMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player" unique_id=1481390982]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_suhgw")
 
 [node name="EquipPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin" unique_id=1136671372]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_h7awd")
-theme_override_styles/panel = SubResource("StyleBoxFlat_gwmof")
+theme = ExtResource("1_suhgw")
 
 [node name="InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel" unique_id=1882868928]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_suhgw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin" unique_id=96899840]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Equipment" type="Label" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=1999669168]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Equipment"
 label_settings = ExtResource("2_gwmof")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer" unique_id=144693942]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Body" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=1093288719]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Head" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=560908851]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -147,10 +134,12 @@ theme_override_constants/margin_bottom = 5
 [node name="Head" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Head" unique_id=1620117800]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Body" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=1379687010]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -159,10 +148,12 @@ theme_override_constants/margin_bottom = 5
 [node name="Body" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Body" unique_id=1527239668]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Feet" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body" unique_id=373154546]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -171,14 +162,17 @@ theme_override_constants/margin_bottom = 5
 [node name="Feet" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Body/Feet" unique_id=2030552520]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Hands" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer" unique_id=484931474]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_suhgw")
 
 [node name="MainHand" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands" unique_id=218449963]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -187,10 +181,12 @@ theme_override_constants/margin_bottom = 5
 [node name="MainHand" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand" unique_id=1244490059]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="OffHand" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands" unique_id=1769292941]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
@@ -199,33 +195,30 @@ theme_override_constants/margin_bottom = 5
 [node name="OffHand" type="GridContainer" parent="MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand" unique_id=87536218]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="PlayerStatMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player" unique_id=1817497888]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_suhgw")
 
 [node name="StatPanel" type="PanelContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin" unique_id=1419953540]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_h7awd")
-theme_override_styles/panel = SubResource("StyleBoxFlat_ev5oe")
+theme = ExtResource("1_suhgw")
 
 [node name="_InsideMargin" type="MarginContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel" unique_id=624390022]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_suhgw")
 
 [node name="PlayerStats" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin" unique_id=897083645]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1283969788]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 text = "El Stinko"
 label_settings = ExtResource("2_gwmof")
 vertical_alignment = 1
@@ -234,19 +227,23 @@ clip_text = true
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats" unique_id=1458963406]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer" unique_id=852100067]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_suhgw")
 
 [node name="Level" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1196054009]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Level" unique_id=2066177311]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Level"
 label_settings = ExtResource("3_ev5oe")
 
@@ -254,16 +251,19 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="XP" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=89355440]
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/XP" unique_id=2082330982]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Experience"
 label_settings = ExtResource("3_ev5oe")
 
@@ -271,17 +271,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Health" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=715414945]
 modulate = Color(1, 0.60784316, 0.60784316, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Health" unique_id=1869746882]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Health"
 label_settings = ExtResource("3_ev5oe")
 
@@ -289,17 +292,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Stamina" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=268373032]
 modulate = Color(0.54901963, 1, 0.54901963, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Stamina" unique_id=17599224]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Stamina"
 label_settings = ExtResource("3_ev5oe")
 
@@ -307,17 +313,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Mana" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1138822297]
 modulate = Color(0.60784316, 0.76862746, 1, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Mana" unique_id=1050419644]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Mana"
 label_settings = ExtResource("3_ev5oe")
 
@@ -325,17 +334,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "100"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Strength" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=741092410]
 modulate = Color(1, 0.60784316, 0.60784316, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Strength" unique_id=1824122107]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Strength"
 label_settings = ExtResource("3_ev5oe")
 
@@ -343,17 +355,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Dexterity" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=1730065694]
 modulate = Color(0.54901963, 1, 0.54901963, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Dexterity" unique_id=1615795522]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Dexterity"
 label_settings = ExtResource("3_ev5oe")
 
@@ -361,17 +376,20 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 
 [node name="Intelligence" type="HBoxContainer" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer" unique_id=190373079]
 modulate = Color(0.60784316, 0.76862746, 1, 1)
 layout_mode = 2
+theme = ExtResource("1_suhgw")
 
 [node name="Label" type="Label" parent="MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/ScrollContainer/VBoxContainer/Intelligence" unique_id=911189539]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "Intelligence"
 label_settings = ExtResource("3_ev5oe")
 
@@ -379,6 +397,7 @@ label_settings = ExtResource("3_ev5oe")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_suhgw")
 text = "5"
 label_settings = ExtResource("3_ev5oe")
 

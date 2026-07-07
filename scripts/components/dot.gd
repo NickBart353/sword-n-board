@@ -1,6 +1,10 @@
 class_name DOT extends Area3D
 
 signal dot_finished
+signal faded
+
+@onready var emitting_goo: GPUParticles3D = $EmittingGoo
+@onready var explosion: GPUParticles3D = $GPUParticles3D
 
 @export_range(0.0, 10.0) var tick_speed: float = 1.0
 @export var dot_damage: float = 5
@@ -21,15 +25,15 @@ func _ready() -> void:
 	duration_timer.wait_time = dot_duration
 	if not duration_timer.timeout.is_connected(_on_duration_timeout):
 		duration_timer.timeout.connect(_on_duration_timeout)
-	monitoring = false
-	monitorable = false
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 	if decal:
 		decal.albedo_mix = 0
 	if particle_effect:
 		particle_effect.emitting = false
 	hide()
 
-func activate():
+func activate(activate_explosion:bool = false):
 	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
 	duration_timer.start()
@@ -38,20 +42,25 @@ func activate():
 		decal.albedo_mix = 1
 	if particle_effect:
 		particle_effect.restart()
+	if activate_explosion:
+		explosion.restart()
+	Camera3D
+
 
 func _process(_delta: float) -> void:
-	if timer.time_left <= 0.0:
-		overlapping_areas.clear()
-		for area in get_overlapping_areas():
-			if area is DOT and area.dot_effect_name == dot_effect_name:
-				overlapping_areas.append(area)
-		for body in get_overlapping_bodies():
-			if (body is Player or body is Enemy):
-				for dot in overlapping_areas:
-					if dot:
-						dot.start_timer_from_overlap()
-				timer.start(tick_speed)
-				body.take_damage(dot_damage, self)
+	if monitoring:
+		if timer.time_left <= 0.0:
+			overlapping_areas.clear()
+			for area in get_overlapping_areas():
+				if area is DOT and area.dot_effect_name == dot_effect_name:
+					overlapping_areas.append(area)
+			for body in get_overlapping_bodies():
+				if (body is Player or body is Enemy):
+					for dot in overlapping_areas:
+						if dot:
+							dot.start_timer_from_overlap()
+					timer.start(tick_speed)
+					body.take_damage(dot_damage, self)
 
 func start_timer_from_overlap():
 	if not timer.time_left:
@@ -67,3 +76,14 @@ func _on_duration_timeout() -> void:
 		if particle_effect:
 			particle_effect.emitting = false
 		dot_finished.emit()
+
+func fade_out() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(decal, "modulate", Color(1.691, 0.912, 1.6, 0.0), 0.3)
+	tween.tween_property(emitting_goo, "transparency", 0.0, 0.3)
+	faded.emit()
+
+func fade_in() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(decal, "modulate", Color(1.691, 0.909, 1.6), 0.3)
+	tween.tween_property(emitting_goo, "transparency", 1, 0.3)

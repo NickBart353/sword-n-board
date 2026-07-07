@@ -35,22 +35,26 @@ var currently_selected_tab: int
 @onready var mainhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand/MainHand
 @onready var offhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand/OffHand
 
-@export var inventory_item_scene: PackedScene
+#@export var inventory_item_scene: PackedScene
 @export var equipped_item_scene: PackedScene
+
+var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
 
 func _ready() -> void:
 	hide()
 	#player_items = ItemManager.load_debug_items()
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)
+	UiController.removed_item_from_inventory.connect(_remove_item_from_inventory)
 	UiController.new_consumable.connect(_set_new_consumable)
 	UiController.player_spawned_signal.connect(_load_player_items)
+	UiController.request_player_items.connect(_give_player_items)
 	GameStateSaver.get_items_from_inventory.connect(_give_items_to_gamestatesaver)
-	if player_items.is_empty():
-		player_items.append(ItemManager.get_item_from_id("10010"))
-	_refresh_items()
+	#if player_items.is_empty():
+		#player_items.append(ItemManager.get_item_from_id("10010"))
+	#_refresh_items()
 
-func _refresh_items():
+func _refresh_items(_initial_reload: bool = false):
 	sort_player_items()
 	for inventory_item in item_grid.get_children():
 		inventory_item.queue_free()
@@ -62,13 +66,14 @@ func _refresh_items():
 		inventory_item.set_data(item)
 		item_grid.add_child(inventory_item)
 		#inventory_item.set_equipped_value(_is_inventory_item_equipped(inventory_item))
+		#if initial_reload:
 		_is_inventory_item_equipped(inventory_item)
 	
-	for consumable in player_consumables:
-		for item in player_items:
-			if consumable.data.item_id == item.data.item_id:
-				consumable.data.stack_size = item.data.stack_size
-				break
+	#for consumeable in player_consumables:
+		#for item in player_items:
+			#if consumable.data.item_id == item.data.item_id:
+				#consumable.data.stack_size = item.data.stack_size
+				#break
 	_on_tab_bar_tab_changed(currently_selected_tab)
 	_emit_update_player_items()
 	_inventory_updated()
@@ -76,7 +81,7 @@ func _refresh_items():
 func update_item_display(item: Item):
 	stat_container.set_text(item)
 
-func activate_item(inventory_item: InventoryItem, item: Item, mousebutton: String, _slot: String):
+func activate_item(inventory_item, item: Item, mousebutton: String, _slot: String):
 	#_inventory_updated()
 	match item.data.item_category:
 		ItemData.ITEM_CATEGORY.WEAPON:
@@ -99,27 +104,46 @@ func sort_by_cat_and_name(a, b) -> bool:
 			return true
 	return false
 
-func _is_inventory_item_equipped(inventory_item: InventoryItem) -> int:
-	if inventory_item.item == player_helmet:
-		return 1
-	if inventory_item.item == player_body:
-		return 2
-	if inventory_item.item == player_boots:
-		return 3
-	if inventory_item.item == player_mainhand:
-		equip_weapon(inventory_item.item, LEFT, inventory_item)
-		return 4
-	if inventory_item.item == player_offhand:
-		equip_weapon(inventory_item.item, RIGHT, inventory_item)
-		return 5
-	if inventory_item.item == current_consumable:
-		equip_consumable(inventory_item, inventory_item.item)
-		equip_consumable(inventory_item, inventory_item.item)
-		return 6
-	if inventory_item.item in player_consumables:
-		equip_consumable(inventory_item, inventory_item.item)
-		equip_consumable(inventory_item, inventory_item.item)
-		return 7
+func _is_inventory_item_equipped(inventory_item: UIItem) -> int:
+	if player_helmet:
+		if inventory_item.item.data.unique_id == player_helmet.data.unique_id:
+			inventory_item.item = player_helmet
+			return 1
+	if player_body:
+		if inventory_item.item.data.unique_id == player_body.data.unique_id:
+			inventory_item.item = player_body
+			return 2
+	if player_boots:
+		if inventory_item.item.data.unique_id == player_boots.data.unique_id:
+			inventory_item.item = player_boots
+			return 3
+	if player_mainhand:
+		if inventory_item.item.data.unique_id == player_mainhand.data.unique_id:
+			inventory_item.item = player_mainhand
+			equip_weapon(inventory_item.item, LEFT, inventory_item)
+			return 4
+	if player_offhand:
+		if inventory_item.item.data.unique_id == player_offhand.data.unique_id:
+			inventory_item.item = player_offhand
+			equip_weapon(inventory_item.item, RIGHT, inventory_item)
+			return 5
+	if current_consumable:
+		if inventory_item.item.data.unique_id == current_consumable.data.unique_id:
+			inventory_item.item = current_consumable
+			inventory_item.mark_consumable()
+			#_emit_update_player_items()
+			equip_consumable(inventory_item, inventory_item.item)
+			#equip_consumable(inventory_item, inventory_item.item)
+			return 6
+	if player_consumables:
+		for item in player_consumables:
+			if inventory_item.item.data.unique_id == item.data.unique_id:
+				inventory_item.item = item
+				inventory_item.mark_consumable()
+				#_emit_update_player_items()
+				#equip_consumable(inventory_item, inventory_item.item)
+				#equip_consumable(inventory_item, inventory_item.item)
+				return 7
 	return 0
 
 func _on_tab_bar_tab_changed(tab: int) -> void:
@@ -171,7 +195,7 @@ func equip_weapon(item: Item, mousebutton: String, pressed_inventory_item: Inven
 			player_offhand = null
 			mainhand.add_child(inventory_item)
 			var duplicate_item = inventory_item.duplicate()
-			duplicate_item.disabled = true
+			#duplicate_item.disabled = true
 			offhand.add_child(duplicate_item)
 			UiController.update_hud_mainhand(player_mainhand)
 			UiController.update_hud_offhand(player_mainhand, true)
@@ -242,6 +266,8 @@ func unequip_item(_inventory_item: UIItem, item: Item, _mousebutton: String, slo
 				_remove_offhand()
 		ItemData.ITEM_CATEGORY.ARMOR:
 			pass
+		ItemData.ITEM_CATEGORY.CONSUMABLE:
+			equip_consumable(_inventory_item, item)
 	_emit_update_player_items()
 
 func _remove_mainhand():
@@ -261,11 +287,12 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 		player_consumables.append(item)
 		inventory_item.mark_consumable()
 	else:
-		player_consumables.remove_at(player_consumables.find(item))
+		player_consumables.erase(item)
 		inventory_item.unmark_consumable()
 	_emit_update_player_items()
 
 func _remove_consumable(item: Item, remove_stack: bool):
+	prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
 	if remove_stack:
 		for inventory_item in item_grid.get_children():
 			if inventory_item.item.data.item_id == item.data.item_id:
@@ -296,11 +323,25 @@ func _add_item_to_inventory(item: Item):
 		player_items[find_index].data.stack_size += item.data.stack_size
 	_refresh_items()
 
-func _emit_update_player_items():
-	if current_consumable:
-		UiController.update_player_consumables(player_consumables, current_consumable.duplicate(true) as Item)
+func _remove_item_from_inventory(item: Item):
+	var find_index: int = -1
+	for i in range(player_items.size()):
+		if player_items[i].data.unique_id == item.data.unique_id:
+			find_index = i
+			break
+	if find_index == -1:
+		push_error("couldnt remove item {0} from inventory".format([item.data.item_name]))
 	else:
-		UiController.update_player_consumables(player_consumables)
+		player_items.remove_at(find_index)
+	
+	var _inventory_item: InventoryItem = get_inventory_item_from_unique_id(item.data.unique_id)
+	if find_index != -1 and _is_inventory_item_equipped(_inventory_item) != 0:
+		unequip_item(_inventory_item, item, "", "")
+	
+	_refresh_items()
+
+func _emit_update_player_items():
+	UiController.update_player_consumables(player_consumables)
 	update_player_items.emit(player_helmet,
 		player_body,
 		player_boots,
@@ -309,35 +350,31 @@ func _emit_update_player_items():
 	)
 
 func _load_player_items():
-	var item_rows: Array = DataManager.load_player_items()
-	for item_row in item_rows:
-		var item: Item = ItemManager.get_item_from_id(item_row.item_id)
-		match item_row["equipped"]:
-			1: player_helmet = item
-			2: player_body = item
-			3: player_boots = item
-			4: player_mainhand = item
-			5: player_offhand = item
-			6: 
-				current_consumable = item
-				loaded_consumable = item
-			7: player_consumables.append(item)
-		player_items.append(item)
-	
-	_refresh_items()
-	if loaded_consumable:
-		equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
-	UiController.set_loaded_consumable(loaded_consumable)
-	loaded_consumable = null
+	var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
+	player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
+	player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
+	player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
+	player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
+	player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
+	player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
+	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
+	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
+	#print("inv: ", player_items)
+	_refresh_items(true)
+	#loaded_consumable = current_consumable
+	#if loaded_consumable:
+		#equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
+	#UiController.set_loaded_consumable(loaded_consumable)
+	#loaded_consumable = null
 
-func get_inventory_item_from_item_id(item_id: String) -> InventoryItem:
+func get_inventory_item_from_unique_id(unique_id: String) -> InventoryItem:
 	for inventory_item in item_grid.get_children():
-		if inventory_item.item.data.item_id == item_id:
+		if inventory_item.item.data.unique_id == unique_id:
 			return inventory_item
 	return null
 
 func _set_new_consumable(item: Item):
-	current_consumable = item
+	#current_consumable = item
 	#if current_consumable:
 		#print("set new: ", current_consumable.data.item_name)
 	#else:
@@ -345,7 +382,18 @@ func _set_new_consumable(item: Item):
 	_inventory_updated()
 
 func _inventory_updated():
-	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+	#GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+	#_update_savefile_items()
+	pass
 
 func _give_items_to_gamestatesaver():
-	GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables, true)
+	#GameStateSaver.start_inventory_timer(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables, true)
+	_update_savefile_items()
+
+func _update_savefile_items():
+	GameStateSaver.update_savefile_items(player_items, player_helmet, player_body, player_boots, player_mainhand, player_offhand, current_consumable, player_consumables)
+
+func _give_player_items() -> void:
+	var typed_arr: Array[Item] = []
+	typed_arr.assign(player_items)
+	UiController.give_player_items(typed_arr)

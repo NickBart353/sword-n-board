@@ -1,4 +1,4 @@
-@abstract class_name InventoryItemText extends ScrollContainer
+@abstract class_name InventoryItemText extends Control
 
 func _ready() -> void:
 	hide()

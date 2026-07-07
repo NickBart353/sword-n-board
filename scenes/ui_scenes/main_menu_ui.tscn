@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cocmvblldu3nc" path="res://scenes/ui_scenes/save_file_screen.tscn" id="8_hrysg"]
 [ext_resource type="PackedScene" uid="uid://h7gcuxickvc3" path="res://scenes/ui_scenes/settings_menu.tscn" id="8_wygx0"]
 [ext_resource type="PackedScene" uid="uid://j1u6ucpvwi0e" path="res://scenes/ui_scenes/new_game_screen.tscn" id="9_hrysg"]
+[ext_resource type="PackedScene" uid="uid://dbrata4hx5nls" path="res://scenes/ui_scenes/credits.tscn" id="10_2h56o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wygx0"]
 content_margin_top = 10.0
@@ -39,10 +40,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wygx0")
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenuButtonContainer" unique_id=2043017059]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_kosvu")
 theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="MainMenuButtonContainer/VBoxContainer" unique_id=147847312]
 layout_mode = 2
+theme = ExtResource("1_kosvu")
 text = "Sword-n-Board"
 label_settings = SubResource("LabelSettings_3kjxp")
 horizontal_alignment = 1
@@ -54,11 +57,11 @@ text = "Continue Game"
 
 [node name="NewGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1621236908]
 layout_mode = 2
+theme = ExtResource("1_kosvu")
 text = "New Game"
 
 [node name="LoadGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]
 layout_mode = 2
-tooltip_text = "Resets all settings and save-files (Will be added soon)"
 theme = ExtResource("1_kosvu")
 text = "Load Game"
 
@@ -69,9 +72,7 @@ text = "Settings"
 
 [node name="Credits" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=286939544]
 layout_mode = 2
-tooltip_text = "(Will be added soon)"
 theme = ExtResource("1_kosvu")
-disabled = true
 text = "Credits"
 
 [node name="ExitGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=678057820]
@@ -98,6 +99,9 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
+[node name="Credits" parent="." unique_id=2053925314 instance=ExtResource("10_2h56o")]
+visible = false
+
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenuButtonContainer/VBoxContainer/LoadGame" to="." method="_on_load_game_pressed"]
@@ -110,3 +114,4 @@ size_flags_vertical = 6
 [connection signal="savefile_selected" from="SaveFileScreen" to="." method="_on_save_file_screen_savefile_selected"]
 [connection signal="create_new_game" from="NewGameScreen" to="." method="_on_new_game_screen_create_new_game"]
 [connection signal="new_game_screen_closed" from="NewGameScreen" to="." method="_on_new_game_screen_new_game_screen_closed"]
+[connection signal="leave_credits" from="Credits" to="." method="_on_credits_leave_credits"]

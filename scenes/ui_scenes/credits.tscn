@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://dbrata4hx5nls"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_1ei8s"]
+[ext_resource type="Script" uid="uid://b14l8ajdcbsge" path="res://scripts/ui_scripts/credits.gd" id="1_fgiw0"]
+[ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_mbud6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbud6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.23921569, 0.26666668, 0.25882354, 0.77254903)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ei8s"]
+font_size = 90
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbud6"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_evpsf"]
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_mbud6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scrollcontainer/MainContainer/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a3r3c"]
+resource_name = "start"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Scrollcontainer/MainContainer/Title:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_emsjd"]
+_data = {
+&"RESET": SubResource("Animation_mbud6"),
+&"start": SubResource("Animation_a3r3c")
+}
+
+[node name="Credits" type="PanelContainer" unique_id=2053925314]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mbud6")
+script = ExtResource("1_fgiw0")
+scroll_speed = 1.0
+
+[node name="Scrollcontainer" type="ScrollContainer" parent="." unique_id=1387806093]
+layout_mode = 2
+theme = ExtResource("1_1ei8s")
+
+[node name="MainContainer" type="VBoxContainer" parent="Scrollcontainer" unique_id=788568672]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Scrollcontainer/MainContainer" unique_id=1196996861]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sword-n-Board"
+label_settings = SubResource("LabelSettings_1ei8s")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Scrollcontainer/MainContainer" unique_id=1025873950]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 11
+theme_override_constants/v_separation = 50
+columns = 2
+
+[node name="ArtLabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=212769730]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Art:"
+
+[node name="ArtLabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1497935742]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme = ExtResource("1_1ei8s")
+text = "Marius Jung, Nicholas Bartlett, @Zsky_01 https://www.patreon.com/Zsky, KayKit: https://kaylousberg.itch.io/kaykit, Kenney: https://kenney.nl/assets/animated-characters-1, Poly Haven: https://polyhaven.com/a/autumn_field_puresky, Sketchfab.com"
+autowrap_mode = 3
+
+[node name="SoundLabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=259538379]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Sound:"
+
+[node name="SoundLabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=234011402]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Nicholas Bartlett, fairlight1337: https://fairlight1337.itch.io/free-audio-creature-sample-pack, pixabay.com, Freesound.org"
+autowrap_mode = 2
+
+[node name="GameSystemsDeveloperLabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=461418004]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Game Systems:"
+
+[node name="GameSystemsDeveloperLabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=788817195]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Nicholas Bartlett"
+
+[node name="InsiprationsLabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1007113524]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Inspiration:"
+
+[node name="InsiprationsLabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1028147926]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Hendrik Hömberg, Marius Jung, Nicholas Bartlett"
+
+[node name="QALabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1878645777]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Quality Assurance:"
+
+[node name="QALabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1694685435]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Hendrik Hömberg, Marius Jung, Marc Menk"
+
+[node name="LeadDesignerLabel" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=1648486583]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Lead Designer:"
+
+[node name="LeadDesignerLabel2" type="Label" parent="Scrollcontainer/MainContainer/GridContainer" unique_id=212213870]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_1ei8s")
+text = "Nicholas Bartlett"
+
+[node name="Table" type="HBoxContainer" parent="Scrollcontainer/MainContainer" unique_id=755854705]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1ei8s")
+
+[node name="Godot" type="Label" parent="Scrollcontainer/MainContainer" unique_id=1003234080]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Godot Game Engine"
+label_settings = SubResource("LabelSettings_1ei8s")
+horizontal_alignment = 1
+
+[node name="GodotLicense" type="Label" parent="Scrollcontainer/MainContainer" unique_id=557834762]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "godotengine.org/license"
+label_settings = SubResource("LabelSettings_mbud6")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Scrollcontainer/MainContainer" unique_id=17540038]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_mbud6")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Scrollcontainer/MainContainer" unique_id=211924628]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Press [Escape] to exit Credits Screen"
+label_settings = SubResource("LabelSettings_evpsf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=682134658]
+libraries/ = SubResource("AnimationLibrary_emsjd")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

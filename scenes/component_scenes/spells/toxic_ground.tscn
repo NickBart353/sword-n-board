@@ -32,7 +32,52 @@ material = SubResource("StandardMaterial3D_4h6tc")
 radius = 0.25
 height = 0.5
 
+[sub_resource type="Curve" id="Curve_voftf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_v5tgu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.35361215, 0), -3.498503, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_op3co"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_4bjin"]
+curve_x = SubResource("Curve_voftf")
+curve_y = SubResource("Curve_v5tgu")
+curve_z = SubResource("Curve_op3co")
+
+[sub_resource type="Curve" id="Curve_5n8qt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.1297256, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e1cu5"]
+curve = SubResource("Curve_5n8qt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+emission_shape_scale = Vector3(0.64, 0.105, 0.71)
+emission_shape = 1
+emission_sphere_radius = 1.0
+directional_velocity_min = 4.999984
+directional_velocity_max = 9.999984
+directional_velocity_curve = SubResource("CurveXYZTexture_4bjin")
+radial_velocity_min = 4.9999776
+radial_velocity_max = 9.999977
+scale_min = 0.099999994
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_e1cu5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ji0"]
+albedo_color = Color(0.7447201, 0.00045156345, 0.7501171, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_p825b"]
+material = SubResource("StandardMaterial3D_l1ji0")
+
 [node name="ToxicGround" type="Area3D" unique_id=1087070712 node_paths=PackedStringArray("decal", "particle_effect", "duration_timer")]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_5n8qt")
 dot_damage = 1.0
 dot_effect_name = "toxic_ground"
@@ -57,12 +102,24 @@ draw_pass_1 = SubResource("SphereMesh_v6xhl")
 
 [node name="Decal" type="Decal" parent="." unique_id=1307540004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+size = Vector3(2, 5, 2)
 texture_albedo = ExtResource("2_gfqi0")
 modulate = Color(1.6906852, 0.90900683, 1.5996158, 1)
 distance_fade_enabled = true
-distance_fade_begin = 20.0
+distance_fade_begin = 30.0
 
 [node name="Duration" type="Timer" parent="." unique_id=802833952]
 one_shot = true
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1055331490]
+visibility_range_end = 15.0
+visibility_range_end_margin = 3.0
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.92
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_evpsf")
+draw_pass_1 = SubResource("SphereMesh_p825b")
 
 [connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

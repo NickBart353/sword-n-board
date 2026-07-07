@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
 [ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="7_cfqos"]
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="7_leqql"]
-[ext_resource type="PackedScene" uid="uid://covjft2d4qaw3" path="res://scenes/ui_scenes/main_ui.tscn" id="8_cfqos"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="9_rbptj"]
 
 [node name="Main" type="Node3D" unique_id=1238575973]
@@ -68,11 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.1, 22.2, 2.4000015)
 collision_radius = 256
 
 [node name="GameMenus" parent="." unique_id=1661559513 instance=ExtResource("4_cfqos")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827645919]
-visible = false
-
-[node name="MainUI" parent="CanvasLayer" unique_id=1494038655 instance=ExtResource("8_cfqos")]
 
 [node name="MobSpawns" type="Node3D" parent="." unique_id=1203774250]
 

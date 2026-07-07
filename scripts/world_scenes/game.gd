@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func _on_game_menus_return_to_main_menu() -> void:
 	LoopMixer.stop_looping()
+	GameStateSaver.stop()
 	SceneLoader.load_scene(main_menu_scene)

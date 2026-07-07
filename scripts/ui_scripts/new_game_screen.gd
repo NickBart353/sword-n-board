@@ -1,4 +1,4 @@
-extends PanelContainer
+class_name NewGameScreen extends PanelContainer
 
 signal new_game_screen_closed
 signal create_new_game

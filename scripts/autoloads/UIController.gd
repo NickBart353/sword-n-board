@@ -10,6 +10,7 @@ signal set_player_consumables
 signal new_mainhand
 signal new_offhand
 signal added_item_to_inventory
+signal removed_item_from_inventory
 
 signal new_consumable
 signal player_consumed_item
@@ -17,7 +18,10 @@ signal remove_consumable
 signal loaded_consumable_set
 
 signal item_container_interacted
+signal chest_interacted
 signal player_spawned_signal
+signal request_player_items
+signal returned_player_items
 
 signal _update_healthbar
 signal _update_staminabar
@@ -78,11 +82,20 @@ func consumed(item: Item):
 func remove_consumable_from_inventory(item: Item, remove_stack: bool):
 	remove_consumable.emit(item, remove_stack)
 
-func interact_with_loot_container(item_container: ItemContainer):
-	item_container_interacted.emit(item_container)
+func interact_with_loot_container(item_container: ItemContainer, parent_node: Node, enemy_name: String):
+	if parent_node is Chest:
+		chest_interacted.emit(item_container)
+	else:
+		item_container_interacted.emit(item_container, enemy_name)
+
+func interact_with_chest(item_container: ItemContainer):
+	pass#chest_interacted.emit(item_container)
 
 func add_item_to_inventory(item: Item):
 	added_item_to_inventory.emit(item)
+
+func remove_item_from_inventory(item: Item):
+	removed_item_from_inventory.emit(item)
 
 func is_ui_open() -> bool:
 	return ui_open
@@ -95,3 +108,9 @@ func player_spawned():
 
 func set_loaded_consumable(loaded_consumable: Item):
 	loaded_consumable_set.emit(loaded_consumable)
+
+func get_inventory_items():
+	request_player_items.emit()
+
+func give_player_items(player_items: Array[Item]):
+	returned_player_items.emit(player_items)

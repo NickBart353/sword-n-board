@@ -146,6 +146,7 @@ func remove_movement_modifier(value: float, type: String = "weapon") -> void:
 				movement_modifiers.erase(modifier)
 	elif new_modifier in movement_modifiers:
 		movement_modifiers.erase(new_modifier)
+	reset_weapon_modifiers()
 	_update_movement_speed()
 
 func add_rotation_modifier(value: float, type: String = "weapon") -> void:
@@ -165,6 +166,7 @@ func remove_rotation_modifier(value: float, type: String = "weapon") -> void:
 				rotation_modifiers.erase(modifier)
 	elif new_modifier in rotation_modifiers:
 		rotation_modifiers.erase(new_modifier)
+	reset_weapon_modifiers()
 	_update_rotation_speed()
 
 func reset_weapon_modifiers() -> void:

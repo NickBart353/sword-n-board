@@ -3,6 +3,7 @@ extends Interactable
 
 var items: Array = []
 var open = false
+var enemy_name: String
 
 @export var parent: Node
 @export_group("Audio")
@@ -32,13 +33,13 @@ func interact():
 		if close_audio_resource:
 			AudioManager.play_audio_from_resource(close_audio_resource, parent.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 		#EventBus.close_container.emit(self)
-		UiController.interact_with_loot_container(self)
+		UiController.interact_with_loot_container(self, parent, parent.enemy_name)
 	else:
 		if open_audio_resource:
 			AudioManager.play_audio_from_resource(open_audio_resource, parent.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 		open = true
 		#EventBus.open_container.emit(self)
-		UiController.interact_with_loot_container(self)
+		UiController.interact_with_loot_container(self, parent, parent.enemy_name)
 
 func hover():
 	super()
@@ -61,8 +62,9 @@ func update_items(new_items, sack_name):
 func update_my_items(new_items: Array):
 	items = new_items
 	if items.is_empty():
-		UiController.interact_with_loot_container(self)
-		items_empty.emit()
+		if not parent is Chest:
+			UiController.interact_with_loot_container(self, parent, parent.enemy_name)
+			items_empty.emit()
 
 func close_me():
 	open = false

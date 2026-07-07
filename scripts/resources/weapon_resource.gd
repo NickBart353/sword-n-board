@@ -25,8 +25,8 @@ class_name WeaponData
 @export var knockbackStrength_vertical: int = 0
 @export var knockbackStrength_horizontal: int = 0
 
-var upgrade_level: int = 0
-var upgrade_type: UPGRADE_TYPE
+@export var upgrade_level: int = 0
+@export var upgrade_type: UPGRADE_TYPE
 
 enum UPGRADE_TYPE {NORMAL, MAGIC, FIRE, LIGHTNING, COLD, NATURE, CHAOS}
 

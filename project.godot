@@ -42,12 +42,13 @@ ObjectPooler="*uid://clt0gkjpe4fwu"
 GameStateSaver="*uid://dftf640qysy2t"
 UuidGenerator="*uid://bokh3cfxtffys"
 CombatManager="*uid://p4p5pa1twqyx"
+SaveFileManager="*uid://s2lnv6eo1vou"
+TimeFormatter="*uid://c1n6yqa0e641p"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

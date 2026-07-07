@@ -1,8 +1,8 @@
 extends InventoryItemText
 
-@onready var label: Label = $WeaponStats/Label
-@onready var info_text_label: Label = $WeaponStats/InfoTextLabel
-@onready var type: Label = $WeaponStats/ItemType/Type
+@export var label: Label
+@export var info_text_label: Label
+@export var type: Label
 
 func set_text(item: Item):
 	label.text = item.data.item_name

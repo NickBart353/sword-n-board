@@ -1,7 +1,8 @@
-@abstract class_name UIItem extends Button
+@abstract class_name UIItem extends PanelContainer
 
 signal item_hovered
 signal item_pressed
+signal item_unhovered
 
 var item: Item
 var slot: String = ""

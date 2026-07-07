@@ -4,34 +4,36 @@ extends Node3D
 const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactable/item_sack.tscn")
 const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player_new.tscn")
 
-@onready var main_ui = $CanvasLayer/MainUI
-var player: CharacterBody3D
+#@onready var main_ui = $CanvasLayer/MainUI
+var player: Player
 
 func _ready() -> void:
-	DataManager.connect_db()
+	#DataManager.connect_db()
+	_spawn_mobs()
+	_load_chests()
 	_spawn_player()
 	
-	EventBus.close_container.connect(_close_container)
-	EventBus.open_container.connect(_open_container)
+	#EventBus.close_container.connect(_close_container)
+	#EventBus.open_container.connect(_open_container)
 	EventBus.remove_me.connect(remove_object)
 	EventBus.spawn_loot.connect(_enemy_died)
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	
-	_spawn_mobs()
 	
-	main_ui.update_items.connect(update_items)
+	#main_ui.update_items.connect(update_items)
 	GameStateSaver.start()
 
 func _enemy_died(enemy: Node3D):
-	_generate_loot_on_enemy_death(enemy.global_position, enemy.level)
+	_generate_loot_on_enemy_death(enemy.global_position, enemy)
 
-func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
-	var items_to_generate: Array = ItemManager.generate_loot(enemy_level)
+func _generate_loot_on_enemy_death(loot_position: Vector3, enemy: Enemy):
+	var items_to_generate: Array = ItemManager.generate_loot(enemy.level)
 	if not items_to_generate: return
 	
 	var item_sack_instance = ObjectPooler.get_free_item_sack()
 	item_sack_instance.get_node("ItemContainer").items = items_to_generate
+	item_sack_instance.enemy_name = enemy.display_name
 	#$Loot.add_child(item_sack_instance, true)
 	item_sack_instance.global_position = Vector3(loot_position.x, loot_position.y + 1.0, loot_position.z)
 	#item_sack_instance._remove_me()
@@ -41,22 +43,22 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy_level):
 	vfx_instance.global_position = loot_position
 	vfx_instance.play()
 
-func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
-	var show_ui = not main_ui.get_ui()
-	_change_ui_state(show_ui)
-	
-	main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
-	main_ui.open_inventory()
+#func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
+	#var show_ui = not main_ui.get_ui()
+	#_change_ui_state(show_ui)
+	#
+	#main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
+	#main_ui.open_inventory()
 
-func _open_container(container: Node):
-	_change_ui_state(true)
-	main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
-	main_ui.fill_loot(container.items)
-	main_ui.open_sack(container)
+#func _open_container(container: Node):
+	#_change_ui_state(true)
+	#main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
+	#main_ui.fill_loot(container.items)
+	#main_ui.open_sack(container)
 
-func _close_container(_container):
-	_change_ui_state(false)
-	main_ui.close_sack(_container)
+#func _close_container(_container):
+	#_change_ui_state(false)
+	#main_ui.close_sack(_container)
 
 func _change_ui_state(show_ui: bool):
 	$CanvasLayer.set_visible(show_ui)
@@ -86,19 +88,29 @@ func _create_vfx(vfx_position: Vector3, scene: PackedScene, new_global_rotation 
 		instance.rotation = new_global_rotation
 	instance.play()
 
+func _load_chests() -> void:
+	var chest_data: Dictionary = GameStateSaver.load_chest_data()
+	var chests: Array = get_tree().get_nodes_in_group("Chest")
+	for chest in chests:
+		if chest_data.get(chest.chest_id) != null:
+			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_itemdata)
+
 func _spawn_mobs(reset_mobs: bool = false):
-	var mobspawn_resource: MobSpawnResource
+	#var mobspawn_resource: MobSpawnResource
+	var mobspawn_data: Dictionary
 	if not reset_mobs:
-		mobspawn_resource = DataManager.load_mobspawn_data()
+		#mobspawn_resource = DataManager.load_mobspawn_data()
+		mobspawn_data = GameStateSaver.load_mobspawn_data()
 	
 	for mob_spawn_group in $MobSpawns.get_children():
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
-					print("spawn_name: ", mob_spawn.spawn_id)
-					if not reset_mobs and mobspawn_resource:
-						if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) != null:
-							if mobspawn_resource.mob_spawns.get(mob_spawn.spawn_id) == true:
+					#print("spawn_name: ", mob_spawn.spawn_id)
+					if not reset_mobs and mobspawn_data:
+						if mobspawn_data.get(mob_spawn.spawn_id) != null:
+							if mobspawn_data.get(mob_spawn.spawn_id) == true:
+								mob_spawn.is_my_mob_dead = true
 								continue
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
@@ -108,17 +120,15 @@ func _spawn_mobs(reset_mobs: bool = false):
 
 func _spawn_player():
 	player = player_scene.instantiate()
-	var basic_player_resource: BasicPlayerData = DataManager.load_basic_player_data()
+	var player_data: Dictionary = GameStateSaver.get_player_data()
 	add_child(player)
-	if basic_player_resource:
-		print("loaded res: ", basic_player_resource.position)
-		player.HEALTH = basic_player_resource.health
-		player.STAMINA = basic_player_resource.stamina
-		player.MANA = basic_player_resource.mana
-		player.global_position = basic_player_resource.position + Vector3(0.0 , 1.0, 0.0)
-		player.global_rotation = basic_player_resource.rotation
+	if player_data:
+		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
+		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
+		player.MANA = player_data.get("MANA") if player_data.get("MANA") else player.MAX_MANA
+		player.global_position = player_data.get("global_position") + Vector3(0.0 , 1.0, 0.0) if player_data.get("global_position") else $PlayerSpawn.global_position
+		player.global_rotation = player_data.get("global_rotation") if player_data.get("global_rotation") else Vector3.ZERO
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = $PlayerSpawn.global_position
-	#player.open_inventory.connect(open_inventory)
 	player.spawn_projectile.connect(_spawn_projectile)

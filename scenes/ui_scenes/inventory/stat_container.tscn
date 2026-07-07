@@ -1,74 +1,84 @@
 [gd_scene format=3 uid="uid://ctpi1vp12n7hf"]
 
 [ext_resource type="Script" uid="uid://ngtjjpkmkgg1" path="res://scripts/ui_scripts/inventory/stat_container.gd" id="1_ky1r3"]
-[ext_resource type="StyleBox" uid="uid://ddjsfk7p1jiyv" path="res://resources/ui/inventory/item_text_panel_left.tres" id="1_ymyuf"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_wyno4"]
 [ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="2_ky1r3"]
 [ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="3_wyno4"]
 [ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="4_lwak6"]
 [ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="5_oxuco"]
 [ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="6_ctatf"]
-[ext_resource type="StyleBox" uid="uid://bkbju5em5sd8o" path="res://resources/ui/inventory/item_text_panel_right.tres" id="7_sr5rr"]
-
-[sub_resource type="Theme" id="Theme_h7awd"]
+[ext_resource type="Script" uid="uid://6qjrhkl8jfgp" path="res://scripts/ui_scripts/inventory/material_text.gd" id="8_ky1r3"]
 
 [node name="StatContainer" type="HBoxContainer" unique_id=1833489514]
 size_flags_vertical = 3
+theme = ExtResource("1_wyno4")
 theme_override_constants/separation = 0
 script = ExtResource("1_ky1r3")
 
 [node name="ItemStatMargin" type="MarginContainer" parent="." unique_id=1869363953]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_wyno4")
 
 [node name="ItemPanel" type="PanelContainer" parent="ItemStatMargin" unique_id=1115089597]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_h7awd")
-theme_override_styles/panel = ExtResource("1_ymyuf")
+theme = ExtResource("1_wyno4")
 
 [node name="_InsideMargin" type="MarginContainer" parent="ItemStatMargin/ItemPanel" unique_id=1182527103]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_wyno4")
 
-[node name="WeaponScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1702234503]
-visible = false
+[node name="WeaponScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1702234503 node_paths=PackedStringArray("item_name", "flavor_text", "type", "normal_value", "magic_value", "fire_value", "lightning_value", "cold_value", "nature_value", "chaos_value")]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 script = ExtResource("2_ky1r3")
+item_name = NodePath("WeaponStats/ItemName")
+flavor_text = NodePath("WeaponStats/FlavorText")
+type = NodePath("WeaponStats/ItemType/Type")
+normal_value = NodePath("WeaponStats/Normal/NormalValue")
+magic_value = NodePath("WeaponStats/Magic/MagicValue")
+fire_value = NodePath("WeaponStats/Fire/FireValue")
+lightning_value = NodePath("WeaponStats/Lightning/LightningValue")
+cold_value = NodePath("WeaponStats/Cold/ColdValue")
+nature_value = NodePath("WeaponStats/Nature/NatureValue")
+chaos_value = NodePath("WeaponStats/Chaos/ChaosValue")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller" unique_id=723555800]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_wyno4")
 
 [node name="ItemName" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1985454097]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("3_wyno4")
 vertical_alignment = 1
 clip_text = true
 
 [node name="FlavorText" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=896254630]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("4_lwak6")
 vertical_alignment = 1
+autowrap_mode = 2
 clip_text = true
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1368604227]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/ItemType" unique_id=346885951]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Item Type:"
 label_settings = ExtResource("5_oxuco")
 
@@ -76,16 +86,19 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Sword"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Normal" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1495228515]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Normal" unique_id=51963544]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Normal Damage:"
 label_settings = ExtResource("5_oxuco")
 
@@ -93,17 +106,20 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "5"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1765251845]
 modulate = Color(0.60784316, 0.654902, 1, 1)
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Magic" unique_id=2110666481]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Magic Damage:"
 label_settings = ExtResource("5_oxuco")
 
@@ -111,17 +127,20 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Fire" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=52490788]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Fire" unique_id=1298231363]
 modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Fire Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -130,17 +149,20 @@ modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Lightning" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=983920091]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Lightning" unique_id=1130531963]
 modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Lightning Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -149,17 +171,20 @@ modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Cold" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=171451467]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Cold" unique_id=719555478]
 modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Cold Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -168,17 +193,20 @@ modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Nature" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=1664711990]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Nature" unique_id=294601820]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Nature Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -187,17 +215,20 @@ modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Chaos" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats" unique_id=2000147058]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponScroller/WeaponStats/Chaos" unique_id=1056493119]
 modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Chaos Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -206,21 +237,25 @@ modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="ArmorScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1532681523]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller" unique_id=218841875]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_wyno4")
 
 [node name="ItemName" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1834097136]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("3_wyno4")
 vertical_alignment = 1
@@ -229,6 +264,7 @@ clip_text = true
 [node name="FlavorText" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=332929991]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("4_lwak6")
 vertical_alignment = 1
@@ -236,11 +272,13 @@ clip_text = true
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=2000215647]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/ItemType" unique_id=588400934]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Item Type:"
 label_settings = ExtResource("5_oxuco")
 
@@ -248,16 +286,19 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Sword"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Normal" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1223981903]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Normal" unique_id=1927143442]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Normal Damage:"
 label_settings = ExtResource("5_oxuco")
 
@@ -265,17 +306,20 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "5"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=519227066]
 modulate = Color(0.60784316, 0.654902, 1, 1)
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Magic" unique_id=2027572062]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Magic Damage:"
 label_settings = ExtResource("5_oxuco")
 
@@ -283,17 +327,20 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Fire" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=38995101]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Fire" unique_id=2039842158]
 modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Fire Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -302,17 +349,20 @@ modulate = Color(1, 0.63529414, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Lightning" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=675548014]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Lightning" unique_id=1457445359]
 modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Lightning Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -321,17 +371,20 @@ modulate = Color(1, 1, 0.63529414, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Cold" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1592835165]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Cold" unique_id=727282489]
 modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Cold Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -340,17 +393,20 @@ modulate = Color(0.63529414, 1, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Nature" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=379067302]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Nature" unique_id=259376470]
 modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Nature Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -359,17 +415,20 @@ modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
 [node name="Chaos" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1756551455]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Chaos" unique_id=894079437]
 modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Chaos Damage"
 label_settings = ExtResource("5_oxuco")
 
@@ -378,40 +437,50 @@ modulate = Color(0.9254902, 0.69803923, 1, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "0"
 label_settings = ExtResource("5_oxuco")
 
-[node name="ConsumableScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1157084228]
+[node name="ConsumableScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1157084228 node_paths=PackedStringArray("label", "info_text_label", "type")]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 script = ExtResource("6_ctatf")
+label = NodePath("WeaponStats/Label")
+info_text_label = NodePath("WeaponStats/InfoTextLabel")
+type = NodePath("WeaponStats/ItemType/Type")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller" unique_id=1628339676]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=2096036826]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("3_wyno4")
 vertical_alignment = 1
 clip_text = true
 
 [node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=1527932046]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 label_settings = ExtResource("4_lwak6")
 autowrap_mode = 2
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats" unique_id=808470301]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ConsumableScroller/WeaponStats/ItemType" unique_id=1980082187]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Item Type:"
 label_settings = ExtResource("5_oxuco")
 
@@ -419,39 +488,50 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Sword"
 label_settings = ExtResource("5_oxuco")
 
-[node name="MaterialScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=2067026511]
+[node name="MaterialScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=2067026511 node_paths=PackedStringArray("name_label", "info_text_label", "type_label")]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_wyno4")
+script = ExtResource("8_ky1r3")
+name_label = NodePath("WeaponStats/Label")
+info_text_label = NodePath("WeaponStats/InfoTextLabel")
+type_label = NodePath("WeaponStats/ItemType/Type")
 
 [node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller" unique_id=1047532680]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller/WeaponStats" unique_id=870187835]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Flaming Greatsword"
 label_settings = ExtResource("3_wyno4")
 vertical_alignment = 1
 clip_text = true
 
 [node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller/WeaponStats" unique_id=255317397]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 label_settings = ExtResource("4_lwak6")
 autowrap_mode = 2
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller/WeaponStats" unique_id=1030330379]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/MaterialScroller/WeaponStats/ItemType" unique_id=212384401]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Item Type:"
 label_settings = ExtResource("5_oxuco")
 
@@ -459,24 +539,25 @@ label_settings = ExtResource("5_oxuco")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource("1_wyno4")
 text = "Sword"
 label_settings = ExtResource("5_oxuco")
 
 [node name="ItemDisplayMargin" type="MarginContainer" parent="." unique_id=824304823]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme = ExtResource("1_wyno4")
 
 [node name="DisplayPanel" type="PanelContainer" parent="ItemDisplayMargin" unique_id=302357196]
 layout_mode = 2
-theme_override_styles/panel = ExtResource("7_sr5rr")
+theme = ExtResource("1_wyno4")
 
 [node name="_InsideMargin" type="MarginContainer" parent="ItemDisplayMargin/DisplayPanel" unique_id=891953517]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 
 [node name="DisplayViewport" type="TextureRect" parent="ItemDisplayMargin/DisplayPanel/_InsideMargin" unique_id=804308438]
 layout_mode = 2
+theme = ExtResource("1_wyno4")
 stretch_mode = 5

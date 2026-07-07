@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cpd3gt8lw2lif" path="res://scenes/ui_scenes/shader_cache_loading_screen.tscn" id="1_46pk6"]
 [ext_resource type="Script" uid="uid://d0ynhjga6duwo" path="res://scripts/ui_scripts/boot_screen.gd" id="1_jn3a8"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="3_0dy7m"]
 [ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_q4nfl"]
-[ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="4_c4vn0"]
+[ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="5_4dd7h"]
 [ext_resource type="Texture2D" uid="uid://b2fvtshtjtpqh" path="res://my_assets/sprites/Flaming Double Axe.png" id="5_xcjwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dy7m"]
@@ -21,7 +22,6 @@ content_margin_bottom = 50.0
 bg_color = Color(0.12941177, 0.14901961, 0.19215687, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_q4nfl"]
-font = ExtResource("4_c4vn0")
 font_size = 90
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcjwe"]
@@ -149,6 +149,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0dy7m")
 theme_override_styles/panel = SubResource("StyleBoxFlat_0dy7m")
 script = ExtResource("1_jn3a8")
 
@@ -163,18 +164,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0dy7m")
 theme_override_styles/panel = SubResource("StyleBoxFlat_c4vn0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GodotScreen" unique_id=1065020991]
 layout_mode = 2
+theme = ExtResource("3_0dy7m")
 
 [node name="TextureRect" type="TextureRect" parent="GodotScreen/VBoxContainer" unique_id=1538953402]
 layout_mode = 2
+theme = ExtResource("3_0dy7m")
 texture = ExtResource("3_q4nfl")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="GodotScreen/VBoxContainer" unique_id=934771975]
 layout_mode = 2
+theme = ExtResource("3_0dy7m")
+theme_override_fonts/font = ExtResource("5_4dd7h")
 text = "Godot Engine"
 label_settings = SubResource("LabelSettings_q4nfl")
 horizontal_alignment = 1
@@ -187,20 +193,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0dy7m")
 theme_override_styles/panel = SubResource("StyleBoxFlat_xcjwe")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CompanyScreen" unique_id=738825664]
 layout_mode = 2
+theme = ExtResource("3_0dy7m")
 
 [node name="TextureRect" type="TextureRect" parent="CompanyScreen/VBoxContainer" unique_id=2099027372]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_0dy7m")
 texture = ExtResource("5_xcjwe")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="CompanyScreen/VBoxContainer" unique_id=55131487]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_0dy7m")
 text = "Placeholder Company Name"
 label_settings = SubResource("LabelSettings_q4nfl")
 horizontal_alignment = 1

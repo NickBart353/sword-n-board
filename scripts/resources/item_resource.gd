@@ -13,10 +13,10 @@ extends Resource
 @export var item_sub_category: ITEM_SUB_CATEGORY
 @export var item_type: ITEM_TYPE
 
-var stack_size: int = 1
+@export var stack_size: int = 1
 var equipped: bool = false
 
-var unique_id: String
+@export var unique_id: String
 
 enum ITEM_CATEGORY {WEAPON, ARMOR, CONSUMABLE, MATERIAL}
 enum ITEM_SUB_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, CONSUMABLE, THROWABLE, MATERIAL}
@@ -64,10 +64,14 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Greatsword"
 		ITEM_TYPE.AXE:
 			return "Axe"
+		ITEM_TYPE.GREATAXE:
+			return "Greataxe"
 		ITEM_TYPE.DAGGER:
 			return "Dagger"
 		ITEM_TYPE.GREATHAMMER:
 			return "Greathammer"
+		ITEM_TYPE.HAMMER:
+			return "Hammer"
 		ITEM_TYPE.KATANA:
 			return "Katana"
 		ITEM_TYPE.SPEAR:
@@ -86,4 +90,8 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Torch"
 		ITEM_TYPE.SHIELD:
 			return "Shield"
+		ITEM_TYPE.UPGRADE_SHARD:
+			return "Upgrade shard"
+		ITEM_TYPE.TRANSFORM_SHARD:
+			return "Transform shard"
 	return "Wrong type or forgot adding name to item_resource.gd"

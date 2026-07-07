@@ -1,0 +1,558 @@
+[gd_scene format=3 uid="uid://bifrdanxyq648"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_w12ja"]
+[ext_resource type="Script" uid="uid://bxbqnhk72ecex" path="res://scripts/ui_scripts/inventory/tooltip_container.gd" id="2_w12ja"]
+[ext_resource type="Script" uid="uid://cht2w3wndygln" path="res://scripts/ui_scripts/inventory/weapon_text.gd" id="3_psh7r"]
+[ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="4_t1jvl"]
+[ext_resource type="LabelSettings" uid="uid://dadd0dywrgti" path="res://resources/ui/inventory/sub_header_label.tres" id="5_vkksf"]
+[ext_resource type="LabelSettings" uid="uid://j42lxinybqt1" path="res://resources/ui/inventory/default_label.tres" id="6_wpxvf"]
+[ext_resource type="Script" uid="uid://bjj1wymk6bvp2" path="res://scripts/ui_scripts/inventory/consumable_text.gd" id="7_pnv6q"]
+[ext_resource type="Script" uid="uid://6qjrhkl8jfgp" path="res://scripts/ui_scripts/inventory/material_text.gd" id="8_gh2uc"]
+[ext_resource type="LabelSettings" uid="uid://b03r4ue4jmpiy" path="res://resources/ui/label_setting/tooltip_header.tres" id="9_vkksf"]
+[ext_resource type="LabelSettings" uid="uid://b68ndpssukdyn" path="res://resources/ui/label_setting/tooltip_flavour_text.tres" id="10_wpxvf"]
+[ext_resource type="LabelSettings" uid="uid://c2b7ghoetjcb8" path="res://resources/ui/label_setting/tooltip_default.tres" id="11_pnv6q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymyuf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.18245491, 0.17509004, 0.16875488, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.91606915, 0.410139, 9.62615e-07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="TooltipContainer" type="HBoxContainer" unique_id=1833489514]
+offset_right = 250.0
+offset_bottom = 91.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+theme = ExtResource("1_w12ja")
+theme_override_constants/separation = 0
+script = ExtResource("2_w12ja")
+
+[node name="ItemStatMargin" type="MarginContainer" parent="." unique_id=1869363953]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme = ExtResource("1_w12ja")
+
+[node name="ItemPanel" type="PanelContainer" parent="ItemStatMargin" unique_id=1115089597]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_w12ja")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ymyuf")
+
+[node name="_InsideMargin" type="MarginContainer" parent="ItemStatMargin/ItemPanel" unique_id=1182527103]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=723555800 node_paths=PackedStringArray("item_name", "flavor_text", "type", "normal_value", "magic_value", "fire_value", "lightning_value", "cold_value", "nature_value", "chaos_value")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_w12ja")
+script = ExtResource("3_psh7r")
+item_name = NodePath("ItemName")
+flavor_text = NodePath("FlavorText")
+type = NodePath("ItemType/Type")
+normal_value = NodePath("Normal/NormalValue")
+magic_value = NodePath("Magic/MagicValue")
+fire_value = NodePath("Fire/FireValue")
+lightning_value = NodePath("Lightning/LightningValue")
+cold_value = NodePath("Cold/ColdValue")
+nature_value = NodePath("Nature/NatureValue")
+chaos_value = NodePath("Chaos/ChaosValue")
+
+[node name="ItemName" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1985454097]
+custom_minimum_size = Vector2(100, -1)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_w12ja")
+text = "Flaming Greatsword"
+label_settings = ExtResource("9_vkksf")
+autowrap_mode = 2
+
+[node name="FlavorText" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=896254630]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Flaming Greatsword"
+label_settings = ExtResource("10_wpxvf")
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1368604227]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/ItemType" unique_id=346885951]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Item Type:"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Type" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/ItemType" unique_id=1990186933]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Sword"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Normal" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1495228515]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Normal" unique_id=51963544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Normal Damage:"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="NormalValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Normal" unique_id=480442301]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "5"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1765251845]
+modulate = Color(0.60784316, 0.654902, 1, 1)
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Magic" unique_id=2110666481]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Magic Damage:"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="MagicValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Magic" unique_id=407943445]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Fire" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=52490788]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Fire" unique_id=1298231363]
+modulate = Color(1, 0.63529414, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Fire Damage"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="FireValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Fire" unique_id=2119028430]
+modulate = Color(1, 0.63529414, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Lightning" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=983920091]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Lightning" unique_id=1130531963]
+modulate = Color(1, 1, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Lightning Damage"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="LightningValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Lightning" unique_id=513559818]
+modulate = Color(1, 1, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Cold" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=171451467]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Cold" unique_id=719555478]
+modulate = Color(0.63529414, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Cold Damage"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="ColdValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Cold" unique_id=1604619676]
+modulate = Color(0.63529414, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Nature" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1664711990]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Nature" unique_id=294601820]
+modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Nature Damage"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="NatureValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Nature" unique_id=1045981448]
+modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Chaos" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=2000147058]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Chaos" unique_id=1056493119]
+modulate = Color(0.9254902, 0.69803923, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Chaos Damage"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="ChaosValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats/Chaos" unique_id=1214435539]
+modulate = Color(0.9254902, 0.69803923, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="ArmorScroller" type="ScrollContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1532681523]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="WeaponStats" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller" unique_id=218841875]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_w12ja")
+
+[node name="ItemName" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1834097136]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Flaming Greatsword"
+label_settings = ExtResource("4_t1jvl")
+vertical_alignment = 1
+clip_text = true
+
+[node name="FlavorText" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=332929991]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Flaming Greatsword"
+label_settings = ExtResource("5_vkksf")
+vertical_alignment = 1
+clip_text = true
+
+[node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=2000215647]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/ItemType" unique_id=588400934]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Item Type:"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Type" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/ItemType" unique_id=802239788]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Sword"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Normal" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1223981903]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Normal" unique_id=1927143442]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Normal Damage:"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="NormalValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Normal" unique_id=601800654]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "5"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=519227066]
+modulate = Color(0.60784316, 0.654902, 1, 1)
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Magic" unique_id=2027572062]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Magic Damage:"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="MagicValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Magic" unique_id=390672294]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Fire" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=38995101]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Fire" unique_id=2039842158]
+modulate = Color(1, 0.63529414, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Fire Damage"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="FireValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Fire" unique_id=2134715189]
+modulate = Color(1, 0.63529414, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Lightning" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=675548014]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Lightning" unique_id=1457445359]
+modulate = Color(1, 1, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Lightning Damage"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="LightningValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Lightning" unique_id=46573332]
+modulate = Color(1, 1, 0.63529414, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Cold" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1592835165]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Cold" unique_id=727282489]
+modulate = Color(0.63529414, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Cold Damage"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="ColdValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Cold" unique_id=835461563]
+modulate = Color(0.63529414, 1, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Nature" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=379067302]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Nature" unique_id=259376470]
+modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Nature Damage"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="NatureValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Nature" unique_id=678962211]
+modulate = Color(0.9254902, 0.80784315, 0.59607846, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Chaos" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=1756551455]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Chaos" unique_id=894079437]
+modulate = Color(0.9254902, 0.69803923, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Chaos Damage"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="ChaosValue" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats/Chaos" unique_id=54803603]
+modulate = Color(0.9254902, 0.69803923, 1, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "0"
+label_settings = ExtResource("6_wpxvf")
+
+[node name="Consumable" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1628339676 node_paths=PackedStringArray("label", "info_text_label", "type")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_w12ja")
+script = ExtResource("7_pnv6q")
+label = NodePath("Label")
+info_text_label = NodePath("InfoTextLabel")
+type = NodePath("ItemType/Type")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Consumable" unique_id=2096036826]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Flaming Greatsword"
+label_settings = ExtResource("9_vkksf")
+autowrap_mode = 2
+
+[node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Consumable" unique_id=1527932046]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+label_settings = ExtResource("10_wpxvf")
+autowrap_mode = 2
+
+[node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/Consumable" unique_id=808470301]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Consumable/ItemType" unique_id=1980082187]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Item Type:"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Type" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Consumable/ItemType" unique_id=908537130]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Sword"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Material" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1047532680 node_paths=PackedStringArray("name_label", "info_text_label", "type_label")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_w12ja")
+script = ExtResource("8_gh2uc")
+name_label = NodePath("Label")
+info_text_label = NodePath("InfoTextLabel")
+type_label = NodePath("ItemType/Type")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Material" unique_id=870187835]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Smithing Shard"
+label_settings = ExtResource("9_vkksf")
+vertical_alignment = 1
+clip_text = true
+
+[node name="InfoTextLabel" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Material" unique_id=255317397]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+text = "Rocks rock!"
+label_settings = ExtResource("10_wpxvf")
+autowrap_mode = 2
+
+[node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/Material" unique_id=1030330379]
+layout_mode = 2
+theme = ExtResource("1_w12ja")
+
+[node name="Label" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Material/ItemType" unique_id=212384401]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Item Type:"
+label_settings = ExtResource("11_pnv6q")
+
+[node name="Type" type="Label" parent="ItemStatMargin/ItemPanel/_InsideMargin/Material/ItemType" unique_id=465592936]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_w12ja")
+text = "Lel"
+label_settings = ExtResource("11_pnv6q")

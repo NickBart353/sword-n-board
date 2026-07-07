@@ -9,20 +9,12 @@ font_size = 25
 
 [node name="InventoryItem" type="Button" unique_id=550894679 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "count_label")]
 custom_minimum_size = Vector2(200, 200)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+offset_right = 4.0
+offset_bottom = 85.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme = ExtResource("1_kwdn5")
+theme_override_font_sizes/font_size = 20
 button_mask = 3
 text = "aaaaaaahhhh teeeeeeest reeeeeee"
 icon = ExtResource("2_l452j")
@@ -40,7 +32,6 @@ offhand_equipped_marker = NodePath("OffhandEquipped")
 count_label = NodePath("Label")
 
 [node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,4 +91,5 @@ text = "222"
 label_settings = SubResource("LabelSettings_l452j")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

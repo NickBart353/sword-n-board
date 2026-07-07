@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://duiwbm8tqdkrc"]
+
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_ebj7o"]
+[ext_resource type="LabelSettings" uid="uid://beygksadoi4cb" path="res://resources/ui/inventory/header_label.tres" id="2_6mlel"]
+[ext_resource type="Script" uid="uid://ckpwb8xvc01ah" path="res://scripts/ui_scripts/chest_item_container.gd" id="2_qcyd8"]
+[ext_resource type="PackedScene" uid="uid://bifrdanxyq648" path="res://scenes/ui_scenes/inventory/tooltip_container.tscn" id="4_qcyd8"]
+
+[node name="ChestItemContainer" type="VBoxContainer" unique_id=834840540]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ebj7o")
+theme_override_constants/separation = 10
+script = ExtResource("2_qcyd8")
+
+[node name="InventorySplitter" type="HBoxContainer" parent="." unique_id=218282545]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+
+[node name="ChestContainer" type="PanelContainer" parent="InventorySplitter" unique_id=126642066]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChestSplitter" type="VBoxContainer" parent="InventorySplitter/ChestContainer" unique_id=440550659]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="InventorySplitter/ChestContainer/ChestSplitter" unique_id=1085624458]
+layout_mode = 2
+text = "Chest Items"
+label_settings = ExtResource("2_6mlel")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="InventorySplitter/ChestContainer/ChestSplitter" unique_id=1829299823]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventorySplitter/ChestContainer/ChestSplitter" unique_id=306760719]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChestItems" type="GridContainer" parent="InventorySplitter/ChestContainer/ChestSplitter/ScrollContainer" unique_id=1304321474]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="InventorySplitter" unique_id=2129971749]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayerContainer" type="PanelContainer" parent="InventorySplitter" unique_id=241997223]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlayerSplitter" type="VBoxContainer" parent="InventorySplitter/PlayerContainer" unique_id=525073442]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="InventorySplitter/PlayerContainer/PlayerSplitter" unique_id=1635891806]
+layout_mode = 2
+text = "Player Items"
+label_settings = ExtResource("2_6mlel")
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="InventorySplitter/PlayerContainer/PlayerSplitter" unique_id=1070630304]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventorySplitter/PlayerContainer/PlayerSplitter" unique_id=452882038]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerItems" type="GridContainer" parent="InventorySplitter/PlayerContainer/PlayerSplitter/ScrollContainer" unique_id=444331566]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 3
+
+[node name="Tooltip" type="Control" parent="." unique_id=1612376332]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TooltipContainer" parent="Tooltip" unique_id=1833489514 instance=ExtResource("4_qcyd8")]
+visible = false
+custom_minimum_size = Vector2(300, -1)
+layout_mode = 1
+offset_right = 300.0
+offset_bottom = 121.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="InfoLabel" type="Label" parent="." unique_id=711510720]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Click to move items"
+label_settings = ExtResource("2_6mlel")
+horizontal_alignment = 1
