@@ -25,19 +25,50 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_ohnu0")
 size = Vector3(0.1, 0.1, 0.1)
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kerij"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y64d7"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.2118104, 2.5966907, 0.9987518, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ypp05"]
+material = SubResource("StandardMaterial3D_y64d7")
+radius = 0.005
+height = 0.4
+
 [sub_resource type="Animation" id="Animation_q7rbf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/path = NodePath("Rumbling:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FloatingParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gbohr"]
@@ -46,10 +77,22 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/path = NodePath("Rumbling:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FloatingParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -66,16 +109,28 @@ _data = {
 script = ExtResource("1_q7rbf")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "rumble"
+hide_if_missed_by_player = false
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=943525645]
+[node name="Rumbling" type="GPUParticles3D" parent="." unique_id=943525645]
 cast_shadow = 0
 visibility_range_end = 25.0
+emitting = false
 amount = 16
 lifetime = 0.6
 fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_gbohr")
 draw_pass_1 = SubResource("BoxMesh_ncsq8")
+
+[node name="FloatingParticles" type="GPUParticles3D" parent="." unique_id=1033238462]
+cast_shadow = 0
+visibility_range_end = 25.0
+emitting = false
+amount = 16
+lifetime = 0.6
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_kerij")
+draw_pass_1 = SubResource("CapsuleMesh_ypp05")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=6824776]
 libraries/ = SubResource("AnimationLibrary_ohnu0")

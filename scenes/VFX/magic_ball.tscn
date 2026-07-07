@@ -151,7 +151,7 @@ process_material = SubResource("ParticleProcessMaterial_83yak")
 draw_pass_1 = SubResource("SphereMesh_h23rm")
 
 [node name="Main" type="MeshInstance3D" parent="." unique_id=430132184]
-transform = Transform3D(0.9848077, 0, 0.17364818, 0, 1, 0, -0.17364818, 0, 0.9848077, -0.35, 0.6, -0.23)
+transform = Transform3D(0.9848077, 0, 0.1736482, 0, 1, 0, -0.1736482, 0, 0.9848077, -0.35, 0.6, -0.23)
 mesh = SubResource("QuadMesh_jep8n")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=775687755]

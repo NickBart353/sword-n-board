@@ -44,4 +44,3 @@ cast_shadow = 0
 ignore_occlusion_culling = true
 gi_mode = 0
 mesh = SubResource("BoxMesh_vfdh6")
-skeleton = NodePath("")

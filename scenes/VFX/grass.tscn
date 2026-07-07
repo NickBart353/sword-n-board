@@ -90,7 +90,7 @@ mesh = SubResource("PlaneMesh_7xho2")
 [node name="grass" parent="." unique_id=45808362 instance=ExtResource("2_381u1")]
 visible = false
 
-[node name="Grass" parent="grass" index="0" unique_id=1280175471]
+[node name="Grass" parent="grass" index="0" unique_id=817897423]
 cast_shadow = 0
 
 [node name="Plane2" type="MeshInstance3D" parent="." unique_id=581478238]
@@ -98,6 +98,5 @@ transform = Transform3D(7.2675, 0, 0, 0, 1, 0, 0, 0, 7.4220295, 0.009999752, 0, 
 visible = false
 cast_shadow = 0
 mesh = ExtResource("3_381u1")
-skeleton = NodePath("")
 
 [editable path="grass"]

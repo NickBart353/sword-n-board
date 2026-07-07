@@ -592,11 +592,11 @@ transform = Transform3D(0.32139385, -0.38302237, -0.8660253, -0.5566703, 0.66341
 mesh = SubResource("BoxMesh_1plor")
 
 [node name="Rock3" type="MeshInstance3D" parent="." unique_id=140330936]
-transform = Transform3D(0.93969256, 0.34202015, -1.5958689e-09, -0.33682406, 0.9254165, -0.17364815, -0.05939118, 0.16317593, 0.98480743, 2.9, -4.9, 4.5)
+transform = Transform3D(0.93969256, 0.34202015, -1.5958688e-09, -0.33682406, 0.9254165, -0.17364813, -0.05939118, 0.16317593, 0.9848074, 2.9, -4.9, 4.5)
 mesh = SubResource("BoxMesh_1plor")
 
 [node name="Rock4" type="MeshInstance3D" parent="." unique_id=853236996]
-transform = Transform3D(0.936933, 0.30633348, 0.16827181, -0.27150849, 0.94110566, -0.20150046, -0.220088, 0.14310531, 0.96492535, 7.284177, -5.6994314, 0.09265149)
+transform = Transform3D(0.936933, 0.30633348, 0.1682718, -0.27150849, 0.9411056, -0.20150045, -0.220088, 0.1431053, 0.9649253, 7.284177, -5.6994314, 0.09265149)
 mesh = SubResource("BoxMesh_1plor")
 
 [node name="Rock5" type="MeshInstance3D" parent="." unique_id=1082710976]
@@ -604,7 +604,7 @@ transform = Transform3D(0.9396926, 0.3213937, 0.11697777, -0.3420201, 0.88302195
 mesh = SubResource("BoxMesh_1plor")
 
 [node name="Rock6" type="MeshInstance3D" parent="." unique_id=1066587486]
-transform = Transform3D(0.6427875, 1.4901161e-08, -0.7660442, 0.26200262, 0.9396926, 0.21984625, 0.71984637, -0.34202015, 0.6040225, -0.40000004, -5.594788, -8.236185)
+transform = Transform3D(0.6427875, 1.4901161e-08, -0.76604414, 0.26200262, 0.9396926, 0.21984623, 0.71984637, -0.34202015, 0.60402244, -0.40000004, -5.594788, -8.236185)
 mesh = SubResource("BoxMesh_1plor")
 
 [node name="Rock7" type="MeshInstance3D" parent="." unique_id=1851061838]

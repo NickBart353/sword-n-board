@@ -73,14 +73,12 @@ shadow_mesh = SubResource("ArrayMesh_26j86")
 
 [node name="HealthPotion" type="Node3D" unique_id=2078521406]
 script = ExtResource("1_gjl3w")
-property = "HEALTH"
-amount = 35.0
 metadata/_custom_type_script = "uid://gfr5q01qg5n"
 
 [node name="MinorPotion_Health (Copy 1)" parent="." unique_id=774232473 instance=ExtResource("2_iyr0x")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 
-[node name="MinorPotion_Health" parent="MinorPotion_Health (Copy 1)" index="1" unique_id=1568619819]
+[node name="MinorPotion_Health" parent="MinorPotion_Health (Copy 1)" index="0" unique_id=1682834032]
 mesh = SubResource("ArrayMesh_nxb1h")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1557890563]

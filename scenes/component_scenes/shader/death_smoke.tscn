@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://do2yjfn1olkvy"]
+[gd_scene format=3 uid="uid://do2yjfn1olkvy"]
 
 [ext_resource type="Shader" uid="uid://bqrmbx8q8u42f" path="res://shaders/deathSmoke.tres" id="1_n6hgi"]
-[ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/GAP_Fire_Textures/Voronoi01.png" id="2_4q3wu"]
-[ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/GAP_Fire_Textures/Flare00.PNG" id="3_5rus5"]
+[ext_resource type="Texture2D" uid="uid://cp0revqg4n5yh" path="res://assets/Visual/GAP_Fire_Textures/Voronoi01.png" id="2_4q3wu"]
+[ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/Visual/GAP_Fire_Textures/Flare00.PNG" id="3_5rus5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6hgi"]
 resource_local_to_scene = true
@@ -41,9 +41,9 @@ color_initial_ramp = SubResource("GradientTexture1D_3s3cd")
 
 [sub_resource type="QuadMesh" id="QuadMesh_4q3wu"]
 
-[node name="DeathSmoke" type="Node3D"]
+[node name="DeathSmoke" type="Node3D" unique_id=2046757011]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1769383199]
 material_override = SubResource("ShaderMaterial_n6hgi")
 emitting = false
 amount = 20

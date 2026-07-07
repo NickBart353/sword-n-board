@@ -1230,13 +1230,12 @@ player = NodePath("../..")
 script = ExtResource("11_bnsrg")
 player = NodePath("../..")
 
-[node name="Consume" type="Node" parent="AbilityController" unique_id=603745982 node_paths=PackedStringArray("ability_player", "player")]
+[node name="Consume" type="Node" parent="AbilityController" unique_id=603745982 node_paths=PackedStringArray("ability_player")]
 script = ExtResource("13_i5qjy")
 eating_sound_two = ExtResource("14_gnmgq")
 drinking_sound_one = ExtResource("26_6ocei")
 drinking_sound_two = SubResource("AudioStreamRandomizer_6arjy")
 ability_player = NodePath("../../AbilityPlayer")
-player = NodePath("../..")
 
 [node name="AudioController" type="Node" parent="." unique_id=1377078437]
 script = ExtResource("14_v1vyy")

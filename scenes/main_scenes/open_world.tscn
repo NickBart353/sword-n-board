@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfgwm2pdkaxmx"]
+[gd_scene format=3 uid="uid://cfgwm2pdkaxmx"]
 
 [ext_resource type="Terrain3DAssets" uid="uid://dal3jhw6241qg" path="res://demo/data/assets.tres" id="1_8fi03"]
 
@@ -44,9 +44,9 @@ _shader_parameters = {
 }
 world_background = 0
 
-[node name="OpenWorld" type="Node3D"]
+[node name="OpenWorld" type="Node3D" unique_id=1872670093]
 
-[node name="Terrain3D" type="Terrain3D" parent="."]
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1596002445]
 data_directory = "res://addons/terrain_3d/data"
 material = SubResource("Terrain3DMaterial_afnh6")
 assets = ExtResource("1_8fi03")

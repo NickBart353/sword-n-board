@@ -136,7 +136,7 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
-[node name="DaggerMesh" parent="." index="2" unique_id=1419587683]
+[node name="DaggerMesh" parent="." index="2" unique_id=603870156]
 transform = Transform3D(0.09, 0, 0, 0, -3.9340247e-09, 0.09, 0, -0.089999996, -3.934025e-09, 0, -2.9940114, 0)
 mesh = SubResource("ArrayMesh_t5mmq")
 
