@@ -39,6 +39,7 @@ var vfx_instance: Basic_VFX
 
 func _ready() -> void:
 	projectile_area.body_entered.connect(_on_body_entered)
+	projectile_area.body_shape_entered.connect(_on_body_shape_entered)
 	projectile_area.area_entered.connect(_on_area_entered)
 	explosion_area.body_entered.connect(_on_explosion_body_entered)
 	explosion_area.area_entered.connect(_on_explosion_area_entered)
@@ -53,7 +54,6 @@ func _physics_process(delta: float) -> void:
 	global_translate(velocity * delta)
 
 func _on_body_entered(body: Node3D) -> void:
-	#print("test ", body in hit_by_explosion_list, " : ", body.get_class())
 	if hit or body in hit_by_explosion_list: return
 	if (body is Player or body is Enemy) and not target_hit:
 		was_object_hit_first(body, projectile_area.get_children()[0].shape.radius)
@@ -61,7 +61,14 @@ func _on_body_entered(body: Node3D) -> void:
 	_hit_object()
 	hit_by_explosion_list.append(body)
 	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
-	#VfxManager.create_vfx_from_enum(explosion_animation, global_position)
+	vfx_instance.play()
+	_first_explosion()
+
+func _on_body_shape_entered(body_rid: RID, body: Node3D, body_shape_index:int, local_shape_index: int):
+	if hit or body in hit_by_explosion_list: return
+	_hit_object()
+	hit_by_explosion_list.append(body)
+	AudioManager.play_audio_from_resource(audio_resource, global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	vfx_instance.play()
 	_first_explosion()
 

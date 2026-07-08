@@ -189,6 +189,7 @@ _data = {
 script = ExtResource("1_4wod7")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "Charge"
+hide_if_missed_by_player = false
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Spinny" type="MeshInstance3D" parent="." unique_id=1609632801]

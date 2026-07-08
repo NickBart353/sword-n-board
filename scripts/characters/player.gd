@@ -101,7 +101,7 @@ func _ready() -> void:
 		child.queue_free()
 	for child in offhand.get_children():
 		child.queue_free()
-	for child in $"Player - Kopie/Weapons/Twohand".get_children():
+	for child in twohand.get_children():
 		child.queue_free()
 	for child in self.find_children("*"):
 		if child is Node3D:
@@ -181,6 +181,18 @@ func interact_with_object():
 		interacting_object.get_node(node_name).hover()
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
+
+func position_camera(new_position: Vector3):
+	field_of_view.global_position = new_position
+
+func rotate_camera(new_rotation: Vector3):
+	look_rotation.x = new_rotation.x
+	look_rotation.y = new_rotation.y
+	transform.basis = Basis()
+	rotate_y(look_rotation.y)
+	player_camera.transform.basis = Basis()
+	player_camera.rotate_x(look_rotation.x)
+	player_camera.rotate_y(look_rotation.y)
 
 func _detect_enemy_healthbar() -> void:
 	pass

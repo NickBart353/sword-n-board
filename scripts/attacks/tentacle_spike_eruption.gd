@@ -69,7 +69,7 @@ func _create_area_and_static() -> void:
 	PhysicsServer3D.body_set_mode(new_static, PhysicsServer3D.BodyMode.BODY_MODE_STATIC)
 	PhysicsServer3D.body_add_shape(new_static, shape_rid)
 	PhysicsServer3D.body_set_collision_mask(new_static, 7)
-	PhysicsServer3D.body_set_collision_layer(new_static, 7)
+	PhysicsServer3D.body_set_collision_layer(new_static, 2)
 	PhysicsServer3D.body_set_space(new_static, world_space_id)
 	PhysicsServer3D.body_set_state(new_static, PhysicsServer3D.BodyState.BODY_STATE_TRANSFORM, RESET_POSITION)
 	static_rids.append(new_static)

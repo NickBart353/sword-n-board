@@ -103,6 +103,7 @@ func _populate_keybinds():
 					button.input_pressed.connect(_change_input)
 				button.add_to_group("FreezeButtons")
 				keybindings.add_child(button)
+				button.add_child(UIInteraction.new())
 				break
 
 func _change_input(button: InputButton):

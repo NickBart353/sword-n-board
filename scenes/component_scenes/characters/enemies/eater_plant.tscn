@@ -283,10 +283,10 @@ display_name = "Man Eater"
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=2123121773]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=1898710344]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=722657414]
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1271570678]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
 bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
 bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
@@ -322,7 +322,7 @@ bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
 bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1093841911]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=944413033]
 material_override = SubResource("ShaderMaterial_o05q6")
 material_overlay = SubResource("ShaderMaterial_rlcnt")
 

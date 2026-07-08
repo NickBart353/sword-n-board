@@ -170,6 +170,7 @@ _data = {
 script = ExtResource("1_5refd")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "charge"
+hide_if_missed_by_player = false
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1747223059]

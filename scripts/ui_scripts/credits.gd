@@ -1,6 +1,6 @@
 class_name CreditScreen extends PanelContainer
 
-@onready var scrollcontainer: ScrollContainer = $Scrollcontainer
+@onready var scrollcontainer: ScrollContainer = $VBoxContainer/Scrollcontainer
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 @export_range(0.0, 10000.0) var scroll_speed: float = 100.0
@@ -34,28 +34,29 @@ func _finished() -> void:
 	scrollcontainer.scroll_vertical = 0
 	leave_credits.emit()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.keycode == KEY_ESCAPE:
-			_finished()
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey:
+		#if event.keycode == KEY_ESCAPE:
+			#_finished()
 
 func _unhide_everything() -> void:
-	$Scrollcontainer/MainContainer/GridContainer.show()
-	$Scrollcontainer/MainContainer/Table.show()
-	$Scrollcontainer/MainContainer/Godot.show()
-	$Scrollcontainer/MainContainer/TextureRect.show()
-	$Scrollcontainer/MainContainer/Label.show()
-	$Scrollcontainer/MainContainer/GodotLicense.show()
+	$VBoxContainer/Scrollcontainer/MainContainer/GridContainer.show()
+	$VBoxContainer/Scrollcontainer/MainContainer/Table.show()
+	$VBoxContainer/Scrollcontainer/MainContainer/Godot.show()
+	$VBoxContainer/Scrollcontainer/MainContainer/TextureRect.show()
+	$VBoxContainer/Scrollcontainer/MainContainer/GodotLicense.show()
 
 func _hide_everything() -> void:
-	$Scrollcontainer/MainContainer/GridContainer.hide()
-	$Scrollcontainer/MainContainer/Table.hide()
-	$Scrollcontainer/MainContainer/Godot.hide()
-	$Scrollcontainer/MainContainer/TextureRect.hide()
-	$Scrollcontainer/MainContainer/Label.hide()
-	$Scrollcontainer/MainContainer/GodotLicense.hide()
+	$VBoxContainer/Scrollcontainer/MainContainer/GridContainer.hide()
+	$VBoxContainer/Scrollcontainer/MainContainer/Table.hide()
+	$VBoxContainer/Scrollcontainer/MainContainer/Godot.hide()
+	$VBoxContainer/Scrollcontainer/MainContainer/TextureRect.hide()
+	$VBoxContainer/Scrollcontainer/MainContainer/GodotLicense.hide()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "start":
 		_stopped = false
 		_unhide_everything()
+
+func _on_button_pressed() -> void:
+	_finished()

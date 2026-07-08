@@ -19,17 +19,19 @@ border_width_bottom = 1
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_evpsf"]
+line_spacing = 1.0
+font_size = 18
 
 [node name="InventoryItemNew" type="PanelContainer" unique_id=673232389 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "text_label", "sprite", "count_label")]
-custom_minimum_size = Vector2(150, 150)
+custom_minimum_size = Vector2(200, 200)
 custom_maximum_size = Vector2(200, 200)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 700.0
-offset_top = 326.0
-offset_right = -747.0
-offset_bottom = -422.0
+offset_left = 692.0
+offset_top = 327.0
+offset_right = -739.0
+offset_bottom = -423.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -112,20 +114,19 @@ size_flags_vertical = 0
 color = Color(0.17741996, 0.4989286, 0.99999994, 1)
 
 [node name="Sprite" type="TextureRect" parent="VBoxContainer" unique_id=916374444]
-custom_minimum_size = Vector2(96, 96)
-custom_maximum_size = Vector2(196, 100)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 3
+size_flags_vertical = 4
 texture = ExtResource("2_8wc63")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=706848274]
-custom_minimum_size = Vector2(96, -1)
-custom_maximum_size = Vector2(196, -1)
+custom_minimum_size = Vector2(146, 0)
 layout_mode = 2
-text = "chaos greatsword"
+size_flags_vertical = 6
+text = "Large Lightning Stone Stone Stone Stone"
 label_settings = SubResource("LabelSettings_evpsf")
 horizontal_alignment = 1
 autowrap_mode = 2

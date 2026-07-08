@@ -126,8 +126,18 @@ func _spawn_player():
 		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
 		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
 		player.MANA = player_data.get("MANA") if player_data.get("MANA") else player.MAX_MANA
-		player.global_position = player_data.get("global_position") + Vector3(0.0 , 1.0, 0.0) if player_data.get("global_position") else $PlayerSpawn.global_position
-		player.global_rotation = player_data.get("global_rotation") if player_data.get("global_rotation") else Vector3.ZERO
+		if player_data.get("global_position"):
+			player.global_position = player_data.get("global_position") + Vector3(0.0 , 0.2, 0.0)
+		else:
+			player.global_position = $PlayerSpawn.global_position + Vector3(0.0 , 0.2, 0.0)
+		 
+		#player.position_camera
+		if player_data.get("global_rotation"):
+			player.global_rotation = player_data.get("global_rotation")
+			player.rotate_camera(player_data.get("global_rotation"))
+		else:
+			player.global_rotation = Vector3.ZERO
+		
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = $PlayerSpawn.global_position

@@ -35,7 +35,7 @@ orbit_velocity_curve = SubResource("CurveXYZTexture_4f6rc")
 gravity = Vector3(0, 0, 0)
 scale_min = 0.099999994
 scale_max = 0.099999994
-color = Color(2.2695851, 2.1323197, 0, 1)
+color = Color(3.6646311, 3.4434097, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0ni7"]
 vertex_color_use_as_albedo = true
@@ -84,12 +84,14 @@ _data = {
 script = ExtResource("1_4f6rc")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "Stunned"
+hide_if_missed_by_player = false
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1579930331]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 emitting = false
-amount = 5
+amount = 10
+lifetime = 5.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_a850t")
 draw_pass_1 = SubResource("BoxMesh_4tlhf")
