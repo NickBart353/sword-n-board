@@ -307,9 +307,6 @@ func _reequip_mainhand(_old: Item, new_mainhand: Item, _slot):
 		finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("R")
-		
 		new_animation.equpped_mainhand_weapon(anim_name)
 	#return old
 
@@ -337,9 +334,6 @@ func _reequip_offhand(_old: Item, new_offhand: Item, _slot):
 		finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("L")
-		
 		new_animation.equpped_offhand_weapon(anim_name)
 	#return old
 
@@ -363,12 +357,6 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	
 	mainhand_item_instance.update_markers("R")
 	offhand_item_instance.update_markers("L")
-	
-	if mainhand_item_instance is Dagger:
-		mainhand_item_instance.set_weapon_position("R")
-	
-	if offhand_item_instance is Dagger:
-		offhand_item_instance.set_weapon_position("L")
 	
 	var mainhand_marker_dictionary: Dictionary = mainhand_item_instance.get_markers()
 	var offhand_marker_dictionary: Dictionary = offhand_item_instance.get_markers()
