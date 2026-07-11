@@ -132,13 +132,14 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="Audio" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio" unique_id=1875880836]
+[node name="Audio" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio" unique_id=1875880836 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("3_70w0i")
+save_button = NodePath("../../../../BottomButtons/SaveButton")
 
 [node name="MasterLabel" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" unique_id=2004455279]
 layout_mode = 2
@@ -233,12 +234,13 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="Display" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display" unique_id=1277459466]
+[node name="Display" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display" unique_id=1277459466 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("4_2dy3u")
+save_button = NodePath("../../../../BottomButtons/SaveButton")
 
 [node name="WindowModeLabel" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" unique_id=643005089]
 layout_mode = 2
@@ -287,12 +289,13 @@ metadata/_tab_index = 2
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 
-[node name="Input" type="VBoxContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer" unique_id=2089125721]
+[node name="Input" type="VBoxContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer" unique_id=2089125721 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_7gtp0")
 script = ExtResource("5_simsl")
+save_button = NodePath("../../../../../BottomButtons/SaveButton")
 
 [node name="MouseHeadline" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=1595033870]
 layout_mode = 2
@@ -393,6 +396,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_70w0i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ix44y")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_70w0i")
 theme_override_styles/disabled = ExtResource("6_ix44y")
+disabled = true
 text = "Save"
 
 [node name="UIInteraction" type="Control" parent="SettingsOrganizer/BottomButtons/SaveButton" unique_id=1373686713]
@@ -553,7 +557,9 @@ metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/SFXSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/UISlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_ui_slider_value_changed"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/AmbienceSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_ambience_slider_value_changed"]
+[connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/WindowModePicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_window_mode_picker_item_selected"]
 [connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/AspectRatioPicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_aspect_ratio_picker_item_selected"]
+[connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/ResolutionPicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_resolution_picker_item_selected"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input/MouseInput/MouseSensitivitySlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_mouse_sensitivity_slider_value_changed"]
 [connection signal="timeout" from="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input/Timer" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_timer_timeout"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/BackButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_back_button_pressed"]

@@ -17,6 +17,8 @@ signal hide_existing_keybind_popup
 @onready var mouse_sensitivity_slider: HSlider = $MouseInput/MouseSensitivitySlider
 @onready var timer: Timer = $Timer
 
+@export var save_button: Button
+
 const keyboard_key_event: Dictionary = {"InputType": "InputEventKey", "Keycode": 2 , "DisplayName": "W"}
 const mouse_key_event: Dictionary = {"InputType": "InputEventMouseButton", "ButtonIndex": 1, "DisplayName": "LMB"}
 
@@ -63,6 +65,11 @@ var current_saving_button: InputButton
 var already_used_keybind: String
 var remapping: bool = false
 
+var settings_changed: bool
+
+func _ready() -> void:
+	settings_changed = false
+
 func load_settings():
 	sensitivity = DataManager.load_sensitivity()
 	if sensitivity == -1:
@@ -107,11 +114,16 @@ func _populate_keybinds():
 				break
 
 func _change_input(button: InputButton):
+	save_button.disabled = false
+	settings_changed = true
 	show_keybind_popup.emit()
 	remapping = true
 	get_tree().call_group("BlockInput", "block_input")
 	
 	await new_input
+	
+	save_button.disabled = true
+	settings_changed = false
 	
 	current_saving_button = button
 	already_used_keybind = _is_new_saved_input_already_used(button)
@@ -158,6 +170,8 @@ func _on_mouse_sensitivity_slider_value_changed(value: float) -> void:
 		#sensitivity = 1 + 9 * (value - 1)
 	sensitivity = value
 	PlayerControls.sensitivity = sensitivity
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_save_button_pressed() -> void:
 	saved_input_map = input_map.duplicate(true)
@@ -166,6 +180,8 @@ func _on_save_button_pressed() -> void:
 	PlayerControls.updated_interact_keybind(input_map["Interact"]["DisplayName"])
 	DataManager.save_sensitivity(sensitivity)
 	DataManager.save_input_settings(input_map)
+	save_button.disabled = true
+	settings_changed = false
 
 func _on_reset_button_pressed() -> void:
 	input_map = default_input_map.duplicate(true)
@@ -179,6 +195,8 @@ func _on_reset_button_pressed() -> void:
 	PlayerControls.sensitivity = sensitivity
 	
 	_refresh_keybinds()
+	save_button.disabled = true
+	settings_changed = false
 
 func _on_back_button_pressed() -> void:
 	if input_map == saved_input_map and sensitivity == saved_sensitivity:
@@ -192,6 +210,8 @@ func reset_current_to_saved() -> void:
 	PlayerControls.sensitivity = sensitivity
 	
 	_refresh_keybinds()
+	save_button.disabled = true
+	settings_changed = false
 
 func _refresh_keybinds():
 	for key in input_map:

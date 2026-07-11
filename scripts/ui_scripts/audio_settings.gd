@@ -10,6 +10,8 @@ signal unsaved_settings
 @onready var ui_slider: HSlider = $UISlider
 @onready var ambience_slider: HSlider = $AmbienceSlider
 
+@export var save_button: Button
+
 const master: String = "Master"
 const music: String = "Music"
 const voices: String = "Voices"
@@ -27,11 +29,12 @@ var default_audio_settings: Dictionary = {
 	}
 
 var saved_audio_settings: Dictionary = {}
-
 var audio_settings: Dictionary = {}
 
+var settings_changed: bool
+
 func _ready() -> void:
-	pass
+	settings_changed = false
 
 func load_settings():
 	var loaded_volume_dict: Dictionary = DataManager.load_volume()
@@ -43,6 +46,7 @@ func load_settings():
 	_load_volume()
 
 func _load_volume():
+	save_button.disabled = true
 	for key in audio_settings:
 		match key:
 			master:
@@ -64,21 +68,33 @@ func reset_volume():
 
 func _on_master_slider_value_changed(value: float) -> void:
 	_set_volume(master, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_music_slider_value_changed(value: float) -> void:
 	_set_volume(music, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_voice_slider_value_changed(value: float) -> void:
 	_set_volume(voices, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_sfx_slider_value_changed(value: float) -> void:
 	_set_volume(sfx, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_ui_slider_value_changed(value: float) -> void:
 	_set_volume(ui, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _on_ambience_slider_value_changed(value: float) -> void:
 	_set_volume(ambience, value)
+	save_button.disabled = false
+	settings_changed = true
 
 func _set_volume(bus: String, value: float):
 	audio_settings[bus] = value
@@ -88,12 +104,16 @@ func _set_volume(bus: String, value: float):
 func _on_save_button_pressed() -> void:
 	saved_audio_settings = audio_settings.duplicate(true)
 	DataManager.save_volume(audio_settings)
+	settings_changed = false
+	save_button.disabled = true
 
 func _on_reset_button_pressed() -> void:
 	audio_settings = default_audio_settings.duplicate(true)
 	saved_audio_settings = default_audio_settings.duplicate(true)
 	DataManager.save_volume(default_audio_settings)
 	reset_volume()
+	save_button.disabled = true
+	settings_changed = false
 
 func _on_back_button_pressed() -> void:
 	if saved_audio_settings == audio_settings:
@@ -104,3 +124,5 @@ func _on_back_button_pressed() -> void:
 func reset_current_to_saved() -> void:
 	audio_settings = saved_audio_settings.duplicate(true)
 	_load_volume()
+	save_button.disabled = true
+	settings_changed = false

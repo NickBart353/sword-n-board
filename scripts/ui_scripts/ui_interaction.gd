@@ -21,7 +21,7 @@ func _play_hover():
 		AudioManager.player_ui_sfx(hover_sound)
 
 func _play_click():
-	if allowed():
+	if parent_is_control and parent is Button:
 		AudioManager.player_ui_sfx(click_sound)
 
 func allowed() -> bool:
