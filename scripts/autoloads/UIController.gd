@@ -82,14 +82,11 @@ func consumed(item: Item):
 func remove_consumable_from_inventory(item: Item, remove_stack: bool):
 	remove_consumable.emit(item, remove_stack)
 
-func interact_with_loot_container(item_container: ItemContainer, parent_node: Node, enemy_name: String):
+func interact_with_loot_container(item_container: ItemContainer, parent_node: Node):
 	if parent_node is Chest:
 		chest_interacted.emit(item_container)
 	else:
-		item_container_interacted.emit(item_container, enemy_name)
-
-func interact_with_chest(item_container: ItemContainer):
-	pass#chest_interacted.emit(item_container)
+		item_container_interacted.emit(item_container, parent_node.enemy_name)
 
 func add_item_to_inventory(item: Item):
 	added_item_to_inventory.emit(item)

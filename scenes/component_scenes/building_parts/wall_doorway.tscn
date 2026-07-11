@@ -212,7 +212,7 @@ shape = SubResource("BoxShape3D_3g46r")
 
 [node name="wall_doorway2" parent="." unique_id=199106991 instance=ExtResource("1_dv74o")]
 
-[node name="wall_doorway_door" parent="wall_doorway2/wall_doorway" parent_id_path=PackedInt32Array(199106991, 470208417) index="0" unique_id=800152170]
+[node name="wall_doorway_door" parent="wall_doorway2/wall_doorway" parent_id_path=PackedInt32Array(199106991, 841031958) index="0" unique_id=1133870581]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -0.8200989, 0, 0)
 
 [node name="Interactable" parent="." unique_id=1419832243 instance=ExtResource("2_ilxsk")]

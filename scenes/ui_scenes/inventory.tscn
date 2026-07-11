@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cyngj5umdp7qe"]
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="Control" unique_id=1902282478]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,7 +8,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="ItemList" type="ItemList" parent="." unique_id=1950452096]
 layout_mode = 0
 offset_left = 723.0
 offset_top = 36.0
@@ -16,7 +16,7 @@ offset_right = 1113.0
 offset_bottom = 501.0
 max_columns = 9
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1764132572]
 layout_mode = 0
 offset_left = 477.0
 offset_top = 520.0
@@ -24,7 +24,7 @@ offset_right = 611.0
 offset_bottom = 543.0
 text = "Press A to loot all"
 
-[node name="Label2" type="Label" parent="."]
+[node name="Label2" type="Label" parent="." unique_id=730615465]
 layout_mode = 0
 offset_left = 452.0
 offset_top = 554.0

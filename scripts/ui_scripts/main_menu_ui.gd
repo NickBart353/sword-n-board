@@ -7,7 +7,6 @@ signal game_started
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
 @export var button_click_sound: AudioStream
-@export var start_button_click_sound: AudioStream
 
 @onready var main_menu_button_container: PanelContainer = $MainMenuButtonContainer
 @onready var settings_menu: PanelContainer = $SettingsMenu
@@ -22,15 +21,6 @@ func _ready() -> void:
 	_hide_all_buttons()
 	
 	_load_savefiles()
-	
-	for child in self.find_children("*", "Control", true, false):
-		if child is Button and child.disabled == false:
-			if not child.mouse_entered.is_connected(_play_hover_sound):
-				child.mouse_entered.connect(_play_hover_sound)
-			if not child.pressed.is_connected(_play_click_sound):
-				child.pressed.connect(_play_click_sound)
-	if not $MainMenuButtonContainer/VBoxContainer/StartGame.pressed.is_connected(_pressed_start_button):
-		$MainMenuButtonContainer/VBoxContainer/StartGame.pressed.connect(_pressed_start_button)
 
 func _hide_all_buttons() -> void:
 	$MainMenuButtonContainer/VBoxContainer/LoadGame.hide()
@@ -65,7 +55,6 @@ func _play_click_sound():
 	AudioManager.player_ui_sfx(button_click_sound)
 
 func _pressed_start_button():
-	AudioManager.player_ui_sfx(start_button_click_sound)
 	game_started.emit()
 
 func _on_start_game_pressed() -> void:
@@ -96,16 +85,11 @@ func _on_new_game_pressed() -> void:
 	main_menu_button_container.hide()
 
 func _on_new_game_screen_create_new_game(character_name: String) -> void:
-	#var savefile_metadata: SaveFileMetadata = SaveFileMetadata.new()
-	#savefile_metadata.savefile_id = UuidGenerator.uuid4()
-	#savefile_metadata.character_name = character_name
-	#savefile_metadata.creation_date = Time.get_date_string_from_system()
 	var new_savefile: SaveFile = SaveFile.new()
 	new_savefile.savefile_id = UuidGenerator.uuid4()
 	new_savefile.character_name = character_name
 	new_savefile.creation_date = Time.get_datetime_string_from_system(false, true)
 	new_savefile.last_played_date = Time.get_datetime_string_from_system(false, true)
-	#DataManager.create_new_savefile(savefile_metadata)
 	SaveFileManager.create_savefile(new_savefile)
 	_load_game(new_savefile.savefile_id)
 

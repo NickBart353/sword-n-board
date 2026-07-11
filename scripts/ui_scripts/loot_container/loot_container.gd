@@ -1,9 +1,9 @@
-class_name LootContainer extends PanelContainer
+class_name LootContainer extends VBoxContainer
 
-@onready var item_grid: GridContainer = $MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/PanelContainer/ScrollContainer/ItemGrid
+@onready var item_grid: GridContainer = $PanelContainer/VBoxContainer/ScrollContainer/ItemGrid
 @onready var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("InventoryItem")
-@onready var stat_container: HBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer/StatContainer
-@onready var enemy_name_label: Label = $MarginContainer/VBoxContainer/EnemyName
+@onready var stat_container: HBoxContainer = $StatContainer
+@onready var enemy_name_label: Label = $PanelContainer/VBoxContainer/EnemyName
 
 var loot_items: Array = []
 var connected_container: ItemContainer

@@ -7,7 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_l452j"]
 font_size = 25
 
-[node name="InventoryItem" type="Button" unique_id=550894679 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "count_label")]
+[node name="InventoryItem" type="Button" unique_id=550894679]
 custom_minimum_size = Vector2(200, 200)
 offset_right = 4.0
 offset_bottom = 85.0
@@ -25,11 +25,6 @@ icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("4_r2s1f")
-consumable_marker = NodePath("ConsumableMarker")
-armor_equipped_marker = NodePath("ArmorEquipped")
-mainhand_equipped_marker = NodePath("MainhandEquipped")
-offhand_equipped_marker = NodePath("OffhandEquipped")
-count_label = NodePath("Label")
 
 [node name="ConsumableMarker" type="ColorRect" parent="." unique_id=1708171156]
 layout_mode = 1

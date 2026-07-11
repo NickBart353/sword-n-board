@@ -38,6 +38,7 @@ func check_for_unsaved_settings():
 
 func _ready() -> void:
 	hide()
+	$SettingsOrganizer/BottomButtons/SaveButton.disabled = true
 	unsaved_settings_popup.hide()
 	keybind_popup.hide()
 	already_bound_key_popup.hide()

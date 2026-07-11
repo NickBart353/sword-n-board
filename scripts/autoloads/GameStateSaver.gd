@@ -93,6 +93,11 @@ func update_savefile_items(inventory: Array, head: Item, body: Item, boots: Item
 	temp_consumable_list.assign(consumable_list.map(get_itemdata))
 	#_save()
 
+func get_player_name() -> String:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	return save_file_resource.character_name
+
 func get_itemdata(item: Item) -> ItemData:
 	if item:
 		return item.data

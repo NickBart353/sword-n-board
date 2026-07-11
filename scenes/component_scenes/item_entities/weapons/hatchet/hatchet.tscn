@@ -99,7 +99,7 @@ hand_component = NodePath("OnehandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00067549944, 0.4381343, -0.06883526)
 shape = SubResource("BoxShape3D_r21bu")
 
-[node name="HatchetMesh" parent="." index="2" unique_id=1733529681]
+[node name="HatchetMesh" parent="." index="2" unique_id=1951916179]
 transform = Transform3D(-8.742278e-09, 0.2, 8.742278e-09, 0, -8.742278e-09, 0.2, 0.2, 8.742278e-09, 3.821371e-16, -0.015992612, 0.4502868, -0.08708435)
 mesh = SubResource("ArrayMesh_7gwkr")
 

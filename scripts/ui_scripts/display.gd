@@ -7,8 +7,9 @@ signal unsaved_settings
 @onready var aspect_ratio_picker: OptionButton = $AspectRatioPicker
 @onready var resolution_picker: OptionButton = $ResolutionPicker
 
-const window_modes: Array[String] = ["Windowed", "Fullscreen"]#, "Borderless"]
+@export var save_button: Button
 
+const window_modes: Array[String] = ["Windowed", "Fullscreen", "Borderless"]
 const aspect_ratios: Array[String] = ["16:10", "16:9", "21:9", "32:9", "4:3"]
 
 const RESOLUTION_MAPPING: Dictionary = {
@@ -92,10 +93,14 @@ var saved_aspect_ratio: String
 var saved_resolution: Array
 var saved_window_mode: String
 
+var settings_changed: bool
+
 func _ready() -> void:
-	pass
+	settings_changed = false
 
 func load_settings():
+	save_button.disabled = true
+	settings_changed = false
 	var screen_data: Dictionary = DataManager.load_screen_settings()
 	if screen_data:
 		current_window_mode = screen_data["window_mode"]
@@ -128,19 +133,23 @@ func _populate_option_menus():
 func _update_resolution_selection():
 	if current_aspect_ratio:
 		for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
-			resolution_picker.add_item("{0} x {1}".format([resolution["w"], resolution["h"]]))
-			if [resolution["w"], resolution["h"]] == current_resolution:
+			var resolution_to_add: String = "{0} x {1}".format([resolution["w"], resolution["h"]])
+			resolution_picker.add_item(resolution_to_add)
+			if [float(resolution["w"]), float(resolution["h"])] == current_resolution:
 				resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
 
 func _update_screen():
-	DisplayServer.window_set_size(Vector2i(current_resolution[0], current_resolution[1]))
+	var window: Window = get_window()
+	window.size = Vector2i(current_resolution[0], current_resolution[1])
+	window.content_scale_size = Vector2i(current_resolution[0], current_resolution[1])
+	
 	match current_window_mode:
 		"Fullscreen":
-			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		"Windowed":
 			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
-		#window_modes[2]:
-			#DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		"Borderless":
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
 
 func _on_save_button_pressed() -> void:
 	current_window_mode = window_mode_picker.get_item_text(window_mode_picker.selected)
@@ -157,11 +166,8 @@ func _on_save_button_pressed() -> void:
 		"aspect_ratio": current_aspect_ratio,
 		"resolution": current_resolution,
 	})
-
-func _on_aspect_ratio_picker_item_selected(index: int) -> void:
-	current_aspect_ratio = aspect_ratio_picker.get_item_text(index)
-	resolution_picker.clear()
-	_update_resolution_selection()
+	save_button.disabled = true
+	settings_changed = false
 
 func _on_reset_button_pressed() -> void:
 	current_window_mode = String(default_window_mode)
@@ -178,6 +184,8 @@ func _on_reset_button_pressed() -> void:
 		"aspect_ratio": current_aspect_ratio,
 		"resolution": current_resolution,
 	})
+	save_button.disabled = true
+	settings_changed = false
 
 func _on_back_button_pressed() -> void:
 	if saved_aspect_ratio == current_aspect_ratio and saved_resolution == current_resolution and saved_window_mode == current_window_mode:
@@ -191,3 +199,20 @@ func reset_current_to_saved() -> void:
 	current_window_mode = String(saved_window_mode)
 	_update_screen()
 	_populate_option_menus()
+	save_button.disabled = true
+	settings_changed = false
+
+func _on_aspect_ratio_picker_item_selected(index: int) -> void:
+	save_button.disabled = false
+	settings_changed = true
+	current_aspect_ratio = aspect_ratio_picker.get_item_text(index)
+	resolution_picker.clear()
+	_update_resolution_selection()
+
+func _on_window_mode_picker_item_selected(_index: int) -> void:
+	save_button.disabled = false
+	settings_changed = true
+
+func _on_resolution_picker_item_selected(_index: int) -> void:
+	save_button.disabled = false
+	settings_changed = true

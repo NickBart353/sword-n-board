@@ -36,7 +36,7 @@ var airborne_blend_value_target: int = 0
 var airborne_blend_value_current: float = 0.0
 
 var weapon_walk_blend_value_target: int = 0
-var weapon_walk_blend_value_current: float = 0.0
+var weapon_walk_blend_value_current: float = 0.5
 
 func apply_animations(input: Node, _state_controller: Node, movement: Node, ability: Node, consume: Node, delta: float) -> void:
 	if not attack:

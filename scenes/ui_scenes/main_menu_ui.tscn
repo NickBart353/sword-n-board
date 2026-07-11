@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dfhfiebievtvw" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (11).wav" id="2_kuvi5"]
 [ext_resource type="AudioStream" uid="uid://kr04xc5cc0q" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (15).wav" id="3_iuew7"]
 [ext_resource type="AudioStream" uid="uid://dsopasctc2egb" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Unsheath 1 - reverbed.wav" id="4_kuvi5"]
+[ext_resource type="Script" uid="uid://mtm5j8uy33mh" path="res://scripts/ui_scripts/ui_interaction.gd" id="6_8av58"]
 [ext_resource type="PackedScene" uid="uid://cvbbwrylqrkdu" path="res://scenes/ui_scenes/start_menu_start_game_button.tscn" id="6_iuew7"]
 [ext_resource type="PackedScene" uid="uid://cocmvblldu3nc" path="res://scenes/ui_scenes/save_file_screen.tscn" id="8_hrysg"]
 [ext_resource type="PackedScene" uid="uid://h7gcuxickvc3" path="res://scenes/ui_scenes/settings_menu.tscn" id="8_wygx0"]
@@ -24,7 +25,6 @@ script = ExtResource("1_y3g6i")
 main_game_scene = "uid://23kjgnpf3t1i"
 button_hover_sound = ExtResource("2_kuvi5")
 button_click_sound = ExtResource("3_iuew7")
-start_button_click_sound = ExtResource("4_kuvi5")
 
 [node name="MainMenuButtonContainer" type="PanelContainer" parent="." unique_id=462554003]
 anchors_preset = -1
@@ -55,30 +55,73 @@ layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "Continue Game"
 
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/StartGame" unique_id=1375245866]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+click_sound = ExtResource("4_kuvi5")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="NewGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=1621236908]
 layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "New Game"
+
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/NewGame" unique_id=243663260]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="LoadGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=595700661]
 layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "Load Game"
 
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/LoadGame" unique_id=536695096]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="Settings" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=256631426]
 layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "Settings"
+
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/Settings" unique_id=605823445]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="Credits" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=286939544]
 layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "Credits"
 
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/Credits" unique_id=363491658]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="ExitGame" type="Button" parent="MainMenuButtonContainer/VBoxContainer" unique_id=678057820]
 layout_mode = 2
 theme = ExtResource("1_kosvu")
 text = "Exit Game"
+
+[node name="UIInteraction" type="Control" parent="MainMenuButtonContainer/VBoxContainer/ExitGame" unique_id=646349660]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_8av58")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="SettingsMenu" parent="." unique_id=985410488 instance=ExtResource("8_wygx0")]
 visible = false

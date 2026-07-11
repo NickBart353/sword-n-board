@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_88ip2"]
 [ext_resource type="Script" uid="uid://bm4ui5vxkbjq3" path="res://scripts/ui_scripts/save_file_selector.gd" id="2_s7qg4"]
+[ext_resource type="Script" uid="uid://mtm5j8uy33mh" path="res://scripts/ui_scripts/ui_interaction.gd" id="3_4khl6"]
+[ext_resource type="AudioStream" uid="uid://dsopasctc2egb" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Unsheath 1 - reverbed.wav" id="4_eqkbl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrysg"]
 bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.9098039)
@@ -132,6 +134,14 @@ layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_2h56o")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8av58")
 theme_override_styles/hover = SubResource("StyleBoxFlat_b4hiv")
+
+[node name="UIInteraction" type="Control" parent="PanelContainer/VBoxContainer/SelectSaveFileButton" unique_id=1700362785]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_4khl6")
+click_sound = ExtResource("4_eqkbl")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="Container" type="PanelContainer" parent="PanelContainer" unique_id=737986220]
 layout_mode = 2

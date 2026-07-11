@@ -5,7 +5,9 @@
 [ext_resource type="Script" uid="uid://crwop4imxe7dy" path="res://scripts/ui_scripts/audio_settings.gd" id="3_70w0i"]
 [ext_resource type="Script" uid="uid://n2n8go70u23" path="res://scripts/ui_scripts/display.gd" id="4_2dy3u"]
 [ext_resource type="Script" uid="uid://o6latw3qhdw2" path="res://scripts/ui_scripts/input.gd" id="5_simsl"]
+[ext_resource type="Script" uid="uid://mtm5j8uy33mh" path="res://scripts/ui_scripts/ui_interaction.gd" id="6_2dy3u"]
 [ext_resource type="StyleBox" uid="uid://d3c2hwmbctu56" path="res://resources/ui/button/button_disabled_stylbox.res" id="6_ix44y"]
+[ext_resource type="AudioStream" uid="uid://bav8e11gfnckn" path="res://assets/Audio/Fantasy UI SFX/Fantasy/Fantasy_UI (6).wav" id="8_simsl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wn7vt"]
 font_size = 90
@@ -19,20 +21,10 @@ content_margin_top = 5.0
 content_margin_right = 20.0
 content_margin_bottom = 5.0
 bg_color = Color(0.54901963, 0.6627451, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 20.0
-expand_margin_top = 5.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
 shadow_offset = Vector2(2, 2)
 
@@ -41,21 +33,11 @@ content_margin_left = 20.0
 content_margin_top = 5.0
 content_margin_right = 20.0
 content_margin_bottom = 5.0
-bg_color = Color(0.76569766, 0.9202194, 2.695322e-06, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 20.0
-expand_margin_top = 5.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
+bg_color = Color(0.8791542, 1, 0.53674054, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
 shadow_offset = Vector2(2, 2)
 
@@ -65,22 +47,10 @@ content_margin_top = 5.0
 content_margin_right = 20.0
 content_margin_bottom = 5.0
 bg_color = Color(0.6497566, 0.782449, 3.85046e-07, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.93020135, 0.94946486, 0.8810274, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 20.0
-expand_margin_top = 5.0
-expand_margin_right = 20.0
-expand_margin_bottom = 5.0
-shadow_color = Color(0.15686275, 0.15686275, 0.15686275, 0.7411765)
-shadow_offset = Vector2(2, 2)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xi2f"]
 bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.99215686)
@@ -146,17 +116,12 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_7gtp0")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="SettingTabs" type="TabContainer" parent="SettingsOrganizer/SettingsContainer" unique_id=1737563260]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 current_tab = 0
 switch_on_drag_hover = false
-tab_1/disabled = true
 
 [node name="Audio" type="MarginContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs" unique_id=546489574]
 layout_mode = 2
@@ -167,13 +132,14 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="Audio" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio" unique_id=1875880836]
+[node name="Audio" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio" unique_id=1875880836 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("3_70w0i")
+save_button = NodePath("../../../../BottomButtons/SaveButton")
 
 [node name="MasterLabel" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" unique_id=2004455279]
 layout_mode = 2
@@ -268,12 +234,13 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="Display" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display" unique_id=1277459466]
+[node name="Display" type="GridContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display" unique_id=1277459466 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 20
 columns = 2
 script = ExtResource("4_2dy3u")
+save_button = NodePath("../../../../BottomButtons/SaveButton")
 
 [node name="WindowModeLabel" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" unique_id=643005089]
 layout_mode = 2
@@ -322,12 +289,13 @@ metadata/_tab_index = 2
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 
-[node name="Input" type="VBoxContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer" unique_id=2089125721]
+[node name="Input" type="VBoxContainer" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer" unique_id=2089125721 node_paths=PackedStringArray("save_button")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_7gtp0")
 script = ExtResource("5_simsl")
+save_button = NodePath("../../../../../BottomButtons/SaveButton")
 
 [node name="MouseHeadline" type="Label" parent="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" unique_id=1595033870]
 layout_mode = 2
@@ -385,8 +353,9 @@ one_shot = true
 
 [node name="BottomButtons" type="HBoxContainer" parent="SettingsOrganizer" unique_id=1685498841]
 layout_mode = 2
+size_flags_horizontal = 0
 theme = ExtResource("1_7gtp0")
-theme_override_constants/separation = 50
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="BackButton" type="Button" parent="SettingsOrganizer/BottomButtons" unique_id=1620450965 groups=["FreezeButtons"]]
@@ -395,6 +364,27 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("1_7gtp0")
 text = "Back"
+
+[node name="UIInteraction" type="Control" parent="SettingsOrganizer/BottomButtons/BackButton" unique_id=587508965]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
+[node name="ResetButton" type="Button" parent="SettingsOrganizer/BottomButtons" unique_id=1250464443 groups=["FreezeButtons"]]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_7gtp0")
+text = "Reset to default"
+
+[node name="UIInteraction" type="Control" parent="SettingsOrganizer/BottomButtons/ResetButton" unique_id=1923980734]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="SaveButton" type="Button" parent="SettingsOrganizer/BottomButtons" unique_id=1532522340 groups=["FreezeButtons"]]
 layout_mode = 2
@@ -406,16 +396,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_70w0i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ix44y")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_70w0i")
 theme_override_styles/disabled = ExtResource("6_ix44y")
+disabled = true
 text = "Save"
 
-[node name="ResetButton" type="Button" parent="SettingsOrganizer/BottomButtons" unique_id=1250464443 groups=["FreezeButtons"]]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme = ExtResource("1_7gtp0")
-text = "Reset to default"
+[node name="UIInteraction" type="Control" parent="SettingsOrganizer/BottomButtons/SaveButton" unique_id=1373686713]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+click_sound = ExtResource("8_simsl")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [node name="UnsavedSettingsPopup" type="PanelContainer" parent="." unique_id=327861055]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1xi2f")
@@ -448,12 +441,28 @@ layout_mode = 2
 theme = ExtResource("1_7gtp0")
 text = "Save"
 
+[node name="UIInteraction" type="Control" parent="UnsavedSettingsPopup/_/_/SaveUnchangedButton" unique_id=1701214078]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+click_sound = ExtResource("8_simsl")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="CancelUnchangedButton" type="Button" parent="UnsavedSettingsPopup/_/_" unique_id=1984622401]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 text = "Cancel"
 
+[node name="UIInteraction" type="Control" parent="UnsavedSettingsPopup/_/_/CancelUnchangedButton" unique_id=227620237]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="KeybindPopup" type="PanelContainer" parent="." unique_id=1181971108]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_hkf0r")
@@ -490,6 +499,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AlreadyBoundKeyPopup" type="PanelContainer" parent="." unique_id=2145582983]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_1xi2f")
@@ -522,10 +532,24 @@ layout_mode = 2
 theme = ExtResource("1_7gtp0")
 text = "Keep new bind"
 
+[node name="UIInteraction" type="Control" parent="AlreadyBoundKeyPopup/_/_/KeepNewBindButton" unique_id=182155098]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="CancelButton" type="Button" parent="AlreadyBoundKeyPopup/_/_" unique_id=2085441153]
 layout_mode = 2
 theme = ExtResource("1_7gtp0")
 text = "Cancel"
+
+[node name="UIInteraction" type="Control" parent="AlreadyBoundKeyPopup/_/_/CancelButton" unique_id=377416411]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_2dy3u")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/MasterSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/MusicSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_music_slider_value_changed"]
@@ -533,18 +557,20 @@ text = "Cancel"
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/SFXSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/UISlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_ui_slider_value_changed"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio/AmbienceSlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_ambience_slider_value_changed"]
+[connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/WindowModePicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_window_mode_picker_item_selected"]
 [connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/AspectRatioPicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_aspect_ratio_picker_item_selected"]
+[connection signal="item_selected" from="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display/ResolutionPicker" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_resolution_picker_item_selected"]
 [connection signal="value_changed" from="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input/MouseInput/MouseSensitivitySlider" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_mouse_sensitivity_slider_value_changed"]
 [connection signal="timeout" from="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input/Timer" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_timer_timeout"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/BackButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/BackButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_back_button_pressed"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/BackButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_back_button_pressed"]
-[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_save_button_pressed"]
-[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_save_button_pressed"]
-[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_save_button_pressed"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/ResetButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/ResetButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_reset_button_pressed"]
 [connection signal="pressed" from="SettingsOrganizer/BottomButtons/ResetButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_reset_button_pressed"]
+[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Audio/Audio" method="_on_save_button_pressed"]
+[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Display/Display" method="_on_save_button_pressed"]
+[connection signal="pressed" from="SettingsOrganizer/BottomButtons/SaveButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_save_button_pressed"]
 [connection signal="pressed" from="UnsavedSettingsPopup/_/_/SaveUnchangedButton" to="." method="_on_save_unchanged_button_pressed"]
 [connection signal="pressed" from="UnsavedSettingsPopup/_/_/CancelUnchangedButton" to="." method="_on_cancel_unchanged_button_pressed"]
 [connection signal="pressed" from="AlreadyBoundKeyPopup/_/_/KeepNewBindButton" to="SettingsOrganizer/SettingsContainer/SettingTabs/Input/ScrollContainer/Input" method="_on_keep_new_bind_button_pressed"]

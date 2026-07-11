@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://rcj82iq4a6fk" path="res://scenes/ui_scenes/inventory/equipped_item.tscn" id="4_3732a"]
 [ext_resource type="PackedScene" uid="uid://ctpi1vp12n7hf" path="res://scenes/ui_scenes/inventory/stat_container.tscn" id="12_mgch1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8aen8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="InventoryBackground" type="PanelContainer" unique_id=2082482980]
 anchors_preset = -1
 anchor_left = 0.1
@@ -17,16 +20,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(-59, 707)
 theme = ExtResource("1_suhgw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8aen8")
 script = ExtResource("2_hn110")
 equipped_item_scene = ExtResource("4_3732a")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=950240407]
 layout_mode = 2
 theme = ExtResource("1_suhgw")
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="Inventory" type="HBoxContainer" parent="MarginContainer" unique_id=1009717299]
 layout_mode = 2

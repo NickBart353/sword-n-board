@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://crylpn5qxk06s"]
+[gd_scene format=3 uid="uid://crylpn5qxk06s"]
 
 [ext_resource type="Script" uid="uid://cj08gpnqw55pi" path="res://scripts/dungeon_generator/dungeon_room.gd" id="1_4s37s"]
 
-[node name="DungeonRoom" type="Node3D"]
+[node name="DungeonRoom" type="Node3D" unique_id=752180058]
 script = ExtResource("1_4s37s")

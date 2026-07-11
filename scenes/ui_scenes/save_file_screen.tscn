@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bw8pxsqtjadng" path="res://scripts/ui_scripts/save_file_screen.gd" id="1_q1144"]
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_d0rw8"]
 [ext_resource type="PackedScene" uid="uid://bplsbvjd8ymix" path="res://scenes/ui_scenes/save_file_selector.tscn" id="2_q1144"]
+[ext_resource type="Script" uid="uid://mtm5j8uy33mh" path="res://scripts/ui_scripts/ui_interaction.gd" id="4_d0rw8"]
 
 [node name="SaveFileScreen" type="VBoxContainer" unique_id=1558532921]
 anchors_preset = -1
@@ -20,6 +21,7 @@ save_file_scene = ExtResource("2_q1144")
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_d0rw8")
+horizontal_scroll_mode = 4
 scroll_horizontal_by_default = true
 
 [node name="SaveFileContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=371849022]
@@ -32,5 +34,12 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("2_d0rw8")
 text = "Back"
+
+[node name="UIInteraction" type="Control" parent="BackButton" unique_id=2117729017]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_d0rw8")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

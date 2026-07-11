@@ -65,7 +65,7 @@ mesh = SubResource("PlaneMesh_njuoq")
 
 [node name="grass" parent="." unique_id=45808362 instance=ExtResource("1_qpt7y")]
 
-[node name="Grass" parent="grass" index="0" unique_id=1280175471]
+[node name="Grass" parent="grass" index="0" unique_id=817897423]
 cast_shadow = 0
 
 [editable path="grass"]

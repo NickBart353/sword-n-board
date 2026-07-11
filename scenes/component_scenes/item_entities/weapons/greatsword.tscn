@@ -35,19 +35,19 @@ script = ExtResource("2_3lr8e")
 impact_location = NodePath("ImpactLocation")
 hand_component = NodePath("TwohandComponent")
 
-[node name="Blade" parent="." index="0" unique_id=1721232006]
+[node name="Blade" parent="." index="0" unique_id=371635069]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_3lr8e")
 
-[node name="Brick" parent="." index="1" unique_id=1151172184]
+[node name="Brick" parent="." index="1" unique_id=462036940]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_tpuau")
 
-[node name="Hilt" parent="." index="2" unique_id=1981990706]
+[node name="Hilt" parent="." index="2" unique_id=1193477591]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
-[node name="Tip" parent="." index="3" unique_id=1244220211]
+[node name="Tip" parent="." index="3" unique_id=1923323140]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 

@@ -160,7 +160,7 @@ script = ExtResource("2_xj8b8")
 impact_location = NodePath("Impact")
 hand_component = NodePath("TwohandComponent")
 
-[node name="KatanaMesh" parent="." index="0" unique_id=1731849557]
+[node name="KatanaMesh" parent="." index="0" unique_id=1461056410]
 transform = Transform3D(-1.6610327e-08, 0, -0.38, 0, 0.38, 0, 0.38, 0, -1.6610327e-08, 0, -0.18048811, 0)
 mesh = SubResource("ArrayMesh_7huce")
 

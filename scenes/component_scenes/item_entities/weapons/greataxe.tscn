@@ -150,7 +150,7 @@ hand_component = NodePath("TwohandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0074272156, 1.0900681, 0.0030822754)
 shape = SubResource("BoxShape3D_sa3gr")
 
-[node name="GreataxeMesh" parent="." index="2" unique_id=1578386838]
+[node name="GreataxeMesh" parent="." index="2" unique_id=1671080578]
 transform = Transform3D(-1.5954656e-08, 0, -0.365, 0, 0.365, 0, 0.365, 0, -1.5954656e-08, 0, 0.46042502, 0)
 mesh = SubResource("ArrayMesh_6dy8j")
 

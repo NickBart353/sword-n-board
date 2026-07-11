@@ -469,10 +469,10 @@ animation = &"shortsword/mainhand_attack3"
 animation = &"shortsword/mainhand_falling"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gmbs3"]
-animation = &"greataxe/idle"
+animation = &"greathammer/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bsaok"]
-animation = &"greataxe/walking"
+animation = &"greathammer/walking"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_j4km6"]
 min_space = 0.0
@@ -586,7 +586,7 @@ graph_offset = Vector2(-50, -43)
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(1624.0249, 24.282501)
+graph_offset = Vector2(174.79572, -108.162)
 nodes/output/position = Vector2(2480, -120)
 nodes/Weaponblender/node = SubResource("AnimationNodeBlend3_0rpqu")
 nodes/Weaponblender/position = Vector2(1620, 20)

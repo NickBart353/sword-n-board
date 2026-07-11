@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://v2h5crddpy71" path="res://scripts/ui_scripts/new_game_screen.gd" id="1_q7ano"]
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="2_heo4f"]
+[ext_resource type="Script" uid="uid://mtm5j8uy33mh" path="res://scripts/ui_scripts/ui_interaction.gd" id="3_0fxjd"]
+[ext_resource type="AudioStream" uid="uid://dsopasctc2egb" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/OGG Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Unsheath 1 - reverbed.wav" id="4_ojfak"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hrysg"]
 content_margin_top = 10.0
@@ -51,12 +53,27 @@ size_flags_horizontal = 3
 theme = ExtResource("2_heo4f")
 text = "Back"
 
+[node name="UIInteraction" type="Control" parent="VBoxContainer/HBoxContainer/Back" unique_id=1848301297]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_0fxjd")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
+
 [node name="Submit" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1488444268]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("2_heo4f")
 disabled = true
 text = "Ok"
+
+[node name="UIInteraction" type="Control" parent="VBoxContainer/HBoxContainer/Submit" unique_id=688907191]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_0fxjd")
+click_sound = ExtResource("4_ojfak")
+metadata/_custom_type_script = "uid://mtm5j8uy33mh"
 
 [connection signal="text_changed" from="VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Back" to="." method="_on_back_pressed"]

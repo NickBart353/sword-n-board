@@ -133,6 +133,7 @@ _data = {
 script = ExtResource("1_msjvk")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "Scream"
+hide_if_missed_by_player = false
 metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
 
 [node name="Waves" type="GPUParticles3D" parent="." unique_id=1061976968]

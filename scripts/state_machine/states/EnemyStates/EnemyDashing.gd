@@ -56,9 +56,11 @@ func _on_damage_box_area_entered(area: Area3D) -> void:
 
 func _on_damage_box_body_entered(body: Node3D) -> void:
 	if state_active:
-		if body.is_in_group("Tree"):
-			charge_interrupted = true
-			return
-		if body is Terrain3D:
-			ground_hit = true
-			return
+		charge_interrupted = true
+		#if body.is_in_group("Tree"):
+			#charge_interrupted = true
+			#return
+		#if body is Terrain3D:
+			#charge_interrupted = true
+			#ground_hit = true
+			#return

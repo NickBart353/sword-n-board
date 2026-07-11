@@ -101,7 +101,7 @@ func _ready() -> void:
 		child.queue_free()
 	for child in offhand.get_children():
 		child.queue_free()
-	for child in $"Player - Kopie/Weapons/Twohand".get_children():
+	for child in twohand.get_children():
 		child.queue_free()
 	for child in self.find_children("*"):
 		if child is Node3D:
@@ -181,6 +181,18 @@ func interact_with_object():
 		interacting_object.get_node(node_name).hover()
 		if input.interact:
 			interacting_object.get_node(node_name).interact()
+
+func position_camera(new_position: Vector3):
+	field_of_view.global_position = new_position
+
+func rotate_camera(new_rotation: Vector3):
+	look_rotation.x = new_rotation.x
+	look_rotation.y = new_rotation.y
+	transform.basis = Basis()
+	rotate_y(look_rotation.y)
+	player_camera.transform.basis = Basis()
+	player_camera.rotate_x(look_rotation.x)
+	player_camera.rotate_y(look_rotation.y)
 
 func _detect_enemy_healthbar() -> void:
 	pass
@@ -295,9 +307,6 @@ func _reequip_mainhand(_old: Item, new_mainhand: Item, _slot):
 		finger_right.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_right.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("R")
-		
 		new_animation.equpped_mainhand_weapon(anim_name)
 	#return old
 
@@ -325,9 +334,6 @@ func _reequip_offhand(_old: Item, new_offhand: Item, _slot):
 		finger_left.set_pole_node(0, marker_dictionary.get("FingerPole").get_path())
 		thumb_left.set_pole_node(0, marker_dictionary.get("ThumbPole").get_path())
 		
-		if item_instance is Dagger:
-			item_instance.set_weapon_position("L")
-		
 		new_animation.equpped_offhand_weapon(anim_name)
 	#return old
 
@@ -351,12 +357,6 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	
 	mainhand_item_instance.update_markers("R")
 	offhand_item_instance.update_markers("L")
-	
-	if mainhand_item_instance is Dagger:
-		mainhand_item_instance.set_weapon_position("R")
-	
-	if offhand_item_instance is Dagger:
-		offhand_item_instance.set_weapon_position("L")
 	
 	var mainhand_marker_dictionary: Dictionary = mainhand_item_instance.get_markers()
 	var offhand_marker_dictionary: Dictionary = offhand_item_instance.get_markers()

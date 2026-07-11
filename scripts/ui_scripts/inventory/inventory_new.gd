@@ -35,6 +35,8 @@ var currently_selected_tab: int
 @onready var mainhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/MainHand/MainHand
 @onready var offhand: GridContainer = $MarginContainer/Inventory/Right/Player/EquippedItemsMargin/EquipPanel/InsideMargin/VBoxContainer/HBoxContainer/Hands/OffHand/OffHand
 
+@onready var label: Label = $MarginContainer/Inventory/Right/Player/PlayerStatMargin/StatPanel/_InsideMargin/PlayerStats/Label
+
 #@export var inventory_item_scene: PackedScene
 @export var equipped_item_scene: PackedScene
 
@@ -42,6 +44,7 @@ var inventory_item_scene: PackedScene = SceneManager.UIItemScenes.get("Inventory
 
 func _ready() -> void:
 	hide()
+	label.text = GameStateSaver.get_player_name()
 	#player_items = ItemManager.load_debug_items()
 	UiController.remove_consumable.connect(_remove_consumable)
 	UiController.added_item_to_inventory.connect(_add_item_to_inventory)

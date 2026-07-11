@@ -14,6 +14,7 @@ func _ready() -> void:
 	set_process(false)
 
 func load_scene(_scene_path: String) -> void:
+	print("load... sceneloader.gd")
 	scene_path = _scene_path
 	
 	var new_load_screen = loading_screen.instantiate()
@@ -26,18 +27,22 @@ func load_scene(_scene_path: String) -> void:
 	start_load()
 
 func start_load() -> void:
+	print("start... sceneloader.gd")
 	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)
 	if state == OK:
 		set_process(true)
 
 func _process(_delta: float) -> void:
+	print("process... sceneloader.gd")
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
 	progress_changed.emit(progress[0])
 	
 	match load_status:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
+			print("invaid... sceneloader.gd")
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_LOADED:
+			print("succ... sceneloader.gd")
 			loaded_Resource = ResourceLoader.load_threaded_get(scene_path)
 			get_tree().change_scene_to_packed(loaded_Resource)
 			load_finished.emit()

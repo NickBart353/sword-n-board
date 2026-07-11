@@ -3,23 +3,35 @@ extends EnemyChanneling
 @export var rumbling_vfx: VfxManager.VFX = VfxManager.VFX.RUMBLING
 @export var tentacle_multimesh: MultiMeshInstance3D
 
+@export var rumbling_vfx_scene: PackedScene
+
 var vfx_pool: Array[Basic_VFX]
 var spike_positions: Array[Vector3]
+var rumbling_vfx_instance: Node
 
-#func _ready() -> void:
-	#for i in range(enemy.tentacle_amount):
-		#var rumble_instance = VfxManager.create_vfx_from_enum(rumbling_vfx, Vector3.ZERO, true).instantiate()
-		#vfx_pool.append(rumble_instance)
-		#add_child.call_deferred(rumble_instance)
+func _ready() -> void:
+	for i in range(enemy.tentacle_amount):
+		var rumble_instance = VfxManager.create_vfx_from_enum(rumbling_vfx, Vector3.ZERO, true).instantiate()
+		rumble_instance.vfx_finished.connect(_deactivate_vfx)#.bind(rumble_instance)
+		vfx_pool.append(rumble_instance)
+		call_deferred("add_child", rumble_instance)
+
+func _deactivate_vfx():
+	pass
 
 func Enter():
 	super()
 	spike_positions = []
 	for i in enemy.tentacle_amount:
-		var random_x : float = randf_range(enemy.global_position.x - enemy.tentacle_spike_range, enemy.global_position.x + enemy.tentacle_spike_range)
-		var random_z : float = randf_range(enemy.global_position.z - enemy.tentacle_spike_range, enemy.global_position.z + enemy.tentacle_spike_range)
-		spike_positions.append(Vector3(random_x, enemy.global_position.y - 15, random_z))
-	
+		var random_angle : float = randf_range(0, TAU)
+		var random_distance : float = randf_range(enemy.tentacle_attack_min_radius, enemy.tentacle_attack_max_radius)
+		var offset : Vector3 = Vector3.FORWARD.rotated(Vector3.UP, random_angle) * random_distance
+		var spawn_pos : Vector3 = enemy.global_position + offset
+		vfx_pool[i].global_position = spawn_pos
+		spawn_pos.y -= randf_range(10, 16)
+		spike_positions.append(spawn_pos)
+		vfx_pool[i].play()
+
 	spike_positions.sort_custom(_sort_by_distance_to_enemy)
 	
 	tentacle_multimesh.set_start_positions(spike_positions)

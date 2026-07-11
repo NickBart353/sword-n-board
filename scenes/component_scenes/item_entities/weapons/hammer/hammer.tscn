@@ -58,7 +58,7 @@ script = ExtResource("2_p7gb8")
 hammer_player = NodePath("HammerPlayer")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Plane" parent="." index="0" unique_id=1037589919]
+[node name="Plane" parent="." index="0" unique_id=1021220867]
 transform = Transform3D(-4.371139e-09, 0.1, -4.371139e-09, 0, -4.371139e-09, -0.1, -0.1, -4.371139e-09, 1.9106854e-16, -2.6294304e-08, 0.47779524, 1.1493605e-15)
 mesh = SubResource("ArrayMesh_7ar86")
 
