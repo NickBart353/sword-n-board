@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://d3d8ph7uxtbkf" path="res://scripts/state_machine/states/EnemyStates/eater_plant/channeling_tentacle_eruption_new.gd" id="26_dbm22"]
 [ext_resource type="AudioStream" uid="uid://6me0coy3qlki" path="res://assets/Audio/pixabay/freesound_community-plant-95044.mp3" id="27_tvx8g"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="28_31cd0"]
+[ext_resource type="PackedScene" uid="uid://cnltiyp28qk78" path="res://scenes/VFX/toxic_blast.tscn" id="28_dbm22"]
 [ext_resource type="Script" uid="uid://bem8vnr0h43d2" path="res://scripts/state_machine/states/EnemyStates/eater_plant/poison_burst_new.gd" id="29_dbm22"]
 [ext_resource type="AudioStream" uid="uid://b1r3nkokje0wp" path="res://assets/Audio/pixabay/lordsonny_two-debris-break-253779.mp3" id="31_dbm22"]
 [ext_resource type="Script" uid="uid://jdsmyt0dvhoj" path="res://scripts/attacks/tentacle_spike_eruption.gd" id="34_ycrx7"]
@@ -278,27 +279,30 @@ tentacle_attack_min_radius = 10.0
 tentacle_attack_max_radius = 40.0
 tentacle_root = ExtResource("23_xpdqg")
 tentacle_damage = 25
+tentacle_root_amount = 5
 tentacle_slam_damage = 35
 display_name = "Man Eater"
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=1898710344]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=1557137428]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=1271570678]
-bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=666699237]
+bones/0/rotation = Quaternion(0.701846, 0, 0, 0.71232885)
+bones/1/rotation = Quaternion(-0.05130846, 0, 0, 0.9986829)
+bones/2/rotation = Quaternion(0.017099708, 1.1299706e-07, 3.7980428e-08, 0.9998538)
 bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
 bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
 bones/3/scale = Vector3(1, 1.0000001, 1)
 bones/5/position = Vector3(-0.017826922, 0.023033146, -0.008302448)
 bones/5/rotation = Quaternion(0.68470806, 0.39999408, -0.44105315, 0.4202996)
 bones/5/scale = Vector3(0.9999999, 0.9999998, 0.9999999)
-bones/7/position = Vector3(-0.015925309, 0.0154057415, 0.009549255)
+bones/7/position = Vector3(-0.01592531, 0.015405741, 0.009549255)
 bones/7/rotation = Quaternion(0.5826183, 0.7453718, -0.3233489, 0.020549387)
 bones/7/scale = Vector3(1, 0.9999998, 1.0000001)
-bones/9/position = Vector3(-0.0022344212, 0.011923813, 0.016028183)
-bones/9/rotation = Quaternion(0.326535, 0.7120938, -0.48855034, -0.38420817)
+bones/9/position = Vector3(-0.0022344212, 0.011923814, 0.016028184)
+bones/9/rotation = Quaternion(0.3265351, 0.7120938, -0.48855034, -0.38420814)
 bones/9/scale = Vector3(0.99999994, 1, 1)
 bones/11/position = Vector3(0.014277297, 0.014174198, 0.009093939)
 bones/11/rotation = Quaternion(0.10228245, -0.5498022, 0.572668, 0.59942245)
@@ -307,22 +311,22 @@ bones/13/position = Vector3(0.016863964, 0.022477014, -0.007975084)
 bones/13/rotation = Quaternion(0.65163463, -0.34152073, 0.43471172, 0.5193859)
 bones/13/scale = Vector3(1, 0.9999999, 1)
 bones/16/position = Vector3(1.4793682e-09, 0.017874656, -2.1234328e-09)
-bones/16/rotation = Quaternion(-0.2413947, 0.0021181782, 0.013773599, 0.97032696)
+bones/16/rotation = Quaternion(-0.12207983, 0.003771041, 0.013415522, 0.9924225)
 bones/16/scale = Vector3(0.99999994, 1, 1.0000001)
 bones/19/position = Vector3(-1.1629571e-09, 0.017874656, 2.0539312e-09)
-bones/19/rotation = Quaternion(-0.19396022, -0.31485495, -0.0638531, 0.9269135)
+bones/19/rotation = Quaternion(-0.08025335, -0.32027122, -0.025243964, 0.94358283)
 bones/19/scale = Vector3(1, 0.99999994, 0.9999999)
 bones/22/position = Vector3(4.5147014e-10, 0.017874656, -6.134487e-11)
-bones/22/rotation = Quaternion(-0.16116956, -0.572618, -0.1267664, 0.79376525)
+bones/22/rotation = Quaternion(-0.06383257, -0.58375704, -0.056470685, 0.807443)
 bones/22/scale = Vector3(1, 0.99999994, 0.99999994)
 bones/25/position = Vector3(1.5606293e-09, 0.017858336, 1.9006523e-09)
-bones/25/rotation = Quaternion(-0.09344682, -0.7418898, -0.18691528, 0.6371263)
+bones/25/rotation = Quaternion(-0.015582283, -0.7590682, -0.09567235, 0.6437542)
 bones/25/scale = Vector3(1.0000002, 1.0000001, 1.0000001)
 bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
-bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
+bones/28/rotation = Quaternion(0.02523037, 0.8795658, 0.0810887, -0.46813706)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=944413033]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=219178099]
 material_override = SubResource("ShaderMaterial_o05q6")
 material_overlay = SubResource("ShaderMaterial_rlcnt")
 
@@ -452,7 +456,6 @@ channeling_vfx = 7
 follow_up_state = NodePath("../../PoisonBurstNew")
 look_at_target = false
 cool_down_timer = NodePath("../../../Timers/PoisonCooldown")
-disable_me = true
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
@@ -473,17 +476,18 @@ audio_player = NodePath("../../../PlantPlayer")
 [node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("8_deve0")
 rotation_speed = 0.125
-disable_me = true
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
 audio_resource = ExtResource("27_tvx8g")
 
-[node name="PoisonBurstNew" type="Node" parent="StateMachine" index="4" unique_id=1001298325 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "enemy", "anim_tree", "audio_player")]
+[node name="PoisonBurstNew" type="Node" parent="StateMachine" index="4" unique_id=1001298325 node_paths=PackedStringArray("bullet_position", "cooldown_timer", "vfx_location", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("29_dbm22")
 bullet_position = NodePath("../../Bombs")
 cooldown_timer = NodePath("../../Timers/PoisonCooldown")
 fire_rate = 0.005
+toxic_blast_vfx = ExtResource("28_dbm22")
+vfx_location = NodePath("../../MouthTop")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../PlantPlayer")
