@@ -7,7 +7,7 @@ signal unsaved_settings
 @onready var aspect_ratio_picker: OptionButton = $AspectRatioPicker
 @onready var resolution_picker: OptionButton = $ResolutionPicker
 
-const window_modes: Array[String] = ["Windowed", "Fullscreen"]#, "Borderless"]
+const window_modes: Array[String] = ["Windowed", "Fullscreen", "Borderless"]
 
 const aspect_ratios: Array[String] = ["16:10", "16:9", "21:9", "32:9", "4:3"]
 
@@ -133,14 +133,17 @@ func _update_resolution_selection():
 				resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
 
 func _update_screen():
-	DisplayServer.window_set_size(Vector2i(current_resolution[0], current_resolution[1]))
+	var window: Window = get_window()
+	window.size = Vector2i(current_resolution[0], current_resolution[1])
+	window.content_scale_size = Vector2i(current_resolution[0], current_resolution[1])
+	
 	match current_window_mode:
 		"Fullscreen":
-			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		"Windowed":
 			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
-		#window_modes[2]:
-			#DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		"Borderless":
+			DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
 
 func _on_save_button_pressed() -> void:
 	current_window_mode = window_mode_picker.get_item_text(window_mode_picker.selected)
