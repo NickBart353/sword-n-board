@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
 [ext_resource type="PackedScene" uid="uid://oupiqyuplr4k" path="res://scenes/component_scenes/item_entities/weapons/unarmed.tscn" id="5_y6i1k"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
+[ext_resource type="PackedScene" uid="uid://0gqvbdb35ik0" path="res://scenes/component_scenes/item_entities/weapons/dagger/dagger.tscn" id="6_pxpwq"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
 [ext_resource type="AnimationLibrary" uid="uid://cis2tnf2uus34" path="res://animations/player/greathammer/greathammer.res" id="8_8aen8"]
@@ -418,7 +419,7 @@ settings/0/extend_end_bone = false
 
 [node name="ArmLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 197072932) index="3" unique_id=2059326306]
 setting_count = 1
-settings/0/target_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Offhand/Unarmed/OnehandComponent/Hand")
 settings/0/pole_node = NodePath("../../../IKMarkers/Arms/ElbowLeft")
 settings/0/root_bone_name = "upper_arm.l"
 settings/0/root_bone = 8
@@ -446,8 +447,8 @@ settings/0/extend_end_bone = false
 
 [node name="FingerLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 197072932) index="5" unique_id=1498534026]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Offhand/Unarmed/OnehandComponent/Finger")
+settings/0/pole_node = NodePath("../../../Weapons/Offhand/Unarmed/OnehandComponent/FingerPole")
 settings/0/root_bone_name = "hand.l"
 settings/0/root_bone = 10
 settings/0/middle_bone_name = "finger.l"
@@ -474,8 +475,8 @@ settings/0/extend_end_bone = false
 
 [node name="ThumbLeft" type="TwoBoneIK3D" parent="Player - Kopie/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1362714860, 197072932) index="7" unique_id=135651650]
 setting_count = 1
-settings/0/target_node = NodePath("")
-settings/0/pole_node = NodePath("")
+settings/0/target_node = NodePath("../../../Weapons/Offhand/Unarmed/OnehandComponent/Thumb")
+settings/0/pole_node = NodePath("../../../Weapons/Offhand/Unarmed/OnehandComponent/ThumbPole")
 settings/0/root_bone_name = "thumb_one.l"
 settings/0/root_bone = 13
 settings/0/middle_bone_name = "thumb_two.l"
@@ -674,10 +675,11 @@ transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000001, 0.326
 rotation_edit_mode = 1
 
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000007, 0, 0, 0, 1.0000004, -0.385, 1.09, -0.405)
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000001, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
 
 [node name="Unarmed" parent="Player - Kopie/Weapons/Offhand" unique_id=209339069 instance=ExtResource("5_y6i1k")]
+visible = false
 
 [node name="CollisionShape3D" parent="Player - Kopie/Weapons/Offhand/Unarmed" index="1" unique_id=2050139655]
 shape = SubResource("SphereShape3D_pxpwq")
@@ -690,6 +692,15 @@ transform = Transform3D(0.9238795, 3.3273326e-09, -0.38268337, 0.38268343, -1.67
 
 [node name="Thumb" parent="Player - Kopie/Weapons/Offhand/Unarmed/OnehandComponent" parent_id_path=PackedInt32Array(209339069, 1480913319) index="2" unique_id=1174735853]
 transform = Transform3D(1, 0, 0, 0, 0.99999934, 0, 0, 0, 0.9999994, -0.09, -0.03, 0.004)
+
+[node name="FingerPole" parent="Player - Kopie/Weapons/Offhand/Unarmed/OnehandComponent" parent_id_path=PackedInt32Array(209339069, 1480913319) index="3" unique_id=2008502423]
+transform = Transform3D(1, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, -0.099, 0.186, -0.22)
+
+[node name="ThumbPole" parent="Player - Kopie/Weapons/Offhand/Unarmed/OnehandComponent" parent_id_path=PackedInt32Array(209339069, 1480913319) index="4" unique_id=205447482]
+transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.077, -0.126, -0.075)
+
+[node name="dagger" parent="Player - Kopie/Weapons/Offhand" unique_id=1356170886 instance=ExtResource("6_pxpwq")]
+visible = false
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
@@ -844,7 +855,6 @@ libraries/spear = ExtResource("14_ovcx5")
 libraries/torch = ExtResource("11_y6i1k")
 
 [node name="AnimationTreeNew" type="AnimationTree" parent="." unique_id=2010467423 groups=["Player"]]
-active = false
 root_node = NodePath(".")
 tree_root = ExtResource("34_oij22")
 advance_expression_base_node = NodePath("../AnimationControllerNew")
@@ -857,7 +867,7 @@ parameters/StateMachine/idle/blend_position = Vector2(0, 0)
 parameters/Twohand/idle/blend_position = 0.9974895
 parameters/Mainhand/idle/blend_position = 1.0
 parameters/Combiner/add_amount = 1.0
-parameters/Dualwield/idle/blend_position = 0.012241775
+parameters/Dualwield/idle/blend_position = -0.038255546
 parameters/ConsumeShot/active = false
 parameters/ConsumeShot/internal_active = false
 parameters/ConsumeShot/request = 0

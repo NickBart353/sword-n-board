@@ -43,7 +43,7 @@ func update_mana(mana: float):
 func _process(_delta: float) -> void:
 	if not current_enemy and last_enemy:
 		enemy_healthbar.value = last_enemy.health
-
+	$Label.text = str(Engine.get_frames_per_second())
 func rotate_consumable():
 	if player_consumables.size() > 0:
 		current_consumable_index += 1

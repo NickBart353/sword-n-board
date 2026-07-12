@@ -197,7 +197,7 @@ func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	var _item_instance: Item = ui_item_scene.instantiate()
 	
 	items.append(get_item_from_id("10006"))
-	items.append(get_item_from_id("10006"))
+	items.append(get_item_from_id("10009"))
 	
 	var randi: int = randi_range(0, MELEE_WEAPONS.size() - 1)
 	var counter: int = 0
