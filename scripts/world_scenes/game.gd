@@ -6,7 +6,7 @@ extends Main
 
 func _ready() -> void:
 	super()
-	#game_menus.load_data()
+	game_menus.load_data()
 
 func _on_game_menus_return_to_main_menu() -> void:
 	LoopMixer.stop_looping()

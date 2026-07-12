@@ -7,8 +7,8 @@
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="5_hoq3t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pkkqe"]
-radius = 2.2
-height = 14.772656
+radius = 2.932129
+height = 15.57915
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0n2o1"]
 frequency = 0.005
@@ -35,8 +35,8 @@ height = 13.7
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qt3o1"]
-radius = 1.6
-height = 10.670313
+radius = 1.9946289
+height = 11.060742
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gpawu"]
 resource_local_to_scene = true
@@ -47,8 +47,8 @@ height = 10.123
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4cwlq"]
-radius = 1.1
-height = 8.082227
+radius = 1.3920898
+height = 9.065527
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qt3o1"]
 resource_local_to_scene = true
@@ -59,8 +59,8 @@ height = 8.435
 radial_segments = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0vqa6"]
-radius = 0.90000004
-height = 6.764453
+radius = 1.1220703
+height = 7.1097655
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t2ynp"]
 resource_local_to_scene = true
@@ -1269,7 +1269,7 @@ states/SLAM/position = Vector2(783, 100)
 states/WindUp/node = SubResource("AnimationNodeAnimation_43g5x")
 states/WindUp/position = Vector2(438, -58)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0n2o1"), "Idle", "WindUp", SubResource("AnimationNodeStateMachineTransition_7clji"), "WindUp", "SLAM", SubResource("AnimationNodeStateMachineTransition_hoq3t"), "SLAM", "ReWind", SubResource("AnimationNodeStateMachineTransition_hc34n"), "ReWind", "SLAM", SubResource("AnimationNodeStateMachineTransition_h3x0r"), "SLAM", "Return", SubResource("AnimationNodeStateMachineTransition_n1xmw"), "Return", "Idle", SubResource("AnimationNodeStateMachineTransition_6p5p7"), "Return", "Dead", SubResource("AnimationNodeStateMachineTransition_qt2y3"), "SLAM", "Dead", SubResource("AnimationNodeStateMachineTransition_6je27"), "ReWind", "Dead", SubResource("AnimationNodeStateMachineTransition_p682n"), "WindUp", "Dead", SubResource("AnimationNodeStateMachineTransition_fvd7y"), "Idle", "Dead", SubResource("AnimationNodeStateMachineTransition_3xlys")]
-graph_offset = Vector2(120, -158)
+graph_offset = Vector2(124, -86)
 
 [node name="Root" type="Node3D" unique_id=1314501579]
 script = ExtResource("1_4l43q")
@@ -1279,7 +1279,7 @@ collision_layer = 128
 collision_mask = 15
 
 [node name="StartBox" type="CollisionShape3D" parent="StartSegment" unique_id=1942349831]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -6.7175784, -3.3475777e-07, 0)
+transform = Transform3D(-2.9802322e-08, -1, 0, 1, -2.9802322e-08, 0, 0, 0, 1, -6.6033454, -2.3841858e-07, 0)
 shape = SubResource("CapsuleShape3D_pkkqe")
 
 [node name="StartMesh" type="MeshInstance3D" parent="StartSegment" unique_id=1732607427]
@@ -1300,7 +1300,7 @@ collision_layer = 128
 collision_mask = 15
 
 [node name="MiddleBox" type="CollisionShape3D" parent="StartSegment/MiddleOneSegment" unique_id=750967523]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -2.7476597, -1.6122695e-07, 0)
+transform = Transform3D(-4.4703484e-08, -1, 0, 1, -4.4703484e-08, 0, 0, 0, 1, -2.5524454, 2.3841858e-07, 0)
 shape = SubResource("CapsuleShape3D_qt3o1")
 
 [node name="MiddleMesh" type="MeshInstance3D" parent="StartSegment/MiddleOneSegment" unique_id=1831887187]
@@ -1321,7 +1321,7 @@ collision_layer = 128
 collision_mask = 15
 
 [node name="EndBox" type="CollisionShape3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment" unique_id=897966300]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -4.1579075, -2.2287108e-07, 0)
+transform = Transform3D(1.4901161e-07, -0.9999953, 0, 0.9999953, 1.4901161e-07, 0, 0, 0, 1, -3.6662617, 0, 0)
 shape = SubResource("CapsuleShape3D_4cwlq")
 
 [node name="EndMesh" type="MeshInstance3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment" unique_id=1600205957]
@@ -1342,7 +1342,7 @@ collision_layer = 128
 collision_mask = 15
 
 [node name="EndBox" type="CollisionShape3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=719107978]
-transform = Transform3D(-4.3711346e-08, -0.9999993, 0, 0.9999993, -4.3711346e-08, 0, 0, 0, 1, -2.4812508, -1.495819e-07, 0)
+transform = Transform3D(0, -0.99999934, 0, 0.99999934, 0, 0, 0, 0, 1, -2.6539078, -1.9073486e-06, 0)
 shape = SubResource("CapsuleShape3D_0vqa6")
 
 [node name="EndMesh" type="MeshInstance3D" parent="StartSegment/MiddleOneSegment/MiddleTwoSegment/EndSegment" unique_id=206398057]

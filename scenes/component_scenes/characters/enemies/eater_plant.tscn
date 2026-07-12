@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://ctijoqgx8uboe" path="res://assets/Audio/pixabay/freesound_community-power-charge-6798 - edited.wav" id="23_fk03l"]
 [ext_resource type="PackedScene" uid="uid://cyjn6nfke5qod" path="res://scenes/component_scenes/spells/tentacle_root.tscn" id="23_xpdqg"]
 [ext_resource type="Script" uid="uid://cwvykwlpodpkq" path="res://scripts/state_machine/states/EnemyStates/eater_plant/Died.gd" id="25_mom4r"]
+[ext_resource type="AudioStream" uid="uid://dj0ui4jsb8yqu" path="res://assets/Audio/pixabay/freesound_community-052256_cracking-earthquake-cracking-soil-cracking-stone-86770.mp3" id="25_ycrx7"]
 [ext_resource type="AudioStream" uid="uid://ch1iaqrgut08l" path="res://assets/Audio/Monster Roar/Ogre Roar 05.wav" id="26_ayg1h"]
 [ext_resource type="Script" uid="uid://d3d8ph7uxtbkf" path="res://scripts/state_machine/states/EnemyStates/eater_plant/channeling_tentacle_eruption_new.gd" id="26_dbm22"]
 [ext_resource type="AudioStream" uid="uid://6me0coy3qlki" path="res://assets/Audio/pixabay/freesound_community-plant-95044.mp3" id="27_tvx8g"]
@@ -453,6 +454,7 @@ channeling_vfx_position = NodePath("../../../MouthTop")
 channeling_vfx = 7
 follow_up_state = NodePath("../../PoisonBurstNew")
 look_at_target = false
+vfx_offset = Vector3(0, 2, 0)
 cool_down_timer = NodePath("../../../Timers/PoisonCooldown")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
@@ -470,6 +472,10 @@ cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
+play_audio = true
+audio_resource = ExtResource("25_ycrx7")
+audio_volume = 5.0
+audio_max_range = 50.0
 
 [node name="TentacleSlam" type="Node" parent="StateMachine/Follow" index="2" unique_id=1480137576 node_paths=PackedStringArray("enemy", "anim_tree", "audio_player")]
 script = ExtResource("8_deve0")
