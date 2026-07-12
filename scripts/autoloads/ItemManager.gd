@@ -203,6 +203,16 @@ func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	items.append(get_item_from_id("10002"))
 	items.append(get_item_from_id("10005"))
 	items.append(get_item_from_id("10005"))
+	items.append(get_item_from_id("10004"))
+	items.append(get_item_from_id("10011"))
+	items.append(get_item_from_id("10011"))
+	items.append(get_item_from_id("10007"))
+	items.append(get_item_from_id("10007"))
+	items.append(get_item_from_id("10010"))
+	items.append(get_item_from_id("10008"))
+	items.append(get_item_from_id("10008"))
+	items.append(get_item_from_id("10003"))
+	items.append(get_item_from_id("10003"))
 	
 	var randi: int = randi_range(0, MELEE_WEAPONS.size() - 1)
 	var counter: int = 0
