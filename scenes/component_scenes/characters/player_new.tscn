@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://y7i1w3ftop1e" path="res://scripts/PlayerController/player_camera.gd" id="4_eqqxm"]
 [ext_resource type="Script" uid="uid://byfk0j4r4ripe" path="res://scripts/PlayerController/movement_controller.gd" id="4_oij22"]
 [ext_resource type="Script" uid="uid://5ks6drxmnbkb" path="res://scripts/PlayerController/ability_controller.gd" id="5_0hxxe"]
-[ext_resource type="PackedScene" uid="uid://d3wbiotwk5tyt" path="res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn" id="5_y6i1k"]
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
@@ -644,7 +643,8 @@ top_level = true
 fov = 85.0
 script = ExtResource("4_eqqxm")
 camera_tracking_position = NodePath("../CameraTracker")
-transition_speed = 100.0
+transition_speed = 20.0
+max_y_distance = 0.1
 
 [node name="InteractingRaycast" type="RayCast3D" parent="Player - Kopie/IKMarkers/Torso/Head/FieldOfView" unique_id=481062013]
 transform = Transform3D(1, 0, 2.0861626e-07, 0, 1, 0, -2.0861626e-07, 0, 1, 0, 0, 0)
@@ -669,14 +669,9 @@ rotation_edit_mode = 1
 transform = Transform3D(1.0000004, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000001, 0.3264439, 1.1441026, -0.3358699)
 rotation_edit_mode = 1
 
-[node name="Shield" parent="Player - Kopie/Weapons/Mainhand" unique_id=119600585 instance=ExtResource("5_y6i1k")]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, 0, 0)
-
 [node name="Offhand" type="Marker3D" parent="Player - Kopie/Weapons" unique_id=8010847]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000001, -0.385, 1.09, -0.405)
 rotation_edit_mode = 1
-
-[node name="Shield" parent="Player - Kopie/Weapons/Offhand" unique_id=178405077 instance=ExtResource("5_y6i1k")]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
