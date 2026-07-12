@@ -6,7 +6,9 @@ signal loading_screen_ready
 
 func _ready() -> void:
 	print("waiting... loading_screen.gd")
-	await anim_player.animation_finished
+	anim_player.play("transition")
+	if anim_player.is_playing():
+		await anim_player.animation_finished
 	loading_screen_ready.emit()
 
 func _on_progress_changed(_new_value: float) -> void:

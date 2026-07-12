@@ -8,12 +8,15 @@ var loaded_Resource: PackedScene
 var scene_path: String
 var progress: Array[float] = []
 var use_sub_threads: bool = true
+var is_loading: bool = false
 
 func _ready() -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_ALWAYS)
 	set_process(false)
 
 func load_scene(_scene_path: String) -> void:
+	if is_loading: return # Ignore double clicks
+	is_loading = true
 	print("load... sceneloader.gd")
 	scene_path = _scene_path
 	
@@ -31,21 +34,27 @@ func start_load() -> void:
 	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)
 	if state == OK:
 		set_process(true)
+	else:
+		is_loading = false
 
 func _process(_delta: float) -> void:
 	print("process... sceneloader.gd")
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
-	progress_changed.emit(progress[0])
+	if progress.size() > 0:
+		progress_changed.emit(progress[0])
 	
 	match load_status:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
 			print("invaid... sceneloader.gd")
 			set_process(false)
+			is_loading = false
 		ResourceLoader.THREAD_LOAD_LOADED:
 			print("succ... sceneloader.gd")
+			is_loading = false
 			loaded_Resource = ResourceLoader.load_threaded_get(scene_path)
 			get_tree().change_scene_to_packed(loaded_Resource)
 			load_finished.emit()
+			set_process(false)
 	
 	
 	
