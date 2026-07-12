@@ -22,7 +22,7 @@ render_priority = 0
 shader = ExtResource("4_gg3u2")
 shader_parameter/ttimer = Vector2(0.05, 0.05)
 shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_h7kup")
-shader_parameter/ColorParameter = Color(6.34502, 0.75444394, 0, 1)
+shader_parameter/ColorParameter = Color(2.8921618, 0.2082204, 0.2082204, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sa3gr"]
 cull_mode = 2

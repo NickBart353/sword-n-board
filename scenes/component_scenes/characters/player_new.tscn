@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://ddsbfo2qlmk2s" path="res://scripts/PlayerController/abilities/attack.gd" id="6_8rwn3"]
 [ext_resource type="PackedScene" uid="uid://0gqvbdb35ik0" path="res://scenes/component_scenes/item_entities/weapons/dagger/dagger.tscn" id="6_pxpwq"]
 [ext_resource type="AnimationLibrary" uid="uid://mwdarur6ojvs" path="res://animations/player/unarmed/fist.res" id="7_84use"]
+[ext_resource type="PackedScene" uid="uid://dfhfebr25ho24" path="res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn" id="7_v4r5v"]
 [ext_resource type="Script" uid="uid://c6p4wal6v7pyr" path="res://scripts/PlayerController/abilities/cast_attack.gd" id="7_ysvla"]
 [ext_resource type="AnimationLibrary" uid="uid://cis2tnf2uus34" path="res://animations/player/greathammer/greathammer.res" id="8_8aen8"]
 [ext_resource type="AnimationLibrary" uid="uid://rltfkwas5t44" path="res://animations/greataxe/greataxe.res" id="8_ovcx5"]
@@ -701,6 +702,8 @@ transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.077, -0.12
 
 [node name="dagger" parent="Player - Kopie/Weapons/Offhand" unique_id=1356170886 instance=ExtResource("6_pxpwq")]
 visible = false
+
+[node name="Torch" parent="Player - Kopie/Weapons/Offhand" unique_id=1191162332 instance=ExtResource("7_v4r5v")]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="." unique_id=1934701213]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90478516, -0.06619012)
