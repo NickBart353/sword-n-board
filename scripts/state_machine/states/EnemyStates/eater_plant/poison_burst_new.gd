@@ -223,7 +223,6 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	PhysicsServer3D.call_deferred("free_rid", area_rid)
 
 func _reset_ground(toxic_ground_instance: DOT) -> void:
-	print("finished")
 	ObjectPooler.reset_object(toxic_ground_instance)
 	active_toxic_grounds.erase(toxic_ground_instance)
 	active_toxic_ground_counter -= 1

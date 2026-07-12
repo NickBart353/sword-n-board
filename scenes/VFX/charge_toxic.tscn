@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmy1qhoqgrlsq"]
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_o2xti"]
+[ext_resource type="AudioStream" uid="uid://wy1bkggpkotm" path="res://assets/Audio/pixabay/voicebosch-the-moses-laser-cannon-182841.wav" id="2_4wesn"]
 
 [sub_resource type="Curve" id="Curve_o2xti"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -203,7 +204,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [3.0, 1.4000000000000001]
+"values": [3.0, 1.4]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -241,6 +242,21 @@ tracks/7/keys = {
 "update": 0,
 "values": [0.2, 1.2, 0.4]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer3D")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_4wesn")
+}],
+"times": PackedFloat32Array(0.03333333)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_000or"]
 _data = {
@@ -249,6 +265,7 @@ _data = {
 }
 
 [node name="ToxicCharge" type="Node3D" unique_id=1987122632 node_paths=PackedStringArray("animation_player")]
+top_level = true
 script = ExtResource("1_o2xti")
 animation_player = NodePath("AnimationPlayer")
 animation_name = "charge"
@@ -268,3 +285,5 @@ mesh = SubResource("SphereMesh_u5wp5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=438970058]
 libraries/ = SubResource("AnimationLibrary_000or")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=980659217]

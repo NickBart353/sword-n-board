@@ -46,6 +46,10 @@ parameter_name = "ColorParameter"
 operator = 2
 
 [resource]
+modes/blend = 1
+modes/cull = 2
+flags/unshaded = true
+flags/alpha_to_coverage = true
 nodes/fragment/0/position = Vector2(1340, 0)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_o8cgk")
 nodes/fragment/2/position = Vector2(-1400, 160)
