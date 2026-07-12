@@ -58,6 +58,8 @@ func _save_multithreaded():
 	if not player:
 		push_error("Player not found while saving")
 		return
+	if not player.is_on_floor():
+		return
 	save_file_resource.health = player.HEALTH
 	save_file_resource.stamina = player.STAMINA
 	save_file_resource.mana = player.MANA
