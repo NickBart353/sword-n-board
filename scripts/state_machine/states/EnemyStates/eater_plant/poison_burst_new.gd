@@ -4,10 +4,15 @@ extends EnemyState
 @export var cooldown_timer: Timer
 @export var fire_rate: float = 0.01
 @export var poison_burst_damage: int = 9
-
 @export var hitbox_shape_radius: float = 0.5
 
+@export_group("VFX")
+@export var toxic_blast_vfx: PackedScene
+@export var vfx_location: Node3D
+
 var toxic_ground: PackedScene = preload("uid://4fwojmdcec7c")
+
+var toxic_blast_instance: Basic_VFX
 
 var fired: bool = false
 var all_fired: bool = false
@@ -41,6 +46,9 @@ func _ready() -> void:
 	shape_rid = PhysicsServer3D.sphere_shape_create()
 	PhysicsServer3D.shape_set_data(shape_rid, hitbox_shape_radius)
 	space_rid = enemy.get_world_3d().space
+	toxic_blast_instance = toxic_blast_vfx.instantiate()
+	vfx_location.add_child(toxic_blast_instance)
+	toxic_blast_instance.global_position = vfx_location.global_position - Vector3(0,1,0)
 
 func _create_area() -> RID:
 	var new_area: RID = PhysicsServer3D.area_create()
@@ -69,6 +77,7 @@ func Enter():
 	bomb_positions.clear()
 	impact_locations.clear()
 	target_location = Vector3(enemy.bomb_multi_mesh.position.x, enemy.bomb_multi_mesh.position.y + 20, enemy.bomb_multi_mesh.position.z)
+	toxic_blast_instance.play()
 
 func Exit():
 	super()
@@ -182,7 +191,6 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	var bomb_id: int = rid_bomb_map.get(area_rid)
 	
 	var nody: Node = instance_from_id(object_id)
-	print("classy: ", nody.get_class())
 	if nody is Player:
 		nody.take_damage(poison_burst_damage, enemy, true, false)
 		return
@@ -215,7 +223,6 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	PhysicsServer3D.call_deferred("free_rid", area_rid)
 
 func _reset_ground(toxic_ground_instance: DOT) -> void:
-	print("finished")
 	ObjectPooler.reset_object(toxic_ground_instance)
 	active_toxic_grounds.erase(toxic_ground_instance)
 	active_toxic_ground_counter -= 1

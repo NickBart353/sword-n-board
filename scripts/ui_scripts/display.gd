@@ -135,7 +135,7 @@ func _update_resolution_selection():
 		for resolution in RESOLUTION_MAPPING[current_aspect_ratio]:
 			var resolution_to_add: String = "{0} x {1}".format([resolution["w"], resolution["h"]])
 			resolution_picker.add_item(resolution_to_add)
-			if [float(resolution["w"]), float(resolution["h"])] == current_resolution:
+			if [int(resolution["w"]), int(resolution["h"])] == [int(current_resolution[0]), int(current_resolution[1])]:
 				resolution_picker.select(RESOLUTION_MAPPING[current_aspect_ratio].find(resolution))
 
 func _update_screen():

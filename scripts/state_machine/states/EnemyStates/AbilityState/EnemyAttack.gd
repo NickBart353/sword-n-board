@@ -3,6 +3,7 @@ class_name EnemyAttack extends EnemyAbility
 @export var damage: int = 1
 @export var attack_scene: PackedScene
 @export var attack_position: Node
+@export var attack_rotation: Basis = Basis()
 
 var attack_instance: Attack
 
@@ -18,4 +19,9 @@ func _attack_finished(_object: Node):
 
 func Enter():
 	super()
-	attack_instance.attack(attack_position.global_transform, damage)
+	var new_transform: Transform3D
+	#if attack_rotation:
+		#new_transform = Transform3D(attack_rotation, attack_position.global_position)
+	#else:
+	new_transform = Transform3D(attack_position.transform)
+	attack_instance.attack(new_transform, damage)
