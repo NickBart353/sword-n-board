@@ -48,41 +48,107 @@ func _save_multithreaded():
 	if current_savemanager_task_id:
 		if not WorkerThreadPool.is_task_completed(current_savemanager_task_id):
 			return
-	if not save_file_resource:
-		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
-	if not save_file_resource:
-		push_error("Savefile Resource not found while saving")
-		return
+			
 	if not player:
 		player = get_tree().get_first_node_in_group("Player")
-	if not player:
-		push_error("Player not found while saving")
+	if not player or not player.is_on_floor():
 		return
-	if not player.is_on_floor():
-		return
-	save_file_resource.health = player.HEALTH
-	save_file_resource.stamina = player.STAMINA
-	save_file_resource.mana = player.MANA
-	save_file_resource.position = player.global_position
-	save_file_resource.rotation = player.global_rotation
-	#save_file_resource.spirit = player.spirit
-	
-	_save_dead_enemies()
+		
+	_save_dead_enemies() 
 	_save_chests()
 	get_items_from_inventory.emit()
 	
-	save_file_resource.player_items = temp_inventory
-	save_file_resource.head = temp_head
-	save_file_resource.body = temp_body
-	save_file_resource.boots = temp_boots
-	save_file_resource.mainhand = temp_mainhand
-	save_file_resource.offhand = temp_offhand
-	save_file_resource.consumable = temp_consumable
-	save_file_resource.consumable_list = temp_consumable_list
+	var snapshot := SaveFile.new()
 	
-	save_file_resource.last_played_date = Time.get_datetime_string_from_system(false, true)
+	snapshot.health = player.HEALTH
+	snapshot.stamina = player.STAMINA
+	snapshot.mana = player.MANA
+	snapshot.position = player.global_position
+	snapshot.rotation = player.global_rotation
+	snapshot.character_name = save_file_resource.character_name 
+	snapshot.last_played_date = Time.get_datetime_string_from_system(false, true)
+	snapshot.dead_mobs = save_file_resource.dead_mobs.duplicate(false)
 	
-	current_savemanager_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
+	var cloned_inventory: Array[ItemData] = []
+	for item_data in temp_inventory:
+		if item_data:
+			cloned_inventory.append(item_data.duplicate(true))
+	snapshot.player_items = cloned_inventory
+	
+	var get_cloned_item = func(original_data: ItemData) -> ItemData:
+		if not original_data: 
+			return null
+		for clone in cloned_inventory:
+			if clone.unique_id == original_data.unique_id:
+				return clone
+		return null
+	
+	snapshot.head = get_cloned_item.call(temp_head)
+	snapshot.body = get_cloned_item.call(temp_body)
+	snapshot.boots = get_cloned_item.call(temp_boots)
+	snapshot.mainhand = get_cloned_item.call(temp_mainhand)
+	snapshot.offhand = get_cloned_item.call(temp_offhand)
+	snapshot.consumable = get_cloned_item.call(temp_consumable)
+	var cloned_consumables: Array[ItemData] = []
+	for item_data in temp_consumable_list:
+		var clone = get_cloned_item.call(item_data)
+		if clone:
+			cloned_consumables.append(clone)
+	snapshot.consumable_list = cloned_consumables
+	
+	var cloned_chests: Dictionary[String, Array] = {}
+	for chest_id in save_file_resource.chest_items:
+		var chest_array = save_file_resource.chest_items[chest_id]
+		var cloned_chest_array = []
+		for item_data in chest_array:
+			if item_data:
+				cloned_chest_array.append(item_data.duplicate(true))
+		cloned_chests[chest_id] = cloned_chest_array
+	snapshot.chest_items = cloned_chests
+	
+	current_savemanager_task_id = SaveFileManager.save_game(snapshot)
+
+#func _save_multithreaded():
+	#if CombatManager.is_in_combat():
+		#return
+	#if current_savemanager_task_id:
+		#if not WorkerThreadPool.is_task_completed(current_savemanager_task_id):
+			#return
+	#if not save_file_resource:
+		#save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	#if not save_file_resource:
+		#push_error("Savefile Resource not found while saving")
+		#return
+	#if not player:
+		#player = get_tree().get_first_node_in_group("Player")
+	#if not player:
+		#push_error("Player not found while saving")
+		#return
+	#if not player.is_on_floor():
+		#return
+	#save_file_resource.health = player.HEALTH
+	#save_file_resource.stamina = player.STAMINA
+	#save_file_resource.mana = player.MANA
+	#save_file_resource.position = player.global_position
+	#save_file_resource.rotation = player.global_rotation
+	##save_file_resource.spirit = player.spirit
+	#
+	#_save_dead_enemies()
+	#_save_chests()
+	#get_items_from_inventory.emit()
+	#
+	#save_file_resource.player_items = temp_inventory
+	#save_file_resource.head = temp_head
+	#save_file_resource.body = temp_body
+	#save_file_resource.boots = temp_boots
+	#save_file_resource.mainhand = temp_mainhand
+	#save_file_resource.offhand = temp_offhand
+	#save_file_resource.consumable = temp_consumable
+	#save_file_resource.consumable_list = temp_consumable_list
+	#
+	#save_file_resource.last_played_date = Time.get_datetime_string_from_system(false, true)
+	#
+	#current_savemanager_task_id = SaveFileManager.save_game(save_file_resource.duplicate(true))
 
 func update_savefile_items(inventory: Array, head: Item, body: Item, boots: Item, mainhand: Item, offhand: Item, consumable: Item, consumable_list: Array):
 	temp_inventory.assign(inventory.map(get_itemdata))

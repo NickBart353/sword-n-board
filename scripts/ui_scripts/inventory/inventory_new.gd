@@ -355,15 +355,35 @@ func _emit_update_player_items():
 func _load_player_items():
 	var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
 	player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
-	player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
-	player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
-	player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
-	player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
-	player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
-	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
-	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
-	#print("inv: ", player_items)
+	player_consumables = item_dict.get("consumable_list").map(_get_cloned_item)
+	player_helmet = _get_cloned_item(item_dict.get("head"))
+	player_body = _get_cloned_item(item_dict.get("body"))
+	player_boots = _get_cloned_item(item_dict.get("boots"))
+	player_mainhand = _get_cloned_item(item_dict.get("mainhand"))
+	player_offhand = _get_cloned_item(item_dict.get("offhand"))
+	current_consumable = _get_cloned_item(item_dict.get("consumable"))
+
 	_refresh_items(true)
+
+func _get_cloned_item(itemdata: ItemData) -> Item:
+	for item in player_items:
+		if item.data.unique_id == itemdata.unique_id:
+			return item
+	return null
+
+#func _load_player_items():
+	#var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
+	#player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
+	#player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
+	#player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
+	#player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
+	#player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
+	#player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
+	#player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
+	#current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
+	#
+	#_refresh_items(true)
+	
 	#loaded_consumable = current_consumable
 	#if loaded_consumable:
 		#equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)
