@@ -19,9 +19,9 @@ func _attack_finished(_object: Node):
 
 func Enter():
 	super()
-	var new_transform: Transform3D
+	#var new_transform: Transform3D
 	#if attack_rotation:
 		#new_transform = Transform3D(attack_rotation, attack_position.global_position)
 	#else:
-	new_transform = Transform3D(attack_position.transform)
-	attack_instance.attack(new_transform, damage)
+	#new_transform = Transform3D(attack_position.transform)
+	attack_instance.attack(attack_position.global_transform, damage)

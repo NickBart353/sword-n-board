@@ -309,14 +309,14 @@ func _remove_consumable(item: Item, remove_stack: bool):
 		
 		var remove_index: int
 		for i in range(player_items.size() -1, -1, -1):
-			if player_items[i].data.unqiue_id == item.data.unique_id:
+			if player_items[i].data.unique_id == item.data.unique_id:
 				remove_index = i
 		
 		if remove_index and not remove_index == -1:
 			player_items.remove_at(remove_index)
 		
 		for i in range(player_consumables.size() -1, -1, -1):
-			if player_consumables[i].data.unqiue_id == item.data.unique_id:
+			if player_consumables[i].data.unique_id == item.data.unique_id:
 				remove_index = i
 		
 		if remove_index and not remove_index == -1:

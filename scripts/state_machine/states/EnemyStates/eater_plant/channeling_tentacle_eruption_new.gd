@@ -28,7 +28,7 @@ func Enter():
 		var offset : Vector3 = Vector3.FORWARD.rotated(Vector3.UP, random_angle) * random_distance
 		var spawn_pos : Vector3 = enemy.global_position + offset
 		vfx_pool[i].global_position = spawn_pos
-		spawn_pos.y -= randf_range(10, 16)
+		spawn_pos.y -= randf_range(10, 15)
 		spike_positions.append(spawn_pos)
 		vfx_pool[i].play()
 

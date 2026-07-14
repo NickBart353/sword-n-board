@@ -20,6 +20,8 @@ var first_exploded: bool = false
 var target_location: Vector3
 var fire_queue: int
 
+var max_distance_to_enemy: float = 25000.0
+
 var bomb_positions: Dictionary[int, Vector3]
 var bomb_velocity: Dictionary[int, Vector3]
 var bomb_rid_map: Dictionary[int, RID]
@@ -161,6 +163,18 @@ func _move_bombs(delta: float) -> void:
 		
 		var new_global_transform: Transform3D = enemy.bomb_multi_mesh.global_transform * current_transform
 		PhysicsServer3D.area_set_transform(bomb_rid_map[instance_id], new_global_transform)
+		
+		if new_global_transform.origin.distance_squared_to(enemy.global_position) > max_distance_to_enemy:
+			var rid: RID = bomb_rid_map.get(instance_id)
+			enemy.bomb_multi_mesh.multimesh.set_instance_transform(instance_id, Transform3D(Basis(), enemy.RESET_POSITION))
+			bomb_positions.erase(instance_id)
+			bomb_velocity.erase(instance_id)
+			bomb_rid_map.erase(instance_id)
+			rid_bomb_map.erase(rid)
+			area_rids.erase(rid)
+			
+			PhysicsServer3D.call_deferred("free_rid", rid)
+
 	if bomb_positions.is_empty():
 		all_fired = true
 		cooldown_timer.start()
