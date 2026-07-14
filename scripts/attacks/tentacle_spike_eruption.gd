@@ -121,5 +121,12 @@ func _eruption_returned() -> void:
 	static_rids.clear()
 	down = false
 
+func remove_spikes() -> void:
+	for rid in area_rids:
+		PhysicsServer3D.free_rid(rid)
+	
+	for rid in static_rids:
+		PhysicsServer3D.free_rid(rid)
+
 func _on_timer_timeout() -> void:
 	down = true

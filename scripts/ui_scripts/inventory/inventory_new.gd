@@ -295,7 +295,7 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 	_emit_update_player_items()
 
 func _remove_consumable(item: Item, remove_stack: bool):
-	prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
+	#prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
 	if remove_stack:
 		for inventory_item in item_grid.get_children():
 			if inventory_item.item.data.item_id == item.data.item_id:
@@ -306,12 +306,20 @@ func _remove_consumable(item: Item, remove_stack: bool):
 			if inventory_item.item.data.item_id == item.data.item_id:
 				inventory_item.queue_free()
 				break
-		var remove_index: int = player_items.find(item)
-		if remove_index:
+		
+		var remove_index: int
+		for i in range(player_items.size() -1, -1, -1):
+			if player_items[i].data.unqiue_id == item.data.unique_id:
+				remove_index = i
+		
+		if remove_index and not remove_index == -1:
 			player_items.remove_at(remove_index)
 		
-		remove_index = player_consumables.find(item)
-		if remove_index:
+		for i in range(player_consumables.size() -1, -1, -1):
+			if player_consumables[i].data.unqiue_id == item.data.unique_id:
+				remove_index = i
+		
+		if remove_index and not remove_index == -1:
 			player_consumables.remove_at(remove_index)
 
 func _add_item_to_inventory(item: Item):
@@ -366,6 +374,8 @@ func _load_player_items():
 	_refresh_items(true)
 
 func _get_cloned_item(itemdata: ItemData) -> Item:
+	if not itemdata:
+		return null
 	for item in player_items:
 		if item.data.unique_id == itemdata.unique_id:
 			return item

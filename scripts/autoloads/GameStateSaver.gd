@@ -58,7 +58,9 @@ func _save_multithreaded():
 	_save_chests()
 	get_items_from_inventory.emit()
 	
-	var snapshot := SaveFile.new()
+	var snapshot: SaveFile = SaveFile.new()
+	
+	snapshot = save_file_resource
 	
 	snapshot.health = player.HEALTH
 	snapshot.stamina = player.STAMINA
