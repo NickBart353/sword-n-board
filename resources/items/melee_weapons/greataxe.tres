@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_xer04")
-normal_damage = 1.0
+normal_damage = 60.0
 combo_size = 2
 two_handed = true
 item_name = "Greataxe"

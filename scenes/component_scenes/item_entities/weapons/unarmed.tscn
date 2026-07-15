@@ -12,10 +12,11 @@ radius = 0.111225866
 radius = 0.11816406
 height = 1.0
 
-[node name="Unarmed" type="Area3D" unique_id=209339069 node_paths=PackedStringArray("hand_component")]
+[node name="Unarmed" type="Area3D" unique_id=209339069 node_paths=PackedStringArray("collision_point", "hand_component")]
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("1_p7vfp")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=524021230]
@@ -61,6 +62,9 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.38263142, 2.1855694e-08, 0)
 shape = SubResource("CapsuleShape3D_x2jks")
 debug_color = Color(1, 0, 0.10686197, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1407350882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73725224, 0, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

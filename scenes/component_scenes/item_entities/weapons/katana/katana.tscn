@@ -153,14 +153,15 @@ size = Vector3(0.053588867, 0.7124634, 0.06323242)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qj7hc"]
 size = Vector3(0.089782715, 1.7445679, 0.19393921)
 
-[node name="katana" unique_id=690274581 node_paths=PackedStringArray("impact_location", "hand_component") instance=ExtResource("1_2qush")]
+[node name="katana" unique_id=690274581 node_paths=PackedStringArray("impact_location", "collision_point", "hand_component") instance=ExtResource("1_2qush")]
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("2_xj8b8")
 impact_location = NodePath("Impact")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("TwohandComponent")
 
-[node name="KatanaMesh" parent="." index="0" unique_id=1461056410]
+[node name="KatanaMesh" parent="." index="0" unique_id=1126575928]
 transform = Transform3D(-1.6610327e-08, 0, -0.38, 0, 0.38, 0, 0.38, 0, -1.6610327e-08, 0, -0.18048811, 0)
 mesh = SubResource("ArrayMesh_7huce")
 
@@ -192,5 +193,8 @@ metadata/_custom_type_script = "uid://ckyck7wjay34t"
 transform = Transform3D(1, 0, 0, 0, 0.99127775, -0.13178927, 0, 0.13178927, 0.99127775, 0.017486572, 0.5778926, 0.070129)
 shape = SubResource("BoxShape3D_qj7hc")
 debug_color = Color(0.9842182, 0.12584761, 0, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="7" unique_id=109151089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2542291, 0.11898124)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -87,10 +87,11 @@ shadow_mesh = SubResource("ArrayMesh_cjkx5")
 [sub_resource type="BoxShape3D" id="BoxShape3D_flxtr"]
 size = Vector3(0.080322266, 0.80114746, 0.3244629)
 
-[node name="hatchet" unique_id=137127868 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_7gwkr")]
+[node name="hatchet" unique_id=137127868 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_7gwkr")]
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("2_tpm24")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
 [node name="OnehandComponent" parent="." index="0" unique_id=1480913319 instance=ExtResource("3_flxtr")]
@@ -99,7 +100,7 @@ hand_component = NodePath("OnehandComponent")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00067549944, 0.4381343, -0.06883526)
 shape = SubResource("BoxShape3D_r21bu")
 
-[node name="HatchetMesh" parent="." index="2" unique_id=1951916179]
+[node name="HatchetMesh" parent="." index="2" unique_id=27017455]
 transform = Transform3D(-8.742278e-09, 0.2, 8.742278e-09, 0, -8.742278e-09, 0.2, 0.2, 8.742278e-09, 3.821371e-16, -0.015992612, 0.4502868, -0.08708435)
 mesh = SubResource("ArrayMesh_7gwkr")
 
@@ -114,5 +115,8 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006225586, 0.14569092, -0.076293945)
 shape = SubResource("BoxShape3D_flxtr")
 debug_color = Color(0.9940564, 0, 0.23524871, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="4" unique_id=2052584356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.51676124, -0.21798414)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

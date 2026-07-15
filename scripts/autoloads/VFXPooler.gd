@@ -41,15 +41,19 @@ func _find_parent(object: Basic_VFX) -> VfxManager.VFX:
 			return key
 	return VfxManager.VFX
 
-func _create_new_sack() -> Basic_VFX:
-	return null
+func _create_new_sack(vfx_key: VfxManager.VFX) -> Basic_VFX:
+	VFX_DICT[vfx_key]["count"] += 1
+	var container: Node3D = get_node(VFX_DICT.get(vfx_key).get("container_name")) 
+	var vfx_instance: Basic_VFX = VFX_DICT.get(vfx_key).get("scene").instantiate()
+	container.add_child(vfx_instance)
+	return vfx_instance
 
 func get_free_vfx(vfx_key: VfxManager.VFX) -> Basic_VFX:
 	var vfx: Basic_VFX
 	if available_vfx_conainer[VFX_DICT.get(vfx_key).get("array_container_number")].is_empty():
 		print("NUlL VFX VFXPOOLER.gd")
-		return _create_new_sack()
+		return _create_new_sack(vfx_key)
 	else:
-		vfx = available_vfx_conainer[VFX_DICT.get(vfx_key).get("array_container_number")].pop_back()
+		vfx = available_vfx_conainer[VFX_DICT.get(vfx_key).get("array_container_number")].pop_front()
 	vfx.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	return vfx

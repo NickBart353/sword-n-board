@@ -99,11 +99,12 @@ height = 0.845
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vmqom"]
 radius = 0.09667969
 
-[node name="spear" unique_id=322799300 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_083pc")]
+[node name="spear" unique_id=322799300 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_083pc")]
 collision_layer = 8
 collision_mask = 33
 monitoring = false
 script = ExtResource("2_3vaoy")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
 [node name="OnehandComponent" parent="." index="0" unique_id=1480913319 instance=ExtResource("3_06qr6")]
@@ -113,7 +114,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.76458454, 0)
 shape = SubResource("CapsuleShape3D_3vaoy")
 
-[node name="SpearMesh" parent="." index="2" unique_id=2085616322]
+[node name="SpearMesh" parent="." index="2" unique_id=1822455374]
 transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7bw0v")
 
@@ -130,5 +131,8 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BlockingComponent" index="0" unique_id=1814178908]
 shape = SubResource("CapsuleShape3D_vmqom")
 debug_color = Color(0.9567352, 0.21080577, 0, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=185786976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88924456, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

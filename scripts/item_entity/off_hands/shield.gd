@@ -56,6 +56,7 @@ func _set_marker_values():
 func _on_sketchfab_model_body_entered(body: Node3D) -> void:
 	if body is Enemy:
 		hit.emit(body, data.normal_damage)
+		play_blood_vfx()
 	#if body is Terrain3D: return
 	#if not body_back_side_entered_first:
 		#blocked.emit(body)

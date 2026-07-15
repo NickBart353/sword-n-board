@@ -124,10 +124,11 @@ size = Vector3(0.035858154, 0.58654976, 0.15997314)
 radius = 0.01
 height = 0.275
 
-[node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_k0p64")]
+[node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_k0p64")]
 collision_layer = 8
 collision_mask = 35
 script = ExtResource("2_wixkm")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=891408647]
@@ -136,7 +137,7 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
-[node name="DaggerMesh" parent="." index="2" unique_id=1411897387]
+[node name="DaggerMesh" parent="." index="2" unique_id=1106926090]
 transform = Transform3D(-3.934025e-09, 0.089999996, 3.934025e-09, 0, -3.9340247e-09, 0.09, 0.09, 3.9340247e-09, 1.719617e-16, 0, -0.08108312, -1.2732814e-07)
 mesh = SubResource("ArrayMesh_t5mmq")
 
@@ -154,5 +155,8 @@ debug_color = Color(0.98537606, 0.120839916, 0, 0.41960785)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="4" unique_id=385775809]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.0020152777, 0.3377717, -0.17508948)
 mesh = SubResource("CapsuleMesh_njja8")
+
+[node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1605129329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

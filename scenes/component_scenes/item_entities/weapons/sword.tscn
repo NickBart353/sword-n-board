@@ -111,12 +111,13 @@ stream_0/stream = ExtResource("2_vbrxf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8jew"]
 size = Vector3(0.04147339, 1.0488281, 0.17744446)
 
-[node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player", "hand_component")]
+[node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player", "collision_point", "hand_component")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("1_c5xvt")
 sword_player = NodePath("SwordPlayer")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
 [node name="HitBox" type="CollisionShape3D" parent="." unique_id=682500964]
@@ -152,6 +153,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005233766, 0.61320806, -0.
 shape = SubResource("BoxShape3D_o8jew")
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_xvlie")]
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1490477789]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.0677346, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
