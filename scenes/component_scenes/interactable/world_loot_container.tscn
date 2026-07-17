@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://btkhatnh3rnsy"]
+
+[ext_resource type="Script" uid="uid://jhfxl8ixsdh7" path="res://scripts/interactable/WorldLootContainer.gd" id="1_kr4dx"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="2_q2pxv"]
+[ext_resource type="PackedScene" uid="uid://br7232wy73par" path="res://scenes/component_scenes/interactable/interactable.tscn" id="3_q2pxv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ypp05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1lg4e"]
+blend_mode = 1
+albedo_color = Color(1.5813748, 2.2717478, 2.2799988, 1)
+albedo_texture = ExtResource("2_q2pxv")
+metallic = 0.24
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kerij"]
+material = SubResource("StandardMaterial3D_1lg4e")
+size = Vector2(1, 1)
+orientation = 2
+
+[node name="WorldLootContainer" type="Area3D" unique_id=1764209908 groups=["WorldEvent"]]
+script = ExtResource("1_kr4dx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1037887279]
+shape = SubResource("SphereShape3D_ypp05")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2146549909]
+mesh = SubResource("PlaneMesh_kerij")
+
+[node name="Interactable" parent="." unique_id=601589509 instance=ExtResource("3_q2pxv")]
+hover_text = "loot"
+
+[connection signal="_interact" from="Interactable" to="." method="_on_interactable__interact"]

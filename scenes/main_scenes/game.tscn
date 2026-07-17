@@ -7,7 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://cngaic8ulsg3q" path="res://scenes/component_scenes/terrain3d/forest.tscn" id="6_t5sjj"]
 [ext_resource type="Script" uid="uid://ddkbytbbno5om" path="res://scripts/components/mob_spawn.gd" id="7_cfqos"]
 [ext_resource type="PackedScene" uid="uid://2vrjs0ylxkee" path="res://scenes/component_scenes/buildings/hub_building.tscn" id="7_leqql"]
+[ext_resource type="PackedScene" uid="uid://btkhatnh3rnsy" path="res://scenes/component_scenes/interactable/world_loot_container.tscn" id="9_5amgp"]
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="9_rbptj"]
+[ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="10_3ls1w"]
+[ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="11_3ls1w"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ve26b"]
+load_path = "res://.godot/imported/Dagger.png-b56a17059bd6b58c45bdd38c1d0d4b02.ctex"
+
+[sub_resource type="Resource" id="Resource_e71x3"]
+script = ExtResource("11_3ls1w")
+normal_damage = 25.0
+critical_strike_chance = 0.2
+combo_size = 2
+dualwield_combo_size = 2
+item_name = "Dagger"
+item_id = "10006"
+tooltip = "A deadly weapon in close combat."
+sprite = SubResource("CompressedTexture2D_ve26b")
+item_type = 4
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
 
 [node name="Main" type="Node3D" unique_id=1238575973]
 script = ExtResource("1_t5sjj")
@@ -265,5 +284,12 @@ transform = Transform3D(-0.3420202, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, -0.342
 
 [node name="Campfire" parent="." unique_id=983799392 instance=ExtResource("9_rbptj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.3159, 74.22158, -409.73868)
+
+[node name="WorldLoot" type="Node3D" parent="." unique_id=2106629473]
+
+[node name="WorldLootContainer" parent="WorldLoot" unique_id=1764209908 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415.71698, 75.74471, -437.95374)
+world_event_hash = "0a408679-60b2-4e75-b2ce-06136ee6fd51"
+items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_e71x3")])
 
 [connection signal="return_to_main_menu" from="GameMenus" to="." method="_on_game_menus_return_to_main_menu"]

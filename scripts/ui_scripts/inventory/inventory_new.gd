@@ -322,6 +322,10 @@ func _remove_consumable(item: Item, remove_stack: bool):
 		if remove_index and not remove_index == -1:
 			player_consumables.remove_at(remove_index)
 
+func add_items_to_inventory(items: Array) -> void:
+	for item in items:
+		_add_item_to_inventory(item)
+
 func _add_item_to_inventory(item: Item):
 	var find_index: int = -1
 	for i in range(player_items.size()):

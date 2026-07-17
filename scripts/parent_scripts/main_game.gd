@@ -10,6 +10,7 @@ var player: Player
 func _ready() -> void:
 	#DataManager.connect_db()
 	_spawn_mobs()
+	_spawn_world_loot()
 	_load_chests()
 	_spawn_player()
 	
@@ -95,11 +96,19 @@ func _load_chests() -> void:
 		if chest_data.get(chest.chest_id) != null:
 			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_itemdata)
 
+func _spawn_world_loot() -> void:
+	var event_data: Dictionary = GameStateSaver.load_world_event_data()
+	for loot_container in $WorldLoot.get_children():
+		if loot_container is WorldLootContainer:
+			if event_data:
+				if event_data.get(loot_container.world_event_hash) != null:
+					loot_container.event = true
+					loot_container.disable_monitoring()
+					continue
+
 func _spawn_mobs(reset_mobs: bool = false):
-	#var mobspawn_resource: MobSpawnResource
 	var mobspawn_data: Dictionary
 	if not reset_mobs:
-		#mobspawn_resource = DataManager.load_mobspawn_data()
 		mobspawn_data = GameStateSaver.load_mobspawn_data()
 	
 	for mob_spawn_group in $MobSpawns.get_children():

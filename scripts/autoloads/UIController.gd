@@ -12,6 +12,8 @@ signal new_offhand
 signal added_item_to_inventory
 signal removed_item_from_inventory
 
+signal player_looted_world_container
+
 signal new_consumable
 signal player_consumed_item
 signal remove_consumable
@@ -111,3 +113,6 @@ func get_inventory_items():
 
 func give_player_items(player_items: Array[Item]):
 	returned_player_items.emit(player_items)
+
+func send_items_to_player_inventoy(items: Array[ItemData]):
+	player_looted_world_container.emit(items)

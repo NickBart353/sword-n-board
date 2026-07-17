@@ -56,6 +56,7 @@ func _save_multithreaded():
 		
 	_save_dead_enemies() 
 	_save_chests()
+	_save_world_events()
 	get_items_from_inventory.emit()
 	
 	var snapshot: SaveFile = SaveFile.new()
@@ -70,6 +71,7 @@ func _save_multithreaded():
 	snapshot.character_name = save_file_resource.character_name 
 	snapshot.last_played_date = Time.get_datetime_string_from_system(false, true)
 	snapshot.dead_mobs = save_file_resource.dead_mobs.duplicate(false)
+	snapshot.world_events = save_file_resource.world_events.duplicate(false)
 	
 	var cloned_inventory: Array[ItemData] = []
 	for item_data in temp_inventory:
@@ -224,6 +226,11 @@ func load_mobspawn_data() -> Dictionary:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
 	return save_file_resource.dead_mobs
 
+func load_world_event_data() -> Dictionary:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	return save_file_resource.world_events
+
 func load_chest_data() -> Dictionary:
 	if not save_file_resource:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
@@ -250,3 +257,15 @@ func _save_chests():
 			continue
 		chest_dict[chest.chest_id] = chest.item_container.items.map(get_itemdata)
 	save_file_resource.chest_items = chest_dict 
+
+func _save_world_events() -> void:
+	var event_dict: Dictionary[String, bool] = {}
+	var events: Array = get_tree().get_nodes_in_group("WorldEvent")
+	for event in events:
+		if event.world_event_hash == "":
+			continue
+		if event.event == false:
+			continue
+		event_dict[event.world_event_hash] = true
+	save_file_resource.world_events = event_dict
+	

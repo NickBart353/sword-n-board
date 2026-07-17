@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 			load_finished.emit()
 			set_process(false)
 		ResourceLoader.THREAD_LOAD_IN_PROGRESS:
-			print("LOADINNGGGG")
+			pass
 	
 	
 	

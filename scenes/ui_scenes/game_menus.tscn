@@ -18,6 +18,7 @@
 [ext_resource type="FontFile" uid="uid://hukoqhwf25oq" path="res://fonts/dum1/dum1.ttf" id="13_evact"]
 [ext_resource type="PackedScene" uid="uid://bt7gpwk7b4gi0" path="res://scenes/ui_scenes/loot_container/loot_container.tscn" id="14_u26ox"]
 [ext_resource type="PackedScene" uid="uid://duiwbm8tqdkrc" path="res://scenes/ui_scenes/chest_item_container.tscn" id="18_shs7f"]
+[ext_resource type="PackedScene" uid="uid://cgrqfpyk6s5l7" path="res://scenes/ui_scenes/world_loot_interface.tscn" id="19_k63b6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evact"]
 content_margin_top = 10.0
@@ -270,6 +271,9 @@ visible = false
 [node name="ChestItemContainer" parent="." unique_id=834840540 instance=ExtResource("18_shs7f")]
 visible = false
 
+[node name="WorldLootInterface" parent="." unique_id=612560250 instance=ExtResource("19_k63b6")]
+visible = false
+
 [connection signal="timeout" from="Hud/EnemyHealthbarContainer/EnemyHealthbarTimer" to="Hud" method="_on_enemy_healthbar_timer_timeout"]
 [connection signal="update_player_items" from="Inventory" to="." method="_on_inventory_update_player_items"]
 [connection signal="continue_game" from="PauseMenu" to="." method="_on_pause_menu_continue_game"]
@@ -278,3 +282,4 @@ visible = false
 [connection signal="open_settings" from="PauseMenu" to="." method="_on_pause_menu_open_settings"]
 [connection signal="close_settings" from="SettingsMenu" to="." method="_on_settings_menu_close_settings"]
 [connection signal="done_checking" from="SettingsMenu" to="." method="_on_settings_menu_done_checking"]
+[connection signal="close_me" from="WorldLootInterface" to="." method="_on_world_loot_interface_close_me"]
