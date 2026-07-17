@@ -901,13 +901,15 @@ enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../RatPlayer")
 
-[node name="SlamOne" type="Node" parent="StateMachine/Follow" index="0" unique_id=2007088180 node_paths=PackedStringArray("follow_up_slam_state", "slam_position", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+[node name="SlamOne" type="Node" parent="StateMachine/Follow" index="0" unique_id=2007088180 node_paths=PackedStringArray("follow_up_slam_state", "slam_position", "cool_down_timer", "ground_raycast", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("21_iskec")
 slam_Scene = ExtResource("22_iskec")
 follow_up_slam_state = NodePath("../../SlamTwo")
 slam_position = NodePath("../../../SlamPosition")
 cool_down_timer = NodePath("../../../Timers/SlamCooldown")
 attack_range = 5
+normalize_ground_position = true
+ground_raycast = NodePath("../../../RayCast3D")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
@@ -937,11 +939,12 @@ enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../RatPlayer")
 
-[node name="SlamTwo" type="Node" parent="StateMachine" index="4" unique_id=1529263435 node_paths=PackedStringArray("slam_position", "enemy", "anim_tree", "audio_player")]
+[node name="SlamTwo" type="Node" parent="StateMachine" index="4" unique_id=1529263435 node_paths=PackedStringArray("slam_position", "ground_raycast", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("23_kqh87")
 slam_Scene = ExtResource("24_4mpa1")
 slam_position = NodePath("../../SlamPosition")
 damage = 50
+ground_raycast = NodePath("../../RayCast3D")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../RatPlayer")
@@ -996,6 +999,13 @@ bus = &"SFX"
 script = ExtResource("33_oeobn")
 _audio_position = NodePath("..")
 metadata/_custom_type_script = "uid://glf7b81sjiep"
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="12" unique_id=197746834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7353709, 0)
+target_position = Vector3(0, -33.68, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(0, 0.59642833, 0.71449983, 1)
+debug_shape_thickness = 5
 
 [connection signal="timeout" from="Timers/RecoveryTimer" to="StateMachine/Recover" method="_on_recovery_timer_timeout"]
 [connection signal="timeout" from="Timers/ResettingTimer" to="StateMachine/Resetting" method="_on_resetting_timer_timeout"]

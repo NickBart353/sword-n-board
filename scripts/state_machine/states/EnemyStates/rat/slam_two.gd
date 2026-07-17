@@ -3,6 +3,7 @@ extends EnemyState
 @export var slam_Scene: PackedScene
 @export var slam_position: Node
 @export var damage: int = 25
+@export var ground_raycast: RayCast3D
 
 var slam_instance: Attack
 var vfx_instance: Basic_VFX
@@ -18,10 +19,20 @@ func _ready() -> void:
 
 func Enter():
 	super()
+	if ground_raycast:
+		_set_correct_position()
+	
 	vfx_instance.play()
-	#slam_instance = slam_Scene.instantiate()
-	#add_child(slam_instance)
-	#VfxManager.create_vfx_from_enum(VfxManager.VFX.CHANNELING_GROUND_IMPACT_SHORT, slam_position.global_position)
+
+func _set_correct_position() -> void:
+	if not ground_raycast.is_colliding():
+		return
+	var normal: Vector3 = ground_raycast.get_collision_normal()
+	var new_basis: Basis = Basis()
+	new_basis.y = normal
+	new_basis.x = normal.cross(enemy.global_transform.basis.z).normalized()
+	new_basis.z = new_basis.x.cross(normal).normalized()
+	enemy.global_transform.basis = new_basis.orthonormalized()
 
 func slam():
 	if slam_instance:

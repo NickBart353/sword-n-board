@@ -22,9 +22,6 @@ func Enter():
 	super()
 	vfx_instance.play()
 
-func Physics_Update(_delta: float) -> void:
-	enemy.look_at(player.global_position)
-
 func slam(): #gets called in slam animation
 	if slam_instance:
 		#slam_instance.global_position = slam_position.global_position
