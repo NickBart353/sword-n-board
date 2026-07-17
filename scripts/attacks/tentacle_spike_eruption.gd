@@ -29,10 +29,8 @@ func _ready() -> void:
 	shape_rid = PhysicsServer3D.cylinder_shape_create()
 	PhysicsServer3D.shape_set_data(shape_rid, {"height": 10.35, "radius": 0.89})
 
-func set_data(new_tentacle_count: int, new_damage: int) -> void:
-	tentacle_count = new_tentacle_count
+func set_data(new_damage: int) -> void:
 	damage = new_damage
-	multimesh.instance_count = tentacle_count
 
 func set_start_positions(new_start_positions: Array[Vector3]) -> void:
 	area_rids.clear()
@@ -41,6 +39,9 @@ func set_start_positions(new_start_positions: Array[Vector3]) -> void:
 	current_global_positions.clear()
 	starting_positions_local.clear()
 	starting_positions_global.clear()
+	
+	tentacle_count = new_start_positions.size()
+	multimesh.instance_count = tentacle_count
 	
 	for i in tentacle_count:
 		_create_area_and_static()

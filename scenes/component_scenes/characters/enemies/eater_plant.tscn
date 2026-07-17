@@ -286,10 +286,10 @@ display_name = "Man Eater"
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
 
-[node name="EaterPlant_Armature" parent="." index="0" unique_id=1557137428]
+[node name="EaterPlant_Armature" parent="." index="0" unique_id=2123121773]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 4.1, 0)
 
-[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=666699237]
+[node name="Skeleton3D" parent="EaterPlant_Armature" index="0" unique_id=722657414]
 bones/2/rotation = Quaternion(0.16985047, 1.1747713e-07, 2.0247745e-08, 0.9854698)
 bones/3/position = Vector3(0.0011148937, 0.026257688, -0.01843967)
 bones/3/rotation = Quaternion(0.7086241, 7.582669e-07, 9.27974e-07, 0.7055862)
@@ -325,7 +325,7 @@ bones/28/position = Vector3(-1.8578826e-09, 0.017858332, -8.2948004e-10)
 bones/28/rotation = Quaternion(0.08175089, 0.86326647, 0.18703486, -0.46163377)
 bones/28/scale = Vector3(1, 1.0000001, 0.9999999)
 
-[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=219178099]
+[node name="EaterPlant" parent="EaterPlant_Armature/Skeleton3D" index="0" unique_id=1093841911]
 material_override = SubResource("ShaderMaterial_j13dt")
 material_overlay = SubResource("ShaderMaterial_y8y30")
 
@@ -462,13 +462,14 @@ audio_player = NodePath("../../../PlantPlayer")
 play_audio = true
 audio_resource = ExtResource("23_fk03l")
 
-[node name="ChannelingTentacleEruptionNew" type="Node" parent="StateMachine/Follow" index="1" unique_id=428272173 node_paths=PackedStringArray("tentacle_multimesh", "charge_timer", "follow_up_state", "cool_down_timer", "enemy", "anim_tree", "audio_player")]
+[node name="ChannelingTentacleEruptionNew" type="Node" parent="StateMachine/Follow" index="1" unique_id=428272173 node_paths=PackedStringArray("tentacle_multimesh", "charge_timer", "follow_up_state", "cool_down_timer", "ground_raycast", "enemy", "anim_tree", "audio_player")]
 script = ExtResource("26_dbm22")
 tentacle_multimesh = NodePath("../../../TentacleSpikeMultimesh")
 charge_timer = NodePath("../../../Timers/EruptionTimer")
 follow_up_state = NodePath("../../TentacleEruptionNew")
 look_at_target = false
 cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
+ground_raycast = NodePath("../../../TentacleSpikeMultimesh/RayCast3D")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")
 audio_player = NodePath("../../../PlantPlayer")
@@ -531,6 +532,11 @@ max_distance = 15.0
 [node name="Timer" type="Timer" parent="TentacleSpikeMultimesh" index="0" unique_id=51407768]
 wait_time = 10.0
 one_shot = true
+
+[node name="RayCast3D" type="RayCast3D" parent="TentacleSpikeMultimesh" index="1" unique_id=896807692]
+target_position = Vector3(0, 42.08, 0)
+debug_shape_custom_color = Color(0.09019608, 0.14509805, 1, 1)
+debug_shape_thickness = 5
 
 [node name="Bombs" type="Node3D" parent="." index="14" unique_id=717428469]
 transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 9.4, 0)

@@ -29,13 +29,17 @@ func Enter():
 		var spawn_pos : Vector3 = enemy.global_position + offset
 		vfx_pool[i].global_position = spawn_pos
 		spawn_pos.y -= randf_range(10, 15)
-		spike_positions.append(spawn_pos)
-		vfx_pool[i].play()
+		
+		ground_raycast.global_position = spawn_pos
+		ground_raycast.force_raycast_update()
+		
+		if ground_raycast.get_collider() and ground_raycast.get_collider() is Terrain3D:
+			spike_positions.append(spawn_pos)
+			vfx_pool[i].play()
 
 	spike_positions.sort_custom(_sort_by_distance_to_enemy)
 	
 	tentacle_multimesh.set_start_positions(spike_positions)
-	#TODO: RUMBLING
 
 func _sort_by_distance_to_enemy(a: Vector3, b: Vector3) -> bool:
 	return a.distance_squared_to(enemy.global_position) > b.distance_squared_to(enemy.global_position)

@@ -42,7 +42,7 @@ func _ready() -> void:
 	create_tentacles()
 	create_tentacle_roots()
 	bomb_multi_mesh.multimesh.instance_count = poison_blast_bullet_amount_new
-	tentacle_spike_mesh.set_data(tentacle_amount, spike_damage)
+	tentacle_spike_mesh.set_data(spike_damage)
 
 func _physics_process(_delta: float) -> void:
 	velocity += get_gravity()
