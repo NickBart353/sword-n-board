@@ -166,10 +166,6 @@ func _physics_process(delta: float) -> void:
 
 func interact_with_object():
 	interacting_object = player_interactor.get_collider()
-	if interacting_object:
-		print(interacting_object.get_class())
-	else:
-		print("null5")
 	if (not interacting_object and last_hovered_object) or (last_hovered_object and interacting_object != last_hovered_object):
 		last_hovered_object.get_node(node_name).un_hover()
 		last_hovered_object = null
