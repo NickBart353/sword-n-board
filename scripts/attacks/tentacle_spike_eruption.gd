@@ -29,10 +29,8 @@ func _ready() -> void:
 	shape_rid = PhysicsServer3D.cylinder_shape_create()
 	PhysicsServer3D.shape_set_data(shape_rid, {"height": 10.35, "radius": 0.89})
 
-func set_data(new_tentacle_count: int, new_damage: int) -> void:
-	tentacle_count = new_tentacle_count
+func set_data(new_damage: int) -> void:
 	damage = new_damage
-	multimesh.instance_count = tentacle_count
 
 func set_start_positions(new_start_positions: Array[Vector3]) -> void:
 	area_rids.clear()
@@ -41,6 +39,9 @@ func set_start_positions(new_start_positions: Array[Vector3]) -> void:
 	current_global_positions.clear()
 	starting_positions_local.clear()
 	starting_positions_global.clear()
+	
+	tentacle_count = new_start_positions.size()
+	multimesh.instance_count = tentacle_count
 	
 	for i in tentacle_count:
 		_create_area_and_static()
@@ -92,6 +93,8 @@ func _physics_process(delta: float) -> void:
 			_eruption_finished()
 			return
 		for i in tentacle_count:
+			if area_rids[i] == null:
+				continue
 			current_local_positions[i] = Transform3D(Basis(), (current_local_positions[i].origin + Vector3(0, eruption_speed, 0) * delta))
 			current_global_positions[i] = Transform3D(Basis(), (current_global_positions[i].origin + Vector3(0, eruption_speed, 0) * delta))
 			multimesh.set_instance_transform(i, current_local_positions[i])
@@ -120,6 +123,13 @@ func _eruption_returned() -> void:
 		PhysicsServer3D.free_rid(static_rids[i])
 	static_rids.clear()
 	down = false
+
+func remove_spikes() -> void:
+	for rid in area_rids:
+		PhysicsServer3D.free_rid(rid)
+	
+	for rid in static_rids:
+		PhysicsServer3D.free_rid(rid)
 
 func _on_timer_timeout() -> void:
 	down = true

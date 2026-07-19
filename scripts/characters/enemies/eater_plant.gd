@@ -37,11 +37,12 @@ var num_tentacles_erupted: int = 0
 
 func _ready() -> void:
 	super()
+	state_machine.get_node("Dead").remove_spikes.connect(_remove_spikes)
 	create_bombs()
 	create_tentacles()
 	create_tentacle_roots()
 	bomb_multi_mesh.multimesh.instance_count = poison_blast_bullet_amount_new
-	tentacle_spike_mesh.set_data(tentacle_amount, spike_damage)
+	tentacle_spike_mesh.set_data(spike_damage)
 
 func _physics_process(_delta: float) -> void:
 	velocity += get_gravity()
@@ -66,6 +67,11 @@ func create_tentacle_roots():
 		var tentacle_root_instance = tentacle_root.instantiate()
 		tentacle_root_container.add_child(tentacle_root_instance, true)
 		tentacle_root_instance.rotate_y(deg_to_rad(radiant_size * i))
+
+func _remove_spikes() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(tentacle_spike_mesh, "transparency", 1, 1.0)
+	tentacle_spike_mesh.remove_spikes()
 
 func _on_bomb_delay_timeout() -> void:
 	pass

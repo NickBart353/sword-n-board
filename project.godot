@@ -40,6 +40,7 @@ UuidGenerator="*uid://bokh3cfxtffys"
 CombatManager="*uid://p4p5pa1twqyx"
 SaveFileManager="*uid://s2lnv6eo1vou"
 TimeFormatter="*uid://c1n6yqa0e641p"
+VfxPooler="*uid://byj0ui825five"
 
 [display]
 
@@ -50,7 +51,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
+enabled=PackedStringArray("res://addons/brackeys-particle-controls/addons/brackeys_particle_controls/plugin.cfg", "res://addons/godot-sqlite/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [global_group]
 

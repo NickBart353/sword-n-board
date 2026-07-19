@@ -9,6 +9,7 @@ signal return_to_main_menu
 @onready var settings_menu: Control = $SettingsMenu
 @onready var loot_container: LootContainer = $LootContainer
 @onready var chest_item_container: ChestItemContainer = $ChestItemContainer
+@onready var world_loot_interface: VBoxContainer = $WorldLootInterface
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -27,6 +28,7 @@ func _ready() -> void:
 	settings_menu.hide()
 	loot_container.hide()
 	chest_item_container.hide()
+	world_loot_interface.hide()
 	
 	is_input_blocked = false
 	pause_menu_open = false
@@ -46,6 +48,7 @@ func _ready() -> void:
 	UiController.escape_menu_signal.connect(_escape_menu)
 	UiController.item_container_interacted.connect(_open_loot_container)
 	UiController.chest_interacted.connect(_open_chest)
+	UiController.player_looted_world_container.connect(_open_world_container)
 	
 	UiController._update_healthbar.connect(_update_healthbar)
 	UiController._update_staminabar.connect(_update_staminabar)
@@ -66,6 +69,7 @@ func _process(_delta: float) -> void:
 			GameStateSaver.save_game()
 
 func _inventory():
+	world_loot_interface.hide()
 	if not pause_menu_open:
 		if loot_container.is_visible():
 			_open_loot_container(null)
@@ -83,6 +87,7 @@ func _character_panel():
 	pass
 
 func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""):
+	world_loot_interface.hide()
 	if loot_container.is_visible():
 		loot_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -96,6 +101,7 @@ func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""
 		PlayerControls.block_input()
 
 func _open_chest(item_container: ItemContainer):
+	world_loot_interface.hide()
 	if chest_item_container.is_visible():
 		chest_item_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -125,6 +131,7 @@ func _close_menus() -> void:
 		get_tree().paused = false
 
 func _escape_menu():
+	world_loot_interface.hide()
 	if loot_container.is_visible():
 		_open_loot_container(null)
 		return
@@ -147,6 +154,12 @@ func _escape_menu():
 		else:
 			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _open_world_container(item_datas: Array[ItemData]) -> void:
+	var items: Array = item_datas.map(ItemManager.get_item_from_itemdata) as Array[Item]
+	inventory.add_items_to_inventory(items)
+	world_loot_interface.populate_menu(items)
+	world_loot_interface.show()
 
 func _rotate_consumable():
 	if not get_tree().paused and not PlayerControls.scrolling_blocked():
@@ -202,4 +215,7 @@ func _on_settings_menu_done_checking() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_inventory_update_player_items(player_helmet: Item, player_body: Item, player_boots: Item, player_mainhand: Item, player_offhand: Item) -> void:
-		UiController.update_player_items_from_inventory(player_helmet, player_body, player_boots, player_mainhand, player_offhand)
+	UiController.update_player_items_from_inventory(player_helmet, player_body, player_boots, player_mainhand, player_offhand)
+
+func _on_world_loot_interface_close_me() -> void:
+	world_loot_interface.hide()

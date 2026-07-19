@@ -28,26 +28,27 @@ size = Vector3(0.40631104, 2.0063171, 0.41307068)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojg3p"]
 size = Vector3(0.16772461, 2.5896301, 0.5429077)
 
-[node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("impact_location", "hand_component") instance=ExtResource("1_4s0vc")]
+[node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("impact_location", "collision_point", "hand_component") instance=ExtResource("1_4s0vc")]
 collision_layer = 8
 collision_mask = 33
 script = ExtResource("2_3lr8e")
 impact_location = NodePath("ImpactLocation")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("TwohandComponent")
 
-[node name="Blade" parent="." index="0" unique_id=371635069]
+[node name="Blade" parent="." index="0" unique_id=105301628]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_3lr8e")
 
-[node name="Brick" parent="." index="1" unique_id=462036940]
+[node name="Brick" parent="." index="1" unique_id=2139888850]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_tpuau")
 
-[node name="Hilt" parent="." index="2" unique_id=1193477591]
+[node name="Hilt" parent="." index="2" unique_id=27244594]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
-[node name="Tip" parent="." index="3" unique_id=1923323140]
+[node name="Tip" parent="." index="3" unique_id=1785056136]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
@@ -70,5 +71,8 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019165039, 1.0072174, -0.0010681152)
 shape = SubResource("BoxShape3D_ojg3p")
 debug_color = Color(0.9390605, 0.24872422, 0, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="8" unique_id=327093344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0524375, 0)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

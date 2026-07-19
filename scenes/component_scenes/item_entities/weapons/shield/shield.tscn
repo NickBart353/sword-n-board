@@ -27,11 +27,12 @@ stream_0/stream = ExtResource("3_0vplc")
 height = 0.3317871
 radius = 0.7680664
 
-[node name="Shield" unique_id=119600585 node_paths=PackedStringArray("hand_component") instance=ExtResource("1_vuocu")]
+[node name="Shield" unique_id=119600585 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_vuocu")]
 script = ExtResource("2_8ynvp")
+collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=901151121 groups=["Shield"]]
+[node name="Sketchfab_model" parent="." index="0" unique_id=113012279 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
 collision_layer = 8
 collision_mask = 33
@@ -76,6 +77,9 @@ metadata/_custom_type_script = "uid://c0wn6ksqghpbc"
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.2966144e-09, 0.029663086)
 shape = SubResource("CylinderShape3D_ntn1b")
 debug_color = Color(0.34968925, 0.61989766, 0, 0.41960785)
+
+[node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=495195620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26064754)
 
 [connection signal="area_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_area_entered"]
 [connection signal="body_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_body_entered"]

@@ -295,7 +295,7 @@ func equip_consumable(inventory_item: InventoryItem, item: Item):
 	_emit_update_player_items()
 
 func _remove_consumable(item: Item, remove_stack: bool):
-	prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
+	#prints("item-inventory_new:",item.data.item_id,item.data.item_name,item.data.stackable, item.data.stack_size)
 	if remove_stack:
 		for inventory_item in item_grid.get_children():
 			if inventory_item.item.data.item_id == item.data.item_id:
@@ -306,13 +306,25 @@ func _remove_consumable(item: Item, remove_stack: bool):
 			if inventory_item.item.data.item_id == item.data.item_id:
 				inventory_item.queue_free()
 				break
-		var remove_index: int = player_items.find(item)
-		if remove_index:
+		
+		var remove_index: int
+		for i in range(player_items.size() -1, -1, -1):
+			if player_items[i].data.unique_id == item.data.unique_id:
+				remove_index = i
+		
+		if remove_index and not remove_index == -1:
 			player_items.remove_at(remove_index)
 		
-		remove_index = player_consumables.find(item)
-		if remove_index:
+		for i in range(player_consumables.size() -1, -1, -1):
+			if player_consumables[i].data.unique_id == item.data.unique_id:
+				remove_index = i
+		
+		if remove_index and not remove_index == -1:
 			player_consumables.remove_at(remove_index)
+
+func add_items_to_inventory(items: Array) -> void:
+	for item in items:
+		_add_item_to_inventory(item)
 
 func _add_item_to_inventory(item: Item):
 	var find_index: int = -1
@@ -355,15 +367,37 @@ func _emit_update_player_items():
 func _load_player_items():
 	var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
 	player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
-	player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
-	player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
-	player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
-	player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
-	player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
-	player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
-	current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
-	#print("inv: ", player_items)
+	player_consumables = item_dict.get("consumable_list").map(_get_cloned_item)
+	player_helmet = _get_cloned_item(item_dict.get("head"))
+	player_body = _get_cloned_item(item_dict.get("body"))
+	player_boots = _get_cloned_item(item_dict.get("boots"))
+	player_mainhand = _get_cloned_item(item_dict.get("mainhand"))
+	player_offhand = _get_cloned_item(item_dict.get("offhand"))
+	current_consumable = _get_cloned_item(item_dict.get("consumable"))
+
 	_refresh_items(true)
+
+func _get_cloned_item(itemdata: ItemData) -> Item:
+	if not itemdata:
+		return null
+	for item in player_items:
+		if item.data.unique_id == itemdata.unique_id:
+			return item
+	return null
+
+#func _load_player_items():
+	#var item_dict: Dictionary = GameStateSaver.get_current_playeritems()
+	#player_items = item_dict.get("inventory").map(ItemManager.get_item_from_itemdata)
+	#player_consumables = item_dict.get("consumable_list").map(ItemManager.get_item_from_itemdata)
+	#player_helmet = ItemManager.get_item_from_itemdata(item_dict.get("head"))
+	#player_body = ItemManager.get_item_from_itemdata(item_dict.get("body"))
+	#player_boots = ItemManager.get_item_from_itemdata(item_dict.get("boots"))
+	#player_mainhand = ItemManager.get_item_from_itemdata(item_dict.get("mainhand"))
+	#player_offhand = ItemManager.get_item_from_itemdata(item_dict.get("offhand"))
+	#current_consumable = ItemManager.get_item_from_itemdata(item_dict.get("consumable"))
+	#
+	#_refresh_items(true)
+	
 	#loaded_consumable = current_consumable
 	#if loaded_consumable:
 		#equip_consumable(get_inventory_item_from_item_id(loaded_consumable.data.item_id), loaded_consumable)

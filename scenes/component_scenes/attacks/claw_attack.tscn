@@ -305,8 +305,10 @@ metadata/_custom_type_script = "uid://glf7b81sjiep"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=631064473]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6608005, 0, -0.25134277)
+visible = false
 mesh = SubResource("BoxMesh_w2y5g")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1970720899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5596347, -0.028442383, 4.092926)
+visible = false
 mesh = SubResource("BoxMesh_2b154")

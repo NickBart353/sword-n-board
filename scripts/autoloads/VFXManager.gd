@@ -18,7 +18,7 @@ const LINE_GROUND_IMPACT: PackedScene = preload("res://scenes/VFX/line_ground_im
 
 enum VFX {POISON_EXPLOSION, SMALL_TORNADO, CHARGE_POISON, STUNNED, SOUND_WAVES, MAGIC_EXPLOSION, DIRT_EXPLOSION, CHARGE_TOXIC, 
 TOXIC_GROUND, TOXIC_EXPLOSION, CHARGE_ERUPTION, RUMBLING, LINE_GROUND_IMPACT, BIG_KILL_PARTICLE, LOOT_PUFF, CRUNCH_PARTICLES, CHANNELING_GROUND_IMPACT_LONG, CHANNELING_GROUND_IMPACT_SHORT,
-HEAL_PARTICLES, TOXIC_BLAST}
+HEAL_PARTICLES, TOXIC_BLAST, BLOOD_SPLATTER}
 
 enum ATTACK_VFX {BIG_SLAM, SLAM, BITE, CLAW}
 
@@ -42,7 +42,8 @@ const VFX_DICT: Dictionary = {
 	VFX.CHANNELING_GROUND_IMPACT_SHORT : preload("res://scenes/VFX/channeling_ground_impact_short.tscn"),
 	VFX.CHANNELING_GROUND_IMPACT_LONG : preload("res://scenes/VFX/channeling_ground_impact.tscn"),
 	VFX.HEAL_PARTICLES : preload("res://scenes/VFX/heal_particles.tscn"),
-	VFX.TOXIC_BLAST : preload("uid://cnltiyp28qk78")
+	VFX.TOXIC_BLAST : preload("uid://cnltiyp28qk78"),
+	VFX.BLOOD_SPLATTER : preload("uid://bmbw05wg4yf5q"),
 }
 
 const ATTACK_VFX_DICT: Dictionary = {
