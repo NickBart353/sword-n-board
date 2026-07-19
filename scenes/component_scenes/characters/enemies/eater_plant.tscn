@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="28_31cd0"]
 [ext_resource type="PackedScene" uid="uid://cnltiyp28qk78" path="res://scenes/VFX/toxic_blast.tscn" id="28_dbm22"]
 [ext_resource type="Script" uid="uid://bem8vnr0h43d2" path="res://scripts/state_machine/states/EnemyStates/eater_plant/poison_burst_new.gd" id="29_dbm22"]
+[ext_resource type="AudioStream" uid="uid://bq12p8caiqpb4" path="res://assets/Audio/pixabay/universfield-horror-liquid-splash-352472.mp3" id="30_alvsb"]
 [ext_resource type="AudioStream" uid="uid://b1r3nkokje0wp" path="res://assets/Audio/pixabay/lordsonny_two-debris-break-253779.mp3" id="31_dbm22"]
 [ext_resource type="Script" uid="uid://jdsmyt0dvhoj" path="res://scripts/attacks/tentacle_spike_eruption.gd" id="34_ycrx7"]
 
@@ -221,6 +222,12 @@ radius = 3.28
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e5tdy"]
 height = 3.9210145
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ycrx7"]
+random_pitch = 1.3348398
+random_volume_offset_db = 5.0
+streams_count = 1
+stream_0/stream = ExtResource("30_alvsb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073vx"]
 shading_mode = 0
@@ -496,7 +503,7 @@ vfx_location = NodePath("../../MouthTop")
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../PlantPlayer")
-play_audio = true
+audio_resource = SubResource("AudioStreamRandomizer_ycrx7")
 audio_volume = 5.0
 
 [node name="TentacleEruptionNew" type="Node" parent="StateMachine" index="5" unique_id=38873464 node_paths=PackedStringArray("eruption_cooldown", "tentacle_multimesh", "enemy", "anim_tree", "audio_player")]

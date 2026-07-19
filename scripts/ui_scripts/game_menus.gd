@@ -69,6 +69,7 @@ func _process(_delta: float) -> void:
 			GameStateSaver.save_game()
 
 func _inventory():
+	world_loot_interface.hide()
 	if not pause_menu_open:
 		if loot_container.is_visible():
 			_open_loot_container(null)
@@ -86,6 +87,7 @@ func _character_panel():
 	pass
 
 func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""):
+	world_loot_interface.hide()
 	if loot_container.is_visible():
 		loot_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -99,6 +101,7 @@ func _open_loot_container(item_container: ItemContainer, enemy_name: String = ""
 		PlayerControls.block_input()
 
 func _open_chest(item_container: ItemContainer):
+	world_loot_interface.hide()
 	if chest_item_container.is_visible():
 		chest_item_container.hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -128,6 +131,7 @@ func _close_menus() -> void:
 		get_tree().paused = false
 
 func _escape_menu():
+	world_loot_interface.hide()
 	if loot_container.is_visible():
 		_open_loot_container(null)
 		return

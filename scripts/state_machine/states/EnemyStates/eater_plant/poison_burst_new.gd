@@ -202,6 +202,7 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	if not rid_bomb_map.has(area_rid):
 		return
 	
+	
 	var bomb_id: int = rid_bomb_map.get(area_rid)
 	
 	var nody: Node = instance_from_id(object_id)
@@ -215,6 +216,7 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	active_toxic_ground_counter += 1
 	var toxic_ground_scene: DOT = ObjectPooler.get_free_toxic_ground()
 	toxic_ground_scene.duration_timer.wait_time = 10
+	AudioManager.play_audio_from_resource(audio_resource, impact_location, AudioManager.BUS.SFX, 0.05, 15, 5)
 	
 	if impact_location.distance_squared_to(player.global_position) < 15 and PlayerControls.is_position_in_frustrum(impact_location):
 		toxic_ground_scene.activate(true)

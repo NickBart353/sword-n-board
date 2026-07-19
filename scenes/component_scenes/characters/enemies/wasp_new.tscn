@@ -456,7 +456,7 @@ MAX_HEALTH = 85
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
 
-[node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(2067034149) index="0" unique_id=1129735058]
+[node name="Skeleton3D" parent="Wasp01_Armature" parent_id_path=PackedInt32Array(169140443) index="0" unique_id=671792189]
 bones/0/rotation = Quaternion(-5.3385083e-08, 0.7071068, 0.7071068, -5.3385083e-08)
 bones/1/rotation = Quaternion(-7.233554e-16, 1, 9.581133e-09, 7.54979e-08)
 bones/2/rotation = Quaternion(-0.058636747, 7.04445e-15, -4.137756e-16, 0.9982794)
@@ -474,10 +474,9 @@ bones/15/rotation = Quaternion(0.048498217, 0.014233052, 0.07879998, 0.9956083)
 bones/17/rotation = Quaternion(-0.3978698, 3.2810283e-07, -1.4228932e-07, 0.9174419)
 bones/18/rotation = Quaternion(-0.22283334, 2.6341178e-07, -2.1959362e-07, 0.97485656)
 
-[node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=704483156]
+[node name="Wasp01" parent="Wasp01_Armature/Skeleton3D" index="0" unique_id=1194642916]
 material_override = SubResource("ShaderMaterial_4duke")
 material_overlay = SubResource("ShaderMaterial_qot2e")
-skeleton = NodePath("..")
 
 [node name="Body" type="CollisionShape3D" parent="." index="1" unique_id=772862080]
 transform = Transform3D(1, 0, 0, 0, -4.371138e-08, -0.9999998, 0, 0.9999998, -4.371138e-08, 0, -0.40000004, -1.3000001)
