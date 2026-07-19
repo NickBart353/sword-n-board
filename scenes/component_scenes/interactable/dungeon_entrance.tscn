@@ -24,7 +24,7 @@ collision_mask = 2
 script = ExtResource("1_ujdf5")
 
 [node name="Interactable" parent="." unique_id=1146689413 instance=ExtResource("3_ujdf5")]
-hover_text = "Press E to Enter"
+hover_text = "Enter"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=554057664]
 shape = SubResource("BoxShape3D_vfdh6")

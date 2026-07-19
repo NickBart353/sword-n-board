@@ -1,7 +1,13 @@
 extends Node3D
 
+@onready var interactable: Interactable = $Interactable
+@export var disble_entrance: bool = true
+
 func _ready() -> void:
-	$Interactable._interact.connect(interact)
+	interactable._interact.connect(interact)
+	if disble_entrance:
+		interactable.hover_text = "Entrance Disabled"
 
 func interact():
-	get_tree().change_scene_to_file("res://scenes/main_scenes/dungeon_level.tscn")
+	if disble_entrance:
+		get_tree().change_scene_to_file("res://scenes/main_scenes/dungeon_level.tscn")
