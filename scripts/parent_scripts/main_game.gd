@@ -145,7 +145,7 @@ func _spawn_player():
 			player.global_rotation = player_data.get("global_rotation")
 			player.rotate_camera(player_data.get("global_rotation"))
 		else:
-			player.global_rotation = Vector3.ZERO
+			player.rotate_camera($PlayerSpawn.global_rotation)
 		
 		#player.spirit = basic_player_resource.spirit
 	else:

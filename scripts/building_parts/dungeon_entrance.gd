@@ -9,5 +9,5 @@ func _ready() -> void:
 		interactable.hover_text = "Entrance Disabled"
 
 func interact():
-	if disble_entrance:
+	if not disble_entrance:
 		get_tree().change_scene_to_file("res://scenes/main_scenes/dungeon_level.tscn")

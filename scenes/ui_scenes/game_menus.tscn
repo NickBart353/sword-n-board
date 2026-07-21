@@ -280,6 +280,7 @@ visible = false
 [connection signal="exit_game" from="PauseMenu" to="." method="_on_pause_menu_exit_game"]
 [connection signal="main_menu" from="PauseMenu" to="." method="_on_pause_menu_main_menu"]
 [connection signal="open_settings" from="PauseMenu" to="." method="_on_pause_menu_open_settings"]
+[connection signal="player_stuck" from="PauseMenu" to="." method="_on_pause_menu_player_stuck"]
 [connection signal="close_settings" from="SettingsMenu" to="." method="_on_settings_menu_close_settings"]
 [connection signal="done_checking" from="SettingsMenu" to="." method="_on_settings_menu_done_checking"]
 [connection signal="close_me" from="WorldLootInterface" to="." method="_on_world_loot_interface_close_me"]

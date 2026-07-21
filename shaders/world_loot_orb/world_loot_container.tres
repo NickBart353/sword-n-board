@@ -1,0 +1,83 @@
+[gd_resource type="VisualShader" format=3 uid="uid://qk81wm4viefv"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_cm15d"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_qn7qt"]
+parameter_name = "scale"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_4ugcx"]
+parameter_name = "zoms_trength"
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_dt7ng"]
+parameter_name = "repeat"
+
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_got8n"]
+parameter_name = "timestrength"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_jwpq5"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_7enso"]
+parameter_name = "Pictures"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_p8ewq"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_swph6"]
+default_input_values = [1, Vector2(0, 1), 2, Vector2(0, 0)]
+
+[sub_resource type="VisualShaderNodeUVPolarCoord" id="VisualShaderNodeUVPolarCoord_1gvbu"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_reeq1"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_nr8vv"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_a1h5d"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_qvnik"]
+parameter_name = "alpha"
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_pntqp"]
+
+[resource]
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_pntqp")
+nodes/vertex/2/position = Vector2(-12.170009, 442.91003)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/0/position = Vector2(1303.4962, 83.969086)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_7enso")
+nodes/fragment/2/position = Vector2(-225.70966, 446.96124)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_p8ewq")
+nodes/fragment/3/position = Vector2(-215.34132, 182.74081)
+nodes/fragment/4/node = SubResource("VisualShaderNodeUVFunc_swph6")
+nodes/fragment/4/position = Vector2(-615.4576, 191.28947)
+nodes/fragment/5/node = SubResource("VisualShaderNodeUVPolarCoord_1gvbu")
+nodes/fragment/5/position = Vector2(-1150.1742, -100.34185)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorOp_reeq1")
+nodes/fragment/6/position = Vector2(136.28714, -63.567028)
+nodes/fragment/7/node = SubResource("VisualShaderNodeColorParameter_nr8vv")
+nodes/fragment/7/position = Vector2(-226.80971, -97.24133)
+nodes/fragment/8/node = SubResource("VisualShaderNodeInput_a1h5d")
+nodes/fragment/8/position = Vector2(-1240.2753, 311.41998)
+nodes/fragment/9/node = SubResource("VisualShaderNodeTexture2DParameter_qvnik")
+nodes/fragment/9/position = Vector2(183.03635, 668.6069)
+nodes/fragment/10/node = SubResource("VisualShaderNodeTexture_cm15d")
+nodes/fragment/10/position = Vector2(193.4047, 404.38644)
+nodes/fragment/14/node = SubResource("VisualShaderNodeVec2Parameter_qn7qt")
+nodes/fragment/14/position = Vector2(-1533.6831, -129.05711)
+nodes/fragment/15/node = SubResource("VisualShaderNodeFloatParameter_4ugcx")
+nodes/fragment/15/position = Vector2(-1672.7727, 53.955406)
+nodes/fragment/16/node = SubResource("VisualShaderNodeFloatParameter_dt7ng")
+nodes/fragment/16/position = Vector2(-1678.9907, 270.70374)
+nodes/fragment/17/node = SubResource("VisualShaderNodeVec2Parameter_got8n")
+nodes/fragment/17/position = Vector2(-1264.0911, 447.77588)
+nodes/fragment/18/node = SubResource("VisualShaderNodeVectorOp_jwpq5")
+nodes/fragment/18/position = Vector2(-825.8166, 348.84952)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 4, 0, 3, 0, 5, 0, 4, 0, 6, 0, 0, 0, 7, 0, 6, 0, 3, 1, 6, 1, 9, 0, 10, 2, 14, 0, 5, 1, 15, 0, 5, 2, 16, 0, 5, 3, 8, 0, 18, 0, 17, 0, 18, 1, 18, 0, 4, 2, 10, 1, 0, 1)

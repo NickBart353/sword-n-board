@@ -4,6 +4,7 @@ signal continue_game
 signal open_settings
 signal main_menu
 signal exit_game
+signal player_stuck
 
 func _ready() -> void:
 	hide()
@@ -19,3 +20,6 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_exit_game_button_pressed() -> void:
 	exit_game.emit()
+
+func _on_stuck_button_pressed() -> void:
+	player_stuck.emit()

@@ -35,12 +35,13 @@ func start_load() -> void:
 	print("start... sceneloader.gd")
 	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)
 	if state == OK:
+		print("ok... sceneloader.gd")
 		set_process(true)
 	else:
+		print("failed... sceneloader.gd")
 		is_loading = false
 
 func _process(_delta: float) -> void:
-	#print("process... sceneloader.gd")
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
 	if progress.size() > 0:
 		progress_changed.emit(progress[0])

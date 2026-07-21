@@ -39,6 +39,17 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 text = "Continue"
 
+[node name="MarginContainer5" type="MarginContainer" parent="VBoxContainer" unique_id=1131552855]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 5
+
+[node name="StuckButton" type="Button" parent="VBoxContainer/MarginContainer5" unique_id=2055443810]
+layout_mode = 2
+text = "Reset Position"
+
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1821024036]
 layout_mode = 2
 theme_override_constants/margin_left = 40
@@ -73,6 +84,7 @@ layout_mode = 2
 text = "Exit Game"
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer5/StuckButton" to="." method="_on_stuck_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer3/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer4/ExitGameButton" to="." method="_on_exit_game_button_pressed"]

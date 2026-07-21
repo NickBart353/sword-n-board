@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal return_to_main_menu
+signal player_stuck
 
 @onready var hud: Control = $Hud
 
@@ -219,3 +220,6 @@ func _on_inventory_update_player_items(player_helmet: Item, player_body: Item, p
 
 func _on_world_loot_interface_close_me() -> void:
 	world_loot_interface.hide()
+
+func _on_pause_menu_player_stuck() -> void:
+	player_stuck.emit()

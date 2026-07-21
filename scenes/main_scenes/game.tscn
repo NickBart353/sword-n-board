@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://23kjgnpf3t1i"]
+[gd_scene format=4 uid="uid://23kjgnpf3t1i"]
 
 [ext_resource type="Script" uid="uid://ccwqtup5gak5u" path="res://scripts/world_scenes/game.gd" id="1_t5sjj"]
 [ext_resource type="Environment" uid="uid://8hrnljgjhpw0" path="res://resources/world_environments/main_world_environment.tres" id="2_5amgp"]
@@ -11,6 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://djrce73udgnwy" path="res://scenes/component_scenes/props/campfire.tscn" id="9_rbptj"]
 [ext_resource type="Script" uid="uid://dtd4itbfrtl8k" path="res://scripts/resources/item_resource.gd" id="10_3ls1w"]
 [ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="11_3ls1w"]
+[ext_resource type="Script" uid="uid://d3f12fo6m1a5b" path="res://scripts/resources/consumable_resource.gd" id="12_m0ooe"]
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="13_vlbvn"]
+[ext_resource type="Shader" uid="uid://beken2i52fttm" path="res://shaders/dissolve/big_dissolve_particles.tres" id="14_uba5x"]
+[ext_resource type="AudioStream" uid="uid://c2ywlfnc1kvgc" path="res://assets/Audio/pixabay/yodguard-healing-magic-4-378668.mp3" id="15_emjx4"]
+[ext_resource type="AudioStream" uid="uid://dhgf0fhnbjt46" path="res://assets/Audio/FreeSFX/GameSFX/Charge/Retro Charge Magic 11.wav" id="16_vlbvn"]
+[ext_resource type="Resource" uid="uid://rtmv36ktptf1" path="res://resources/items/melee_weapons/wooden_shield.tres" id="17_aghtv"]
+[ext_resource type="Resource" uid="uid://dsjivk0hqdt2w" path="res://resources/items/melee_weapons/greataxe.tres" id="17_uba5x"]
+[ext_resource type="Resource" uid="uid://bovbahtw7dtub" path="res://resources/items/melee_weapons/spear.tres" id="18_emjx4"]
+[ext_resource type="Resource" uid="uid://dujpy6nd74vtd" path="res://resources/items/melee_weapons/torch.tres" id="19_bbl8c"]
+[ext_resource type="Resource" uid="uid://c44b3gdbdd3py" path="res://resources/items/melee_weapons/short_sword.tres" id="20_lj4lb"]
+[ext_resource type="Resource" uid="uid://qpdw7kpnlexp" path="res://resources/items/melee_weapons/greatsword.tres" id="22_eohxg"]
+[ext_resource type="Resource" uid="uid://bcahgjv4glvrm" path="res://resources/items/melee_weapons/greathammer.tres" id="23_xgynj"]
+[ext_resource type="Resource" uid="uid://cxr6fc77pudua" path="res://resources/items/melee_weapons/hatchet.tres" id="24_27k6f"]
+[ext_resource type="Resource" uid="uid://bbn7q72ym8sio" path="res://resources/items/melee_weapons/hammer.tres" id="25_dkfsg"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ve26b"]
 load_path = "res://.godot/imported/Dagger.png-b56a17059bd6b58c45bdd38c1d0d4b02.ctex"
@@ -25,6 +39,413 @@ item_name = "Dagger"
 item_id = "10006"
 tooltip = "A deadly weapon in close combat."
 sprite = SubResource("CompressedTexture2D_ve26b")
+item_type = 4
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bbl8c"]
+load_path = "res://.godot/imported/Shortsword.png-673092bec5bcbc73be87753d7b4aea28.ctex"
+
+[sub_resource type="Resource" id="Resource_lj4lb"]
+script = ExtResource("11_3ls1w")
+normal_damage = 32.0
+combo_size = 2
+item_name = "Shortsword"
+item_id = "10001"
+tooltip = "It's a sword!"
+sprite = SubResource("CompressedTexture2D_bbl8c")
+drop_chance = 1.0
+metadata/_custom_type_script = "uid://dtd4itbfrtl8k"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fqhh"]
+resource_name = "Stopper01"
+cull_mode = 2
+albedo_color = Color(0.71372557, 0.6117647, 0.32941183, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnvm1"]
+resource_name = "HealthMinor"
+cull_mode = 2
+albedo_color = Color(0.74509805, 0.15686253, 0.10588241, 1)
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_26j86"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2.0135522, 2),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAACAAEAAwAEAAEABQAAAAIAAwAAAAUABAAGAAIABQACAAYAAwAHAAQAAwAFAAcABwAGAAQABwAFAAYA"),
+"name": "Stopper01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP//AAAAAAAA/////wAAAAAAAAAAAAD/////AAAAAP//AAD//wAA////////AAD//wAAAAAAAA==")
+}, {
+"aabb": AABB(-1.813016, -5.9005103, -1.7946501, 3.626032, 5.9005103, 3.5893154),
+"format": 34359742465,
+"index_count": 126,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAQAFAAMABAAGAAEAAQAGAAUABAAHAAYAAwAFAAgACQAFAAYAAgADAAoACwAFAAkACwAIAAUACQAGAAwADAAGAAcADAAKAAkADAACAAoACQANAAsACQAKAA0ACwANAAAADgAIAAsADAAHAA4ADgACAAwADgAHAAgACwAAAA4ADgAAAAIADwAIAAcAAwAIAA8ADwAHAAQACgADAA8ADQAPAAQACgAPAA0ADQAEAAAAEAACAAoAEQANAAAAEgAAAAIAEgARAAAAEAASAAIAEQATAA0AEwAKAA0AEgATABEAEwAQAAoAEgAQABMA"),
+"name": "HealthMinor",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("1MCGP69qE79FY4W/bYubv69qE7/495m/1MCGv69qE79FY4W/bYubv69qE794+Jk/bYubP69qE7/495m/bYubvwAAAAB4+Jk/bYubvwAAAAD495m/bYubPwAAAAD495m/bYubPwAAAAB4+Jk/pi59vwAAAADYnno/1MCGv69qE7/FY4U/pi59PwAAAADYnno/pi59vwAAAADYnXq/1MCGP69qE7/FY4U/pi59PwAAAADYnXq/bYubP69qE794+Jk/6RDov/vQvMCYt+U/6RDoP/vQvMAYt+W/6RDov/vQvMAYt+W/6RDoP/vQvMCYt+U/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tad7c"]
+resource_name = "MinorPotion_Health (Copy 1)_Cube_004"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 2.0135522, 2),
+"attribute_data": PackedByteArray("/1////+f/7//n////1//v/9f/7//n/9//5//v/9f/3//X/9//5//P/+f/3//X/8//1//P/+fAAD/n/8//18AAP8f/3//X/8//1//f/8f/z//n/9//9//P//f/3//n/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_7fqhh"),
+"name": "Stopper01",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP//VNUAAP//AABU1QAA/////1TVAAAAAAAAVNUAAAAAAAD///////8AAP//AAD//wAA/////wAAAAD/////AAAAAFTV////////VNX/////AABU1f//AAD//1TV//8AAP///78AAP//////v/////////+/AAAAAP///78AAAAAAAD/v///AAD///+///8AAAAA/78AAAAA////v/////8AAP//AAD///////8AAP//AAD/////////////VNVU1VTVVNVU1VTVVNVU1f+//7//v/+//7//v/+//7+qKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/3//f/+//3//v/9//7//f/+/")
+}, {
+"aabb": AABB(-1.813016, -5.9005103, -1.7946501, 3.626032, 5.9005103, 3.5893154),
+"attribute_data": PackedByteArray("AAAgPwAAAD8AACA/AABAPwAAID8AAEA/AAAgPwAAgD8AACA/AACAPwAAID8AAAA/AAAgPwAAgD4AACA/AACAPgAAID8AAAAAAAAgPwAAAAAAAMA+AACAPgAAID8AAAAAAAAgPwAAgD4AAMA+AAAAAAAAwD4AAIA/AAAgPwAAQD8AACA/AACAPwAAwD4AAEA/AAAAPgAAAD8AAMA+AACAPgAAwD4AAAA/AAAAPgAAgD4AAMA+AAAAPwAAID8AAIA+AAAgPwAAAD8AAMA+AACAPgAAwD4AAEA/AAAgPwAAAD8AACA/AABAPwAAwD4AAAA/AAAgPwAAQD8AACA/AACAPwAAID8AAIA/AAAgPwAAQD8AACA/AAAAAAAAID8AAIA+AAAgPwAAgD4AACA/AAAAAAAAID8AAAA/AAAgPwAAQD8AACA/AABAPwAAID8AAAA/AAAgPwAAgD4AACA/AAAAPwAAID8AAAA/AAAgPwAAgD4kNCc/SGiOPgAAYD8AAIA+3MtYP0Zojj4AAGA/AAAAPwAAID8AAIA+3stYP7aX8T4kNCc/upfxPgAAID8AAAA/JDQnP0hojj4AACA/AAAAPyQ0Jz+6l/E+AAAgPwAAgD4kNCc/upfxPgAAID8AAEA/3stYP7aX8T4AACA/AAAAP97LWD+2l/E+AAAgPwAAgD/cy1g/RmiOPgAAID8AAEA/3MtYP0Zojj4AACA/AACAPiQ0Jz9IaI4+AAAgPwAAAAA="),
+"format": 34359742487,
+"index_count": 126,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAABgAHAAUACAAHAAYACAAJAAcACgALAAwACgANAAsADgAPABAADgARAA8AEgATABQAEgAVABMAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAHgAhAB8AIgAjACQAIgAlACMAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAAMAAvADEALgAyAC8AMAAxADMANAAyAC4AMwAxADUANAA1ADIAMwA1ADQANgA3ADgANgA5ADcAOgA7ADwAOgA9ADsAPgA/AEAAPgBBAD8AQgBDAEQAQgBFAEMA"),
+"material": SubResource("StandardMaterial3D_pnvm1"),
+"name": "HealthMinor",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 70,
+"vertex_data": PackedByteArray("1MCGP69qE79FY4W/bYubv69qE7/495m/1MCGv69qE79FY4W/bYubv69qE794+Jk/1MCGv69qE7/FY4U/bYubP69qE7/495m/1MCGP69qE7/FY4U/bYubP69qE794+Jk/1MCGv69qE7/FY4U/bYubv69qE794+Jk/6RDoP/vQvMCYt+U/1MCGv69qE7/FY4U/1MCGP69qE7/FY4U/6RDov/vQvMCYt+U/6RDov/vQvMCYt+U/1MCGv69qE79FY4W/1MCGv69qE7/FY4U/6RDov/vQvMAYt+W/6RDov/vQvMAYt+W/6RDoP/vQvMCYt+U/6RDoP/vQvMAYt+W/6RDov/vQvMCYt+U/6RDoP/vQvMAYt+W/1MCGP69qE7/FY4U/1MCGP69qE79FY4W/6RDoP/vQvMCYt+U/6RDov/vQvMAYt+W/1MCGP69qE79FY4W/1MCGv69qE79FY4W/6RDoP/vQvMAYt+W/bYubv69qE7/495m/bYubvwAAAAB4+Jk/bYubv69qE794+Jk/bYubvwAAAAD495m/bYubv69qE794+Jk/bYubPwAAAAB4+Jk/bYubP69qE794+Jk/bYubvwAAAAB4+Jk/bYubP69qE7/495m/bYubvwAAAAD495m/bYubv69qE7/495m/bYubPwAAAAD495m/bYubP69qE794+Jk/bYubPwAAAAD495m/bYubP69qE7/495m/bYubPwAAAAB4+Jk/pi59PwAAAADYnno/bYubvwAAAAB4+Jk/pi59vwAAAADYnno/bYubvwAAAAD495m/bYubPwAAAAB4+Jk/pi59vwAAAADYnXq/pi59PwAAAADYnXq/bYubPwAAAAD495m/pi59PwAAAADYnno/1MCGP69qE79FY4W/pi59PwAAAADYnXq/1MCGP69qE7/FY4U/pi59PwAAAADYnXq/1MCGv69qE79FY4W/pi59vwAAAADYnXq/1MCGP69qE79FY4W/pi59vwAAAADYnXq/1MCGv69qE7/FY4U/pi59vwAAAADYnno/1MCGv69qE79FY4W/pi59vwAAAADYnno/1MCGP69qE7/FY4U/pi59PwAAAADYnno/1MCGv69qE7/FY4U//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//38AAP///z//f9ePmZYk/P9/14+TbPT9/3/Xj6xj4fj/f9ePUpzh+PwP/I8Ij6P0/A/8j5mTQvj8D/yPUpzh+PwP/I87jtXx/38AAP///7//fwAA////v/9/AAD///+//38AAP///78C8PyPSWl6+ALw/I+GcDH2AvD8j8Nx1fEC8PyPrGPh+Cbw//9LeLH0JvD//xSESPYm8P//O47V8Sbw///DcdXxAAD/f////z8AAP9/////PwAA/3////8/AAD/f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/////////8//////////z//////////P/////////8/////f////z////9/////P////3////8/////f////z//f///ywr/v/9///8AAOLF/3///wAAasf/f///+gv/v/9////6C/+//3///8sK/7//f///AABqx/9///8AAOLFwww7cxN1rQ7DDDtz+V00BcMMO3OeVb0Ewww7c/B1jxL/f1lzAAD/P/9/WXMGHF4z/39ZczAYGDX/f1lzTAYpPTvzO3M96jQBO/M7cz2BaTo78ztzCYLINjvzO3O+4p4BWPMAAM0V5zNY8wAArQXZPFjzAAAAAP8/WPMAAEIZ/DE=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_26j86")
+
+[sub_resource type="PackedScene" id="PackedScene_aghtv"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("MinorPotion_Health (Copy 1)", "Node3D", "MinorPotion_Health", "transform", "mesh", "MeshInstance3D"),
+"node_count": 2,
+"node_ids": PackedInt32Array(1580475021, 1221383434),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 5, 2, -1, 2, 3, 0, 4, 1, 0),
+"variants": [Transform3D(0.6649192, 0, 0, 0, 0.5900893, 0, 0, 0, 0.671721, 0, 0, 0), SubResource("ArrayMesh_tad7c")],
+"version": 3
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_eohxg"]
+load_path = "res://.godot/imported/minotr_health_potion.png-7dcdea032a2b1de617b30ce48cc74ceb.ctex"
+
+[sub_resource type="Curve" id="Curve_xttqi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e1bg7"]
+curve = SubResource("Curve_xttqi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xttqi"]
+emission_shape_scale = Vector3(1.83, 1.98, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 1)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_e1bg7")
+color = Color(5.6880865, 5.6880865, 5.6880865, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1bg7"]
+render_priority = 0
+shader = ExtResource("14_uba5x")
+shader_parameter/ColorParameter = Color(1.8826746, 1.8826746, 0.5213867, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e5kd7"]
+material = SubResource("ShaderMaterial_e1bg7")
+radius = 0.125
+height = 0.25
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Animation" id="Animation_xttqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e1bg7"]
+resource_name = "heal"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HealPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 6.3,
+"start_offset": 0.07000011,
+"stream": ExtResource("15_emjx4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5kd7"]
+_data = {
+&"RESET": SubResource("Animation_xttqi"),
+&"heal": SubResource("Animation_e1bg7")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_xgynj"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("HealParticles", "Node3D", "script", "animation_player", "animation_name", "queue_free_on_finish", "hide_if_missed_by_player", "metadata/_custom_type_script", "GPUParticles3D", "GPUParticles3D", "transform", "emitting", "amount", "lifetime", "one_shot", "explosiveness", "local_coords", "process_material", "draw_pass_1", "AnimationPlayer", "AnimationPlayer", "libraries/", "HealPlayer", "AudioStreamPlayer3D", "bus"),
+"node_count": 4,
+"node_ids": PackedInt32Array(1760349175, 271644974, 272727760, 1886288387),
+"node_paths": [NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 1073741827, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 9, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 0, 1073741825, 0, 20, 19, -1, 1, 21, 15, 0, 1073741826, 0, 23, 22, -1, 1, 24, 16, 0),
+"variants": [ExtResource("13_vlbvn"), NodePath("AnimationPlayer"), "heal", true, false, "uid://fb2qs6hcr7d4", Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0), false, 100, 3.0, true, 0.7, true, SubResource("ParticleProcessMaterial_xttqi"), SubResource("SphereMesh_e5kd7"), SubResource("AnimationLibrary_e5kd7"), &"SFX"],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_27k6f"]
+script = ExtResource("12_m0ooe")
+player_property = "HEALTH"
+amount = 20.0
+consumable_type = 1
+model = SubResource("PackedScene_aghtv")
+model_scale = 0.05
+vfx = SubResource("PackedScene_xgynj")
+use_light = true
+light_color = Color(2.54, 0, 0.037, 1)
+item_name = "Minor Health Potion"
+item_id = "40001"
+tooltip = "It heals!"
+explanation_text = "A small flask filled with a red liquid, intended to heal the player."
+stackable = true
+sprite = SubResource("CompressedTexture2D_eohxg")
+item_category = 2
+item_sub_category = 3
+item_type = 19
+stack_size = 5
+metadata/_custom_type_script = "uid://d3f12fo6m1a5b"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tm6h"]
+albedo_color = Color(0.21568628, 0.54901963, 0.21960784, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_thdxu"]
+material = SubResource("StandardMaterial3D_7tm6h")
+radius = 0.01
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ltnwy"]
+material = SubResource("StandardMaterial3D_7tm6h")
+top_radius = 0.033
+bottom_radius = 0.0
+height = 0.015
+
+[sub_resource type="PackedScene" id="PackedScene_uba5x"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Node3D", "Node3D", "MeshInstance3D", "MeshInstance3D", "transform", "mesh", "MeshInstance3D2", "MeshInstance3D", "transform", "mesh"),
+"node_count": 3,
+"node_ids": PackedInt32Array(156911346, 1579383952, 628382069),
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 1073741824, 0, 3, 2, -1, 2, 4, 0, 5, 1, 0, 1073741825, 0, 7, 6, -1, 2, 8, 2, 9, 3, 0),
+"variants": [Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0), SubResource("CapsuleMesh_thdxu"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.043854296), SubResource("CylinderMesh_ltnwy")],
+"version": 3
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_emjx4"]
+load_path = "res://.godot/imported/Stamina Consumable.png-027b9329914afae55d68f5ab7f0fb314.ctex"
+
+[sub_resource type="Curve" id="Curve_eyu0c"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cce3p"]
+curve = SubResource("Curve_eyu0c")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gp5gh"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(1.83, 1.98, 0.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 1)
+spread = 0.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 5)
+scale_min = 0.099999994
+scale_max = 0.19999999
+scale_curve = SubResource("CurveTexture_cce3p")
+color = Color(0, 4.4499154, 1.2264005, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6e43n"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wqih8"]
+material = SubResource("StandardMaterial3D_6e43n")
+radius = 0.01
+height = 0.535
+
+[sub_resource type="Animation" id="Animation_rnpy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mpkw0"]
+resource_name = "consume"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaminaPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_vlbvn")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmj1c"]
+_data = {
+&"RESET": SubResource("Animation_rnpy3"),
+&"consume": SubResource("Animation_mpkw0")
+}
+
+[sub_resource type="PackedScene" id="PackedScene_bbl8c"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("StaminaParticles", "Node3D", "script", "animation_player", "animation_name", "queue_free_on_finish", "hide_if_missed_by_player", "metadata/_custom_type_script", "GPUParticles3D", "GPUParticles3D", "transform", "cast_shadow", "emitting", "amount", "lifetime", "one_shot", "explosiveness", "local_coords", "process_material", "draw_pass_1", "AnimationPlayer", "AnimationPlayer", "libraries/", "StaminaPlayer", "AudioStreamPlayer3D", "bus"),
+"node_count": 4,
+"node_ids": PackedInt32Array(1760349175, 271644974, 1751868745, 1886288387),
+"node_paths": [NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 6, 2, 0, 1073741827, 1, 4, 2, 5, 3, 6, 4, 7, 5, 0, 1073741824, 0, 9, 8, -1, 10, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 13, 18, 14, 19, 15, 0, 1073741825, 0, 21, 20, -1, 1, 22, 16, 0, 1073741826, 0, 24, 23, -1, 1, 25, 17, 0),
+"variants": [ExtResource("13_vlbvn"), NodePath("AnimationPlayer"), "consume", true, false, "uid://fb2qs6hcr7d4", Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0), 0, false, 100, 3.0, true, 0.7, true, SubResource("ParticleProcessMaterial_gp5gh"), SubResource("CapsuleMesh_wqih8"), SubResource("AnimationLibrary_gmj1c"), &"SFX"],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_aghtv"]
+script = ExtResource("12_m0ooe")
+player_property = "stamina_regeneration_speed"
+amount = 20.0
+temporary = true
+model = SubResource("PackedScene_uba5x")
+vfx = SubResource("PackedScene_bbl8c")
+item_name = "Wild Leaves"
+item_id = "40007"
+explanation_text = "Wild leaves that boost stamina."
+stackable = true
+sprite = SubResource("CompressedTexture2D_emjx4")
+item_category = 2
+item_sub_category = 3
+item_type = 21
+stack_size = 2
+metadata/_custom_type_script = "uid://d3f12fo6m1a5b"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uba5x"]
+load_path = "res://.godot/imported/Katana.png-181e3b95e8465a623542db63b13ce55b.ctex"
+
+[sub_resource type="Resource" id="Resource_emjx4"]
+script = ExtResource("11_3ls1w")
+normal_damage = 56.0
+combo_size = 2
+two_handed = true
+item_name = "Katana"
+item_id = "10010"
+tooltip = "Waifu magnet!"
+sprite = SubResource("CompressedTexture2D_uba5x")
+item_type = 7
+metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lj4lb"]
+load_path = "res://.godot/imported/Dagger.png-b56a17059bd6b58c45bdd38c1d0d4b02.ctex"
+
+[sub_resource type="Resource" id="Resource_eohxg"]
+script = ExtResource("11_3ls1w")
+normal_damage = 25.0
+critical_strike_chance = 0.2
+combo_size = 2
+dualwield_combo_size = 2
+item_name = "Dagger"
+item_id = "10006"
+tooltip = "A deadly weapon in close combat."
+sprite = SubResource("CompressedTexture2D_lj4lb")
 item_type = 4
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
 
@@ -73,7 +494,7 @@ directional_shadow_split_3 = 0.545
 directional_shadow_blend_splits = true
 
 [node name="PlayerSpawn" type="Marker3D" parent="." unique_id=655312612]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -424.2, 77.79999, -411.89996)
+transform = Transform3D(-0.08297351, 0, -0.99655175, 0, 1, 0, 0.99655175, 0, -0.08297351, -437.87088, 76.684135, -405.9588)
 
 [node name="Vfx" type="Node3D" parent="." unique_id=1480657440]
 
@@ -288,8 +709,99 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -412.3159, 74.22158, -409.738
 [node name="WorldLoot" type="Node3D" parent="." unique_id=2106629473]
 
 [node name="WorldLootContainer" parent="WorldLoot" unique_id=1764209908 instance=ExtResource("9_5amgp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -415.71698, 75.74471, -437.95374)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -417.95554, 75.47222, -437.76633)
 world_event_hash = "0a408679-60b2-4e75-b2ce-06136ee6fd51"
 items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_e71x3")])
 
+[node name="WorldLootContainer2" parent="WorldLoot" unique_id=1630623945 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -433.2585, 75.11688, -406.01056)
+world_event_hash = "d9b3afdb-3c92-48f3-bb59-75d97ecc10de"
+items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_lj4lb"), SubResource("Resource_27k6f")])
+
+[node name="WorldLootContainer3" parent="WorldLoot" unique_id=101626385 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -470.81036, 77.42213, -363.51083)
+world_event_hash = "c26fd9c4-7f21-4545-887d-71337996b768"
+items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_aghtv")])
+
+[node name="WorldLootContainer4" parent="WorldLoot" unique_id=998418890 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -494.7915, 50.962917, -416.4749)
+world_event_hash = "d0206a95-8e99-42cd-b0cd-f520d84a2a0c"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("17_aghtv")])
+
+[node name="WorldLootContainer5" parent="WorldLoot" unique_id=367875957 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -441.5365, 3.2891512, -475.64813)
+world_event_hash = "9e39afba-148d-438c-bb2e-f0b401151c20"
+items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_emjx4")])
+
+[node name="WorldLootContainer6" parent="WorldLoot" unique_id=1249139515 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -301.35284, 1.2675333, -519.56824)
+world_event_hash = "582efe7b-48aa-4a4f-ad64-e4ae8f862cca"
+items = Array[ExtResource("10_3ls1w")]([SubResource("Resource_eohxg")])
+
+[node name="WorldLootContainer7" parent="WorldLoot" unique_id=1102906351 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160.65372, 2.2075763, -447.75464)
+world_event_hash = "01154258-91c8-49c9-b519-8fcdce739eb0"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("18_emjx4")])
+
+[node name="WorldLootContainer8" parent="WorldLoot" unique_id=1321417513 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285.12137, 48.755157, -254.244)
+world_event_hash = "72531ed7-466e-460b-b1b0-8ba1105e036e"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("18_emjx4")])
+
+[node name="WorldLootContainer9" parent="WorldLoot" unique_id=1814062232 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -285.64008, 55.41028, -364.35544)
+world_event_hash = "5263288e-57d8-4ec6-aa30-11fda0e0f441"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("19_bbl8c")])
+
+[node name="WorldLootContainer10" parent="WorldLoot" unique_id=1174293418 instance=ExtResource("9_5amgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -305.69745, 59.60057, -515.26843)
+world_event_hash = "e7e26f2f-3ba0-47a6-97b0-6cdebfd39b24"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("20_lj4lb")])
+
+[node name="WorldLootContainer11" parent="WorldLoot" unique_id=20543040 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -259.18762, 23.046427, -194.19647)
+world_event_hash = "2c7268cd-9086-483f-aaeb-8e664b5a986c"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("22_eohxg")])
+
+[node name="WorldLootContainer12" parent="WorldLoot" unique_id=1417692197 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -279.70636, 0.7530061, -20.113966)
+world_event_hash = "e516a03f-b13c-4d4d-ad9f-8f31f8056e7e"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("23_xgynj")])
+
+[node name="WorldLootContainer13" parent="WorldLoot" unique_id=112401006 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -119.4966, 0.75300705, -32.38793)
+world_event_hash = "dfa1c413-3024-45d9-8da7-31e622dda93e"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("24_27k6f")])
+
+[node name="WorldLootContainer17" parent="WorldLoot" unique_id=732085983 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -458.6142, 0.75300705, 176.98169)
+world_event_hash = "167acd24-218c-428a-b57f-7f911481f7ed"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("25_dkfsg")])
+
+[node name="WorldLootContainer19" parent="WorldLoot" unique_id=1864239115 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, 225.93242, 0.5110632, 199.05222)
+world_event_hash = "94264b83-b7b7-4f7d-9ce4-3728553dc725"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("17_aghtv")])
+
+[node name="WorldLootContainer18" parent="WorldLoot" unique_id=1328138295 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -203.04378, 0.7530073, 191.27373)
+world_event_hash = "164ebd5f-c420-4e66-ba26-ca5445408a16"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("17_uba5x")])
+
+[node name="WorldLootContainer14" parent="WorldLoot" unique_id=402219112 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, 253.93199, 0.58824015, -342.6971)
+world_event_hash = "da8f0483-56bf-4255-967c-bee6129fc5ed"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("24_27k6f")])
+
+[node name="WorldLootContainer15" parent="WorldLoot" unique_id=1763201607 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -124.94174, 41.046574, -271.48077)
+world_event_hash = "9f62ce8b-80e0-4641-96c0-bc8a3b5599ac"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("25_dkfsg")])
+
+[node name="WorldLootContainer16" parent="WorldLoot" unique_id=2034885931 instance=ExtResource("9_5amgp")]
+transform = Transform3D(0.86131924, 0, -0.50806415, 0, 1, 0, 0.50806415, 0, 0.86131924, -170.0235, 40.80086, -104.212074)
+world_event_hash = "f60adcb5-2389-4965-8ff7-7dbcaef91905"
+items = Array[ExtResource("10_3ls1w")]([ExtResource("19_bbl8c")])
+
+[connection signal="player_stuck" from="GameMenus" to="." method="_on_game_menus_player_stuck"]
 [connection signal="return_to_main_menu" from="GameMenus" to="." method="_on_game_menus_return_to_main_menu"]
