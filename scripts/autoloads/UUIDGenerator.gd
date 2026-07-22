@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 const uuid_chars = "0123456789abcdef"
