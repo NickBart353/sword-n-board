@@ -39,11 +39,11 @@ const MAGIC_WEAPONS: Dictionary = {
 
 const CONSUMABLES: Dictionary = {
 	"40001": preload("res://resources/items/consumables/minor_health_potion.tres"), #minor_health_potion
-	"40004": preload("res://resources/items/consumables/minor_mana_potion.tres"), #minor_mana_potion
+	#"40004": preload("res://resources/items/consumables/minor_mana_potion.tres"), #minor_mana_potion
 	"40002": preload("res://resources/items/consumables/health_potion.tres"), #health_potion
-	"40005": preload("res://resources/items/consumables/mana_potion.tres"), #mana_potion
+	#"40005": preload("res://resources/items/consumables/mana_potion.tres"), #mana_potion
 	"40003": preload("res://resources/items/consumables/major_health_potion.tres"), #major_health_potion
-	"40006": preload("res://resources/items/consumables/major_mana_potion.tres"), #major_mana_potion
+	#"40006": preload("res://resources/items/consumables/major_mana_potion.tres"), #major_mana_potion
 	"40007": preload("uid://c6rg8eaeuxc5w"), #green_leaf
 	#"rat_tooth": "",
 	#"bat_wing": "",
@@ -185,58 +185,29 @@ func _get_item_data(resource: Resource, item_instance: Item) -> Item:
 	return item_instance
 
 func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
-	#var dict_to_take_from: Dictionary
-	#if level < 15:
-		#dict_to_take_from = BASE_DROPTABLE
-	#elif level < 30:
-		#dict_to_take_from = MID_LEVEL_DROPTABLE
-	#else:
-		#dict_to_take_from = HIGH_LEVEL_DROPTABLE
-	#
+	
 	var items: Array = []
 	var _item_instance: Item = ui_item_scene.instantiate()
 	
-	items.append(get_item_from_id("10006"))
-	items.append(get_item_from_id("10009"))
-	items.append(get_item_from_id("10001"))
-	items.append(get_item_from_id("10002"))
-	items.append(get_item_from_id("10002"))
-	items.append(get_item_from_id("10005"))
-	items.append(get_item_from_id("10005"))
-	items.append(get_item_from_id("10004"))
-	items.append(get_item_from_id("10011"))
-	items.append(get_item_from_id("10011"))
-	items.append(get_item_from_id("10007"))
-	items.append(get_item_from_id("10007"))
-	items.append(get_item_from_id("10010"))
-	items.append(get_item_from_id("10008"))
-	items.append(get_item_from_id("10008"))
-	items.append(get_item_from_id("10003"))
-	items.append(get_item_from_id("10003"))
+	if is_successful(0.01):
+		var item_id: String = MELEE_WEAPONS.keys().pick_random()
+		items.append(get_item_from_id(item_id))
 	
-	var randi: int = randi_range(0, MELEE_WEAPONS.size() - 1)
-	var counter: int = 0
-	for key in MELEE_WEAPONS:
-		if counter == randi:
-			items.append(get_item_from_id(key))
-			break
-		counter += 1
+	if is_successful(0.30):
+		var consumable_keys: Array[String]
+		consumable_keys.assign(CONSUMABLES.keys())
+		var amount_of_different_consumables = randi_range(1, consumable_keys.size())
+		var picked_ids: Array[String] = []
+		for i in amount_of_different_consumables:
+			var consumable_id: String = consumable_keys.pick_random()
+			while picked_ids.has(consumable_id):
+				consumable_id = consumable_keys.pick_random()
+			picked_ids.append(consumable_id)
+			var item: Item = get_item_from_id(consumable_id)
+			if item.data.stackable:
+				item.data.stack_size = randi_range(1, 5)
+			items.append(item)
 	
-	randi = randi_range(0, CONSUMABLES.size() - 1)
-	counter = 0
-	for key in CONSUMABLES:
-		if counter == randi:
-			items.append(get_item_from_id(key))
-			break
-		counter += 1
-	
-	randi = randi_range(0, MATERIAL.size() - 1)
-	counter = 0
-	for key in MATERIAL:
-		if counter == randi:
-			items.append(get_item_from_id(key))
-			break
-		counter += 1
 	#for item_key in dict_to_take_from.keys():
 		#if item_key is Dictionary:
 			#var multiplier: float = 1.0
@@ -256,6 +227,9 @@ func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 		#if new_item:
 			#items.append(new_item)
 	return items
+
+func is_successful(chance_float: float) -> bool:
+	return randf_range(0.0, 1.0) <= chance_float
 
 func get_item(key: String, drop_chance: float, stack_amount: int) -> Item:
 	if randf_range(0.0,1.0) <= drop_chance or debug:

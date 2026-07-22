@@ -124,6 +124,8 @@ func _spawn_mobs(reset_mobs: bool = false):
 					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 					if mob_instance:
 						mob_spawn.add_child(mob_instance)
+						if mob_spawn_group.mob != MobManager.MOBS.WASP:
+							mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
 						if not mob_instance.died.is_connected(mob_spawn.mob_died):
 							mob_instance.died.connect(mob_spawn.mob_died)
 

@@ -534,61 +534,61 @@ spawn_id = "cdd17fc9-a406-4e0d-b99f-b333402f00ec"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn4" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1183267213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.92111, -56.306057, -27.07605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.92111, -39.59286, -27.07605)
 script = ExtResource("7_cfqos")
 spawn_id = "4f6baf07-0317-4f32-b2b0-ab0b499c9af6"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn5" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=716020270]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 381.92923, -56.306057, 56.032562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 381.92923, -44.95431, 56.032562)
 script = ExtResource("7_cfqos")
 spawn_id = "f5c3a744-ff50-4b4b-97ff-0c936453b31f"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn6" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=399627028]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 476.40253, -56.306057, 67.17511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 476.40253, -45.24777, 67.17511)
 script = ExtResource("7_cfqos")
 spawn_id = "77d39134-8c10-4249-a1d1-778238bc1c34"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn7" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1409055335]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 398.87115, -56.306057, 199.12825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 398.87115, -44.894108, 199.12825)
 script = ExtResource("7_cfqos")
 spawn_id = "8f1192ae-f4db-460a-90ee-80da001739b7"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn8" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1151570556]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 472.61057, -56.30606, 325.4619)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 472.61057, -50.181156, 325.4619)
 script = ExtResource("7_cfqos")
 spawn_id = "fbf444e3-a3f9-43fa-8dce-674a46926309"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn9" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1876868657]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 447.00568, -56.30606, 362.04504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 447.00568, -50.37986, 362.04504)
 script = ExtResource("7_cfqos")
 spawn_id = "48b4002b-9437-4a1b-8f94-a6b869a64688"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn10" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=305317681]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 590.0315, -54.910446, 444.91187)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 590.0315, -46.136528, 444.91187)
 script = ExtResource("7_cfqos")
 spawn_id = "9c7642ff-d1a3-4360-a458-33de656838c6"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn11" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1630350148]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 516.62506, -54.910446, 594.19434)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 516.62506, -46.186832, 594.19434)
 script = ExtResource("7_cfqos")
 spawn_id = "e2ceab8e-2c00-43d5-b39a-62c1c3dc7df2"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn12" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=1841735849]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 487.2216, -54.910446, 589.0449)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 487.2216, -46.34472, 589.0449)
 script = ExtResource("7_cfqos")
 spawn_id = "62f7444b-a4b6-49ff-a957-a0b7ab746fbc"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
 
 [node name="MobSpawn13" type="Marker3D" parent="MobSpawns/EaterPlant" unique_id=22484676]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.51083, -59.355778, 423.51782)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.51083, -55.186165, 423.51782)
 script = ExtResource("7_cfqos")
 spawn_id = "857ea037-7bf2-489a-b6cc-bd156ad4a26f"
 metadata/_custom_type_script = "uid://ddkbytbbno5om"
