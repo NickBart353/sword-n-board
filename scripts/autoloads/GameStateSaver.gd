@@ -236,6 +236,17 @@ func load_chest_data() -> Dictionary:
 		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
 	return save_file_resource.chest_items
 
+func reset_mob_data() -> void:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	save_file_resource.dead_mobs.clear()
+
+func reset_player_position(new_position: Marker3D) -> void:
+	if not save_file_resource:
+		save_file_resource = SaveFileManager.load_savefile(SaveFileManager.current_savefile_id)
+	save_file_resource.position = new_position.global_position
+	save_file_resource.rotation = new_position.global_rotation
+
 # worldloot / bossdrop
 func items_received():
 	pass

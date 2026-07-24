@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bt7gpwk7b4gi0" path="res://scenes/ui_scenes/loot_container/loot_container.tscn" id="14_u26ox"]
 [ext_resource type="PackedScene" uid="uid://duiwbm8tqdkrc" path="res://scenes/ui_scenes/chest_item_container.tscn" id="18_shs7f"]
 [ext_resource type="PackedScene" uid="uid://cgrqfpyk6s5l7" path="res://scenes/ui_scenes/world_loot_interface.tscn" id="19_k63b6"]
+[ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="20_2k0w7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evact"]
 content_margin_top = 10.0
@@ -41,6 +42,12 @@ border_color = Color(0.8646751, 0.86467516, 0.8646751, 0.5529412)
 [sub_resource type="LabelSettings" id="LabelSettings_shs7f"]
 font = ExtResource("13_evact")
 font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k63b6"]
+bg_color = Color(0.07284262, 0.072842635, 0.072842576, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k63b6"]
+font_size = 60
 
 [node name="GameMenus" type="CanvasLayer" unique_id=1661559513 groups=["BlockInput"]]
 process_mode = 3
@@ -274,6 +281,38 @@ visible = false
 [node name="WorldLootInterface" parent="." unique_id=612560250 instance=ExtResource("19_k63b6")]
 visible = false
 
+[node name="DeathScreen" type="PanelContainer" parent="." unique_id=1571013936]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("20_2k0w7")
+theme_override_styles/panel = SubResource("StyleBoxFlat_k63b6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathScreen" unique_id=1768954523]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="DeathScreen/VBoxContainer" unique_id=2102646165]
+layout_mode = 2
+size_flags_vertical = 6
+text = "You died"
+label_settings = SubResource("LabelSettings_k63b6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueAfterDeath" type="Button" parent="DeathScreen/VBoxContainer" unique_id=1942513605]
+layout_mode = 2
+text = "Continue from checkpoint"
+
+[node name="MainMenu" type="Button" parent="DeathScreen/VBoxContainer" unique_id=1030661435]
+layout_mode = 2
+text = "Main menu"
+
 [connection signal="timeout" from="Hud/EnemyHealthbarContainer/EnemyHealthbarTimer" to="Hud" method="_on_enemy_healthbar_timer_timeout"]
 [connection signal="update_player_items" from="Inventory" to="." method="_on_inventory_update_player_items"]
 [connection signal="continue_game" from="PauseMenu" to="." method="_on_pause_menu_continue_game"]
@@ -284,3 +323,5 @@ visible = false
 [connection signal="close_settings" from="SettingsMenu" to="." method="_on_settings_menu_close_settings"]
 [connection signal="done_checking" from="SettingsMenu" to="." method="_on_settings_menu_done_checking"]
 [connection signal="close_me" from="WorldLootInterface" to="." method="_on_world_loot_interface_close_me"]
+[connection signal="pressed" from="DeathScreen/VBoxContainer/ContinueAfterDeath" to="." method="_on_continue_after_death_pressed"]
+[connection signal="pressed" from="DeathScreen/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -4,6 +4,7 @@ extends CharacterBody3D
 #signal open_inventory
 #signal open_pause_menu
 signal spawn_projectile
+signal died
 
 @onready var input: Node = $InputController
 @onready var state_controller: Node = $StateController
@@ -637,7 +638,15 @@ func _on_buff_timeout(timer_ref: Timer):
 	timer_ref.queue_free()
 
 func _die():
-	print("game over")
+	field_of_view.stop_tracking()
+	died.emit()
+	
+	#TODO: Play death animation?
+
+func reset_stats() -> void:
+	update_HEALTH(MAX_HEALTH)
+	update_MANA(MAX_MANA)
+	STAMINA = MAX_STAMINA
 
 	#if freeflying:
 		#var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal return_to_main_menu
 signal player_stuck
+signal continue_game
 
 @onready var hud: Control = $Hud
 
@@ -11,6 +12,7 @@ signal player_stuck
 @onready var loot_container: LootContainer = $LootContainer
 @onready var chest_item_container: ChestItemContainer = $ChestItemContainer
 @onready var world_loot_interface: VBoxContainer = $WorldLootInterface
+@onready var death_screen: PanelContainer = $DeathScreen
 
 @export_group("Audio")
 @export var button_hover_sound: AudioStream
@@ -30,6 +32,7 @@ func _ready() -> void:
 	loot_container.hide()
 	chest_item_container.hide()
 	world_loot_interface.hide()
+	death_screen.hide()
 	
 	is_input_blocked = false
 	pause_menu_open = false
@@ -194,6 +197,20 @@ func block_input():
 func unblock_input():
 	is_input_blocked = false
 
+func show_death_screen() -> void:
+	death_screen.modulate = Color(255,255,255,0)
+	death_screen.show()
+	var tween: Tween = create_tween()
+	tween.tween_property(death_screen, "modulate", Color(255,255,255,255), 1)
+	tween.play()
+
+func hide_death_screen() -> void:
+	death_screen.modulate = Color(255,255,255,255)
+	var tween: Tween = create_tween()
+	tween.tween_property(death_screen, "modulate", Color(255,255,255,0), 1)
+	tween.finished.connect(death_screen.hide)
+	tween.play()
+
 func _on_settings_menu_close_settings() -> void:
 	close_settings()
 
@@ -223,3 +240,9 @@ func _on_world_loot_interface_close_me() -> void:
 
 func _on_pause_menu_player_stuck() -> void:
 	player_stuck.emit()
+
+func _on_continue_after_death_pressed() -> void:
+	continue_game.emit()
+
+func _on_main_menu_pressed() -> void:
+	return_to_main_menu.emit()

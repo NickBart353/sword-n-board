@@ -2,7 +2,7 @@ extends Main
 
 @export var main_menu_scene: String = &""
 
-@onready var game_menus: CanvasLayer = $GameMenus
+#@onready var game_menus: CanvasLayer = $GameMenus
 
 func _ready() -> void:
 	super()

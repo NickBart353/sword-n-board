@@ -4,6 +4,10 @@ extends Node3D
 const ITEM_SACK: PackedScene = preload("res://scenes/component_scenes/interactable/item_sack.tscn")
 const player_scene: PackedScene = preload("res://scenes/component_scenes/characters/player_new.tscn")
 
+@export var game_menus: CanvasLayer
+@export var mob_spawns: Node3D
+@export var player_spawn: Marker3D
+
 #@onready var main_ui = $CanvasLayer/MainUI
 var player: Player
 
@@ -21,6 +25,7 @@ func _ready() -> void:
 	
 	VfxManager.create_vfx.connect(_create_vfx)
 	
+	game_menus.continue_game.connect(_continue_game)
 	
 	#main_ui.update_items.connect(update_items)
 	GameStateSaver.start()
@@ -111,7 +116,7 @@ func _spawn_mobs(reset_mobs: bool = false):
 	if not reset_mobs:
 		mobspawn_data = GameStateSaver.load_mobspawn_data()
 	
-	for mob_spawn_group in $MobSpawns.get_children():
+	for mob_spawn_group in mob_spawns.get_children():
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
@@ -140,16 +145,37 @@ func _spawn_player():
 		if player_data.get("global_position"):
 			player.global_position = player_data.get("global_position") + Vector3(0.0 , 0.2, 0.0)
 		else:
-			player.global_position = $PlayerSpawn.global_position + Vector3(0.0 , 0.2, 0.0)
+			player.global_position = player_spawn.global_position + Vector3(0.0 , 0.2, 0.0)
 		 
 		#player.position_camera
 		if player_data.get("global_rotation"):
 			player.global_rotation = player_data.get("global_rotation")
 			player.rotate_camera(player_data.get("global_rotation"))
 		else:
-			player.rotate_camera($PlayerSpawn.global_rotation)
+			player.rotate_camera(player_spawn.global_rotation)
 		
 		#player.spirit = basic_player_resource.spirit
 	else:
-		player.global_position = $PlayerSpawn.global_position
-	player.spawn_projectile.connect(_spawn_projectile)
+		player.global_position = player_spawn.global_position
+	if not player.spawn_projectile.is_connected(_spawn_projectile):
+		player.spawn_projectile.connect(_spawn_projectile)
+	if not player.died.is_connected(_player_died):
+		player.died.connect(_player_died)
+
+func _player_died() -> void:
+	game_menus.show_death_screen()
+	_reset_mobs()
+	_reset_player()
+	GameStateSaver.save_game()
+
+func _reset_mobs() -> void:
+	GameStateSaver.reset_mob_data()
+	_spawn_mobs()
+
+func _reset_player() -> void:
+	player.reset_stats()
+	GameStateSaver.reset_player_position(player_spawn)
+
+func _continue_game() -> void:
+	_spawn_player()
+	game_menus.hide_death_screen()
