@@ -134,7 +134,17 @@ func _spawn_mobs(reset_mobs: bool = false):
 						if not mob_instance.died.is_connected(mob_spawn.mob_died):
 							mob_instance.died.connect(mob_spawn.mob_died)
 
+func _remove_mobs() -> void:
+	for mob_spawn_group in mob_spawns.get_children():
+		if mob_spawn_group is MobTypePicker:
+			for mob_spawn in mob_spawn_group.get_children():
+				if mob_spawn is MobSpawn:
+					for mob in mob_spawn.get_children():
+						mob.queue_free()
+
 func _spawn_player():
+	if player:
+		player.queue_free()
 	player = player_scene.instantiate()
 	var player_data: Dictionary = GameStateSaver.get_player_data()
 	add_child(player)
@@ -166,16 +176,19 @@ func _player_died() -> void:
 	game_menus.show_death_screen()
 	_reset_mobs()
 	_reset_player()
+	GameStateSaver.stop()
 	GameStateSaver.save_game()
 
 func _reset_mobs() -> void:
 	GameStateSaver.reset_mob_data()
-	_spawn_mobs()
+	_remove_mobs()
 
 func _reset_player() -> void:
 	player.reset_stats()
 	GameStateSaver.reset_player_position(player_spawn)
 
 func _continue_game() -> void:
+	_spawn_mobs()
 	_spawn_player()
+	GameStateSaver.start()
 	game_menus.hide_death_screen()

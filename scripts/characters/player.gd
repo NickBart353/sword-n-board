@@ -131,6 +131,7 @@ func _ready() -> void:
 	#_check_unequipped_slots()
 	#new_player_items(null, null, null, null, null)
 	UiController.player_spawned()
+	print("Spawned")
 
 func _update_rotation_modifier(new_rotation_modifier: float) -> void:
 	rotation_modifier = new_rotation_modifier
