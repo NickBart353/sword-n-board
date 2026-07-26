@@ -333,6 +333,8 @@ func _add_item_to_inventory(item: Item):
 			find_index = i
 			break
 	if find_index == -1 or not item.data.stackable:
+		if item.data.unique_id == "" or item.data.unique_id == null:
+			item.data.unique_id = UuidGenerator.uuid4()
 		player_items.append(item)
 	else:
 		player_items[find_index].data.stack_size += item.data.stack_size

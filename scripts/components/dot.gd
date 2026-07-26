@@ -44,7 +44,6 @@ func activate(activate_explosion:bool = false):
 		particle_effect.restart()
 	if activate_explosion:
 		explosion.restart()
-	Camera3D
 
 
 func _process(_delta: float) -> void:

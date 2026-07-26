@@ -143,11 +143,10 @@ func _remove_mobs() -> void:
 						mob.queue_free()
 
 func _spawn_player():
-	if player:
-		player.queue_free()
-	player = player_scene.instantiate()
+	if not player:
+		player = player_scene.instantiate()
+		add_child(player)
 	var player_data: Dictionary = GameStateSaver.get_player_data()
-	add_child(player)
 	if player_data:
 		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
 		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
@@ -167,6 +166,9 @@ func _spawn_player():
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = player_spawn.global_position
+	
+	player.instantiate_data()
+	
 	if not player.spawn_projectile.is_connected(_spawn_projectile):
 		player.spawn_projectile.connect(_spawn_projectile)
 	if not player.died.is_connected(_player_died):
@@ -177,7 +179,8 @@ func _player_died() -> void:
 	_reset_mobs()
 	_reset_player()
 	GameStateSaver.stop()
-	GameStateSaver.save_game()
+	GameStateSaver.save_next()
+	CombatManager.clear_combat()
 
 func _reset_mobs() -> void:
 	GameStateSaver.reset_mob_data()

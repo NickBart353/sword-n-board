@@ -1,6 +1,7 @@
 extends Node
 
 signal get_items_from_inventory
+signal saved
 
 var basic_data_timer: Timer
 
@@ -20,6 +21,7 @@ var temp_consumable: ItemData
 var temp_consumable_list: Array[ItemData]
 
 func _ready() -> void:
+	set_process(false)
 	CombatManager.left_combat.connect(_save_everything)
 	SaveFileManager.new_savefile_loaded.connect(_update_savefile)
 	
@@ -32,6 +34,10 @@ func _ready() -> void:
 	if not basic_data_timer.timeout.is_connected(_basic_timer_timeout):
 		basic_data_timer.timeout.connect(_basic_timer_timeout)
 	add_child(basic_data_timer)
+
+func _process(_delta: float) -> void:
+	if WorkerThreadPool.is_task_completed(current_savemanager_task_id):
+		saved.emit()
 
 func _update_savefile(new_savefile_id: String) -> void:
 	save_file_resource = SaveFileManager.load_savefile(new_savefile_id)
@@ -194,6 +200,15 @@ func _basic_timer_timeout() -> void:
 
 func save_game() -> void:
 	_save()
+
+func save_next() -> void:
+	set_process(true)
+	
+	await saved
+	print("save next")
+	print("completed: ", WorkerThreadPool.is_task_completed(current_savemanager_task_id))
+	set_process(false)
+	save_game()
 
 func get_player_data() -> Dictionary:
 	if not save_file_resource:
