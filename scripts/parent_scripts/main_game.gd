@@ -7,6 +7,7 @@ const player_scene: PackedScene = preload("res://scenes/component_scenes/charact
 @export var game_menus: CanvasLayer
 @export var mob_spawns: Node3D
 @export var player_spawn: Marker3D
+@export var world_loot: Node3D
 
 #@onready var main_ui = $CanvasLayer/MainUI
 var player: Player
@@ -103,7 +104,7 @@ func _load_chests() -> void:
 
 func _spawn_world_loot() -> void:
 	var event_data: Dictionary = GameStateSaver.load_world_event_data()
-	for loot_container in $WorldLoot.get_children():
+	for loot_container in world_loot.get_children():
 		if loot_container is WorldLootContainer:
 			if event_data:
 				if event_data.get(loot_container.world_event_hash) != null:
@@ -134,10 +135,20 @@ func _spawn_mobs(reset_mobs: bool = false):
 						if not mob_instance.died.is_connected(mob_spawn.mob_died):
 							mob_instance.died.connect(mob_spawn.mob_died)
 
+func _remove_mobs() -> void:
+	for mob_spawn_group in mob_spawns.get_children():
+		if mob_spawn_group is MobTypePicker:
+			for mob_spawn in mob_spawn_group.get_children():
+				if mob_spawn is MobSpawn:
+					mob_spawn.is_my_mob_dead = false
+					for mob in mob_spawn.get_children():
+						mob.queue_free()
+
 func _spawn_player():
-	player = player_scene.instantiate()
+	if not player:
+		player = player_scene.instantiate()
+		add_child(player)
 	var player_data: Dictionary = GameStateSaver.get_player_data()
-	add_child(player)
 	if player_data:
 		player.HEALTH = player_data.get("HEALTH") if player_data.get("HEALTH") else player.MAX_HEALTH
 		player.STAMINA = player_data.get("STAMINA") if player_data.get("STAMINA") else player.MAX_STAMINA
@@ -157,25 +168,32 @@ func _spawn_player():
 		#player.spirit = basic_player_resource.spirit
 	else:
 		player.global_position = player_spawn.global_position
+	
+	player.instantiate_data()
+	
 	if not player.spawn_projectile.is_connected(_spawn_projectile):
 		player.spawn_projectile.connect(_spawn_projectile)
 	if not player.died.is_connected(_player_died):
 		player.died.connect(_player_died)
 
 func _player_died() -> void:
+	GameStateSaver.stop()
 	game_menus.show_death_screen()
 	_reset_mobs()
 	_reset_player()
-	GameStateSaver.save_game()
+	CombatManager.clear_combat()
+	GameStateSaver.save_next()
 
 func _reset_mobs() -> void:
 	GameStateSaver.reset_mob_data()
-	_spawn_mobs()
+	_remove_mobs()
 
 func _reset_player() -> void:
 	player.reset_stats()
 	GameStateSaver.reset_player_position(player_spawn)
 
 func _continue_game() -> void:
+	_spawn_mobs()
 	_spawn_player()
+	GameStateSaver.start()
 	game_menus.hide_death_screen()

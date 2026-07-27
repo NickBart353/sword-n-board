@@ -1,5 +1,7 @@
 class_name WorldLootContainer extends Area3D
 
+const RESET_POSITION: Vector3 = Vector3(-10000, -10000, -10000)
+
 @onready var interactable: Interactable = $Interactable
 
 @export var world_event_hash: String
@@ -18,5 +20,6 @@ func _on_interactable__interact() -> void:
 
 func disable_monitoring() -> void:
 	hide()
+	global_position = RESET_POSITION
 	monitorable = false
 	monitoring = false

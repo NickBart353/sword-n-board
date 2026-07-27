@@ -20,3 +20,6 @@ func remove_unit() -> void:
 
 func is_in_combat() -> bool:
 	return combat_units > 0
+
+func clear_combat() -> void:
+	combat_units = 0

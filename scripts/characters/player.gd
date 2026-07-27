@@ -110,17 +110,9 @@ func _ready() -> void:
 	$AnimationTreeNew.active = true
 	###DEBUG END
 	PlayerControls.set_player_camera(field_of_view)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	HEALTH = MAX_HEALTH
-	STAMINA = MAX_STAMINA
-	MANA = MAX_MANA
-	UiController.update_healthbar(HEALTH)
-	UiController.update_staminabar(STAMINA)
-	UiController.update_manabar(MANA)
+	
 	UiController.new_player_items.connect(new_player_items)
 	UiController.new_consumable.connect(_new_consumable)
-	look_rotation.y = rotation.y
-	look_rotation.x = player_camera.rotation.x
 	movement.update_rotation_modifier.connect(_update_rotation_modifier)
 	$AbilityController/CastAttack.spawn_magic_projectile.connect(_spawn_projectile)
 	$AbilityController/ShootAttack.spawn_projectile.connect(_spawn_projectile)
@@ -130,7 +122,18 @@ func _ready() -> void:
 	consume.start_consuming.connect(_start_consuming)
 	#_check_unequipped_slots()
 	#new_player_items(null, null, null, null, null)
+	instantiate_data()
+
+func instantiate_data() -> void:
+	input.unblock_input()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	UiController.update_healthbar(HEALTH)
+	UiController.update_staminabar(STAMINA)
+	UiController.update_manabar(MANA)
+	look_rotation.y = rotation.y
+	look_rotation.x = player_camera.rotation.x
 	UiController.player_spawned()
+	field_of_view.continue_tracking()
 
 func _update_rotation_modifier(new_rotation_modifier: float) -> void:
 	rotation_modifier = new_rotation_modifier
@@ -638,6 +641,7 @@ func _on_buff_timeout(timer_ref: Timer):
 	timer_ref.queue_free()
 
 func _die():
+	input.block_input()
 	field_of_view.stop_tracking()
 	died.emit()
 	
