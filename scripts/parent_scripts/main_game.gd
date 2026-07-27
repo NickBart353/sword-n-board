@@ -7,6 +7,7 @@ const player_scene: PackedScene = preload("res://scenes/component_scenes/charact
 @export var game_menus: CanvasLayer
 @export var mob_spawns: Node3D
 @export var player_spawn: Marker3D
+@export var world_loot: Node3D
 
 #@onready var main_ui = $CanvasLayer/MainUI
 var player: Player
@@ -103,7 +104,7 @@ func _load_chests() -> void:
 
 func _spawn_world_loot() -> void:
 	var event_data: Dictionary = GameStateSaver.load_world_event_data()
-	for loot_container in $WorldLoot.get_children():
+	for loot_container in world_loot.get_children():
 		if loot_container is WorldLootContainer:
 			if event_data:
 				if event_data.get(loot_container.world_event_hash) != null:
@@ -139,6 +140,7 @@ func _remove_mobs() -> void:
 		if mob_spawn_group is MobTypePicker:
 			for mob_spawn in mob_spawn_group.get_children():
 				if mob_spawn is MobSpawn:
+					mob_spawn.is_my_mob_dead = false
 					for mob in mob_spawn.get_children():
 						mob.queue_free()
 
@@ -175,12 +177,12 @@ func _spawn_player():
 		player.died.connect(_player_died)
 
 func _player_died() -> void:
+	GameStateSaver.stop()
 	game_menus.show_death_screen()
 	_reset_mobs()
 	_reset_player()
-	GameStateSaver.stop()
-	GameStateSaver.save_next()
 	CombatManager.clear_combat()
+	GameStateSaver.save_next()
 
 func _reset_mobs() -> void:
 	GameStateSaver.reset_mob_data()

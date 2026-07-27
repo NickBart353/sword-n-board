@@ -199,6 +199,7 @@ func unblock_input():
 
 func show_death_screen() -> void:
 	death_screen.modulate = Color(1,1,1,0)
+	hud.hide()
 	death_screen.show()
 	var tween: Tween = create_tween()
 	tween.tween_property(death_screen, "modulate", Color(1,1,1,1), 1)
@@ -207,6 +208,7 @@ func show_death_screen() -> void:
 
 func hide_death_screen() -> void:
 	death_screen.modulate = Color(1,1,1,1)
+	hud.show()
 	var tween: Tween = create_tween()
 	tween.tween_property(death_screen, "modulate", Color(1,1,1,0), 1)
 	tween.finished.connect(death_screen.hide)

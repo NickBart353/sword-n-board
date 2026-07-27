@@ -449,12 +449,13 @@ sprite = SubResource("CompressedTexture2D_lj4lb")
 item_type = 4
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
 
-[node name="Main" type="Node3D" unique_id=1238575973 node_paths=PackedStringArray("game_menus", "mob_spawns", "player_spawn")]
+[node name="Main" type="Node3D" unique_id=1238575973 node_paths=PackedStringArray("game_menus", "mob_spawns", "player_spawn", "world_loot")]
 script = ExtResource("1_t5sjj")
 main_menu_scene = "uid://rq8vovc7ih5t"
 game_menus = NodePath("GameMenus")
 mob_spawns = NodePath("MobSpawns")
 player_spawn = NodePath("PlayerSpawn")
+world_loot = NodePath("WorldLoot")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=893180735]
 environment = ExtResource("2_5amgp")

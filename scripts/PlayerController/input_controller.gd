@@ -20,7 +20,9 @@ var ability_three: bool
 var skip_one: bool
 var skip_process_once: bool
 
-func _process(delta: float) -> void:
+var block_input_by_player: bool = false
+
+func _process(_delta: float) -> void:
 	if PlayerControls.input_blocked():
 		if skip_process_once:
 			skip_process_once = false
@@ -31,9 +33,18 @@ func _process(delta: float) -> void:
 			interact = false
 			skip_one = true
 
+func block_input() -> void:
+	block_input_by_player = true
+
+func unblock_input() -> void:
+	block_input_by_player = false
+
 func get_input(_delta: float):
 	if skip_one:
 		skip_one = false
+		return
+	
+	if block_input_by_player:
 		return
 	
 	interact = Input.is_action_just_pressed("Interact")

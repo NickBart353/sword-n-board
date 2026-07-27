@@ -125,6 +125,7 @@ func _ready() -> void:
 	instantiate_data()
 
 func instantiate_data() -> void:
+	input.unblock_input()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	UiController.update_healthbar(HEALTH)
 	UiController.update_staminabar(STAMINA)
@@ -640,6 +641,7 @@ func _on_buff_timeout(timer_ref: Timer):
 	timer_ref.queue_free()
 
 func _die():
+	input.block_input()
 	field_of_view.stop_tracking()
 	died.emit()
 	
