@@ -36,8 +36,11 @@ func _ready() -> void:
 	add_child(basic_data_timer)
 
 func _process(_delta: float) -> void:
-	if WorkerThreadPool.is_task_completed(current_savemanager_task_id):
-		saved.emit()
+	if current_savemanager_task_id:
+		if WorkerThreadPool.is_task_completed(current_savemanager_task_id):
+			saved.emit()
+	else:
+		set_process(false)
 
 func _update_savefile(new_savefile_id: String) -> void:
 	save_file_resource = SaveFileManager.load_savefile(new_savefile_id)

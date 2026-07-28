@@ -70,7 +70,7 @@ func Enter():
 	player_time_accumulator = 0.0
 	active_toxic_grounds.clear()
 	active_toxic_ground_counter = 0
-	AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
+	#AudioManager.play_audio_from_resource(audio_resource, enemy.global_position, AudioManager.BUS.SFX, offset_audio, audio_volume, audio_max_range)
 	fired = false
 	all_fired = false
 	first_exploded = false
@@ -155,6 +155,7 @@ func sort_by_distance_to_player(a: Vector3, b: Vector3) -> bool:
 	return a.distance_squared_to(player.global_position) < b.distance_squared_to(player.global_position)
 
 func _move_bombs(delta: float) -> void:
+	var bombs_to_remove: Array[int] = []
 	for instance_id in bomb_positions:
 		bomb_positions[instance_id].y -= gravity_strength * delta
 		bomb_velocity[instance_id] += bomb_positions[instance_id] * delta    
@@ -165,16 +166,19 @@ func _move_bombs(delta: float) -> void:
 		PhysicsServer3D.area_set_transform(bomb_rid_map[instance_id], new_global_transform)
 		
 		if new_global_transform.origin.distance_squared_to(enemy.global_position) > max_distance_to_enemy:
-			var rid: RID = bomb_rid_map.get(instance_id)
-			enemy.bomb_multi_mesh.multimesh.set_instance_transform(instance_id, Transform3D(Basis(), enemy.RESET_POSITION))
-			bomb_positions.erase(instance_id)
-			bomb_velocity.erase(instance_id)
-			bomb_rid_map.erase(instance_id)
-			rid_bomb_map.erase(rid)
-			area_rids.erase(rid)
-			
-			PhysicsServer3D.call_deferred("free_rid", rid)
-
+			bombs_to_remove.append(instance_id)
+			#var rid: RID = bomb_rid_map.get(instance_id)
+			#enemy.bomb_multi_mesh.multimesh.set_instance_transform(instance_id, Transform3D(Basis(), enemy.RESET_POSITION))
+			#bomb_positions.erase(instance_id)
+			#bomb_velocity.erase(instance_id)
+			#bomb_rid_map.erase(instance_id)
+			#rid_bomb_map.erase(rid)
+			#area_rids.erase(rid)
+			#
+			#PhysicsServer3D.call_deferred("free_rid", rid)
+	for bomb in bombs_to_remove:
+		_cleanup_bomb(bomb)
+	
 	if bomb_positions.is_empty():
 		all_fired = true
 		cooldown_timer.start()
@@ -184,15 +188,18 @@ func _move_bombs(delta: float) -> void:
 		burst_finished()
 
 func _clear_ghost_rids() -> void:
-	for rid in area_rids:
-		var bomb_id: int = rid_bomb_map[rid]
-		bomb_velocity.erase(bomb_id)
-		bomb_rid_map.erase(bomb_id)
-		bomb_positions.erase(bomb_id)
-		rid_bomb_map.erase(rid)
+	for i in range(area_rids.size() - 1, -1, -1):
+		var rid: RID = area_rids[i]
+				
+		if rid_bomb_map.has(rid):
+			var bomb_id: int = rid_bomb_map[rid]
+			bomb_velocity.erase(bomb_id)
+			bomb_rid_map.erase(bomb_id)
+			bomb_positions.erase(bomb_id)
+			rid_bomb_map.erase(rid)
 		
 		PhysicsServer3D.call_deferred("free_rid", rid)
-		area_rids.erase(rid)
+		area_rids.remove_at(i)
 
 func burst_finished():
 	Transitioned.emit(self, "Follow")
@@ -202,12 +209,12 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	if not rid_bomb_map.has(area_rid):
 		return
 	
-	
 	var bomb_id: int = rid_bomb_map.get(area_rid)
 	
 	var nody: Node = instance_from_id(object_id)
 	if nody is Player:
 		nody.take_damage(poison_burst_damage, enemy, true, false)
+		_cleanup_bomb(bomb_id)
 		return
 	else:
 		pass
@@ -216,7 +223,6 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 	active_toxic_ground_counter += 1
 	var toxic_ground_scene: DOT = ObjectPooler.get_free_toxic_ground()
 	toxic_ground_scene.duration_timer.wait_time = 10
-	AudioManager.play_audio_from_resource(audio_resource, impact_location, AudioManager.BUS.SFX, 0.05, 15, 5)
 	
 	if impact_location.distance_squared_to(player.global_position) < 15 and PlayerControls.is_position_in_frustrum(impact_location):
 		toxic_ground_scene.activate(true)
@@ -229,14 +235,23 @@ func _bomb_collided(_status: int, _body_rid: RID, object_id: int, _body_shape_id
 		toxic_ground_scene.dot_finished.connect(toxic_ground_finished_callable)
 	active_toxic_grounds.append(toxic_ground_scene)
 	
+	_cleanup_bomb(bomb_id)
+
+func _cleanup_bomb(bomb_id: int) -> void:
+	if not bomb_positions.has(bomb_id): 
+		return
+		
+	var rid: RID = bomb_rid_map[bomb_id]
+	
 	enemy.bomb_multi_mesh.multimesh.set_instance_transform(bomb_id, Transform3D(Basis(), enemy.RESET_POSITION))
+	
 	bomb_positions.erase(bomb_id)
 	bomb_velocity.erase(bomb_id)
 	bomb_rid_map.erase(bomb_id)
-	rid_bomb_map.erase(area_rid)
-	area_rids.erase(area_rid)
+	rid_bomb_map.erase(rid)
+	area_rids.erase(rid)
 	
-	PhysicsServer3D.call_deferred("free_rid", area_rid)
+	PhysicsServer3D.call_deferred("free_rid", rid)
 
 func _reset_ground(toxic_ground_instance: DOT) -> void:
 	ObjectPooler.reset_object(toxic_ground_instance)
