@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 	var load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
 	if progress.size() > 0:
 		progress_changed.emit(progress[0])
-	
+		print(progress[0])
 	match load_status:
 		ResourceLoader.THREAD_LOAD_INVALID_RESOURCE, ResourceLoader.THREAD_LOAD_FAILED:
 			print("invaid... sceneloader.gd")

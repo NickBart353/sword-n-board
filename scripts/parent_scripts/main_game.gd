@@ -118,9 +118,9 @@ func _spawn_mobs(reset_mobs: bool = false):
 		mobspawn_data = GameStateSaver.load_mobspawn_data()
 	
 	for mob_spawn_group in mob_spawns.get_children():
-		if mob_spawn_group is MobTypePicker:
+		if mob_spawn_group is MobTypePicker and not mob_spawn_group.disable_group:
 			for mob_spawn in mob_spawn_group.get_children():
-				if mob_spawn is MobSpawn:
+				if mob_spawn is MobSpawn and not mob_spawn.disable_mob:
 					#print("spawn_name: ", mob_spawn.spawn_id)
 					if not reset_mobs and mobspawn_data:
 						if mobspawn_data.get(mob_spawn.spawn_id) != null:

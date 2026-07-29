@@ -3,6 +3,7 @@ class_name MobSpawn extends Marker3D
 
 @export var spawn_id: String = ""
 @export var button: bool = false : set = set_id
+@export var disable_mob: bool = false
 
 func set_id(new_value: bool) -> void:
 	spawn_id = UuidGenerator.uuid4()
