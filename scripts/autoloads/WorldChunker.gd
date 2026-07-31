@@ -131,11 +131,17 @@ func _set_chunks_to_load() -> void:
 
 func _reload_mobs() -> void:
 	var mobspawns_to_load: Array[MobSpawn] = []
+	var mobspawns_to_unload: Array[MobSpawn] = []
 	for _chunk in chunks_to_load:
 		if _chunk in currently_loaded_chunks:
 			continue
 		if chunk_enemy_mapping.get(_chunk) != null:
 			mobspawns_to_load.append_array(chunk_enemy_mapping[_chunk])
 	
+	for _chunk in currently_loaded_chunks:
+		if not _chunk in chunks_to_load:
+			if chunk_enemy_mapping.has(_chunk):
+				mobspawns_to_unload.append_array(chunk_enemy_mapping[_chunk])
+	
 	currently_loaded_chunks = chunks_to_load.duplicate()
-	reload_enemies.emit(mobspawns_to_load)
+	reload_enemies.emit(mobspawns_to_load, mobspawns_to_unload)

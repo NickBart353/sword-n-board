@@ -15,6 +15,7 @@ var player: Player
 var mobspawn_data: Dictionary
 
 var processing_queue: Array[MobSpawn] = []
+var remove_queue: Array[MobSpawn] = []
 var _enemies: Dictionary[String, MobSpawn] = {}
 
 var spawn_queue_counter: int = 0
@@ -45,24 +46,33 @@ func _ready() -> void:
 	GameStateSaver.start()
 
 func _process(_delta: float) -> void:
-	if processing_queue.is_empty():
+	if not processing_queue.is_empty():
+		var _mobspawn: MobSpawn = processing_queue.pop_back()
+		
+		_mobspawn = _enemies[_mobspawn.spawn_id]
+		var mob_spawn_group: MobTypePicker = _mobspawn.get_parent()
+		
+		if mobspawn_data.get(_mobspawn.spawn_id) != null:
+			if mobspawn_data.get(_mobspawn.spawn_id) == true:
+				return
+		var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
+		if mob_instance:
+			_mobspawn.add_child(mob_instance)
+			if mob_spawn_group.mob != MobManager.MOBS.WASP:
+				mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
+			if not mob_instance.died.is_connected(_mobspawn.mob_died):
+				mob_instance.died.connect(_mobspawn.mob_died)
+	elif not remove_queue.is_empty():
+		var _mobspawn: MobSpawn = remove_queue.pop_back()
+		
+		_mobspawn = _enemies[_mobspawn.spawn_id]
+		
+		if mobspawn_data.get(_mobspawn.spawn_id) != null:
+			if mobspawn_data.get(_mobspawn.spawn_id) == true:
+				return
+		_mobspawn.queue_free()
+	else:
 		set_process(false)
-		return
-	var _mobspawn: MobSpawn = processing_queue.pop_back()
-	
-	_mobspawn = _enemies[_mobspawn.spawn_id]
-	var mob_spawn_group: MobTypePicker = _mobspawn.get_parent()
-	
-	if mobspawn_data.get(_mobspawn.spawn_id) != null:
-		if mobspawn_data.get(_mobspawn.spawn_id) == true:
-			return
-	var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
-	if mob_instance:
-		_mobspawn.add_child(mob_instance)
-		if mob_spawn_group.mob != MobManager.MOBS.WASP:
-			mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
-		if not mob_instance.died.is_connected(_mobspawn.mob_died):
-			mob_instance.died.connect(_mobspawn.mob_died)
 
 func _enemy_died(enemy: Node3D):
 	_generate_loot_on_enemy_death(enemy.global_position, enemy)
@@ -83,9 +93,10 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy: Enemy):
 	vfx_instance.global_position = loot_position
 	vfx_instance.play()
 
-func _reload_enemies(enemies_to_load: Array[MobSpawn]) -> void:
+func _reload_enemies(enemies_to_load: Array[MobSpawn], enemies_to_unload: Array[MobSpawn]) -> void:
 	mobspawn_data = GameStateSaver.load_mobspawn_data()
 	processing_queue = enemies_to_load
+	remove_queue = enemies_to_unload
 	set_process(true)
 
 func _change_ui_state(show_ui: bool):
