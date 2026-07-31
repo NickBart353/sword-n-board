@@ -478,7 +478,6 @@ charge_timer = NodePath("../../../Timers/EruptionTimer")
 follow_up_state = NodePath("../../TentacleEruptionNew")
 look_at_target = false
 cool_down_timer = NodePath("../../../Timers/EruptionCooldown")
-disable_me = true
 ground_raycast = NodePath("../../../TentacleSpikeMultimesh/RayCast3D")
 enemy = NodePath("../../..")
 anim_tree = NodePath("../../../AnimationTree")

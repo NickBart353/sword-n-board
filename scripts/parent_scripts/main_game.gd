@@ -70,7 +70,8 @@ func _process(_delta: float) -> void:
 		if mobspawn_data.get(_mobspawn.spawn_id) != null:
 			if mobspawn_data.get(_mobspawn.spawn_id) == true:
 				return
-		_mobspawn.queue_free()
+		for mob in _mobspawn.get_children():
+			mob.queue_free()
 	else:
 		set_process(false)
 
@@ -220,6 +221,7 @@ func _player_died() -> void:
 	game_menus.show_death_screen()
 	_reset_mobs()
 	_reset_player()
+	WorldChunker.stop_rendering()
 	CombatManager.clear_combat()
 	GameStateSaver.save_next()
 
@@ -232,8 +234,11 @@ func _reset_player() -> void:
 	GameStateSaver.reset_player_position(player_spawn)
 
 func _continue_game() -> void:
-	#_spawn_mobs()
-	push_error("IMPLEMENT RESPAWNING MOBS REEE")
 	_spawn_player()
+	WorldChunker.rechunk()
 	GameStateSaver.start()
 	game_menus.hide_death_screen()
+
+func _exit_tree() -> void:
+	GameStateSaver.stop()
+	WorldChunker.stop_rendering()

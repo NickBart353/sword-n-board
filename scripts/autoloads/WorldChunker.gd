@@ -5,8 +5,8 @@ signal reload_enemies
 var player: Player
 var player_chunk: Vector2i
 
-var grid_size: float = 20
-var loaded_grid_size: int = 5
+var grid_size: float = 25
+var loaded_grid_size: int = 7
 
 var enemy_spawns: Array[MobSpawn] #MobSpawn is just an extension of Marker3D with a couple extra properties, such as spawn_id (String) and is_my_mob_dead (bool)
 var smallest_x: float = 0
@@ -82,10 +82,14 @@ func chunk(enemies: Array[MobSpawn]) -> void:
 			chunk_enemy_mapping[grid] = []
 		chunk_enemy_mapping[grid].append(enemy_spawn)
 	
+	rechunk()
+
+func rechunk() -> void:
+	currently_loaded_chunks = []
+	chunks_to_load = []
 	_set_player_chunk()
 	_set_chunks_to_load()
 	_reload_mobs()
-	
 	time_accumulator = 0
 	set_physics_process(true)
 
@@ -106,10 +110,10 @@ func _physics_process(delta: float) -> void:
 	
 	time_accumulator += delta
 	if time_accumulator >= time_goal_seconds:
-		time_accumulator = 0
 		_set_player_chunk()
 		_set_chunks_to_load()
 		_reload_mobs()
+		time_accumulator = 0
 
 func _set_player_chunk() -> void:
 	player_chunk = _get_grid_from_position(player.global_position)
