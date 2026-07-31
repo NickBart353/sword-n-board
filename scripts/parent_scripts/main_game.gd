@@ -12,12 +12,26 @@ const player_scene: PackedScene = preload("res://scenes/component_scenes/charact
 #@onready var main_ui = $CanvasLayer/MainUI
 var player: Player
 
+var mobspawn_data: Dictionary
+
+var processing_queue: Array[MobSpawn] = []
+var remove_queue: Array[MobSpawn] = []
+var _enemies: Dictionary[String, MobSpawn] = {}
+
+var spawn_queue_counter: int = 0
+var spawn_queue_counter_limit: int = 0
+
 func _ready() -> void:
 	#DataManager.connect_db()
-	_spawn_mobs()
+	#_spawn_mobs()
+	_assign_mobspawns_to_dict()
 	_spawn_world_loot()
 	_load_chests()
 	_spawn_player()
+	
+	WorldChunker.reload_enemies.connect(_reload_enemies)
+	WorldChunker.set_player(player)
+	WorldChunker.chunk(_enemies.values())
 	
 	#EventBus.close_container.connect(_close_container)
 	#EventBus.open_container.connect(_open_container)
@@ -30,6 +44,36 @@ func _ready() -> void:
 	
 	#main_ui.update_items.connect(update_items)
 	GameStateSaver.start()
+
+func _process(_delta: float) -> void:
+	if not processing_queue.is_empty():
+		var _mobspawn: MobSpawn = processing_queue.pop_back()
+		
+		_mobspawn = _enemies[_mobspawn.spawn_id]
+		var mob_spawn_group: MobTypePicker = _mobspawn.get_parent()
+		
+		if mobspawn_data.get(_mobspawn.spawn_id) != null:
+			if mobspawn_data.get(_mobspawn.spawn_id) == true:
+				return
+		var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
+		if mob_instance:
+			_mobspawn.add_child(mob_instance)
+			if mob_spawn_group.mob != MobManager.MOBS.WASP:
+				mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
+			if not mob_instance.died.is_connected(_mobspawn.mob_died):
+				mob_instance.died.connect(_mobspawn.mob_died)
+	elif not remove_queue.is_empty():
+		var _mobspawn: MobSpawn = remove_queue.pop_back()
+		
+		_mobspawn = _enemies[_mobspawn.spawn_id]
+		
+		if mobspawn_data.get(_mobspawn.spawn_id) != null:
+			if mobspawn_data.get(_mobspawn.spawn_id) == true:
+				return
+		for mob in _mobspawn.get_children():
+			mob.queue_free()
+	else:
+		set_process(false)
 
 func _enemy_died(enemy: Node3D):
 	_generate_loot_on_enemy_death(enemy.global_position, enemy)
@@ -50,22 +94,11 @@ func _generate_loot_on_enemy_death(loot_position: Vector3, enemy: Enemy):
 	vfx_instance.global_position = loot_position
 	vfx_instance.play()
 
-#func open_inventory(inventory: Array, head: Item, body: Item, boots: Item, main_hand: Item, off_hand: Item, consumable: Item):
-	#var show_ui = not main_ui.get_ui()
-	#_change_ui_state(show_ui)
-	#
-	#main_ui.fill_character_items(inventory, head, body, boots, main_hand, off_hand, consumable)
-	#main_ui.open_inventory()
-
-#func _open_container(container: Node):
-	#_change_ui_state(true)
-	#main_ui.fill_player_items(player.items, player.head_item, player.body_item, player.boots_item, player.main_hand_item, player.off_hand_item, player.consumable_item)
-	#main_ui.fill_loot(container.items)
-	#main_ui.open_sack(container)
-
-#func _close_container(_container):
-	#_change_ui_state(false)
-	#main_ui.close_sack(_container)
+func _reload_enemies(enemies_to_load: Array[MobSpawn], enemies_to_unload: Array[MobSpawn]) -> void:
+	mobspawn_data = GameStateSaver.load_mobspawn_data()
+	processing_queue = enemies_to_load
+	remove_queue = enemies_to_unload
+	set_process(true)
 
 func _change_ui_state(show_ui: bool):
 	$CanvasLayer.set_visible(show_ui)
@@ -102,6 +135,13 @@ func _load_chests() -> void:
 		if chest_data.get(chest.chest_id) != null:
 			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_itemdata)
 
+func _assign_mobspawns_to_dict() -> void:
+	for mob_spawn_group in mob_spawns.get_children():
+		if mob_spawn_group is MobTypePicker:
+			for mob_spawn in mob_spawn_group.get_children():
+				if mob_spawn is MobSpawn and not mob_spawn.disable_mob:
+					_enemies[mob_spawn.spawn_id] = mob_spawn
+
 func _spawn_world_loot() -> void:
 	var event_data: Dictionary = GameStateSaver.load_world_event_data()
 	for loot_container in world_loot.get_children():
@@ -112,28 +152,28 @@ func _spawn_world_loot() -> void:
 					loot_container.disable_monitoring()
 					continue
 
-func _spawn_mobs(reset_mobs: bool = false):
-	var mobspawn_data: Dictionary
-	if not reset_mobs:
-		mobspawn_data = GameStateSaver.load_mobspawn_data()
-	
-	for mob_spawn_group in mob_spawns.get_children():
-		if mob_spawn_group is MobTypePicker and not mob_spawn_group.disable_group:
-			for mob_spawn in mob_spawn_group.get_children():
-				if mob_spawn is MobSpawn and not mob_spawn.disable_mob:
-					#print("spawn_name: ", mob_spawn.spawn_id)
-					if not reset_mobs and mobspawn_data:
-						if mobspawn_data.get(mob_spawn.spawn_id) != null:
-							if mobspawn_data.get(mob_spawn.spawn_id) == true:
-								mob_spawn.is_my_mob_dead = true
-								continue
-					var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
-					if mob_instance:
-						mob_spawn.add_child(mob_instance)
-						if mob_spawn_group.mob != MobManager.MOBS.WASP:
-							mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
-						if not mob_instance.died.is_connected(mob_spawn.mob_died):
-							mob_instance.died.connect(mob_spawn.mob_died)
+#func _spawn_mobs(reset_mobs: bool = false):
+	#var mobspawn_data: Dictionary
+	#if not reset_mobs:
+		#mobspawn_data = GameStateSaver.load_mobspawn_data()
+	#
+	#for mob_spawn_group in mob_spawns.get_children():
+		#if mob_spawn_group is MobTypePicker and not mob_spawn_group.disable_group:
+			#for mob_spawn in mob_spawn_group.get_children():
+				#if mob_spawn is MobSpawn and not mob_spawn.disable_mob:
+					##print("spawn_name: ", mob_spawn.spawn_id)
+					#if not reset_mobs and mobspawn_data:
+						#if mobspawn_data.get(mob_spawn.spawn_id) != null:
+							#if mobspawn_data.get(mob_spawn.spawn_id) == true:
+								#mob_spawn.is_my_mob_dead = true
+								#continue
+					#var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
+					#if mob_instance:
+						#mob_spawn.add_child(mob_instance)
+						#if mob_spawn_group.mob != MobManager.MOBS.WASP:
+							#mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
+						#if not mob_instance.died.is_connected(mob_spawn.mob_died):
+							#mob_instance.died.connect(mob_spawn.mob_died)
 
 func _remove_mobs() -> void:
 	for mob_spawn_group in mob_spawns.get_children():
@@ -181,6 +221,7 @@ func _player_died() -> void:
 	game_menus.show_death_screen()
 	_reset_mobs()
 	_reset_player()
+	WorldChunker.stop_rendering()
 	CombatManager.clear_combat()
 	GameStateSaver.save_next()
 
@@ -193,7 +234,11 @@ func _reset_player() -> void:
 	GameStateSaver.reset_player_position(player_spawn)
 
 func _continue_game() -> void:
-	_spawn_mobs()
 	_spawn_player()
+	WorldChunker.rechunk()
 	GameStateSaver.start()
 	game_menus.hide_death_screen()
+
+func _exit_tree() -> void:
+	GameStateSaver.stop()
+	WorldChunker.stop_rendering()

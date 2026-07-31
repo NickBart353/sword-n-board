@@ -41,6 +41,7 @@ CombatManager="*uid://p4p5pa1twqyx"
 SaveFileManager="*uid://s2lnv6eo1vou"
 TimeFormatter="*uid://c1n6yqa0e641p"
 VfxPooler="*uid://byj0ui825five"
+WorldChunker="*uid://c356obfrbp3in"
 
 [display]
 
