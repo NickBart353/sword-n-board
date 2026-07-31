@@ -1,5 +1,8 @@
 extends Node
 
+@export var animation_tree: AnimationTree
+var consume_node_name: String = "ConsumeShot"
+
 @export_group("Audio")
 @export var eating_sound_one: AudioStream
 @export var eating_sound_two: AudioStream
@@ -27,7 +30,7 @@ func set_consumable(new_consumable: Item) -> void:
 func apply_consumable(input: Node, _state_controller: Node, movement: Node, ability: Node, _delta: float) -> void:
 	if not process: return
 	if not movement.dashing:
-		if input.consume and not consuming and not ability.busy:
+		if input.consume and not consuming and not ability.busy and not consume_animation_happening():
 			start_consuming.emit(consumable)
 			ability.busy = true
 			consuming = true
@@ -39,6 +42,15 @@ func apply_consumable(input: Node, _state_controller: Node, movement: Node, abil
 			finished_consuming.emit()
 			consuming = false
 			consumed = false
+
+func consume_animation_happening() -> bool:
+	if not animation_tree:
+		push_warning("AnimationTree is not assigned.")
+		return false
+	
+	var path: String = "parameters/" + consume_node_name + "/active"
+	
+	return animation_tree.get(path)
 
 func _consumed():
 	consume_item.emit(consumable)

@@ -789,8 +789,9 @@ player = NodePath("../..")
 script = ExtResource("12_8aen8")
 player = NodePath("../..")
 
-[node name="Consume" type="Node" parent="." unique_id=603745982 node_paths=PackedStringArray("ability_player")]
+[node name="Consume" type="Node" parent="." unique_id=603745982 node_paths=PackedStringArray("animation_tree", "ability_player")]
 script = ExtResource("13_y6i1k")
+animation_tree = NodePath("../AnimationTreeNew")
 eating_sound_two = ExtResource("14_pxpwq")
 drinking_sound_one = ExtResource("15_v4r5v")
 drinking_sound_two = SubResource("AudioStreamRandomizer_6arjy")
