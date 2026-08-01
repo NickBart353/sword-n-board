@@ -11,7 +11,8 @@ func _ready() -> void:
 	vfx = VfxManager.get_vfx_list()
 	attack_vfx = VfxManager.get_attack_vfx_list()
 	
-	for vfx_instance in vfx:
+	for vfx_instance: Basic_VFX in vfx:
+		vfx_instance.hide_if_missed_by_player = false
 		if not vfx_instance.vfx_finished.is_connected(vfx_finished):
 			vfx_instance.vfx_finished.connect(vfx_finished)
 	for attack_vfx_instance in attack_vfx:
@@ -22,12 +23,14 @@ func start() -> void:
 	vfx_finished()
 
 func vfx_finished() -> void:
+	prints("vfx:", vfx.size())
 	if vfx.size() > 0:
 		_play_vfx()
 	else:
 		_play_attack_vfx()
 
 func attack_vfx_finished(attack: Attack) -> void:
+	prints("attacks:", attack_vfx.size())
 	attack.queue_free()
 	if attack_vfx.size() > 0:
 		_play_attack_vfx()

@@ -137,7 +137,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
 script = ExtResource("1_ba8cp")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=35012871]
-modulate = Color(1, 1, 1, 0.003921569)
 layout_mode = 2
 theme = ExtResource("1_7j4hi")
 texture = SubResource("ViewportTexture_ba8cp")

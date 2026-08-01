@@ -403,6 +403,7 @@ blend_point_3/name = &"3"
 blend_point_4/node = SubResource("AnimationNodeAnimation_0rpqu")
 blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"4"
+triangles = PackedInt32Array(2, 3, 4, 0, 3, 4, 0, 1, 4, 1, 2, 4)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
 animation = &"Jump/jump-start"
@@ -586,7 +587,6 @@ graph_offset = Vector2(-50, -43)
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(320.36078, 34.385956)
 nodes/output/position = Vector2(2480, -120)
 nodes/Weaponblender/node = SubResource("AnimationNodeBlend3_0rpqu")
 nodes/Weaponblender/position = Vector2(1620, 20)
