@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func Enter():
 	super()
-	CombatManager.add_unit()
+	CombatManager.add_unit(enemy.spawn_id)
 	#print("in combat: ", CombatManager.is_in_combat(), "; count: ", CombatManager.combat_units, "; state: ", name)
 	var engage_timer: Timer = Timer.new()
 	add_child(engage_timer, true)

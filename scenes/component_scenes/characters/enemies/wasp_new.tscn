@@ -452,7 +452,6 @@ safe_margin = 0.05
 script = ExtResource("2_nsq2h")
 POISON_BOMB_SCENE = ExtResource("3_f2g7w")
 display_name = "Killer Wasp"
-MAX_HEALTH = 85
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
 
@@ -577,6 +576,7 @@ audio_volume = 10.0
 script = ExtResource("5_i1xyo")
 follow_speed = 10.0
 attack_range = 25.0
+follow_range = 35.0
 enemy = NodePath("../..")
 anim_tree = NodePath("../../AnimationTree")
 audio_player = NodePath("../../WaspPlayer")

@@ -57,6 +57,7 @@ func _process(_delta: float) -> void:
 				return
 		var mob_instance = MobManager.spawn_mob_from_enum(mob_spawn_group.mob).instantiate()
 		if mob_instance:
+			mob_instance.spawn_id = _mobspawn.spawn_id
 			_mobspawn.add_child(mob_instance)
 			if mob_spawn_group.mob != MobManager.MOBS.WASP:
 				mob_instance.global_position = Vector3(mob_instance.global_position.x, mob_instance.global_position.y + 5, mob_instance.global_position.z)
@@ -71,9 +72,11 @@ func _process(_delta: float) -> void:
 			if mobspawn_data.get(_mobspawn.spawn_id) == true:
 				return
 		for mob in _mobspawn.get_children():
-			if mob.state_machine.current_state.name.to_lower() != "idle" or mob.state_machine.current_state.name.to_lower() != "return":
-				CombatManager.remove_unit()
+			#if mob.state_machine.current_state.name.to_lower() != "idle" or mob.state_machine.current_state.name.to_lower() != "return":
+			CombatManager.remove_unit(_mobspawn.spawn_id)
+			#prints("REMOVING UNIT")
 			mob.queue_free()
+		#prints("COMBAT:", CombatManager.is_in_combat(), CombatManager.combat_units)
 	else:
 		set_process(false)
 

@@ -17,6 +17,8 @@ var level: int = 1
 var origin_position: Vector3
 var health: float
 
+var spawn_id: String
+
 const RESET_POSITION: Vector3 = Vector3(-100000, -100000, -100000)
 
 func _remove_me():
