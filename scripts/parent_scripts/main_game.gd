@@ -71,6 +71,8 @@ func _process(_delta: float) -> void:
 			if mobspawn_data.get(_mobspawn.spawn_id) == true:
 				return
 		for mob in _mobspawn.get_children():
+			if mob.state_machine.current_state.name.to_lower() != "idle" or mob.state_machine.current_state.name.to_lower() != "return":
+				CombatManager.remove_unit()
 			mob.queue_free()
 	else:
 		set_process(false)
