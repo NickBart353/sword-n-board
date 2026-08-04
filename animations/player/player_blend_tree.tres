@@ -403,7 +403,6 @@ blend_point_3/name = &"3"
 blend_point_4/node = SubResource("AnimationNodeAnimation_0rpqu")
 blend_point_4/pos = Vector2(0, 0)
 blend_point_4/name = &"4"
-triangles = PackedInt32Array(2, 3, 4, 0, 3, 4, 0, 1, 4, 1, 2, 4)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnme8"]
 animation = &"Jump/jump-start"
