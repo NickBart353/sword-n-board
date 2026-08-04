@@ -15,5 +15,5 @@ func _ready() -> void:
 	#is_my_mob_dead = false
 
 func mob_died() -> void:
-	CombatManager.remove_unit()
+	CombatManager.remove_unit(spawn_id)
 	is_my_mob_dead = true

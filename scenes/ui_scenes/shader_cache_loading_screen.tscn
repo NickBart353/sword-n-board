@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_7j4hi"]
 [ext_resource type="Script" uid="uid://bo3ckcyr1k3by" path="res://scripts/ui_scripts/ShaderCacheLoadingScreen.gd" id="1_ba8cp"]
 [ext_resource type="Texture2D" uid="uid://btljbj4c1bar6" path="res://my_assets/sprites/cog_wheel.png" id="3_6ytit"]
+[ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="4_7j4hi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_62e2m"]
 content_margin_left = 20.0
@@ -16,6 +17,26 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="LabelSettings" id="LabelSettings_qtu10"]
 font_size = 80
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kerij"]
+bg_color = Color(0.24115604, 0.24115607, 0.24115595, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ytit"]
+bg_color = Color(0.3539278, 0.5526975, 0.25525263, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="Theme" id="Theme_ypp05"]
+ProgressBar/font_sizes/font_size = 40
+ProgressBar/fonts/font = ExtResource("4_7j4hi")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_kerij")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_6ytit")
 
 [sub_resource type="Animation" id="Animation_qtu10"]
 length = 0.001
@@ -136,8 +157,9 @@ theme = ExtResource("1_7j4hi")
 theme_override_styles/panel = SubResource("StyleBoxFlat_62e2m")
 script = ExtResource("1_ba8cp")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=35012871]
+[node name="LoadingRect" type="TextureRect" parent="." unique_id=35012871]
 modulate = Color(1, 1, 1, 0.003921569)
+self_modulate = Color(1, 1, 1, 0.003921569)
 layout_mode = 2
 theme = ExtResource("1_7j4hi")
 texture = SubResource("ViewportTexture_ba8cp")
@@ -192,6 +214,14 @@ theme = ExtResource("1_7j4hi")
 texture = ExtResource("3_6ytit")
 expand_mode = 2
 stretch_mode = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=352187650]
+custom_minimum_size = Vector2(700, 30)
+custom_maximum_size = Vector2(700, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme = SubResource("Theme_ypp05")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=561194680]
 libraries/ = SubResource("AnimationLibrary_kbped")

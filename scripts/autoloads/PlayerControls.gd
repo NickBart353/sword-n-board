@@ -16,6 +16,9 @@ func set_player_camera(new_player_camera: Camera3D) -> void:
 	player_camera = new_player_camera
 
 func is_position_in_frustrum(world_position: Vector3) -> bool:
+	if player_camera == null:
+		push_warning("player camera not set")
+		return false
 	return player_camera.is_position_in_frustum(world_position)
 
 func updated_interact_keybind(keybind: String) -> void:

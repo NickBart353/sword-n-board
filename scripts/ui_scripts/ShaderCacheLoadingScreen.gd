@@ -3,6 +3,7 @@ extends PanelContainer
 signal cache_loaded
 
 @onready var positions: Node3D = $SubViewport/Positions
+@onready var progress_bar: ProgressBar = $VBoxContainer/ProgressBar
 
 var vfx: Array = []
 var attack_vfx: Array = []
@@ -10,8 +11,11 @@ var attack_vfx: Array = []
 func _ready() -> void:
 	vfx = VfxManager.get_vfx_list()
 	attack_vfx = VfxManager.get_attack_vfx_list()
+	progress_bar.value = 0
+	progress_bar.max_value = vfx.size() + attack_vfx.size()
 	
-	for vfx_instance in vfx:
+	for vfx_instance: Basic_VFX in vfx:
+		vfx_instance.hide_if_missed_by_player = false
 		if not vfx_instance.vfx_finished.is_connected(vfx_finished):
 			vfx_instance.vfx_finished.connect(vfx_finished)
 	for attack_vfx_instance in attack_vfx:
@@ -22,12 +26,16 @@ func start() -> void:
 	vfx_finished()
 
 func vfx_finished() -> void:
+	#prints("vfx:", vfx.size())
+	progress_bar.value += 1
 	if vfx.size() > 0:
 		_play_vfx()
 	else:
 		_play_attack_vfx()
 
 func attack_vfx_finished(attack: Attack) -> void:
+	#prints("attacks:", attack_vfx.size())
+	progress_bar.value += 1
 	attack.queue_free()
 	if attack_vfx.size() > 0:
 		_play_attack_vfx()

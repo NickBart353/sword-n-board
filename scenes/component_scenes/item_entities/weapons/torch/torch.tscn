@@ -60,6 +60,7 @@ bus = &"Ambience"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1336127866]
 transform = Transform3D(0.99970394, -0.024318505, -0.0006618642, -9.223427e-12, 0.027206346, -0.99962956, 0.024327517, 0.99933404, 0.027198302, -0.00032112002, 0.41549796, -0.30149198)
+visible = false
 mesh = SubResource("CapsuleMesh_rraq4")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1243682543]
