@@ -128,6 +128,9 @@ height = 0.275
 [sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
 size = Vector3(0.029525757, 0.06251526, 0.046539307)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p825b"]
+size = Vector3(0.05407715, 0.4056549, 0.09988403)
+
 [node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_k0p64")]
 collision_layer = 8
 collision_mask = 35
@@ -164,15 +167,21 @@ mesh = SubResource("CapsuleMesh_njja8")
 [node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1605129329]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
 
-[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh")]
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh", "start_emission_shape", "full_shape")]
 script = ExtResource("9_gucgr")
 weapon = NodePath("..")
 weapon_mesh = NodePath("../DaggerMesh")
 mesh_surface_indexes = Array[int]([0, 1])
+start_emission_shape = NodePath("StartShape")
+full_shape = NodePath("FullShape")
 metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
 
-[node name="FireShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1058526322]
+[node name="StartShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1058526322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00016021729, 0.12238312, 1.5258789e-05)
 shape = SubResource("BoxShape3D_evpsf")
+
+[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=1796190880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006713867, 0.29717255, 0.00044250488)
+shape = SubResource("BoxShape3D_p825b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bjrhh5siikley"]
+
+[ext_resource type="Texture2D" uid="uid://b5rsqajho2y4h" path="res://my_assets/b_n_w_textures/snow_starv1.png" id="1_cunku"]
+
+[sub_resource type="Curve" id="Curve_t5mmq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.090425536, 1), 0.0, 0.0, 0, 0, Vector2(0.6090426, 0.61744976), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.364655, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4bjin"]
+curve = SubResource("Curve_t5mmq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+lifetime_randomness = 0.64
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(-0.0006713867, 0.29717255, 0.00044250488)
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(0.05407715, 0.4056549, 0.09988403)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.02
+scale_curve = SubResource("CurveTexture_4bjin")
+color = Color(1.8015456, 2.677791, 3.0467367, 1)
+hue_variation_min = -0.15000002
+hue_variation_max = 0.09999997
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ji0"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_cunku")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_p825b"]
+material = SubResource("StandardMaterial3D_l1ji0")
+
+[node name="ColdParticles" type="GPUParticles3D" unique_id=1616416933]
+amount = 50
+lifetime = 2.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_evpsf")
+draw_pass_1 = SubResource("QuadMesh_p825b")

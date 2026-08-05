@@ -5,7 +5,14 @@ const enchant_dict: Dictionary = {
 	WeaponData.UPGRADE_TYPE.FIRE: {
 		"particle_effect": preload("uid://x3push4qk0sw"),
 		"color": Color(2.138, 0.589, 0.0),
-	}
+	},
+	WeaponData.UPGRADE_TYPE.COLD: {
+		"particle_effect": preload("uid://bjrhh5siikley"),
+		"color": Color(1.181, 2.503, 2.503),
+	},
+	"default-dagger": {
+		"color": Color("9a9a9a"),
+	},
 }
 
 enum AMOUNT {small, medium, large}
@@ -16,7 +23,8 @@ enum AMOUNT {small, medium, large}
 @export var weapon_mesh: MeshInstance3D
 @export var mesh_surface_indexes: Array[int] = []
 @export_group("Emission Shapes")
-@export var fire_emission_shape: CollisionShape3D
+@export var start_emission_shape: CollisionShape3D
+@export var full_shape: CollisionShape3D
 
 var upgrade_type: WeaponData.UPGRADE_TYPE
 var vfx_instance: GPUParticles3D
@@ -36,7 +44,9 @@ func _ready() -> void:
 	
 	match upgrade_type:
 		WeaponData.UPGRADE_TYPE.FIRE:
-			emission_shape = fire_emission_shape
+			emission_shape = start_emission_shape
+		WeaponData.UPGRADE_TYPE.COLD:
+			emission_shape = full_shape
 	
 	if not emission_shape or not emission_shape.shape is BoxShape3D:
 		push_error("emission shape not correctly set up for: ", weapon.data.item_name, "Upgrade type", upgrade_type)
@@ -44,7 +54,6 @@ func _ready() -> void:
 	
 	vfx_instance = enchant_dict[upgrade_type]["particle_effect"].instantiate()
 	add_child(vfx_instance)
-	
 	
 	match particle_amount:
 		AMOUNT.small:
