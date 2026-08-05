@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://k2kb3g48blc8" path="res://scenes/component_scenes/item_entities/weapons/dagger/hilt.tres" id="6_gucgr"]
 [ext_resource type="Material" uid="uid://d3pw0c5vyq0bw" path="res://scenes/component_scenes/item_entities/weapons/dagger/circle.tres" id="7_ua7as"]
 [ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="8_njja8"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="9_gucgr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wixkm"]
 radius = 0.0390625
@@ -124,6 +125,9 @@ size = Vector3(0.035858154, 0.58654976, 0.15997314)
 radius = 0.01
 height = 0.275
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
+size = Vector3(0.029525757, 0.06251526, 0.046539307)
+
 [node name="dagger" unique_id=1356170886 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_k0p64")]
 collision_layer = 8
 collision_mask = 35
@@ -137,8 +141,8 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="OnehandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_73qoa")]
 
-[node name="DaggerMesh" parent="." index="2" unique_id=1106926090]
-transform = Transform3D(-3.934025e-09, 0.089999996, 3.934025e-09, 0, -3.9340247e-09, 0.09, 0.09, 3.9340247e-09, 1.719617e-16, 0, -0.08108312, -1.2732814e-07)
+[node name="DaggerMesh" parent="." index="2" unique_id=13323906]
+transform = Transform3D(-3.934025e-09, -0.089999996, -3.934025e-09, 0, -3.9340247e-09, 0.09, -0.09, 3.9340247e-09, 1.719617e-16, 0, -0.08108312, -1.2732814e-07)
 mesh = SubResource("ArrayMesh_t5mmq")
 
 [node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
@@ -159,5 +163,16 @@ mesh = SubResource("CapsuleMesh_njja8")
 
 [node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1605129329]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh")]
+script = ExtResource("9_gucgr")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../DaggerMesh")
+mesh_surface_indexes = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="FireShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1058526322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00016021729, 0.12238312, 1.5258789e-05)
+shape = SubResource("BoxShape3D_evpsf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
