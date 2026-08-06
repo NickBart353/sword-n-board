@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://de7ukko2cqb7j"]
+
+[sub_resource type="Curve" id="Curve_ua7as"]
+_data = [Vector2(0, 0.019230723), 0.0, 0.0, 0, 0, Vector2(1, 0.032051325), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gucgr"]
+curve = SubResource("Curve_ua7as")
+
+[sub_resource type="Curve" id="Curve_njja8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.034574468, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ua7as"]
+curve = SubResource("Curve_njja8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p825b"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+emission_shape_offset = Vector3(0.00010681152, 0.26052856, 0.00077056885)
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(0.008392334, 0.34991455, 0.026626587)
+direction = Vector3(0, 1, 0)
+spread = 180.0
+radial_velocity_min = 0.009977648
+radial_velocity_max = 0.009977648
+radial_velocity_curve = SubResource("CurveTexture_gucgr")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_ua7as")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gucgr"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9019608, 0.101960786, 0.3019608, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l1ji0"]
+material = SubResource("StandardMaterial3D_gucgr")
+top_radius = 0.0
+bottom_radius = 0.005
+height = 0.03
+
+[node name="NatureParticles" type="GPUParticles3D" unique_id=158686993]
+amount = 30
+lifetime = 10.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_p825b")
+draw_pass_1 = SubResource("CylinderMesh_l1ji0")

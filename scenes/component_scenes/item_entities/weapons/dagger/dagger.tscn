@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://y83nuoyt28ny" path="res://my_assets/models/weapons/dagger.blend" id="1_k0p64"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="2_73qoa"]
 [ext_resource type="Script" uid="uid://846r5aooq0kw" path="res://scripts/item_entity/weapons/dagger.gd" id="2_wixkm"]
-[ext_resource type="Material" uid="uid://7npcv6sj7ix4" path="res://material/weapon_effect/space_weapon_material.tres" id="4_gucgr"]
+[ext_resource type="Material" uid="uid://dhbanvubj8m0g" path="res://material/weapon_effect/nature_weapon_material.tres" id="4_gucgr"]
 [ext_resource type="Material" uid="uid://c6kkpgbl3x6p0" path="res://scenes/component_scenes/item_entities/weapons/dagger/guard.tres" id="5_njja8"]
 [ext_resource type="Material" uid="uid://k2kb3g48blc8" path="res://scenes/component_scenes/item_entities/weapons/dagger/hilt.tres" id="6_gucgr"]
 [ext_resource type="Material" uid="uid://d3pw0c5vyq0bw" path="res://scenes/component_scenes/item_entities/weapons/dagger/circle.tres" id="7_ua7as"]
@@ -128,6 +128,9 @@ height = 0.275
 [sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
 size = Vector3(0.029525757, 0.06251526, 0.046539307)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l1ji0"]
+size = Vector3(0.008392334, 0.34991455, 0.026626587)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_p825b"]
 size = Vector3(0.05407715, 0.4056549, 0.09988403)
 
@@ -170,8 +173,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
 [node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh", "start_emission_shape", "full_shape")]
 script = ExtResource("9_gucgr")
 weapon = NodePath("..")
+particle_amount = 0
 weapon_mesh = NodePath("../DaggerMesh")
 mesh_surface_indexes = Array[int]([0, 1, 3])
+secondary_mesh_surface_indexes = Array[int]([2])
 start_emission_shape = NodePath("StartShape")
 full_shape = NodePath("FullShape")
 metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
@@ -180,7 +185,11 @@ metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00016021729, 0.12238312, 1.5258789e-05)
 shape = SubResource("BoxShape3D_evpsf")
 
-[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=1796190880]
+[node name="HuggingShape" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=1816927074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00010681152, 0.26052856, 0.00077056885)
+shape = SubResource("BoxShape3D_l1ji0")
+
+[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="2" unique_id=1796190880]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006713867, 0.29717255, 0.00044250488)
 shape = SubResource("BoxShape3D_p825b")
 
