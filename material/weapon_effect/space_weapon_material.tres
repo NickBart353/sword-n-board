@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://7npcv6sj7ix4"]
+
+[ext_resource type="Shader" uid="uid://bs2tuf56fuldo" path="res://shaders/chaos_weapon_effect/chaos_space_effect.tres" id="1_2qhe5"]
+[ext_resource type="Texture2D" uid="uid://dhtq71kymjyba" path="res://my_assets/textures/star_sky_galaxyV2.png" id="2_umnoh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_2qhe5")
+shader_parameter/SpaceTexture = ExtResource("2_umnoh")

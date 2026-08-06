@@ -10,6 +10,11 @@ const enchant_dict: Dictionary = {
 		"particle_effect": preload("uid://bjrhh5siikley"),
 		"color": Color(1.181, 2.503, 2.503),
 	},
+	WeaponData.UPGRADE_TYPE.CHAOS: {
+		"particle_effect": preload("uid://jw3d2cr1nd4w"),
+		"color": Color("660042"),
+		"material": preload("uid://7npcv6sj7ix4"),
+	},
 	"default-dagger": {
 		"color": Color("9a9a9a"),
 	},
@@ -45,7 +50,7 @@ func _ready() -> void:
 	match upgrade_type:
 		WeaponData.UPGRADE_TYPE.FIRE:
 			emission_shape = start_emission_shape
-		WeaponData.UPGRADE_TYPE.COLD:
+		WeaponData.UPGRADE_TYPE.COLD, WeaponData.UPGRADE_TYPE.CHAOS:
 			emission_shape = full_shape
 	
 	if not emission_shape or not emission_shape.shape is BoxShape3D:
@@ -66,8 +71,11 @@ func _ready() -> void:
 	vfx_instance.process_material.emission_box_extents = emission_shape.shape.size
 	
 	for index in mesh_surface_indexes:
-		var material: StandardMaterial3D = weapon_mesh.mesh.surface_get_material(index)
-		material.albedo_color = enchant_dict[upgrade_type]["color"]
+		if enchant_dict[upgrade_type].has("material"):
+			weapon_mesh.mesh.surface_set_material(index, enchant_dict[upgrade_type]["material"])
+		else:
+			var material: StandardMaterial3D = weapon_mesh.mesh.surface_get_material(index)
+			material.albedo_color = enchant_dict[upgrade_type]["color"]
 	
 	#TODO - MAYBE:
 	#potentially apply (not yet implemented)shader with said color to mesh

@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://jw3d2cr1nd4w"]
+
+[ext_resource type="Texture2D" uid="uid://dpr804fx3khdb" path="res://my_assets/b_n_w_textures/cross_texture.png" id="1_3hyci"]
+
+[sub_resource type="Curve" id="Curve_0nocv"]
+
+[sub_resource type="Curve" id="Curve_se1hw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_iw122"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_vwvtf"]
+curve_x = SubResource("Curve_0nocv")
+curve_y = SubResource("Curve_se1hw")
+curve_z = SubResource("Curve_iw122")
+
+[sub_resource type="Curve" id="Curve_3hyci"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_45plc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xylxt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_mjcar"]
+curve_x = SubResource("Curve_3hyci")
+curve_y = SubResource("Curve_45plc")
+curve_z = SubResource("Curve_xylxt")
+
+[sub_resource type="Curve" id="Curve_ua7as"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5026596, 0.75838935), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_xixin"]
+curve = SubResource("Curve_ua7as")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+lifetime_randomness = 0.2
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(-0.0006713867, 0.29717255, 0.00044250488)
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(0.05407715, 0.4056549, 0.09988403)
+angle_min = -720.0
+angle_max = 720.0
+directional_velocity_min = 0.0099839065
+directional_velocity_max = 0.0099839065
+directional_velocity_curve = SubResource("CurveXYZTexture_vwvtf")
+orbit_velocity_min = 0.030000096
+orbit_velocity_max = 0.0700001
+orbit_velocity_curve = SubResource("CurveXYZTexture_mjcar")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_xixin")
+color = Color(2.3855512, 0.059608817, 3.2695158, 1)
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.19999997
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ji0"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_3hyci")
+texture_filter = 0
+texture_repeat = false
+billboard_mode = 2
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_p825b"]
+material = SubResource("StandardMaterial3D_l1ji0")
+size = Vector2(1.5, 1.5)
+center_offset = Vector3(0.1, 0.1, 0.1)
+
+[node name="ChaosParticles" type="GPUParticles3D" unique_id=26334612]
+amount = 30
+lifetime = 4.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_evpsf")
+draw_pass_1 = SubResource("QuadMesh_p825b")

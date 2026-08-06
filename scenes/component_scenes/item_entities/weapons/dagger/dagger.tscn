@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://y83nuoyt28ny" path="res://my_assets/models/weapons/dagger.blend" id="1_k0p64"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="2_73qoa"]
 [ext_resource type="Script" uid="uid://846r5aooq0kw" path="res://scripts/item_entity/weapons/dagger.gd" id="2_wixkm"]
-[ext_resource type="Material" uid="uid://0qrapyxy54cr" path="res://scenes/component_scenes/item_entities/weapons/dagger/blade.tres" id="4_eqptf"]
+[ext_resource type="Material" uid="uid://7npcv6sj7ix4" path="res://material/weapon_effect/space_weapon_material.tres" id="4_gucgr"]
 [ext_resource type="Material" uid="uid://c6kkpgbl3x6p0" path="res://scenes/component_scenes/item_entities/weapons/dagger/guard.tres" id="5_njja8"]
 [ext_resource type="Material" uid="uid://k2kb3g48blc8" path="res://scenes/component_scenes/item_entities/weapons/dagger/hilt.tres" id="6_gucgr"]
 [ext_resource type="Material" uid="uid://d3pw0c5vyq0bw" path="res://scenes/component_scenes/item_entities/weapons/dagger/circle.tres" id="7_ua7as"]
@@ -70,7 +70,7 @@ _surfaces = [{
 "index_count": 282,
 "index_data": PackedByteArray("OAA5ADoAOAA7ADkAPAA4ADoAPAA6AD0APgA/AEAAPgBBAD8AAAABAAIAAAADAAEAQgBDAEQAQgBFAEMARgAKAEcARgAMAAoASABJAEoASABLAEkATAAQAA4ATABNABAATAARAE0ATQARAA8AEQBMAE4ATgBMAE8AEQBOABIAUABRABQAUgBRAFAAUQBSABYAFgBSABMAUQAWAFMAUwAWABcAUQBTAFQAVQBWAFcAVQBXAFgAVQBYAFkAWgBbAAYAXABbAFoAWwBcAAcABwBcAAUAWwAHAF0AXQAHAAgAWwBdAF4AXwAcABoAXwBgABwAXwAdAGAAYAAdABsAHQBfAGEAYQBfAGIAHQBhAB4AHwBjAGQAHwAgAGMAIgAjACQAJAAjACUAJAAlACYAJgAlACcAZQBmAAQAZQBnAGYACwBoAAkACwBpAGgAGABqAGsAGABsAGoAbQBuAG8AbQBwAG4AcQAZABUAcQByABkAcwB0ACEAcwB1AHQAdgB3AHgAdgB5AHcAdgB4AA0AKAApACoAKQArACwAKAArACkAKwAtAC4AKwAvAC0AKAAvACsALQAvADAAMQAoADIAMwAoADEALwAoADMAMwAxADQALwAzADUANQAzADYALwA1ADcAegB7AHwAewB9AH4AegB9AHsAfQB/AIAAfQCBAH8AegCBAH0AfwCBAIIAgwB6AIQAhQB6AIMAgQB6AIUAhQCDAIYAgQCFAIcAhwCFAIgAgQCHAIkA"),
 "lods": [0.14125964, PackedByteArray("AAABAAIAAAADAAEAAwAAAAQABQAGAAQABgAFAAcABgAHAAgACQAKAAsACQAMAAoADQAJAAsADgAPABAADgARAA8AEQAOABIAEwAUABUAFAATABYAFAAWABcAGAAZABUAGgAbABwAGgAdABsAHQAaAB4AHwAgACEAIgAjACQAJAAjACUAJAAlACYAJgAlACcAKAApACoAKQArACwAKAArACkAKwAtAC4AKwAvAC0AKAAvACsALQAvADAAMQAoADIAMwAoADEALwAoADMAMwAxADQALwAzADUANQAzADYALwA1ADcA")],
-"material": ExtResource("4_eqptf"),
+"material": ExtResource("4_gucgr"),
 "name": "Blade",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -171,7 +171,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
 script = ExtResource("9_gucgr")
 weapon = NodePath("..")
 weapon_mesh = NodePath("../DaggerMesh")
-mesh_surface_indexes = Array[int]([0, 1])
+mesh_surface_indexes = Array[int]([0, 1, 3])
 start_emission_shape = NodePath("StartShape")
 full_shape = NodePath("FullShape")
 metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
