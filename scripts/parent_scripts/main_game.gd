@@ -138,7 +138,7 @@ func _load_chests() -> void:
 	var chests: Array = get_tree().get_nodes_in_group("Chest")
 	for chest in chests:
 		if chest_data.get(chest.chest_id) != null:
-			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_itemdata)
+			chest.item_container.items = chest_data.get(chest.chest_id).map(ItemManager.get_item_from_existing_itemdata)
 
 func _assign_mobspawns_to_dict() -> void:
 	for mob_spawn_group in mob_spawns.get_children():

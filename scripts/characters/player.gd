@@ -265,7 +265,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 				finger_left.set_pole_node(0, marker_dictionary.get("L").get("FingerPole").get_path())
 				thumb_left.set_pole_node(0, marker_dictionary.get("L").get("ThumbPole").get_path())
 				
-				new_animation.equipped_two_hand_weapon(item_instance.data.item_name.to_lower())
+				new_animation.equipped_two_hand_weapon(ItemData.get_itemtype_animation_name(item_instance.data.item_type))
 	elif dualwield:
 		_clear_equip_slot(twohand)
 		main_hand_item = player_mainhand
@@ -299,7 +299,7 @@ func _reequip_mainhand(_old: Item, new_mainhand: Item, _slot):
 		anim_name = "fist"
 	else:
 		item_instance = ItemGenerator.generate_item(new_mainhand.data)
-		anim_name = item_instance.data.item_name.to_lower()
+		anim_name = ItemData.get_itemtype_animation_name(item_instance.data.item_type)
 	if item_instance:
 		mainhand.add_child(item_instance)
 		
@@ -326,7 +326,7 @@ func _reequip_offhand(_old: Item, new_offhand: Item, _slot):
 		anim_name = "fist"
 	else:
 		item_instance = ItemGenerator.generate_item(new_offhand.data)
-		anim_name = item_instance.data.item_name.to_lower()
+		anim_name = ItemData.get_itemtype_animation_name(item_instance.data.item_type)
 	if item_instance:
 		offhand.add_child(item_instance)
 		
@@ -354,7 +354,7 @@ func _equip_dualwield(new_mainhand: Item, new_offhand: Item):
 	else:
 		mainhand_item_instance = ItemGenerator.generate_item(new_mainhand.data)
 		offhand_item_instance = ItemGenerator.generate_item(new_offhand.data)
-		anim_name = mainhand_item_instance.data.item_name.to_lower()
+		anim_name = ItemData.get_itemtype_animation_name(mainhand_item_instance.data.item_type)
 	
 	mainhand.add_child(mainhand_item_instance)
 	offhand.add_child(offhand_item_instance)

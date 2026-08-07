@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://dujpy6nd74vtd"]
 
 [ext_resource type="Script" uid="uid://bgvvdtu3qtyo6" path="res://scripts/resources/weapon_resource.gd" id="1_d17os"]
-[ext_resource type="Texture2D" uid="uid://bwtdh60s6a63w" path="res://my_assets/sprites/torch.png" id="2_d17os"]
+[ext_resource type="Texture2D" uid="uid://bwtdh60s6a63w" path="res://my_assets/sprites/Torch.png" id="2_d17os"]
 
 [resource]
 script = ExtResource("1_d17os")

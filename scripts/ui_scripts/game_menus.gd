@@ -160,7 +160,7 @@ func _escape_menu():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _open_world_container(item_datas: Array[ItemData]) -> void:
-	var items: Array = item_datas.map(ItemManager.get_item_from_itemdata) as Array[Item]
+	var items: Array = item_datas.map(ItemManager.get_item_from_existing_itemdata) as Array[Item]
 	inventory.add_items_to_inventory(items)
 	world_loot_interface.populate_menu(items)
 	world_loot_interface.show()

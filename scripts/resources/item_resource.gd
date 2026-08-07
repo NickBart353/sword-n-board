@@ -76,6 +76,8 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 			return "Katana"
 		ITEM_TYPE.SPEAR:
 			return "Spear"
+		ITEM_TYPE.FIST:
+			return "Fist"
 		ITEM_TYPE.BOOK:
 			return "Book"
 		ITEM_TYPE.BOW:
@@ -95,3 +97,33 @@ static func get_item_type_value(value: ITEM_TYPE) -> String:
 		ITEM_TYPE.TRANSFORM_SHARD:
 			return "Transform shard"
 	return "Wrong type or forgot adding name to item_resource.gd"
+
+static func get_itemtype_animation_name(type: ITEM_TYPE) -> String:
+	match type:
+		ITEM_TYPE.SHORTSWORD:
+			return "shortsword"
+		ITEM_TYPE.GREATSWORD:
+			return "greatsword"
+		ITEM_TYPE.AXE:
+			return "hatchet"
+		ITEM_TYPE.GREATAXE:
+			return "greataxe"
+		ITEM_TYPE.DAGGER:
+			return "dagger"
+		ITEM_TYPE.GREATHAMMER:
+			return "greathammer"
+		ITEM_TYPE.HAMMER:
+			return "hammer"
+		ITEM_TYPE.KATANA:
+			return "katana"
+		ITEM_TYPE.SPEAR:
+			return "spear"
+		ITEM_TYPE.BOW:
+			return "bow"
+		ITEM_TYPE.TORCH:
+			return "torch"
+		ITEM_TYPE.SHIELD:
+			return "shield"
+		ITEM_TYPE.FIST:
+			return "fist"
+	return ""

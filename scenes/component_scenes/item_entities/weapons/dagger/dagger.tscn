@@ -61,7 +61,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_t5mmq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_gucgr"]
 resource_local_to_scene = true
 resource_name = "dagger_Torus_002"
 _surfaces = [{
@@ -150,7 +150,7 @@ shape = SubResource("CapsuleShape3D_wixkm")
 
 [node name="DaggerMesh" parent="." index="2" unique_id=13323906]
 transform = Transform3D(-3.934025e-09, -0.089999996, -3.934025e-09, 0, -3.9340247e-09, 0.09, -0.09, 3.9340247e-09, 1.719617e-16, 0, -0.08108312, -1.2732814e-07)
-mesh = SubResource("ArrayMesh_t5mmq")
+mesh = SubResource("ArrayMesh_gucgr")
 
 [node name="ParryComponent" type="Area3D" parent="." index="3" unique_id=1723185403]
 collision_layer = 8

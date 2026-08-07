@@ -26,9 +26,30 @@ class_name WeaponData
 @export var knockbackStrength_horizontal: int = 0
 
 @export var upgrade_level: int = 0
-@export var upgrade_type: UPGRADE_TYPE
+@export var upgrade_type: UPGRADE_TYPE = UPGRADE_TYPE.NORMAL
 
 enum UPGRADE_TYPE {NORMAL, MAGIC, FIRE, LIGHTNING, COLD, NATURE, CHAOS}
+
+static var prefix_dict: Dictionary = {
+		UPGRADE_TYPE.FIRE: "Flaming",
+		UPGRADE_TYPE.COLD: "Frozen",
+		UPGRADE_TYPE.LIGHTNING: "Lightning",
+		UPGRADE_TYPE.NATURE: "Nature",
+		UPGRADE_TYPE.CHAOS: "Chaos",
+}
+
+static func get_upgrade_type_name_prefix(type: UPGRADE_TYPE) -> String:
+	if prefix_dict.has(type):
+		return prefix_dict[type]
+	return ""
+
+static func get_upgrade_type_sprite(modified_item_name: String) -> Texture2D:
+	var path: String = "res://my_assets/sprites/"
+	var formatted_path: String = "{0}{1}.png".format([path, modified_item_name])
+	prints("path", formatted_path)
+	if ResourceLoader.exists(formatted_path):
+		return load(formatted_path)
+	return null
 
 func _validate_property(property: Dictionary):
 	if property.name in ["dualwield_combo_size"]:

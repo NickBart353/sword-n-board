@@ -159,33 +159,67 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 func get_item_from_id(item_id: String) -> Item:
 	var item_instance: Item = ui_item_scene.instantiate()
 	if MELEE_WEAPONS.get(item_id) != null:
-		return _get_item_data(MELEE_WEAPONS[item_id], item_instance)
+		item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
+		item_instance = create_upgraded_weapon_from_id(item_instance.data.upgrade_type, item_instance.data.item_id)
+		#item_instance.data = create_upgraded_version_from_resource(item_instance.data)
+		return item_instance
 	if CONSUMABLES.get(item_id) != null:
-		return _get_item_data(CONSUMABLES[item_id], item_instance)
+		return _get_item_from_new_resource(CONSUMABLES[item_id], item_instance)
 	if RANGED_WEAPONS.get(item_id) != null:
-		return _get_item_data(RANGED_WEAPONS[item_id], item_instance)
+		return _get_item_from_new_resource(RANGED_WEAPONS[item_id], item_instance)
 	if MAGIC_WEAPONS.get(item_id) != null:
-		return _get_item_data(MAGIC_WEAPONS[item_id], item_instance)
+		return _get_item_from_new_resource(MAGIC_WEAPONS[item_id], item_instance)
 	if MATERIAL.get(item_id) != null:
-		return _get_item_data(MATERIAL[item_id], item_instance)
+		return _get_item_from_new_resource(MATERIAL[item_id], item_instance)
 	return null
 
-func get_item_from_itemdata(itemdata: ItemData) -> Item:
+func get_item_from_existing_itemdata(itemdata: ItemData) -> Item:
 	if not itemdata:
 		return null
 	var item_instance: Item = get_item_from_id(itemdata.item_id)
 	item_instance.data = itemdata
+	if itemdata is WeaponData:
+		item_instance.data = create_upgraded_version_from_resource(item_instance.data)
 	return item_instance
 
-func _get_item_data(resource: Resource, item_instance: Item) -> Item:
+func _get_item_from_new_resource(resource: Resource, item_instance: Item) -> Item:
 	var item_data: ItemData
 	item_data = resource
-	item_data.unique_id = UuidGenerator.uuid4()
 	item_instance.data = item_data.duplicate(true)
+	item_data.unique_id = UuidGenerator.uuid4()
+	if resource is WeaponData:
+		item_instance.data = create_upgraded_version_from_resource(item_instance.data)
 	return item_instance
 
-func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
+func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: String) -> Item:
+	var item_instance: Item = ui_item_scene.instantiate()
+	if MELEE_WEAPONS.has(item_id):
+		item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
+	else:
+		push_error("failed to instantiate item for id: ", item_id, " upgrade type: ", type)
+		return null
 	
+	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(type)
+	#prints("prefix", name_prefix, "type", type)
+	if name_prefix != "":
+		item_instance.data.item_name = "{0} {1}".format([name_prefix, item_instance.data.item_name])
+		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_instance.data.item_name)
+		if new_sprite != null:
+			item_instance.data.sprite = new_sprite
+	
+	return item_instance
+
+func create_upgraded_version_from_resource(item_resource: ItemData) -> ItemData:
+	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(item_resource.upgrade_type)
+	prints("prefix", name_prefix, "type", item_resource.upgrade_type)
+	if name_prefix != "":
+		item_resource.item_name = "{0} {1}".format([name_prefix, item_resource.item_name])
+		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_resource.item_name)
+		if new_sprite != null:
+			item_resource.sprite = new_sprite
+	return item_resource
+
+func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	var items: Array = []
 	var _item_instance: Item = ui_item_scene.instantiate()
 	
