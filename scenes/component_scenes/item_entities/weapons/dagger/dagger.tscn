@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://y83nuoyt28ny" path="res://my_assets/models/weapons/dagger.blend" id="1_k0p64"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="2_73qoa"]
 [ext_resource type="Script" uid="uid://846r5aooq0kw" path="res://scripts/item_entity/weapons/dagger.gd" id="2_wixkm"]
-[ext_resource type="Material" uid="uid://dhbanvubj8m0g" path="res://material/weapon_effect/nature_weapon_material.tres" id="4_gucgr"]
+[ext_resource type="Material" uid="uid://0qrapyxy54cr" path="res://scenes/component_scenes/item_entities/weapons/dagger/blade.tres" id="4_gucgr"]
 [ext_resource type="Material" uid="uid://c6kkpgbl3x6p0" path="res://scenes/component_scenes/item_entities/weapons/dagger/guard.tres" id="5_njja8"]
 [ext_resource type="Material" uid="uid://k2kb3g48blc8" path="res://scenes/component_scenes/item_entities/weapons/dagger/hilt.tres" id="6_gucgr"]
 [ext_resource type="Material" uid="uid://d3pw0c5vyq0bw" path="res://scenes/component_scenes/item_entities/weapons/dagger/circle.tres" id="7_ua7as"]
@@ -62,6 +62,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t5mmq"]
+resource_local_to_scene = true
 resource_name = "dagger_Torus_002"
 _surfaces = [{
 "aabb": AABB(-0.2698493, -0.10177, 0.17991692, 0.5396986, 0.20353985, 6.0856743),
@@ -170,15 +171,27 @@ mesh = SubResource("CapsuleMesh_njja8")
 [node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1605129329]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42210793, 0)
 
-[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh", "start_emission_shape", "full_shape")]
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1200220873 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
 script = ExtResource("9_gucgr")
 weapon = NodePath("..")
-particle_amount = 0
 weapon_mesh = NodePath("../DaggerMesh")
-mesh_surface_indexes = Array[int]([0, 1, 3])
-secondary_mesh_surface_indexes = Array[int]([2])
-start_emission_shape = NodePath("StartShape")
-full_shape = NodePath("FullShape")
+fire_mesh_surface_indexes = Array[int]([0])
+fire_secondary_mesh_surface_indexes = Array[int]([1, 2, 3])
+fire_emission_shape = NodePath("StartShape")
+cold_particle_amount = 35
+cold_mesh_surface_indexes = Array[int]([0, 1, 3])
+cold_secondary_mesh_surface_indexes = Array[int]([2])
+cold_emission_shape = NodePath("FullShape")
+lightning_particle_amount = 3
+lightning_mesh_surface_indexes = Array[int]([0])
+lightning_secondary_mesh_surface_indexes = Array[int]([1, 2, 3])
+lightning_emission_shape = NodePath("StartShape")
+nature_mesh_surface_indexes = Array[int]([0])
+nature_secondary_mesh_surface_indexes = Array[int]([1, 2, 3])
+nature_emission_shape = NodePath("FullShape")
+chaos_particle_amount = 25
+chaos_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+chaos_emission_shape = NodePath("FullShape")
 metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
 
 [node name="StartShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1058526322]

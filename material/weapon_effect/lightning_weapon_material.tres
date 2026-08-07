@@ -1,8 +1,7 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://sqjgjbnxnctw"]
 
 [resource]
+shading_mode = 0
 vertex_color_use_as_albedo = true
 vertex_color_is_srgb = true
-albedo_color = Color(3.1892142, 2.9773073, 1.0049423, 1)
-metallic = 0.64
-roughness = 0.02
+albedo_color = Color(1.6197081, 1.520976, 0.6432473, 1)

@@ -5,17 +5,17 @@ const enchant_dict: Dictionary = {
 	WeaponData.UPGRADE_TYPE.FIRE: {
 		"particle_effect": preload("uid://x3push4qk0sw"),
 		"secondary_material": preload("uid://iusm2407qbr7"),
-		"color": Color(2.138, 0.589, 0.0),
+		#"color": Color(2.138, 0.589, 0.0),
+		"material": preload("uid://vaslxn8b248n"),
 	},
 	WeaponData.UPGRADE_TYPE.COLD: {
 		"particle_effect": preload("uid://bjrhh5siikley"),
 		"secondary_material": preload("uid://iusm2407qbr7"),
-		"color": Color(1.181, 2.503, 2.503),
+		"material": preload("uid://dxbq8puoe40kr"),
 	},
 	WeaponData.UPGRADE_TYPE.CHAOS: {
 		"particle_effect": preload("uid://jw3d2cr1nd4w"),
 		"secondary_material": preload("uid://iusm2407qbr7"),
-		"color": Color("660042"),
 		"material": preload("uid://7npcv6sj7ix4"),
 	},
 	WeaponData.UPGRADE_TYPE.LIGHTNING: {
@@ -33,34 +33,44 @@ const enchant_dict: Dictionary = {
 	},
 }
 
-enum AMOUNT {smallest, small, medium, large, largest}
-
 @export var weapon: MeleeWeapon
 @export var particle_effect: GPUParticles3D #export feature is for debug
-@export var particle_amount: AMOUNT = AMOUNT.small
 @export var weapon_mesh: MeshInstance3D
-@export var mesh_surface_indexes: Array[int] = []
-@export var secondary_mesh_surface_indexes: Array[int] = []
-@export_group("Emission Shapes")
-@export var start_emission_shape: CollisionShape3D
-@export var full_shape: CollisionShape3D
-@export var hugging_shape: CollisionShape3D
 
 @export_group("Magic Settings")
 @export_group("Fire Settings")
+@export var fire_particle_amount: int = 50
+@export var fire_mesh_surface_indexes: Array[int] = []
+@export var fire_secondary_mesh_surface_indexes: Array[int] = []
+@export var fire_emission_shape: CollisionShape3D
 @export_group("Cold Settings")
+@export var cold_particle_amount: int = 50
+@export var cold_mesh_surface_indexes: Array[int] = []
+@export var cold_secondary_mesh_surface_indexes: Array[int] = []
+@export var cold_emission_shape: CollisionShape3D
 @export_group("Lightning Settings")
+@export var lightning_particle_amount: int = 50
+@export var lightning_mesh_surface_indexes: Array[int] = []
+@export var lightning_secondary_mesh_surface_indexes: Array[int] = []
+@export var lightning_emission_shape: CollisionShape3D
 @export_group("Nature Settings")
+@export var nature_particle_amount: int = 50
+@export var nature_mesh_surface_indexes: Array[int] = []
+@export var nature_secondary_mesh_surface_indexes: Array[int] = []
+@export var nature_emission_shape: CollisionShape3D
 @export_group("Chaos Settings")
+@export var chaos_particle_amount: int = 50
+@export var chaos_mesh_surface_indexes: Array[int] = []
+@export var chaos_secondary_mesh_surface_indexes: Array[int] = []
+@export var chaos_emission_shape: CollisionShape3D
 
 var upgrade_type: WeaponData.UPGRADE_TYPE
 var vfx_instance: GPUParticles3D
-var emission_shape: CollisionShape3D
 
-#enum UPGRADE_TYPE {MAGIC, NATURE}
+#enum UPGRADE_TYPE {MAGIC}
 
 func _ready() -> void:
-	if not weapon or not weapon_mesh or not mesh_surface_indexes:
+	if not weapon or not weapon_mesh:
 		push_error("enchant component not correctly set up for: ", get_parent().data.item_name)
 		return
 	
@@ -70,13 +80,19 @@ func _ready() -> void:
 		return
 	
 	match upgrade_type:
-		WeaponData.UPGRADE_TYPE.FIRE, WeaponData.UPGRADE_TYPE.LIGHTNING:
-			emission_shape = start_emission_shape
-		WeaponData.UPGRADE_TYPE.COLD, WeaponData.UPGRADE_TYPE.CHAOS:
-			emission_shape = full_shape
+		WeaponData.UPGRADE_TYPE.FIRE:
+			_apply_enchant(fire_particle_amount, fire_mesh_surface_indexes, fire_secondary_mesh_surface_indexes, fire_emission_shape)
+		WeaponData.UPGRADE_TYPE.COLD:
+			_apply_enchant(cold_particle_amount, cold_mesh_surface_indexes, cold_secondary_mesh_surface_indexes, cold_emission_shape)
+		WeaponData.UPGRADE_TYPE.LIGHTNING:
+			_apply_enchant(lightning_particle_amount, lightning_mesh_surface_indexes, lightning_secondary_mesh_surface_indexes, lightning_emission_shape)
 		WeaponData.UPGRADE_TYPE.NATURE:
-			emission_shape = full_shape#hugging_shape
+			_apply_enchant(nature_particle_amount, nature_mesh_surface_indexes, nature_secondary_mesh_surface_indexes, nature_emission_shape)
+		WeaponData.UPGRADE_TYPE.CHAOS:
+			_apply_enchant(chaos_particle_amount, chaos_mesh_surface_indexes, chaos_secondary_mesh_surface_indexes, chaos_emission_shape)
 	
+
+func _apply_enchant(particle_amount: int, mesh_surface_indexes: Array[int], secondary_mesh_surface_indexes: Array[int], emission_shape: CollisionShape3D) -> void:
 	if not emission_shape or not emission_shape.shape is BoxShape3D:
 		push_error("emission shape not correctly set up for: ", weapon.data.item_name, " Upgrade type", upgrade_type)
 		return
@@ -84,16 +100,7 @@ func _ready() -> void:
 	vfx_instance = enchant_dict[upgrade_type]["particle_effect"].instantiate()
 	add_child(vfx_instance)
 	
-	match particle_amount:
-		AMOUNT.small:
-			if upgrade_type == WeaponData.UPGRADE_TYPE.LIGHTNING:
-				vfx_instance.amount = 20
-			else:
-				vfx_instance.amount = 50
-		AMOUNT.medium:
-			vfx_instance.amount = 100
-		AMOUNT.large:
-			vfx_instance.amount = 200
+	vfx_instance.amount = particle_amount
 	vfx_instance.process_material.emission_shape_offset = emission_shape.position
 	vfx_instance.process_material.emission_box_extents = emission_shape.shape.size
 	
@@ -107,6 +114,3 @@ func _ready() -> void:
 	for index in secondary_mesh_surface_indexes:
 		if enchant_dict[upgrade_type].has("secondary_material"):
 			weapon_mesh.mesh.surface_set_material(index, enchant_dict[upgrade_type]["secondary_material"])
-	
-	#TODO - MAYBE:
-	#potentially apply (not yet implemented)shader with said color to mesh

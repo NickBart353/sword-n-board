@@ -294,3 +294,31 @@ func load_debug_items() -> Array:
 				#item_instance.data = ITEMS[item_key]
 				#items.append(item_instance)
 	#return items
+
+### DEBUG ###
+
+func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
+	if not MELEE_WEAPONS.has(id):
+		push_error("failed to load debug items for: ", id)
+		return []
+	var items: Array[Item] = []
+	var normal: Item = ItemManager.get_item_from_id(id)
+	normal.data.upgrade_type = WeaponData.UPGRADE_TYPE.NORMAL
+	items.append(normal)
+	var fire: Item = ItemManager.get_item_from_id(id)
+	fire.data.upgrade_type = WeaponData.UPGRADE_TYPE.FIRE
+	items.append(fire)
+	var cold: Item = ItemManager.get_item_from_id(id)
+	cold.data.upgrade_type = WeaponData.UPGRADE_TYPE.COLD
+	items.append(cold)
+	var lightning: Item = ItemManager.get_item_from_id(id)
+	lightning.data.upgrade_type = WeaponData.UPGRADE_TYPE.LIGHTNING
+	items.append(lightning)
+	var nature: Item = ItemManager.get_item_from_id(id)
+	nature.data.upgrade_type = WeaponData.UPGRADE_TYPE.NATURE
+	items.append(nature)
+	var chaos: Item = ItemManager.get_item_from_id(id)
+	chaos.data.upgrade_type = WeaponData.UPGRADE_TYPE.CHAOS
+	items.append(chaos)
+	
+	return items
