@@ -70,7 +70,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7huce"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_qj7hc"]
 resource_local_to_scene = true
 resource_name = "katana_Cylinder_005"
 _surfaces = [{
@@ -171,7 +171,7 @@ hand_component = NodePath("TwohandComponent")
 
 [node name="KatanaMesh" parent="." index="0" unique_id=1302154585]
 transform = Transform3D(-1.6610327e-08, 0, -0.38, 0, 0.38, 0, 0.38, 0, -1.6610327e-08, 0, -0.18048811, 0)
-mesh = SubResource("ArrayMesh_7huce")
+mesh = SubResource("ArrayMesh_qj7hc")
 
 [node name="TwohandComponent" parent="." index="1" unique_id=1480913319 instance=ExtResource("2_c7bxv")]
 
@@ -231,13 +231,11 @@ chaos_emission_shape = NodePath("FullShape")
 metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
 
 [node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=39644807]
-transform = Transform3D(1, 0, 0, 0, 0.98334557, -0.18174589, 0, 0.18174589, 0.98334557, 0.0002746582, 0.8096042, -0.030870873)
+transform = Transform3D(1, 0, 0, 0, 0.98334557, -0.18174589, 0, 0.18174589, 0.98334557, 0.0002746582, 0.8112338, -0.0396879)
 shape = SubResource("BoxShape3D_xixin")
 
 [node name="FullShapeShort" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=995807375]
 transform = Transform3D(1, 0, 0, 0, 0.98334557, -0.18174589, 0, 0.18174589, 0.98334557, 0.0002746582, 0.6771875, -0.061101407)
 shape = SubResource("BoxShape3D_ali8j")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="EnchantApplicator" index="2" unique_id=1787289933]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

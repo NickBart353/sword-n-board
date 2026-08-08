@@ -18,6 +18,7 @@ shader_parameter/DissolveTexture = ExtResource("2_8qqbu")
 shader_parameter/DissolveAmount = 0.5610000266475
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qqbu"]
+resource_local_to_scene = true
 gravity = Vector3(0, 0, 0)
 color = Color(2.638, 2.428, 4.006, 1)
 
@@ -40,6 +41,7 @@ point_count = 3
 curve = SubResource("Curve_yy0nm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yy0nm"]
+resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 0.2
 angle_min = -360.0
@@ -50,7 +52,7 @@ damping_max = 1.0
 scale_min = 0.75
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_3btdx")
-color = Color(0.9875, 0.85570854, 1.5565991, 1)
+color = Color(1.122, 0.220013, 0.7320585, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_3btdx"]
 
@@ -62,6 +64,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_yy0nm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3btdx"]
+resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 0.3
 angle_min = -360.0
@@ -71,7 +74,7 @@ damping_min = 0.5
 damping_max = 1.0
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_3btdx")
-color = Color(0.23706664, 0.2156, 0.28, 1)
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 color_ramp = SubResource("GradientTexture1D_3btdx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sltny"]
@@ -80,12 +83,13 @@ shader = ExtResource("5_3btdx")
 shader_parameter/MainTex = ExtResource("6_sltny")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e52rn"]
+resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 1.0
 gravity = Vector3(0, 5, 0)
 scale_min = 0.01
 scale_max = 0.049999997
-color = Color(2.315, 1.101, 3.009, 1)
+color = Color(1.7682348, 0.5262345, 0, 1)
 turbulence_enabled = true
 turbulence_noise_strength = 4.5
 turbulence_noise_scale = 0.833
@@ -95,7 +99,7 @@ turbulence_noise_speed_random = 0.27
 
 [node name="vfx_fire" type="Node3D" unique_id=274732113]
 script = ExtResource("1_e52rn")
-flame_color = Color(1.1216999, 0.36846256, 0, 1)
+flame_color = Color(1.122, 0.220013, 0.7320585, 1)
 smoke_color = Color(0.2231029, 0.2231029, 0.22310287, 1)
 particle_color = Color(1.7682348, 0.5262345, 0, 1)
 

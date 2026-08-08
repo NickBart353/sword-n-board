@@ -37,6 +37,8 @@ const enchant_dict: Dictionary = {
 @export var particle_effect: GPUParticles3D #export feature is for debug
 @export var weapon_mesh: MeshInstance3D
 
+@export var copy_surfaces_from_fire: bool = false : set = unify_surfaces
+
 @export_group("Magic Settings")
 @export_group("Fire Settings")
 @export var fire_particle_amount: int = 50
@@ -68,6 +70,16 @@ var upgrade_type: WeaponData.UPGRADE_TYPE
 var vfx_instance: GPUParticles3D
 
 #enum UPGRADE_TYPE {MAGIC}
+
+func unify_surfaces(_new_value: bool) -> void:
+	cold_mesh_surface_indexes = fire_mesh_surface_indexes
+	cold_secondary_mesh_surface_indexes = fire_secondary_mesh_surface_indexes
+	lightning_mesh_surface_indexes = fire_mesh_surface_indexes
+	lightning_secondary_mesh_surface_indexes = fire_secondary_mesh_surface_indexes
+	nature_mesh_surface_indexes = fire_mesh_surface_indexes
+	nature_secondary_mesh_surface_indexes = fire_secondary_mesh_surface_indexes
+	chaos_mesh_surface_indexes = fire_mesh_surface_indexes
+	chaos_secondary_mesh_surface_indexes = fire_secondary_mesh_surface_indexes
 
 func _ready() -> void:
 	if not weapon or not weapon_mesh:

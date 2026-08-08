@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://c4v0uee8rp0kn" path="res://scenes/component_scenes/item_entities/weapons/spear/hilt.tres" id="5_vmqom"]
 [ext_resource type="Material" uid="uid://d3hijacxj5ntr" path="res://scenes/component_scenes/item_entities/weapons/spear/metalBottom.tres" id="6_u752f"]
 [ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="7_vmqom"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="8_u752f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vaoy"]
 radius = 0.09326172
@@ -49,6 +50,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7bw0v"]
+resource_local_to_scene = true
 resource_name = "spear_Plane"
 _surfaces = [{
 "aabb": AABB(-0.22995025, -2.3180099, -0.10054215, 0.4595503, 5.429701, 0.19722176),
@@ -99,6 +101,12 @@ height = 0.845
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vmqom"]
 radius = 0.09667969
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
+size = Vector3(0.20922852, 0.03653717, 0.12646484)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u752f"]
+size = Vector3(0.20922852, 0.47657776, 0.12646484)
+
 [node name="spear" unique_id=322799300 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_083pc")]
 collision_layer = 8
 collision_mask = 33
@@ -114,7 +122,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.76458454, 0)
 shape = SubResource("CapsuleShape3D_3vaoy")
 
-[node name="SpearMesh" parent="." index="2" unique_id=1822455374]
+[node name="SpearMesh" parent="." index="2" unique_id=2119750333]
 transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, 0, 0, 0)
 mesh = SubResource("ArrayMesh_7bw0v")
 
@@ -135,5 +143,38 @@ debug_color = Color(0.9567352, 0.21080577, 0, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=185786976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88924456, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=1217209765 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("8_u752f")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../SpearMesh")
+fire_particle_amount = 40
+fire_mesh_surface_indexes = Array[int]([0, 1])
+fire_secondary_mesh_surface_indexes = Array[int]([2])
+fire_emission_shape = NodePath("start")
+cold_particle_amount = 30
+cold_mesh_surface_indexes = Array[int]([0, 1])
+cold_secondary_mesh_surface_indexes = Array[int]([2])
+cold_emission_shape = NodePath("full")
+lightning_particle_amount = 4
+lightning_mesh_surface_indexes = Array[int]([0, 1])
+lightning_secondary_mesh_surface_indexes = Array[int]([2])
+lightning_emission_shape = NodePath("start")
+nature_particle_amount = 40
+nature_mesh_surface_indexes = Array[int]([0, 1])
+nature_secondary_mesh_surface_indexes = Array[int]([2])
+nature_emission_shape = NodePath("full")
+chaos_particle_amount = 35
+chaos_mesh_surface_indexes = Array[int]([0, 1, 2])
+chaos_emission_shape = NodePath("full")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="start" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=868697284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00061035156, 0.5634451, -0.007080078)
+shape = SubResource("BoxShape3D_evpsf")
+
+[node name="full" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=220945485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75123703, 0)
+shape = SubResource("BoxShape3D_u752f")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -76,6 +76,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6dy8j"]
+resource_local_to_scene = true
 resource_name = "Greataxe_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-0.9103408, -1.8572884, -0.13214505, 1.8206816, 4.2269278, 0.26440656),
@@ -142,6 +143,12 @@ size = Vector3(0.24853516, 1.8285522, 0.63027954)
 [sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
 size = Vector3(0.12033081, 0.09402466, 0.7272339)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dy8j"]
+size = Vector3(0.12033081, 0.52033234, 0.7272339)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p825b"]
+size = Vector3(0.24072266, 1.4814453, 0.22149658)
+
 [node name="Greataxe" unique_id=398786294 node_paths=PackedStringArray("collision_point", "hand_component") instance=ExtResource("1_qss71")]
 collision_layer = 8
 collision_mask = 33
@@ -161,7 +168,6 @@ mesh = SubResource("ArrayMesh_6dy8j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=1216875193]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.1194029, -0.53903097)
-visible = false
 mesh = SubResource("CapsuleMesh_3yh0m")
 
 [node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=338942821]
@@ -178,16 +184,41 @@ debug_color = Color(0.98679894, 0, 0.3246901, 0.41960785)
 [node name="CollisionPoint" type="Marker3D" parent="." index="5" unique_id=1456753973]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1474959, 0)
 
-[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=759075368 node_paths=PackedStringArray("weapon", "emission_shape", "weapon_mesh")]
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=759075368 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
 script = ExtResource("5_6dy8j")
 weapon = NodePath("..")
-emission_shape = NodePath("CollisionShape3D2")
-particle_amount = 1
 weapon_mesh = NodePath("../GreataxeMesh")
-mesh_surface_indexes = Array[int]([0])
+fire_particle_amount = 100
+fire_mesh_surface_indexes = Array[int]([0, 1, 3])
+fire_secondary_mesh_surface_indexes = Array[int]([2])
+fire_emission_shape = NodePath("CollisionShape3D")
+cold_particle_amount = 100
+cold_mesh_surface_indexes = Array[int]([0, 1, 3])
+cold_secondary_mesh_surface_indexes = Array[int]([2])
+cold_emission_shape = NodePath("CollisionShape3D")
+lightning_particle_amount = 30
+lightning_mesh_surface_indexes = Array[int]([0, 1, 3])
+lightning_secondary_mesh_surface_indexes = Array[int]([2])
+lightning_emission_shape = NodePath("CollisionShape3D")
+nature_particle_amount = 100
+nature_mesh_surface_indexes = Array[int]([0, 1, 3])
+nature_secondary_mesh_surface_indexes = Array[int]([2])
+nature_emission_shape = NodePath("CollisionShape3D")
+chaos_particle_amount = 100
+chaos_mesh_surface_indexes = Array[int]([0, 1, 3])
+chaos_secondary_mesh_surface_indexes = Array[int]([2])
+chaos_emission_shape = NodePath("CollisionShape3D")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1327793136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0034637451, 0.75730217, 0.0032653809)
+[node name="Start" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1327793136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0034637451, 0.8338959, 0.0032653809)
 shape = SubResource("BoxShape3D_evpsf")
+
+[node name="Full" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=15372629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0619264, 0)
+shape = SubResource("BoxShape3D_6dy8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnchantApplicator" index="2" unique_id=897130223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0056152344, 0.24072266, 0.0027160645)
+shape = SubResource("BoxShape3D_p825b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

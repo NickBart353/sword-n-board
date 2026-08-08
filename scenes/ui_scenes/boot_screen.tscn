@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="3_0dy7m"]
 [ext_resource type="Texture2D" uid="uid://cruy7o4abyu2h" path="res://icon.svg" id="3_q4nfl"]
 [ext_resource type="FontFile" uid="uid://b1t1sf7ncc0xx" path="res://fonts/Lora/Lora-VariableFont_wght.ttf" id="5_4dd7h"]
-[ext_resource type="Texture2D" uid="uid://b2fvtshtjtpqh" path="res://my_assets/sprites/Flaming Double Axe.png" id="5_xcjwe"]
+[ext_resource type="Texture2D" uid="uid://b2fvtshtjtpqh" path="res://my_assets/sprites/Flaming Greataxe.png" id="5_xcjwe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dy7m"]
 content_margin_left = 20.0
@@ -144,7 +144,6 @@ _data = {
 }
 
 [node name="BootScreen" type="Panel" unique_id=118721969]
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

@@ -11,6 +11,7 @@ gradient = SubResource("Gradient_ua7as")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ua7as"]
 resource_local_to_scene = true
 lifetime_randomness = 0.64
+particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0.00016021729, 0.12238312, 1.5258789e-05)
 emission_shape_scale = Vector3(0.5, 0.5, 0.5)
 emission_shape = 3
