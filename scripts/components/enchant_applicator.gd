@@ -101,6 +101,7 @@ func _apply_enchant(particle_amount: int, mesh_surface_indexes: Array[int], seco
 	add_child(vfx_instance)
 	
 	vfx_instance.amount = particle_amount
+	vfx_instance.rotation = emission_shape.rotation
 	vfx_instance.process_material.emission_shape_offset = emission_shape.position
 	vfx_instance.process_material.emission_box_extents = emission_shape.shape.size
 	

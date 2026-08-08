@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://cvjpwkgpkgtf4" path="res://scenes/component_scenes/item_entities/weapons/katana/hilt.tres" id="6_7huce"]
 [ext_resource type="Material" uid="uid://l2cocix33ius" path="res://scenes/component_scenes/item_entities/weapons/katana/wrappings.tres" id="7_n35rt"]
 [ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="9_n35rt"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="10_qj7hc"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_mnbuo"]
 _surfaces = [{
@@ -70,6 +71,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7huce"]
+resource_local_to_scene = true
 resource_name = "katana_Cylinder_005"
 _surfaces = [{
 "aabb": AABB(-0.074371256, 0.06941108, -0.038700964, 0.7260081, 4.176714, 0.08079368),
@@ -153,6 +155,12 @@ size = Vector3(0.053588867, 0.7124634, 0.06323242)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qj7hc"]
 size = Vector3(0.089782715, 1.7445679, 0.19393921)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xixin"]
+size = Vector3(0.04852295, 1.2367401, 0.10229492)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ali8j"]
+size = Vector3(0.04852295, 0.9336777, 0.10229492)
+
 [node name="katana" unique_id=690274581 node_paths=PackedStringArray("impact_location", "collision_point", "hand_component") instance=ExtResource("1_2qush")]
 collision_layer = 8
 collision_mask = 33
@@ -161,7 +169,7 @@ impact_location = NodePath("Impact")
 collision_point = NodePath("Marker3D")
 hand_component = NodePath("TwohandComponent")
 
-[node name="KatanaMesh" parent="." index="0" unique_id=1126575928]
+[node name="KatanaMesh" parent="." index="0" unique_id=1302154585]
 transform = Transform3D(-1.6610327e-08, 0, -0.38, 0, 0.38, 0, 0.38, 0, -1.6610327e-08, 0, -0.18048811, 0)
 mesh = SubResource("ArrayMesh_7huce")
 
@@ -196,5 +204,40 @@ debug_color = Color(0.9842182, 0.12584761, 0, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="7" unique_id=109151089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2542291, 0.11898124)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="8" unique_id=242553905 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("10_qj7hc")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../KatanaMesh")
+fire_particle_amount = 150
+fire_mesh_surface_indexes = Array[int]([0])
+fire_secondary_mesh_surface_indexes = Array[int]([1, 2, 3, 4])
+fire_emission_shape = NodePath("FullShapeShort")
+cold_particle_amount = 150
+cold_mesh_surface_indexes = Array[int]([0])
+cold_secondary_mesh_surface_indexes = Array[int]([1, 2, 3, 4])
+cold_emission_shape = NodePath("FullShape")
+lightning_particle_amount = 10
+lightning_mesh_surface_indexes = Array[int]([0])
+lightning_secondary_mesh_surface_indexes = Array[int]([1, 2, 3, 4])
+lightning_emission_shape = NodePath("FullShapeShort")
+nature_particle_amount = 150
+nature_mesh_surface_indexes = Array[int]([0])
+nature_secondary_mesh_surface_indexes = Array[int]([1, 2, 3, 4])
+nature_emission_shape = NodePath("FullShape")
+chaos_mesh_surface_indexes = Array[int]([0, 1, 2, 4])
+chaos_secondary_mesh_surface_indexes = Array[int]([3])
+chaos_emission_shape = NodePath("FullShape")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=39644807]
+transform = Transform3D(1, 0, 0, 0, 0.98334557, -0.18174589, 0, 0.18174589, 0.98334557, 0.0002746582, 0.8096042, -0.030870873)
+shape = SubResource("BoxShape3D_xixin")
+
+[node name="FullShapeShort" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=995807375]
+transform = Transform3D(1, 0, 0, 0, 0.98334557, -0.18174589, 0, 0.18174589, 0.98334557, 0.0002746582, 0.6771875, -0.061101407)
+shape = SubResource("BoxShape3D_ali8j")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="EnchantApplicator" index="2" unique_id=1787289933]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
