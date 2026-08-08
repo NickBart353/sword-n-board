@@ -31,9 +31,10 @@ func load_last_savefile_id() -> String:
 		return ""
 	
 	if ResourceLoader.exists(last_savefile_path):
-		savefile = ResourceLoader.load(last_savefile_path) as LastSaveFile
-		current_savefile_id = savefile.last_savefile_id
-		return current_savefile_id
+		savefile = ResourceLoader.load(last_savefile_path) as LastSaveFile#savefile can be null??
+		if savefile != null:
+			current_savefile_id = savefile.last_savefile_id
+			return current_savefile_id
 	
 	return ""
 

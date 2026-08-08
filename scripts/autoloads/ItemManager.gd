@@ -201,7 +201,7 @@ func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: Stri
 	
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(type)
 	#prints("prefix", name_prefix, "type", type)
-	if name_prefix != "":
+	if name_prefix != "" and not item_instance.data.item_name.contains(name_prefix):
 		item_instance.data.item_name = "{0} {1}".format([name_prefix, item_instance.data.item_name])
 		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_instance.data.item_name)
 		if new_sprite != null:
@@ -211,8 +211,8 @@ func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: Stri
 
 func create_upgraded_version_from_resource(item_resource: ItemData) -> ItemData:
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(item_resource.upgrade_type)
-	prints("prefix", name_prefix, "type", item_resource.upgrade_type)
-	if name_prefix != "":
+	#prints("prefix", name_prefix, "type", item_resource.upgrade_type)
+	if name_prefix != "" and not item_resource.item_name.contains(name_prefix):
 		item_resource.item_name = "{0} {1}".format([name_prefix, item_resource.item_name])
 		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_resource.item_name)
 		if new_sprite != null:
@@ -339,19 +339,19 @@ func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
 	var normal: Item = ItemManager.get_item_from_id(id)
 	normal.data.upgrade_type = WeaponData.UPGRADE_TYPE.NORMAL
 	items.append(normal)
-	var fire: Item = ItemManager.get_item_from_id(id)
+	var fire: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.FIRE, id)
 	fire.data.upgrade_type = WeaponData.UPGRADE_TYPE.FIRE
 	items.append(fire)
-	var cold: Item = ItemManager.get_item_from_id(id)
+	var cold: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.COLD, id)
 	cold.data.upgrade_type = WeaponData.UPGRADE_TYPE.COLD
 	items.append(cold)
-	var lightning: Item = ItemManager.get_item_from_id(id)
+	var lightning: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.LIGHTNING, id)
 	lightning.data.upgrade_type = WeaponData.UPGRADE_TYPE.LIGHTNING
 	items.append(lightning)
-	var nature: Item = ItemManager.get_item_from_id(id)
+	var nature: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.NATURE, id)
 	nature.data.upgrade_type = WeaponData.UPGRADE_TYPE.NATURE
 	items.append(nature)
-	var chaos: Item = ItemManager.get_item_from_id(id)
+	var chaos: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.CHAOS, id)
 	chaos.data.upgrade_type = WeaponData.UPGRADE_TYPE.CHAOS
 	items.append(chaos)
 	
