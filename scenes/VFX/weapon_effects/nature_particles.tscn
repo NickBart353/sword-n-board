@@ -15,6 +15,7 @@ point_count = 3
 curve = SubResource("Curve_njja8")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p825b"]
+resource_local_to_scene = true
 lifetime_randomness = 0.5
 particle_flag_align_y = true
 emission_shape_offset = Vector3(0.00010681152, 0.26052856, 0.00077056885)

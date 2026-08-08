@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bo83tbp47162b" path="res://scripts/item_entity/weapons/hammer.gd" id="2_p7gb8"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_blb5j"]
 [ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="4_7ar86"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="5_7ar86"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blb5j"]
 vertex_color_use_as_albedo = true
@@ -27,6 +28,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7ar86"]
+resource_local_to_scene = true
 resource_name = "hammer_Plane"
 _surfaces = [{
 "aabb": AABB(-2.177461, -1.17176, -1.30143, 4.354922, 2.34352, 7.262103),
@@ -51,6 +53,12 @@ size = Vector3(0.26782227, 0.265213, 0.47224462)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8jspw"]
 size = Vector3(0.25909424, 0.7230911, 0.44378662)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_evpsf"]
+size = Vector3(0.32048035, 0.036865234, 0.51623535)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p825b"]
+size = Vector3(0.330719, 0.26019287, 0.50390625)
+
 [node name="hammer" unique_id=87077578 node_paths=PackedStringArray("hammer_player", "collision_point", "hand_component") instance=ExtResource("1_qoys6")]
 collision_layer = 8
 collision_mask = 35
@@ -59,7 +67,7 @@ hammer_player = NodePath("HammerPlayer")
 collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Plane" parent="." index="0" unique_id=2102539421]
+[node name="Plane" parent="." index="0" unique_id=559689022]
 transform = Transform3D(-4.371139e-09, 0.1, -4.371139e-09, 0, -4.371139e-09, -0.1, -0.1, -4.371139e-09, 1.9106854e-16, -2.6294304e-08, 0.47779524, 1.1493605e-15)
 mesh = SubResource("ArrayMesh_7ar86")
 
@@ -82,6 +90,33 @@ debug_color = Color(0.9985035, 0, 0.1519121, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=1511179176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5720364, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="6" unique_id=797418450 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("5_7ar86")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../Plane")
+fire_mesh_surface_indexes = Array[int]([0])
+fire_emission_shape = NodePath("StartShape")
+cold_particle_amount = 40
+cold_mesh_surface_indexes = Array[int]([0])
+cold_emission_shape = NodePath("FullShape")
+lightning_particle_amount = 5
+lightning_mesh_surface_indexes = Array[int]([0])
+lightning_emission_shape = NodePath("StartShape")
+nature_mesh_surface_indexes = Array[int]([0])
+nature_emission_shape = NodePath("FullShape")
+chaos_particle_amount = 30
+chaos_mesh_surface_indexes = Array[int]([0])
+chaos_emission_shape = NodePath("FullShape")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="StartShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1915498142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005744934, 0.40563965, -0.0051879883)
+shape = SubResource("BoxShape3D_evpsf")
+
+[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" index="1" unique_id=1398447710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002822876, 0.5038147, -0.005859375)
+shape = SubResource("BoxShape3D_p825b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

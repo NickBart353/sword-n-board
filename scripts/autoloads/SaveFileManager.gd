@@ -35,6 +35,8 @@ func load_last_savefile_id() -> String:
 		if savefile != null:
 			current_savefile_id = savefile.last_savefile_id
 			return current_savefile_id
+		else:
+			push_error("this shit might be corrupted: ", last_savefile_path)
 	
 	return ""
 

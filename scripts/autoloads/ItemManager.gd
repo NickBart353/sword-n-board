@@ -331,6 +331,12 @@ func load_debug_items() -> Array:
 
 ### DEBUG ###
 
+func get_all_upgrade_types_for_all_items() -> Array[Item]:
+	var items: Array[Item] = []
+	for id in MELEE_WEAPONS:
+		items.append_array(get_all_upgrade_types_for_id(id))
+	return items
+
 func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
 	if not MELEE_WEAPONS.has(id):
 		push_error("failed to load debug items for: ", id)

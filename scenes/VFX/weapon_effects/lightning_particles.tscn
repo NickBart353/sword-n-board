@@ -9,6 +9,7 @@ colors = PackedColorArray(0.7539839, 0.75398386, 0.75398386, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_ua7as")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ua7as"]
+resource_local_to_scene = true
 lifetime_randomness = 0.64
 emission_shape_offset = Vector3(0.00016021729, 0.12238312, 1.5258789e-05)
 emission_shape_scale = Vector3(0.5, 0.5, 0.5)
@@ -66,7 +67,7 @@ shadow_mesh = SubResource("ArrayMesh_elxix")
 
 [node name="LightningParticles" type="GPUParticles3D" unique_id=2122439439]
 amount = 50
-lifetime = 0.09999999999999999
+lifetime = 0.1
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ua7as")
 draw_pass_1 = SubResource("ArrayMesh_taxn4")

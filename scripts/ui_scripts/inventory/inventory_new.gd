@@ -376,13 +376,13 @@ func _load_player_items():
 	player_mainhand = _get_cloned_item(item_dict.get("mainhand"))
 	player_offhand = _get_cloned_item(item_dict.get("offhand"))
 	current_consumable = _get_cloned_item(item_dict.get("consumable"))
-	_load_debug_items(true)
+	_load_debug_items(false)
 	_refresh_items(true)
 
 func _load_debug_items(skip: bool = false) -> void:
 	if skip:
 		return
-	player_items.append_array(ItemManager.get_all_upgrade_types_for_id("10006"))
+	player_items.append_array(ItemManager.get_all_upgrade_types_for_all_items())
 	return
 
 func _get_cloned_item(itemdata: ItemData) -> Item:

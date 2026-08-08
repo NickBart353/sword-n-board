@@ -10,6 +10,7 @@ point_count = 4
 curve = SubResource("Curve_t5mmq")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+resource_local_to_scene = true
 lifetime_randomness = 0.64
 particle_flag_rotate_y = true
 emission_shape_offset = Vector3(-0.0006713867, 0.29717255, 0.00044250488)
