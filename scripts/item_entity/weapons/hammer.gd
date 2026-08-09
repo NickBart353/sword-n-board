@@ -2,13 +2,9 @@ extends MeleeWeapon
 
 @export var hammer_player: AudioStreamPlayer3D
 
-signal hit
-
 func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy:
-		hit.emit(body, data.normal_damage)
-		hammer_player.play()
-		play_blood_vfx()
+	hit_body(body)
+	hammer_player.play()
 
 func _set_marker_values():
 	marker_positions = {

@@ -2,14 +2,8 @@ class_name Torch extends MeleeWeapon
 
 @export var sword_player: AudioStreamPlayer3D
 
-signal hit
-
 func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy:
-		hit.emit(body, data.normal_damage)
-		play_blood_vfx()
-		if sword_player:
-			sword_player.play()
+	hit_body(body)
 
 func _set_marker_values():
 	marker_positions = {

@@ -36,19 +36,19 @@ impact_location = NodePath("ImpactLocation")
 collision_point = NodePath("Marker3D")
 hand_component = NodePath("TwohandComponent")
 
-[node name="Blade" parent="." index="0" unique_id=105301628]
+[node name="Blade" parent="." index="0" unique_id=366974677]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_3lr8e")
 
-[node name="Brick" parent="." index="1" unique_id=2139888850]
+[node name="Brick" parent="." index="1" unique_id=2092893759]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_tpuau")
 
-[node name="Hilt" parent="." index="2" unique_id=27244594]
+[node name="Hilt" parent="." index="2" unique_id=1938899038]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 
-[node name="Tip" parent="." index="3" unique_id=1785056136]
+[node name="Tip" parent="." index="3" unique_id=1004819876]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
 material_override = SubResource("StandardMaterial3D_a61jr")
 

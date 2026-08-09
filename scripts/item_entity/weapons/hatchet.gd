@@ -1,11 +1,7 @@
 extends MeleeWeapon
 
-signal hit
-
 func _on_body_entered(body: Node3D) -> void:
-	if body is Enemy:
-		hit.emit(body, data.normal_damage)
-		play_blood_vfx()
+	hit_body(body)
 
 func _set_marker_values():
 	marker_positions = {

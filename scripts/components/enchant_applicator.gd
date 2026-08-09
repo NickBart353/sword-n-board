@@ -89,20 +89,25 @@ func _ready() -> void:
 	upgrade_type = weapon.data.upgrade_type
 	
 	if upgrade_type == WeaponData.UPGRADE_TYPE.NORMAL:
+		weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.BLOOD_SPLATTER])
 		return
 	
 	match upgrade_type:
 		WeaponData.UPGRADE_TYPE.FIRE:
 			_apply_enchant(fire_particle_amount, fire_mesh_surface_indexes, fire_secondary_mesh_surface_indexes, fire_emission_shape)
+			weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.FIRE_IMPACT])
 		WeaponData.UPGRADE_TYPE.COLD:
 			_apply_enchant(cold_particle_amount, cold_mesh_surface_indexes, cold_secondary_mesh_surface_indexes, cold_emission_shape)
+			weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.COLD_IMPACT])
 		WeaponData.UPGRADE_TYPE.LIGHTNING:
 			_apply_enchant(lightning_particle_amount, lightning_mesh_surface_indexes, lightning_secondary_mesh_surface_indexes, lightning_emission_shape)
+			weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.LIGHTNING_IMPACT])
 		WeaponData.UPGRADE_TYPE.NATURE:
 			_apply_enchant(nature_particle_amount, nature_mesh_surface_indexes, nature_secondary_mesh_surface_indexes, nature_emission_shape)
+			weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.NATURE_IMPACT])
 		WeaponData.UPGRADE_TYPE.CHAOS:
 			_apply_enchant(chaos_particle_amount, chaos_mesh_surface_indexes, chaos_secondary_mesh_surface_indexes, chaos_emission_shape)
-	
+			weapon.set_impact_vfx(VfxManager.VFX_DICT[VfxManager.VFX.CHAOS_IMPACT])
 
 func _apply_enchant(particle_amount: int, mesh_surface_indexes: Array[int], secondary_mesh_surface_indexes: Array[int], emission_shape: CollisionShape3D) -> void:
 	if not emission_shape or not emission_shape.shape is BoxShape3D:

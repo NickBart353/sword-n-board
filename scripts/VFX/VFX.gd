@@ -25,7 +25,7 @@ func play() -> void:
 				queue_free()
 			else:
 				hide()
-			vfx_finished.emit()
+			vfx_finished.emit(self)
 			return
 	show()
 	animation_player.play(animation_name)
@@ -33,8 +33,9 @@ func play() -> void:
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == animation_name:
 		hide()
-		vfx_finished.emit()
-		animation_player.play("RESET")
+		vfx_finished.emit(self)
+		if animation_player.has_animation("RESET"):
+			animation_player.play("RESET")
 		if queue_free_on_finish:
 			queue_free()
 

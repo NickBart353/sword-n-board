@@ -16,7 +16,7 @@ func _ready() -> void:
 		vfx_pool.append(rumble_instance)
 		call_deferred("add_child", rumble_instance)
 
-func _deactivate_vfx():
+func _deactivate_vfx(_vfx: Basic_VFX):
 	pass
 
 func Enter():

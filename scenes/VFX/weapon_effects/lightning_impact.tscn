@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://b2bwgc22w8h3l"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_j66uo"]
+[ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="2_bp3vq"]
+
+[sub_resource type="Animation" id="Animation_28iwe"]
+resource_name = "zzzapp"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlueParticles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("YellowParticles")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phug6"]
+_data = {
+&"zzzapp": SubResource("Animation_28iwe")
+}
+
+[sub_resource type="Curve" id="Curve_voftf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4bjin"]
+curve = SubResource("Curve_voftf")
+
+[sub_resource type="Curve" id="Curve_gjaue"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_op3co"]
+curve = SubResource("Curve_gjaue")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+angle_min = -720.0
+angle_max = 720.0
+radial_velocity_min = 2.9999776
+radial_velocity_max = 4.9999776
+radial_velocity_curve = SubResource("CurveTexture_4bjin")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_op3co")
+color = Color(0.9510118, 1.6825182, 1.9949324, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ji0"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_bp3vq")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p825b"]
+material = SubResource("StandardMaterial3D_l1ji0")
+size = Vector2(0.1, 0.1)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_j66uo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bp3vq"]
+curve = SubResource("Curve_j66uo")
+
+[sub_resource type="Curve" id="Curve_28iwe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_phug6"]
+curve = SubResource("Curve_28iwe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gjaue"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 0.3
+angle_min = -720.0
+angle_max = 720.0
+radial_velocity_min = 2.9999776
+radial_velocity_max = 4.9999776
+radial_velocity_curve = SubResource("CurveTexture_bp3vq")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_phug6")
+color = Color(3.605996, 3.286417, 1.0348372, 1)
+
+[node name="LightningImpact" type="Node3D" unique_id=837086322 node_paths=PackedStringArray("animation_player")]
+top_level = true
+script = ExtResource("1_j66uo")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "zzzapp"
+hide_if_missed_by_player = false
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1449935342]
+libraries/ = SubResource("AnimationLibrary_phug6")
+
+[node name="BlueParticles" type="GPUParticles3D" parent="." unique_id=818044448]
+emitting = false
+amount = 9
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_evpsf")
+draw_pass_1 = SubResource("PlaneMesh_p825b")
+
+[node name="YellowParticles" type="GPUParticles3D" parent="." unique_id=1958175639]
+emitting = false
+amount = 15
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_gjaue")
+draw_pass_1 = SubResource("PlaneMesh_p825b")

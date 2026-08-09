@@ -11,7 +11,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_r21bu"]
 size = Vector3(0.036888123, 0.2118969, 0.305748)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7gwkr"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_flxtr"]
 resource_local_to_scene = true
 resource_name = "hatchet_Plane"
 _surfaces = [{
@@ -67,7 +67,7 @@ shape = SubResource("BoxShape3D_r21bu")
 
 [node name="HatchetMesh" parent="." index="2" unique_id=1175379148]
 transform = Transform3D(-8.742278e-09, 0.2, 8.742278e-09, 0, -8.742278e-09, 0.2, 0.2, 8.742278e-09, 3.821371e-16, -0.015992612, 0.4502868, -0.08708435)
-mesh = SubResource("ArrayMesh_7gwkr")
+mesh = SubResource("ArrayMesh_flxtr")
 
 [node name="BlockingComponent" type="Area3D" parent="." index="3" unique_id=1400457580]
 collision_layer = 8

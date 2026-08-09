@@ -32,7 +32,7 @@ script = ExtResource("2_8ynvp")
 collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=113012279 groups=["Shield"]]
+[node name="Sketchfab_model" parent="." index="0" unique_id=1469745716 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
 collision_layer = 8
 collision_mask = 33

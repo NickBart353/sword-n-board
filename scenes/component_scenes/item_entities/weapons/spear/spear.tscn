@@ -49,7 +49,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_7bw0v"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_u752f"]
 resource_local_to_scene = true
 resource_name = "spear_Plane"
 _surfaces = [{
@@ -124,7 +124,7 @@ shape = SubResource("CapsuleShape3D_3vaoy")
 
 [node name="SpearMesh" parent="." index="2" unique_id=2119750333]
 transform = Transform3D(0.315, 0, 0, 0, 0.315, 0, 0, 0, 0.315, 0, 0, 0)
-mesh = SubResource("ArrayMesh_7bw0v")
+mesh = SubResource("ArrayMesh_u752f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="3" unique_id=115227763]
 transform = Transform3D(0.034864586, -0.99939203, 0, 0.99939203, 0.034864586, 0, 0, 0, 1, -0.41655675, 0.27225465, -0.0057017803)

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="3_orxha"]
 [ext_resource type="AudioStream" uid="uid://cei6yivygsheh" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.wav" id="4_2wvta"]
 [ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="5_4dwc1"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="6_etsd2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wvta"]
 size = Vector3(0.46940327, 0.6130638, 1.0787964)
@@ -169,6 +170,9 @@ size = Vector3(0.28570557, 1.4660645, 0.34332275)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xqidl"]
 size = Vector3(0.499588, 0.7030487, 1.1893463)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_blixn"]
+size = Vector3(0.499588, 0.7030487, 1.1893463)
+
 [node name="greathammer" unique_id=1464552802 node_paths=PackedStringArray("audio_player", "impact_location", "collision_point", "hand_component") instance=ExtResource("1_5ettr")]
 collision_layer = 8
 collision_mask = 33
@@ -185,7 +189,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069727898, 1.420232, 0.000
 shape = SubResource("BoxShape3D_2wvta")
 debug_color = Color(0.9956452, 0, 0.20966002, 0.41960785)
 
-[node name="MiddleMetal" parent="." index="2" unique_id=1710624319]
+[node name="MiddleMetal" parent="." index="2" unique_id=367750421]
 transform = Transform3D(-1.7484556e-08, 0.4, -1.7484556e-08, 0, -1.7484556e-08, -0.4, -0.4, -1.7484556e-08, 7.642742e-16, -0.17499846, 1.4194953, 0.0033650622)
 mesh = SubResource("ArrayMesh_etsd2")
 
@@ -219,5 +223,35 @@ debug_color = Color(0.99904376, 0, 0.13815239, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="6" unique_id=379965327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6543267, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="7" unique_id=47430772 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("6_etsd2")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../MiddleMetal")
+fire_particle_amount = 200
+fire_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+fire_secondary_mesh_surface_indexes = Array[int]([4])
+fire_emission_shape = NodePath("HeadShape")
+cold_particle_amount = 200
+cold_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+cold_secondary_mesh_surface_indexes = Array[int]([4])
+cold_emission_shape = NodePath("HeadShape")
+lightning_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+lightning_secondary_mesh_surface_indexes = Array[int]([4])
+lightning_emission_shape = NodePath("HeadShape")
+nature_particle_amount = 200
+nature_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+nature_secondary_mesh_surface_indexes = Array[int]([4])
+nature_emission_shape = NodePath("HeadShape")
+chaos_particle_amount = 200
+chaos_mesh_surface_indexes = Array[int]([0, 1, 2, 3])
+chaos_secondary_mesh_surface_indexes = Array[int]([4])
+chaos_emission_shape = NodePath("HeadShape")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="HeadShape" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=1919596932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010734558, 1.4255295, 0.0051651)
+shape = SubResource("BoxShape3D_blixn")
+debug_color = Color(0.99904376, 0, 0.13815239, 0.41960785)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

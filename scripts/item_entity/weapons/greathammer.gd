@@ -3,15 +3,8 @@ extends MeleeWeapon
 @export var audio_player: AudioStreamPlayer3D
 @export var impact_location: Marker3D
 
-signal hit
-
 func _on_body_entered(body: Node3D) -> void:
-	if body is Terrain3D:
-		VfxManager.create_vfx_from_enum(VfxManager.VFX.DIRT_EXPLOSION, impact_location.global_position)
-	if body is Enemy:
-		hit.emit(body, data.normal_damage)
-		audio_player.play()
-		play_blood_vfx()
+	hit_body(body)
 
 func _set_marker_values():
 	marker_positions = {

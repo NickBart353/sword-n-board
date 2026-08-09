@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b0ev7jv5s3c8r"]
+
+[ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_t7vgr"]
+[ext_resource type="PackedScene" uid="uid://x3push4qk0sw" path="res://scenes/VFX/weapon_effects/FlameParticles.tscn" id="2_3jtpm"]
+
+[sub_resource type="Animation" id="Animation_uuylh"]
+resource_name = "boom"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlameParticles")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnpfv"]
+_data = {
+&"boom": SubResource("Animation_uuylh")
+}
+
+[sub_resource type="Curve" id="Curve_dt1bl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_u7w24"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1b2vi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cgn3m"]
+curve_x = SubResource("Curve_dt1bl")
+curve_y = SubResource("Curve_u7w24")
+curve_z = SubResource("Curve_1b2vi")
+
+[sub_resource type="Curve" id="Curve_p825b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_evpsf"]
+curve = SubResource("Curve_p825b")
+
+[sub_resource type="Curve" id="Curve_07yj0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07978724, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4cgdi"]
+curve = SubResource("Curve_07yj0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t7vgr"]
+resource_local_to_scene = true
+lifetime_randomness = 0.78
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 0.15
+directional_velocity_min = 0.4999839
+directional_velocity_max = 1.4999839
+directional_velocity_curve = SubResource("CurveXYZTexture_cgn3m")
+radial_velocity_min = 2.9999776
+radial_velocity_max = 4.9999776
+radial_velocity_curve = SubResource("CurveTexture_evpsf")
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_4cgdi")
+color = Color(2.4061394, 1.1711098, 0, 1)
+hue_variation_min = -0.030000022
+hue_variation_max = 0.09999997
+turbulence_noise_strength = 3.0
+turbulence_noise_scale = 5.0
+turbulence_noise_speed_random = 0.31
+
+[node name="FireImpact" type="Node3D" unique_id=1055185336 node_paths=PackedStringArray("animation_player")]
+top_level = true
+script = ExtResource("1_t7vgr")
+animation_player = NodePath("AnimationPlayer")
+animation_name = "boom"
+hide_if_missed_by_player = false
+metadata/_custom_type_script = "uid://fb2qs6hcr7d4"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=262692649]
+libraries/ = SubResource("AnimationLibrary_pnpfv")
+
+[node name="FlameParticles" parent="." unique_id=529876843 instance=ExtResource("2_3jtpm")]
+emitting = false
+amount = 25
+lifetime = 0.9
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_t7vgr")
