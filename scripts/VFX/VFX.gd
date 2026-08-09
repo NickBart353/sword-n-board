@@ -28,6 +28,7 @@ func play() -> void:
 			vfx_finished.emit(self)
 			return
 	show()
+	animation_player.stop()
 	animation_player.play(animation_name)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

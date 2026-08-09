@@ -10,10 +10,16 @@ var enemy_impact_vfx: Basic_VFX
 
 func hit_body(body) -> void:
 	if body is Terrain3D:
+		if not ground_impact_vfx:
+			push_warning("ground impact null for ", data.item_name)
+			return
 		ground_impact_vfx.global_position = collision_point.global_position
 		ground_impact_vfx.play()
 	if body is Enemy:
 		hit.emit(body, data.normal_damage)
+		if not enemy_impact_vfx:
+			push_warning("enemy impact null for ", data.item_name)
+			return
 		enemy_impact_vfx.global_position = collision_point.global_position
 		enemy_impact_vfx.play()
 

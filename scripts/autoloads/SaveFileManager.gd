@@ -79,11 +79,17 @@ func get_savefile_from_id(resource_id: String) -> SaveFile:
 	if savefile_dir.file_exists(save_resource_name):
 		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, save_resource_name])
 		push_warning("filepath: ", filepath)
-		return ResourceLoader.load(filepath)
+		var loaded_resource = ResourceLoader.load(filepath)
+		if loaded_resource:
+			if loaded_resource is SaveFile:
+				return loaded_resource
 	if savefile_dir.file_exists(backup_resource_name):
 		var filepath: String = "{0}{1}/{2}".format([savefile_folder_path, resource_id, backup_resource_name])
-		push_error("did not find save resource: ", resource_id, " had to load backup instead")
-		return ResourceLoader.load(filepath)
+		push_warning("did not find save resource: ", resource_id, " had to load backup instead")
+		var loaded_resource = ResourceLoader.load(filepath)
+		if loaded_resource:
+			if loaded_resource is SaveFile:
+				return loaded_resource
 	push_error("did not find resource: ", resource_id)
 	return null
 
