@@ -86,6 +86,9 @@ func _ready() -> void:
 		push_error("enchant component not correctly set up for: ", get_parent().data.item_name)
 		return
 	
+	if weapon.data == null:
+		push_warning("weapondata null for: ", weapon, " potentially visual or prop weapon")
+		return
 	upgrade_type = weapon.data.upgrade_type
 	
 	if upgrade_type == WeaponData.UPGRADE_TYPE.NORMAL:

@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cei6yivygsheh" path="res://assets/Audio/Free Fantasy SFX Pack By TomMusic/WAV Files/SFX/Attacks/Sword Attacks Hits and Blocks/Sword Impact Hit 1.wav" id="2_vbrxf"]
 [ext_resource type="Script" uid="uid://ckyck7wjay34t" path="res://scripts/components/parry_component.gd" id="3_cyrm7"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="3_xvlie"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="5_o8jew"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7aiw0"]
 size = Vector3(0.03, 0.945, 0.09)
@@ -62,6 +63,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7aiw0"]
+resource_local_to_scene = true
 _surfaces = [{
 "aabb": AABB(-0.911777, -8.993674, -0.191052, 1.8274, 10.327295, 0.382104),
 "format": 34896613383,
@@ -111,6 +113,12 @@ stream_0/stream = ExtResource("2_vbrxf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8jew"]
 size = Vector3(0.04147339, 1.0488281, 0.17744446)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_iysh5"]
+size = Vector3(0.08511162, 1.0234375, 0.17744446)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhd6q"]
+size = Vector3(0.08511162, 0.7110901, 0.17744446)
+
 [node name="Sword" type="Area3D" unique_id=1495302004 node_paths=PackedStringArray("sword_player", "collision_point", "hand_component")]
 transform = Transform3D(1.0000002, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 8
@@ -156,6 +164,38 @@ shape = SubResource("BoxShape3D_o8jew")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1490477789]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.0677346, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." unique_id=607683281 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("5_o8jew")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../SwordMesh")
+fire_particle_amount = 75
+fire_mesh_surface_indexes = Array[int]([0])
+fire_secondary_mesh_surface_indexes = Array[int]([1, 2])
+fire_emission_shape = NodePath("HalfShape")
+cold_mesh_surface_indexes = Array[int]([0])
+cold_secondary_mesh_surface_indexes = Array[int]([1, 2])
+cold_emission_shape = NodePath("FullShape")
+lightning_particle_amount = 15
+lightning_mesh_surface_indexes = Array[int]([0])
+lightning_secondary_mesh_surface_indexes = Array[int]([1, 2])
+lightning_emission_shape = NodePath("HalfShape")
+nature_particle_amount = 75
+nature_mesh_surface_indexes = Array[int]([0])
+nature_secondary_mesh_surface_indexes = Array[int]([1, 2])
+nature_emission_shape = NodePath("FullShape")
+chaos_mesh_surface_indexes = Array[int]([0, 2])
+chaos_secondary_mesh_surface_indexes = Array[int]([1])
+chaos_emission_shape = NodePath("FullShape")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="HalfShape" type="CollisionShape3D" parent="EnchantApplicator" unique_id=2046746978]
+transform = Transform3D(1, 0, 0, 0, 0.99999505, 0, 0, 0, 0.99999505, -0.0025663385, 0.6259028, -0.005302427)
+shape = SubResource("BoxShape3D_iysh5")
+
+[node name="FullShape" type="CollisionShape3D" parent="EnchantApplicator" unique_id=1903804664]
+transform = Transform3D(1, 0, 0, 0, 0.9999854, 0, 0, 0, 0.9999854, -0.0025663385, 0.51959485, -0.005302424)
+shape = SubResource("BoxShape3D_xhd6q")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 

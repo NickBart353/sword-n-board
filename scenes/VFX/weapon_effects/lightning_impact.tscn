@@ -1,13 +1,15 @@
-[gd_scene format=3 uid="uid://b2bwgc22w8h3l"]
+[gd_scene format=4 uid="uid://b2bwgc22w8h3l"]
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_j66uo"]
 [ext_resource type="Texture2D" uid="uid://c84j333l4lc1o" path="res://my_assets/b_n_w_textures/circle.png" id="2_bp3vq"]
+[ext_resource type="PackedScene" uid="uid://bdfob8dt2wm6s" path="res://scenes/VFX/weapon_effects/lightning_particles.tscn" id="3_28iwe"]
+[ext_resource type="Shader" uid="uid://demc6o8t1nfwy" path="res://shaders/thunder/thunder.tres" id="4_phug6"]
 
 [sub_resource type="Animation" id="Animation_28iwe"]
 resource_name = "zzzapp"
 tracks/0/type = "method"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("BlueParticles")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -26,6 +28,20 @@ tracks/1/path = NodePath("YellowParticles")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LightningParticles")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -110,6 +126,75 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_phug6")
 color = Color(3.605996, 3.286417, 1.0348372, 1)
 
+[sub_resource type="Gradient" id="Gradient_gjaue"]
+colors = PackedColorArray(0.7539839, 0.75398386, 0.75398386, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lp0gg"]
+gradient = SubResource("Gradient_gjaue")
+
+[sub_resource type="Curve" id="Curve_lc1w4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j66uo"]
+curve = SubResource("Curve_lc1w4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2mwg4"]
+resource_local_to_scene = true
+lifetime_randomness = 0.64
+particle_flag_align_y = true
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 1
+emission_sphere_radius = 0.3
+radial_velocity_min = 2.9999776
+radial_velocity_max = 4.9999776
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_j66uo")
+color_ramp = SubResource("GradientTexture1D_lp0gg")
+
+[sub_resource type="Gradient" id="Gradient_t5mmq"]
+offsets = PackedFloat32Array(0.37259614, 0.65384614)
+colors = PackedColorArray(0.9666605, 3.0267084, 4.6817894, 1, 2.1655886, 3.442028, 7.160352, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l1ji0"]
+gradient = SubResource("Gradient_t5mmq")
+use_hdr = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pi1d"]
+render_priority = 0
+shader = ExtResource("4_phug6")
+shader_parameter/Gradient = SubResource("GradientTexture1D_l1ji0")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_jka1s"]
+_surfaces = [{
+"aabb": AABB(-0.786824, -0.01132, -0.714011, 1.787983, 8.562565, 2.270418),
+"format": 34896613377,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAEAAAABQAGAAQABwAGAAUABwAIAAYACQAIAAcACQAKAAgACwAKAAkACwAMAAoADQAMAAsADQAOAAwADwAOAA0ADwAQAA4AEQAQAA8AEQASABAAEwASABEA"),
+"name": "Plane",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("O4al7AAAAABzXCfs058AAL5+//9TDwAAkGL//7CRAACdH3zK//8AALaM6MdZEgAAAACVppLlAABYe+GlEUEAAL0dOI44ngAAEqc4jtsjAABxBJ9zrZEAAI2c5HLXLAAATzwbU65jAABA8TFTNycAAHdfBjnYUwAA//+zOck3AAAYKLkW9FMAANXWEhYySwAAhScAAPNQAADJuQAAEFAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qxdry"]
+_surfaces = [{
+"aabb": AABB(-0.786824, -0.01132, -0.714011, 1.787983, 8.562565, 2.270418),
+"attribute_data": PackedByteArray("//9xHAAAcRz//wAAAAAAAAAA4zj//+M4AABUVf//VFUAAMZx///GcQAAOI7//ziOAACqqv//qqoAABvH//8bxwAAjeP//43jAAD///////8="),
+"format": 34896613399,
+"index_count": 54,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEABQAEAAAABQAGAAQABwAGAAUABwAIAAYACQAIAAcACQAKAAgACwAKAAkACwAMAAoADQAMAAsADQAOAAwADwAOAA0ADwAQAA4AEQAQAA8AEQASABAAEwASABEA"),
+"material": SubResource("ShaderMaterial_0pi1d"),
+"name": "Plane",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("O4al7AAA87VzXCfs058mtb5+//9TD1m4kGL//7CRWbidH3zK///dr7aM6MdZEgezAACVppLlXa1Ye+GlEUGNqr0dOI44nimkEqc4jtsj7KFxBJ9zrZFhnY2c5HLXLHaaTzwbU65jvpRA8TFTNydWj3dfBjnYU3SJ//+zOck3fIoYKLkW9FPFgtXWEhYyS9aEhScAAPNQo4HJuQAAEFCSgS5/RwLDfQoD534XAMyAbgChemkN930zB9145w77dwoN1nbUDid0gxGsdiMP2X0fBaCPTg37ltwRO56kFPqacBXjk/Ugv5b4IaGNHCiYkMkQ")
+}]
+shadow_mesh = SubResource("ArrayMesh_jka1s")
+
 [node name="LightningImpact" type="Node3D" unique_id=837086322 node_paths=PackedStringArray("animation_player")]
 top_level = true
 script = ExtResource("1_j66uo")
@@ -138,3 +223,13 @@ one_shot = true
 explosiveness = 0.85
 process_material = SubResource("ParticleProcessMaterial_gjaue")
 draw_pass_1 = SubResource("PlaneMesh_p825b")
+
+[node name="LightningParticles" parent="." unique_id=2122439439 instance=ExtResource("3_28iwe")]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.88
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_2mwg4")
+draw_pass_1 = SubResource("ArrayMesh_qxdry")

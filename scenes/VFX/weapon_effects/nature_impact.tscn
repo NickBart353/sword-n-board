@@ -67,7 +67,18 @@ radial_velocity_min = 2.9999776
 radial_velocity_max = 4.9999776
 radial_velocity_curve = SubResource("CurveTexture_6ykt4")
 gravity = Vector3(0, 0, 0)
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_lx55b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkcyp"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9019608, 0.101960786, 0.3019608, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lem4y"]
+material = SubResource("StandardMaterial3D_mkcyp")
+top_radius = 0.0
+bottom_radius = 0.02
+height = 0.1
 
 [sub_resource type="Curve" id="Curve_sx3cp"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4453001, 0.0, 0, 0]
@@ -83,7 +94,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_20l0l"]
 curve = SubResource("Curve_lem4y")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mkcyp"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_20l0l"]
 resource_local_to_scene = true
 lifetime_randomness = 0.5
 particle_flag_align_y = true
@@ -97,6 +108,7 @@ radial_velocity_min = 2.9999776
 radial_velocity_max = 4.9999776
 radial_velocity_curve = SubResource("CurveTexture_mkcyp")
 gravity = Vector3(0, 0, 0)
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_20l0l")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ykt4"]
@@ -106,8 +118,8 @@ albedo_color = Color(0.078431375, 0.3372549, 0.14509805, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_glcjh"]
 material = SubResource("StandardMaterial3D_6ykt4")
 top_radius = 0.0
-bottom_radius = 0.005
-height = 0.03
+bottom_radius = 0.02
+height = 0.1
 
 [node name="NatureImpact" type="Node3D" unique_id=1588522142 node_paths=PackedStringArray("animation_player")]
 top_level = true
@@ -127,6 +139,7 @@ lifetime = 0.41
 one_shot = true
 explosiveness = 0.91
 process_material = SubResource("ParticleProcessMaterial_sx3cp")
+draw_pass_1 = SubResource("CylinderMesh_lem4y")
 
 [node name="GreenParticles" parent="." unique_id=1196172863 instance=ExtResource("2_mkcyp")]
 emitting = false
@@ -134,5 +147,5 @@ amount = 15
 lifetime = 0.8
 one_shot = true
 explosiveness = 0.91
-process_material = SubResource("ParticleProcessMaterial_mkcyp")
+process_material = SubResource("ParticleProcessMaterial_20l0l")
 draw_pass_1 = SubResource("CylinderMesh_glcjh")

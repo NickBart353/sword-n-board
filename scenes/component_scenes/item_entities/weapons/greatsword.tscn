@@ -1,15 +1,47 @@
-[gd_scene format=3 uid="uid://djkqe144fuvf5"]
+[gd_scene format=4 uid="uid://djkqe144fuvf5"]
 
 [ext_resource type="PackedScene" uid="uid://dlu3yaqq5m0et" path="res://my_assets/models/weapons/Greatsword.blend" id="1_4s0vc"]
 [ext_resource type="Script" uid="uid://kwqunlyag8rp" path="res://scripts/item_entity/weapons/greatsword.gd" id="2_3lr8e"]
 [ext_resource type="PackedScene" uid="uid://bj048l0we01lg" path="res://scenes/component_scenes/components/twohand_component.tscn" id="3_tpuau"]
 [ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="4_a61jr"]
+[ext_resource type="Script" uid="uid://k1c6k2ppnlo1" path="res://scripts/components/enchant_applicator.gd" id="5_2dncq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3lr8e"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.646029, 0.646029, 0.646029, 1)
 metallic = 0.83
 roughness = 0.21
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_2dncq"]
+_surfaces = [{
+"aabb": AABB(-1.0035375, -0.032529462, -1.0000001, 2.007075, 0.05481795, 2.4012656),
+"format": 34359742465,
+"index_count": 228,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAQAEAAIABQAAAAIABgACAAEABgABAAMAAgAGAAcAAgAHAAUABwAGAAgABwAIAAkABQAJAAcACAAEAAkABgAKAAgABAAIAAoABgADAAoAAQAKAAMABQALAAkACQAEAAsAAgALAAUAAgAEAAsADAALAAUABQAMAAAAAgANAAAAAgAEAA0ACwAEAA0ADAANAAAADAAOAAsACwANAA4ADAAOAA0ADwAOAAwADwAAAAwADwAQAA4ADQAQAA4AEQAAAA8AEQAPABAAAAARAAMAEQAQABIAAwARABIADQASABAAAwASAAoAAAANABMAEgANABMAEgATAAoADQAEABMABAAKABMAAQATAAoAAQATAAQAAAATAAEAFAAVABYAFQAXABgAFAAXABUAFwAZABoAFwAbABkAFAAbABcAGQAbABwAHQAUAB4AHwAUAB0AGwAUAB8AHwAdACAAGwAfACEAIQAfACIAGwAhACMAJAAlACYAJQAnACgAJAAnACUAJwApACoAJwArACkAJAArACcAKQArACwALQAkAC4ALwAkAC0AKwAkAC8ALwAtADAAKwAvADEAMQAvADIAKwAxADMA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 52,
+"vertex_data": PackedByteArray("72sPv1LJSTy6DSe/AAAAACp1FjyoHla/72sPP1LJSTy6DSe/AAAAAEoVkrsBAIC/72sPP/rIuLy6DSe/pUkxP1iWtjydU4A/5gxdP6D2i7tmEjS/63OAP3QLdrvDlYA/5gxdP2ibw7tmEjS/63OAP9KL1LvDlYA/PqHiJcx8vbsBAIC/pUkxP509Bb2dU4A/pUkxv1iWtjydU4A/72sPv/rIuLy6DSe/pUkxv509Bb2dU4A/63OAv3QLdrvDlYA/63OAv9KL1LvDlYA/5gxdv6D2i7tmEjS/5gxdv2ibw7tmEjS/P6HiJd8en7yoHla/wCepPQFxZbya0oM/AAAAAFHdkLya0oM/oBc3PcAHibya0oM/wCepvQFxZbya0oM/oBc3vcAHibya0oM/wDjvvdzJp7ua0oM/AAPdvfCpIrya0oM/wCepvZKcdjua0oM/AAPdvaP9o7ma0oM/wDjvPdzJp7ua0oM/AAPdPfCpIrya0oM/wCepPZKcdjua0oM/AAPdPaP9o7ma0oM/AAAAAIvh8zua0oM/oBc3PUmL1Dua0oM/oBc3vUmL1Dua0oM/oBc3vcgHibysXLM/oBc3PcgHibysXLM/AAAAAFndkLysXLM/AAPdPQCqIrysXLM/wCepPRFxZbysXLM/AAPdPaP/o7msXLM/wDjvPfrJp7usXLM/oBc3PSmL1DusXLM/wCepPVKcdjusXLM/AAPdvQCqIrysXLM/wCepvRFxZbysXLM/AAPdvaP/o7msXLM/wDjvvfrJp7usXLM/oBc3vSmL1DusXLM/wCepvVKcdjusXLM/AAAAAGvh8zusXLM/")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ojg3p"]
+resource_local_to_scene = true
+resource_name = "Greatsword_Plane"
+_surfaces = [{
+"aabb": AABB(-1.0035375, -0.032529462, -1.0000001, 2.007075, 0.05481795, 2.4012656),
+"attribute_data": PackedByteArray("CEhSP1DDsj0AAAA/6AgAPgAAAD8AAIA+AAAAPwAAYD8ISFI/UMOyPQAAAD8AAIA+QXVHP1DdcT8HSFI/uDcHPgAAgD8AAIA/QXVHPwAAgD8AAIA/AAAAAAAAAD8AAAA+AAAAPwAAAAAAAIA/AACAPwhIUj9Qw7I9QXVHP1DdcT8AAIA/AAAAAAAAAD8AAAAAAAAAP+gIAD4ISFI/UMOyPQAAAD8AAIA+AAAAP+gIAD4AAAA/AABgPwhIUj9Qw7I9QXVHP1DdcT8AAAA/AACAPgAAgD8AAIA/B0hSP7g3Bz5BdUc/AACAPwAAgD8AAAAAAAAAPwAAAAAAAAA/kCwAPghIUj9Qw7I9AACAPwAAgD9BdUc/UN1xPwAAgD8AAAAAAAAAPwAAAD4AAAA/AAAAAAAAAD8AAIA+AAAAPwAAYD8AAAA/AABgPwAAAD8AAIA+AAAAPwAAAD4AAAA/AAAAAAAAAD8AAAAAAAAAPwAAAD5BdUc/UN1xPwhIUj9Qw7I9CEhSP1DDsj1BdUc/UN1xPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAPwAAAAAAAAA/AAAAAEF1Rz8AAIA/AACAPwAAgD8AAIA/AACAP0F1Rz8AAIA/CEhSP1DDsj0AAAA/6AgAPgAAAD/oCAA+CEhSP1DDsj0AAIA/AACAP0F1Rz9Q3XE/QXVHP1DdcT8AAIA/AACAPwAAAD8AAIA+CEhSP1DDsj0ISFI/UMOyPQAAAD8AAIA+AAAAP+gIAD4AAAA/AACAPgAAAD8AAIA+AAAAP+gIAD4AAIA/AACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAAD8AAAAAAAAAPwAAAABBdUc/UN1xPwAAAD8AAGA/AAAAPwAAYD9BdUc/UN1xP6jj1j4sjhQ/AACAPlyPAj8uBq8+ojwHP2JxpD0sjhQ/pPMhPqI8Bz8Q1yM8AABAPzCU5zzofCg/YnGkPdRxaz8wlOc8GINXP0jh+j4AAEA/vYbxPuh8KD+o49Y+1HFrP72G8T4Yg1c/AACAPqRwfT8uBq8+X8N4P6TzIT5fw3g/6XwoP6I8Bz8Xg1c/ojwHPwAAQD9cjwI/XsN4P+h8KD/UcWs/LI4UP17DeD8Xg1c/pHB9PwAAQD8Xg1c/X8N4P9Rxaz/UcWs/ojwHP+h8KD8sjhQ/LI4UP6I8Bz8Xg1c/XI8CPwAAQD/pfCg/X8N4PyyOFD/UcWs/AABAP6RwfT8="),
+"format": 34359742487,
+"index_count": 228,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUAAwAGAAQABwAIAAkABwAKAAgACgAHAAsACgALAAwADQAOAA8AEAAOAA0ADgAQABEADgARABIAEwAUABUAFgAXABgAFgAZABcAGgAbABwAHQAbABoAGwAdAB4AGwAeAB8AIAAhACIAIAAjACEAIwAgACQAIwAkACUAJgAnACgAJgApACcAKgArACwAKgAtACsALgAvADAALgAxAC8AMgAzADQAMgA1ADMANgAyADQANgA0ADcAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0ATwBQAE0ATwBRAFAAUgBTAFQAUgBVAFMAVgBXAFgAVwBZAFoAVgBZAFcAWQBbAFwAWQBdAFsAVgBdAFkAWwBdAF4AXwBWAGAAYQBWAF8AXQBWAGEAYQBfAGIAXQBhAGMAYwBhAGQAXQBjAGUAZgBnAGgAZwBpAGoAZgBpAGcAaQBrAGwAaQBtAGsAZgBtAGkAawBtAG4AbwBmAHAAcQBmAG8AbQBmAHEAcQBvAHIAbQBxAHMAcwBxAHQAbQBzAHUA"),
+"material": SubResource("StandardMaterial3D_3lr8e"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 118,
+"vertex_data": PackedByteArray("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AAB5if///z8AAHmJ////PwAA+rf///8/AACxif///z8AAPq3////PwAAsYn///8/AABE3////z8AAETf////P///K/////8///8r/////z///yv/////P///K/////8/AABe4P///z8AAF7g////PwAAXuD///8/AABe4P///z8AACv/////PwAAK/////8/AAAr/////z8AACv/////P/9//3////8//3//f////z//f/9/////P/9//3////8///9e4P///z///17g////P///XuD///8///9e4P///z///7GJ////P///+rf///8///+xif///z////q3////P///RN////8///9E3////z//////////P/////////8//////////z//////////P/////////+//////////7///////v//v/////////+///////7//7//////////v//////+//+//////////7///////v//v/////////+///////7//7//////////v//////+//+//////////7///////v//v//////+//+//3//f////z//f/9/////P/9//3////8//3//f////z//f/9//v//P/9//3/+//8//3//f////z//f/9/////P/9//3/+//8//3//f/7//z//f/9//v//P/9//3////8//3//f////z//f/9/////P/9//3/+//8//3//f////z8=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_2dncq")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tpuau"]
 vertex_color_use_as_albedo = true
@@ -28,6 +60,9 @@ size = Vector3(0.40631104, 2.0063171, 0.41307068)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojg3p"]
 size = Vector3(0.16772461, 2.5896301, 0.5429077)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_sfm6l"]
+size = Vector3(0.2761383, 1.737423, 0.4765587)
+
 [node name="Greatsword" unique_id=1216685605 node_paths=PackedStringArray("impact_location", "collision_point", "hand_component") instance=ExtResource("1_4s0vc")]
 collision_layer = 8
 collision_mask = 33
@@ -38,7 +73,7 @@ hand_component = NodePath("TwohandComponent")
 
 [node name="Blade" parent="." index="0" unique_id=366974677]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
-material_override = SubResource("StandardMaterial3D_3lr8e")
+mesh = SubResource("ArrayMesh_ojg3p")
 
 [node name="Brick" parent="." index="1" unique_id=2092893759]
 transform = Transform3D(-9.44316e-09, -2.0086067, 4.3855994e-08, 0, -8.779899e-08, -1.0033082, 0.21603432, -8.779899e-08, 1.9170064e-15, 0, 1.2613899, 0)
@@ -74,5 +109,30 @@ debug_color = Color(0.9390605, 0.24872422, 0, 0.41960785)
 
 [node name="Marker3D" type="Marker3D" parent="." index="8" unique_id=327093344]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0524375, 0)
+
+[node name="EnchantApplicator" type="Node3D" parent="." index="9" unique_id=1516127059 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+script = ExtResource("5_2dncq")
+weapon = NodePath("..")
+weapon_mesh = NodePath("../Blade")
+fire_particle_amount = 120
+fire_mesh_surface_indexes = Array[int]([0])
+fire_emission_shape = NodePath("CollisionShape3D")
+cold_particle_amount = 100
+cold_mesh_surface_indexes = Array[int]([0])
+cold_emission_shape = NodePath("CollisionShape3D")
+lightning_particle_amount = 30
+lightning_mesh_surface_indexes = Array[int]([0])
+lightning_emission_shape = NodePath("CollisionShape3D")
+nature_particle_amount = 120
+nature_mesh_surface_indexes = Array[int]([0])
+nature_emission_shape = NodePath("CollisionShape3D")
+chaos_particle_amount = 150
+chaos_mesh_surface_indexes = Array[int]([0])
+chaos_emission_shape = NodePath("CollisionShape3D")
+metadata/_custom_type_script = "uid://k1c6k2ppnlo1"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnchantApplicator" index="0" unique_id=588883251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012600422, 1.2673899, -0.009607315)
+shape = SubResource("BoxShape3D_sfm6l")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

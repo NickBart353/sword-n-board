@@ -104,6 +104,8 @@ func _physics_process(delta: float) -> void:
 			_eruption_returned()
 			return
 		for i in tentacle_count:
+			if static_rids[i] == null:
+				push_warning(i, " ; i ist null, skip")
 			current_local_positions[i] = Transform3D(Basis(), (current_local_positions[i].origin - Vector3(0, eruption_speed, 0) * delta))
 			current_global_positions[i] = Transform3D(Basis(), (current_global_positions[i].origin - Vector3(0, eruption_speed, 0) * delta))
 			multimesh.set_instance_transform(i, current_local_positions[i])

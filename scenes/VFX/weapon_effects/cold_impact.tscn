@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fb2qs6hcr7d4" path="res://scripts/VFX/VFX.gd" id="1_dnj5k"]
 [ext_resource type="PackedScene" uid="uid://x3push4qk0sw" path="res://scenes/VFX/weapon_effects/FlameParticles.tscn" id="2_vjx0o"]
+[ext_resource type="Texture2D" uid="uid://dcuw76irg0200" path="res://my_assets/b_n_w_textures/blurred_star.png" id="3_vjx0o"]
 
 [sub_resource type="Curve" id="Curve_nrax8"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.8273569, 0.0, 0, 0]
@@ -17,7 +18,7 @@ point_count = 4
 [sub_resource type="CurveTexture" id="CurveTexture_vjx0o"]
 curve = SubResource("Curve_dnj5k")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dnj5k"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k06ow"]
 resource_local_to_scene = true
 lifetime_randomness = 0.64
 particle_flag_align_y = true
@@ -29,12 +30,25 @@ radial_velocity_min = 2.9999776
 radial_velocity_max = 4.9999776
 radial_velocity_curve = SubResource("CurveTexture_62lxt")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.01
-scale_max = 0.02
+scale_min = 0.099999994
+scale_max = 0.29999998
 scale_curve = SubResource("CurveTexture_vjx0o")
-color = Color(1.8015456, 2.677791, 3.0467367, 1)
+color = Color(0, 1.3295003, 1.6852883, 1)
 hue_variation_min = -0.15000002
 hue_variation_max = 0.09999997
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ikkx"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("3_vjx0o")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_pbm3i"]
+material = SubResource("StandardMaterial3D_8ikkx")
 
 [sub_resource type="Animation" id="Animation_8ikkx"]
 resource_name = "cold_boom"
@@ -72,7 +86,8 @@ amount = 50
 lifetime = 0.9
 one_shot = true
 explosiveness = 0.9
-process_material = SubResource("ParticleProcessMaterial_dnj5k")
+process_material = SubResource("ParticleProcessMaterial_k06ow")
+draw_pass_1 = SubResource("QuadMesh_pbm3i")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1933600625]
 libraries/ = SubResource("AnimationLibrary_pbm3i")
