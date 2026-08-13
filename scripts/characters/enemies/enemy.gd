@@ -12,6 +12,7 @@ signal died
 @export var MAX_HEALTH: float = 1000.0
 @export var anim_tree: AnimationTree
 @export var state_machine: Node
+@export var resistance_resource: ResistanceResource
 
 var level: int = 1
 var origin_position: Vector3
@@ -36,10 +37,14 @@ func _ready() -> void:
 	if not origin_position:
 		origin_position = global_position
 
-func take_damage(damage_dealt, _body = null):
+func take_damage(damage_resource: DamageResource, _body = null):
 	if health > MIN_HEALTH:
 		anim_tree.set("parameters/Hitflash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	update_HEALTH( - damage_dealt)
+	update_HEALTH( - CombatMath.calulcate_damage(damage_resource, resistance_resource))
+	if health <= MIN_HEALTH and state_machine.current_state.name.to_lower() != "dead":
+		var current_state: EnemyState = state_machine.get_node(state_machine.current_state.name) as EnemyState
+		current_state.died()
+		return
 	if state_machine.current_state.name.to_lower() == "idle":
 		state_machine.on_child_transitioned(state_machine.get_node("Idle"), "Engage")
 

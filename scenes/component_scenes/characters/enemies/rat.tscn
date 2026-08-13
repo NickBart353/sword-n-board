@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://ctnhr86dan0pn" path="res://scripts/characters/enemies/rat/rat.gd" id="2_aafi7"]
 [ext_resource type="Script" uid="uid://cfxyba70xd7yl" path="res://scripts/state_machine/state_machine.gd" id="2_juueg"]
 [ext_resource type="Shader" uid="uid://dfwe78qxr3lrt" path="res://shaders/3dhitflash_red.gdshader" id="3_ijteo"]
+[ext_resource type="Script" uid="uid://dn6wsoeu0hhgt" path="res://scripts/resources/combat_resources/resistance_resource.gd" id="3_x5lcn"]
 [ext_resource type="Animation" uid="uid://ep881riurojv" path="res://animations/rat/Rat_Armature_AtackRat.res" id="4_er0us"]
 [ext_resource type="Texture2D" uid="uid://c5xi5epir0cb" path="res://assets/Visual/MonstersPack_Ps1/Textures/Rat01Pixelated.png" id="4_p737n"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://j5l3dlt686nd" path="res://animations/rat_animation_sate_machine.tres" id="4_ripon"]
@@ -36,6 +37,16 @@
 [ext_resource type="AudioStream" uid="uid://b4om26u03naih" path="res://assets/Audio/FreeSFX/GameSFX/FootStep/Retro FootStep Grass 01.wav" id="30_i1nge"]
 [ext_resource type="AudioStream" uid="uid://bfm2hytbmcy60" path="res://assets/Audio/Monster Roar/Goblin Roar 05.wav" id="32_buci7"]
 [ext_resource type="Script" uid="uid://glf7b81sjiep" path="res://scripts/components/fire_and_forget.gd" id="33_oeobn"]
+
+[sub_resource type="Resource" id="Resource_gucgr"]
+script = ExtResource("3_x5lcn")
+normal_resistance = 25.0
+fire_resistance = 10.0
+cold_resistance = 20.0
+lightning_resistance = 15.0
+nature_resistance = 45.0
+chaos_resistance = 60.0
+metadata/_custom_type_script = "uid://dn6wsoeu0hhgt"
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_lmxkh"]
 parameter_name = "MainTexture"
@@ -747,14 +758,14 @@ floor_constant_speed = true
 floor_max_angle = 0.80110615
 script = ExtResource("2_aafi7")
 display_name = "Giant Rat"
-MAX_HEALTH = 65
 anim_tree = NodePath("AnimationTree")
 state_machine = NodePath("StateMachine")
+resistance_resource = SubResource("Resource_gucgr")
 
-[node name="Rat_Armature" parent="." index="0" unique_id=1084528775]
+[node name="Rat_Armature" parent="." index="0" unique_id=894935079]
 transform = Transform3D(30, 0, 0, 0, -1.3113416e-06, 30, 0, -30, -1.3113416e-06, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=2060594594]
+[node name="Skeleton3D" parent="Rat_Armature" index="0" unique_id=781794339]
 bones/1/position = Vector3(2.0679515e-25, 0.027427763, 0)
 bones/2/position = Vector3(2.0679515e-25, 0.038466632, 0)
 bones/2/rotation = Quaternion(-0.2718705, -9.698957e-10, 2.72782e-09, 0.96233386)
@@ -810,7 +821,7 @@ bones/26/rotation = Quaternion(0, 0, 0, 1)
 bones/27/position = Vector3(0, 0.048654284, 3.469447e-18)
 bones/27/rotation = Quaternion(0.2902733, 0, 0, 0.9569438)
 
-[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1303300954]
+[node name="Rat_01" parent="Rat_Armature/Skeleton3D" index="0" unique_id=1834172406]
 material_override = SubResource("ShaderMaterial_18ja3")
 material_overlay = SubResource("ShaderMaterial_76dw5")
 

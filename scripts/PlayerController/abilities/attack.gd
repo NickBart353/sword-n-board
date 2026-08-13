@@ -105,15 +105,15 @@ func apply_ability(input: Node, state_controller: Node, movement: Node, _abiliti
 				else:
 					offhand_swing += 1
 
-func _mainhand_attack(body, damage):
+func _mainhand_attack(body, damage_resource):
 	if not body in mainhand_bodies:
 		mainhand_bodies.append(body)
-		body.take_damage(damage)
+		body.take_damage(damage_resource)
 
-func _offhand_attack(body, damage):
+func _offhand_attack(body, damage_resource):
 	if not body in offhand_bodies:
 		offhand_bodies.append(body)
-		body.take_damage(damage)
+		body.take_damage(damage_resource)
 
 func _on_attack_timer_timeout() -> void:
 	if not mainhand_swing_in_progress and not offhand_swing_in_progress:

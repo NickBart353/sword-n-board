@@ -52,6 +52,9 @@ signal died
 
 @export var movement_speed = 4
 @export var look_speed: float = 0.002
+
+@export var base_resistances: ResistanceResource = ResistanceResource.new()
+
 @export_range(0.0, 100.0) var stamina_regeneration_speed: float = 10.0
 @export_range(0.0, 100.0) var mana_regeneration_speed: float = 10.0
 
@@ -278,6 +281,7 @@ func new_player_items(player_helmet: Item, player_body: Item, player_boots: Item
 		_reequip_mainhand(main_hand_item, player_mainhand, mainhand)
 		_reequip_offhand(off_hand_item, player_offhand, offhand)
 	_set_weapons(dualwield)
+	_set_new_resistances()
 
 func _is_dualwield(new_mainhand: Item, new_offhand: Item) -> bool:
 	if not new_mainhand and not new_offhand: 
@@ -410,6 +414,9 @@ func get_equipped_weapon_from_slot(slot: Marker3D):
 		return children[0]
 	return null
 
+func _set_new_resistances() -> void:
+	push_warning("armour not implemented yet; player.gd")
+
 func _consume_item(consumable: Item) -> void:
 	#property: String, property_type: ConsumableData.PROPERTY_TYPE, amount: float, duration: float = -1.0):
 	if not consumable.data is ConsumableData:
@@ -527,31 +534,33 @@ func _unhandled_input(event: InputEvent) -> void:
 		player_camera.rotate_x(look_rotation.x)
 		player_camera.rotate_y(look_rotation.y)
 
-func take_damage(damage, body: Node, blockable: bool = true, parryable: bool = true):
-	for dict in blocked_bodies:
-		if dict["body"] == body:
-			blocked_bodies.erase(dict)
-			if not blockable:
-				use_stamina(STAMINA)
-				damage *= block.get_punishment_multiplier(dict["block_type"])
-			elif use_stamina(block.get_block_cost(dict["block_type"])):
-				damage *= block.get_damage_reduction(dict["block_type"])
-			else:
-				use_stamina(STAMINA)
-				damage *= block.get_punishment_multiplier(dict["block_type"])
-			break
-	for dict in parried_bodies:
-		if dict["body"] == body:
-			parried_bodies.erase(dict)
-			if not parryable:
-				use_stamina(STAMINA)
-				damage *= parry.get_punishment_multiplier(dict["block_type"])
-			elif use_stamina(parry.get_block_cost(dict["block_type"])):
-				damage *= parry.get_damage_reduction(dict["block_type"])
-			else:
-				use_stamina(STAMINA)
-				damage *= parry.get_punishment_multiplier(dict["block_type"])
-			break
+#func take_damage(damage, body: Node, blockable: bool = true, parryable: bool = true):
+	#for dict in blocked_bodies:
+		#if dict["body"] == body:
+			#blocked_bodies.erase(dict)
+			#if not blockable:
+				#use_stamina(STAMINA)
+				#damage *= block.get_punishment_multiplier(dict["block_type"])
+			#elif use_stamina(block.get_block_cost(dict["block_type"])):
+				#damage *= block.get_damage_reduction(dict["block_type"])
+			#else:
+				#use_stamina(STAMINA)
+				#damage *= block.get_punishment_multiplier(dict["block_type"])
+			#break
+	#for dict in parried_bodies:
+		#if dict["body"] == body:
+			#parried_bodies.erase(dict)
+			#if not parryable:
+				#use_stamina(STAMINA)
+				#damage *= parry.get_punishment_multiplier(dict["block_type"])
+			#elif use_stamina(parry.get_block_cost(dict["block_type"])):
+				#damage *= parry.get_damage_reduction(dict["block_type"])
+			#else:
+				#use_stamina(STAMINA)
+				#damage *= parry.get_punishment_multiplier(dict["block_type"])
+			#break
+func take_damage(damage_resource: DamageResource) -> void:
+	var damage: float = CombatMath.calulcate_damage(damage_resource, base_resistances)
 	update_HEALTH(-damage)
 
 func update_stamina_regeneration_speed(amount: float):

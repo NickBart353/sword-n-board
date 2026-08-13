@@ -2,6 +2,13 @@
 extends ItemData
 class_name WeaponData
 
+@export var single_base_damage: float = 0.0
+@export var single_base_incrementor: float = 0.0
+@export var hybrid_normal_base_damge: float = 0.0
+@export var hybrid_normal_base_incrementor: float = 0.0
+@export var hybrid_elemental_base_damage: float = 0.0
+@export var hybrid_elemental_base_incrementor: float = 0.0
+
 @export_group("Damage")
 @export var normal_damage: float = 5.0
 @export var magic_damage: float = 0.0
@@ -27,6 +34,8 @@ class_name WeaponData
 
 @export var upgrade_level: int = 0
 @export var upgrade_type: UPGRADE_TYPE = UPGRADE_TYPE.NORMAL
+
+var damage_resource: DamageResource
 
 enum UPGRADE_TYPE {NORMAL, MAGIC, FIRE, LIGHTNING, COLD, NATURE, CHAOS}
 
