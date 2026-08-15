@@ -5,7 +5,12 @@
 
 [resource]
 script = ExtResource("1_1ksjj")
-normal_damage = 50.0
+single_base_damage = 84.0
+single_base_incrementor = 31.0
+hybrid_normal_base_damge = 23.0
+hybrid_normal_base_incrementor = 5.0
+hybrid_elemental_base_damage = 75.0
+hybrid_elemental_base_incrementor = 29.0
 combo_size = 2
 two_handed = true
 item_name = "Greatsword"

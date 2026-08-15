@@ -1,6 +1,7 @@
 class_name Attack extends Area3D
 
-@export var damage: int  = 20
+#@export var damage: int  = 20
+@export var damage: DamageContainer
 
 @export var anim_player: AnimationPlayer
 @export var animation_name: String
@@ -17,7 +18,7 @@ func _ready() -> void:
 	if not body_entered.is_connected(_on_body_entered):
 		body_entered.connect(_on_body_entered)
 
-func attack(new_transform: Transform3D, new_damage: int):
+func attack(new_transform: Transform3D, new_damage: DamageContainer):
 	show()
 	damage = new_damage
 	if new_transform:

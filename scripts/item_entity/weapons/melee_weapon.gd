@@ -16,7 +16,7 @@ func hit_body(body: Node3D) -> void:
 		ground_impact_vfx.global_position = collision_point.global_position
 		ground_impact_vfx.play()
 	if body is Enemy:
-		hit.emit(body, data.damage_resource)
+		hit.emit(body, data.damage_container)
 		if not enemy_impact_vfx:
 			push_warning("enemy impact null for ", data.item_name)
 			return

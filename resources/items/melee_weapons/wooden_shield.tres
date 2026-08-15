@@ -5,6 +5,12 @@
 
 [resource]
 script = ExtResource("1_o6vov")
+single_base_damage = 27.0
+single_base_incrementor = 5.0
+hybrid_normal_base_damge = 10.0
+hybrid_normal_base_incrementor = 2.0
+hybrid_elemental_base_damage = 25.0
+hybrid_elemental_base_incrementor = 3.0
 combo_size = 2
 dualwield_combo_size = 2
 item_name = "shield"

@@ -5,7 +5,12 @@
 
 [resource]
 script = ExtResource("1_pkdrv")
-normal_damage = 70.0
+single_base_damage = 98.0
+single_base_incrementor = 39.0
+hybrid_normal_base_damge = 23.0
+hybrid_normal_base_incrementor = 5.0
+hybrid_elemental_base_damage = 89.0
+hybrid_elemental_base_incrementor = 32.0
 combo_size = 2
 two_handed = true
 item_name = "Greathammer"

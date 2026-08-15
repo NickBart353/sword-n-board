@@ -5,7 +5,12 @@
 
 [resource]
 script = ExtResource("1_wnj3e")
-normal_damage = 32.0
+single_base_damage = 31.0
+single_base_incrementor = 7.0
+hybrid_normal_base_damge = 15.0
+hybrid_normal_base_incrementor = 2.0
+hybrid_elemental_base_damage = 27.0
+hybrid_elemental_base_incrementor = 6.0
 combo_size = 2
 item_name = "Shortsword"
 item_id = "10001"

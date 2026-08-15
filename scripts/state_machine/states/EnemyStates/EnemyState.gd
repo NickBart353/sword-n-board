@@ -37,7 +37,7 @@ func Physics_Update(_delta: float) -> void:
 		player = get_tree().get_first_node_in_group("Player")
 		return
 
-func died() -> void:
+func die() -> void:
 	Transitioned.emit(self, "Dead")
 	if process_mode == ProcessMode.PROCESS_MODE_DISABLED:
 		set_deferred("process_mode", ProcessMode.PROCESS_MODE_INHERIT)

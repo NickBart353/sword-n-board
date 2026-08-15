@@ -8,7 +8,7 @@ var loading_screen: PackedScene = preload("uid://c8x8sbc47lju0")
 var loaded_Resource: PackedScene
 var scene_path: String
 var progress: Array[float] = []
-var use_sub_threads: bool = true
+var use_sub_threads: bool = false
 var is_loading: bool = false
 
 func _ready() -> void:

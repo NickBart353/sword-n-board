@@ -9,7 +9,8 @@ class_name Projectile
 @export var gravity_strength: float = 0.0
 @export var spread: float = 0.0
 @export var explosion_animation: VfxManager.VFX
-@export var damage: int = 10
+#@export var damage: int = 10
+@export var damage: DamageContainer
 @export var explosion_target_raycast: RayCast3D
 @export var await_custom_explode: bool = false
 

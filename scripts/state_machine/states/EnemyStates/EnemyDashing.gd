@@ -2,7 +2,8 @@ extends EnemyState
 
 @export var dash_range: int = 40
 @export var dash_speed: int = 50
-@export var dash_damage: int = 50
+#@export var dash_damage: int = 50
+@export var dash_damage: DamageContainer
 @export var charge_timer: Timer
 @export var cutting_wind: Node
 @export var stab_audio_resource: AudioStream

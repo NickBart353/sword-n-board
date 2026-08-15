@@ -2,6 +2,19 @@
 
 [ext_resource type="Script" uid="uid://snywren3rqx0" path="res://scripts/components/projectile.gd" id="1_7w6vo"]
 [ext_resource type="AudioStream" uid="uid://cnhvy2r3ispku" path="res://assets/Audio/pixabay/dennish18-small-explosion-129477.mp3" id="2_ps286"]
+[ext_resource type="Script" uid="uid://1kvovo4jt80h" path="res://scripts/resources/combat_resources/damage_resource.gd" id="2_sy100"]
+[ext_resource type="Script" uid="uid://cp2dodubordv7" path="res://scripts/resources/combat_resources/damage_container.gd" id="3_g3vxn"]
+
+[sub_resource type="Resource" id="Resource_m36eg"]
+script = ExtResource("2_sy100")
+damage_amount = 15.0
+damage_type = 5
+metadata/_custom_type_script = "uid://1kvovo4jt80h"
+
+[sub_resource type="Resource" id="Resource_ps286"]
+script = ExtResource("3_g3vxn")
+primary_damage = SubResource("Resource_m36eg")
+metadata/_custom_type_script = "uid://cp2dodubordv7"
 
 [sub_resource type="Curve" id="Curve_4h1qo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450981, 0.80629146), -0.68605155, -0.68605155, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -49,7 +62,7 @@ proj_speed = 40
 proj_distance = 10000
 gravity_strength = 5.0
 spread = 5.0
-damage = 7
+damage = SubResource("Resource_ps286")
 explosion_target_raycast = NodePath("RayCast3D")
 audio_resource = ExtResource("2_ps286")
 audio_volume = -30.0

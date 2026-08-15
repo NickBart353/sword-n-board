@@ -5,7 +5,12 @@
 
 [resource]
 script = ExtResource("1_bst6j")
-normal_damage = 56.0
+single_base_damage = 40.0
+single_base_incrementor = 11.0
+hybrid_normal_base_damge = 13.0
+hybrid_normal_base_incrementor = 3.0
+hybrid_elemental_base_damage = 37.0
+hybrid_elemental_base_incrementor = 9.0
 combo_size = 2
 two_handed = true
 item_name = "Katana"

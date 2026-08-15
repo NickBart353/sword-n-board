@@ -3,7 +3,8 @@ extends EnemyAbility
 @export var slam_Scene: PackedScene
 @export var follow_up_slam_state: Node
 @export var slam_position: Node
-@export var damage: int = 25
+#@export var damage: int = 25
+@export var damage: DamageContainer
 
 var slam_instance: Attack
 var vfx_instance: Basic_VFX

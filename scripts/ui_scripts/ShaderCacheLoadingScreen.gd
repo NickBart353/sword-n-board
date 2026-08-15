@@ -56,4 +56,4 @@ func _play_attack_vfx() -> void:
 		if vfx_position.get_child_count() == 0 and attack_vfx.size() > 0:
 			var _attack_vfx: Attack = attack_vfx.pop_back()
 			vfx_position.add_child(_attack_vfx)
-			_attack_vfx.attack(vfx_position.global_transform, 0)
+			_attack_vfx.attack(vfx_position.global_transform, null)

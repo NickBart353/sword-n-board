@@ -1,6 +1,7 @@
 class_name EnemyAttack extends EnemyAbility
 
-@export var damage: int = 1
+#@export var damage: int = 1
+@export var damage: DamageContainer
 @export var attack_scene: PackedScene
 @export var attack_position: Node
 @export var attack_rotation: Basis = Basis()

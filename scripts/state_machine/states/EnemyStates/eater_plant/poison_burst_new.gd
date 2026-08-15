@@ -3,7 +3,8 @@ extends EnemyState
 @export var bullet_position: Node
 @export var cooldown_timer: Timer
 @export var fire_rate: float = 0.01
-@export var poison_burst_damage: int = 9
+#@export var poison_burst_damage: int = 9
+@export var poison_burst_damage: DamageContainer
 @export var hitbox_shape_radius: float = 0.5
 
 @export_group("VFX")

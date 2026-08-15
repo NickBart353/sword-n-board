@@ -559,8 +559,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				#use_stamina(STAMINA)
 				#damage *= parry.get_punishment_multiplier(dict["block_type"])
 			#break
-func take_damage(damage_resource: DamageResource) -> void:
-	var damage: float = CombatMath.calulcate_damage(damage_resource, base_resistances)
+func take_damage(damage_container: DamageContainer, body: Node, blockable: bool = true, parryable: bool = true) -> void:
+	var damage: float = CombatMath.calulcate_damage(damage_container, base_resistances)
 	update_HEALTH(-damage)
 
 func update_stamina_regeneration_speed(amount: float):

@@ -7,7 +7,8 @@ signal faded
 @onready var explosion: GPUParticles3D = $GPUParticles3D
 
 @export_range(0.0, 10.0) var tick_speed: float = 1.0
-@export var dot_damage: float = 5
+#@export var dot_damage: float = 5
+@export var dot_damage: DamageContainer
 @export var dot_effect_name: String
 @export_range(0.0, 100.0) var dot_duration: float = 10
 @export var queue_free_on_finished: bool = false

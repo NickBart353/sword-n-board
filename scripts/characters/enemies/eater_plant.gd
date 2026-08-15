@@ -10,28 +10,30 @@ class_name EaterPlant extends Enemy
 @export var bomb_start_location_new: Marker3D
 @onready var bomb_multi_mesh: MultiMeshInstance3D = $BombMultiMesh
 
-@export_group("Bombs")
-@export var POISON_BOMB_SCENE: PackedScene
-@export var poison_blast_bullet_amount: int = 10
-@export var bomb_start_location: Marker3D
+#@export_group("Bombs")
+#@export var POISON_BOMB_SCENE: PackedScene
+#@export var poison_blast_bullet_amount: int = 10
+#@export var bomb_start_location: Marker3D
 
 @export_group("Tentacle Spikes - NEW")
 @export var tentacle_spike_mesh: MultiMeshInstance3D
 @export_range(0.0, 1000.0) var tentacle_spike_range: float = 100
-@export var spike_damage: int = 15
-
-@export_group("Tentacle Spikes")
-@export var tentacle_scene: PackedScene
-@export var tentacle_container: Node3D
 @export_range(0, 10000) var tentacle_amount: int = 15
-@export_range(0.0, 100.0) var tentacle_attack_min_radius: float = 3
-@export_range(0.0, 100.0) var tentacle_attack_max_radius: float = 15
+#@export var spike_damage: int = 15
+@export var spike_damage: DamageContainer
+
+#@export_group("Tentacle Spikes")
+#@export var tentacle_scene: PackedScene
+#@export var tentacle_container: Node3D
+#@export_range(0.0, 100.0) var tentacle_attack_min_radius: float = 3
+#@export_range(0.0, 100.0) var tentacle_attack_max_radius: float = 15
 
 @export_group("Tentacle Slam")
 @export var tentacle_root: PackedScene
-@export_range(0.0, 100.0) var tentacle_damage: int = 15
+#@export_range(0.0, 100.0) var tentacle_damage: int = 15
 @export_range(0, 100) var tentacle_root_amount: int = 4
-@export_range(0.0, 100.0) var tentacle_slam_damage: int = 30
+#@export_range(0.0, 100.0) var tentacle_slam_damage: int = 30
+@export var tentacle_slam_damage: DamageContainer
 
 var num_tentacles_erupted: int = 0
 
@@ -39,7 +41,7 @@ func _ready() -> void:
 	super()
 	state_machine.get_node("Dead").remove_spikes.connect(_remove_spikes)
 	create_bombs()
-	create_tentacles()
+	#create_tentacles()
 	create_tentacle_roots()
 	bomb_multi_mesh.multimesh.instance_count = poison_blast_bullet_amount_new
 	tentacle_spike_mesh.set_data(spike_damage)
@@ -52,14 +54,14 @@ func create_bombs():
 	for instance_id in bomb_multi_mesh.multimesh.instance_count:
 		bomb_multi_mesh.multimesh.set_instance_transform(instance_id, Transform3D(Basis(), RESET_POSITION))
 
-func create_tentacles():
-	for i in range(tentacle_amount):
-		var tentacle_instance: Area3D = tentacle_scene.instantiate()
-		tentacle_container.add_child(tentacle_instance)
-		tentacle_instance.hide()
-		tentacle_instance.damage = tentacle_damage
-		tentacle_instance.wait_duration = $Timers/EruptionCooldown.wait_time - 3
-		tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+#func create_tentacles():
+	#for i in range(tentacle_amount):
+		#var tentacle_instance: Area3D = tentacle_scene.instantiate()
+		#tentacle_container.add_child(tentacle_instance)
+		#tentacle_instance.hide()
+		#tentacle_instance.damage = tentacle_damage
+		#tentacle_instance.wait_duration = $Timers/EruptionCooldown.wait_time - 3
+		#tentacle_instance.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 
 func create_tentacle_roots():
 	var radiant_size: float = 360.0 / tentacle_root_amount

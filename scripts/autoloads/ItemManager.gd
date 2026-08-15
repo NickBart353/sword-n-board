@@ -156,30 +156,74 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 	},
 }
 
-func get_item_from_id(item_id: String) -> Item:
+func get_item_from_id(item_id: String, itemdata: ItemData = null) -> Item:
+	if item_id.is_empty() or item_id == null:
+		push_error("id null or empty")
+		return null
+	
 	var item_instance: Item = ui_item_scene.instantiate()
-	if MELEE_WEAPONS.get(item_id) != null:
-		item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
-		item_instance = create_upgraded_weapon_from_id(item_instance.data.upgrade_type, item_instance.data.item_id)
-		#item_instance.data = create_upgraded_version_from_resource(item_instance.data)
-		return item_instance
-	if CONSUMABLES.get(item_id) != null:
-		return _get_item_from_new_resource(CONSUMABLES[item_id], item_instance)
-	if RANGED_WEAPONS.get(item_id) != null:
-		return _get_item_from_new_resource(RANGED_WEAPONS[item_id], item_instance)
-	if MAGIC_WEAPONS.get(item_id) != null:
-		return _get_item_from_new_resource(MAGIC_WEAPONS[item_id], item_instance)
-	if MATERIAL.get(item_id) != null:
-		return _get_item_from_new_resource(MATERIAL[item_id], item_instance)
-	return null
+	var new_itemdata: ItemData
+	if MELEE_WEAPONS.has(item_id):
+		new_itemdata = MELEE_WEAPONS[item_id]
+	if CONSUMABLES.has(item_id):
+		new_itemdata = CONSUMABLES[item_id]
+	if RANGED_WEAPONS.has(item_id):
+		new_itemdata = RANGED_WEAPONS[item_id]
+	if MAGIC_WEAPONS.has(item_id):
+		new_itemdata = MAGIC_WEAPONS[item_id]
+	if MATERIAL.has(item_id):
+		new_itemdata = MATERIAL[item_id]
+	
+	if new_itemdata == null:
+		push_error("invalid id")
+		return null
+	
+	new_itemdata = new_itemdata.duplicate(true)
+	
+	fill_itemdata(new_itemdata, itemdata)
+	item_instance.data = new_itemdata
+	return item_instance
+	
+func fill_itemdata(itemdata: ItemData, existing_itemdata: ItemData = null):
+	if existing_itemdata:
+		itemdata.item_name = existing_itemdata.item_name
+		itemdata.unique_id = existing_itemdata.unique_id
+		itemdata.stack_size = existing_itemdata.stack_size
+		itemdata.equipped = existing_itemdata.equipped
+		
+		if itemdata is WeaponData:
+			itemdata.upgrade_type = existing_itemdata.upgrade_type
+			itemdata.upgrade_level = existing_itemdata.upgrade_level
+	else:
+		itemdata.unique_id = UuidGenerator.uuid4()
+	if itemdata is WeaponData:
+		create_damage_resource(itemdata)
+
+#func _get_item_from_id(item_id: String, itemdata: ItemData = null) -> Item:
+	#var item_instance: Item = ui_item_scene.instantiate()
+	#if MELEE_WEAPONS.get(item_id) != null:
+		#item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
+		#item_instance = create_upgraded_weapon_from_id(item_instance.data.upgrade_type, item_instance.data.item_id)
+		##item_instance.data = create_upgraded_version_from_resource(item_instance.data)
+		#return item_instance
+	#if CONSUMABLES.get(item_id) != null:
+		#return _get_item_from_new_resource(CONSUMABLES[item_id], item_instance)
+	#if RANGED_WEAPONS.get(item_id) != null:
+		#return _get_item_from_new_resource(RANGED_WEAPONS[item_id], item_instance)
+	#if MAGIC_WEAPONS.get(item_id) != null:
+		#return _get_item_from_new_resource(MAGIC_WEAPONS[item_id], item_instance)
+	#if MATERIAL.get(item_id) != null:
+		#return _get_item_from_new_resource(MATERIAL[item_id], item_instance)
+	#return null
 
 func get_item_from_existing_itemdata(itemdata: ItemData) -> Item:
 	if not itemdata:
 		return null
-	var item_instance: Item = get_item_from_id(itemdata.item_id)
-	item_instance.data = itemdata
-	if itemdata is WeaponData:
-		item_instance.data = create_upgraded_version_from_resource(item_instance.data)
+	var item_instance: Item = get_item_from_id(itemdata.item_id, itemdata)
+	#item_instance.data = itemdata
+	#if itemdata is WeaponData:
+		#item_instance.data = create_upgraded_version_from_resource(item_instance.data)
+	
 	return item_instance
 
 func _get_item_from_new_resource(resource: Resource, item_instance: Item) -> Item:
@@ -200,7 +244,6 @@ func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: Stri
 		return null
 	
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(type)
-	#prints("prefix", name_prefix, "type", type)
 	if name_prefix != "" and not item_instance.data.item_name.contains(name_prefix):
 		item_instance.data.item_name = "{0} {1}".format([name_prefix, item_instance.data.item_name])
 		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_instance.data.item_name)
@@ -212,27 +255,36 @@ func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: Stri
 func create_upgraded_version_from_resource(item_resource: WeaponData) -> WeaponData:
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(item_resource.upgrade_type)
 	#prints("prefix", name_prefix, "type", item_resource.upgrade_type)
+	create_damage_resource(item_resource)
 	if name_prefix != "" and not item_resource.item_name.contains(name_prefix):
 		item_resource.item_name = "{0} {1}".format([name_prefix, item_resource.item_name])
 		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_resource.item_name)
 		if new_sprite != null:
 			item_resource.sprite = new_sprite
-		create_damage_resource(item_resource)
 		
 	return item_resource
 
 func create_damage_resource(item_resource: WeaponData) -> void:
 	var type: WeaponData.UPGRADE_TYPE = item_resource.upgrade_type
-	item_resource.damage_resource = DamageResource.new()
+	var container: DamageContainer = DamageContainer.new()
 	match type:
 		WeaponData.UPGRADE_TYPE.NORMAL, WeaponData.UPGRADE_TYPE.CHAOS:
-			item_resource.damage_resource.primary_damage_type = type
-			item_resource.damage_resource.primary_damage = item_resource.single_base_damage + (item_resource.single_base_incrementor * item_resource.upgrade_level)
+			var damage_resource: DamageResource = DamageResource.new()
+			damage_resource.damage_type = type
+			damage_resource.damage_amount = item_resource.single_base_damage + (item_resource.single_base_incrementor * item_resource.upgrade_level)
+			container.primary_damage = damage_resource
 		WeaponData.UPGRADE_TYPE.FIRE, WeaponData.UPGRADE_TYPE.COLD, WeaponData.UPGRADE_TYPE.LIGHTNING, WeaponData.UPGRADE_TYPE.NATURE:
-			item_resource.damage_resource.primary_damage_type = type
-			item_resource.damage_resource.primary_damage = item_resource.hybrid_elemental_base_damage + (item_resource.hybrid_elemental_base_incrementor * item_resource.upgrade_level)
-			item_resource.damage_resource.secondary_damage_type = WeaponData.UPGRADE_TYPE.NORMAL
-			item_resource.damage_resource.secondary_damage = item_resource.hybrid_normal_base_damge + (item_resource.hybrid_normal_base_incrementor * item_resource.upgrade_level)
+			var primary_damage_resource: DamageResource = DamageResource.new()
+			primary_damage_resource.damage_type = type
+			primary_damage_resource.damage_amount = item_resource.hybrid_elemental_base_damage + (item_resource.hybrid_elemental_base_incrementor * item_resource.upgrade_level)
+			container.primary_damage = primary_damage_resource
+			
+			var secondary_damage_resource: DamageResource = DamageResource.new()
+			secondary_damage_resource.damage_type = WeaponData.UPGRADE_TYPE.NORMAL
+			secondary_damage_resource.damage_amount = item_resource.hybrid_normal_base_damge + (item_resource.hybrid_normal_base_incrementor * item_resource.upgrade_level)
+			container.additional_damage.append(secondary_damage_resource)
+			
+	item_resource.damage_container = container
 
 func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	var items: Array = []
@@ -352,29 +404,41 @@ func get_all_upgrade_types_for_all_items() -> Array[Item]:
 		items.append_array(get_all_upgrade_types_for_id(id))
 	return items
 
+func level_up_weapon(item: Item) -> Item:
+	return null
+
+func upgrade_weapon(item: Item, upgrade_type: WeaponData.UPGRADE_TYPE) -> Item:
+	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(upgrade_type)
+	if name_prefix != "" and not item.data.item_name.contains(name_prefix):
+		item.data.item_name = "{0} {1}".format([name_prefix, item.data.item_name])
+		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item.data.item_name)
+		if new_sprite != null:
+			item.data.sprite = new_sprite
+	create_damage_resource(item.data)
+	return item
+
 func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
-	return []
-	#if not MELEE_WEAPONS.has(id):
-		#push_error("failed to load debug items for: ", id)
-		#return []
-	#var items: Array[Item] = []
-	#var normal: Item = ItemManager.get_item_from_id(id)
-	#normal.data.upgrade_type = WeaponData.UPGRADE_TYPE.NORMAL
-	#items.append(normal)
-	#var fire: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.FIRE, id)
-	#fire.data.upgrade_type = WeaponData.UPGRADE_TYPE.FIRE
-	#items.append(fire)
-	#var cold: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.COLD, id)
-	#cold.data.upgrade_type = WeaponData.UPGRADE_TYPE.COLD
-	#items.append(cold)
-	#var lightning: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.LIGHTNING, id)
-	#lightning.data.upgrade_type = WeaponData.UPGRADE_TYPE.LIGHTNING
-	#items.append(lightning)
-	#var nature: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.NATURE, id)
-	#nature.data.upgrade_type = WeaponData.UPGRADE_TYPE.NATURE
-	#items.append(nature)
-	#var chaos: Item = ItemManager.create_upgraded_weapon_from_id(WeaponData.UPGRADE_TYPE.CHAOS, id)
-	#chaos.data.upgrade_type = WeaponData.UPGRADE_TYPE.CHAOS
-	#items.append(chaos)
-	#
-	#return items
+	if not MELEE_WEAPONS.has(id):
+		push_error("failed to load debug items for: ", id)
+		return []
+	var items: Array[Item] = []
+	var normal: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(normal, WeaponData.UPGRADE_TYPE.NORMAL)
+	items.append(normal)
+	var fire: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(fire, WeaponData.UPGRADE_TYPE.FIRE)
+	items.append(fire)
+	var cold: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(cold, WeaponData.UPGRADE_TYPE.COLD)
+	items.append(cold)
+	var lighting: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(lighting, WeaponData.UPGRADE_TYPE.LIGHTNING)
+	items.append(lighting)
+	var nature: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(nature, WeaponData.UPGRADE_TYPE.NATURE)
+	items.append(nature)
+	var chaos: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(chaos, WeaponData.UPGRADE_TYPE.CHAOS)
+	items.append(chaos)
+
+	return items

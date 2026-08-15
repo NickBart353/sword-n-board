@@ -2,7 +2,8 @@ extends EnemyState
 
 @export var slam_Scene: PackedScene
 @export var slam_position: Node
-@export var damage: int = 25
+#@export var damage: int = 25
+@export var damage: DamageContainer
 @export var ground_raycast: RayCast3D
 
 var slam_instance: Attack

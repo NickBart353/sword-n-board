@@ -18,7 +18,7 @@ var starting_positions_local: Array[Transform3D] = []
 var starting_positions_global: Array[Transform3D] = []
 
 var tentacle_count: int
-var damage: int
+var damage: DamageContainer
 
 var up: bool = false
 var down: bool = false
@@ -29,7 +29,7 @@ func _ready() -> void:
 	shape_rid = PhysicsServer3D.cylinder_shape_create()
 	PhysicsServer3D.shape_set_data(shape_rid, {"height": 10.35, "radius": 0.89})
 
-func set_data(new_damage: int) -> void:
+func set_data(new_damage: DamageContainer) -> void:
 	damage = new_damage
 
 func set_start_positions(new_start_positions: Array[Vector3]) -> void:
