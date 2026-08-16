@@ -23,8 +23,8 @@ class_name WeaponData
 @export var knockbackStrength_vertical: int = 0
 @export var knockbackStrength_horizontal: int = 0
 
-@export var upgrade_level: int = 0
-@export var upgrade_type: UPGRADE_TYPE = UPGRADE_TYPE.NORMAL
+@export_range(0, 15) var upgrade_level: int = 0 : set = set_level_suffix
+@export var upgrade_type: UPGRADE_TYPE = UPGRADE_TYPE.NORMAL : set = set_upgrade_prefix
 
 @export var damage_container: DamageContainer
 
@@ -37,7 +37,19 @@ var lightning_text: String = ""
 var nature_text: String = ""
 var chaos_text: String = ""
 
+func set_level_suffix(_upgrade_level: int) -> void:
+	upgrade_level = _upgrade_level
+	if upgrade_level > 0:
+		suffix = " +{0}".format([_upgrade_level])
+	else:
+		suffix = ""
+
+func set_upgrade_prefix(_upgrade_type: UPGRADE_TYPE) -> void:
+	upgrade_type = _upgrade_type
+	prefix = get_upgrade_type_name_prefix(_upgrade_type)
+
 static var prefix_dict: Dictionary = {
+		UPGRADE_TYPE.NORMAL: "",
 		UPGRADE_TYPE.FIRE: "Flaming ",
 		UPGRADE_TYPE.COLD: "Frozen ",
 		UPGRADE_TYPE.LIGHTNING: "Lightning ",

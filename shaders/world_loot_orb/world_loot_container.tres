@@ -23,6 +23,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_7enso"]
 parameter_name = "Pictures"
+texture_filter = 1
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_p8ewq"]
 expanded_output_ports = [0]
@@ -48,12 +49,13 @@ parameter_name = "alpha"
 [sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_pntqp"]
 
 [resource]
+flags/unshaded = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_pntqp")
 nodes/vertex/2/position = Vector2(-12.170009, 442.91003)
 nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
 nodes/fragment/0/position = Vector2(1303.4962, 83.969086)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_7enso")
-nodes/fragment/2/position = Vector2(-225.70966, 446.96124)
+nodes/fragment/2/position = Vector2(-260, 460)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_p8ewq")
 nodes/fragment/3/position = Vector2(-215.34132, 182.74081)
 nodes/fragment/4/node = SubResource("VisualShaderNodeUVFunc_swph6")

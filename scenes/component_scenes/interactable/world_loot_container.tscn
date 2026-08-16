@@ -10,6 +10,11 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wnq0o"]
 noise_type = 2
 frequency = 0.0033
+offset = Vector3(64.52, 0, 0)
+fractal_octaves = 4
+fractal_lacunarity = 1.32
+fractal_gain = 0.725
+fractal_weighted_strength = 0.5
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bgsx0"]
 noise = SubResource("FastNoiseLite_wnq0o")
@@ -17,11 +22,11 @@ seamless = true
 seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2pxv"]
-render_priority = -1
+render_priority = 0
 shader = ExtResource("2_e7s6j")
-shader_parameter/ColorParameter = Color(1.7394987, 3.31922, 3.0435524, 1)
+shader_parameter/ColorParameter = Color(1.1408134, 1.2742168, 1.2742168, 1)
 shader_parameter/scale = Vector2(0.5, 0.5)
-shader_parameter/zoms_trength = 1.0
+shader_parameter/zoms_trength = 3.86
 shader_parameter/repeat = 1.0
 shader_parameter/timestrength = Vector2(0, 0.03)
 shader_parameter/Pictures = SubResource("NoiseTexture2D_bgsx0")
@@ -30,6 +35,47 @@ shader_parameter/alpha = ExtResource("2_q2pxv")
 [sub_resource type="PlaneMesh" id="PlaneMesh_kerij"]
 material = SubResource("ShaderMaterial_q2pxv")
 size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="Curve" id="Curve_op3co"]
+_data = [Vector2(0, 0.79775286), 0.0, 0.0, 0, 0, Vector2(0.4455959, 0.48314613), 0.0, 0.0, 0, 0, Vector2(0.849741, 0.46067423), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_voftf"]
+curve = SubResource("Curve_op3co")
+
+[sub_resource type="Curve" id="Curve_e7s6j"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.06735751, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4bjin"]
+curve = SubResource("Curve_e7s6j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_evpsf"]
+emission_shape_scale = Vector3(0.27, 0.31, 0.33)
+emission_shape = 1
+emission_sphere_radius = 1.0
+radial_velocity_min = 0.09997764
+radial_velocity_max = 0.49997765
+radial_velocity_curve = SubResource("CurveTexture_voftf")
+gravity = Vector3(0, 0.1, 0)
+scale_min = 0.049999997
+scale_max = 0.08
+scale_curve = SubResource("CurveTexture_4bjin")
+hue_variation_min = -0.050000023
+hue_variation_max = -0.010000022
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1ji0"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("2_q2pxv")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p825b"]
+material = SubResource("StandardMaterial3D_l1ji0")
 orientation = 2
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_e7s6j"]
@@ -44,10 +90,16 @@ shape = SubResource("SphereShape3D_ypp05")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2146549909]
 mesh = SubResource("PlaneMesh_kerij")
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=597806187]
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_evpsf")
+draw_pass_1 = SubResource("PlaneMesh_p825b")
+
 [node name="Interactable" parent="." unique_id=601589509 instance=ExtResource("3_q2pxv")]
 hover_text = "loot"
 
 [node name="Text" parent="Interactable" index="1" unique_id=1001294650]
+render_priority = 1
 texture = SubResource("ViewportTexture_e7s6j")
 
 [connection signal="_interact" from="Interactable" to="." method="_on_interactable__interact"]

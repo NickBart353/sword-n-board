@@ -189,6 +189,9 @@ func fill_itemdata(itemdata: ItemData, existing_itemdata: ItemData = null):
 		itemdata.unique_id = UuidGenerator.uuid4()
 	if itemdata is WeaponData:
 		create_damage_resource(itemdata)
+	
+	if not itemdata.unique_id:
+		itemdata.unique_id = UuidGenerator.uuid4()
 
 #func _get_item_from_id(item_id: String, itemdata: ItemData = null) -> Item:
 	#var item_instance: Item = ui_item_scene.instantiate()
@@ -363,8 +366,25 @@ func get_all_upgrade_types_for_all_items() -> Array[Item]:
 		items.append_array(get_all_upgrade_types_for_id(id))
 	return items
 
-func level_up_weapon(item: Item) -> Item:
+func level_up_weapon_by(item: Item, level_to_increase_by: int) -> Item:
+	if level_to_increase_by == 0:
+		push_error("cant increase item by 0: ", item.data.get_combined_name())
+		return item
+	item.data.upgrade_level += level_to_increase_by
+	return level_up_weapon(item)
+
+func level_up_weapon_increment(item: Item) -> Item:
 	item.data.upgrade_level += 1
+	return level_up_weapon(item)
+
+func level_up_weapon_by_target(item: Item, target_level: int) -> Item:
+	if target_level == 0:
+		push_error("cant increase item to 0: ", item.data.get_combined_name())
+		return item
+	item.data.upgrade_level = target_level
+	return level_up_weapon(item)
+
+func level_up_weapon(item: Item) -> Item:
 	item.data.suffix = " +{0}".format([item.data.upgrade_level])
 	create_damage_resource(item.data)
 	return item
@@ -374,9 +394,10 @@ func upgrade_weapon(item: Item, upgrade_type: WeaponData.UPGRADE_TYPE) -> Item:
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(upgrade_type)
 	if name_prefix != "" and not item.data.item_name.contains(name_prefix):
 		item.data.prefix = name_prefix
-		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item.data.item_name)
-		if new_sprite != null:
-			item.data.sprite = new_sprite
+		#var combined_name: String = "{0}{1}".format([item.data.prefix, item.data.item_name])
+		#var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(combined_name)
+		#if new_sprite != null:
+			#item.data.sprite = new_sprite
 	create_damage_resource(item.data)
 	return item
 
@@ -387,27 +408,27 @@ func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
 	var items: Array[Item] = []
 	var normal: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(normal, WeaponData.UPGRADE_TYPE.NORMAL)
-	level_up_weapon(normal)
-	level_up_weapon(normal)
-	level_up_weapon(normal)
-	level_up_weapon(normal)
-	level_up_weapon(normal)
-	level_up_weapon(normal)
+	level_up_weapon_by_target(normal, 14)
 	items.append(normal)
 	var fire: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(fire, WeaponData.UPGRADE_TYPE.FIRE)
+	level_up_weapon_increment(fire)
 	items.append(fire)
 	var cold: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(cold, WeaponData.UPGRADE_TYPE.COLD)
+	level_up_weapon_by(cold, 3)
 	items.append(cold)
-	var lighting: Item = ItemManager.get_item_from_id(id)
-	upgrade_weapon(lighting, WeaponData.UPGRADE_TYPE.LIGHTNING)
-	items.append(lighting)
+	var lightning: Item = ItemManager.get_item_from_id(id)
+	upgrade_weapon(lightning, WeaponData.UPGRADE_TYPE.LIGHTNING)
+	level_up_weapon_by(lightning, 3)
+	items.append(lightning)
 	var nature: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(nature, WeaponData.UPGRADE_TYPE.NATURE)
+	level_up_weapon_by(nature, 1)
 	items.append(nature)
 	var chaos: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(chaos, WeaponData.UPGRADE_TYPE.CHAOS)
+	level_up_weapon_by(chaos, 7)
 	items.append(chaos)
 
 	return items

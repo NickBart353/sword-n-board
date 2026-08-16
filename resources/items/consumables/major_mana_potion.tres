@@ -17,9 +17,7 @@ use_light = true
 light_color = Color(0.258, 0.443, 1.129, 1)
 item_name = "Major Mana Potion"
 item_id = "40006"
-tooltip = "It's blue!"
-explanation_text = "A large flask filled with a blue liquid, intended to recover the players mana.
-"
+tooltip = "A large flask filled with a blue liquid, intended to recover the players mana."
 stackable = true
 sprite = ExtResource("3_lgh10")
 item_category = 2

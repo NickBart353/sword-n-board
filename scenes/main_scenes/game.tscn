@@ -31,16 +31,18 @@ load_path = "res://.godot/imported/Dagger.png-b56a17059bd6b58c45bdd38c1d0d4b02.c
 
 [sub_resource type="Resource" id="Resource_e71x3"]
 script = ExtResource("11_3ls1w")
-normal_damage = 25.0
 critical_strike_chance = 0.2
 combo_size = 2
 dualwield_combo_size = 2
-upgrade_type = 5
+upgrade_level = 3
+upgrade_type = 4
 item_name = "Dagger"
 item_id = "10006"
 tooltip = "A deadly weapon in close combat."
 sprite = SubResource("CompressedTexture2D_ve26b")
 item_type = 4
+prefix = "Frozen "
+suffix = " +3"
 metadata/_custom_type_script = "uid://bgvvdtu3qtyo6"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bbl8c"]
@@ -48,7 +50,6 @@ load_path = "res://.godot/imported/Shortsword.png-673092bec5bcbc73be87753d7b4aea
 
 [sub_resource type="Resource" id="Resource_lj4lb"]
 script = ExtResource("11_3ls1w")
-normal_damage = 32.0
 combo_size = 2
 item_name = "Shortsword"
 item_id = "10001"
@@ -258,7 +259,6 @@ light_color = Color(2.54, 0, 0.037, 1)
 item_name = "Minor Health Potion"
 item_id = "40001"
 tooltip = "It heals!"
-explanation_text = "A small flask filled with a red liquid, intended to heal the player."
 stackable = true
 sprite = SubResource("CompressedTexture2D_eohxg")
 item_category = 2
@@ -410,7 +410,6 @@ model = SubResource("PackedScene_uba5x")
 vfx = SubResource("PackedScene_bbl8c")
 item_name = "Wild Leaves"
 item_id = "40007"
-explanation_text = "Wild leaves that boost stamina."
 stackable = true
 sprite = SubResource("CompressedTexture2D_emjx4")
 item_category = 2
@@ -424,7 +423,6 @@ load_path = "res://.godot/imported/Katana.png-181e3b95e8465a623542db63b13ce55b.c
 
 [sub_resource type="Resource" id="Resource_emjx4"]
 script = ExtResource("11_3ls1w")
-normal_damage = 56.0
 combo_size = 2
 two_handed = true
 item_name = "Katana"
@@ -439,7 +437,6 @@ load_path = "res://.godot/imported/Dagger.png-b56a17059bd6b58c45bdd38c1d0d4b02.c
 
 [sub_resource type="Resource" id="Resource_eohxg"]
 script = ExtResource("11_3ls1w")
-normal_damage = 25.0
 critical_strike_chance = 0.2
 combo_size = 2
 dualwield_combo_size = 2

@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dhldf5uehojup" path="res://assets/Audio/400 Sounds Pack/UI/select_2.wav" id="4_l243e"]
 
 [node name="MainUI" type="Control" unique_id=1110628191]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +19,6 @@ close_inventory_sound = ExtResource("3_l243e")
 mouse_hover_sounds = ExtResource("4_l243e")
 
 [node name="Inventory" type="Control" parent="." unique_id=2085284406]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

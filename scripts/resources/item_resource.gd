@@ -4,7 +4,6 @@ extends Resource
 @export var item_name: String
 @export var item_id: String
 @export_multiline var tooltip: String
-@export_multiline var explanation_text: String
 @export var stackable: bool = false
 @export var sprite: Texture2D
 @export var drop_chance: float
@@ -18,8 +17,8 @@ extends Resource
 @export var unique_id: String
 
 var equipped: bool = false
-var prefix: String = ""
-var suffix: String = ""
+@export var prefix: String = ""
+@export var suffix: String = ""
 
 enum ITEM_CATEGORY {WEAPON, ARMOR, CONSUMABLE, MATERIAL}
 enum ITEM_SUB_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, CONSUMABLE, THROWABLE, MATERIAL}

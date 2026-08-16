@@ -3,6 +3,7 @@
 [ext_resource type="Theme" uid="uid://b2qbip2dla8tl" path="res://resources/ui/main_ui_theme.res" id="1_1l2m8"]
 [ext_resource type="Texture2D" uid="uid://b38jv8rdj86c" path="res://my_assets/sprites/Chaos Greatsword.png" id="2_8wc63"]
 [ext_resource type="Script" uid="uid://b45rg1ealo8l2" path="res://scripts/ui_scripts/inventory/inventory_item_new.gd" id="2_dfrev"]
+[ext_resource type="Texture2D" uid="uid://b0o7s0ma61sna" path="res://my_assets/sprites/inventory_sprites/nature-icon.png" id="3_dfrev"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfrev"]
 content_margin_left = 2.0
@@ -22,7 +23,7 @@ font_size = 20
 line_spacing = 1.0
 font_size = 18
 
-[node name="InventoryItemNew" type="PanelContainer" unique_id=673232389 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "text_label", "sprite", "count_label")]
+[node name="InventoryItemNew" type="PanelContainer" unique_id=673232389 node_paths=PackedStringArray("consumable_marker", "armor_equipped_marker", "mainhand_equipped_marker", "offhand_equipped_marker", "text_label", "sprite", "count_label", "elemental_indicator")]
 custom_minimum_size = Vector2(200, 200)
 custom_maximum_size = Vector2(200, 200)
 anchors_preset = 15
@@ -45,7 +46,8 @@ mainhand_equipped_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/W
 offhand_equipped_marker = NodePath("VBoxContainer/TopContainer/HBoxContainer2/WeaponContainer/OffhandEquipped")
 text_label = NodePath("VBoxContainer/Label")
 sprite = NodePath("VBoxContainer/Sprite")
-count_label = NodePath("VBoxContainer/TopContainer/Label")
+count_label = NodePath("VBoxContainer/TopContainer/HBoxContainer/Label")
+elemental_indicator = NodePath("VBoxContainer/TopContainer/HBoxContainer/ElementalIndicator")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=455975877]
 layout_mode = 2
@@ -56,12 +58,23 @@ layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/TopContainer" unique_id=228181743]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopContainer" unique_id=1363258816]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TopContainer/HBoxContainer" unique_id=228181743]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "2"
 label_settings = SubResource("LabelSettings_p825b")
+
+[node name="ElementalIndicator" type="TextureRect" parent="VBoxContainer/TopContainer/HBoxContainer" unique_id=733997061]
+custom_minimum_size = Vector2(20, 20)
+custom_maximum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_dfrev")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TopContainer" unique_id=590437433]
 layout_mode = 2

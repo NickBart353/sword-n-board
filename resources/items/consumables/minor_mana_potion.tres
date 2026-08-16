@@ -17,8 +17,7 @@ use_light = true
 light_color = Color(0.258, 0.443, 1.129, 1)
 item_name = "Minor Mana Potion"
 item_id = "40004"
-tooltip = "It's blue!"
-explanation_text = "A small flask filled with a blue liquid, intended to recover the players mana.
+tooltip = "A small flask filled with a blue liquid, intended to recover the players mana.
 "
 stackable = true
 sprite = ExtResource("2_evxon")

@@ -7,7 +7,7 @@ class_name InventoryItem extends UIItem
 @export var text_label: Label
 @export var sprite: TextureRect
 @export var count_label: Label
-
+@export var elemental_indicator: TextureRect
 
 func _ready() -> void:
 	consumable_marker.hide()
@@ -42,6 +42,8 @@ func _on_mouse_entered() -> void:
 	#item_pressed.emit(item)
 
 func set_data(new_item: Item, new_slot: String = "") -> void:
+	elemental_indicator.hide()
+	prints("setting data:", new_item.data.get_combined_name())
 	item = new_item
 	text_label.text = item.data.get_combined_name()
 	sprite.texture = item.data.sprite
@@ -57,7 +59,7 @@ func set_data(new_item: Item, new_slot: String = "") -> void:
 		#armor_equipped_marker.show.call_deferred()
 	#else:
 		#armor_equipped_marker.hide.call_deferred()
-
+	
 	set_slot(new_slot)
 	if item.data.equipped == false:
 		#consumable_marker.hide()
@@ -77,6 +79,20 @@ func set_slot(new_slot: String) -> void:
 		if item.data.two_handed:
 			offhand_equipped_marker.show()
 			mainhand_equipped_marker.show()
+		elemental_indicator.show()
+		match item.data.upgrade_type:
+			WeaponData.UPGRADE_TYPE.NORMAL:
+				elemental_indicator.hide()
+			WeaponData.UPGRADE_TYPE.FIRE:
+				elemental_indicator.texture = SceneManager.UIItemIcons.get("flame_icon")
+			WeaponData.UPGRADE_TYPE.COLD:
+				elemental_indicator.texture = SceneManager.UIItemIcons.get("cold_icon")
+			WeaponData.UPGRADE_TYPE.LIGHTNING:
+				elemental_indicator.texture = SceneManager.UIItemIcons.get("lightning_icon")
+			WeaponData.UPGRADE_TYPE.NATURE:
+				elemental_indicator.texture = SceneManager.UIItemIcons.get("nature_icon")
+			WeaponData.UPGRADE_TYPE.CHAOS:
+				elemental_indicator.texture = SceneManager.UIItemIcons.get("chaos_icon")
 
 func unequip():
 	consumable_marker.hide()

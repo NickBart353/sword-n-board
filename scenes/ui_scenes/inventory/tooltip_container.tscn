@@ -17,16 +17,12 @@ content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.18245491, 0.17509004, 0.16875488, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.91606915, 0.410139, 9.62615e-07, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+bg_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.72464263, 0.7246426, 0.7246426, 1)
 
 [node name="TooltipContainer" type="HBoxContainer" unique_id=1833489514]
 offset_right = 250.0
