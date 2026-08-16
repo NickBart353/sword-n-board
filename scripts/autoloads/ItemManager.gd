@@ -4,17 +4,6 @@ var debug: bool = true
 
 const ui_item_scene: PackedScene = preload("res://scenes/ui_scenes/item.tscn")
 
-#const ITEMS: Dictionary = {
-	#"health_potion": preload("res://resources/items/health_potion.tres"),
-	#"mana_potion": preload("res://resources/items/mana_potion.tres"),
-	#"MinorManaPotion" : preload("res://scenes/component_scenes/item_entities/consumable/mana_potion.tscn"),
-	#"short_sword": preload("res://resources/items/short_sword.tres"),
-	#"wooden_shield": preload("res://resources/items/wooden_shield.tres"),
-	#"torch": preload("res://resources/items/torch.tres"),
-	#"magic_tome": preload("res://resources/items/magic_tome.tres"),
-	#"wooden_bow": preload("res://resources/items/bow.tres")
-#}
-
 const MELEE_WEAPONS: Dictionary = {#weapon resources
 	"10001" : preload("res://resources/items/melee_weapons/short_sword.tres"), #shortsword
 	"10004" : preload("uid://qpdw7kpnlexp"), #greatsword
@@ -156,7 +145,7 @@ const HIGH_LEVEL_DROPTABLE: Dictionary = {
 	},
 }
 
-func get_item_from_id(item_id: String, itemdata: ItemData = null) -> Item:
+func get_item_from_id(item_id: String, existing_itemdata: ItemData = null) -> Item:
 	if item_id.is_empty() or item_id == null:
 		push_error("id null or empty")
 		return null
@@ -180,13 +169,15 @@ func get_item_from_id(item_id: String, itemdata: ItemData = null) -> Item:
 	
 	new_itemdata = new_itemdata.duplicate(true)
 	
-	fill_itemdata(new_itemdata, itemdata)
+	fill_itemdata(new_itemdata, existing_itemdata)
 	item_instance.data = new_itemdata
 	return item_instance
-	
+
 func fill_itemdata(itemdata: ItemData, existing_itemdata: ItemData = null):
 	if existing_itemdata:
 		itemdata.item_name = existing_itemdata.item_name
+		itemdata.prefix = existing_itemdata.prefix
+		itemdata.suffix = existing_itemdata.suffix
 		itemdata.unique_id = existing_itemdata.unique_id
 		itemdata.stack_size = existing_itemdata.stack_size
 		itemdata.equipped = existing_itemdata.equipped
@@ -220,49 +211,45 @@ func get_item_from_existing_itemdata(itemdata: ItemData) -> Item:
 	if not itemdata:
 		return null
 	var item_instance: Item = get_item_from_id(itemdata.item_id, itemdata)
-	#item_instance.data = itemdata
-	#if itemdata is WeaponData:
+	return item_instance
+
+#func _get_item_from_new_resource(resource: Resource, item_instance: Item) -> Item:
+	#var item_data: ItemData
+	#item_data = resource
+	#item_instance.data = item_data.duplicate(true)
+	#item_data.unique_id = UuidGenerator.uuid4()
+	#if resource is WeaponData:
 		#item_instance.data = create_upgraded_version_from_resource(item_instance.data)
-	
-	return item_instance
+	#return item_instance
 
-func _get_item_from_new_resource(resource: Resource, item_instance: Item) -> Item:
-	var item_data: ItemData
-	item_data = resource
-	item_instance.data = item_data.duplicate(true)
-	item_data.unique_id = UuidGenerator.uuid4()
-	if resource is WeaponData:
-		item_instance.data = create_upgraded_version_from_resource(item_instance.data)
-	return item_instance
-
-func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: String) -> Item:
-	var item_instance: Item = ui_item_scene.instantiate()
-	if MELEE_WEAPONS.has(item_id):
-		item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
-	else:
-		push_error("failed to instantiate item for id: ", item_id, " upgrade type: ", type)
-		return null
-	
-	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(type)
-	if name_prefix != "" and not item_instance.data.item_name.contains(name_prefix):
-		item_instance.data.item_name = "{0} {1}".format([name_prefix, item_instance.data.item_name])
-		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_instance.data.item_name)
-		if new_sprite != null:
-			item_instance.data.sprite = new_sprite
-	
-	return item_instance
-
-func create_upgraded_version_from_resource(item_resource: WeaponData) -> WeaponData:
-	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(item_resource.upgrade_type)
-	#prints("prefix", name_prefix, "type", item_resource.upgrade_type)
-	create_damage_resource(item_resource)
-	if name_prefix != "" and not item_resource.item_name.contains(name_prefix):
-		item_resource.item_name = "{0} {1}".format([name_prefix, item_resource.item_name])
-		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_resource.item_name)
-		if new_sprite != null:
-			item_resource.sprite = new_sprite
-		
-	return item_resource
+#func create_upgraded_weapon_from_id(type: WeaponData.UPGRADE_TYPE, item_id: String) -> Item:
+	#var item_instance: Item = ui_item_scene.instantiate()
+	#if MELEE_WEAPONS.has(item_id):
+		#item_instance = _get_item_from_new_resource(MELEE_WEAPONS[item_id], item_instance)
+	#else:
+		#push_error("failed to instantiate item for id: ", item_id, " upgrade type: ", type)
+		#return null
+	#
+	#var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(type)
+	#if name_prefix != "" and not item_instance.data.item_name.contains(name_prefix):
+		#item_instance.data.item_name = "{0} {1}".format([name_prefix, item_instance.data.item_name])
+		#var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_instance.data.item_name)
+		#if new_sprite != null:
+			#item_instance.data.sprite = new_sprite
+	#
+	#return item_instance
+#
+#func create_upgraded_version_from_resource(item_resource: WeaponData) -> WeaponData:
+	#var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(item_resource.upgrade_type)
+	##prints("prefix", name_prefix, "type", item_resource.upgrade_type)
+	#create_damage_resource(item_resource)
+	#if name_prefix != "" and not item_resource.item_name.contains(name_prefix):
+		#item_resource.item_name = "{0} {1}".format([name_prefix, item_resource.item_name])
+		#var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item_resource.item_name)
+		#if new_sprite != null:
+			#item_resource.sprite = new_sprite
+		#
+	#return item_resource
 
 func create_damage_resource(item_resource: WeaponData) -> void:
 	var type: WeaponData.UPGRADE_TYPE = item_resource.upgrade_type
@@ -285,6 +272,35 @@ func create_damage_resource(item_resource: WeaponData) -> void:
 			container.additional_damage.append(secondary_damage_resource)
 			
 	item_resource.damage_container = container
+	apply_damage_text(item_resource)
+
+func apply_damage_text(item_resource: WeaponData) -> void:
+	item_resource.normal_text = "0"
+	item_resource.fire_text = "0"
+	item_resource.cold_text = "0"
+	item_resource.lightning_text = "0"
+	item_resource.nature_text = "0"
+	item_resource.chaos_text = "0"
+	
+	apply_text_to_damage_type(item_resource, item_resource.damage_container.primary_damage)
+	
+	for damage_resource in item_resource.damage_container.additional_damage:
+		apply_text_to_damage_type(item_resource, damage_resource)
+
+func apply_text_to_damage_type(item_resource: WeaponData, damage_resource: DamageResource) -> void:
+	match damage_resource.damage_type:
+		WeaponData.UPGRADE_TYPE.NORMAL:
+			item_resource.normal_text = str(damage_resource.damage_amount)
+		WeaponData.UPGRADE_TYPE.FIRE:
+			item_resource.fire_text = str(damage_resource.damage_amount)
+		WeaponData.UPGRADE_TYPE.COLD:
+			item_resource.cold_text = str(damage_resource.damage_amount)
+		WeaponData.UPGRADE_TYPE.LIGHTNING:
+			item_resource.lightning_text = str(damage_resource.damage_amount)
+		WeaponData.UPGRADE_TYPE.NATURE:
+			item_resource.nature_text = str(damage_resource.damage_amount)
+		WeaponData.UPGRADE_TYPE.CHAOS:
+			item_resource.chaos_text = str(damage_resource.damage_amount)
 
 func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 	var items: Array = []
@@ -308,25 +324,6 @@ func generate_loot(_level: int, _additional_drop_keys: Dictionary = {}):
 			if item.data.stackable:
 				item.data.stack_size = randi_range(1, 3)
 			items.append(item)
-	
-	#for item_key in dict_to_take_from.keys():
-		#if item_key is Dictionary:
-			#var multiplier: float = 1.0
-			#match dict_to_take_from[item_key]:
-				#"DOUBLE":
-					#multiplier = 2.0
-			#for sub_item_key in item_key:
-				#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"] * multiplier, dict_to_take_from[item_key]["max_amount"])
-				#if new_item:
-					#items.append(new_item)
-		#elif item_key is String:
-			#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
-			#if new_item:
-				#items.append(new_item)
-	#for item_key in additional_drop_keys:
-		#var new_item: Control = get_item(item_key, dict_to_take_from[item_key]["drop_chance"], dict_to_take_from[item_key]["max_amount"])
-		#if new_item:
-			#items.append(new_item)
 	return items
 
 func is_successful(chance_float: float) -> bool:
@@ -358,44 +355,6 @@ func get_item(key: String, drop_chance: float, stack_amount: int) -> Item:
 		return item_instance
 	return null
 
-func load_debug_items() -> Array:
-	var items: Array = []
-	for i in range(2):
-		for item_key in MELEE_WEAPONS:
-			var new_item: Item = get_item(item_key, 1, 5)
-			if new_item:
-				items.append(new_item)
-		#for item_key in RANGED_WEAPONS:
-			#var new_item: Item = get_item(item_key, 1, 5)
-			#if new_item:
-				#items.append(new_item)
-		#for item_key in MAGIC_WEAPONS:
-			#var new_item: Item = get_item(item_key, 1, 5)
-			#if new_item:
-				#items.append(new_item)
-	for item_key in CONSUMABLES:
-		var new_item: Item = get_item(item_key, 1, 5)
-		if new_item:
-			items.append(new_item)
-	#for item_key in MATERIAL:
-		#var new_item: Item = get_item(item_key, 1, 5)
-		#if new_item:
-			#items.append(new_item)
-	return items
-
-#func generate_loot(_level):
-	#var items: Array = []
-	#for item_key in ITEMS.keys():
-		#if randf_range(0.0,1.0) <= ITEMS[item_key].drop_chance:
-			#var stacksize: int = 1
-			#if ITEMS[item_key].stackable:
-				#stacksize = randi_range(1,3)
-			#for counter in stacksize:
-				#var item_instance: Control = ui_item_scene.instantiate()
-				#item_instance.data = ITEMS[item_key]
-				#items.append(item_instance)
-	#return items
-
 ### DEBUG ###
 
 func get_all_upgrade_types_for_all_items() -> Array[Item]:
@@ -405,12 +364,16 @@ func get_all_upgrade_types_for_all_items() -> Array[Item]:
 	return items
 
 func level_up_weapon(item: Item) -> Item:
-	return null
+	item.data.upgrade_level += 1
+	item.data.suffix = " +{0}".format([item.data.upgrade_level])
+	create_damage_resource(item.data)
+	return item
 
 func upgrade_weapon(item: Item, upgrade_type: WeaponData.UPGRADE_TYPE) -> Item:
+	item.data.upgrade_type = upgrade_type
 	var name_prefix: String = WeaponData.get_upgrade_type_name_prefix(upgrade_type)
 	if name_prefix != "" and not item.data.item_name.contains(name_prefix):
-		item.data.item_name = "{0} {1}".format([name_prefix, item.data.item_name])
+		item.data.prefix = name_prefix
 		var new_sprite: Texture2D = WeaponData.get_upgrade_type_sprite(item.data.item_name)
 		if new_sprite != null:
 			item.data.sprite = new_sprite
@@ -424,6 +387,12 @@ func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
 	var items: Array[Item] = []
 	var normal: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(normal, WeaponData.UPGRADE_TYPE.NORMAL)
+	level_up_weapon(normal)
+	level_up_weapon(normal)
+	level_up_weapon(normal)
+	level_up_weapon(normal)
+	level_up_weapon(normal)
+	level_up_weapon(normal)
 	items.append(normal)
 	var fire: Item = ItemManager.get_item_from_id(id)
 	upgrade_weapon(fire, WeaponData.UPGRADE_TYPE.FIRE)
@@ -442,3 +411,4 @@ func get_all_upgrade_types_for_id(id: String) -> Array[Item]:
 	items.append(chaos)
 
 	return items
+ 

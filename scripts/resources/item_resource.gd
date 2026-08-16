@@ -14,9 +14,12 @@ extends Resource
 @export var item_type: ITEM_TYPE
 
 @export var stack_size: int = 1
-var equipped: bool = false
 
 @export var unique_id: String
+
+var equipped: bool = false
+var prefix: String = ""
+var suffix: String = ""
 
 enum ITEM_CATEGORY {WEAPON, ARMOR, CONSUMABLE, MATERIAL}
 enum ITEM_SUB_CATEGORY {MELEE_WEAPON, RANGED_WEAPON, MAGIC_WEAPON, CONSUMABLE, THROWABLE, MATERIAL}
@@ -27,6 +30,9 @@ enum ITEM_TYPE {SHORTSWORD, GREATSWORD, AXE, GREATAXE, DAGGER, HAMMER, GREATHAMM
 				POTION, MANA_POTION, CONSUMABLE, GRENADE, THROWING_KNIFE,
 				UPGRADE_SHARD, TRANSFORM_SHARD,
 				}
+
+func get_combined_name() -> String:
+	return "{0}{1}{2}".format([prefix, item_name, suffix])
 
 static func get_item_category_value(value: ITEM_CATEGORY) -> String:
 	match value:

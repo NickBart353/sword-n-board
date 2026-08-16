@@ -241,7 +241,7 @@ func _set_item_data(index, list, data):
 	#list.set_item_tooltip(index, data.tooltip)
 	
 	list.set_item_tooltip_enabled(index, true)
-	list.set_item_tooltip(index, data.item_name)
+	list.set_item_tooltip(index, data.get_combined_name())
 
 
 #func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:

@@ -43,7 +43,7 @@ func _on_mouse_entered() -> void:
 
 func set_data(new_item: Item, new_slot: String = "") -> void:
 	item = new_item
-	text_label.text = item.data.item_name
+	text_label.text = item.data.get_combined_name()
 	sprite.texture = item.data.sprite
 	
 	if item.data.stackable:

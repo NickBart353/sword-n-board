@@ -6,7 +6,7 @@ class_name InterfaceItemHorizontal extends PanelContainer
 @onready var texture_rect: TextureRect = $HBoxContainer/TextureRect
 
 func set_data(itemdata: ItemData) -> void:
-	label.text = itemdata.item_name
+	label.text = itemdata.get_combined_name()
 	label_2.text = itemdata.explanation_text if itemdata.explanation_text != "" else itemdata.tooltip
 	label_3.text = str(itemdata.stack_size)
 	texture_rect.texture = itemdata.sprite

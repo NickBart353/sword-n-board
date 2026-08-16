@@ -53,10 +53,19 @@ func play_blood_vfx() -> void:
 	#vfx.global_position = collision_point.global_position
 	#vfx.play()
 
+func apply_enchant() -> void:
+	var enchant_applicator: EnchantApplicator = get_node_or_null("EnchantApplicator")
+	if enchant_applicator:
+		enchant_applicator.apply_current_enchant()
+	else:
+		push_error("enchant applicator missing: ", data.item_name)
+
 func _reset_impact_vfx(vfx: Basic_VFX) -> void:
 	vfx.hide()
 
 func set_impact_vfx(new_impact_vfx: PackedScene) -> void:
+	if enemy_impact_vfx:
+		enemy_impact_vfx.queue_free()
 	enemy_impact_vfx = new_impact_vfx.instantiate()
 	add_child.call_deferred(enemy_impact_vfx)
 	enemy_impact_vfx.hide()

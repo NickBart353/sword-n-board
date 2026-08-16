@@ -75,7 +75,7 @@ func _set_player_consumables(consumables: Array, new_current_consumable: Item = 
 			var display_instance = display_item.instantiate()
 			display_instance.set_data(item)
 			consumable_display.add_child(display_instance)
-			display_instance.name = item.data.item_name
+			display_instance.name = item.data.get_combined_name()
 			if consumable_counter != current_consumable_index: 
 				display_instance.hide()
 			else:
@@ -122,7 +122,7 @@ func _new_mainhand(item: Item):
 		var display_instance = display_item.instantiate()
 		display_instance.set_data(item)
 		mainhand_display.add_child(display_instance)
-		display_instance.name = item.data.item_name
+		display_instance.name = item.data.get_combined_name()
 
 func _new_offhand(item: Item, two_handed_duplicate: bool):
 	for child in offhand_display.get_children():
@@ -131,7 +131,7 @@ func _new_offhand(item: Item, two_handed_duplicate: bool):
 		var display_instance = display_item.instantiate()
 		display_instance.set_data(item)
 		offhand_display.add_child(display_instance)
-		display_instance.name = item.data.item_name
+		display_instance.name = item.data.get_combined_name()
 		if two_handed_duplicate:
 			display_instance.modulate = Color(1, 1, 1, 0.3)
 

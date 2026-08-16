@@ -42,8 +42,12 @@ func take_damage(damage_container: DamageContainer, _body = null):
 		anim_tree.set("parameters/Hitflash/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	update_HEALTH( - CombatMath.calulcate_damage(damage_container, resistance_resource))
 	if health <= MIN_HEALTH and state_machine.current_state.name.to_lower() != "dead":
-		var current_state: EnemyState = state_machine.get_node(state_machine.current_state.name as NodePath) as EnemyState
-		current_state.die()
+		state_machine.current_state.die()
+		#var string: String = state_machine.current_state.name
+		#var nodepath: NodePath = string as NodePath
+		#var current_state: EnemyState = state_machine.get_node_or_null(nodepath) as EnemyState
+		#if current_state
+		#current_state.die()
 		return
 	if state_machine.current_state.name.to_lower() == "idle":
 		state_machine.on_child_transitioned(state_machine.get_node("Idle"), "Engage")

@@ -30,12 +30,19 @@ class_name WeaponData
 
 enum UPGRADE_TYPE {NORMAL, MAGIC, FIRE, LIGHTNING, COLD, NATURE, CHAOS}
 
+var normal_text: String = ""
+var fire_text: String = ""
+var cold_text: String = ""
+var lightning_text: String = ""
+var nature_text: String = ""
+var chaos_text: String = ""
+
 static var prefix_dict: Dictionary = {
-		UPGRADE_TYPE.FIRE: "Flaming",
-		UPGRADE_TYPE.COLD: "Frozen",
-		UPGRADE_TYPE.LIGHTNING: "Lightning",
-		UPGRADE_TYPE.NATURE: "Nature",
-		UPGRADE_TYPE.CHAOS: "Chaos",
+		UPGRADE_TYPE.FIRE: "Flaming ",
+		UPGRADE_TYPE.COLD: "Frozen ",
+		UPGRADE_TYPE.LIGHTNING: "Lightning ",
+		UPGRADE_TYPE.NATURE: "Nature ",
+		UPGRADE_TYPE.CHAOS: "Chaos ",
 }
 
 static func get_upgrade_type_name_prefix(type: UPGRADE_TYPE) -> String:

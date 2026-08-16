@@ -5,6 +5,6 @@ extends InventoryItemText
 @export var type: Label
 
 func set_text(item: Item):
-	label.text = item.data.item_name
+	label.text = item.data.get_combined_name()
 	info_text_label.text = item.data.explanation_text
 	type.text = ItemData.get_item_type_value(item.data.item_type)

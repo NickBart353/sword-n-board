@@ -82,6 +82,12 @@ func unify_surfaces(_new_value: bool) -> void:
 	chaos_secondary_mesh_surface_indexes = fire_secondary_mesh_surface_indexes
 
 func _ready() -> void:
+	apply_current_enchant()
+
+func apply_current_enchant() -> void:
+	if vfx_instance:
+		vfx_instance.queue_free()
+	
 	if not weapon or not weapon_mesh:
 		push_error("enchant component not correctly set up for: ", get_parent().data.item_name)
 		return

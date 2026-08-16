@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func set_data(new_item: Item) -> void:
 	item = new_item
-	count_label.text = item.data.item_name
+	count_label.text = item.data.get_combined_name()
 	texture = item.data.sprite
 	if item.data.stackable:
 		count_label.show.call_deferred()

@@ -45,7 +45,7 @@ func sort_by_cat_and_name(a: Item, b: Item) -> bool:
 	if a.data.item_category < b.data.item_category:
 		return true
 	elif a.data.item_category == b.data.item_category:
-		if a.data.item_name < b.data.item_name:
+		if a.data.get_combined_name() < b.data.get_combined_name():
 			return true
 	return false
 
