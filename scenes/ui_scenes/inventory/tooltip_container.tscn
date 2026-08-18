@@ -26,7 +26,7 @@ border_color = Color(0.72464263, 0.7246426, 0.7246426, 1)
 
 [node name="TooltipContainer" type="HBoxContainer" unique_id=1833489514]
 offset_right = 250.0
-offset_bottom = 91.0
+offset_bottom = 250.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource("1_w12ja")
@@ -82,11 +82,9 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("1_w12ja")
-text = "Flaming Greatsword"
+text = "Flaming Greatswordeeee eee ee e e Greatswordeeee Grea tswordeeeeGreatswordeeee"
 label_settings = ExtResource("10_wpxvf")
-vertical_alignment = 1
 autowrap_mode = 2
-clip_text = true
 
 [node name="ItemType" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1368604227]
 layout_mode = 2
@@ -129,6 +127,7 @@ text = "5"
 label_settings = ExtResource("11_pnv6q")
 
 [node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/WeaponStats" unique_id=1765251845]
+visible = false
 modulate = Color(0.60784316, 0.654902, 1, 1)
 layout_mode = 2
 theme = ExtResource("1_w12ja")
@@ -329,6 +328,7 @@ text = "5"
 label_settings = ExtResource("6_wpxvf")
 
 [node name="Magic" type="HBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin/ArmorScroller/WeaponStats" unique_id=519227066]
+visible = false
 modulate = Color(0.60784316, 0.654902, 1, 1)
 layout_mode = 2
 theme = ExtResource("1_w12ja")
@@ -460,6 +460,7 @@ text = "0"
 label_settings = ExtResource("6_wpxvf")
 
 [node name="Consumable" type="VBoxContainer" parent="ItemStatMargin/ItemPanel/_InsideMargin" unique_id=1628339676 node_paths=PackedStringArray("label", "info_text_label", "type")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
