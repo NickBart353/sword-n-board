@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://wiuy6o6d84u5" path="res://assets/Visual/GAP_Fire_Textures/Flame01.png" id="2_hl4l8"]
 [ext_resource type="Texture2D" uid="uid://b68vs5ojnscs2" path="res://assets/Visual/GAP_Fire_Textures/Flame02.png" id="4_yy0nm"]
 [ext_resource type="Shader" uid="uid://cniftg1yhdrrm" path="res://shaders/SimpleParticleShader.tres" id="5_3btdx"]
+[ext_resource type="Shader" uid="uid://dh3xxekxqxesp" path="res://shaders/fire/vfx_fire_depth_test_DISABLED.tres" id="5_yhxws"]
 [ext_resource type="Texture2D" uid="uid://c5dcosxfx3bnc" path="res://assets/Visual/GAP_Fire_Textures/Flare00.PNG" id="6_sltny"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hl4l8"]
@@ -26,7 +27,7 @@ color = Color(2.638, 2.428, 4.006, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8qqbu"]
 render_priority = 0
-shader = ExtResource("2_e52rn")
+shader = ExtResource("5_yhxws")
 shader_parameter/MainTex = ExtResource("4_yy0nm")
 shader_parameter/DissolveTiling = Vector2(0.2, 0.25)
 shader_parameter/DissolveSpeed = Vector2(0.1, 0.1)

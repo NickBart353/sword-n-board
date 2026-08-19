@@ -29,7 +29,7 @@ const MELEE_WEAPONS: Dictionary = {#item scene
 	"10010": preload("uid://bgdnrrkbfdkxx"),#katana
 	"10008": preload("uid://137agp1y62ln"),#spear
 	"10002": preload("res://scenes/component_scenes/item_entities/weapons/torch/torch.tscn"),#torch
-	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield.tscn"),#wooden_shield
+	"10003": preload("res://scenes/component_scenes/item_entities/weapons/shield/shield_new.tscn"),#wooden_shield
 	"10011": preload("uid://c8nji2cctahl6"),#hammer
 	"10006": preload("uid://0gqvbdb35ik0"),#dagger
 }

@@ -19,6 +19,7 @@ input_name = "screen_uv"
 parameter_name = "SpaceTexture"
 
 [resource]
+modes/cull = 2
 flags/unshaded = true
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_3y6eh")
 nodes/fragment/2/position = Vector2(-540, 300)

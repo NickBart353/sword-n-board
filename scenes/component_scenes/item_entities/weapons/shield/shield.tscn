@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://icwfuhxr0nc6" path="res://assets/Audio/400 Sounds Pack/Other/subtle_knock.wav" id="3_0vplc"]
 [ext_resource type="PackedScene" uid="uid://vy70am7rcnuy" path="res://scenes/component_scenes/components/onehand_component.tscn" id="4_iee0v"]
 [ext_resource type="Script" uid="uid://c0wn6ksqghpbc" path="res://scenes/component_scenes/components/block_component.gd" id="5_8iuph"]
+[ext_resource type="PackedScene" uid="uid://cbmh7tvv5drwi" path="res://my_assets/models/weapons/shield.blend" id="6_ntn1b"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ffst0"]
 height = 0.14999999
@@ -32,8 +33,9 @@ script = ExtResource("2_8ynvp")
 collision_point = NodePath("Marker3D")
 hand_component = NodePath("OnehandComponent")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=1469745716 groups=["Shield"]]
+[node name="Sketchfab_model" parent="." index="0" unique_id=298155161 groups=["Shield"]]
 transform = Transform3D(-0.5, -4.371139e-08, 0, -1.9106855e-15, 2.1855694e-08, 0.5, -4.371139e-08, 0.5, -2.1855694e-08, 0, 0, 0)
+visible = false
 collision_layer = 8
 collision_mask = 33
 monitoring = false
@@ -49,7 +51,13 @@ shape = SubResource("BoxShape3D_8ynvp")
 disabled = true
 debug_color = Color(0.30449697, 0.627918, 0, 0.41960785)
 
-[node name="Backside" type="Area3D" parent="." index="1" unique_id=1789316094 groups=["Shield"]]
+[node name="shield" parent="." index="1" unique_id=1176817849 instance=ExtResource("6_ntn1b")]
+transform = Transform3D(-0.09021174, -0.28611508, 0, 0.28611508, -0.09021174, 0, 0, 0, 0.3, 0, 0, 0.093084276)
+
+[node name="Shield" parent="shield" index="0" unique_id=183784972]
+transform = Transform3D(1.5920455, 0, 0, 0, 1.5920455, 0, 0, 0, 0.045474607, 0.008103272, 0.016391808, 0.15885457)
+
+[node name="Backside" type="Area3D" parent="." index="2" unique_id=1789316094 groups=["Shield"]]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.01)
 collision_layer = 4
 collision_mask = 24
@@ -60,13 +68,13 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.8
 shape = SubResource("CylinderShape3D_dmnlx")
 debug_color = Color(0.99008447, 0, 0.2882964, 0.41960785)
 
-[node name="BlockPlayer" type="AudioStreamPlayer3D" parent="." index="2" unique_id=345881670]
+[node name="BlockPlayer" type="AudioStreamPlayer3D" parent="." index="3" unique_id=345881670]
 stream = SubResource("AudioStreamRandomizer_8ynvp")
 bus = &"SFX"
 
-[node name="OnehandComponent" parent="." index="3" unique_id=1480913319 instance=ExtResource("4_iee0v")]
+[node name="OnehandComponent" parent="." index="4" unique_id=1480913319 instance=ExtResource("4_iee0v")]
 
-[node name="BlockingComponent" type="Area3D" parent="." index="4" unique_id=272429070]
+[node name="BlockingComponent" type="Area3D" parent="." index="5" unique_id=272429070]
 collision_layer = 8
 collision_mask = 192
 script = ExtResource("5_8iuph")
@@ -78,10 +86,12 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1
 shape = SubResource("CylinderShape3D_ntn1b")
 debug_color = Color(0.34968925, 0.61989766, 0, 0.41960785)
 
-[node name="Marker3D" type="Marker3D" parent="." index="5" unique_id=495195620]
+[node name="Marker3D" type="Marker3D" parent="." index="6" unique_id=495195620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.26064754)
 
 [connection signal="area_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_area_entered"]
 [connection signal="body_entered" from="Sketchfab_model" to="." method="_on_sketchfab_model_body_entered"]
 [connection signal="area_entered" from="Backside" to="." method="_on_backside_area_entered"]
 [connection signal="body_entered" from="Backside" to="." method="_on_backside_body_entered"]
+
+[editable path="shield"]
