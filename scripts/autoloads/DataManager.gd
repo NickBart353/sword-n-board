@@ -21,9 +21,9 @@ const item_dir: String = "items/"
 const equipment_data: String = "equipment.txt"
 const player_item_data: String = "player_items.txt"
 
-const db_path: String = "db/"
-const item_db_path: String = "item_db.db"
-const item_db_path_backup: String = "item_db_backup.db"
+#const db_path: String = "db/"
+#const item_db_path: String = "item_db.db"
+#const item_db_path_backup: String = "item_db_backup.db"
 
 const player_dir: String = "player/"
 const basic_player_data: String = "basic_player_data.tres"
@@ -40,7 +40,7 @@ const item_table_dict: Dictionary = {
 	"storage_id": {"data_type": "text", "not_null": false},
 }
 
-var item_db: SQLite = SQLite.new()
+#var item_db: SQLite = SQLite.new()
 
 var current_save_file_id: String
 
@@ -52,16 +52,15 @@ var current_chest_path_dir: String
 func _ready() -> void:
 	print(OS.get_data_dir())
 
-func connect_db() -> void:
-	item_db = SQLite.new()
-	item_db.path = "{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path])
-	item_db.verbosity_level = SQLite.QUIET
-	item_db.open_db()
-	
-	item_db.query_with_bindings("SELECT * FROM sqlite_master WHERE type='table' AND name=?;", [item_table_name])
-	if item_db.query_result.is_empty():
-		item_db.create_table(item_table_name, item_table_dict)
-
+#func connect_db() -> void:
+	#item_db = SQLite.new()
+	#item_db.path = "{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path])
+	#item_db.verbosity_level = SQLite.QUIET
+	#item_db.open_db()
+	#
+	#item_db.query_with_bindings("SELECT * FROM sqlite_master WHERE type='table' AND name=?;", [item_table_name])
+	#if item_db.query_result.is_empty():
+		#item_db.create_table(item_table_name, item_table_dict)
 
 func _check_base_dir(additional_path: String = "") -> void:
 	var path: String = "{0}{1}".format([base_path, additional_path])
@@ -256,9 +255,9 @@ func _load_resource(filepath: String) -> Resource:
 		push_warning("No Data found in: ", filepath)
 		return null
 
-func load_player_items() -> Array:
-	#Arrayselect_rows(table_name: String, conditions: String, columns: Array)
-	return item_db.select_rows(item_table_name, "storage_id is NULL", ["id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"])
+#func load_player_items() -> Array:
+	##Arrayselect_rows(table_name: String, conditions: String, columns: Array)
+	#return item_db.select_rows(item_table_name, "storage_id is NULL", ["id", "item_id", "quantity", "equipped", "upgrade_level", "upgrade_type"])
 	#_check_base_dir(player_dir)
 	#return load_dictionary(player_item_data, player_dir)
 
@@ -293,10 +292,10 @@ func update_chest_and_items(prepared_item_list: Array) -> int:
 	var callable: Callable = Callable(self, "_save_items_to_db").bind(prepared_item_list.duplicate(true))
 	return WorkerThreadPool.add_task(callable)
 
-func _save_items_to_db(prepared_item_list: Array):
-	item_db.backup_to("{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path_backup]))
-	item_db.query("DELETE FROM {0};".format([item_table_name]))
-	item_db.insert_rows(item_table_name, prepared_item_list)
+#func _save_items_to_db(prepared_item_list: Array):
+	#item_db.backup_to("{0}{1}{2}_{3}".format([base_tree_path, db_path, current_save_file_id, item_db_path_backup]))
+	#item_db.query("DELETE FROM {0};".format([item_table_name]))
+	#item_db.insert_rows(item_table_name, prepared_item_list)
 
 func create_new_savefile(savefile_metadata: SaveFileMetadata):
 	var filepath: String = "{0}{1}/".format([save_file_path, savefile_metadata.savefile_id])
