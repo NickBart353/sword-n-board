@@ -237,6 +237,7 @@ hand_component = NodePath("OnehandComponent")
 
 [node name="HitBox" type="CollisionShape3D" parent="." unique_id=682500964]
 transform = Transform3D(-1, 0, -1.509958e-07, 0, 0.9999999, 0, 1.5099577e-07, 0, -0.9999999, -0.001, 0.65305763, -0.011277816)
+visible = false
 shape = SubResource("BoxShape3D_7aiw0")
 debug_color = Color(1.3086371, 0, 0.55059105, 0.42)
 
@@ -252,6 +253,7 @@ mesh = SubResource("ArrayMesh_o8jew")
 
 [node name="SwordPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1478659989]
 transform = Transform3D(0.99999976, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12596354, 0)
+visible = false
 stream = SubResource("AudioStreamRandomizer_x11a1")
 volume_db = 5.78
 max_polyphony = 4
@@ -263,6 +265,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, 0.02558134
 
 [node name="ParryComponent" type="Area3D" parent="." unique_id=577947458]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
 collision_layer = 8
 collision_mask = 192
 script = ExtResource("3_cyrm7")
@@ -273,11 +276,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005233766, 0.61320806, -0.
 shape = SubResource("BoxShape3D_o8jew")
 
 [node name="OnehandComponent" parent="." unique_id=1480913319 instance=ExtResource("3_xvlie")]
+visible = false
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1490477789]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.0677346, 0)
 
 [node name="EnchantApplicator" type="Node3D" parent="." unique_id=607683281 node_paths=PackedStringArray("weapon", "weapon_mesh", "fire_emission_shape", "cold_emission_shape", "lightning_emission_shape", "nature_emission_shape", "chaos_emission_shape")]
+visible = false
 script = ExtResource("5_o8jew")
 weapon = NodePath("..")
 weapon_mesh = NodePath("../ShortSword")

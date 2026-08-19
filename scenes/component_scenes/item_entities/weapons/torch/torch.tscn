@@ -10,16 +10,6 @@
 radius = 0.2
 height = 0.9375
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evctx"]
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.4966002, 0.3032189, 0.1383932, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_evctx"]
-material = SubResource("StandardMaterial3D_evctx")
-top_radius = 0.035
-bottom_radius = 0.014
-height = 1.0
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rraq4"]
 radius = 0.026
 height = 0.68
@@ -221,11 +211,6 @@ smoke_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 particle_color = Color(1.5446181, 0.6160878, 0, 1)
 see_through_objects = true
 
-[node name="WoodHolder" type="MeshInstance3D" parent="." unique_id=1204688802]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
-visible = false
-mesh = SubResource("CylinderMesh_evctx")
-
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1218468070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4442236, 0)
 light_color = Color(1.4330024, 0.6502688, 0, 1)
@@ -246,7 +231,6 @@ mesh = SubResource("CapsuleMesh_rraq4")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1243682543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412814, 0)
-visible = false
 
 [node name="torch" parent="." unique_id=1107266943 instance=ExtResource("5_jrsqj")]
 transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 0, -0.5181474, 0)

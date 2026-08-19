@@ -1,14 +1,10 @@
 class_name Shield extends MeleeWeapon
 
-signal blocked
-
-var monitoring: bool = false
-
-var body_back_side_entered_first: bool = false
-var area_back_side_entered_first: bool = false
-
 func set_collision_mask_value(_value: int, _boolean: bool):
 	pass
+
+func _on_body_entered(body: Node3D) -> void:
+	hit_body(body)
 
 func _set_marker_values():
 	marker_positions = {
@@ -47,9 +43,3 @@ func _set_marker_values():
 			"R_Rotation": Vector3.ZERO,
 			},
 	}
-
-func _on_sketchfab_model_body_entered(body: Node3D) -> void:
-	hit_body(body)
-
-func _on_body_entered(body: Node3D) -> void:
-	hit_body(body)
