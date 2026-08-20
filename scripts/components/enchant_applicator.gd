@@ -131,6 +131,8 @@ func _apply_enchant(particle_amount: int, mesh_surface_indexes: Array[int], seco
 	vfx_instance.process_material.emission_shape_offset = emission_shape.position
 	vfx_instance.process_material.emission_box_extents = emission_shape.shape.size
 	
+	_apply_additional_effects()
+	
 	for index in mesh_surface_indexes:
 		if enchant_dict[upgrade_type].has("material"):
 			weapon_mesh.mesh.surface_set_material(index, enchant_dict[upgrade_type]["material"])
@@ -141,3 +143,6 @@ func _apply_enchant(particle_amount: int, mesh_surface_indexes: Array[int], seco
 	for index in secondary_mesh_surface_indexes:
 		if enchant_dict[upgrade_type].has("secondary_material"):
 			weapon_mesh.mesh.surface_set_material(index, enchant_dict[upgrade_type]["secondary_material"])
+
+func _apply_additional_effects() -> void:
+	pass
