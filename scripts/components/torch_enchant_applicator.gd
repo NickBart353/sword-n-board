@@ -12,22 +12,22 @@ const vfx_color_dict: Dictionary = {
 		"light": Color(1.433, 0.65, 0.0),
 	},
 	WeaponData.UPGRADE_TYPE.COLD: {
-		"flame": Color(0.676, 0.878, 1.882, 1.0),
-		"smoke": Color(0.119, 0.119, 0.119, 1.0),
+		"flame": Color(0.677, 1.333, 2.503, 1.0),
+		"smoke": Color(0.758, 0.758, 0.758, 1.0),
 		"particle": Color(0.512, 0.639, 1.882, 1.0),
-		"light": Color(0.0, 0.343, 1.433, 1.0),
+		"light": Color(0.0, 0.659, 1.433, 1.0),
 	},
 	WeaponData.UPGRADE_TYPE.CHAOS: {
-		"flame": Color(0.839, 0.839, 0.839, 1.0),
+		"flame": Color(1.116, 1.116, 1.116, 1.0),
 		"smoke": Color(0.119, 0.119, 0.119, 1.0),
 		"particle": Color(1.017, 0.016, 1.804, 1.0),
 		"light": Color(0.475, 0.228, 0.809, 1.0),
 	},
 	WeaponData.UPGRADE_TYPE.LIGHTNING: {
-		"flame": Color(0.377, 0.459, 2.138, 1.0),
+		"flame": Color(0.469, 1.595, 2.603, 1.0),
 		"smoke": Color(0.119, 0.119, 0.119, 1.0),
 		"particle": Color(1.401, 1.557, 0.0, 1.0),
-		"light": Color(0.399, 0.83, 1.267, 1.0),
+		"light": Color(1.381, 1.381, 0.388, 1.0),
 	},
 	WeaponData.UPGRADE_TYPE.NATURE: {
 		"flame": Color(0.489, 1.188, 0.212, 1.0),

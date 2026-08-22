@@ -209,16 +209,17 @@ debug_color = Color(0.9910373, 0, 0.27664915, 0.41960785)
 
 [node name="vfx_fire" parent="." unique_id=274732113 instance=ExtResource("1_evctx")]
 process_priority = 5
-transform = Transform3D(0.213, 0, 0, 0, 0.213, 0, 0, 0, 0.213, 0, 0.45994592, 0)
+transform = Transform3D(0.213, 0, 0, 0, 0.213, 0, 0, 0, 0.213, 0, 0.43891895, 0)
 flame_color = Color(1.898999, 0.90968984, 0.4772251, 1)
 smoke_color = Color(0.25490198, 0.25490198, 0.25490198, 1)
 particle_color = Color(1.5446181, 0.6160878, 0, 1)
 see_through_objects = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1218468070]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4442236, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46705297, 0)
 light_color = Color(1.4330024, 0.6502688, 0, 1)
-omni_range = 3.7
+light_energy = 0.723
+omni_range = 2.33
 
 [node name="TorchPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1510446642]
 stream = ExtResource("3_2445i")
@@ -237,7 +238,7 @@ mesh = SubResource("CapsuleMesh_rraq4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412814, 0)
 
 [node name="torch" parent="." unique_id=1107266943 instance=ExtResource("5_jrsqj")]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, -0.23004836, 0)
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, -0.23383811, 0)
 
 [node name="Torch" parent="torch" index="0" unique_id=1105430615]
 mesh = SubResource("ArrayMesh_yucew")
@@ -255,16 +256,16 @@ fire_vfx = NodePath("../vfx_fire")
 light = NodePath("../OmniLight3D")
 weapon = NodePath("..")
 weapon_mesh = NodePath("../torch/Torch")
-fire_particle_amount = 1
-fire_mesh_surface_indexes = Array[int]([1])
-fire_secondary_mesh_surface_indexes = Array[int]([0, 2])
+fire_particle_amount = 30
+fire_mesh_surface_indexes = Array[int]([2])
+fire_secondary_mesh_surface_indexes = Array[int]([0, 1])
 fire_emission_shape = NodePath("CollisionShape3D")
-cold_mesh_surface_indexes = Array[int]([1])
-cold_secondary_mesh_surface_indexes = Array[int]([0, 2])
+cold_mesh_surface_indexes = Array[int]([2])
+cold_secondary_mesh_surface_indexes = Array[int]([0, 1])
 cold_emission_shape = NodePath("CollisionShape3D")
-lightning_particle_amount = 5
-lightning_mesh_surface_indexes = Array[int]([1])
-lightning_secondary_mesh_surface_indexes = Array[int]([0, 2])
+lightning_particle_amount = 9
+lightning_mesh_surface_indexes = Array[int]([2])
+lightning_secondary_mesh_surface_indexes = Array[int]([0, 1])
 lightning_emission_shape = NodePath("CollisionShape3D")
 nature_mesh_surface_indexes = Array[int]([1])
 nature_secondary_mesh_surface_indexes = Array[int]([0, 2])
@@ -274,7 +275,7 @@ chaos_secondary_mesh_surface_indexes = Array[int]([0, 2])
 chaos_emission_shape = NodePath("CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TorchEnchantApplicator" unique_id=635805793]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0045166016, 0.4978953, -0.0026855469)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0045166016, 0.49344128, -0.0026855469)
 shape = SubResource("BoxShape3D_6rmpw")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
